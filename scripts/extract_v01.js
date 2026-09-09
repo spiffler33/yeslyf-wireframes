@@ -7,7 +7,7 @@ const path = require("path");
 const vm = require("vm");
 
 const ROOT = path.resolve(__dirname, "..");
-const IN = path.join(ROOT, "input", "v01");
+const IN = path.join(ROOT, "inputs", "v01");
 const OUT = path.join(ROOT, "data");
 
 function scriptBodies(file) {
@@ -74,7 +74,7 @@ fs.mkdirSync(OUT, { recursive: true });
 
 const wire = loadContext(path.join(IN, "yeslyf_wireframes_v0.1.html"));
 const w = pick(wire, ["SECTIONS", "SCREENS"]);
-write("screens_v01.json", { source: "input/v01/yeslyf_wireframes_v0.1.html", sections: w.SECTIONS, screens: w.SCREENS });
+write("screens_v01.json", { source: "inputs/v01/yeslyf_wireframes_v0.1.html", sections: w.SECTIONS, screens: w.SCREENS });
 
 const admin = loadContext(path.join(IN, "yeslyf_admin_crm_spec_v0.1.html"));
 const a = pick(admin, ["STACK", "PLACEMENT", "CONTACT_FIELDS", "DEAL_FIELDS", "EVENTS", "INBOUND", "NUDGES", "NUDGE_EXAMPLES", "COMPLIANCE", "DECISIONS"]);
@@ -84,17 +84,17 @@ a.DECISIONS = a.DECISIONS.map(function (d) {
     stated_by: "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1",
   };
 });
-write("admin_crm.json", Object.assign({ source: "input/v01/yeslyf_admin_crm_spec_v0.1.html",
+write("admin_crm.json", Object.assign({ source: "inputs/v01/yeslyf_admin_crm_spec_v0.1.html",
   note: "DECISIONS were written in the admin/CRM spec v0.1 by the crm-and-nudges workstream (Vatsal and Kajal); 'position' is their stated position, not a recommendation to anyone else." }, a));
 
 const log = loadContext(path.join(IN, "yeslyf_review_log_v0.1.html"));
 const r = pick(log, ["ROWS"]);
-write("review_rows_v01.json", { source: "input/v01/yeslyf_review_log_v0.1.html",
+write("review_rows_v01.json", { source: "inputs/v01/yeslyf_review_log_v0.1.html",
   note: "Raw rows 1 to 73 as exported. The disp/act columns carry the rejected v0.1 framing; use data/inputs.json for status.", rows: r.ROWS });
 
 const board = loadContext(path.join(IN, "yeslyf_v0.2_decision_board.html"));
 const b = pick(board, ["DECISIONS", "CONFIRM", "CHANGES", "ANSWERED", "GAPS", "HARISH_ROWS"]);
-write("decision_board_v01.json", Object.assign({ source: "input/v01/yeslyf_v0.2_decision_board.html",
+write("decision_board_v01.json", Object.assign({ source: "inputs/v01/yeslyf_v0.2_decision_board.html",
   note: "Data source only. The framing of this draft (rec, owner labels, dispositions) is rejected; attribution on the site comes from data/open_items.json and data/inputs.json." }, b));
 
 for (const [n, c] of [["wireframes", wire], ["admin", admin], ["review log", log], ["board", board]]) {

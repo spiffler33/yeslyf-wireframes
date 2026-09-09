@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Parse the five markdown review exports into data/inputs.json.
 
-The export format is fixed by exportNotes() in input/v01/yeslyf_wireframes_v0.1.html:
+The export format is fixed by exportNotes() in inputs/v01/yeslyf_wireframes_v0.1.html:
   "## <section>", then "- **<ID> <title>**[ [<Verdict>]]", then comment lines indented by two spaces.
 Each comment is mapped to its row number in the v0.1 review log (data/review_rows_v01.json, rows 1 to 73)
 by (reviewer, screen). The log split two comments across two rows and merged a few comments on one
@@ -13,7 +13,7 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REVIEWS = os.path.join(ROOT, "input", "reviews")
+REVIEWS = os.path.join(ROOT, "inputs", "reviews")
 DATA = os.path.join(ROOT, "data")
 
 REVIEWERS = ["Bhuvanaa", "Gaurav", "Harish", "Kajal", "Somil"]
@@ -169,7 +169,7 @@ def main():
             print("PROBLEM: " + p)
         sys.exit(1)
 
-    out = {"source": "input/reviews/*.md mapped to the row numbers of input/v01/yeslyf_review_log_v0.1.html",
+    out = {"source": "inputs/reviews/*.md mapped to the row numbers of inputs/v01/yeslyf_review_log_v0.1.html",
            "rows": rows}
     text = json.dumps(out, indent=1, ensure_ascii=True) + "\n"
     with open(os.path.join(DATA, "inputs.json"), "w") as fh:

@@ -16,7 +16,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
 DOCS = os.path.join(ROOT, "docs")
-V01_IN = os.path.join(ROOT, "input", "v01")
+V01_IN = os.path.join(ROOT, "inputs", "v01")
 V01_FILES = ["yeslyf_wireframes_v0.1.html", "yeslyf_admin_crm_spec_v0.1.html"]
 WIRE = "v01/yeslyf_wireframes_v0.1.html"
 ADMIN = "v01/yeslyf_admin_crm_spec_v0.1.html"

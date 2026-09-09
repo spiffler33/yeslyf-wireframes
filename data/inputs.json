@@ -1,5 +1,5 @@
 {
- "source": "input/reviews/*.md mapped to the row numbers of input/v01/yeslyf_review_log_v0.1.html",
+ "source": "inputs/reviews/*.md mapped to the row numbers of inputs/v01/yeslyf_review_log_v0.1.html",
  "rows": [
   {
    "n": 1,

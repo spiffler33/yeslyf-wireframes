@@ -414,7 +414,7 @@
    ],
    "control": "single",
    "title": "Retirement model",
-   "context": "The FP React component uses depletion to life expectancy (per PLAN.md section 9; the component file is not in input/). L02 lists the assumptions the engine uses.",
+   "context": "The FP React component uses depletion to life expectancy (per PLAN.md section 9; the component file is not in inputs/). L02 lists the assumptions the engine uses.",
    "positions": [
     {
      "who": "Bhuvanaa",
@@ -634,7 +634,7 @@
     {
      "who": "Harish",
      "position": "HoA's eight-question risk profiling questionnaire; the adviser classifies the client as aggressive, moderate or conservative.",
-     "ref": "HoA risk profiling questionnaire (input/hoa)"
+     "ref": "HoA risk profiling questionnaire (inputs/hoa)"
     },
     {
      "who": "Bhuvanaa",

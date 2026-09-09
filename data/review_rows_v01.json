@@ -1,5 +1,5 @@
 {
- "source": "input/v01/yeslyf_review_log_v0.1.html",
+ "source": "inputs/v01/yeslyf_review_log_v0.1.html",
  "note": "Raw rows 1 to 73 as exported. The disp/act columns carry the rejected v0.1 framing; use data/inputs.json for status.",
  "rows": [
   {

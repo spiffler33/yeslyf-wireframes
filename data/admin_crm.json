@@ -1,5 +1,5 @@
 {
- "source": "input/v01/yeslyf_admin_crm_spec_v0.1.html",
+ "source": "inputs/v01/yeslyf_admin_crm_spec_v0.1.html",
  "note": "DECISIONS were written in the admin/CRM spec v0.1 by the crm-and-nudges workstream (Vatsal and Kajal); 'position' is their stated position, not a recommendation to anyone else.",
  "STACK": [
   {

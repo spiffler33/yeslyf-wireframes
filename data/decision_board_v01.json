@@ -1,5 +1,5 @@
 {
- "source": "input/v01/yeslyf_v0.2_decision_board.html",
+ "source": "inputs/v01/yeslyf_v0.2_decision_board.html",
  "note": "Data source only. The framing of this draft (rec, owner labels, dispositions) is rejected; attribution on the site comes from data/open_items.json and data/inputs.json.",
  "DECISIONS": [
   {
