@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>yeslyf product board: gaps</title>
+<style>
+  :root{--paper:#EEF0F3;--panel:#fff;--ink:#1B1F27;--mute:#5F6773;--line:#D3D7DE;--accent:#FFDA00;--accent-soft:#FFF4B8;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45;scroll-behavior:smooth}
+  button,select,input,textarea{font-family:inherit;font-size:13px}
+  a{color:inherit}
+  ::selection{background:var(--accent)}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:8px 18px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .brand{font-weight:700;font-size:16px;white-space:nowrap}
+  .brand span{font-weight:400;color:var(--mute);margin-left:8px;font-size:13px}
+  .tabs{display:flex;gap:2px;flex-wrap:wrap}
+  .tabs a{text-decoration:none;font-size:13px;padding:6px 10px;border-radius:6px;border:1px solid transparent;color:var(--mute)}
+  .tabs a:hover{background:#F5F6F8}
+  .tabs a.on{color:var(--ink);font-weight:600;border-color:var(--line);background:#fff}
+  .who{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mute);margin-left:auto}
+  .who input{padding:6px 8px;border:1px solid var(--line);border-radius:6px;width:170px}
+  .saved{font-size:12px;color:var(--mute);min-width:120px}
+  .pill{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--mute);text-decoration:none;white-space:nowrap}
+  .pill.on{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .top .primary{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
+  .top .ghost{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:6px;cursor:pointer}
+  .layout{display:grid;grid-template-columns:240px minmax(0,1fr)}
+  .nav{position:sticky;top:49px;height:calc(100vh - 49px);overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:10px 0}
+  .nav a{display:block;padding:6px 14px 6px 11px;text-decoration:none;font-size:13px;border-left:3px solid transparent}
+  .nav a:hover{background:#F5F6F8}
+  .nav .sub{padding-left:24px;font-size:12px;color:var(--mute)}
+  .main{padding:18px 26px 120px;max-width:1150px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px}
+  h1{font-size:22px;margin:0 0 6px}
+  h2{font-size:17px;margin:0 0 4px}
+  h2 small{font-weight:400;color:var(--mute);font-size:13px;margin-left:8px}
+  h3{font-size:14px;margin:14px 0 4px}
+  .lead{color:var(--mute);margin:0 0 12px;max-width:860px}
+  .rule{padding-left:10px;border-left:3px solid var(--accent);margin:8px 0 12px;max-width:900px}
+  ul{margin:6px 0;padding-left:18px} li{margin:3px 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:8px 0 4px}
+  .stat{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#FCFCFD}
+  .stat b{display:block;font-size:22px} .stat span{font-size:12px;color:var(--mute)}
+  .item{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 12px;background:#FCFCFD;scroll-margin-top:60px}
+  .item.hi{border-color:#C9A800;box-shadow:0 0 0 3px var(--accent-soft)}
+  .item.done{border-color:#7A8797}
+  .item-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+  .item-h b{font-size:15px}
+  .tag{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;background:#fff;color:var(--mute);white-space:nowrap}
+  .tag.hi{border-color:#B2434F;color:#B2434F;font-weight:600}
+  .tag.team{border-color:var(--ink);color:var(--ink);font-weight:600}
+  .tag.done{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .screens a{font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;margin-right:3px;background:#fff}
+  .ctx{font-size:13px;margin:0 0 8px;color:#3B4250}
+  .pos{margin:0 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+  .pos li{font-size:12.5px} .pos b{font-weight:600}
+  .pos .ref{color:var(--mute);font-size:11.5px}
+  .cond{font-size:12.5px;margin:0 0 8px} .cond li{list-style:none;margin-left:-18px}
+  .dflt-line{font-size:12.5px;margin:6px 0 4px;color:#3B4250}
+  .opt{display:flex;gap:10px;align-items:flex-start;padding:7px 10px;border:1px solid var(--line);border-radius:8px;margin:5px 0;background:#fff;cursor:pointer}
+  .opt input{margin-top:3px}
+  .opt.dflt{border-color:#C9A800;background:#FFFDF2}
+  .opt .held{display:block;font-size:11.5px;color:var(--mute);margin-top:2px}
+  .dpill{display:inline-block;font-size:10.5px;font-weight:700;background:var(--accent);border-radius:4px;padding:1px 6px;margin-left:6px;white-space:nowrap}
+  .ppill{display:inline-block;font-size:10.5px;border:1px dashed var(--mute);border-radius:4px;padding:1px 6px;margin-left:6px;color:var(--mute);white-space:nowrap}
+  .dep{font-size:12.5px;color:#3B4250;margin:8px 0 0;padding:6px 10px;border:1px dashed var(--line);border-radius:6px;background:#fff}
+  .dep.on{border-style:solid;border-color:#C9A800;background:#FFFBEA}
+  .dep b{font-weight:600}
+  .meta{font-size:11.5px;color:var(--mute)}
+  .note{width:100%;min-height:40px;border:1px solid var(--line);border-radius:6px;padding:6px;resize:vertical;background:#fff;margin-top:6px}
+  .decided{display:flex;gap:8px;align-items:center;font-size:12.5px;margin-top:8px}
+  .qa{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:start;padding:7px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+  .qa:last-child{border-bottom:0}
+  .qa .t{white-space:pre-wrap} .qa .t b{white-space:nowrap}
+  .qa .c{display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  .qa button{border:1px solid var(--line);background:#fff;padding:4px 9px;border-radius:5px;cursor:pointer}
+  .qa button.on{background:var(--accent);border-color:#C9A800;font-weight:600}
+  .qa button.on.no{background:#F1F2F4;border-color:var(--ink)}
+  .qa input{padding:4px 6px;border:1px solid var(--line);border-radius:5px;width:180px}
+  .gap{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 8px;background:#FCFCFD;scroll-margin-top:60px}
+  .gap-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+  .gap .why{font-size:12.5px;color:#3B4250;margin:6px 0}
+  .gap .rec{font-size:12.5px;margin:6px 0;padding-left:10px;border-left:3px solid var(--accent)}
+  .gap-c{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:12px}
+  .gap-c select,.gap-c input{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  table{width:100%;border-collapse:collapse;font-size:12.5px} th{text-align:left;border-bottom:2px solid var(--ink);padding:6px 8px;font-size:12px;vertical-align:bottom} td{border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
+  td.n{font-variant-numeric:tabular-nums;color:var(--mute);white-space:nowrap}
+  td .raw{white-space:pre-wrap}
+  td .ans{margin-top:4px;padding-left:8px;border-left:3px solid var(--accent);font-size:12px}
+  td .basis{color:var(--mute);font-size:11.5px;margin-top:3px}
+  .status{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;white-space:nowrap;background:#fff}
+  .status.open{border-color:#C9A800;background:var(--accent-soft)}
+  .status.quick-accept{border-color:#7A8797}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:12px;align-items:center}
+  .filters select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  tr.hidden{display:none}
+  tr.hi td{background:var(--accent-soft)}
+  details{margin:8px 0} summary{cursor:pointer;font-weight:600;font-size:13px}
+  pre{background:#F5F6F8;border:1px solid var(--line);border-radius:6px;padding:10px;font-size:11.5px;overflow:auto;white-space:pre-wrap}
+  .setup input{width:100%;padding:7px;border:1px solid var(--line);border-radius:6px;margin:4px 0}
+  .frame-wrap{height:calc(100vh - 49px)} .frame-wrap iframe{width:100%;height:100%;border:0;background:#fff}
+  .frame-bar{display:flex;gap:10px;align-items:center;padding:6px 18px;background:var(--panel);border-bottom:1px solid var(--line);font-size:12px;color:var(--mute);flex-wrap:wrap}
+  .frame-bar select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff;max-width:360px}
+  .frame-wrap.with-bar{height:calc(100vh - 88px)}
+  @media (max-width:1000px){.layout{display:block}.nav{display:none}.main{padding:12px}.who{margin-left:0}.qa{grid-template-columns:1fr}.qa .c{justify-content:flex-start}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand">yeslyf <span>product board, gaps</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html" class="on">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM</a><a href="setup.html">Setup</a></nav><div class="who">Decided by <input id="who" placeholder="your first name"></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a><button id="export" class="primary">Export brief</button></header>
+<div class="layout"><nav class="nav"><a class="sub" href="#gap/G01">G01 Brand name lock (yeslyf vs Yesly vs Yalp</a><a class="sub" href="#gap/G02">G02 SEBI advertisement code review of reveal</a><a class="sub" href="#gap/G03">G03 DPDP consent notice and deletion</a><a class="sub" href="#gap/G04">G04 Adviser capacity number and slot design</a><a class="sub" href="#gap/G05">G05 Vendor onboarding critical path with own</a><a class="sub" href="#gap/G06">G06 Documents owed: RPQ scoring map, fixed-f</a><a class="sub" href="#gap/G07">G07 Analytics instrumentation rule: every sc</a><a class="sub" href="#gap/G08">G08 Content production list with screen IDs</a><a class="sub" href="#gap/G09">G09 App store financial-app requirements</a><a class="sub" href="#gap/G10">G10 Date protection: define V1 without in-ap</a><a class="sub" href="#gap/G11">G11 Existing HoA clients into the app after </a><a class="sub" href="#gap/G12">G12 Support staffing on day one</a><a class="sub" href="#gap/G13">G13 Closed beta with thirty community member</a></nav><main class="main"><section><h1>Gaps: things nobody raised</h1><p class="lead">Each gap carries a Vatsal recommendation and a suggested owner by first name. The meeting gives each one an owner and a date, or drops it. Nothing here is decided until the owner says so.</p></section>
+<div class="gap" id="gap-G01"><div class="gap-h"><b>G01 Brand name lock (yeslyf vs Yesly vs Yalpho)</b><span class="tag hi">impact High</span><span class="tag">suggested owner: Team</span></div>
+<div class="why">The files say yeslyf; earlier documents say Yesly and Yalpho. Spinach cannot start a wordmark or an app icon without the final name.</div>
+<div class="rec"><b>Vatsal recommendation:</b> Lock the name and spelling this week; it is the first line of the Spinach brief.</div>
+<div class="gap-c"><label>Status <select data-gap="G01" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G01" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G01" data-f="date"></label></div>
+<textarea class="note" data-gap="G01" data-f="note" placeholder="Note"></textarea></div>
+<div class="gap" id="gap-G02"><div class="gap-h"><b>G02 SEBI advertisement code review of reveal, sample plan, testimonials, listing, nudges</b><span class="tag hi">impact High</span><span class="tag">suggested owner: Harish</span></div>
+<div class="why">The reveal copy, the sample plan, testimonials (X01 strip, day-7 nudge), the app store listing and the nudges are promotional communications by an RIA. The 2023 advertisement code restricts what can be said and requires prior approval of advertisements by the supervisory body; testimonials are likely restricted.</div>
+<div class="rec"><b>Vatsal recommendation:</b> Compliance review of every promotional surface before Spinach writes copy; drop testimonials until cleared. Confidence on the exact testimonial rule: moderate; Harish to check.</div>
+<div class="gap-c"><label>Status <select data-gap="G02" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G02" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G02" data-f="date"></label></div>
+<textarea class="note" data-gap="G02" data-f="note" placeholder="Note"></textarea></div>
+<div class="gap" id="gap-G03"><div class="gap-h"><b>G03 DPDP consent notice and deletion</b><span class="tag">impact Med</span><span class="tag">suggested owner: Harish</span></div>
+<div class="why">A02 collects personal data and financial data follows. India&#x27;s data protection law requires a consent notice with purpose, the right to withdraw, and deletion, with exceptions for records SEBI requires you to keep.</div>
+<div class="rec"><b>Vatsal recommendation:</b> Draft the notice with counsel; A02 and H09 already have the slots; retention exceptions are listed in the admin/CRM spec.</div>
+<div class="gap-c"><label>Status <select data-gap="G03" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G03" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G03" data-f="date"></label></div>
+<textarea class="note" data-gap="G03" data-f="note" placeholder="Note"></textarea></div>
+<div class="gap" id="gap-G04"><div class="gap-h"><b>G04 Adviser capacity number and slot design</b><span class="tag hi">impact High</span><span class="tag">suggested owner: Bhuvanaa and Harish</span></div>
+<div class="why">S1 decides who takes the DIWM call; nobody has decided how many clients and by when. One person at about 3 hours per client-year caps near 450 clients a year, realistically 200 to 300 alongside other work.</div>
+<div class="rec"><b>Vatsal recommendation:</b> Name the person and the cap; the K01 slot design and a waitlist depend on it.</div>
+<div class="gap-c"><label>Status <select data-gap="G04" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G04" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G04" data-f="date"></label></div>
+<textarea class="note" data-gap="G04" data-f="note" placeholder="Note"></textarea></div>
+<div class="gap" id="gap-G05"><div class="gap-h"><b>G05 Vendor onboarding critical path with owner and dates</b><span class="tag hi">impact High</span><span class="tag">suggested owner: Kajal</span></div>
+<div class="why">AA TSP and FIU registration, Digio, Razorpay subscriptions, smallcase Gateway partnership or BSE StAR RIA access, WhatsApp provider, Zoho. Each has a contract and a lead time; none has an owner or a date in any document.</div>
+<div class="rec"><b>Vatsal recommendation:</b> One owner, a dated list this week. This, not code, is the long pole for 1 February.</div>
+<div class="gap-c"><label>Status <select data-gap="G05" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G05" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G05" data-f="date"></label></div>
+<textarea class="note" data-gap="G05" data-f="note" placeholder="Note"></textarea></div>
+<div class="gap" id="gap-G06"><div class="gap-h"><b>G06 Documents owed: RPQ scoring map, fixed-fee agreement with the app as a channel, risk logic</b><span class="tag">impact Med</span><span class="tag">suggested owner: Harish and Bhuvanaa</span></div>
+<div class="why">The RPQ scoring map (D08 dev note); a fixed-fee agreement template with the app as an advice channel (the current agreement is AUA mode); Bhuvanaa&#x27;s risk logic if H3 goes to option b or c.</div>
+<div class="rec"><b>Vatsal recommendation:</b> A date against each document.</div>
+<div class="gap-c"><label>Status <select data-gap="G06" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G06" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G06" data-f="date"></label></div>
+<textarea class="note" data-gap="G06" data-f="note" placeholder="Note"></textarea></div>
+<div class="gap" id="gap-G07"><div class="gap-h"><b>G07 Analytics instrumentation rule: every screen ID is an event</b><span class="tag">impact Low</span><span class="tag">suggested owner: Gaurav</span></div>
+<div class="why">Drop-off analytics only work if every screen ID is an event from day one.</div>
+<div class="rec"><b>Vatsal recommendation:</b> One line in the dev brief: screen_view with screen_id on every screen; funnel events per the admin/CRM spec.</div>
+<div class="gap-c"><label>Status <select data-gap="G07" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G07" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G07" data-f="date"></label></div>
+<textarea class="note" data-gap="G07" data-f="note" placeholder="Note"></textarea></div>
+<div class="gap" id="gap-G08"><div class="gap-h"><b>G08 Content production list with screen IDs</b><span class="tag">impact Med</span><span class="tag">suggested owner: Bhuvanaa</span></div>
+<div class="why">Videos (A04 welcome, R10 and R11, O01 adviser intro), five or six persona sample plans, FAQs, tooltips, disclaimers. Nobody owns the list.</div>
+<div class="rec"><b>Vatsal recommendation:</b> Bhuvanaa owns it; v0.2 lists every content slot with its screen ID.</div>
+<div class="gap-c"><label>Status <select data-gap="G08" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G08" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G08" data-f="date"></label></div>
+<textarea class="note" data-gap="G08" data-f="note" placeholder="Note"></textarea></div>
+<div class="gap" id="gap-G09"><div class="gap-h"><b>G09 App store financial-app requirements</b><span class="tag">impact Low</span><span class="tag">suggested owner: Gaurav</span></div>
+<div class="why">Google Play and the App Store have financial-app declarations and require the regulator registration in the listing; review cycles take days.</div>
+<div class="rec"><b>Vatsal recommendation:</b> Check both policies now, not at submission.</div>
+<div class="gap-c"><label>Status <select data-gap="G09" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G09" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G09" data-f="date"></label></div>
+<textarea class="note" data-gap="G09" data-f="note" placeholder="Note"></textarea></div>
+<div class="gap" id="gap-G10"><div class="gap-h"><b>G10 Date protection: define V1 without in-app execution</b><span class="tag hi">impact High</span><span class="tag">suggested owner: Vatsal</span></div>
+<div class="why">In-app execution (G1) is the biggest risk to 1 February because it depends on third parties. If it slips, the launch should not.</div>
+<div class="rec"><b>Vatsal recommendation:</b> Define the fallback now: action plan with deep links to the user&#x27;s own platform, AA verifies completion. Ship execution as the first post-launch release if needed.</div>
+<div class="gap-c"><label>Status <select data-gap="G10" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G10" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G10" data-f="date"></label></div>
+<textarea class="note" data-gap="G10" data-f="note" placeholder="Note"></textarea></div>
+<div class="gap" id="gap-G11"><div class="gap-h"><b>G11 Existing HoA clients into the app after launch via assisted onboarding</b><span class="tag">impact Low</span><span class="tag">suggested owner: Harish</span></div>
+<div class="why">The DIFM tier exists (state S14) but nobody has said when existing clients migrate or who enters their data.</div>
+<div class="rec"><b>Vatsal recommendation:</b> After launch, via assisted onboarding in the admin tool; not a day-one task.</div>
+<div class="gap-c"><label>Status <select data-gap="G11" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G11" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G11" data-f="date"></label></div>
+<textarea class="note" data-gap="G11" data-f="note" placeholder="Note"></textarea></div>
+<div class="gap" id="gap-G12"><div class="gap-h"><b>G12 Support staffing on day one</b><span class="tag">impact Med</span><span class="tag">suggested owner: Kajal</span></div>
+<div class="why">Desk tickets and adviser messages need a human within one business day from the first paid user.</div>
+<div class="rec"><b>Vatsal recommendation:</b> Name the person; community managers can cover support, not advice.</div>
+<div class="gap-c"><label>Status <select data-gap="G12" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G12" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G12" data-f="date"></label></div>
+<textarea class="note" data-gap="G12" data-f="note" placeholder="Note"></textarea></div>
+<div class="gap" id="gap-G13"><div class="gap-h"><b>G13 Closed beta with thirty community members in January</b><span class="tag">impact Med</span><span class="tag">suggested owner: Vatsal</span></div>
+<div class="why">Nothing in any document tests the journey with real users before 1 February.</div>
+<div class="rec"><b>Vatsal recommendation:</b> Thirty community members in January on a build with the reveal, paywall and data flow; execution optional.</div>
+<div class="gap-c"><label>Status <select data-gap="G13" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G13" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="G13" data-f="date"></label></div>
+<textarea class="note" data-gap="G13" data-f="note" placeholder="Note"></textarea></div></main></div>
+<script>var DATA={"items": {"T1": {"title": "SKU set at launch", "owner": "Team", "control": "multi", "options": [{"key": "a", "text": "Monthly membership with adviser calls (DIWM)"}, {"key": "b", "text": "Monthly membership, app only, no calls (DIY)"}, {"key": "c", "text": "One-time plan with a 45-minute session"}, {"key": "d", "text": "Explainer video on the paywall if more than two cards"}], "dflt": null, "dflt_who": "", "deps": [{"if_key": "not:c", "then": "P01 becomes two cards; the 60-day credit rule goes; the subscription-conversion KPI in the admin spec goes."}]}, "T2": {"title": "Calls model per tier", "owner": "Team", "control": "multi", "options": [{"key": "a", "text": "One plan call at delivery; quarterly review automated in-app; more calls paid, a la carte"}, {"key": "b", "text": "Plan call plus 15-minute quarterly check-ins for DIWM"}, {"key": "c", "text": "No one-off calls for DIY"}, {"key": "d", "text": "Calls are planner calls; investment discussion only with Harish"}, {"key": "e", "text": "Review call only after execution is done"}], "dflt": null, "dflt_who": "", "deps": [{"if_key": "c", "then": "K04 becomes an upgrade prompt; the H07 DIY card changes."}]}, "S1": {"title": "Who takes the DIWM plan call, certification, capacity", "owner": "Bhuvanaa and Harish", "control": "single", "options": [{"key": "a", "text": "A certified financial planner takes the plan call; investment questions go to Harish"}, {"key": "b", "text": "The named adviser (Priya, CFP) takes the plan call"}], "dflt": null, "dflt_who": "", "deps": []}, "B1": {"title": "Pre-paywall sequence", "owner": "Bhuvanaa", "control": "single", "options": [{"key": "a", "text": "Reveal, two videos, sample plan, paywall (as drawn)"}, {"key": "b", "text": "Reveal, one video, sample plan, paywall"}, {"key": "c", "text": "Reveal, then paywall for the convinced; sample plan only for those who do not go on"}], "dflt": "a", "dflt_who": "Bhuvanaa", "deps": []}, "B2": {"title": "Clarity picture (G02)", "owner": "Bhuvanaa", "control": "single", "options": [{"key": "a", "text": "Drop G02"}, {"key": "b", "text": "Keep G02 post-paywall as the first output and the call brief"}, {"key": "c", "text": "Drop the screen; fold realisable vs locked, allocation and current return into G03; keep the call brief in the adviser view only"}], "dflt": "a", "dflt_who": "Bhuvanaa", "deps": [{"if_key": "a", "then": "Fold realisable vs locked, allocation and current return into G03."}]}, "B3": {"title": "Retirement model", "owner": "Bhuvanaa", "control": "single", "options": [{"key": "a", "text": "A withdrawal-rate rule (a fixed percentage of the corpus each year)"}, {"key": "b", "text": "Depletion to life expectancy, as the FP React does"}], "dflt": null, "dflt_who": "", "deps": []}, "B4": {"title": "Tax section (G08)", "owner": "Bhuvanaa", "control": "single", "options": [{"key": "a", "text": "Drop G08"}, {"key": "b", "text": "Modify G08"}, {"key": "c", "text": "Keep as drawn"}], "dflt": null, "dflt_who": "", "deps": []}, "H1": {"title": "Asset classes in the allocation grid", "owner": "Harish", "control": "single", "options": [{"key": "a", "text": "No cash class; liquid debt is the shortest bucket; add a REITs and InvITs bucket"}, {"key": "b", "text": "Five classes as drawn: cash, debt, hybrid, commodities, equity"}], "dflt": "a", "dflt_who": "Harish", "deps": []}, "H2": {"title": "Where portfolio constraints live (L04)", "owner": "Harish", "control": "single", "options": [{"key": "a", "text": "A new constraints screen L09 (max per product, max direct shares within equity, category tag with override), validated in L05"}, {"key": "b", "text": "Constraints as columns on L04 per instrument and category"}], "dflt": null, "dflt_who": "", "deps": [{"if_key": "a", "then": "New L09, validated in L05 before publish."}]}, "H3": {"title": "Risk profiling method", "owner": "Harish", "control": "single", "options": [{"key": "a", "text": "HoA eight-question RPQ; band from the score"}, {"key": "b", "text": "Tolerance from the questionnaire plus capacity and need from the assessment; logic available"}, {"key": "c", "text": "RPQ for tolerance; capacity and need computed from D01 to D07; combined into the band"}], "dflt": "a", "dflt_who": "Harish", "deps": []}, "H4": {"title": "Insurance aggregator links (E01)", "owner": "Harish", "control": "single", "options": [{"key": "a", "text": "Link out to an insurance aggregator for protection actions"}, {"key": "b", "text": "Guided action outside the app, no aggregator link (as drawn in E05)"}], "dflt": null, "dflt_who": "", "deps": []}, "H5": {"title": "Refund policy (Q03)", "owner": "Harish", "control": "single", "options": [{"key": "a", "text": "Refund the unexpired period less a breakage fee of at most one quarter's fee, as in the current agreement"}, {"key": "b", "text": "Monthly billing, cancel any time, no refund of the current month"}], "dflt": null, "dflt_who": "", "deps": []}, "H6": {"title": "Records for audit (L08)", "owner": "Harish", "control": "single", "options": [{"key": "a", "text": "The nine records in the admin/CRM spec, plus whatever Harish adds after his check"}], "dflt": null, "dflt_who": "", "deps": []}, "G1": {"title": "Execution rails", "owner": "Gaurav", "control": "single", "options": [{"key": "a", "text": "smallcase Gateway only, for mutual funds, ETFs and stocks"}, {"key": "b", "text": "BSE StAR MF for mutual funds; smallcase for ETFs and stocks (as drawn)"}], "dflt": "a", "dflt_who": "Gaurav", "deps": [{"if_key": "a", "then": "E02 and E03 collapse into E04; the one-time setup becomes a broker login."}]}, "G2": {"title": "Admin tool over the database", "owner": "Gaurav", "control": "single", "options": [{"key": "a", "text": "Appsmith"}, {"key": "b", "text": "Directus first, two-day trial; Appsmith only if needed"}], "dflt": null, "dflt_who": "", "deps": []}, "V1": {"title": "Community placement (H08)", "owner": "Vatsal", "control": "single", "options": [{"key": "a", "text": "One-line strip on Home; community from the menu"}, {"key": "b", "text": "Menu entry only, or highlights; nothing on Home"}, {"key": "c", "text": "Community block on the returning-client Home"}], "dflt": "a", "dflt_who": "Vatsal", "deps": []}, "V2": {"title": "Human call as a nudge channel (N01)", "owner": "Vatsal and Kajal", "control": "single", "options": [{"key": "a", "text": "Add a human call as a channel; Zoho creates a task for the caller"}, {"key": "b", "text": "Keep push, WhatsApp and email only"}], "dflt": null, "dflt_who": "", "deps": [{"if_key": "a", "then": "The nudge policy gains a channel value and Zoho creates tasks."}]}, "K1": {"title": "Payment methods and GST (P04)", "owner": "Kajal", "control": "single", "options": [{"key": "a", "text": "UPI and netbanking only, no cards; GST split logic (IGST, CGST plus SGST, no GST)"}, {"key": "b", "text": "UPI autopay, card and netbanking, as drawn"}], "dflt": "a", "dflt_who": "Kajal", "deps": []}}, "order": ["T1", "T2", "S1", "B1", "B2", "B3", "B4", "H1", "H2", "H3", "H4", "H5", "H6", "G1", "G2", "V1", "V2", "K1"], "qa": {"3": {"screen": "A01", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "7": {"screen": "R01", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "8": {"screen": "R02", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "9": {"screen": "R02", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "10": {"screen": "R04", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "11": {"screen": "R07", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "15": {"screen": "R10", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "21": {"screen": "P04", "reviewer": "Gaurav", "owner": "Kajal"}, "23": {"screen": "O01", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "26": {"screen": "O02", "reviewer": "Kajal", "owner": "Bhuvanaa"}, "31": {"screen": "G01", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "51": {"screen": "L04", "reviewer": "Gaurav", "owner": "Harish"}, "59": {"screen": "D03", "reviewer": "Harish", "owner": "Bhuvanaa"}, "60": {"screen": "D04", "reviewer": "Harish", "owner": "Bhuvanaa"}}, "qa_order": ["3", "7", "8", "9", "10", "11", "15", "21", "23", "26", "31", "51", "59", "60"], "gaps": {"G01": {"title": "Brand name lock (yeslyf vs Yesly vs Yalpho)"}, "G02": {"title": "SEBI advertisement code review of reveal, sample plan, testimonials, listing, nudges"}, "G03": {"title": "DPDP consent notice and deletion"}, "G04": {"title": "Adviser capacity number and slot design"}, "G05": {"title": "Vendor onboarding critical path with owner and dates"}, "G06": {"title": "Documents owed: RPQ scoring map, fixed-fee agreement with the app as a channel, risk logic"}, "G07": {"title": "Analytics instrumentation rule: every screen ID is an event"}, "G08": {"title": "Content production list with screen IDs"}, "G09": {"title": "App store financial-app requirements"}, "G10": {"title": "Date protection: define V1 without in-app execution"}, "G11": {"title": "Existing HoA clients into the app after launch via assisted onboarding"}, "G12": {"title": "Support staffing on day one"}, "G13": {"title": "Closed beta with thirty community members in January"}}, "gap_order": ["G01", "G02", "G03", "G04", "G05", "G06", "G07", "G08", "G09", "G10", "G11", "G12", "G13"]};</script>
+<script>
+(function(){
+  var KEY="yeslyf_board_v1"; var S={};
+  try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  function g(k){ if(!S[k]) S[k]={}; return S[k]; }
+  function who(){ return (S.who||"").trim(); }
+  var ft; function flash(t){ var s=document.getElementById("saved"); if(!s) return; s.textContent=t||"Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1800); }
+  function sink(kind,row){ var ep=(S.endpoint||"").trim(); if(!ep) return false; row.kind=kind; row.who=who(); row.ts=new Date().toISOString();
+    try{ fetch(ep,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(row)}); }catch(e){} return true; }
+  function pill(){ var p=document.getElementById("sheetpill"); if(!p) return; var on=!!(S.endpoint||"").trim(); p.textContent=on?"sheet: on":"sheet: off"; p.className="pill"+(on?" on":""); }
+  function choiceOf(id){ var r=S["item:"+id]; if(r&&r.choice!==undefined) return r.choice; var d=DATA.items[id]?DATA.items[id].dflt:null; return d?d:null; }
+  function choiceList(id){ var c=choiceOf(id); if(c===null||c===undefined) return []; return Array.isArray(c)?c:[c]; }
+  function optText(id,key){ var it=DATA.items[id]; for(var i=0;i<it.options.length;i++) if(it.options[i].key===key) return it.options[i].text; return key; }
+  function depOn(id,ifKey){ var list=choiceList(id); var r=S["item:"+id]||{}; if(ifKey.indexOf("not:")===0){ var k=ifKey.slice(4); return !!r.decided && list.length>0 && list.indexOf(k)<0; } return list.indexOf(ifKey)>=0; }
+  function paintItem(id){ var card=document.getElementById("item-"+id); if(!card) return; var r=S["item:"+id]||{}; var list=choiceList(id);
+    var inputs=card.querySelectorAll("input[data-item]"); for(var i=0;i<inputs.length;i++){ inputs[i].checked=list.indexOf(inputs[i].value)>=0; }
+    var dc=card.querySelector("input[data-decided]"); if(dc) dc.checked=!!r.decided;
+    var ta=card.querySelector("textarea[data-item]"); if(ta && ta.value!==(r.note||"")) ta.value=r.note||"";
+    card.className="item"+(r.decided?" done":"")+(card.className.indexOf(" hi")>=0?" hi":"");
+    var tag=card.querySelector(".tag.done"); if(tag) tag.style.display=r.decided?"":"none";
+    var deps=card.querySelectorAll(".dep"); for(var j=0;j<deps.length;j++){ deps[j].className="dep"+(depOn(id,deps[j].getAttribute("data-if"))?" on":""); } }
+  function paintAll(){ for(var id in DATA.items) paintItem(id);
+    for(var n in DATA.qa){ var r=S["qa:"+n]||{}; var row=document.getElementById("qa-"+n); if(!row) continue; var bs=row.querySelectorAll("button[data-v]"); for(var i=0;i<bs.length;i++){ bs[i].className=(bs[i].getAttribute("data-v")===r.v?"on":"")+(bs[i].getAttribute("data-v")==="decline"?" no":""); } var inp=row.querySelector("input[data-qan]"); if(inp&&inp.value!==(r.note||"")) inp.value=r.note||""; }
+    for(var gid in DATA.gaps){ var gr=S["gap:"+gid]||{}; var el=document.getElementById("gap-"+gid); if(!el) continue; var f=el.querySelectorAll("[data-f]"); for(var k=0;k<f.length;k++){ var key=f[k].getAttribute("data-f"); if(f[k].value!==(gr[key]||"")) f[k].value=gr[key]||""; } }
+    var w=document.getElementById("who"); if(w&&w.value!==(S.who||"")) w.value=S.who||""; pill(); }
+  function recordItem(id){ var r=g("item:"+id); r.decided=true; save(); var list=choiceList(id); var labels=list.map(function(k){ return k+" "+optText(id,k); });
+    sink("decisions",{item_id:id,choice:list.join(", "),choice_text:labels.join(" | "),note:r.note||""}); paintItem(id); flash(); }
+  function md(){ var L=["# yeslyf meeting brief","Exported "+new Date().toLocaleString()+(who()?" by "+who():""),"Sheet endpoint: "+((S.endpoint||"").trim()?"configured":"not configured; this file is the record"),""];
+    L.push("## Decisions");
+    DATA.order.forEach(function(id){ var it=DATA.items[id]; var r=S["item:"+id]||{}; var list=choiceList(id); var owner=it.owner;
+      var line="- "+id+" "+it.title+" ("+owner+"): ";
+      if(!list.length){ line+= (owner==="Team"?"no choice made":"no choice made; "+owner+" to decide"); }
+      else { line+=list.map(function(k){ return k+" "+optText(id,k); }).join("; "); if(it.dflt&&!r.decided){ line+=" (default, "+it.dflt_who+"'s position; not confirmed in the meeting)"; } else if(r.decided){ line+=" (decided in the meeting"+(who()?", "+who():"")+")"; } }
+      if(r.note) line+="\n  Note: "+String(r.note).split("\n").join(" ");
+      it.deps.forEach(function(d){ if(depOn(id,d.if_key)) line+="\n  Follows: "+d.then+" (Vatsal recommendation)"; });
+      L.push(line); });
+    L.push(""); L.push("## Quick-accepts");
+    DATA.qa_order.forEach(function(n){ var q=DATA.qa[n]; var r=S["qa:"+n]||{}; L.push("- row "+n+" "+q.screen+" ("+q.reviewer+", for "+q.owner+"): "+(r.v||"not ticked")+(r.note?" | "+r.note:"")); });
+    L.push(""); L.push("## Gaps");
+    DATA.gap_order.forEach(function(gid){ var x=DATA.gaps[gid]; var r=S["gap:"+gid]||{}; L.push("- "+gid+" "+x.title+": "+(r.status||"no status")+(r.owner?" | owner: "+r.owner:"")+(r.date?" | by: "+r.date:"")+(r.note?" | "+String(r.note).split("\n").join(" "):"")); });
+    return L.join("\n"); }
+  function exportBrief(){ var text=md(); try{ navigator.clipboard&&navigator.clipboard.writeText(text); }catch(e){}
+    var b=new Blob([text],{type:"text/markdown"}); var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="yeslyf_meeting_brief.md"; document.body.appendChild(a); a.click(); document.body.removeChild(a); flash("Brief exported and copied"); }
+  function deepLink(){ var h=location.hash||""; if(h.indexOf("#screen/")===0){ location.href="wireframes.html#"+h.slice(8); return; }
+    var id=null; if(h.indexOf("#item/")===0) id="item-"+h.slice(6); else if(h.indexOf("#gap/")===0) id="gap-"+h.slice(5); else if(h.indexOf("#row/")===0) id="row-"+h.slice(5);
+    if(!id) return; var el=document.getElementById(id); if(!el) return; var old=document.querySelectorAll(".hi"); for(var i=0;i<old.length;i++) old[i].classList.remove("hi"); el.classList.add("hi"); el.scrollIntoView({block:"start"}); }
+  var tmr={};
+  document.addEventListener("DOMContentLoaded",function(){
+    paintAll(); deepLink(); window.addEventListener("hashchange",deepLink);
+    var w=document.getElementById("who"); if(w) w.addEventListener("input",function(e){ S.who=e.target.value; save(); });
+    var ex=document.getElementById("export"); if(ex) ex.addEventListener("click",exportBrief);
+    var ep=document.getElementById("endpoint"); if(ep){ ep.value=S.endpoint||""; ep.addEventListener("input",function(e){ S.endpoint=e.target.value.trim(); save(); pill(); flash(S.endpoint?"Endpoint saved in this browser":"Endpoint cleared"); }); }
+    var test=document.getElementById("testrow"); if(test) test.addEventListener("click",function(){ var ok=sink("decisions",{item_id:"TEST",choice:"test",choice_text:"test row from setup page",note:""}); flash(ok?"Test row sent; check the decisions tab of the sheet":"No endpoint set"); });
+    document.body.addEventListener("change",function(e){ var t=e.target;
+      if(t.type==="radio"&&t.getAttribute("data-item")){ g("item:"+t.getAttribute("data-item")).choice=t.value; recordItem(t.getAttribute("data-item")); }
+      if(t.type==="checkbox"&&t.getAttribute("data-item")){ var id=t.getAttribute("data-item"); var r=g("item:"+id); var list=choiceList(id).slice(); var i=list.indexOf(t.value); if(t.checked&&i<0) list.push(t.value); if(!t.checked&&i>=0) list.splice(i,1); r.choice=list; recordItem(id); }
+      if(t.type==="checkbox"&&t.getAttribute("data-decided")){ var id2=t.getAttribute("data-decided"); var r2=g("item:"+id2); r2.decided=t.checked; if(t.checked&&r2.choice===undefined&&DATA.items[id2].dflt) r2.choice=DATA.items[id2].dflt; save(); if(t.checked) recordItem(id2); else { paintItem(id2); flash(); } }
+      if(t.tagName==="SELECT"&&t.getAttribute("data-gap")){ var gid=t.getAttribute("data-gap"); g("gap:"+gid)[t.getAttribute("data-f")]=t.value; save(); var gr=S["gap:"+gid]; sink("gaps",{gap_id:gid,status:gr.status||"",owner_date:((gr.owner||"")+" "+(gr.date||"")).trim(),note:gr.note||""}); flash(); }
+      if(t.type==="date"&&t.getAttribute("data-gap")){ var gid2=t.getAttribute("data-gap"); g("gap:"+gid2).date=t.value; save(); var gr2=S["gap:"+gid2]; sink("gaps",{gap_id:gid2,status:gr2.status||"",owner_date:((gr2.owner||"")+" "+(gr2.date||"")).trim(),note:gr2.note||""}); flash(); }
+    });
+    document.body.addEventListener("input",function(e){ var t=e.target;
+      var item=t.getAttribute("data-item"); if(item&&t.tagName==="TEXTAREA"){ g("item:"+item).note=t.value; save(); flash(); clearTimeout(tmr[item]); tmr[item]=setTimeout(function(){ var r=S["item:"+item]; if(r&&r.decided) sink("decisions",{item_id:item,choice:choiceList(item).join(", "),choice_text:choiceList(item).map(function(k){return k+" "+optText(item,k);}).join(" | "),note:r.note||""}); },1500); return; }
+      var qn=t.getAttribute("data-qan"); if(qn){ g("qa:"+qn).note=t.value; save(); flash(); clearTimeout(tmr["qa"+qn]); tmr["qa"+qn]=setTimeout(function(){ var r=S["qa:"+qn]; if(r&&r.v) sink("quick_accepts",{input_n:qn,accept:r.v,note:r.note||""}); },1500); return; }
+      var gid=t.getAttribute("data-gap"); if(gid&&t.getAttribute("data-f")!=="status"){ g("gap:"+gid)[t.getAttribute("data-f")]=t.value; save(); flash(); clearTimeout(tmr["gap"+gid]); tmr["gap"+gid]=setTimeout(function(){ var gr=S["gap:"+gid]; sink("gaps",{gap_id:gid,status:gr.status||"",owner_date:((gr.owner||"")+" "+(gr.date||"")).trim(),note:gr.note||""}); },1500); }
+    });
+    document.body.addEventListener("click",function(e){ var t=e.target; if(t.tagName!=="BUTTON") return; var n=t.getAttribute("data-qa"); if(!n) return; var r=g("qa:"+n); r.v=(r.v===t.getAttribute("data-v"))?"":t.getAttribute("data-v"); save(); paintAll(); flash(); sink("quick_accepts",{input_n:n,accept:r.v||"cleared",note:r.note||""}); });
+    var reset=document.getElementById("reset"); if(reset) reset.addEventListener("click",function(){ if(!confirm("Clear every choice and note saved in this browser? The sheet keeps what was already sent.")) return; var keep={who:S.who,endpoint:S.endpoint}; S=keep; save(); paintAll(); flash("Cleared"); });
+    var f=document.getElementById("filters"); if(f){ f.addEventListener("change",applyFilters); applyFilters(); }
+  });
+  function applyFilters(){ var f=document.getElementById("filters"); if(!f) return; var rv=f.querySelector("[name=reviewer]").value, ws=f.querySelector("[name=workstream]").value, st=f.querySelector("[name=status]").value; var rows=document.querySelectorAll("tr[data-n]"); var shown=0;
+    for(var i=0;i<rows.length;i++){ var r=rows[i]; var ok=(rv==="All"||(" "+r.getAttribute("data-reviewers")+" ").indexOf(" "+rv+" ")>=0)&&(ws==="All"||r.getAttribute("data-ws")===ws)&&(st==="All"||r.getAttribute("data-status")===st); r.className=(ok?"":"hidden")+(r.className.indexOf("hi")>=0?" hi":""); if(ok) shown++; }
+    var c=document.getElementById("count"); if(c) c.textContent=shown+" of "+rows.length+" rows"; }
+})();
+</script>
+</body>
+</html>

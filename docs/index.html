@@ -1,1 +1,634 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>yeslyf product board</title></head><body><p>yeslyf product board: building. Reload in a few minutes.</p></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>yeslyf product board: meeting</title>
+<style>
+  :root{--paper:#EEF0F3;--panel:#fff;--ink:#1B1F27;--mute:#5F6773;--line:#D3D7DE;--accent:#FFDA00;--accent-soft:#FFF4B8;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45;scroll-behavior:smooth}
+  button,select,input,textarea{font-family:inherit;font-size:13px}
+  a{color:inherit}
+  ::selection{background:var(--accent)}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:8px 18px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .brand{font-weight:700;font-size:16px;white-space:nowrap}
+  .brand span{font-weight:400;color:var(--mute);margin-left:8px;font-size:13px}
+  .tabs{display:flex;gap:2px;flex-wrap:wrap}
+  .tabs a{text-decoration:none;font-size:13px;padding:6px 10px;border-radius:6px;border:1px solid transparent;color:var(--mute)}
+  .tabs a:hover{background:#F5F6F8}
+  .tabs a.on{color:var(--ink);font-weight:600;border-color:var(--line);background:#fff}
+  .who{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mute);margin-left:auto}
+  .who input{padding:6px 8px;border:1px solid var(--line);border-radius:6px;width:170px}
+  .saved{font-size:12px;color:var(--mute);min-width:120px}
+  .pill{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--mute);text-decoration:none;white-space:nowrap}
+  .pill.on{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .top .primary{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
+  .top .ghost{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:6px;cursor:pointer}
+  .layout{display:grid;grid-template-columns:240px minmax(0,1fr)}
+  .nav{position:sticky;top:49px;height:calc(100vh - 49px);overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:10px 0}
+  .nav a{display:block;padding:6px 14px 6px 11px;text-decoration:none;font-size:13px;border-left:3px solid transparent}
+  .nav a:hover{background:#F5F6F8}
+  .nav .sub{padding-left:24px;font-size:12px;color:var(--mute)}
+  .main{padding:18px 26px 120px;max-width:1150px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px}
+  h1{font-size:22px;margin:0 0 6px}
+  h2{font-size:17px;margin:0 0 4px}
+  h2 small{font-weight:400;color:var(--mute);font-size:13px;margin-left:8px}
+  h3{font-size:14px;margin:14px 0 4px}
+  .lead{color:var(--mute);margin:0 0 12px;max-width:860px}
+  .rule{padding-left:10px;border-left:3px solid var(--accent);margin:8px 0 12px;max-width:900px}
+  ul{margin:6px 0;padding-left:18px} li{margin:3px 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:8px 0 4px}
+  .stat{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#FCFCFD}
+  .stat b{display:block;font-size:22px} .stat span{font-size:12px;color:var(--mute)}
+  .item{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 12px;background:#FCFCFD;scroll-margin-top:60px}
+  .item.hi{border-color:#C9A800;box-shadow:0 0 0 3px var(--accent-soft)}
+  .item.done{border-color:#7A8797}
+  .item-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+  .item-h b{font-size:15px}
+  .tag{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;background:#fff;color:var(--mute);white-space:nowrap}
+  .tag.hi{border-color:#B2434F;color:#B2434F;font-weight:600}
+  .tag.team{border-color:var(--ink);color:var(--ink);font-weight:600}
+  .tag.done{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .screens a{font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;margin-right:3px;background:#fff}
+  .ctx{font-size:13px;margin:0 0 8px;color:#3B4250}
+  .pos{margin:0 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+  .pos li{font-size:12.5px} .pos b{font-weight:600}
+  .pos .ref{color:var(--mute);font-size:11.5px}
+  .cond{font-size:12.5px;margin:0 0 8px} .cond li{list-style:none;margin-left:-18px}
+  .dflt-line{font-size:12.5px;margin:6px 0 4px;color:#3B4250}
+  .opt{display:flex;gap:10px;align-items:flex-start;padding:7px 10px;border:1px solid var(--line);border-radius:8px;margin:5px 0;background:#fff;cursor:pointer}
+  .opt input{margin-top:3px}
+  .opt.dflt{border-color:#C9A800;background:#FFFDF2}
+  .opt .held{display:block;font-size:11.5px;color:var(--mute);margin-top:2px}
+  .dpill{display:inline-block;font-size:10.5px;font-weight:700;background:var(--accent);border-radius:4px;padding:1px 6px;margin-left:6px;white-space:nowrap}
+  .ppill{display:inline-block;font-size:10.5px;border:1px dashed var(--mute);border-radius:4px;padding:1px 6px;margin-left:6px;color:var(--mute);white-space:nowrap}
+  .dep{font-size:12.5px;color:#3B4250;margin:8px 0 0;padding:6px 10px;border:1px dashed var(--line);border-radius:6px;background:#fff}
+  .dep.on{border-style:solid;border-color:#C9A800;background:#FFFBEA}
+  .dep b{font-weight:600}
+  .meta{font-size:11.5px;color:var(--mute)}
+  .note{width:100%;min-height:40px;border:1px solid var(--line);border-radius:6px;padding:6px;resize:vertical;background:#fff;margin-top:6px}
+  .decided{display:flex;gap:8px;align-items:center;font-size:12.5px;margin-top:8px}
+  .qa{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:start;padding:7px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+  .qa:last-child{border-bottom:0}
+  .qa .t{white-space:pre-wrap} .qa .t b{white-space:nowrap}
+  .qa .c{display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  .qa button{border:1px solid var(--line);background:#fff;padding:4px 9px;border-radius:5px;cursor:pointer}
+  .qa button.on{background:var(--accent);border-color:#C9A800;font-weight:600}
+  .qa button.on.no{background:#F1F2F4;border-color:var(--ink)}
+  .qa input{padding:4px 6px;border:1px solid var(--line);border-radius:5px;width:180px}
+  .gap{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 8px;background:#FCFCFD;scroll-margin-top:60px}
+  .gap-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+  .gap .why{font-size:12.5px;color:#3B4250;margin:6px 0}
+  .gap .rec{font-size:12.5px;margin:6px 0;padding-left:10px;border-left:3px solid var(--accent)}
+  .gap-c{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:12px}
+  .gap-c select,.gap-c input{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  table{width:100%;border-collapse:collapse;font-size:12.5px} th{text-align:left;border-bottom:2px solid var(--ink);padding:6px 8px;font-size:12px;vertical-align:bottom} td{border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
+  td.n{font-variant-numeric:tabular-nums;color:var(--mute);white-space:nowrap}
+  td .raw{white-space:pre-wrap}
+  td .ans{margin-top:4px;padding-left:8px;border-left:3px solid var(--accent);font-size:12px}
+  td .basis{color:var(--mute);font-size:11.5px;margin-top:3px}
+  .status{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;white-space:nowrap;background:#fff}
+  .status.open{border-color:#C9A800;background:var(--accent-soft)}
+  .status.quick-accept{border-color:#7A8797}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:12px;align-items:center}
+  .filters select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  tr.hidden{display:none}
+  tr.hi td{background:var(--accent-soft)}
+  details{margin:8px 0} summary{cursor:pointer;font-weight:600;font-size:13px}
+  pre{background:#F5F6F8;border:1px solid var(--line);border-radius:6px;padding:10px;font-size:11.5px;overflow:auto;white-space:pre-wrap}
+  .setup input{width:100%;padding:7px;border:1px solid var(--line);border-radius:6px;margin:4px 0}
+  .frame-wrap{height:calc(100vh - 49px)} .frame-wrap iframe{width:100%;height:100%;border:0;background:#fff}
+  .frame-bar{display:flex;gap:10px;align-items:center;padding:6px 18px;background:var(--panel);border-bottom:1px solid var(--line);font-size:12px;color:var(--mute);flex-wrap:wrap}
+  .frame-bar select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff;max-width:360px}
+  .frame-wrap.with-bar{height:calc(100vh - 88px)}
+  @media (max-width:1000px){.layout{display:block}.nav{display:none}.main{padding:12px}.who{margin-left:0}.qa{grid-template-columns:1fr}.qa .c{justify-content:flex-start}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand">yeslyf <span>product board, meeting 09 Sep 2026</span></div><nav class="tabs"><a href="index.html" class="on">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM</a><a href="setup.html">Setup</a></nav><div class="who">Decided by <input id="who" placeholder="your first name"></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a><button id="export" class="primary">Export brief</button></header>
+<div class="layout"><nav class="nav"><a href="#s-how">How to read this</a><a href="#sec-team">Team <em style="color:var(--mute);font-style:normal">(2)</em></a><a class="sub" href="#item/T1">T1 SKU set at launch</a><a class="sub" href="#item/T2">T2 Calls model per tier</a><a href="#sec-bhuvanaa-and-harish">Bhuvanaa and Harish <em style="color:var(--mute);font-style:normal">(1)</em></a><a class="sub" href="#item/S1">S1 Who takes the DIWM plan call, certification, capacity</a><a href="#sec-bhuvanaa">Bhuvanaa <em style="color:var(--mute);font-style:normal">(4 + 12 quick)</em></a><a class="sub" href="#item/B1">B1 Pre-paywall sequence</a><a class="sub" href="#item/B2">B2 Clarity picture (G02)</a><a class="sub" href="#item/B3">B3 Retirement model</a><a class="sub" href="#item/B4">B4 Tax section (G08)</a><a href="#sec-harish">Harish <em style="color:var(--mute);font-style:normal">(6 + 1 quick)</em></a><a class="sub" href="#item/H1">H1 Asset classes in the allocation grid</a><a class="sub" href="#item/H2">H2 Where portfolio constraints live (L04)</a><a class="sub" href="#item/H3">H3 Risk profiling method</a><a class="sub" href="#item/H4">H4 Insurance aggregator links (E01)</a><a class="sub" href="#item/H5">H5 Refund policy (Q03)</a><a class="sub" href="#item/H6">H6 Records for audit (L08)</a><a href="#sec-gaurav">Gaurav <em style="color:var(--mute);font-style:normal">(2)</em></a><a class="sub" href="#item/G1">G1 Execution rails</a><a class="sub" href="#item/G2">G2 Admin tool over the database</a><a href="#sec-vatsal">Vatsal <em style="color:var(--mute);font-style:normal">(1)</em></a><a class="sub" href="#item/V1">V1 Community placement (H08)</a><a href="#sec-vatsal-and-kajal">Vatsal and Kajal <em style="color:var(--mute);font-style:normal">(1)</em></a><a class="sub" href="#item/V2">V2 Human call as a nudge channel (N01)</a><a href="#sec-kajal">Kajal <em style="color:var(--mute);font-style:normal">(1 + 1 quick)</em></a><a class="sub" href="#item/K1">K1 Payment methods and GST (P04)</a><a href="gaps.html" style="margin-top:10px;color:var(--mute)">Gaps (13)</a><a href="inputs.html" style="color:var(--mute)">Inputs (73)</a></nav><main class="main"><section id="s-how"><h1>Meeting: open items, by owner</h1><p class="lead">Every position carries the first name of the person who said it and where. The owner of a workstream holds the default: if the owner has stated a position it is preselected, otherwise the item reads "&lt;owner&gt; to decide". Team items have nothing preselected. Accepted items are not on this page; they are on the Inputs tab with their status.</p><div class="rule">In the meeting: type your name at the top, change only what the meeting decides, tick "Decided in the meeting", add a note where a condition or date was agreed. Export brief at the end; if the sheet is on, every change is also written there as it happens.</div><div class="stats"><div class="stat"><b>18</b><span>open items</span></div><div class="stat"><b>2</b><span>Team items, no default</span></div><div class="stat"><b>14</b><span>quick-accepts to tick</span></div><div class="stat"><b>13</b><span>gaps needing an owner</span></div><div class="stat"><b>73</b><span>review rows, all with a status</span></div></div></section><section id="sec-team"><h2>Team<small>decides in the meeting; nothing preselected</small></h2>
+<div class="item" id="item-T1">
+<div class="item-h"><b>T1 SKU set at launch</b>
+<span class="tag team">Team</span>
+<span class="tag">sku-set</span>
+<span class="tag hi">impact High</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#P01" target="_blank" title="open in the v0.1 wireframes">P01</a><a href="wireframes.html#P05" target="_blank" title="open in the v0.1 wireframes">P05</a><a href="wireframes.html#O01" target="_blank" title="open in the v0.1 wireframes">O01</a><a href="wireframes.html#Q03" target="_blank" title="open in the v0.1 wireframes">Q03</a></span></div>
+<p class="ctx">P01 in v0.1 draws two cards, yeslyf Membership (monthly) and yeslyf Plan (one time), prices as Rs ___ placeholders, with a credit rule: the one-time fee counts against the subscription if the membership starts within 60 days (spec v0.1, P01 logic). The v0.1 tier flags also carry DIFM, but P01 draws no DIFM card.</p>
+<ul class="pos">
+<li><b>Bhuvanaa</b> <span class="ref">(deck slide 11)</span>: Two cards: a monthly membership with a named adviser, quarterly reviews and cancel any time; and a one-time plan delivered by a named adviser in one 45-minute session, with the one-time fee credited against the subscription if it starts within 60 days.</li>
+<li><b>Bhuvanaa</b> <span class="ref">(review row 20 (P01))</span>: If there are more than two options, explain them, maybe with a video. The one-time offer can be dropped: whoever does not want to continue can unsubscribe.</li>
+<li><b>Kajal</b> <span class="ref">(review row 2 (X00))</span>: A no-call SKU on day one, at a different price point with a different offering.</li>
+<li><b>Vatsal</b> <span class="ref">(product brief)</span>: DIY at a low monthly price; DIWM is DIY plus calls; same app.</li>
+</ul>
+<div class="dflt-line">Team item: decided in the meeting by everyone. Nothing is preselected.</div>
+<label class="opt"><input type="checkbox" name="item-T1" value="a" data-item="T1"><span>a. Monthly membership with adviser calls (DIWM)<span class="held">held by: Bhuvanaa (deck slide 11), Vatsal (brief)</span></span></label>
+<label class="opt"><input type="checkbox" name="item-T1" value="b" data-item="T1"><span>b. Monthly membership, app only, no calls (DIY)<span class="held">held by: Kajal (row 2), Vatsal (brief)</span></span></label>
+<label class="opt"><input type="checkbox" name="item-T1" value="c" data-item="T1"><span>c. One-time plan with a 45-minute session<span class="held">held by: Bhuvanaa (deck slide 11; her row 20 says it can be dropped)</span></span></label>
+<label class="opt"><input type="checkbox" name="item-T1" value="d" data-item="T1"><span>d. Explainer video on the paywall if more than two cards<span class="held">held by: Bhuvanaa (row 20)</span></span></label>
+<div class="dep" data-if="not:c"><b>If T1 has no one-time card</b> (Vatsal recommendation): P01 becomes two cards; the 60-day credit rule goes; the subscription-conversion KPI in the admin spec goes.</div>
+<textarea class="note" data-item="T1" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="T1"> Decided in the meeting</label>
+</div>
+<div class="item" id="item-T2">
+<div class="item-h"><b>T2 Calls model per tier</b>
+<span class="tag team">Team</span>
+<span class="tag">calls-model</span>
+<span class="tag hi">impact High</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#K01" target="_blank" title="open in the v0.1 wireframes">K01</a><a href="wireframes.html#K04" target="_blank" title="open in the v0.1 wireframes">K04</a><a href="wireframes.html#H07" target="_blank" title="open in the v0.1 wireframes">H07</a><a href="wireframes.html#Q01" target="_blank" title="open in the v0.1 wireframes">Q01</a></span></div>
+<p class="ctx">v0.1 draws K01 (one 45-minute plan call after the plan exists, DIWM), K04 (a paid 30-minute call any user can book; included calls per tier are config) and H07 (DIY: talk to an adviser for Rs ___; DIWM: message Priya, book the quarterly check-in). Q01 runs the quarterly review in-app.</p>
+<ul class="pos">
+<li><b>Bhuvanaa</b> <span class="ref">(message)</span>: A 45-minute plan call plus 15-minute quarterly check-ins for DIWM.</li>
+<li><b>Vatsal</b> <span class="ref">(chat; spec v0.1 K01 logic)</span>: One plan call at delivery; the quarterly review is automated in-app; extra calls are paid.</li>
+<li><b>Gaurav</b> <span class="ref">(review row 35 (K04))</span>: Do not offer a review call to a DIY customer. One-off calls are expensive because the adviser needs the full context.</li>
+<li><b>Kajal</b> <span class="ref">(review row 35 (K04))</span>: For now only Harish can take the investment-plan call, after the financial planner call. Is there enough bandwidth; needs discussion.</li>
+<li><b>Kajal</b> <span class="ref">(review row 34 (K01))</span>: K01 is a planner call, not an advisory call.</li>
+<li><b>Kajal</b> <span class="ref">(review row 45 (H07))</span>: The DIY help card says call adviser; it should be a call with the financial planner.</li>
+<li><b>Somil</b> <span class="ref">(review row 35 (K04))</span>: A review call belongs after the full plan and the execution steps are done, not before.</li>
+</ul>
+<div class="dflt-line">Team item: decided in the meeting by everyone. Nothing is preselected.</div>
+<label class="opt"><input type="checkbox" name="item-T2" value="a" data-item="T2"><span>a. One plan call at delivery; quarterly review automated in-app; more calls paid, a la carte<span class="held">held by: Vatsal (chat, spec v0.1)</span></span></label>
+<label class="opt"><input type="checkbox" name="item-T2" value="b" data-item="T2"><span>b. Plan call plus 15-minute quarterly check-ins for DIWM<span class="held">held by: Bhuvanaa (message)</span></span></label>
+<label class="opt"><input type="checkbox" name="item-T2" value="c" data-item="T2"><span>c. No one-off calls for DIY<span class="held">held by: Gaurav (row 35)</span></span></label>
+<label class="opt"><input type="checkbox" name="item-T2" value="d" data-item="T2"><span>d. Calls are planner calls; investment discussion only with Harish<span class="held">held by: Kajal (rows 34, 35, 45)</span></span></label>
+<label class="opt"><input type="checkbox" name="item-T2" value="e" data-item="T2"><span>e. Review call only after execution is done<span class="held">held by: Somil (row 35)</span></span></label>
+<div class="dep" data-if="c"><b>If T2 removes one-off calls for DIY</b> (Vatsal recommendation): K04 becomes an upgrade prompt; the H07 DIY card changes.</div>
+<textarea class="note" data-item="T2" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="T2"> Decided in the meeting</label>
+</div>
+</section>
+<section id="sec-bhuvanaa-and-harish"><h2>Bhuvanaa and Harish<small>owner; the stated position is the default</small></h2>
+<div class="item" id="item-S1">
+<div class="item-h"><b>S1 Who takes the DIWM plan call, certification, capacity</b>
+<span class="tag">Bhuvanaa and Harish</span>
+<span class="tag">adviser-staffing</span>
+<span class="tag hi">impact High</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#K01" target="_blank" title="open in the v0.1 wireframes">K01</a><a href="wireframes.html#O01" target="_blank" title="open in the v0.1 wireframes">O01</a><a href="wireframes.html#K04" target="_blank" title="open in the v0.1 wireframes">K04</a><a href="wireframes.html#H07" target="_blank" title="open in the v0.1 wireframes">H07</a></span></div>
+<p class="ctx">K01 books a 45-minute call with a named adviser after the plan exists; O01 introduces Priya for DIWM and Harish for DIFM (spec v0.1). Nobody has said who takes the DIWM call, what certification they hold, or how many clients one person can carry.</p>
+<ul class="pos">
+<li><b>Kajal</b> <span class="ref">(review row 34 (K01))</span>: K01 is a planner call, not an advisory call.</li>
+<li><b>Kajal</b> <span class="ref">(review row 35 (K04))</span>: Only Harish can take the investment-plan discussion for now; bandwidth needs discussion.</li>
+<li><b>Bhuvanaa</b> <span class="ref">(deck slide 13)</span>: The client meets Priya, Certified Financial Planner, after paying.</li>
+<li><b>Vatsal</b> <span class="ref">(chat)</span>: About 3 adviser-hours per client-year; one person tops out near 450 clients a year.</li>
+</ul>
+<div class="dflt-line">Bhuvanaa and Harish to decide. Inputs listed above; nothing is preselected.</div>
+<label class="opt"><input type="radio" name="item-S1" value="a" data-item="S1"><span>a. A certified financial planner takes the plan call; investment questions go to Harish<span class="held">held by: Kajal (rows 34, 35)</span></span></label>
+<label class="opt"><input type="radio" name="item-S1" value="b" data-item="S1"><span>b. The named adviser (Priya, CFP) takes the plan call<span class="held">held by: Bhuvanaa (deck slide 13)</span></span></label>
+<textarea class="note" data-item="S1" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="S1"> Decided in the meeting</label>
+</div>
+</section>
+<section id="sec-bhuvanaa"><h2>Bhuvanaa<small>owner; the stated position is the default</small></h2>
+<div class="item" id="item-B1">
+<div class="item-h"><b>B1 Pre-paywall sequence</b>
+<span class="tag">Bhuvanaa</span>
+<span class="tag">journey-to-paywall</span>
+<span class="tag hi">impact High</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#R09" target="_blank" title="open in the v0.1 wireframes">R09</a><a href="wireframes.html#R10" target="_blank" title="open in the v0.1 wireframes">R10</a><a href="wireframes.html#R11" target="_blank" title="open in the v0.1 wireframes">R11</a><a href="wireframes.html#R12" target="_blank" title="open in the v0.1 wireframes">R12</a><a href="wireframes.html#X01" target="_blank" title="open in the v0.1 wireframes">X01</a><a href="wireframes.html#P01" target="_blank" title="open in the v0.1 wireframes">P01</a></span></div>
+<p class="ctx">v0.1 follows the deck: R09 reveal, R10 video (the 5 Alphas), R11 video (the bridge), R12 sample plan preview, P01 paywall, with X01 as the saved exit.</p>
+<ul class="pos">
+<li><b>Bhuvanaa</b> <span class="ref">(deck slides 7 to 11)</span>: Reveal, two videos, sample plan, paywall.</li>
+<li><b>Bhuvanaa</b> <span class="ref">(review row 14 (R09))</span>: The reveal may need to be a bit more descriptive.</li>
+<li><b>Bhuvanaa</b> <span class="ref">(review row 18 (R12))</span>: The sample must show screens of what appears in the final plan.</li>
+<li><b>Gaurav</b> <span class="ref">(review row 17 (R12))</span>: Revisit the order of R09 to R12 and X01. A user who is convinced should go to the paywall with expectations set; a user who chooses not to go on is shown the sample plan to see what they are missing.</li>
+<li><b>Gaurav</b> <span class="ref">(review rows 15, 16 (R10, R11))</span>: Is the bridge video generic? How will the 5 Alphas be explained; an AI-generated video?</li>
+<li><b>Kajal</b> <span class="ref">(review row 16 (R11))</span>: Why two videos; one video instead, or set the pretext first. Two can be too much.</li>
+<li><b>Somil</b> <span class="ref">(review row 16 (R11))</span>: Two back-to-back videos feels off, especially without knowing the context of the video.</li>
+</ul>
+<div class="dflt-line">Default: Bhuvanaa's stated position (option a), preselected. Change it only if the meeting decides otherwise.</div>
+<label class="opt dflt"><input type="radio" name="item-B1" value="a" data-item="B1" checked><span>a. Reveal, two videos, sample plan, paywall (as drawn)<span class="dpill">default: Bhuvanaa</span><span class="held">held by: Bhuvanaa (deck)</span></span></label>
+<label class="opt"><input type="radio" name="item-B1" value="b" data-item="B1"><span>b. Reveal, one video, sample plan, paywall<span class="held">held by: Kajal (row 16)</span></span></label>
+<label class="opt"><input type="radio" name="item-B1" value="c" data-item="B1"><span>c. Reveal, then paywall for the convinced; sample plan only for those who do not go on<span class="held">held by: Gaurav (row 17)</span></span></label>
+<textarea class="note" data-item="B1" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="B1"> Decided in the meeting</label>
+</div>
+<div class="item" id="item-B2">
+<div class="item-h"><b>B2 Clarity picture (G02)</b>
+<span class="tag">Bhuvanaa</span>
+<span class="tag">financial-plan-logic</span>
+<span class="tag">impact Med</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#G02" target="_blank" title="open in the v0.1 wireframes">G02</a><a href="wireframes.html#G03" target="_blank" title="open in the v0.1 wireframes">G03</a><a href="wireframes.html#M01" target="_blank" title="open in the v0.1 wireframes">M01</a></span></div>
+<p class="ctx">G02 shows where the user stands today: net worth, realisable vs locked, allocation, current return mix, blind spots. It is also the top of the adviser&#x27;s pre-call view (spec v0.1, G02 dev). G03 already carries the snapshot rows and the what-needs-attention list (spec v0.1, G03 ui).</p>
+<ul class="pos">
+<li><b>Bhuvanaa</b> <span class="ref">(review row 32 (G02))</span>: Is the Clarity picture necessary? It only delays the delivery of the plan; drop it.</li>
+<li><b>Vatsal</b> <span class="ref">(chat; spec v0.1 G02)</span>: Keep it post-paywall as the first output and the adviser&#x27;s call brief.</li>
+</ul>
+<div class="dflt-line">Default: Bhuvanaa's stated position (option a), preselected. Change it only if the meeting decides otherwise.</div>
+<label class="opt dflt"><input type="radio" name="item-B2" value="a" data-item="B2" checked><span>a. Drop G02<span class="dpill">default: Bhuvanaa</span><span class="held">held by: Bhuvanaa (row 32)</span></span></label>
+<label class="opt"><input type="radio" name="item-B2" value="b" data-item="B2"><span>b. Keep G02 post-paywall as the first output and the call brief<span class="held">held by: Vatsal (chat, spec v0.1)</span></span></label>
+<label class="opt"><input type="radio" name="item-B2" value="c" data-item="B2"><span>c. Drop the screen; fold realisable vs locked, allocation and current return into G03; keep the call brief in the adviser view only<span class="ppill">possible form</span><span class="held"></span></span></label>
+<div class="dep" data-if="a"><b>If B2 drops G02</b> (Vatsal recommendation): Fold realisable vs locked, allocation and current return into G03.</div>
+<textarea class="note" data-item="B2" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="B2"> Decided in the meeting</label>
+</div>
+<div class="item" id="item-B3">
+<div class="item-h"><b>B3 Retirement model</b>
+<span class="tag">Bhuvanaa</span>
+<span class="tag">financial-plan-logic</span>
+<span class="tag">impact Med</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#L02" target="_blank" title="open in the v0.1 wireframes">L02</a><a href="wireframes.html#G09" target="_blank" title="open in the v0.1 wireframes">G09</a><a href="wireframes.html#G10" target="_blank" title="open in the v0.1 wireframes">G10</a></span></div>
+<p class="ctx">The FP React component uses depletion to life expectancy (per PLAN.md section 9; the component file is not in input/). L02 lists the assumptions the engine uses.</p>
+<ul class="pos">
+<li><b>Bhuvanaa</b> <span class="ref">(review row 52 (L02))</span>: Withdrawal rate: we need to decide how to do this.</li>
+</ul>
+<div class="dflt-line">Bhuvanaa to decide. Inputs listed above; nothing is preselected.</div>
+<label class="opt"><input type="radio" name="item-B3" value="a" data-item="B3"><span>a. A withdrawal-rate rule (a fixed percentage of the corpus each year)<span class="ppill">possible form</span><span class="held"></span></span></label>
+<label class="opt"><input type="radio" name="item-B3" value="b" data-item="B3"><span>b. Depletion to life expectancy, as the FP React does<span class="ppill">possible form</span><span class="held"></span></span></label>
+<textarea class="note" data-item="B3" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="B3"> Decided in the meeting</label>
+</div>
+<div class="item" id="item-B4">
+<div class="item-h"><b>B4 Tax section (G08)</b>
+<span class="tag">Bhuvanaa</span>
+<span class="tag">financial-plan-logic</span>
+<span class="tag">impact Low</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#G08" target="_blank" title="open in the v0.1 wireframes">G08</a><a href="wireframes.html#G03" target="_blank" title="open in the v0.1 wireframes">G03</a></span></div>
+<p class="ctx">G08 is the Tax tab of the plan (G03 tab strip: Overview, Emergency, Protection, Cashflow, Debt, Tax, Life events, Summary), taken from the FP React sections.</p>
+<ul class="pos">
+<li><b>Somil</b> <span class="ref">(review row 33 (G08, verdict Drop))</span>: We may not require this screen, or it may need some modification; needs Bhuvanaa&#x27;s and Harish&#x27;s input.</li>
+</ul>
+<div class="dflt-line">Bhuvanaa to decide. Inputs listed above; nothing is preselected.</div>
+<label class="opt"><input type="radio" name="item-B4" value="a" data-item="B4"><span>a. Drop G08<span class="held">held by: Somil (row 33)</span></span></label>
+<label class="opt"><input type="radio" name="item-B4" value="b" data-item="B4"><span>b. Modify G08<span class="held">held by: Somil (row 33)</span></span></label>
+<label class="opt"><input type="radio" name="item-B4" value="c" data-item="B4"><span>c. Keep as drawn<span class="ppill">possible form</span><span class="held"></span></span></label>
+<textarea class="note" data-item="B4" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="B4"> Decided in the meeting</label>
+</div>
+<h3>Quick-accepts for Bhuvanaa</h3><p class="meta">Suggestions by others inside this workstream. Only the owner accepts or declines; one line each.</p>
+<div class="qa" id="qa-3">
+<div class="t"><b>row 3, A01, Gaurav:</b> in four minutes --&gt; in the next few minutes.
+
+use this screen to sort of welcome and prime the user</div>
+<div class="c"><button data-qa="3" data-v="accept">Accept</button><button data-qa="3" data-v="decline">Decline</button><input data-qan="3" placeholder="note"></div>
+</div>
+<div class="qa" id="qa-7">
+<div class="t"><b>row 7, R01, Gaurav:</b> First Name --&gt; Name
+if we&#x27;re blocking under 18, then at the time of login itself, there should have been a T&amp;C</div>
+<div class="c"><button data-qa="7" data-v="accept">Accept</button><button data-qa="7" data-v="decline">Decline</button><input data-qan="7" placeholder="note"></div>
+</div>
+<div class="qa" id="qa-8">
+<div class="t"><b>row 8, R02, Gaurav:</b> Just Me | Me + Partner
+and Kids | And Parents
+
+Row 1 is a single select. If in row 1, you&#x27;ve selected &#x27;Me + Partner&#x27;, then row 2 becomes visible and allows multi-select
+
+these 4 blocks (with multi- select) in row 2 handles all the scenarios.</div>
+<div class="c"><button data-qa="8" data-v="accept">Accept</button><button data-qa="8" data-v="decline">Decline</button><input data-qan="8" placeholder="note"></div>
+</div>
+<div class="qa" id="qa-9">
+<div class="t"><b>row 9, R02, Gaurav:</b> Why is city needed?</div>
+<div class="c"><button data-qa="9" data-v="accept">Accept</button><button data-qa="9" data-v="decline">Decline</button><input data-qan="9" placeholder="note"></div>
+</div>
+<div class="qa" id="qa-10">
+<div class="t"><b>row 10, R04, Gaurav:</b> needs better verbiage &#x27;other than the home you live in&#x27; is getting missed in all the text</div>
+<div class="c"><button data-qa="10" data-v="accept">Accept</button><button data-qa="10" data-v="decline">Decline</button><input data-qan="10" placeholder="note"></div>
+</div>
+<div class="qa" id="qa-11">
+<div class="t"><b>row 11, R07, Gaurav:</b> this screen should have others &#x27;type your own&#x27;</div>
+<div class="c"><button data-qa="11" data-v="accept">Accept</button><button data-qa="11" data-v="decline">Decline</button><input data-qan="11" placeholder="note"></div>
+</div>
+<div class="qa" id="qa-15">
+<div class="t"><b>row 15, R10, Gaurav:</b> how will we explain? AI generated video?</div>
+<div class="c"><button data-qa="15" data-v="accept">Accept</button><button data-qa="15" data-v="decline">Decline</button><input data-qan="15" placeholder="note"></div>
+</div>
+<div class="qa" id="qa-23">
+<div class="t"><b>row 23, O01, Gaurav:</b> more info should be shown for Priya / Harish. add weight to the Advisor</div>
+<div class="c"><button data-qa="23" data-v="accept">Accept</button><button data-qa="23" data-v="decline">Decline</button><input data-qan="23" placeholder="note"></div>
+</div>
+<div class="qa" id="qa-26">
+<div class="t"><b>row 26, O02, Kajal:</b> so this one is either 1 or 2 and then 3 . We can make that change for this to come out clearly.
+
+This is coming up in A05 as well. are we repeating this screen</div>
+<div class="c"><button data-qa="26" data-v="accept">Accept</button><button data-qa="26" data-v="decline">Decline</button><input data-qan="26" placeholder="note"></div>
+</div>
+<div class="qa" id="qa-31">
+<div class="t"><b>row 31, G01, Gaurav:</b> duplicate what was done for R08</div>
+<div class="c"><button data-qa="31" data-v="accept">Accept</button><button data-qa="31" data-v="decline">Decline</button><input data-qan="31" placeholder="note"></div>
+</div>
+<div class="qa" id="qa-59">
+<div class="t"><b>row 59, D03, Harish:</b> Don&#x27;t we need screens for when each loan is clicked - the next screen? Also, need field for other loans like loans to friend etc</div>
+<div class="c"><button data-qa="59" data-v="accept">Accept</button><button data-qa="59" data-v="decline">Decline</button><input data-qan="59" placeholder="note"></div>
+</div>
+<div class="qa" id="qa-60">
+<div class="t"><b>row 60, D04, Harish:</b> Same ques - don&#x27;t ne need screens within each clicks?</div>
+<div class="c"><button data-qa="60" data-v="accept">Accept</button><button data-qa="60" data-v="decline">Decline</button><input data-qan="60" placeholder="note"></div>
+</div>
+</section>
+<section id="sec-harish"><h2>Harish<small>owner; the stated position is the default</small></h2>
+<div class="item" id="item-H1">
+<div class="item-h"><b>H1 Asset classes in the allocation grid</b>
+<span class="tag">Harish (with Somil)</span>
+<span class="tag">investment-advisory</span>
+<span class="tag hi">impact High</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#L02" target="_blank" title="open in the v0.1 wireframes">L02</a><a href="wireframes.html#L03" target="_blank" title="open in the v0.1 wireframes">L03</a><a href="wireframes.html#L04" target="_blank" title="open in the v0.1 wireframes">L04</a><a href="wireframes.html#G02" target="_blank" title="open in the v0.1 wireframes">G02</a><a href="wireframes.html#G11" target="_blank" title="open in the v0.1 wireframes">G11</a></span></div>
+<p class="ctx">L02 and L03 in v0.1 use five classes: cash, debt, hybrid, commodities, equity. L03 holds the grid of risk band by horizon bucket across those classes; G02 and G11 show allocations against them.</p>
+<ul class="pos">
+<li><b>Harish</b> <span class="ref">(review row 69 (L03))</span>: Cash will not be in the advised asset allocation; the shortest and safest bucket is debt funds.</li>
+<li><b>Harish</b> <span class="ref">(review row 68 (L02))</span>: A bucket for REITs and InvITs is needed.</li>
+<li><b>Vatsal</b> <span class="ref">(product brief; spec v0.1 L02, L03)</span>: Five classes: cash, debt, hybrid, commodities, equity.</li>
+<li><b>Gaurav</b> <span class="ref">(review row 51 (L04))</span>: ISIN weights in L04 are a subset of the category weights in L03.</li>
+</ul>
+<div class="dflt-line">Default: Harish's stated position (option a), preselected. Change it only if the meeting decides otherwise.</div>
+<label class="opt dflt"><input type="radio" name="item-H1" value="a" data-item="H1" checked><span>a. No cash class; liquid debt is the shortest bucket; add a REITs and InvITs bucket<span class="dpill">default: Harish</span><span class="held">held by: Harish (rows 68, 69)</span></span></label>
+<label class="opt"><input type="radio" name="item-H1" value="b" data-item="H1"><span>b. Five classes as drawn: cash, debt, hybrid, commodities, equity<span class="held">held by: Vatsal (brief)</span></span></label>
+<textarea class="note" data-item="H1" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="H1"> Decided in the meeting</label>
+</div>
+<div class="item" id="item-H2">
+<div class="item-h"><b>H2 Where portfolio constraints live (L04)</b>
+<span class="tag">Harish (with Somil)</span>
+<span class="tag">logic-panel</span>
+<span class="tag">impact Med</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#L04" target="_blank" title="open in the v0.1 wireframes">L04</a><a href="wireframes.html#L05" target="_blank" title="open in the v0.1 wireframes">L05</a><a href="wireframes.html#L09" target="_blank" title="open in the v0.1 wireframes">L09</a></span></div>
+<p class="ctx">L04 is the instrument universe. v0.1 has no screen for category tagging or for limits such as a maximum per product or a maximum of direct shares within equity. L05 validates staged changes before publish.</p>
+<ul class="pos">
+<li><b>Harish</b> <span class="ref">(review row 70 (L04))</span>: Where do we tag an instrument to a category? Where do we keep rules like shares not more than 40% within the equity bucket, or each product not more than 20%?</li>
+</ul>
+<div class="dflt-line">Harish (with Somil) to decide. Inputs listed above; nothing is preselected.</div>
+<label class="opt"><input type="radio" name="item-H2" value="a" data-item="H2"><span>a. A new constraints screen L09 (max per product, max direct shares within equity, category tag with override), validated in L05<span class="ppill">possible form</span><span class="held"></span></span></label>
+<label class="opt"><input type="radio" name="item-H2" value="b" data-item="H2"><span>b. Constraints as columns on L04 per instrument and category<span class="ppill">possible form</span><span class="held"></span></span></label>
+<div class="dep" data-if="a"><b>If H2 wants a constraints screen</b> (Vatsal recommendation): New L09, validated in L05 before publish.</div>
+<textarea class="note" data-item="H2" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="H2"> Decided in the meeting</label>
+</div>
+<div class="item" id="item-H3">
+<div class="item-h"><b>H3 Risk profiling method</b>
+<span class="tag">Harish (with Somil)</span>
+<span class="tag">investment-advisory</span>
+<span class="tag hi">impact High</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#D08" target="_blank" title="open in the v0.1 wireframes">D08</a><a href="wireframes.html#D09" target="_blank" title="open in the v0.1 wireframes">D09</a><a href="wireframes.html#L03" target="_blank" title="open in the v0.1 wireframes">L03</a><a href="wireframes.html#Q04" target="_blank" title="open in the v0.1 wireframes">Q04</a></span></div>
+<p class="ctx">D08 in v0.1 asks HoA&#x27;s eight questions one per screen (dependants, income stability, investor knowledge, savings status, drawdown reaction, investment goal, gain-loss preference, borrowing to invest); D09 shows the band (conservative, moderate, aggressive) and takes the declaration; the band feeds the L03 grid. The scoring map is still owed by HoA (spec v0.1, D08 dev; gap G06).</p>
+<ul class="pos">
+<li><b>Harish</b> <span class="ref">(HoA risk profiling questionnaire (input/hoa))</span>: HoA&#x27;s eight-question risk profiling questionnaire; the adviser classifies the client as aggressive, moderate or conservative.</li>
+<li><b>Bhuvanaa</b> <span class="ref">(review row 30 (D09))</span>: One question for risk assessment is not enough; do it differently: risk tolerance through a questionnaire, risk capacity and risk needed through our assessment. The calculation logic is available.</li>
+</ul>
+<div class="dflt-line">Default: Harish's stated position (option a), preselected. Change it only if the meeting decides otherwise.</div>
+<label class="opt dflt"><input type="radio" name="item-H3" value="a" data-item="H3" checked><span>a. HoA eight-question RPQ; band from the score<span class="dpill">default: Harish</span><span class="held">held by: Harish (questionnaire)</span></span></label>
+<label class="opt"><input type="radio" name="item-H3" value="b" data-item="H3"><span>b. Tolerance from the questionnaire plus capacity and need from the assessment; logic available<span class="held">held by: Bhuvanaa (row 30)</span></span></label>
+<label class="opt"><input type="radio" name="item-H3" value="c" data-item="H3"><span>c. RPQ for tolerance; capacity and need computed from D01 to D07; combined into the band<span class="ppill">possible form</span><span class="held"></span></span></label>
+<textarea class="note" data-item="H3" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="H3"> Decided in the meeting</label>
+</div>
+<div class="item" id="item-H4">
+<div class="item-h"><b>H4 Insurance aggregator links (E01)</b>
+<span class="tag">Harish</span>
+<span class="tag">compliance</span>
+<span class="tag">impact Med</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#E01" target="_blank" title="open in the v0.1 wireframes">E01</a><a href="wireframes.html#E05" target="_blank" title="open in the v0.1 wireframes">E05</a></span></div>
+<p class="ctx">v0.1 handles protection actions as guided action outside the app (E05): the user buys cover elsewhere and reports back; E06 verifies.</p>
+<ul class="pos">
+<li><b>Bhuvanaa</b> <span class="ref">(review row 38 (E01))</span>: Can we link insurance through aggregators like PolicyBazaar?</li>
+</ul>
+<div class="dflt-line">Harish to decide. Inputs listed above; nothing is preselected.</div>
+<label class="opt"><input type="radio" name="item-H4" value="a" data-item="H4"><span>a. Link out to an insurance aggregator for protection actions<span class="held">held by: Bhuvanaa (row 38)</span></span></label>
+<label class="opt"><input type="radio" name="item-H4" value="b" data-item="H4"><span>b. Guided action outside the app, no aggregator link (as drawn in E05)<span class="held">held by: Vatsal (spec v0.1)</span></span></label>
+<textarea class="note" data-item="H4" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="H4"> Decided in the meeting</label>
+</div>
+<div class="item" id="item-H5">
+<div class="item-h"><b>H5 Refund policy (Q03)</b>
+<span class="tag">Harish (with Kajal)</span>
+<span class="tag">compliance</span>
+<span class="tag">impact Med</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#Q03" target="_blank" title="open in the v0.1 wireframes">Q03</a><a href="wireframes.html#P03" target="_blank" title="open in the v0.1 wireframes">P03</a><a href="wireframes.html#H09" target="_blank" title="open in the v0.1 wireframes">H09</a></span></div>
+<p class="ctx">Q03 refunds the unused period per the agreement when a period was prepaid (spec v0.1). The current advisory agreement (dated 2025-12-29, AUA fee mode) refunds the fees for the unexpired period on early termination, lets the adviser keep a breakage fee of at most one quarter&#x27;s fee, and asks 30 days&#x27; notice for voluntary termination. The app charges a fixed fee, monthly (spec v0.1, P01 logic).</p>
+<ul class="pos">
+<li><b>Harish</b> <span class="ref">(review row 66 (Q03))</span>: Have to check the regulations on refund policy as an RIA.</li>
+<li><b>Bhuvanaa</b> <span class="ref">(deck slide 11)</span>: The membership is cancel any time.</li>
+</ul>
+<div class="dflt-line">Harish (with Kajal) to decide. Inputs listed above; nothing is preselected.</div>
+<label class="opt"><input type="radio" name="item-H5" value="a" data-item="H5"><span>a. Refund the unexpired period less a breakage fee of at most one quarter&#x27;s fee, as in the current agreement<span class="ppill">possible form</span><span class="held"></span></span></label>
+<label class="opt"><input type="radio" name="item-H5" value="b" data-item="H5"><span>b. Monthly billing, cancel any time, no refund of the current month<span class="ppill">possible form</span><span class="held"></span></span></label>
+<textarea class="note" data-item="H5" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="H5"> Decided in the meeting</label>
+</div>
+<div class="item" id="item-H6">
+<div class="item-h"><b>H6 Records for audit (L08)</b>
+<span class="tag">Harish (with Kajal)</span>
+<span class="tag">compliance</span>
+<span class="tag">impact Med</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#L08" target="_blank" title="open in the v0.1 wireframes">L08</a><a href="wireframes.html#H06" target="_blank" title="open in the v0.1 wireframes">H06</a><a href="wireframes.html#M01" target="_blank" title="open in the v0.1 wireframes">M01</a></span></div>
+<p class="ctx">The admin/CRM spec v0.1 (Vatsal and Kajal) lists nine records: client agreement (signed, versioned); KYC record; risk profile and suitability; advice register with dated advice and rationale; fee records and invoices; grievance register; AUA statements (DIFM); audit trail on regulated records; retention of five years after the relationship ends. L08 keeps versions and exports for the advice register (spec v0.1).</p>
+<ul class="pos">
+<li><b>Harish</b> <span class="ref">(review row 73 (L08))</span>: Need to check from the regulatory angle what all needs to be saved for audit purposes.</li>
+</ul>
+<div class="dflt-line">Harish (with Kajal) to decide. Inputs listed above; nothing is preselected.</div>
+<label class="opt"><input type="radio" name="item-H6" value="a" data-item="H6"><span>a. The nine records in the admin/CRM spec, plus whatever Harish adds after his check<span class="ppill">possible form</span><span class="held"></span></span></label>
+<textarea class="note" data-item="H6" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="H6"> Decided in the meeting</label>
+</div>
+<h3>Quick-accepts for Harish</h3><p class="meta">Suggestions by others inside this workstream. Only the owner accepts or declines; one line each.</p>
+<div class="qa" id="qa-51">
+<div class="t"><b>row 51, L04, Gaurav:</b> ISIN weights are a subset to category weights in L03 (cash / debt / hybrid / commodities / equity)</div>
+<div class="c"><button data-qa="51" data-v="accept">Accept</button><button data-qa="51" data-v="decline">Decline</button><input data-qan="51" placeholder="note"></div>
+</div>
+</section>
+<section id="sec-gaurav"><h2>Gaurav<small>owner; the stated position is the default</small></h2>
+<div class="item" id="item-G1">
+<div class="item-h"><b>G1 Execution rails</b>
+<span class="tag">Gaurav</span>
+<span class="tag">tech</span>
+<span class="tag hi">impact High</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#E02" target="_blank" title="open in the v0.1 wireframes">E02</a><a href="wireframes.html#E03" target="_blank" title="open in the v0.1 wireframes">E03</a><a href="wireframes.html#E04" target="_blank" title="open in the v0.1 wireframes">E04</a><a href="wireframes.html#X00" target="_blank" title="open in the v0.1 wireframes">X00</a></span></div>
+<p class="ctx">v0.1 draws E02 (one-time setup: KYC, BSE StAR MF client code under HoA&#x27;s RIA registration, bank, nominee, FATCA, mandate), E03 (mutual fund orders on BSE StAR MF, direct plans only) and E04 (ETFs and stocks via smallcase).</p>
+<ul class="pos">
+<li><b>Gaurav</b> <span class="ref">(review row 1 (X00))</span>: All execution happens via smallcase Gateway only.</li>
+<li><b>Vatsal</b> <span class="ref">(product brief; spec v0.1 E02, E03, E04)</span>: BSE StAR MF for mutual funds; smallcase for ETFs and stocks.</li>
+<li><b>Harish</b> <span class="ref">(review row 62 (E03))</span>: Not sure how the mutual fund integration, and hence the screens, will look.</li>
+<li><b>Harish</b> <span class="ref">(review row 63 (E04))</span>: Not sure how we connect to brokers here or at the smallcase end.</li>
+</ul>
+<ul class="cond"><li>Condition to verify (Gaurav): smallcase Gateway supports mutual funds (direct plans) and SIP mandates</li><li>Condition to verify (Harish): Direct plans and HoA&#x27;s RIA code hold on whichever rail is chosen</li></ul>
+<div class="dflt-line">Default: Gaurav's stated position (option a), preselected. Change it only if the meeting decides otherwise.</div>
+<label class="opt dflt"><input type="radio" name="item-G1" value="a" data-item="G1" checked><span>a. smallcase Gateway only, for mutual funds, ETFs and stocks<span class="dpill">default: Gaurav</span><span class="held">held by: Gaurav (row 1)</span></span></label>
+<label class="opt"><input type="radio" name="item-G1" value="b" data-item="G1"><span>b. BSE StAR MF for mutual funds; smallcase for ETFs and stocks (as drawn)<span class="held">held by: Vatsal (brief, spec v0.1)</span></span></label>
+<div class="dep" data-if="a"><b>If G1 is smallcase only</b> (Vatsal recommendation): E02 and E03 collapse into E04; the one-time setup becomes a broker login.</div>
+<textarea class="note" data-item="G1" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="G1"> Decided in the meeting</label>
+</div>
+<div class="item" id="item-G2">
+<div class="item-h"><b>G2 Admin tool over the database</b>
+<span class="tag">Gaurav (with Kajal)</span>
+<span class="tag">tech</span>
+<span class="tag">impact Med</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#M01" target="_blank" title="open in the v0.1 wireframes">M01</a></span></div>
+<p class="ctx">M01 says the team buys, not builds, its admin tools; journey-state operations still need a low-code tool over the database (spec v0.1, M01 logic). The admin/CRM spec v0.1 (Vatsal and Kajal) puts Directus first, with a two-day trial against the real schema, and Appsmith only if the pre-call view needs a composed screen Directus cannot show.</p>
+<ul class="pos">
+<li><b>Gaurav</b> <span class="ref">(review row 49 (M01))</span>: Tool: Appsmith? Spinach?</li>
+<li><b>Vatsal</b> <span class="ref">(admin/CRM spec v0.1, D1 (crm-and-nudges workstream, Vatsal and Kajal))</span>: Directus first, two-day trial; add Appsmith only if a composed screen is needed.</li>
+<li><b>Kajal</b> <span class="ref">(review row 50 (M01))</span>: Do the admin stack separately.</li>
+</ul>
+<div class="dflt-line">Gaurav (with Kajal) to decide. Inputs listed above; nothing is preselected.</div>
+<label class="opt"><input type="radio" name="item-G2" value="a" data-item="G2"><span>a. Appsmith<span class="held">held by: Gaurav (row 49, asked as a question)</span></span></label>
+<label class="opt"><input type="radio" name="item-G2" value="b" data-item="G2"><span>b. Directus first, two-day trial; Appsmith only if needed<span class="held">held by: Vatsal and Kajal (admin/CRM spec v0.1)</span></span></label>
+<textarea class="note" data-item="G2" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="G2"> Decided in the meeting</label>
+</div>
+</section>
+<section id="sec-vatsal"><h2>Vatsal<small>owner; the stated position is the default</small></h2>
+<div class="item" id="item-V1">
+<div class="item-h"><b>V1 Community placement (H08)</b>
+<span class="tag">Vatsal</span>
+<span class="tag">product</span>
+<span class="tag">impact Low</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#H01" target="_blank" title="open in the v0.1 wireframes">H01</a><a href="wireframes.html#H08" target="_blank" title="open in the v0.1 wireframes">H08</a><a href="wireframes.html#X01" target="_blank" title="open in the v0.1 wireframes">X01</a></span></div>
+<p class="ctx">v0.1 H01 draws a Community card on Home; H08 is a link-out to the off-app community with a small strip of what is happening; X01 links &#x27;see what members are saying&#x27; to H08 (spec v0.1).</p>
+<ul class="pos">
+<li><b>Gaurav</b> <span class="ref">(review row 46 (H08))</span>: Community should not be shown on Home; if needed, give a menu entry to the community or some highlights.</li>
+<li><b>Bhuvanaa</b> <span class="ref">(deck slide 25)</span>: The returning client&#x27;s home lists what is happening in the community, with net worth, growth, wheel of wealth, action queue, review date, vault and adviser chat.</li>
+<li><b>Harish</b> <span class="ref">(review row 65 (H08))</span>: Is the community tab always available in the app; on the home page, in the menu, or yet to be decided?</li>
+<li><b>Vatsal</b> <span class="ref">(chat; spec v0.1 H01, H08)</span>: A one-line strip on Home; the community itself from the menu.</li>
+</ul>
+<div class="dflt-line">Default: Vatsal's stated position (option a), preselected. Change it only if the meeting decides otherwise.</div>
+<label class="opt dflt"><input type="radio" name="item-V1" value="a" data-item="V1" checked><span>a. One-line strip on Home; community from the menu<span class="dpill">default: Vatsal</span><span class="held">held by: Vatsal (chat)</span></span></label>
+<label class="opt"><input type="radio" name="item-V1" value="b" data-item="V1"><span>b. Menu entry only, or highlights; nothing on Home<span class="held">held by: Gaurav (row 46)</span></span></label>
+<label class="opt"><input type="radio" name="item-V1" value="c" data-item="V1"><span>c. Community block on the returning-client Home<span class="held">held by: Bhuvanaa (deck slide 25)</span></span></label>
+<textarea class="note" data-item="V1" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="V1"> Decided in the meeting</label>
+</div>
+</section>
+<section id="sec-vatsal-and-kajal"><h2>Vatsal and Kajal<small>owner; the stated position is the default</small></h2>
+<div class="item" id="item-V2">
+<div class="item-h"><b>V2 Human call as a nudge channel (N01)</b>
+<span class="tag">Vatsal and Kajal</span>
+<span class="tag">crm-and-nudges</span>
+<span class="tag">impact Low</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#N01" target="_blank" title="open in the v0.1 wireframes">N01</a><a href="wireframes.html#M01" target="_blank" title="open in the v0.1 wireframes">M01</a></span></div>
+<p class="ctx">N01 in v0.1 sends nudges by push, WhatsApp and email, one per week at most across all layers; the admin/CRM spec nudge table has 30 rows across the states, each with a channel policy (spec v0.1, N01 dev; admin/CRM NUDGES).</p>
+<ul class="pos">
+<li><b>Harish</b> <span class="ref">(review row 67 (N01))</span>: Plan more nudges than just two or three; we may also call people offline.</li>
+<li><b>Vatsal</b> <span class="ref">(spec v0.1 N01)</span>: Channels are push, WhatsApp and email, as drawn.</li>
+</ul>
+<div class="dflt-line">Vatsal and Kajal to decide. Inputs listed above; nothing is preselected.</div>
+<label class="opt"><input type="radio" name="item-V2" value="a" data-item="V2"><span>a. Add a human call as a channel; Zoho creates a task for the caller<span class="held">held by: Harish (row 67)</span></span></label>
+<label class="opt"><input type="radio" name="item-V2" value="b" data-item="V2"><span>b. Keep push, WhatsApp and email only<span class="held">held by: Vatsal (spec v0.1, as drawn)</span></span></label>
+<div class="dep" data-if="a"><b>If V2 adds human calls</b> (Vatsal recommendation): The nudge policy gains a channel value and Zoho creates tasks.</div>
+<textarea class="note" data-item="V2" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="V2"> Decided in the meeting</label>
+</div>
+</section>
+<section id="sec-kajal"><h2>Kajal<small>owner; the stated position is the default</small></h2>
+<div class="item" id="item-K1">
+<div class="item-h"><b>K1 Payment methods and GST (P04)</b>
+<span class="tag">Kajal</span>
+<span class="tag">admin</span>
+<span class="tag">impact Med</span>
+<span class="tag done" style="display:none">decided</span>
+<span class="screens"><a href="wireframes.html#P04" target="_blank" title="open in the v0.1 wireframes">P04</a><a href="wireframes.html#Q03" target="_blank" title="open in the v0.1 wireframes">Q03</a><a href="wireframes.html#M01" target="_blank" title="open in the v0.1 wireframes">M01</a></span></div>
+<p class="ctx">v0.1 P04 draws UPI autopay, card and netbanking, with Razorpay subscriptions behind Q03 (spec v0.1).</p>
+<ul class="pos">
+<li><b>Kajal</b> <span class="ref">(review row 22 (P04))</span>: Close the payment gateway to UPI and netbanking only; card payment not allowed. GST logic in the admin or logic panel for IGST, CGST plus SGST, and no GST.</li>
+<li><b>Harish</b> <span class="ref">(review row 58 (P04))</span>: Subject to regulatory approvals on payment types.</li>
+<li><b>Vatsal</b> <span class="ref">(spec v0.1 P04)</span>: UPI autopay, card and netbanking, as drawn.</li>
+</ul>
+<ul class="cond"><li>Condition to verify (Harish): Regulatory approval on the payment types offered</li></ul>
+<div class="dflt-line">Default: Kajal's stated position (option a), preselected. Change it only if the meeting decides otherwise.</div>
+<label class="opt dflt"><input type="radio" name="item-K1" value="a" data-item="K1" checked><span>a. UPI and netbanking only, no cards; GST split logic (IGST, CGST plus SGST, no GST)<span class="dpill">default: Kajal</span><span class="held">held by: Kajal (row 22)</span></span></label>
+<label class="opt"><input type="radio" name="item-K1" value="b" data-item="K1"><span>b. UPI autopay, card and netbanking, as drawn<span class="held">held by: Vatsal (spec v0.1)</span></span></label>
+<textarea class="note" data-item="K1" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>
+<label class="decided"><input type="checkbox" data-decided="K1"> Decided in the meeting</label>
+</div>
+<h3>Quick-accepts for Kajal</h3><p class="meta">Suggestions by others inside this workstream. Only the owner accepts or declines; one line each.</p>
+<div class="qa" id="qa-21">
+<div class="t"><b>row 21, P04, Gaurav:</b> introduce coupon?</div>
+<div class="c"><button data-qa="21" data-v="accept">Accept</button><button data-qa="21" data-v="decline">Decline</button><input data-qan="21" placeholder="note"></div>
+</div>
+</section><section><h2>Housekeeping</h2><p class="meta">Choices and notes save in this browser only, per device. <button id="reset" class="ghost">Clear this browser</button></p></section></main></div>
+<script>var DATA={"items": {"T1": {"title": "SKU set at launch", "owner": "Team", "control": "multi", "options": [{"key": "a", "text": "Monthly membership with adviser calls (DIWM)"}, {"key": "b", "text": "Monthly membership, app only, no calls (DIY)"}, {"key": "c", "text": "One-time plan with a 45-minute session"}, {"key": "d", "text": "Explainer video on the paywall if more than two cards"}], "dflt": null, "dflt_who": "", "deps": [{"if_key": "not:c", "then": "P01 becomes two cards; the 60-day credit rule goes; the subscription-conversion KPI in the admin spec goes."}]}, "T2": {"title": "Calls model per tier", "owner": "Team", "control": "multi", "options": [{"key": "a", "text": "One plan call at delivery; quarterly review automated in-app; more calls paid, a la carte"}, {"key": "b", "text": "Plan call plus 15-minute quarterly check-ins for DIWM"}, {"key": "c", "text": "No one-off calls for DIY"}, {"key": "d", "text": "Calls are planner calls; investment discussion only with Harish"}, {"key": "e", "text": "Review call only after execution is done"}], "dflt": null, "dflt_who": "", "deps": [{"if_key": "c", "then": "K04 becomes an upgrade prompt; the H07 DIY card changes."}]}, "S1": {"title": "Who takes the DIWM plan call, certification, capacity", "owner": "Bhuvanaa and Harish", "control": "single", "options": [{"key": "a", "text": "A certified financial planner takes the plan call; investment questions go to Harish"}, {"key": "b", "text": "The named adviser (Priya, CFP) takes the plan call"}], "dflt": null, "dflt_who": "", "deps": []}, "B1": {"title": "Pre-paywall sequence", "owner": "Bhuvanaa", "control": "single", "options": [{"key": "a", "text": "Reveal, two videos, sample plan, paywall (as drawn)"}, {"key": "b", "text": "Reveal, one video, sample plan, paywall"}, {"key": "c", "text": "Reveal, then paywall for the convinced; sample plan only for those who do not go on"}], "dflt": "a", "dflt_who": "Bhuvanaa", "deps": []}, "B2": {"title": "Clarity picture (G02)", "owner": "Bhuvanaa", "control": "single", "options": [{"key": "a", "text": "Drop G02"}, {"key": "b", "text": "Keep G02 post-paywall as the first output and the call brief"}, {"key": "c", "text": "Drop the screen; fold realisable vs locked, allocation and current return into G03; keep the call brief in the adviser view only"}], "dflt": "a", "dflt_who": "Bhuvanaa", "deps": [{"if_key": "a", "then": "Fold realisable vs locked, allocation and current return into G03."}]}, "B3": {"title": "Retirement model", "owner": "Bhuvanaa", "control": "single", "options": [{"key": "a", "text": "A withdrawal-rate rule (a fixed percentage of the corpus each year)"}, {"key": "b", "text": "Depletion to life expectancy, as the FP React does"}], "dflt": null, "dflt_who": "", "deps": []}, "B4": {"title": "Tax section (G08)", "owner": "Bhuvanaa", "control": "single", "options": [{"key": "a", "text": "Drop G08"}, {"key": "b", "text": "Modify G08"}, {"key": "c", "text": "Keep as drawn"}], "dflt": null, "dflt_who": "", "deps": []}, "H1": {"title": "Asset classes in the allocation grid", "owner": "Harish", "control": "single", "options": [{"key": "a", "text": "No cash class; liquid debt is the shortest bucket; add a REITs and InvITs bucket"}, {"key": "b", "text": "Five classes as drawn: cash, debt, hybrid, commodities, equity"}], "dflt": "a", "dflt_who": "Harish", "deps": []}, "H2": {"title": "Where portfolio constraints live (L04)", "owner": "Harish", "control": "single", "options": [{"key": "a", "text": "A new constraints screen L09 (max per product, max direct shares within equity, category tag with override), validated in L05"}, {"key": "b", "text": "Constraints as columns on L04 per instrument and category"}], "dflt": null, "dflt_who": "", "deps": [{"if_key": "a", "then": "New L09, validated in L05 before publish."}]}, "H3": {"title": "Risk profiling method", "owner": "Harish", "control": "single", "options": [{"key": "a", "text": "HoA eight-question RPQ; band from the score"}, {"key": "b", "text": "Tolerance from the questionnaire plus capacity and need from the assessment; logic available"}, {"key": "c", "text": "RPQ for tolerance; capacity and need computed from D01 to D07; combined into the band"}], "dflt": "a", "dflt_who": "Harish", "deps": []}, "H4": {"title": "Insurance aggregator links (E01)", "owner": "Harish", "control": "single", "options": [{"key": "a", "text": "Link out to an insurance aggregator for protection actions"}, {"key": "b", "text": "Guided action outside the app, no aggregator link (as drawn in E05)"}], "dflt": null, "dflt_who": "", "deps": []}, "H5": {"title": "Refund policy (Q03)", "owner": "Harish", "control": "single", "options": [{"key": "a", "text": "Refund the unexpired period less a breakage fee of at most one quarter's fee, as in the current agreement"}, {"key": "b", "text": "Monthly billing, cancel any time, no refund of the current month"}], "dflt": null, "dflt_who": "", "deps": []}, "H6": {"title": "Records for audit (L08)", "owner": "Harish", "control": "single", "options": [{"key": "a", "text": "The nine records in the admin/CRM spec, plus whatever Harish adds after his check"}], "dflt": null, "dflt_who": "", "deps": []}, "G1": {"title": "Execution rails", "owner": "Gaurav", "control": "single", "options": [{"key": "a", "text": "smallcase Gateway only, for mutual funds, ETFs and stocks"}, {"key": "b", "text": "BSE StAR MF for mutual funds; smallcase for ETFs and stocks (as drawn)"}], "dflt": "a", "dflt_who": "Gaurav", "deps": [{"if_key": "a", "then": "E02 and E03 collapse into E04; the one-time setup becomes a broker login."}]}, "G2": {"title": "Admin tool over the database", "owner": "Gaurav", "control": "single", "options": [{"key": "a", "text": "Appsmith"}, {"key": "b", "text": "Directus first, two-day trial; Appsmith only if needed"}], "dflt": null, "dflt_who": "", "deps": []}, "V1": {"title": "Community placement (H08)", "owner": "Vatsal", "control": "single", "options": [{"key": "a", "text": "One-line strip on Home; community from the menu"}, {"key": "b", "text": "Menu entry only, or highlights; nothing on Home"}, {"key": "c", "text": "Community block on the returning-client Home"}], "dflt": "a", "dflt_who": "Vatsal", "deps": []}, "V2": {"title": "Human call as a nudge channel (N01)", "owner": "Vatsal and Kajal", "control": "single", "options": [{"key": "a", "text": "Add a human call as a channel; Zoho creates a task for the caller"}, {"key": "b", "text": "Keep push, WhatsApp and email only"}], "dflt": null, "dflt_who": "", "deps": [{"if_key": "a", "then": "The nudge policy gains a channel value and Zoho creates tasks."}]}, "K1": {"title": "Payment methods and GST (P04)", "owner": "Kajal", "control": "single", "options": [{"key": "a", "text": "UPI and netbanking only, no cards; GST split logic (IGST, CGST plus SGST, no GST)"}, {"key": "b", "text": "UPI autopay, card and netbanking, as drawn"}], "dflt": "a", "dflt_who": "Kajal", "deps": []}}, "order": ["T1", "T2", "S1", "B1", "B2", "B3", "B4", "H1", "H2", "H3", "H4", "H5", "H6", "G1", "G2", "V1", "V2", "K1"], "qa": {"3": {"screen": "A01", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "7": {"screen": "R01", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "8": {"screen": "R02", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "9": {"screen": "R02", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "10": {"screen": "R04", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "11": {"screen": "R07", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "15": {"screen": "R10", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "21": {"screen": "P04", "reviewer": "Gaurav", "owner": "Kajal"}, "23": {"screen": "O01", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "26": {"screen": "O02", "reviewer": "Kajal", "owner": "Bhuvanaa"}, "31": {"screen": "G01", "reviewer": "Gaurav", "owner": "Bhuvanaa"}, "51": {"screen": "L04", "reviewer": "Gaurav", "owner": "Harish"}, "59": {"screen": "D03", "reviewer": "Harish", "owner": "Bhuvanaa"}, "60": {"screen": "D04", "reviewer": "Harish", "owner": "Bhuvanaa"}}, "qa_order": ["3", "7", "8", "9", "10", "11", "15", "21", "23", "26", "31", "51", "59", "60"], "gaps": {"G01": {"title": "Brand name lock (yeslyf vs Yesly vs Yalpho)"}, "G02": {"title": "SEBI advertisement code review of reveal, sample plan, testimonials, listing, nudges"}, "G03": {"title": "DPDP consent notice and deletion"}, "G04": {"title": "Adviser capacity number and slot design"}, "G05": {"title": "Vendor onboarding critical path with owner and dates"}, "G06": {"title": "Documents owed: RPQ scoring map, fixed-fee agreement with the app as a channel, risk logic"}, "G07": {"title": "Analytics instrumentation rule: every screen ID is an event"}, "G08": {"title": "Content production list with screen IDs"}, "G09": {"title": "App store financial-app requirements"}, "G10": {"title": "Date protection: define V1 without in-app execution"}, "G11": {"title": "Existing HoA clients into the app after launch via assisted onboarding"}, "G12": {"title": "Support staffing on day one"}, "G13": {"title": "Closed beta with thirty community members in January"}}, "gap_order": ["G01", "G02", "G03", "G04", "G05", "G06", "G07", "G08", "G09", "G10", "G11", "G12", "G13"]};</script>
+<script>
+(function(){
+  var KEY="yeslyf_board_v1"; var S={};
+  try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  function g(k){ if(!S[k]) S[k]={}; return S[k]; }
+  function who(){ return (S.who||"").trim(); }
+  var ft; function flash(t){ var s=document.getElementById("saved"); if(!s) return; s.textContent=t||"Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1800); }
+  function sink(kind,row){ var ep=(S.endpoint||"").trim(); if(!ep) return false; row.kind=kind; row.who=who(); row.ts=new Date().toISOString();
+    try{ fetch(ep,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(row)}); }catch(e){} return true; }
+  function pill(){ var p=document.getElementById("sheetpill"); if(!p) return; var on=!!(S.endpoint||"").trim(); p.textContent=on?"sheet: on":"sheet: off"; p.className="pill"+(on?" on":""); }
+  function choiceOf(id){ var r=S["item:"+id]; if(r&&r.choice!==undefined) return r.choice; var d=DATA.items[id]?DATA.items[id].dflt:null; return d?d:null; }
+  function choiceList(id){ var c=choiceOf(id); if(c===null||c===undefined) return []; return Array.isArray(c)?c:[c]; }
+  function optText(id,key){ var it=DATA.items[id]; for(var i=0;i<it.options.length;i++) if(it.options[i].key===key) return it.options[i].text; return key; }
+  function depOn(id,ifKey){ var list=choiceList(id); var r=S["item:"+id]||{}; if(ifKey.indexOf("not:")===0){ var k=ifKey.slice(4); return !!r.decided && list.length>0 && list.indexOf(k)<0; } return list.indexOf(ifKey)>=0; }
+  function paintItem(id){ var card=document.getElementById("item-"+id); if(!card) return; var r=S["item:"+id]||{}; var list=choiceList(id);
+    var inputs=card.querySelectorAll("input[data-item]"); for(var i=0;i<inputs.length;i++){ inputs[i].checked=list.indexOf(inputs[i].value)>=0; }
+    var dc=card.querySelector("input[data-decided]"); if(dc) dc.checked=!!r.decided;
+    var ta=card.querySelector("textarea[data-item]"); if(ta && ta.value!==(r.note||"")) ta.value=r.note||"";
+    card.className="item"+(r.decided?" done":"")+(card.className.indexOf(" hi")>=0?" hi":"");
+    var tag=card.querySelector(".tag.done"); if(tag) tag.style.display=r.decided?"":"none";
+    var deps=card.querySelectorAll(".dep"); for(var j=0;j<deps.length;j++){ deps[j].className="dep"+(depOn(id,deps[j].getAttribute("data-if"))?" on":""); } }
+  function paintAll(){ for(var id in DATA.items) paintItem(id);
+    for(var n in DATA.qa){ var r=S["qa:"+n]||{}; var row=document.getElementById("qa-"+n); if(!row) continue; var bs=row.querySelectorAll("button[data-v]"); for(var i=0;i<bs.length;i++){ bs[i].className=(bs[i].getAttribute("data-v")===r.v?"on":"")+(bs[i].getAttribute("data-v")==="decline"?" no":""); } var inp=row.querySelector("input[data-qan]"); if(inp&&inp.value!==(r.note||"")) inp.value=r.note||""; }
+    for(var gid in DATA.gaps){ var gr=S["gap:"+gid]||{}; var el=document.getElementById("gap-"+gid); if(!el) continue; var f=el.querySelectorAll("[data-f]"); for(var k=0;k<f.length;k++){ var key=f[k].getAttribute("data-f"); if(f[k].value!==(gr[key]||"")) f[k].value=gr[key]||""; } }
+    var w=document.getElementById("who"); if(w&&w.value!==(S.who||"")) w.value=S.who||""; pill(); }
+  function recordItem(id){ var r=g("item:"+id); r.decided=true; save(); var list=choiceList(id); var labels=list.map(function(k){ return k+" "+optText(id,k); });
+    sink("decisions",{item_id:id,choice:list.join(", "),choice_text:labels.join(" | "),note:r.note||""}); paintItem(id); flash(); }
+  function md(){ var L=["# yeslyf meeting brief","Exported "+new Date().toLocaleString()+(who()?" by "+who():""),"Sheet endpoint: "+((S.endpoint||"").trim()?"configured":"not configured; this file is the record"),""];
+    L.push("## Decisions");
+    DATA.order.forEach(function(id){ var it=DATA.items[id]; var r=S["item:"+id]||{}; var list=choiceList(id); var owner=it.owner;
+      var line="- "+id+" "+it.title+" ("+owner+"): ";
+      if(!list.length){ line+= (owner==="Team"?"no choice made":"no choice made; "+owner+" to decide"); }
+      else { line+=list.map(function(k){ return k+" "+optText(id,k); }).join("; "); if(it.dflt&&!r.decided){ line+=" (default, "+it.dflt_who+"'s position; not confirmed in the meeting)"; } else if(r.decided){ line+=" (decided in the meeting"+(who()?", "+who():"")+")"; } }
+      if(r.note) line+="\n  Note: "+String(r.note).split("\n").join(" ");
+      it.deps.forEach(function(d){ if(depOn(id,d.if_key)) line+="\n  Follows: "+d.then+" (Vatsal recommendation)"; });
+      L.push(line); });
+    L.push(""); L.push("## Quick-accepts");
+    DATA.qa_order.forEach(function(n){ var q=DATA.qa[n]; var r=S["qa:"+n]||{}; L.push("- row "+n+" "+q.screen+" ("+q.reviewer+", for "+q.owner+"): "+(r.v||"not ticked")+(r.note?" | "+r.note:"")); });
+    L.push(""); L.push("## Gaps");
+    DATA.gap_order.forEach(function(gid){ var x=DATA.gaps[gid]; var r=S["gap:"+gid]||{}; L.push("- "+gid+" "+x.title+": "+(r.status||"no status")+(r.owner?" | owner: "+r.owner:"")+(r.date?" | by: "+r.date:"")+(r.note?" | "+String(r.note).split("\n").join(" "):"")); });
+    return L.join("\n"); }
+  function exportBrief(){ var text=md(); try{ navigator.clipboard&&navigator.clipboard.writeText(text); }catch(e){}
+    var b=new Blob([text],{type:"text/markdown"}); var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="yeslyf_meeting_brief.md"; document.body.appendChild(a); a.click(); document.body.removeChild(a); flash("Brief exported and copied"); }
+  function deepLink(){ var h=location.hash||""; if(h.indexOf("#screen/")===0){ location.href="wireframes.html#"+h.slice(8); return; }
+    var id=null; if(h.indexOf("#item/")===0) id="item-"+h.slice(6); else if(h.indexOf("#gap/")===0) id="gap-"+h.slice(5); else if(h.indexOf("#row/")===0) id="row-"+h.slice(5);
+    if(!id) return; var el=document.getElementById(id); if(!el) return; var old=document.querySelectorAll(".hi"); for(var i=0;i<old.length;i++) old[i].classList.remove("hi"); el.classList.add("hi"); el.scrollIntoView({block:"start"}); }
+  var tmr={};
+  document.addEventListener("DOMContentLoaded",function(){
+    paintAll(); deepLink(); window.addEventListener("hashchange",deepLink);
+    var w=document.getElementById("who"); if(w) w.addEventListener("input",function(e){ S.who=e.target.value; save(); });
+    var ex=document.getElementById("export"); if(ex) ex.addEventListener("click",exportBrief);
+    var ep=document.getElementById("endpoint"); if(ep){ ep.value=S.endpoint||""; ep.addEventListener("input",function(e){ S.endpoint=e.target.value.trim(); save(); pill(); flash(S.endpoint?"Endpoint saved in this browser":"Endpoint cleared"); }); }
+    var test=document.getElementById("testrow"); if(test) test.addEventListener("click",function(){ var ok=sink("decisions",{item_id:"TEST",choice:"test",choice_text:"test row from setup page",note:""}); flash(ok?"Test row sent; check the decisions tab of the sheet":"No endpoint set"); });
+    document.body.addEventListener("change",function(e){ var t=e.target;
+      if(t.type==="radio"&&t.getAttribute("data-item")){ g("item:"+t.getAttribute("data-item")).choice=t.value; recordItem(t.getAttribute("data-item")); }
+      if(t.type==="checkbox"&&t.getAttribute("data-item")){ var id=t.getAttribute("data-item"); var r=g("item:"+id); var list=choiceList(id).slice(); var i=list.indexOf(t.value); if(t.checked&&i<0) list.push(t.value); if(!t.checked&&i>=0) list.splice(i,1); r.choice=list; recordItem(id); }
+      if(t.type==="checkbox"&&t.getAttribute("data-decided")){ var id2=t.getAttribute("data-decided"); var r2=g("item:"+id2); r2.decided=t.checked; if(t.checked&&r2.choice===undefined&&DATA.items[id2].dflt) r2.choice=DATA.items[id2].dflt; save(); if(t.checked) recordItem(id2); else { paintItem(id2); flash(); } }
+      if(t.tagName==="SELECT"&&t.getAttribute("data-gap")){ var gid=t.getAttribute("data-gap"); g("gap:"+gid)[t.getAttribute("data-f")]=t.value; save(); var gr=S["gap:"+gid]; sink("gaps",{gap_id:gid,status:gr.status||"",owner_date:((gr.owner||"")+" "+(gr.date||"")).trim(),note:gr.note||""}); flash(); }
+      if(t.type==="date"&&t.getAttribute("data-gap")){ var gid2=t.getAttribute("data-gap"); g("gap:"+gid2).date=t.value; save(); var gr2=S["gap:"+gid2]; sink("gaps",{gap_id:gid2,status:gr2.status||"",owner_date:((gr2.owner||"")+" "+(gr2.date||"")).trim(),note:gr2.note||""}); flash(); }
+    });
+    document.body.addEventListener("input",function(e){ var t=e.target;
+      var item=t.getAttribute("data-item"); if(item&&t.tagName==="TEXTAREA"){ g("item:"+item).note=t.value; save(); flash(); clearTimeout(tmr[item]); tmr[item]=setTimeout(function(){ var r=S["item:"+item]; if(r&&r.decided) sink("decisions",{item_id:item,choice:choiceList(item).join(", "),choice_text:choiceList(item).map(function(k){return k+" "+optText(item,k);}).join(" | "),note:r.note||""}); },1500); return; }
+      var qn=t.getAttribute("data-qan"); if(qn){ g("qa:"+qn).note=t.value; save(); flash(); clearTimeout(tmr["qa"+qn]); tmr["qa"+qn]=setTimeout(function(){ var r=S["qa:"+qn]; if(r&&r.v) sink("quick_accepts",{input_n:qn,accept:r.v,note:r.note||""}); },1500); return; }
+      var gid=t.getAttribute("data-gap"); if(gid&&t.getAttribute("data-f")!=="status"){ g("gap:"+gid)[t.getAttribute("data-f")]=t.value; save(); flash(); clearTimeout(tmr["gap"+gid]); tmr["gap"+gid]=setTimeout(function(){ var gr=S["gap:"+gid]; sink("gaps",{gap_id:gid,status:gr.status||"",owner_date:((gr.owner||"")+" "+(gr.date||"")).trim(),note:gr.note||""}); },1500); }
+    });
+    document.body.addEventListener("click",function(e){ var t=e.target; if(t.tagName!=="BUTTON") return; var n=t.getAttribute("data-qa"); if(!n) return; var r=g("qa:"+n); r.v=(r.v===t.getAttribute("data-v"))?"":t.getAttribute("data-v"); save(); paintAll(); flash(); sink("quick_accepts",{input_n:n,accept:r.v||"cleared",note:r.note||""}); });
+    var reset=document.getElementById("reset"); if(reset) reset.addEventListener("click",function(){ if(!confirm("Clear every choice and note saved in this browser? The sheet keeps what was already sent.")) return; var keep={who:S.who,endpoint:S.endpoint}; S=keep; save(); paintAll(); flash("Cleared"); });
+    var f=document.getElementById("filters"); if(f){ f.addEventListener("change",applyFilters); applyFilters(); }
+  });
+  function applyFilters(){ var f=document.getElementById("filters"); if(!f) return; var rv=f.querySelector("[name=reviewer]").value, ws=f.querySelector("[name=workstream]").value, st=f.querySelector("[name=status]").value; var rows=document.querySelectorAll("tr[data-n]"); var shown=0;
+    for(var i=0;i<rows.length;i++){ var r=rows[i]; var ok=(rv==="All"||(" "+r.getAttribute("data-reviewers")+" ").indexOf(" "+rv+" ")>=0)&&(ws==="All"||r.getAttribute("data-ws")===ws)&&(st==="All"||r.getAttribute("data-status")===st); r.className=(ok?"":"hidden")+(r.className.indexOf("hi")>=0?" hi":""); if(ok) shown++; }
+    var c=document.getElementById("count"); if(c) c.textContent=shown+" of "+rows.length+" rows"; }
+})();
+</script>
+</body>
+</html>

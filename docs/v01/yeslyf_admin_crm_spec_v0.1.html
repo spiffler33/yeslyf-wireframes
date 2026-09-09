@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>yeslyf admin, CRM and nudge spec v0.1</title>
+<style>
+  :root{--paper:#EEF0F3;--panel:#fff;--ink:#1B1F27;--mute:#5F6773;--line:#D3D7DE;--accent:#FFDA00;--accent-soft:#FFF4B8;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45}
+  a{color:inherit}
+  button,select,input,textarea{font-family:inherit;font-size:13px}
+  ::selection{background:var(--accent)}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:14px;padding:10px 18px;background:var(--panel);border-bottom:1px solid var(--line)}
+  .brand{font-weight:700;font-size:16px;white-space:nowrap}
+  .brand span{font-weight:400;color:var(--mute);margin-left:8px;font-size:13px}
+  .saved{margin-left:auto;font-size:12px;color:var(--mute)}
+  .top button{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
+  .layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:0}
+  .nav{position:sticky;top:53px;height:calc(100vh - 53px);overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:12px 0}
+  .nav a{display:block;padding:7px 16px 7px 13px;text-decoration:none;font-size:13px;border-left:3px solid transparent}
+  .nav a:hover{background:#F5F6F8}
+  .nav a.on{border-left-color:var(--accent);background:var(--accent-soft)}
+  .nav .sub{padding-left:26px;font-size:12px;color:var(--mute)}
+  .main{padding:20px 28px 80px;max-width:1500px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin:0 0 18px}
+  h1{font-size:22px;margin:0 0 6px}
+  h2{font-size:17px;margin:0 0 6px}
+  h3{font-size:14px;margin:18px 0 6px}
+  .lead{color:var(--mute);margin:0 0 14px;max-width:820px}
+  .rule{padding-left:10px;border-left:3px solid var(--accent);margin:10px 0;max-width:860px}
+  ul{margin:6px 0 10px;padding-left:18px}
+  li{margin:3px 0}
+  .grid{width:100%;border-collapse:collapse;font-size:12.5px}
+  .grid th{text-align:left;border-bottom:2px solid var(--ink);padding:7px 8px;vertical-align:bottom;font-size:12px}
+  .grid td{border-bottom:1px solid var(--line);padding:8px 8px;vertical-align:top}
+  .sec-row td{background:#F5F6F8;font-weight:700;font-size:12px;padding:6px 8px}
+  .note{font-size:11.5px;color:var(--mute);margin-top:3px}
+  .bk{display:inline-block;font-size:11px;font-weight:600;border:1px solid var(--line);border-radius:4px;padding:2px 6px;white-space:nowrap;background:#fff}
+  .bk-Zoho{border-color:#C9A800;background:var(--accent-soft)}
+  .bk-Directus{border-color:#1B1F27}
+  .bk-Metabase,.bk-Mixpanel{border-style:dashed}
+  .bk-Change,.bk-Fold{background:#FFF1F1;border-color:#E7B4B4}
+  .team{width:190px}
+  .vsel{width:100%;padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff;margin-bottom:4px}
+  .cmt{width:100%;min-height:44px;border:1px solid var(--line);border-radius:5px;padding:5px;resize:vertical;background:#fff}
+  .filter{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+  .filter button{border:1px solid var(--line);background:#fff;padding:5px 10px;border-radius:6px;cursor:pointer}
+  .filter button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .filter em{font-style:normal;color:var(--mute);margin-left:4px}
+  .filter button.on em{color:#ddd}
+  .tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+  .tool{border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:#FCFCFD}
+  .tool-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+  .kind{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;background:#fff}
+  .cost{font-size:11px;color:var(--mute)}
+  .tool-does{font-size:13px;margin-bottom:6px}
+  .tool-meta{font-size:11.5px;color:var(--mute);margin-top:2px}
+  .review-inline{margin-top:8px}
+  .wl{display:inline-block;font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;background:#fff}
+  .nudge textarea.nt{width:100%;min-height:70px;border:1px solid var(--line);border-radius:5px;padding:5px;resize:vertical;font-size:12px;background:#fff}
+  .nudge td:nth-child(6),.nudge td:nth-child(7),.nudge td:nth-child(8){min-width:190px}
+  .nudge td:nth-child(1){max-width:160px}
+  .nudge td:nth-child(3){max-width:170px}
+  .nudge .pol{width:100%;border:1px solid var(--line);border-radius:5px;padding:5px;background:#fff}
+  .nudge tr.svc td:first-child{border-left:3px solid var(--ink)}
+  .nudge tr.beh td:first-child{border-left:3px solid var(--accent)}
+  .legend{font-size:12px;color:var(--mute);margin:0 0 10px}
+  .dec{border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin:0 0 10px;background:#FCFCFD}
+  .dec-q{font-size:14px;margin-bottom:4px}
+  .dec-r{font-size:13px}
+  #general{width:100%;min-height:90px;border:1px solid var(--line);border-radius:6px;padding:8px;resize:vertical;background:#fff}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:1000px){.layout{display:block}.nav{display:none}.main{padding:14px}.two{display:block}.team{width:auto}.grid{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">yeslyf <span>admin, CRM and nudge spec v0.1</span></div>
+  <div id="saved" class="saved"></div>
+  <button id="export">Export review</button>
+</header>
+<div class="layout">
+  <nav class="nav">
+    <a href="#s-readme">Read me</a>
+    <a href="#s-stack">The stack</a>
+    <a href="#s-placement">Your admin doc, placed</a>
+    <a href="#s-zoho">Zoho object model</a>
+    <a href="#s-events">Events: app to Zoho</a>
+    <a href="#s-channels">Channel rules</a>
+    <a href="#s-nudges">Journeys and nudge matrix</a>
+    <a href="#s-compliance">Compliance records</a>
+    <a href="#s-decisions">Decisions</a>
+    <a href="#s-general">General comments</a>
+  </nav>
+  <main class="main">
+    <section id="s-readme">
+      <h1>Admin, CRM and nudges: how they connect to the wireframes</h1>
+      <p class="lead">Companion to the journey wireframes v0.1. Every item in the House of Alpha admin-panel document is placed into one of four buckets, the Zoho connection is specified down to fields and events, and the nudge matrix is here for Bhuvanaa to write into directly. Verdicts and comments save in this browser; Export produces the change list.</p>
+      <div class="rule">The app holds the money; Zoho holds the relationship. The app is the hospital record; Zoho is the front desk and the phone. Zoho never sees the diagnosis.</div>
+      <ul>
+        <li>Four buckets: bought consoles (zero dev), low-code tools over the database (days of configuration), the logic panel (built), and items that fold into something else or change because they conflict with a decision already taken.</li>
+        <li>Screen IDs (A02, R09, N01) are the wireframe screens. If this file and the wireframe file sit in the same folder, the IDs are links.</li>
+        <li>States S0 to S15 are the returning-user table (N01). They are the Zoho journey-stage picklist, verbatim.</li>
+        <li>Nothing here changes a decision from the wireframe review; where the admin doc conflicts with one, the row says so.</li>
+      </ul>
+    </section>
+
+    <section id="s-stack">
+      <h2>The stack</h2>
+      <p class="lead">Thirteen logins and one built tool. Not one admin panel, because no single product knows your data model, and pretending one does is how you end up building one.</p>
+      <div id="stack" class="tools"></div>
+    </section>
+
+    <section id="s-placement">
+      <h2>Your admin doc, item by item</h2>
+      <p class="lead">Every line from the document, where it goes, what it means in data terms, and the wireframe screen it reads from. Filter by bucket. Rows marked Change or Fold conflict with a decision or duplicate another row.</p>
+      <div id="bk-filter" class="filter"></div>
+      <div id="placement"></div>
+    </section>
+
+    <section id="s-zoho">
+      <h2>Zoho object model</h2>
+      <p class="lead">One Contact per phone number. Fields below and nothing else. Financial data, PAN and documents stay in the app.</p>
+      <div class="two"><div><h3>Contact</h3><div id="contact"></div></div><div><h3>Deals, activities, tickets</h3><div id="deals"></div><h3>Zoho to app</h3><div id="inbound"></div></div></div>
+    </section>
+
+    <section id="s-events">
+      <h2>Events: app to Zoho</h2>
+      <p class="lead">The devs build one emitter. Zoho Flow maps each event to Contact fields and a timeline note. State is computed in the app and mirrored; Zoho never computes state.</p>
+      <div id="events"></div>
+    </section>
+
+    <section id="s-channels">
+      <h2>Channel rules</h2>
+      <p class="lead">One master message per nudge; the channel policy is a column, changed without touching the app. P = push, W = WhatsApp, E = email, S = SMS, B = in-app banner.</p>
+      <ul>
+        <li>Service and money (OTP, receipts, mandates, agreement, plan ready, call reminders, payment failed): WhatsApp utility template plus push; email when there is a document.</li>
+        <li>Behaviour nudges (not paid, data stalled, plan unread, no action, update not accepted): push first if the app is installed and permission granted; WhatsApp second; email as the long-form fallback.</li>
+        <li>Documents (plan PDF, invoices, agreement copies, renewals): email always; WhatsApp pointer optional.</li>
+        <li>State changes on open (plan updated, review due, payment failed): in-app banner on H01; no send if they open anyway.</li>
+        <li>WhatsApp needs opt-in (captured with the OTP at A02) and Meta-approved templates; free text only within 24 hours of the user messaging first. Marketing templates cost several times utility templates; verify current pricing before choosing policies.</li>
+        <li>SMS only for OTP and payment alerts; DND blocks promotional SMS.</li>
+        <li>Push permission is asked right after P05, not at first open.</li>
+        <li>One nudge per person per week across channels, enforced in Zoho. Service messages are exempt.</li>
+      </ul>
+    </section>
+
+    <section id="s-nudges">
+      <h2>Journeys and nudge matrix</h2>
+      <p class="lead">One row per trigger inside a state. Two rows are prefilled to show the voice; the rest are for Bhuvanaa. Type straight into the cells, then Export. Yellow edge: behaviour nudge. Black edge: service message.</p>
+      <div class="legend">Push: about 80 characters, opens the deep link. WhatsApp: template text, one button. Email: subject line first, then body.</div>
+      <div id="nudges"></div>
+    </section>
+
+    <section id="s-compliance">
+      <h2>Compliance records</h2>
+      <p class="lead">Records that must exist regardless of what anyone wants on a dashboard, where each lives, and how it is produced for an audit.</p>
+      <div id="compliance"></div>
+    </section>
+
+    <section id="s-decisions">
+      <h2>Decisions to take</h2>
+      <p class="lead">Each with a recommendation and an owner. Verdict and comment per decision.</p>
+      <div id="decisions"></div>
+    </section>
+
+    <section id="s-general">
+      <h2>General comments</h2>
+      <textarea id="general" placeholder="Anything that does not belong to one row."></textarea>
+    </section>
+  </main>
+</div>
+<script>
+// yeslyf admin, CRM and nudge spec v0.1 - data
+var WIRE = "yeslyf_wireframes_v0.1.html";   // relative link; keep both files in one folder
+
+var STACK = [
+ {id:"zoho-crm",name:"Zoho CRM",kind:"Bought",cost:"Paid, per user",does:"The relationship: one Contact per phone number, journey stage mirrored from the app, adviser owner, deals and subscriptions, event timeline.",login:"Founders, advisers, community managers",notes:"India datacentre (zoho.in). Minimum fields: no PAN, no financial numbers beyond bands."},
+ {id:"zoho-desk",name:"Zoho Desk",kind:"Bought",cost:"Paid, per agent",does:"Tickets: adviser messages from H07, support, complaints tagged as grievances (the grievance register).",login:"Advisers, support",notes:"One-business-day SLA configured here. Grievance category exports for SEBI records."},
+ {id:"zoho-camp",name:"Zoho Campaigns / Marketing Automation",kind:"Bought",cost:"Paid, by contacts",does:"Email, WhatsApp and SMS journeys keyed on journey stage. The nudge matrix in this document is its content.",login:"Bhuvanaa, community managers",notes:"WhatsApp templates need Meta approval; opt-in captured at A02. One nudge per week cap enforced here."},
+ {id:"zoho-book",name:"Zoho Bookings",kind:"Bought (in Zoho One)",cost:"Included or cheap",does:"Adviser slot booking behind K01 and K04.",login:"Advisers",notes:"Cal.com is the alternative if Zoho One is not bought."},
+ {id:"zoho-flow",name:"Zoho Flow",kind:"Bought (in Zoho One)",cost:"Included or cheap",does:"Maps app events to CRM fields and timeline notes. Field mapping stays configuration, not code.",login:"Whoever configures Zoho",notes:"Make or Zapier if Flow falls short."},
+ {id:"directus",name:"Directus",kind:"Low-code over the database",cost:"Free, self-hosted",does:"Admin over the app tables (users, journey state, financial record, plan versions, AA consents, ops queue) with roles, permissions and an activity log. Also the CMS: videos, FAQs, tooltips, disclaimers, sample plans, agreements templates, app config and SKU cards.",login:"Founders, advisers (scoped), ops",notes:"One tool for two of the doc's sections (Financial Data views and CMS). Appsmith or Retool if composed screens like the pre-call view need more than Directus gives; decide after a two-day trial."},
+ {id:"metabase",name:"Metabase",kind:"Low-code over the database",cost:"Free, self-hosted",does:"The KPI dashboard and every count in the doc that comes from the database: users, paid, plans, AUA, SIP book, AA availed, integration failures. Scheduled email of the dashboard.",login:"Founders",notes:"SQL questions saved once; nobody builds a dashboard screen."},
+ {id:"mixpanel",name:"Mixpanel",kind:"Bought",cost:"Free tier, then paid",does:"Behaviour: funnels, retention, drop-off by screen. Every wireframe screen ID is an event.",login:"Founders, product",notes:"If the free tier is outgrown, the same events can be stored in the database and read in Metabase with less convenience."},
+ {id:"razorpay",name:"Razorpay dashboard",kind:"Bought",cost:"Transaction fees",does:"Payments, subscriptions, mandates, refunds, invoices. Source of truth for money.",login:"Founders, finance",notes:"Webhooks update tier and billing state in the app; Metabase mirrors counts."},
+ {id:"digio",name:"Digio console",kind:"Bought",cost:"Per use",does:"KYC fetch (KRA/CKYC) and Aadhaar eSign records.",login:"Ops, compliance",notes:"Signed PDFs are copied into the vault (H06)."},
+ {id:"tsp",name:"AA TSP console (Setu / Finvu / OneMoney)",kind:"Bought",cost:"Per fetch",does:"Consent templates, consent status, FIP health, fetch logs.",login:"Ops",notes:"AA failure rate reads from here and from the app's integration log."},
+ {id:"firebase",name:"Firebase Cloud Messaging",kind:"Bought",cost:"Free",does:"Push notifications. Text lives in the app config table so it is editable without a release.",login:"Devs",notes:"Permission asked right after P05."},
+ {id:"sentry",name:"Sentry + uptime monitor",kind:"Bought",cost:"Free tier",does:"Errors and integration failures with alerts. Replaces the doc's Integrations table.",login:"Devs, ops",notes:"Better Stack or UptimeRobot for the uptime side."},
+ {id:"logic",name:"Logic panel (built)",kind:"Built by devs",cost:"Dev time",does:"Assumptions, cohort grid, instrument universe, market inputs, staging, publish, audit (L01 to L08).",login:"Harish, principal officer",notes:"The only internal tool the devs build."}
+];
+
+// Placement of every item in the HoA admin-panel doc.
+// bucket: Console | Directus | Metabase | Mixpanel | Zoho | Logic panel | Fold | Change
+var PLACEMENT = [
+ // Dashboard KPIs
+ {sec:"Dashboard KPIs",item:"Total users",bucket:"Metabase",tool:"Metabase over users table",def:"Contacts with a verified OTP (A03).",wire:"A03",note:""},
+ {sec:"Dashboard KPIs",item:"New users, today / week / month",bucket:"Metabase",tool:"Metabase",def:"Same table, created_at buckets.",wire:"A03",note:""},
+ {sec:"Dashboard KPIs",item:"Active users",bucket:"Mixpanel",tool:"Mixpanel DAU / WAU / MAU",def:"Opened the app; app_open event. Metabase can approximate from last_active.",wire:"H01",note:""},
+ {sec:"Dashboard KPIs",item:"In onboarding",bucket:"Metabase",tool:"Metabase",def:"Users in states S1 to S5 of the returning-user table.",wire:"N01",note:"Counted per state, not as one number, or you cannot act on it."},
+ {sec:"Dashboard KPIs",item:"Paid users",bucket:"Metabase",tool:"Metabase, reconciled to Razorpay monthly",def:"tier in (DIY, DIWM) with an active subscription or a one-time payment.",wire:"P05",note:""},
+ {sec:"Dashboard KPIs",item:"Plan opted, by SKU",bucket:"Metabase",tool:"Metabase",def:"Count by sku from the paid event.",wire:"P01",note:"SKU set is config in Directus; the query reads it."},
+ {sec:"Dashboard KPIs",item:"Plans in progress (being prepared)",bucket:"Change",tool:"Metabase",def:"Plans build instantly (G01), so this is near zero by design. Replace with two numbers: data complete but plan not built (engine failures, should be zero) and plans built in the last 24 hours.",wire:"G01",note:"Conflicts with the no-review-gate decision; redefined."},
+ {sec:"Dashboard KPIs",item:"Plans completed (delivered)",bucket:"Metabase",tool:"Metabase for built; Mixpanel for read",def:"plan_built count; plan_read count; the gap is the unread plans (state S6).",wire:"G03",note:""},
+ {sec:"Dashboard KPIs",item:"Pending actions (admin / adviser / customer service)",bucket:"Fold",tool:"Zoho Desk (customer conversations) + ops queue in Directus (data work)",def:"Two numbers: open tickets in Desk; open items in the ops queue: unknown ISINs to classify (L04), data-quality flags, AA failures needing follow-up, refund requests, adviser reassignments.",wire:"H07",note:"One queue table in the database, surfaced in Directus; Desk for anything the user sees."},
+ {sec:"Dashboard KPIs",item:"AUA (assets under advisory)",bucket:"Metabase",tool:"Metabase, monthly snapshots",def:"Sum of AA- or CAS-verified holdings for users with an active plan. Split DIY / DIWM / DIFM.",wire:"A08",note:"For DIY and DIWM this is a business metric only (fixed-fee mode). For DIFM it is the fee base (AUA mode) and SEBI requires it to be demonstrable with statements: snapshot monthly and keep the statements."},
+ {sec:"Dashboard KPIs",item:"SIP book (ongoing monthly investments)",bucket:"Metabase",tool:"Metabase",def:"Sum of active SIP mandates placed through BSE StAR (E03) plus SIPs detected via AA (D06) for users who execute elsewhere. Show the two separately.",wire:"E03",note:""},
+ {sec:"Dashboard KPIs",item:"AA availed",bucket:"Metabase",tool:"Metabase",def:"Consents active / declined / expired / failed, as counts and as a share of paid users.",wire:"A06",note:""},
+ // Analytics
+ {sec:"User analytics",item:"Active users, retention",bucket:"Mixpanel",tool:"Mixpanel retention report",def:"Week-N retention by cohort of paid date.",wire:"H01",note:""},
+ {sec:"User analytics",item:"Drop-offs by screen and stage",bucket:"Mixpanel",tool:"Mixpanel funnels",def:"Every wireframe screen ID is an event (screen_view with screen_id). Stage = section letter. This is the one instrumentation rule the devs must follow.",wire:"X00",note:"The wireframe IDs are the event names; nothing to invent."},
+ {sec:"Onboarding analytics",item:"Completion %, average completion time, stage-wise drop-off",bucket:"Mixpanel",tool:"Mixpanel funnel R01 to P05 to D10 to G01",def:"Three funnels: reveal (R01 to R09), paywall (R12 to P05), data (O02 to D10). Time between first and last step.",wire:"R01",note:""},
+ {sec:"Onboarding analytics",item:"KYC failure rate",bucket:"Metabase",tool:"Metabase over integration_events",def:"kyc_failed / kyc_attempted from the app's integration log (P02).",wire:"P02",note:"Same log feeds the Integrations question below."},
+ {sec:"Onboarding analytics",item:"AA failure rate",bucket:"Metabase",tool:"Metabase over integration_events; TSP console for FIP detail",def:"aa_failed / aa_attempted, by institution (A07, A09).",wire:"A09",note:""},
+ {sec:"Commercial analytics",item:"Sample plan to paid conversion",bucket:"Mixpanel",tool:"Mixpanel funnel R12 to P05",def:"Also reveal to paid (R09 to P05), which is the number that matters.",wire:"R12",note:""},
+ {sec:"Commercial analytics",item:"Payment conversion",bucket:"Mixpanel",tool:"Mixpanel funnel P01 to P04 to P05",def:"Paywall viewed to paid; checkout abandonment at P02, P03, P04 separately.",wire:"P04",note:""},
+ {sec:"Commercial analytics",item:"Subscription conversion",bucket:"Metabase",tool:"Metabase",def:"One-time buyers who started the membership within 60 days (credit rule on P01). Only exists if the one-time SKU survives.",wire:"P01",note:"Depends on the SKU decision."},
+ {sec:"Commercial analytics",item:"Revenue",bucket:"Console",tool:"Razorpay dashboard; Metabase mirror",def:"Gross, refunds, net, by SKU and month. Razorpay is the truth; Metabase shows it next to users.",wire:"P04",note:""},
+ {sec:"Commercial analytics",item:"Plan type mix",bucket:"Metabase",tool:"Metabase",def:"Same as plan opted by SKU.",wire:"P01",note:"Duplicate of a KPI; folded."},
+ {sec:"Plan analytics",item:"Plans generated, viewed, downloaded",bucket:"Mixpanel",tool:"Mixpanel events plan_built, plan_read, pdf_downloaded",def:"Counts and the ratios between them.",wire:"G10",note:""},
+ {sec:"Plan analytics",item:"Time from data completion to plan",bucket:"Fold",tool:"Metabase",def:"Seconds, by design. Keep as an engine health check (p95 build time), not a business metric.",wire:"G01",note:""},
+ {sec:"Plan analytics",item:"FP to IP conversion",bucket:"Change",tool:"Mixpanel",def:"Under the current tiers the investment plan is part of the membership, so there is no conversion to measure. If a one-time FP-only SKU survives, measure one-time to membership instead.",wire:"G11",note:"Depends on the SKU decision."},
+ // Financial data
+ {sec:"Financial data",item:"Not started / partially completed / completed",bucket:"Directus",tool:"Directus user record + Metabase counts",def:"Completion flags per data screen (D01 to D09) as in the M2 completion rules; O02 reads the same flags.",wire:"O02",note:""},
+ {sec:"Financial data",item:"System generated / AA sourced / manually entered",bucket:"Directus",tool:"Directus user record",def:"Every field carries a source: AA-fed, CAS-verified, manual, derived. Same badges the user sees on A08.",wire:"A08",note:""},
+ {sec:"Financial data",item:"Needs verification",bucket:"Directus",tool:"Directus ops queue",def:"Data-quality flags (implausible values from M2), unknown ISINs (L04 queue), AA fetch failures with manual fallback. Each is a queue item with an owner.",wire:"L04",note:""},
+ // Payments
+ {sec:"Payment dashboard",item:"Total paid, pending, failed, refunded, revenue",bucket:"Console",tool:"Razorpay dashboard",def:"Native reports. Metabase mirrors counts via webhooks for the KPI page.",wire:"Q03",note:""},
+ {sec:"Payment dashboard",item:"Conversion rate",bucket:"Mixpanel",tool:"Mixpanel",def:"Same funnel as payment conversion above.",wire:"P04",note:"Duplicate; folded."},
+ // Integrations
+ {sec:"Integrations",item:"Last sync and failures: KYC, AA, payment gateway, email, WhatsApp, push",bucket:"Console",tool:"Sentry alerts + Metabase over integration_events; each vendor's console for detail",def:"The app writes one row per integration call (vendor, outcome, latency). Metabase shows last success and failure counts; Sentry pages someone when a threshold trips.",wire:"A07",note:"No status page is built."},
+ // Notifications
+ {sec:"Notifications",item:"Templates: email, WhatsApp",bucket:"Zoho",tool:"Zoho Campaigns",def:"Templates built from the nudge matrix in this document. WhatsApp templates submitted to Meta.",wire:"N01",note:""},
+ {sec:"Notifications",item:"Templates: push",bucket:"Directus",tool:"App config table in Directus, sent by Firebase",def:"Push text per nudge row, editable without a release.",wire:"N01",note:""},
+ {sec:"Notifications",item:"Templates: in-app",bucket:"Directus",tool:"Directus CMS",def:"Banner and hub copy (H01, O02, X01).",wire:"H01",note:""},
+ {sec:"Notifications",item:"Trigger-based rules",bucket:"Zoho",tool:"Zoho journeys keyed on journey stage; app-side for push",def:"The rules are the state table: state changes fire the journey; offsets inside a state are the schedule. No rule engine is built.",wire:"N01",note:"State is computed in the app and mirrored; Zoho never computes state."},
+ // CMS
+ {sec:"CMS",item:"Intro and transition videos",bucket:"Directus",tool:"Directus CMS (files + collection)",def:"A04, R10, R11, O02 video slots reference a CMS entry; swap without a release.",wire:"A04",note:""},
+ {sec:"CMS",item:"Sample plan content",bucket:"Directus",tool:"Directus CMS",def:"Persona sample data sets rendered by the plan component (R12). Content, not code.",wire:"R12",note:""},
+ {sec:"CMS",item:"Questions and answer options",bucket:"Change",tool:"Wording in Directus; structure in a release",def:"Wording of questions and options is editable. Adding, removing or reordering options is not: the reveal maths (R03 to R07), persona mapping and engine input schema depend on the option set. Structural changes are versioned releases.",wire:"R03",note:"The doc treats these as content; half of them are logic."},
+ {sec:"CMS",item:"Tooltips, disclaimers, educational content, general content, FAQs",bucket:"Directus",tool:"Directus CMS",def:"Keyed by screen ID so a tooltip on D04 is found under D04.",wire:"H07",note:""},
+ {sec:"CMS",item:"Agreements",bucket:"Change",tool:"Template versions in Directus; signed copies in the vault",def:"Agreement template versions (fixed-fee, DIFM AUA) with effective dates live in the CMS. Signed copies never do; they sit in the vault (H06) via Digio.",wire:"P03",note:"Counsel owns template text; ops uploads versions."},
+ // Admin & settings
+ {sec:"Admin and settings",item:"Admin users, roles and permissions",bucket:"Directus",tool:"Directus roles; Zoho profiles; logic panel roles (L01)",def:"Three systems, three role sets, one principle: advisers see their own clients; ops sees records; founders see everything; the principal officer publishes.",wire:"L01",note:"Not one login. Accept it."},
+ {sec:"Admin and settings",item:"Audit logs",bucket:"Directus",tool:"Directus activity log; logic panel audit (L08); Zoho audit",def:"Who changed what, when, on regulated records. Exportable.",wire:"L08",note:""},
+ {sec:"Admin and settings",item:"System settings",bucket:"Directus",tool:"App config table in Directus",def:"Feature flags: tiers live, artificial wait on G01, nudge cap, AA required or optional, trial period.",wire:"G01",note:""},
+ {sec:"Admin and settings",item:"Fee structure",bucket:"Directus",tool:"SKU config in Directus, mapped to Razorpay plan IDs",def:"P01 cards: name, price, period, bullets, tier flag, credit rule, included calls. Assumptions are not fees; they are in the logic panel (L02).",wire:"P01",note:""},
+ // User details / CRM
+ {sec:"User details (CRM)",item:"Name, email, mobile, signed-in date, last activity",bucket:"Zoho",tool:"Zoho Contact",def:"Created at signed_up; updated by events.",wire:"A03",note:""},
+ {sec:"User details (CRM)",item:"Paid user, subscription, current journey stage",bucket:"Zoho",tool:"Zoho Contact (mirrored fields)",def:"Written by events; read-only in Zoho.",wire:"N01",note:""},
+ {sec:"User details (CRM)",item:"Onboarding %, KYC status, AA status, financial plan status, investment plan status",bucket:"Directus",tool:"Directus record; mirrored to Zoho as read-only fields",def:"Truth in the database; mirror in Zoho so the adviser sees it on the Contact without opening Directus.",wire:"O02",note:""},
+ {sec:"User details (CRM)",item:"Assigned adviser / RM",bucket:"Zoho",tool:"Zoho Contact owner, synced to the app",def:"Owner set by round robin or manually; owner_changed webhook updates the app so O01 and K01 know the adviser.",wire:"O01",note:"RM is not a role in this model; the adviser is the owner."}
+];
+
+// Zoho object model
+var CONTACT_FIELDS = [
+ ["Phone (key)","From A02; the join key everywhere"],["First name","R01"],["Email","P02"],["City, age band","R01, R02"],
+ ["Source","community, corporate session, web reveal, organic, referral"],["WhatsApp opt-in, DND flag","A02 consent; Zoho respects both"],
+ ["Journey stage","Picklist = the N01 states plus S0 (community member, not started) and S0w (web reveal lead)"],
+ ["Tier, SKU","free, DIY, DIWM, DIFM; SKU name"],["Subscription status","active, pending mandate, failed, cancelled, lapsed"],
+ ["Adviser owner","Record owner; synced to the app"],["Reveal bands","income band, corpus band, savings band, aspiration; numbers as bands only"],
+ ["Key dates","signed up, reveal seen, paid, data complete, plan built, plan read, last call, next review, renewal due, last activity"],
+ ["Mirrors from the app (read-only)","onboarding %, KYC status, AA status, FP status, IP status, actions done / total"],
+ ["Directus link","Deep link to the user's record for the pre-call view"]
+];
+var DEAL_FIELDS = [["Deal or Subscription","one per payment: SKU, amount, period, Razorpay ids, start, next billing, status"],["Activities","calls booked, completed, no-show; tickets linked"],["Tickets (Desk)","category: support, adviser message, grievance; SLA; resolution"]];
+
+// Events app -> Zoho (via Zoho Flow)
+var EVENTS = [
+ ["signed_up","A03","phone, source, whatsapp_optin, device"],
+ ["reveal_seen","R09","income_band, corpus_band, savings_band, journey_feel, aspiration, path_now_band, path_yes_band, age_band, city"],
+ ["paywall_viewed","P01","sku_expanded, from_state"],
+ ["esign_done","P03","agreement_version, esign_ref"],
+ ["paid","P05","sku, amount, period, razorpay_ids, mandate_status"],
+ ["aa_connected / aa_declined / aa_failed","A06 to A09","institutions_ok[], institutions_failed[], consent_expiry"],
+ ["data_progress","D01 to D09","step_id, pct_complete"],
+ ["data_complete","D10","-"],
+ ["plan_built","G01","plan_version, assumptions_version"],
+ ["plan_read","G03","-"],
+ ["pdf_downloaded","G10","plan_version"],
+ ["call_booked / call_completed / no_show","K01 to K03","slot, adviser_id, summary (one line)"],
+ ["action_done","E06","done_count, total_count, verified (bool)"],
+ ["plan_updated","H05","from_version, to_version, reason"],
+ ["update_accepted","H05","to_version"],
+ ["review_due / review_done","Q01","review_id"],
+ ["payment_failed / payment_recovered","Q03","grace_until"],
+ ["cancelled / lapsed / resubscribed","Q03","reason"],
+ ["rpq_due / agreement_due","Q04","due_date"],
+ ["ticket_created","H07","ticket_id, category"]
+];
+var INBOUND = [
+ ["owner_changed","Zoho -> app","adviser_id; drives O01, K01 slots"],
+ ["consent_changed","Zoho -> app","whatsapp_optin, dnd"],
+ ["ticket_replied","Desk -> app","ticket_id, text; in-app notification"]
+];
+
+// Journeys per state (Zoho) with default channel policy
+// policy: P = push, W = WhatsApp, E = email, S = SMS, B = in-app banner
+var NUDGES = [
+ {id:"S0",state:"S0 Community member, not started",trig:"member_joined",off:"day 3, day 10",intent:"Take the four-minute reveal",link:"A01",policy:"W then E",kind:"Behaviour"},
+ {id:"S1a",state:"S1 Signed up, no reveal",trig:"signed_up, no reveal_seen",off:"1 hour",intent:"You are 90 seconds from your two paths",link:"R01",policy:"P, W",kind:"Behaviour"},
+ {id:"S1b",state:"S1 Signed up, no reveal",trig:"same",off:"day 1",intent:"Finish the reveal",link:"R01",policy:"W",kind:"Behaviour"},
+ {id:"S2a",state:"S2 Reveal seen, not paid",trig:"reveal_seen, no paid",off:"day 1",intent:"Reveal saved, ready for the next step",link:"P01",policy:"P, W",kind:"Behaviour"},
+ {id:"S2b",state:"S2 Reveal seen, not paid",trig:"same",off:"day 3",intent:"One specific insight from their reveal numbers",link:"P01",policy:"W, E",kind:"Behaviour"},
+ {id:"S2c",state:"S2 Reveal seen, not paid",trig:"same",off:"day 7",intent:"Testimonials and what the plan includes",link:"P01",policy:"E, P",kind:"Behaviour"},
+ {id:"S2d",state:"S2 Reveal seen, not paid",trig:"same",off:"day 21",intent:"Last thought; cost of waiting in their numbers",link:"P01",policy:"E",kind:"Behaviour"},
+ {id:"S2e",state:"S2 Reveal seen, not paid",trig:"same",off:"day 82",intent:"One more, then stop",link:"P01",policy:"E",kind:"Behaviour"},
+ {id:"S2f",state:"S2b Paid, eSign incomplete",trig:"paid, no esign_done",off:"day 1, day 3; day 14 refund path",intent:"Sign to unlock; we cannot advise until you do",link:"P03",policy:"W, E",kind:"Service"},
+ {id:"S3a",state:"S3 Paid, nothing else",trig:"paid, no data_progress",off:"24h, 72h",intent:"Ten minutes to connect your accounts",link:"A05",policy:"P, W",kind:"Behaviour"},
+ {id:"S4a",state:"S4 Data partial",trig:"data_progress stalled",off:"24h, 72h, 7d",intent:"Continue where you left off (names the section)",link:"O02",policy:"P, W, then E",kind:"Behaviour"},
+ {id:"S5a",state:"S5 Data done, risk profile pending",trig:"data_complete, no plan_built",off:"24h",intent:"Two minutes to finish; your plan is waiting",link:"D08",policy:"P, W",kind:"Behaviour"},
+ {id:"S6a",state:"S6 Plan built, not read",trig:"plan_built, no plan_read",off:"48h",intent:"Your plan is ready; the first thing to look at",link:"G03",policy:"P, W, E",kind:"Behaviour"},
+ {id:"S7a",state:"S7 DIWM, call booked",trig:"call_booked",off:"24h before, 1h before",intent:"Reminder; read your plan first",link:"K02",policy:"W, P",kind:"Service"},
+ {id:"S8a",state:"S8 Plan read, no action done",trig:"plan_read, action_done = 0",off:"48h, 7d, 14d",intent:"Do the first action; which one feels hardest?",link:"E01",policy:"P, W, then E",kind:"Behaviour"},
+ {id:"S9a",state:"S9 Executing",trig:"missed SIP via AA",off:"immediately",intent:"One SIP did not go through; how to fix",link:"E06",policy:"W, P",kind:"Service"},
+ {id:"S9b",state:"S9 Executing",trig:"action verified done",off:"immediately",intent:"One down; here is the next",link:"E01",policy:"P",kind:"Service"},
+ {id:"S10a",state:"S10 All actions done",trig:"action_done = total",off:"immediately; anniversary",intent:"Celebrate; next review date",link:"H01",policy:"P, W",kind:"Service"},
+ {id:"S11a",state:"S11 Plan updated",trig:"plan_updated, no update_accepted",off:"3d",intent:"Your plan changed; accept the update",link:"H05",policy:"P, W",kind:"Service"},
+ {id:"S12a",state:"S12 Payment failed",trig:"payment_failed",off:"day 0, 3, 6 (grace 7)",intent:"Retry payment; what stops on day 7",link:"Q03",policy:"W, E, S",kind:"Service"},
+ {id:"S13a",state:"S13 Lapsed",trig:"lapsed",off:"30d, 90d",intent:"Resubscribe; what has changed in markets since",link:"Q03",policy:"E, W",kind:"Behaviour"},
+ {id:"S14a",state:"S14 DIFM client",trig:"review scheduled by adviser",off:"per adviser",intent:"Review date; update your numbers before",link:"Q01",policy:"W, E",kind:"Service"},
+ {id:"S15a",state:"S15 AA consent expired",trig:"consent_expiry",off:"at review; 7d before expiry",intent:"Reconnect so your review uses fresh numbers",link:"A06",policy:"P, W",kind:"Service"},
+ {id:"SV1",state:"Service: OTP",trig:"A02",off:"instant",intent:"Login code",link:"A03",policy:"S, W",kind:"Service"},
+ {id:"SV2",state:"Service: payment receipt and invoice",trig:"paid",off:"instant",intent:"Receipt, GST invoice",link:"H06",policy:"E, W",kind:"Service"},
+ {id:"SV3",state:"Service: agreement signed copy",trig:"esign_done",off:"instant",intent:"Your signed agreement",link:"H06",policy:"E",kind:"Service"},
+ {id:"SV4",state:"Service: plan ready and PDF",trig:"plan_built",off:"instant",intent:"Plan ready; PDF attached",link:"G03",policy:"E, W, P",kind:"Service"},
+ {id:"SV5",state:"Service: call confirmed",trig:"call_booked",off:"instant",intent:"Confirmation with join link",link:"K02",policy:"W, E",kind:"Service"},
+ {id:"SV6",state:"Service: quarterly review done",trig:"review_done",off:"instant",intent:"What changed; new action plan",link:"H05",policy:"E, P",kind:"Service"},
+ {id:"SV7",state:"Service: annual renewal",trig:"rpq_due, agreement_due",off:"30d, 7d before",intent:"Confirm risk profile; renew agreement",link:"Q04",policy:"E, W",kind:"Service"}
+];
+// prefilled examples to show the voice; the rest is Bhuvanaa's
+var NUDGE_EXAMPLES = {
+ "S2b":{push:"Aarav, your current path runs out of options at 58. The yeslyf path makes work optional at 49. Two minutes to see the bridge.",wa:"Aarav, a quick one from your reveal: on your current path your money stays compulsory until 58. On the yeslyf path it becomes optional at 49. The bridge between the two is your plan. It takes about 15 minutes to build. Link below.",email:"Subject: The 9 years between your two paths\n\nAarav,\n\nWhen you took the reveal, two numbers came out: Rs 2.1 Cr on your current path and Rs 5.4 Cr on the yeslyf path. The gap is not a bigger salary. It is five decisions, made in the right order, sized to your numbers.\n\nYour reveal is saved. Unlock the plan and the first decision is on screen tonight.\n\n[Unlock my plan]"},
+ "S8a":{push:"Your plan has 8 actions. The first takes 10 minutes. Which one feels hardest? Tap to tell us.",wa:"Aarav, your plan is ready and nothing has moved yet, which is normal. The first action is moving Rs 2.8 L to a liquid fund; it takes ten minutes in the app. If something else feels hard, reply with the action and we will help.",email:""}
+};
+
+var COMPLIANCE = [
+ ["Client agreement (signed, versioned)","App vault (H06) via Digio; template versions in Directus CMS","Export from Directus"],
+ ["KYC record","App database (P02) via Digio; KRA reference","Directus"],
+ ["Risk profile and suitability","App database (D08, D09) with questionnaire version and the advice version it applied to","Directus; annual refresh via Q04"],
+ ["Advice register: dated advice and rationale","App database: plan versions, assumptions and instrument-set versions, per user (G01, L08)","Directus export; logic panel audit"],
+ ["Fee records and invoices","Razorpay; invoice copies in the vault","Razorpay export"],
+ ["Grievance register","Zoho Desk, category = grievance, with SCORES reference field","Desk export"],
+ ["AUA statements (DIFM, AUA fee mode)","Monthly AA or CAS snapshots per client","Metabase snapshot table"],
+ ["Audit trail on regulated records","Directus activity log; logic panel audit (L08)","Export"],
+ ["Retention","Five years after the relationship ends; deletion requests honoured for everything else (H09)","Policy"]
+];
+
+var DECISIONS = [
+ {id:"D1",q:"Directus, or Appsmith / Retool, as the tool over the database",rec:"Directus first: it covers the Financial Data views, the CMS, roles, and the activity log in one free tool. Trial for two days against the real schema; add Appsmith only if the pre-call view needs a composed screen Directus cannot show.",owner:"Dev owner + spiff"},
+ {id:"D2",q:"Zoho One versus CRM + Desk + Campaigns bought separately",rec:"Zoho One if Bookings and Flow are wanted (they are); otherwise three products and Cal.com. Price both for the first 12 months.",owner:"Bhuvanaa"},
+ {id:"D3",q:"WhatsApp route",rec:"Zoho's own WhatsApp integration if it supports the template categories and volumes needed; a BSP (Gupshup, Interakt, WATI) if not. Decide after Zoho quote.",owner:"Bhuvanaa"},
+ {id:"D4",q:"Mixpanel or events in the database",rec:"Mixpanel from day one on the free tier; every screen ID is an event. Revisit if the tier is outgrown.",owner:"spiff"},
+ {id:"D5",q:"Question-set editing: content or release",rec:"Wording editable in Directus; adding, removing or reordering options is a versioned release because the maths depends on it.",owner:"spiff, Harish"},
+ {id:"D6",q:"Who owns the ops queue",rec:"One named ops owner from day one; advisers get items assigned, not the whole queue.",owner:"Bhuvanaa"},
+ {id:"D7",q:"KPIs that depend on the SKU decision",rec:"Subscription conversion and FP-to-IP conversion exist only if a one-time SKU survives. Decide the SKU set, then keep or drop both.",owner:"Founders"},
+ {id:"D8",q:"AUA snapshots for DIFM",rec:"Monthly snapshot with statements from day one, because AUA-mode fees must be demonstrable.",owner:"Harish"}
+];
+
+(function(){
+  var KEY = "yeslyf_admin_v01";
+  var store = {};
+  try { store = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ store = {}; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
+  function rec(id){ if(!store[id]) store[id] = {}; return store[id]; }
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  function wl(id){ return id ? '<a class="wl" href="'+WIRE+'#'+esc(id)+'" target="_blank" title="Open in the wireframes (same folder)">'+esc(id)+'</a>' : ''; }
+  var BUCKETS = ["All","Zoho","Directus","Metabase","Mixpanel","Console","Logic panel","Fold","Change"];
+  var state = { bucket:"All" };
+
+  function verdictCell(id){
+    var r = rec(id); var opts = ["","Keep","Change","Drop"];
+    return '<select class="vsel" data-id="'+id+'">'+opts.map(function(o){ return '<option value="'+o+'"'+(r.verdict===o?' selected':'')+'>'+(o||"Verdict")+'</option>'; }).join("")+'</select>'
+         + '<textarea class="cmt" data-id="'+id+'" placeholder="Comment">'+esc(r.text||"")+'</textarea>';
+  }
+
+  function renderStack(){
+    document.getElementById("stack").innerHTML = STACK.map(function(t){
+      return '<div class="tool"><div class="tool-h"><b>'+esc(t.name)+'</b><span class="kind">'+esc(t.kind)+'</span><span class="cost">'+esc(t.cost)+'</span></div>'
+        +'<div class="tool-does">'+esc(t.does)+'</div><div class="tool-meta">Who logs in: '+esc(t.login)+'</div><div class="tool-meta">'+esc(t.notes)+'</div>'
+        +'<div class="review-inline">'+verdictCell("stack:"+t.id)+'</div></div>';
+    }).join("");
+  }
+
+  function renderPlacement(){
+    var rows = PLACEMENT.filter(function(p){ return state.bucket==="All" || p.bucket===state.bucket; });
+    var last = "";
+    var html = '<table class="grid"><thead><tr><th>Item in the doc</th><th>Goes to</th><th>Tool</th><th>Definition and source</th><th>Wireframe</th><th>Team</th></tr></thead><tbody>';
+    rows.forEach(function(p,i){
+      var id = "pl:"+PLACEMENT.indexOf(p);
+      if(p.sec!==last){ html += '<tr class="sec-row"><td colspan="6">'+esc(p.sec)+'</td></tr>'; last = p.sec; }
+      html += '<tr><td><b>'+esc(p.item)+'</b>'+(p.note?'<div class="note">'+esc(p.note)+'</div>':'')+'</td><td><span class="bk bk-'+esc(p.bucket.replace(/\s/g,""))+'">'+esc(p.bucket)+'</span></td><td>'+esc(p.tool)+'</td><td>'+esc(p.def)+'</td><td>'+wl(p.wire)+'</td><td class="team">'+verdictCell(id)+'</td></tr>';
+    });
+    html += '</tbody></table>';
+    document.getElementById("placement").innerHTML = html;
+    var counts = {}; PLACEMENT.forEach(function(p){ counts[p.bucket]=(counts[p.bucket]||0)+1; });
+    document.getElementById("bk-filter").innerHTML = BUCKETS.map(function(b){ var n = b==="All"?PLACEMENT.length:(counts[b]||0); return '<button data-b="'+b+'"'+(b===state.bucket?' class="on"':'')+'>'+b+' <em>'+n+'</em></button>'; }).join("");
+  }
+
+  function simpleTable(el, cols, rows, wireCol){
+    document.getElementById(el).innerHTML = '<table class="grid"><thead><tr>'+cols.map(function(c){return '<th>'+esc(c)+'</th>';}).join("")+'</tr></thead><tbody>'
+      + rows.map(function(r){ return '<tr>'+r.map(function(c,i){ return '<td>'+(i===wireCol?wl(c):esc(c))+'</td>'; }).join("")+'</tr>'; }).join("")+'</tbody></table>';
+  }
+
+  function renderNudges(){
+    var html = '<table class="grid nudge"><thead><tr><th>State</th><th>Trigger and offset</th><th>Intent</th><th>Deep link</th><th>Channel policy</th><th>Push (about 80 chars)</th><th>WhatsApp (template)</th><th>Email (subject + body)</th></tr></thead><tbody>';
+    NUDGES.forEach(function(n){
+      var r = rec("nd:"+n.id); var ex = NUDGE_EXAMPLES[n.id] || {};
+      var push = r.push!==undefined ? r.push : (ex.push||""); var wa = r.wa!==undefined ? r.wa : (ex.wa||""); var em = r.email!==undefined ? r.email : (ex.email||"");
+      var pol = r.policy!==undefined ? r.policy : n.policy;
+      html += '<tr class="'+(n.kind==="Service"?"svc":"beh")+'"><td><b>'+esc(n.state)+'</b><div class="note">'+esc(n.kind)+'</div></td><td>'+esc(n.trig)+'<div class="note">'+esc(n.off)+'</div></td><td>'+esc(n.intent)+'</td><td>'+wl(n.link)+'</td>'
+        +'<td><input class="pol" data-id="'+n.id+'" value="'+esc(pol)+'"></td>'
+        +'<td><textarea class="nt" data-id="'+n.id+'" data-f="push">'+esc(push)+'</textarea></td>'
+        +'<td><textarea class="nt" data-id="'+n.id+'" data-f="wa">'+esc(wa)+'</textarea></td>'
+        +'<td><textarea class="nt" data-id="'+n.id+'" data-f="email">'+esc(em)+'</textarea></td></tr>';
+    });
+    html += '</tbody></table>';
+    document.getElementById("nudges").innerHTML = html;
+  }
+
+  function renderDecisions(){
+    document.getElementById("decisions").innerHTML = DECISIONS.map(function(d){
+      return '<div class="dec"><div class="dec-q"><b>'+d.id+'</b> '+esc(d.q)+'</div><div class="dec-r">'+esc(d.rec)+'</div><div class="tool-meta">Owner: '+esc(d.owner)+'</div><div class="review-inline">'+verdictCell("dec:"+d.id)+'</div></div>';
+    }).join("");
+  }
+
+  function wire(){
+    document.body.addEventListener("change", function(ev){
+      var t = ev.target;
+      if(t.classList.contains("vsel")){ rec(t.getAttribute("data-id")).verdict = t.value; save(); flash(); }
+      if(t.classList.contains("pol")){ rec("nd:"+t.getAttribute("data-id")).policy = t.value; save(); flash(); }
+    });
+    document.body.addEventListener("input", function(ev){
+      var t = ev.target;
+      if(t.classList.contains("cmt")){ rec(t.getAttribute("data-id")).text = t.value; save(); flash(); }
+      if(t.classList.contains("nt")){ rec("nd:"+t.getAttribute("data-id"))[t.getAttribute("data-f")] = t.value; save(); flash(); }
+      if(t.id==="general"){ rec("general").text = t.value; save(); flash(); }
+    });
+    document.getElementById("bk-filter").addEventListener("click", function(ev){ var b = ev.target.closest("button"); if(!b) return; state.bucket = b.getAttribute("data-b"); renderPlacement(); });
+    document.getElementById("export").addEventListener("click", exportAll);
+    document.getElementById("general").value = rec("general").text || "";
+  }
+  var ft; function flash(){ var s = document.getElementById("saved"); s.textContent = "Saved in this browser"; clearTimeout(ft); ft = setTimeout(function(){ s.textContent = ""; }, 1500); }
+
+  function exportAll(){
+    var L = ["# yeslyf admin, CRM and nudge spec v0.1 - team review", "Exported " + new Date().toLocaleString(), ""];
+    var g = rec("general").text; if(g){ L.push("## General"); L.push(g); L.push(""); }
+    var any = false;
+    L.push("## Stack");
+    STACK.forEach(function(t){ var r = store["stack:"+t.id]; if(r && (r.verdict||r.text)){ any = true; L.push("- **"+t.name+"**"+(r.verdict?" ["+r.verdict+"]":"")+(r.text?": "+r.text:"")); } });
+    L.push(""); L.push("## Placement");
+    PLACEMENT.forEach(function(p,i){ var r = store["pl:"+i]; if(r && (r.verdict||r.text)){ any = true; L.push("- **"+p.sec+" / "+p.item+"** ("+p.bucket+")"+(r.verdict?" ["+r.verdict+"]":"")+(r.text?": "+r.text:"")); } });
+    L.push(""); L.push("## Decisions");
+    DECISIONS.forEach(function(d){ var r = store["dec:"+d.id]; if(r && (r.verdict||r.text)){ any = true; L.push("- **"+d.id+" "+d.q+"**"+(r.verdict?" ["+r.verdict+"]":"")+(r.text?": "+r.text:"")); } });
+    L.push(""); L.push("## Nudge matrix (content as entered)");
+    L.push("| id | state | offset | link | policy | push | whatsapp | email |"); L.push("|---|---|---|---|---|---|---|---|");
+    NUDGES.forEach(function(n){ var r = store["nd:"+n.id] || {}; var ex = NUDGE_EXAMPLES[n.id] || {};
+      var cell = function(v){ return String(v||"").replace(/\|/g,"/").replace(/\n/g," "); };
+      L.push("| "+n.id+" | "+cell(n.state)+" | "+cell(n.off)+" | "+n.link+" | "+cell(r.policy!==undefined?r.policy:n.policy)+" | "+cell(r.push!==undefined?r.push:ex.push)+" | "+cell(r.wa!==undefined?r.wa:ex.wa)+" | "+cell(r.email!==undefined?r.email:ex.email)+" |"); });
+    var md = L.join("\n");
+    try { navigator.clipboard && navigator.clipboard.writeText(md); } catch(e){}
+    var blob = new Blob([md], {type:"text/markdown"}); var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "yeslyf_admin_crm_review_v01.md"; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    document.getElementById("saved").textContent = "Exported and copied" + (any?"":" (no verdicts yet; matrix included)");
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    renderStack(); renderPlacement();
+    simpleTable("contact", ["Contact field","Source / meaning"], CONTACT_FIELDS);
+    simpleTable("deals", ["Object","Fields"], DEAL_FIELDS);
+    simpleTable("events", ["Event","Fired on","Payload"], EVENTS, 1);
+    simpleTable("inbound", ["Event","Direction","Payload and effect"], INBOUND);
+    renderNudges();
+    simpleTable("compliance", ["Record","Where it lives","How it is produced for an audit"], COMPLIANCE);
+    renderDecisions(); wire();
+  });
+})();
+
+</script>
+</body>
+</html>
