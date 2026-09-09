@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>yeslyf wireframes v0.1 - review log</title>
+<style>
+  :root{--paper:#EEF0F3;--panel:#fff;--ink:#1B1F27;--mute:#5F6773;--line:#D3D7DE;--accent:#FFDA00;--accent-soft:#FFF4B8;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45}
+  button,select,input,textarea{font-family:inherit;font-size:13px}
+  ::selection{background:var(--accent)}
+  .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:14px;padding:10px 18px;background:var(--panel);border-bottom:1px solid var(--line)}
+  .brand{font-weight:700;font-size:16px}
+  .brand span{font-weight:400;color:var(--mute);margin-left:8px;font-size:13px}
+  .saved{margin-left:auto;font-size:12px;color:var(--mute)}
+  .top button{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
+  .main{padding:18px 24px 80px;max-width:1500px;margin:0 auto}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:0 0 16px}
+  h1{font-size:21px;margin:0 0 6px}
+  h2{font-size:16px;margin:0 0 8px}
+  .lead{color:var(--mute);margin:0 0 12px;max-width:860px}
+  .rule{padding-left:10px;border-left:3px solid var(--accent);margin:8px 0 12px;max-width:900px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}
+  .stat{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#FCFCFD}
+  .stat b{display:block;font-size:22px}
+  .stat span{font-size:12px;color:var(--mute)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  ul{margin:6px 0;padding-left:18px}
+  li{margin:4px 0}
+  .filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;align-items:center}
+  .filters select{padding:6px;border:1px solid var(--line);border-radius:6px;background:#fff}
+  .filters label{font-size:12px;color:var(--mute);margin-left:6px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;border-bottom:2px solid var(--ink);padding:7px 8px;font-size:12px;vertical-align:bottom}
+  td{border-bottom:1px solid var(--line);padding:8px;vertical-align:top}
+  .n{color:var(--mute);width:28px}
+  .scr{white-space:nowrap;font-weight:600}
+  .d{display:inline-block;font-size:11px;font-weight:600;border:1px solid var(--line);border-radius:4px;padding:2px 6px;white-space:nowrap;background:#fff}
+  .d-Accepted{border-color:#2f7d4f;color:#2f7d4f}
+  .d-Acceptedwithchange{border-color:#2f7d4f;color:#2f7d4f;border-style:dashed}
+  .d-Answered{color:var(--mute)}
+  .d-Decisionfounders{background:var(--accent-soft);border-color:#C9A800}
+  .d-HoldHarish{background:#FFF1F1;border-color:#E7B4B4;color:#8A2E2E}
+  .imp-High{font-weight:700}
+  .ov{width:200px}
+  .ov select{width:100%;padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff;margin-bottom:4px}
+  .ov textarea{width:100%;min-height:40px;border:1px solid var(--line);border-radius:5px;padding:5px;resize:vertical;background:#fff}
+  @media (max-width:1000px){.two{display:block}.main{padding:12px}table{display:block;overflow-x:auto}.ov{width:auto}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand">yeslyf <span>wireframes v0.1 review log, 9 Sep 2026, all five reviewers</span></div><div id="saved" class="saved"></div><button id="export">Export overrides</button></header>
+<main class="main">
+  <section>
+    <h1>Consolidated review: Gaurav, Kajal, Somil, Bhuvanaa, Harish.</h1>
+    <p class="lead">Every comment from the five exports, one row each, typed and given a disposition with the v0.2 action or the answer. The Override column is for spiff: agree by leaving it blank, or override with a reason. Harish's rows are 57 to 73; open items were lifted into the decision board.</p>
+    <div class="rule">Five dispositions, nothing dropped silently: Accepted (goes into v0.2 as stated), Accepted with change (goes in, modified, reason given), Answered (the spec already covers it; no change), Decision (founders decide; recommendation given), Hold (needs Harish; default given).</div>
+    <div id="stats" class="stats"></div>
+  </section>
+  <section>
+    <div class="two">
+      <div>
+        <h2>Decisions for the founders (recommendation in each row)</h2>
+        <ul>
+          <li><b>SKU set</b> (rows 2, 20): two cards, Membership app-only and Membership with adviser; no one-time SKU. Kajal and Bhuvanaa converge; Harish to confirm.</li>
+          <li><b>Calls for DIY</b> (rows 35, 45): remove one-off calls for DIY; upgrade path instead. Three reviewers converge.</li>
+          <li><b>Execution rails</b> (row 1): smallcase Gateway only, if it covers direct MFs and SIP mandates under the RIA code. Verify before deciding; it removes a build.</li>
+          <li><b>Clarity picture</b> (row 32): fold into the plan overview. spiff's call, since he asked to keep it.</li>
+          <li><b>Community on home</b> (row 46): a one-line strip, community from the menu.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Held for Harish (default in each row)</h2>
+        <ul>
+          <li><b>Risk profile logic</b> (row 30): tolerance plus capacity plus need; needs the calculation logic.</li>
+          <li><b>Tax section</b> (row 33): keep with disclaimer, or drop.</li>
+          <li><b>Who takes the plan call</b> (row 34): planner naming and certification.</li>
+          <li><b>Insurance aggregator links</b> (row 38): default no.</li>
+          <li><b>Retirement model</b> (row 52): depletion to life expectancy vs withdrawal rate.</li>
+          <li>Still owed from earlier: the RPQ scoring map; the fixed-fee agreement template with the app as a channel.</li>
+        </ul>
+        <h2>New screens in v0.2 from this round</h2>
+        <ul><li>H10 Goals progress (row 39)</li><li>H11 Portfolio (row 43)</li><li>H00 Navigation map (row 41)</li><li>R11 becomes a text card; R12 becomes an optional carousel (rows 16 to 18)</li></ul>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>All comments</h2>
+    <div class="filters">
+      <label>Reviewer</label><select id="f-who"><option>All</option></select>
+      <label>Disposition</label><select id="f-disp"><option>All</option></select>
+      <label>Impact</label><select id="f-imp"><option>All</option></select>
+      <label>Screen</label><input id="f-scr" placeholder="e.g. R1" style="padding:6px;border:1px solid var(--line);border-radius:6px;width:90px">
+    </div>
+    <table><thead><tr><th class="n">#</th><th>Screen</th><th>Who</th><th>What they said</th><th>Type</th><th>Disposition</th><th>v0.2 action or answer</th><th>Impact</th><th class="ov">spiff override</th></tr></thead><tbody id="rows"></tbody></table>
+  </section>
+</main>
+<script>
+// yeslyf wireframes v0.1 - consolidated review log (Gaurav, Kajal, Somil, Bhuvanaa; Harish pending)
+// disp: Accepted | Accepted with change | Answered | Decision (founders) | Hold (Harish) | Done
+var ROWS = [
+{n:1,scr:"X00",who:"Gaurav",say:"All execution via smallcase Gateway only.",type:"Tech / decision",disp:"Decision (founders)",act:"High impact if true: if smallcase Gateway executes direct-plan MFs and SIP mandates through the user's own broker under HoA's RIA code, E02 and E03 collapse into E04 and the BSE StAR build disappears. Gaurav confirms MF support and mandates with smallcase; Harish confirms direct plans and the RIA code. Until confirmed, E02 and E03 stay.",imp:"High"},
+{n:2,scr:"X00",who:"Kajal",say:"A no-call SKU on day one: yes, different price and offering.",type:"Decision",disp:"Decision (founders)",act:"Feeds the SKU decision with Bhuvanaa's P01 comment: two cards, Membership (app only) and Membership with adviser; no one-time SKU.",imp:"High"},
+{n:3,scr:"A01",who:"Gaurav",say:"'Four minutes' to 'the next few minutes'; use the screen to welcome and prime.",type:"Copy",disp:"Accepted",act:"Copy change on A01.",imp:"Low"},
+{n:4,scr:"A02",who:"Gaurav",say:"Prefill mobile from the device; drop the 'why mobile' explainer; show T&C here.",type:"UX",disp:"Accepted",act:"Phone-hint prefill on Android; link removed; T&C and privacy consent with an over-18 statement on A02 (also closes the R01 point).",imp:"Low"},
+{n:5,scr:"A03",who:"Gaurav",say:"Resend with exponential backoff, max 3; change-number max 3.",type:"Tech",disp:"Accepted",act:"Dev note on A03.",imp:"Low"},
+{n:6,scr:"A04",who:"Gaurav",say:"Burned-in captions; skip immediately with a confirm modal; bundle video in the app with a config flag.",type:"UX / tech",disp:"Accepted",act:"Captions burned in; skip at 0 s with confirm; local bundle with remote override flag.",imp:"Low"},
+{n:7,scr:"R01",who:"Gaurav",say:"'First name' to 'Name'; T&C must precede an under-18 block.",type:"Copy",disp:"Accepted",act:"Label change; T&C moves to A02.",imp:"Low"},
+{n:8,scr:"R02",who:"Gaurav",say:"Two-row selector: Just me / Me + partner, then multi-select Kids / Parents.",type:"UX",disp:"Accepted",act:"Replaces the six chips.",imp:"Low"},
+{n:9,scr:"R02",who:"Gaurav",say:"Why is city needed?",type:"Question",disp:"Accepted with change",act:"City sets the metro flag for the HRA rule (G08) and cost bands. Made optional with skip.",imp:"Low"},
+{n:10,scr:"R04",who:"Gaurav",say:"'Other than the home you live in' gets missed.",type:"Copy",disp:"Accepted",act:"Headline plus a separate callout: do not count the home you live in.",imp:"Low"},
+{n:11,scr:"R07",who:"Gaurav",say:"Add 'type your own'.",type:"UX",disp:"Accepted with change",act:"Free text added; mapped to the nearest of the five for the meaning line (default Freedom); stored verbatim for tone.",imp:"Low"},
+{n:12,scr:"R08",who:"Bhuvanaa",say:"Phrase the 11% yeslyf mix as what improves when the 5 Alpha framework works.",type:"Copy",disp:"Accepted",act:"Assumption lines reworded; the rate stays an L02 assumption.",imp:"Low"},
+{n:13,scr:"R09",who:"Gaurav",say:"Martech integration at this drop-off point.",type:"Question",disp:"Answered",act:"reveal_seen event and the S2 journeys exist in the admin and CRM spec. No change.",imp:"-"},
+{n:14,scr:"R09",who:"Bhuvanaa",say:"More descriptive.",type:"Copy / UX",disp:"Accepted",act:"One explanatory line per path; a 'how we got here' expandable with the assumptions.",imp:"Low"},
+{n:15,scr:"R10",who:"Gaurav",say:"How will we explain? AI-generated video?",type:"Content",disp:"Answered",act:"Founder-recorded; an AI avatar is a production choice. Content, not wireframe.",imp:"-"},
+{n:16,scr:"R11",who:"Gaurav, Kajal, Somil",say:"Two back-to-back videos is too much; is the bridge video generic?",type:"UX",disp:"Accepted with change",act:"Merge 5 Alpha and bridge into one 60-second video at R10. R11 becomes a text card: what is on the other side, time it takes, what you get. Three reviewers independently.",imp:"Med"},
+{n:17,scr:"R12",who:"Gaurav",say:"Resequence: convinced users go to the paywall; the sample plan is for those not convinced.",type:"Flow",disp:"Accepted with change",act:"Primary path R09, R10, P01. R12 becomes an optional detour ('see a sample plan') from P01 and from X01.",imp:"Med"},
+{n:18,scr:"R12",who:"Bhuvanaa",say:"Show sample screens of the final plan.",type:"UX",disp:"Accepted",act:"R12 becomes a swipeable carousel of four or five plan screens.",imp:"Low"},
+{n:19,scr:"X01",who:"Gaurav",say:"Where does 'see what members are saying' go?",type:"Question",disp:"Accepted with change",act:"To the community landing (H08). v0.2 adds a testimonials strip on X01 itself.",imp:"Low"},
+{n:20,scr:"P01",who:"Bhuvanaa",say:"More than two options needs explaining, maybe a video; drop the one-time offer, unhappy users can unsubscribe.",type:"Decision",disp:"Decision (founders)",act:"Two cards max; optional 30-second explainer link. One-time SKU dropped pending founders; Kajal agrees a no-call SKU exists. Harish to weigh in.",imp:"High"},
+{n:21,scr:"P04",who:"Gaurav",say:"Introduce a coupon.",type:"UX",disp:"Accepted",act:"Coupon field for corporate sessions and referrals.",imp:"Low"},
+{n:22,scr:"P04",who:"Kajal",say:"UPI and netbanking only, no cards; GST logic for IGST, CGST, SGST and no-GST.",type:"Decision / tech",disp:"Accepted",act:"Payment methods as config. GST split from the KRA address state (P02) on the Razorpay invoice. Note: monthly autopay then relies on UPI autopay mandates.",imp:"Low"},
+{n:23,scr:"O01",who:"Gaurav",say:"More weight on the adviser.",type:"UX",disp:"Accepted",act:"Profile card: photo, credentials, years, specialisation.",imp:"Low"},
+{n:24,scr:"O01",who:"Kajal, Somil, Bhuvanaa",say:"Is the tier chosen here or at the paywall?",type:"Question",disp:"Accepted with change",act:"Chosen at P01; O01 renders one variant. The review file showed all three cards at once, which caused the confusion. v0.2 shows only the applicable card with 'because you chose...'.",imp:"Low"},
+{n:25,scr:"O01",who:"Bhuvanaa",say:"Priya pre-recorded 'what to expect next' video.",type:"UX",disp:"Accepted",act:"30-second adviser video slot, DIWM only.",imp:"Low"},
+{n:26,scr:"O02",who:"Kajal",say:"Steps read as '1 or 2, then 3'; is this repeating A05?",type:"Copy",disp:"Accepted",act:"Reword: 1 Connect accounts, 2 Fill what AA cannot see, 3 Book your call. The hub is the checklist; A05 is step 1's screen; not a repeat.",imp:"Low"},
+{n:27,scr:"A07",who:"Gaurav, Somil",say:"AA has multiple OTP journeys (discover, then fetch per provider); is there an OTP before A08?",type:"Tech / question",disp:"Accepted",act:"Expectation copy on A05: two or three OTPs from the AA. A06 is the vendor flow that carries them.",imp:"Low"},
+{n:28,scr:"D03",who:"Bhuvanaa",say:"Others, like money payable to family.",type:"UX",disp:"Accepted",act:"Row: money owed to family or friends.",imp:"Low"},
+{n:29,scr:"D04",who:"Bhuvanaa",say:"Document uploads; some integration with Safebox?",type:"UX",disp:"Accepted with change",act:"Optional policy upload to the vault from D04. Safebox: unknown product; Bhuvanaa to say what she means.",imp:"Low"},
+{n:30,scr:"D09",who:"Bhuvanaa",say:"Risk should combine tolerance (questionnaire), capacity and need (our assessment); calculation logic is available. Also read D08 as one question.",type:"Logic",disp:"Hold (Harish)",act:"D08 shows 1 of 8, all eight are in. Substantive point accepted: D09 shows tolerance, capacity, need and the combined band; L03 gets the combination rule. Needs her calculation logic and Harish's sign-off, since the band drives allocation.",imp:"Med"},
+{n:31,scr:"G01",who:"Gaurav",say:"Reuse the R08 pattern.",type:"UX",disp:"Accepted",act:"Assumption lines rotate while building.",imp:"Low"},
+{n:32,scr:"G02",who:"Bhuvanaa",say:"Drop Clarity; it delays the plan.",type:"Flow",disp:"Decision (founders)",act:"Recommendation: fold into G03. The overview already carries the snapshot and the concerns; add realisable vs locked, allocation and current return there. One step fewer, content kept, pre-call brief kept. spiff asked to keep Clarity earlier, so this is his call.",imp:"Med"},
+{n:33,scr:"G08",who:"Somil",say:"Tax: drop or modify; needs Bhuvanaa and Harish.",type:"Decision",disp:"Hold (Harish)",act:"Default keep with the tax disclaimer; regime comparison is a calculator, not advice, and the agreement already disclaims tax advice.",imp:"Med"},
+{n:34,scr:"K01",who:"Kajal",say:"'Planner call', not advisory call.",type:"Copy / compliance",disp:"Hold (Harish)",act:"Rename: plan discussion call with your financial planner. If the planner discusses the investment plan, they must be a certified person associated with investment advice. Harish confirms who takes these calls.",imp:"Med"},
+{n:35,scr:"K04",who:"Gaurav, Kajal, Somil",say:"No one-off calls for DIY (expensive, needs full context); only Harish can do investment calls; if kept, place after execution.",type:"Decision",disp:"Decision (founders)",act:"Recommendation: remove K04 for DIY; DIY help is FAQ, Ask yeslyf, and an upgrade to the adviser membership. DIWM keeps one plan call; any paid follow-up only after execution or at a review. Three reviewers converge.",imp:"High"},
+{n:36,scr:"E02",who:"Gaurav",say:"Prefill nominee to spouse.",type:"UX",disp:"Accepted",act:"If a partner exists in D01; user confirms.",imp:"Low"},
+{n:37,scr:"E05",who:"Gaurav",say:"Need upload screens and a place to view uploads.",type:"UX",disp:"Accepted",act:"Upload sub-step in E05; vault entry on the tab bar.",imp:"Low"},
+{n:38,scr:"E01",who:"Bhuvanaa",say:"Link insurance through aggregators like PolicyBazaar.",type:"Compliance",disp:"Hold (Harish)",act:"Recommendation: no. Referral or commission from an aggregator is distribution income, barred for advisory clients; a bare link is poor optics. Guidance only on E05.",imp:"Med"},
+{n:39,scr:"H01",who:"Kajal",say:"Goals are not covered on the dashboard.",type:"Gap",disp:"Accepted",act:"New screen H10 Goals progress: per goal funded %, on-track flag, next contribution. Real gap.",imp:"Med"},
+{n:40,scr:"H02",who:"Gaurav",say:"Can we show market movement?",type:"Question",disp:"Accepted with change",act:"Yes when holdings are verified (units times NAV); shown only then, otherwise contributions only.",imp:"Low"},
+{n:41,scr:"H02-H04",who:"Somil",say:"Which section do these screens live in?",type:"Question",disp:"Accepted with change",act:"Home tab holds H02 and H03 as cards that open detail; Actions tab is H04. v0.2 adds a navigation map screen (H00).",imp:"Low"},
+{n:42,scr:"H05",who:"Gaurav",say:"Where is this surfaced from?",type:"Question",disp:"Accepted with change",act:"Push and WhatsApp (S11) plus a banner on H01 and the Plan tab. v0.2 draws the banner.",imp:"Low"},
+{n:43,scr:"H05",who:"Kajal",say:"No page shows the schemes, stocks or products invested with us.",type:"Gap",disp:"Accepted",act:"New screen H11 Portfolio: verified holdings, value, allocation vs target, active SIPs. Real gap.",imp:"Med"},
+{n:44,scr:"H06",who:"Gaurav",say:"Entry point?",type:"Question",disp:"Answered",act:"Vault tab on the tab bar; made explicit in v0.2.",imp:"Low"},
+{n:45,scr:"H07",who:"Kajal",say:"DIY 'call adviser' should be a call with a financial planner.",type:"Decision",disp:"Decision (founders)",act:"Same decision as K04.",imp:"-"},
+{n:46,scr:"H08",who:"Gaurav",say:"Do not show community on home; menu access or highlights only.",type:"Decision",disp:"Decision (founders)",act:"Bhuvanaa's deck puts community on the returning-client home. Recommendation: a one-line strip on home; the community itself from the menu.",imp:"Low"},
+{n:47,scr:"H09",who:"Gaurav",say:"Can a member rebuild the plan? How often? What happens to old plans?",type:"Question",disp:"Answered",act:"Rebuild any time; every version kept in the vault, read-only; a diff shown each time. Engine cost is trivial; no throttle beyond one build a minute.",imp:"Low"},
+{n:48,scr:"N01",who:"Gaurav",say:"Each drop-off state should feed martech.",type:"Question",disp:"Answered",act:"Every state is a Zoho journey in the admin and CRM spec. No change.",imp:"-"},
+{n:49,scr:"M01",who:"Gaurav",say:"Appsmith? Spinach?",type:"Question",disp:"Answered",act:"Now Directus (admin spec, decision D1); the dev owner trials it. Spinach does UI, not admin.",imp:"-"},
+{n:50,scr:"M01",who:"Kajal",say:"Do this separately.",type:"-",disp:"Done",act:"Admin and CRM spec delivered.",imp:"-"},
+{n:51,scr:"L04",who:"Gaurav",say:"ISIN weights are a subset of the L03 category weights.",type:"Logic",disp:"Accepted",act:"That is the design. L04 copy will say: weights sum to 100 within a cell's asset class; the class share comes from L03.",imp:"Low"},
+{n:52,scr:"L02",who:"Bhuvanaa",say:"Withdrawal rate: decide how.",type:"Logic",disp:"Hold (Harish)",act:"The React uses corpus depletion to life expectancy (money lasts till age), which needs post-retirement return and inflation, not a withdrawal rate. Pick one model; recommendation depletion, drop the withdrawal-rate row.",imp:"Med"},
+{n:53,scr:"Q02",who:"Bhuvanaa",say:"What does 'I will ask only what this affects' mean?",type:"Copy",disp:"Accepted",act:"Rephrase: 'I will only ask about what this changes', and list which sections open per life event.",imp:"Low"},
+{n:54,scr:"Q04",who:"Bhuvanaa",say:"Add review, feedback, refer friends, community.",type:"UX",disp:"Accepted",act:"Referral and rating on Q04 and on the S10 celebration.",imp:"Low"},
+{n:55,scr:"P03",who:"Gaurav",say:"Nice.",type:"-",disp:"Answered",act:"Noted.",imp:"-"},
+{n:56,scr:"All",who:"Somil",say:"Marked 68 screens Keep with no comment.",type:"Signal",disp:"Answered",act:"Treated as agreement with the flow as drawn.",imp:"-"},
+{n:57,scr:"R08",who:"Harish",say:"Inflation changeable in the back end at any time?",type:"Question",disp:"Answered",act:"Yes: L02, versioned; applies to new plans and next review. Board C01.",imp:"-"},
+{n:58,scr:"P04",who:"Harish",say:"Subject to regulatory approval on payment types.",type:"Compliance",disp:"Decision (founders)",act:"Board D16. Any traceable mode is allowed by the agreement; cash barred.",imp:"Low"},
+{n:59,scr:"D03",who:"Harish",say:"A detail screen per loan; other loans such as loans to friends.",type:"UX",disp:"Accepted",act:"D03a loan detail; family and friends rows (Bhuvanaa raised the same). Board C06.",imp:"Low"},
+{n:60,scr:"D04",who:"Harish",say:"A detail screen per policy.",type:"UX",disp:"Accepted",act:"D04a policy detail. Board C06.",imp:"Low"},
+{n:61,scr:"G04",who:"Harish",say:"Emergency fund six months as the basic rule.",type:"Logic",disp:"Answered",act:"L02 emergency months = 6. Board C02.",imp:"-"},
+{n:62,scr:"E03",who:"Harish",say:"Unsure how the MF integration and screens will look.",type:"Question",disp:"Decision (founders)",act:"Depends on the rails decision, board D03; screens described in C07.",imp:"High"},
+{n:63,scr:"E04",who:"Harish",say:"Unsure how brokers connect via smallcase.",type:"Question",disp:"Decision (founders)",act:"Broker login inside the smallcase Gateway SDK; needs a gateway partnership. Board D03, C07.",imp:"High"},
+{n:64,scr:"H06",who:"Harish",say:"Include the rationale for recommended products.",type:"UX / compliance",disp:"Accepted",act:"Rationale per instrument on G13 and in the plan PDF; also the advice register. Board C03.",imp:"Med"},
+{n:65,scr:"H08",who:"Harish",say:"Is the community tab always available; home or menu?",type:"Decision",disp:"Decision (founders)",act:"Board D06.",imp:"Low"},
+{n:66,scr:"Q03",who:"Harish",say:"Check RIA refund regulations.",type:"Compliance",disp:"Decision (founders)",act:"Board D15: monthly cancel stops the next charge; prepaid periods pro-rata minus breakage per the agreement; counsel confirms.",imp:"Med"},
+{n:67,scr:"N01",who:"Harish",say:"More nudges than two or three; may call people offline.",type:"UX",disp:"Decision (founders)",act:"The matrix has 32 rows. Human-call channel proposed, board D14.",imp:"Low"},
+{n:68,scr:"L02",who:"Harish",say:"A bucket for REITs and InvITs.",type:"Logic",disp:"Decision (founders)",act:"Board D07: sixth class, configurable.",imp:"Med"},
+{n:69,scr:"L03",who:"Harish",say:"Cash will not be recommended; shortest and safest is liquid debt.",type:"Logic",disp:"Decision (founders)",act:"Board D07: cash renamed liquid funds for recommendations.",imp:"Med"},
+{n:70,scr:"L04",who:"Harish",say:"Where are instruments tagged to a category; where do constraints live?",type:"Logic",disp:"Decision (founders)",act:"Board D08: category tag with override in L04; new L09 constraints.",imp:"Med"},
+{n:71,scr:"L07",who:"Harish",say:"What does commentary mean?",type:"Copy",disp:"Answered",act:"User-facing timing notes. Board C04.",imp:"-"},
+{n:72,scr:"L05",who:"Harish",say:"Where are the allocations calculated?",type:"Question",disp:"Answered",act:"In the engine; L05 previews. New L00 engine map. Board C05.",imp:"-"},
+{n:73,scr:"L08",who:"Harish",say:"Check what must be saved for audit.",type:"Compliance",disp:"Decision (founders)",act:"Board D17: nine-record list to confirm with the auditor.",imp:"Med"}
+];
+
+(function(){
+  var KEY="yeslyf_reviewlog_v01", store={};
+  try{ store=JSON.parse(localStorage.getItem(KEY)||"{}"); }catch(e){ store={}; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
+  var f={who:"All",disp:"All",imp:"All",scr:""};
+  function uniq(k){ var s={}; ROWS.forEach(function(r){ String(r[k]).split(",").forEach(function(x){ s[x.trim()]=1; }); }); return Object.keys(s).sort(); }
+  function fill(id,vals){ var el=document.getElementById(id); el.innerHTML='<option>All</option>'+vals.map(function(v){return '<option>'+esc(v)+'</option>';}).join(""); }
+  function stats(){
+    var c={}; ROWS.forEach(function(r){ c[r.disp]=(c[r.disp]||0)+1; });
+    var order=["Accepted","Accepted with change","Answered","Decision (founders)","Hold (Harish)","Done"];
+    document.getElementById("stats").innerHTML='<div class="stat"><b>'+ROWS.length+'</b><span>comments, 4 reviewers</span></div>'+order.map(function(k){ return '<div class="stat"><b>'+(c[k]||0)+'</b><span>'+esc(k)+'</span></div>'; }).join("");
+  }
+  function render(){
+    var rows=ROWS.filter(function(r){ return (f.who==="All"||r.who.indexOf(f.who)>=0)&&(f.disp==="All"||r.disp===f.disp)&&(f.imp==="All"||r.imp===f.imp)&&(!f.scr||r.scr.toLowerCase().indexOf(f.scr.toLowerCase())>=0); });
+    document.getElementById("rows").innerHTML=rows.map(function(r){ var o=store[r.n]||{}; var dc="d d-"+r.disp.replace(/[^A-Za-z]/g,"");
+      return '<tr><td class="n">'+r.n+'</td><td class="scr">'+esc(r.scr)+'</td><td>'+esc(r.who)+'</td><td>'+esc(r.say)+'</td><td>'+esc(r.type)+'</td><td><span class="'+dc+'">'+esc(r.disp)+'</span></td><td>'+esc(r.act)+'</td><td class="imp-'+esc(r.imp)+'">'+esc(r.imp)+'</td>'
+        +'<td class="ov"><select data-n="'+r.n+'"><option value=""'+(!o.v?' selected':'')+'>Agree</option><option'+(o.v==="Override"?' selected':'')+'>Override</option><option'+(o.v==="Discuss"?' selected':'')+'>Discuss</option></select><textarea data-n="'+r.n+'" placeholder="Reason or instruction">'+esc(o.t||"")+'</textarea></td></tr>'; }).join("");
+  }
+  var ft; function flash(){ var s=document.getElementById("saved"); s.textContent="Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1500); }
+  document.addEventListener("DOMContentLoaded",function(){
+    fill("f-who",uniq("who")); fill("f-disp",uniq("disp")); fill("f-imp",uniq("imp")); stats(); render();
+    ["who","disp","imp"].forEach(function(k){ document.getElementById("f-"+k).addEventListener("change",function(e){ f[k]=e.target.value; render(); }); });
+    document.getElementById("f-scr").addEventListener("input",function(e){ f.scr=e.target.value; render(); });
+    document.getElementById("rows").addEventListener("change",function(e){ if(e.target.tagName==="SELECT"){ var n=e.target.getAttribute("data-n"); store[n]=store[n]||{}; store[n].v=e.target.value; save(); flash(); } });
+    document.getElementById("rows").addEventListener("input",function(e){ if(e.target.tagName==="TEXTAREA"){ var n=e.target.getAttribute("data-n"); store[n]=store[n]||{}; store[n].t=e.target.value; save(); flash(); } });
+    document.getElementById("export").addEventListener("click",function(){
+      var L=["# review log overrides","Exported "+new Date().toLocaleString(),""];
+      ROWS.forEach(function(r){ var o=store[r.n]; if(o&&(o.v||o.t)) L.push("- #"+r.n+" "+r.scr+" ("+r.who+") ["+(o.v||"Agree")+"] "+(o.t||"")); });
+      if(L.length===3) L.push("(no overrides; all dispositions agreed)");
+      var md=L.join("\n"); try{ navigator.clipboard&&navigator.clipboard.writeText(md); }catch(e){}
+      var b=new Blob([md],{type:"text/markdown"}); var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="yeslyf_reviewlog_overrides.md"; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      document.getElementById("saved").textContent="Exported and copied";
+    });
+  });
+})();
+
+</script>
+</body>
+</html>

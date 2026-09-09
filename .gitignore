@@ -1,0 +1,7 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+# the two PDFs carry a client name, PAN, address and phone numbers; they stay local only
+input/hoa/*.pdf

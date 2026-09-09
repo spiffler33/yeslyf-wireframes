@@ -1,0 +1,1397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>yeslyf journey wireframes v0.1</title>
+<style>
+  :root{
+    --paper:#EEF0F3; --panel:#FFFFFF; --ink:#1B1F27; --mute:#5F6773; --line:#D3D7DE;
+    --wire:#E6E8EC; --wire2:#B8BEC7; --accent:#FFDA00; --accent-soft:#FFF4B8;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45}
+  a{color:inherit}
+  button{font-family:inherit;font-size:13px;cursor:pointer}
+  ::selection{background:var(--accent)}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+  .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:18px;padding:10px 18px;background:var(--panel);border-bottom:1px solid var(--line)}
+  .brand{font-weight:700;font-size:16px;letter-spacing:-.01em;white-space:nowrap}
+  .brand span{font-weight:400;color:var(--mute);margin-left:8px;font-size:13px}
+  .tiers{display:flex;gap:4px;margin-left:auto}
+  .tiers button,.actions button{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:6px 12px;border-radius:6px}
+  .tiers button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .actions{display:flex;gap:6px}
+  .actions .primary{background:var(--accent);border-color:var(--accent);font-weight:600}
+
+  .layout{display:grid;grid-template-columns:270px minmax(0,1fr) 400px;height:calc(100vh - 53px)}
+  .nav{overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:10px 0 40px}
+  .nav-sec{margin-bottom:6px}
+  .nav-sec-t{padding:10px 16px 4px;font-size:12px;font-weight:700;color:var(--mute);display:flex;justify-content:space-between}
+  .nav-sec-t em{font-style:normal;font-weight:400}
+  .nav-item{display:flex;gap:10px;align-items:baseline;padding:6px 16px 6px 13px;text-decoration:none;border-left:3px solid transparent;font-size:13px;position:relative}
+  .nav-item:hover{background:#F5F6F8}
+  .nav-item.on{border-left-color:var(--accent);background:var(--accent-soft)}
+  .nav-item.dim{opacity:.4}
+  .nav-id{font-variant-numeric:tabular-nums;color:var(--mute);width:34px;flex:none;font-size:12px}
+  .dot{position:absolute;right:12px;top:12px;width:7px;height:7px;border-radius:50%;background:var(--accent);border:1px solid #C9A800}
+
+  .main{overflow:auto;padding:14px 20px 40px}
+  .mobile-jump{display:none;margin-bottom:10px}
+  .mobile-jump select{width:100%;padding:10px;border:1px solid var(--line);border-radius:6px;font-size:14px;background:#fff}
+  .ribbon{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+  .rib{font-size:12px;color:var(--mute);text-decoration:none;padding:4px 8px;border-radius:4px;border-bottom:2px solid transparent}
+  .rib.on{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+  .crumb-row{display:flex;justify-content:space-between;color:var(--mute);font-size:12px;margin:4px 2px 12px}
+  .stage{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;grid-template-areas:"prev frame next";gap:10px;align-items:start;justify-items:center}
+  #prev{grid-area:prev} #next{grid-area:next} #frame{grid-area:frame}
+  .arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel);position:sticky;top:45%;font-size:18px}
+  .arrow:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  .frame{background:var(--panel);border:2px solid var(--ink);box-shadow:0 12px 30px rgba(27,31,39,.12)}
+  .frame.phone{width:372px;min-height:700px;border-radius:30px;overflow:hidden}
+  .frame.desktop{width:100%;max-width:900px;min-height:520px;border-radius:10px}
+  .frame-top{display:flex;justify-content:space-between;padding:10px 18px;font-size:11px;color:var(--mute);border-bottom:1px dashed var(--line)}
+  .frame-top span:first-child{font-weight:700;color:var(--ink)}
+  .frame-body{padding:16px 18px 24px}
+  .w-hidden{background:#FFF1F1;border:1px solid #E7B4B4;color:#8A2E2E;padding:8px 10px;border-radius:6px;font-size:12px;margin-bottom:10px}
+
+  /* wireframe grammar */
+  .w-h{font-size:18px;font-weight:700;line-height:1.3;margin:6px 0 12px}
+  .w-p{font-size:13px;color:#3B4250;margin:0 0 12px}
+  .w-in{border:1px solid var(--wire2);border-radius:6px;padding:11px 10px;margin:0 0 10px;color:var(--mute);font-size:13px;background:#FAFBFC}
+  .w-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+  .w-chip{border:1px solid var(--wire2);border-radius:999px;padding:6px 11px;font-size:12px;background:#fff}
+  .w-radio{margin:0 0 12px}
+  .w-opt{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border:1px solid var(--line);border-radius:8px;margin-bottom:6px;font-size:13px;background:#fff}
+  .w-opt i{flex:none;width:14px;height:14px;border:2px solid var(--wire2);border-radius:50%;margin-top:2px}
+  .w-btn{display:block;width:100%;border:0;background:var(--ink);color:#fff;padding:13px;border-radius:8px;font-weight:600;font-size:14px;margin:6px 0 10px;text-align:center}
+  .w-btn2{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+  .w-link{display:block;text-align:center;font-size:13px;text-decoration:underline;color:var(--mute);margin:2px 0 12px;cursor:pointer}
+  .w-card{border:1px solid var(--wire2);border-radius:8px;padding:10px 12px;margin:0 0 10px;background:#FAFBFC}
+  .w-card-t{font-weight:600;font-size:13px;margin-bottom:5px}
+  .w-card ul{margin:0;padding-left:16px;font-size:12.5px;color:#3B4250}
+  .w-card li{margin:2px 0}
+  .w-rows{margin:0 0 12px;border-top:1px solid var(--line)}
+  .w-row{display:flex;justify-content:space-between;gap:12px;padding:8px 2px;border-bottom:1px solid var(--line);font-size:12.5px}
+  .w-row b{font-weight:600;white-space:nowrap;text-align:right}
+  .w-chart,.w-video{position:relative;min-height:120px;border:1px solid var(--wire2);border-radius:8px;margin:0 0 12px;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px 18px;font-size:12px;color:var(--mute);
+    background:repeating-linear-gradient(135deg,#F3F4F6 0 8px,#E9EBEF 8px 16px)}
+  .w-video i{position:absolute;left:12px;top:12px;width:0;height:0;border-left:16px solid var(--ink);border-top:10px solid transparent;border-bottom:10px solid transparent}
+  .w-num{font-size:26px;font-weight:700;letter-spacing:-.02em;margin:4px 0 10px}
+  .w-tabs{display:flex;gap:2px;overflow-x:auto;margin:0 0 12px;border-bottom:1px solid var(--line)}
+  .w-tabs span{flex:none;padding:6px 10px;font-size:12px;color:var(--mute);border-bottom:2px solid transparent}
+  .w-tabs span.on{color:var(--ink);font-weight:600;border-bottom-color:var(--ink)}
+  .w-badge{display:inline-block;font-size:10px;border:1px solid var(--wire2);border-radius:4px;padding:1px 5px;color:var(--mute)}
+  .w-prog{margin:0 0 12px;font-size:12px;color:var(--mute)}
+  .w-prog div{height:8px;background:var(--wire);border-radius:4px;margin-top:6px;overflow:hidden}
+  .w-prog i{display:block;height:100%;background:var(--ink)}
+  .w-table{width:100%;border-collapse:collapse;font-size:12px;margin:0 0 14px}
+  .w-table th{text-align:left;font-weight:600;border-bottom:2px solid var(--ink);padding:6px 6px;vertical-align:bottom}
+  .w-table td{border-bottom:1px solid var(--line);padding:6px 6px;vertical-align:top;color:#3B4250}
+  .frame.desktop .w-h{font-size:20px}
+
+  .side{overflow:auto;background:var(--panel);border-left:1px solid var(--line);padding:14px 18px 60px}
+  .review{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:16px;background:#FCFCFD}
+  .review-t{font-weight:700;font-size:13px;margin-bottom:8px}
+  .verdict{display:flex;gap:6px;margin-bottom:8px}
+  .verdict button{flex:1;border:1px solid var(--line);background:#fff;padding:7px;border-radius:6px}
+  .verdict button.on{background:var(--accent);border-color:#C9A800;font-weight:700}
+  #comment{width:100%;min-height:120px;border:1px solid var(--line);border-radius:6px;padding:10px;font:inherit;font-size:13px;resize:vertical;background:#fff}
+  .saved{font-size:11px;color:var(--mute);min-height:14px;margin-top:4px}
+  .spec-purpose{font-size:14px;line-height:1.5;margin:0 0 14px;padding-left:10px;border-left:3px solid var(--accent)}
+  .spec-block{margin:0 0 12px}
+  .spec-t{font-size:12px;font-weight:700;margin-bottom:4px}
+  .spec-block ul{margin:0;padding-left:16px;font-size:12.5px;color:#3B4250}
+  .spec-block li{margin:3px 0}
+  .tiers{font-size:12.5px}
+  .side .tiers{margin:0;display:block}
+  .br{display:inline-block;font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;margin-left:4px}
+
+  .map{display:none;padding:16px 24px 60px;max-width:1300px;margin:0 auto}
+  body.map-on .layout{display:none}
+  body.map-on .map{display:block}
+  .map-sec h3{font-size:13px;margin:16px 0 6px;color:var(--mute)}
+  .map-row{display:flex;flex-wrap:wrap;gap:6px}
+  .map-chip{text-decoration:none;font-size:12px;border:1px solid var(--line);background:#fff;padding:5px 9px;border-radius:6px}
+  .map-chip b{margin-right:6px;color:var(--mute);font-weight:600}
+  .map-chip.dim{opacity:.4}
+
+  @media (max-width:1000px){
+    .layout{display:block;height:auto}
+    .nav{display:none}
+    .mobile-jump{display:block}
+    .stage{grid-template-columns:1fr 1fr;grid-template-areas:"frame frame" "prev next";justify-items:stretch}
+    .arrow{position:static;width:100%;height:44px;border-radius:8px;margin-top:6px}
+    .frame.phone{width:100%;max-width:420px;margin:0 auto}
+    .side{border-left:0;border-top:1px solid var(--line)}
+    .top{flex-wrap:wrap;gap:8px}
+    .tiers{margin-left:0}
+    .ribbon{display:none}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">yeslyf <span>journey wireframes v0.1</span></div>
+  <div id="tiers" class="tiers"></div>
+  <div class="actions"><button id="mapbtn">Journey map</button><button id="export" class="primary">Export comments</button></div>
+</header>
+<div class="layout">
+  <aside id="nav" class="nav"></aside>
+  <main id="main" class="main">
+    <div class="mobile-jump"><select id="jump"></select></div>
+    <div id="ribbon" class="ribbon"></div>
+    <div class="crumb-row"><span id="crumb"></span><span id="counter"></span></div>
+    <div class="stage">
+      <button id="prev" class="arrow" title="Previous screen">&larr;</button>
+      <div id="frame" class="frame phone"></div>
+      <button id="next" class="arrow" title="Next screen">&rarr;</button>
+    </div>
+  </main>
+  <aside class="side">
+    <div class="review">
+      <div class="review-t">Team verdict on this screen</div>
+      <div id="verdict" class="verdict"><button data-v="Keep">Keep</button><button data-v="Change">Change</button><button data-v="Drop">Drop</button></div>
+      <textarea id="comment"></textarea>
+      <div id="saved" class="saved"></div>
+    </div>
+    <div id="spec" class="spec"></div>
+  </aside>
+</div>
+<div id="map" class="map"></div>
+<script>
+// yeslyf journey wireframes v0.1 - screen data (part 1)
+// Element grammar: [type, ...args]
+// h(text) p(text) in(label) chips([...]) radio([...]) btn(label,target) btn2(label,target)
+// link(label,target) card(title,[rows]) rows([[label,value]]) chart(caption) video(caption)
+// num(label) tabs([...]) badge(text) table([cols],[rows]) progress(label,pct) note(text)
+var SECTIONS = [
+  ["X","Read me first"],
+  ["A","Entry and identity"],
+  ["R","Quick reveal (pre-paywall)"],
+  ["P","Paywall and checkout"],
+  ["O","Onboarding hub"],
+  ["D","Data collection"],
+  ["G","Outputs: clarity, plan, investment plan"],
+  ["K","Adviser calls (DIWM)"],
+  ["E","Execution"],
+  ["H","Living dashboard"],
+  ["Q","Lifecycle and reviews"],
+  ["N","Returning-user states"],
+  ["M","Admin (bought tools)"],
+  ["L","Logic panel (built by devs)"]
+];
+
+var SCREENS = [
+{id:"X00",sec:"X",title:"How to read this file",tier:["ALL"],frame:"desktop",
+ purpose:"Clickable low-fidelity wireframes for the yeslyf app. Grey boxes show what is on a screen and in what order. Nothing here is visual design; that is Spinach's job once the flow is agreed.",
+ ui:[
+  ["h","yeslyf journey wireframes v0.1"],
+  ["p","Left: the journey, section by section. Middle: the screen. Right: what the screen does, its logic, branches, and dev notes, plus your verdict and comments."],
+  ["p","Tap any button inside a screen to follow the flow. Use the arrows or your keyboard to step through. Filter by tier at the top to see what a DIY, DIWM or DIFM user would see."],
+  ["p","Comments save in this browser as you type. When the team is done, press Export to download a markdown file and send it to spiff. It becomes the change list for v0.2 before anything goes to Spinach."],
+  ["card","Tier legend",["DIY: app only, no calls","DIWM: same app plus adviser calls","DIFM: existing House of Alpha clients; app for data and dashboard, advice off-app","ALL: shown to everyone"]],
+  ["card","Decisions baked into v0.1",["Launch target 1 Feb 2027 (1 Jan stretch)","Phone OTP login; biometric on return","Paywall after the Quick Reveal, before data collection (Bhuvanaa V2 deck)","Reveal replaces the persona sample plan as the hook; sample plan stays as a preview of what you get","One app for all tiers; tier changes only paywall cards, adviser screens, call steps and the help channel","No human review gate; plan builds instantly","AA is the default path; manual fallback per field; source lock; refresh diff confirm","Retirement is not a mandatory goal; work-optional age is an anchor assumption","Execution in V1: BSE StAR MF for MFs, smallcase Gateway for ETFs and stocks","ISINs come from the logic panel; publish triggers a plan upgrade and a new action plan","Admin is bought tools; devs build only the logic panel","Living dashboard plus emailed PDF","The FP React defines the plan; it supersedes M4 where they conflict","Prices are placeholders everywhere"]],
+  ["card","Open points for today's meeting",["1. Launch SKU set: is there a no-call SKU on day one? (see P01)","2. Calls: one plan call at delivery, automated quarterly review, extra calls a la carte (see K01, Q01)","3. Clarity picture: kept post-paywall as the first output and the adviser's call brief (see G02)","4. Who is the named adviser for DIWM, and how many can they take?","5. Risk profile scoring map from HoA (see D08)","6. Agreement: fixed-fee template and the app as an advice channel; counsel"]],
+  ["btn","Start the journey","A01"]
+ ],
+ spec:{fields:[],logic:["Screens carry an ID (A01, R09...). Reference them by ID in comments and in chat."],branches:[],states:[],dev:["Two frames: phone (390 wide) for the app, desktop for admin and logic panel."]}
+},
+
+// ---------- A: Entry ----------
+{id:"A01",sec:"A",title:"First open",tier:["ALL"],
+ purpose:"Set the promise and the price of entry (four minutes, free) and get the user to tap Start.",
+ ui:[
+  ["num","yeslyf"],
+  ["h","Your money should let you live fully today and still build everything you need for tomorrow."],
+  ["p","In four minutes I will show you two versions of your future. One is where you are headed. The other is where you could be."],
+  ["btn","Start, it's free","A02"],
+  ["p","From House of Alpha, SEBI Registered Investment Adviser INA000012838"]
+ ],
+ spec:{fields:[],logic:["Shown once. Returning users skip to A02 with the number prefilled, then to their state (section N)."],branches:[["Start","A02"]],states:["First open only"],dev:["Deep links from nudges bypass this screen."]}
+},
+{id:"A02",sec:"A",title:"Mobile number",tier:["ALL"],
+ purpose:"Identity is the mobile number because Account Aggregator later keys off the number the banks know.",
+ ui:[
+  ["h","What number should I reach you on?"],
+  ["in","+91 mobile number"],
+  ["p","Use the number your bank accounts know. Later, with your consent, it is how I fetch your financial picture securely."],
+  ["btn","Send OTP","A03"],
+  ["link","Why mobile and not email?","A02"]
+ ],
+ spec:{fields:["mobile (10 digits, +91 only at launch)"],logic:["Existing account: same flow, then route by state.","Email is captured later at checkout, not here."],branches:[["Send OTP","A03"]],states:["Invalid number inline error","Rate limit after 5 OTPs per hour"],dev:["OTP via SMS provider; WhatsApp OTP as fallback channel.","Store consent to be contacted on this number (needed for nudges)."]}
+},
+{id:"A03",sec:"A",title:"OTP",tier:["ALL"],
+ purpose:"Verify the number. Detect new versus returning user.",
+ ui:[
+  ["h","Enter the 6-digit code"],
+  ["in","_ _ _ _ _ _"],
+  ["p","Sent to +91 98xxx xxx21. Resend in 30s."],
+  ["btn","Verify","A04"],
+  ["link","Change number","A02"]
+ ],
+ spec:{fields:["otp"],logic:["New user: A04.","Returning user: offer biometric enrolment, then route by state (section N)."],branches:[["Verify, new","A04"],["Verify, returning","N01"]],states:["Wrong code (3 attempts)","Expired code","Auto-read on Android"],dev:["Biometric unlock stored per device after first successful login."]}
+},
+{id:"A04",sec:"A",title:"Welcome video",tier:["ALL"],
+ purpose:"Credibility and expectation in 60 to 90 seconds. Skippable.",
+ ui:[
+  ["video","Bhuvanaa: welcome, quick background, what I can do for you, in 4 minutes I can show you possibility, are you ready?"],
+  ["btn","I'm ready","R01"],
+  ["link","Skip","R01"]
+ ],
+ spec:{fields:[],logic:["Skip allowed after 5 seconds. Captions on by default; most first opens are on mute."],branches:[["Continue","R01"]],states:["Slow network: show poster and let the user continue"],dev:["Name in the video via AI personalisation is a later experiment, not V1."]}
+},
+
+// ---------- R: Quick reveal ----------
+{id:"R01",sec:"R",title:"Name and age",tier:["ALL"],
+ purpose:"Two facts that personalise everything after this and set the horizon for the reveal.",
+ ui:[
+  ["h","What do I call you?"],
+  ["in","First name"],
+  ["h","How old are you?"],
+  ["in","Age"],
+  ["btn","Continue","R02"]
+ ],
+ spec:{fields:["first_name","age (18 to 70)"],logic:["Age sets years to 50 and to 65 for the reveal."],branches:[["Continue","R02"]],states:["Under 18 blocked with a plain message"],dev:["Auto-advance when both filled."]}
+},
+{id:"R02",sec:"R",title:"Household and city",tier:["ALL"],
+ purpose:"Household shape drives protection logic and later prefills the family circle.",
+ ui:[
+  ["h","Nice meeting you, Aarav. Which of these best describes your home right now?"],
+  ["chips",["Just me","Me + partner","Me + partner + kids","Me + partner + kids + parents","Me + parents","Me + kids"]],
+  ["h","Which city do you live in?"],
+  ["in","City"],
+  ["p","Good, now I know who I am talking to. Let's get a rough sense of the money picture. It need not be accurate, just close enough to see the shape of things."],
+  ["btn","Continue","R03"]
+ ],
+ spec:{fields:["household_type","city"],logic:["Household type prefills D01 family circle and sets has_dependants for the reveal's protection line.","City sets metro flag (HRA, cost bands)."],branches:[["Continue","R03"]],states:[],dev:["City autocomplete from a short metro list plus free text."]}
+},
+{id:"R03",sec:"R",title:"Household income",tier:["ALL"],
+ purpose:"First of three numbers that produce the reveal. Bands with an always-visible exact field.",
+ ui:[
+  ["h","What is your household's rough annual income?"],
+  ["radio",["Under 10 lakhs","10 to 25 lakhs","25 to 50 lakhs","50 lakhs to 1 crore","Over 1 crore"]],
+  ["in","Or type the exact amount"],
+  ["p","Ok, I am assuming Rs 17.5 lakhs. Change it if that is far off."],
+  ["btn","Continue","R04"]
+ ],
+ spec:{fields:["income_band","income_exact"],logic:["Band tapped: exact field prefilled with the midpoint; user confirms or corrects.","Top band assumes Rs 1.2 crore unless exact is given.","Everything derived from a band is tagged approx in outputs."],branches:[["Continue","R04"]],states:[],dev:["Standing band rule from the V5 script applies to every band question in the app."]}
+},
+{id:"R04",sec:"R",title:"Total saved and invested",tier:["ALL"],
+ purpose:"Starting corpus for the reveal projection.",
+ ui:[
+  ["h","Everything you have saved and invested so far: deposits, mutual funds, EPF, gold, property other than the home you live in. Roughly how much would that add up to?"],
+  ["radio",["Under 5 lakhs","5 to 25 lakhs","25 lakhs to 1 crore","1 to 5 crores","Over 5 crores"]],
+  ["in","Or type the exact amount"],
+  ["p","Ok, I am assuming Rs 15 lakhs."],
+  ["btn","Continue","R05"]
+ ],
+ spec:{fields:["corpus_band","corpus_exact"],logic:["Top band assumes Rs 7 crore unless exact is given."],branches:[["Continue","R05"]],states:[],dev:[]}
+},
+{id:"R05",sec:"R",title:"Savings rate",tier:["ALL"],
+ purpose:"Third number. Savings rate times income is the monthly investing used in the current-path projection.",
+ ui:[
+  ["h","Of what comes in as income, roughly how much gets saved or invested before you spend?"],
+  ["radio",["Almost nothing, less than 5%","Around 10%, small consistent chunks","Around 25%, meaningful amounts","Around 40%, some serious money","More than 40%, I live well below my means"]],
+  ["in","Or type the exact % or amount"],
+  ["p","Okay, this is enough for me to sketch your broad path. Two last questions. These tell me which version of your future self you would actually want to get to."],
+  ["btn","Continue","R06"]
+ ],
+ spec:{fields:["savings_rate_band","savings_rate_exact"],logic:["Midpoints 2.5%, 10%, 25%, 40%, 50%."],branches:[["Continue","R06"]],states:[],dev:[]}
+},
+{id:"R06",sec:"R",title:"Money journey so far",tier:["ALL"],
+ purpose:"Tone calibration for the reveal and the plan voice.",
+ ui:[
+  ["h","Looking back at your money journey so far, how has it felt?"],
+  ["radio",["Very good, mostly things have worked out well","Some hits and some misses, it has been mixed","Not so good, I can do better"]],
+  ["btn","Continue","R07"]
+ ],
+ spec:{fields:["journey_feel"],logic:["Maps to the tone variants (confident / mixed / gentle) used in copy from here on."],branches:[["Continue","R07"]],states:[],dev:["Replaces the M1 Q2 emotional-state question."]}
+},
+{id:"R07",sec:"R",title:"What matters at 50 / 65",tier:["ALL"],
+ purpose:"Aspiration frame for the reveal and the plan narrative. Also the persona key in the background.",
+ ui:[
+  ["h","When you turn 50, or 65, which of these would matter most to you?"],
+  ["radio",["Choose the work I do, not out of compulsion","Take real time off to spend with people I care about","Help others in a way that matters, without worrying about money","Never worry about what could go wrong","Build something meaningful I can leave behind"]],
+  ["p","Thanks for sharing that. Give me a moment as I sketch your paths."],
+  ["btn","Sketch my paths","R08"]
+ ],
+ spec:{fields:["aspiration (Freedom / Family / Generosity / Security / Legacy)"],logic:["Aspiration picks the one-line meaning under each path on R09.","Persona mapping (M1 archetypes) runs silently on household type, income band, journey feel and aspiration; used only to pick the sample plan on R12 and copy tone."],branches:[["Sketch my paths","R08"]],states:[],dev:[]}
+},
+{id:"R08",sec:"R",title:"Sketching your paths",tier:["ALL"],
+ purpose:"Three to five seconds of computed suspense. Surfaces the assumptions so the reveal is never read as a promise.",
+ ui:[
+  ["progress","Sketching your two paths",60],
+  ["p","Assuming 6% inflation on what life costs."],
+  ["p","Assuming your current mix earns about 8% a year."],
+  ["p","Assuming the yeslyf mix earns about 11% a year."]
+ ],
+ spec:{fields:[],logic:["Rotates three assumption lines. Values come from the logic panel assumptions (L02)."],branches:[["auto","R09"]],states:[],dev:["Projection: future_value(corpus, savings_rate x income / 12, rate, years) for years to 50 and 65. Current path uses the current-mix rate; yeslyf path uses the optimised rate and the optimised savings rate from L02. Same formula as M2 section 4.3."]}
+},
+{id:"R09",sec:"R",title:"The reveal",tier:["ALL"],
+ purpose:"The hook. Two personal numbers in under two minutes. This replaces the persona card as the mirror moment.",
+ ui:[
+  ["h","Two paths, Aarav"],
+  ["tabs",["At 50","At 65"]],
+  ["card","Current path",["Rs 2.1 Cr in built wealth","What this means: work stays compulsory until 58"]],
+  ["card","yeslyf path",["Rs 5.4 Cr in built wealth","What this means: work becomes optional at 49"]],
+  ["p","Built from your five answers. An illustration, not a promise. Assumptions and the maths are one tap away."],
+  ["btn","How is this possible?","R10"],
+  ["link","Save my reveal, I'll come back","X01"]
+ ],
+ spec:{fields:[],logic:["Meaning line varies by aspiration: Freedom (work optional at age), Family (months of time off funded), Generosity (annual giving capacity), Security (years of expenses covered), Legacy (corpus left at 85).","Numbers shown as approx when any band was used."],branches:[["How is this possible?","R10"],["Save my reveal","X01"]],states:["Corpus zero and savings near zero: yeslyf path still positive; copy switches to gentle tone"],dev:["Store reveal snapshot: both numbers, assumptions_version. Reused verbatim in nudges (section N) and on the not-paid home.","No instrument or product is named here. This is a calculator output, not advice; keep it that way for compliance."]}
+},
+{id:"R10",sec:"R",title:"Video: the 5 Alphas",tier:["ALL"],
+ purpose:"Explain the gap between the two paths in 45 seconds.",
+ ui:[
+  ["video","The difference between these two paths is the 5 Alpha opportunities most people do not capitalise on: how much you save, how you allocate, what you choose, when you act, what you pay in costs and taxes. And then acting, consistently."],
+  ["btn","Continue","R11"],
+  ["link","Skip","R11"]
+ ],
+ spec:{fields:[],logic:[],branches:[["Continue","R11"]],states:[],dev:[]}
+},
+{id:"R11",sec:"R",title:"Video: the bridge",tier:["ALL"],
+ purpose:"Set the expectation for what is on the other side of the paywall.",
+ ui:[
+  ["video","The exact bridge from where you are headed to what you could build, the choices, the right order, the right size for your situation, is what we build on the other side. About 15 minutes of your data. [DIWM: and a 45-minute call with a named adviser to understand and calibrate.] Keen?"],
+  ["btn","Show me what it looks like","R12"]
+ ],
+ spec:{fields:[],logic:["Two edits of the video: with and without the call line, picked by the SKU set live at launch."],branches:[["Continue","R12"]],states:[],dev:[]}
+},
+{id:"R12",sec:"R",title:"Sample plan preview",tier:["ALL"],
+ purpose:"Show the product before asking for money. Persona-matched sample plan, overview tab only, PDF downloadable.",
+ ui:[
+  ["h","Here is what it would look like"],
+  ["p","This is Nisha's plan. Her numbers are not yours, but the shape is."],
+  ["card","Sample plan: overview",["Financial snapshot: six numbers","What success looks like: three goals, funded status","What needs attention: four concerns, in order","Then seven sections of exactly what to do"]],
+  ["link","Download the full sample as PDF","R12"],
+  ["btn","Unlock my plan","P01"]
+ ],
+ spec:{fields:[],logic:["Persona (from R07 mapping) picks which sample plan is shown. If no persona match, a default sample.","Same React component as the real plan, fed sample data. Only the Overview tab renders in-app; PDF has all tabs."],branches:[["Unlock my plan","P01"]],states:[],dev:["Sample plans are content, maintained by HoA; five or six of them for the 23 to 38 personas. Not a wireframe concern."]}
+},
+{id:"X01",sec:"R",title:"Reveal saved (not paid)",tier:["ALL"],
+ purpose:"The exit for the user who is not ready. Nothing is lost, and the nudge clock starts.",
+ ui:[
+  ["h","Your reveal is saved"],
+  ["card","Two paths, Aarav",["Current path: Rs 2.1 Cr","yeslyf path: Rs 5.4 Cr"]],
+  ["p","This page will still be here. Take a day. Read the FAQs, look at the community, come back when it feels right."],
+  ["btn","Unlock my plan","P01"],
+  ["link","See what members are saying","H08"]
+ ],
+ spec:{fields:[],logic:["This is the home screen for state S2 (section N).","Nudges: day 1 reveal saved, ready for the next step; day 3 a specific insight from the reveal; day 7 testimonials and paywall details; day 21 last thought; day 82 one more, then stop."],branches:[["Unlock","P01"]],states:["S2 home"],dev:["All nudges deep-link to P01 with the reveal above the fold."]}
+},
+
+// ---------- P: Paywall ----------
+{id:"P01",sec:"P",title:"Paywall",tier:["ALL"],
+ purpose:"Choose a plan. Cards change with the tier set that goes live. Prices are placeholders; the team decides.",
+ ui:[
+  ["h","Unlock my plan"],
+  ["card","yeslyf Membership: Rs ___ / month",["Your full plan, built on your numbers","Refreshed every quarter as your life and the market move","Your progress measured, your next action always visible","Investment plan and action plan with exact instruments","[DIWM SKU adds: a 45-minute plan call with a named adviser]","Cancel any time"]],
+  ["card","yeslyf Plan: Rs ___ one time",["Your full plan, delivered once","Does not update as your life does","Start the membership within 60 days and this fee is credited"]],
+  ["p","Not sure yet? Read the FAQs, check out the community, take a day. This page will still be here."],
+  ["btn","Continue","P02"],
+  ["link","Save and decide later","X01"]
+ ],
+ spec:{fields:["sku"],logic:["Open point 1 for the meeting. Bhuvanaa's deck has two SKUs, both with adviser time (one-time with a 45-minute session; monthly with quarterly reviews). spiff wants a no-call DIY monthly. Recommendation: Membership (app only, monthly) as the base card; the adviser plan call as the DIWM card or as an add-on; the one-time card kept only as a price anchor if at all.","Credit rule: one-time fee credited against the subscription if the membership starts within 60 days.","Prices shown inclusive of GST. Fixed-fee mode under the RIA regulations; monthly billing needs no advance-fee check."],branches:[["Continue","P02"],["Later","X01"]],states:["Returning S2 user lands here with the reveal above the fold"],dev:["Cards are config, not code: label, price, billing period, bullets, tier flag. Marketing changes them without a release.","Track paywall_viewed and which card was expanded."]}
+},
+{id:"P02",sec:"P",title:"Your details for the agreement",tier:["ALL"],
+ purpose:"The minimum SEBI needs before advice: identity, PAN, contact. KYC fetch by PAN and DOB fills the rest.",
+ ui:[
+  ["h","SEBI requires us to know who we are advising. Two minutes."],
+  ["in","Name as per PAN"],
+  ["in","PAN"],
+  ["in","Date of birth"],
+  ["in","Email (for your plan PDF and invoices)"],
+  ["p","We will fetch your KYC record from the KRA using PAN and date of birth. If nothing comes back, we will ask for your address."],
+  ["btn","Continue to agreement","P03"]
+ ],
+ spec:{fields:["legal_name","pan","dob","email","address (only if KRA fetch fails)"],logic:["PAN format check client side; KRA lookup server side.","DOB prefilled from age; user corrects to exact."],branches:[["Continue","P03"]],states:["KRA record not found: address fields appear","PAN mismatch with name: inline error"],dev:["Vendor: Digio for KRA/CKYC fetch and eSign, unless HoA already has one.","Full KYC for execution (bank, nominee, FATCA) is deferred to E02; do not front-load it here."]}
+},
+{id:"P03",sec:"P",title:"Agreement and eSign",tier:["ALL"],
+ purpose:"Plain-language summary of the advisory agreement, then Aadhaar OTP eSign.",
+ ui:[
+  ["h","What you are agreeing to"],
+  ["card","In plain words",["What you get: a financial plan and investment advice built on your numbers, delivered in this app","What it costs: the fee you chose, no other charges, ever","No assured returns; markets carry risk","How we advise you: in this app, and by email or call from House of Alpha","Cancel any time; unused period is refunded as per the agreement"]],
+  ["link","Read the full agreement","P03"],
+  ["btn","Sign with Aadhaar OTP","P04"]
+ ],
+ spec:{fields:["agreement_version","esign_txn"],logic:["Cannot proceed to payment without a completed eSign.","Signed PDF stored in the vault (H06) with timestamp and version."],branches:[["Sign","P04"]],states:["eSign failed or abandoned: retry; agreement stays unsigned; user parked in state S2b"],dev:["Agreement template must be the fixed-fee variant and must name the app as an advice channel. Counsel task, on the critical path.","Aadhaar eSign via the same vendor as P02."]}
+},
+{id:"P04",sec:"P",title:"Pay",tier:["ALL"],
+ purpose:"Payment sheet. Monthly membership sets up an autopay mandate; one-time is a single charge.",
+ ui:[
+  ["h","Pay Rs ___ "],
+  ["p","yeslyf Membership, billed monthly. Cancel any time from Settings."],
+  ["chips",["UPI autopay","Card","Netbanking"]],
+  ["btn","Pay securely","P05"],
+  ["p","GST invoice will be emailed to you."]
+ ],
+ spec:{fields:["payment_method","mandate_id or txn_id"],logic:["Monthly SKU: UPI autopay or card mandate; first charge now.","One-time SKU: single charge."],branches:[["Success","P05"]],states:["Payment failed: retry with another method; nothing is lost","Mandate pending bank approval: allow entry, mark billing as pending"],dev:["Razorpay (subscriptions and one-time). Webhook updates tier and billing state.","Invoice includes SEBI registration and fee mode, as the agreement requires."]}
+},
+{id:"P05",sec:"P",title:"You're in",tier:["ALL"],
+ purpose:"Confirmation and the emotional handover into the paid journey.",
+ ui:[
+  ["h","You're in. Welcome to yeslyf, Aarav."],
+  ["p","Thanks for trusting us to partner with you on this."],
+  ["btn","Let's begin","O01"]
+ ],
+ spec:{fields:[],logic:[],branches:[["Begin","O01"]],states:[],dev:["Fire paid event to CRM (section M)."]}
+},
+
+// ---------- O: Onboarding hub ----------
+{id:"O01",sec:"O",title:"Meet your adviser / meet yeslyf",tier:["DIY","DIWM","DIFM"],
+ purpose:"Tier-dependent introduction. DIWM meets a named person; DIY meets the product voice.",
+ ui:[
+  ["card","DIWM",["Meet Priya, Certified Financial Planner","Works with salaried professionals and their families","She will read your file before your call"]],
+  ["card","DIY",["How yeslyf works: I ask, you answer, the plan builds itself","Ask me anything from the Help tab; a human call is available whenever you want one"]],
+  ["card","DIFM",["Your adviser: Harish","This app collects your data and tracks your progress. Your advice comes from Harish directly."]],
+  ["btn","Continue","O02"]
+ ],
+ spec:{fields:[],logic:["Only one card renders, by tier."],branches:[["Continue","O02"]],states:[],dev:["Adviser assignment for DIWM: round robin or by load; admin can reassign."]}
+},
+{id:"O02",sec:"O",title:"Your next steps (hub)",tier:["ALL"],
+ purpose:"The resume point for every partially-onboarded user. Time estimates set expectations; the ring shows progress.",
+ ui:[
+  ["progress","Your plan is 20% built",20],
+  ["card","1. Connect your data via Account Aggregator, about 10 minutes",["Done"]],
+  ["card","2. Fill in what only you know, 30 to 45 minutes",["Family, other assets, insurance, income, expenses, goals, risk profile","Continue where you left off: Insurance"]],
+  ["card","3. Book your plan call, 2 minutes [DIWM]",["Available once your plan is built"]],
+  ["video","30-second walkthrough of the three steps"],
+  ["btn","Continue","A05"]
+ ],
+ spec:{fields:[],logic:["Step 3 only for DIWM.","Continue jumps to the first incomplete screen in section D.","Every data screen autosaves on every field change; this hub reads completion flags."],branches:[["Continue","A05"],["Step 2","D01"]],states:["S3: nothing done","S4: partial; shows last section","All done: replaced by G01"],dev:["Progress = weighted completion across D01 to D09 (see M2 completion rules)."]}
+},
+
+// ---------- D: Data ----------
+{id:"A05",sec:"D",title:"Account Aggregator: what and why",tier:["ALL"],
+ purpose:"Explain AA in the adviser's voice and confirm the mobile number is the one the banks know.",
+ ui:[
+  ["h","This is the one shortcut we get."],
+  ["p","Consent once to Account Aggregator and I can fetch most of your financial picture in a minute: bank balances, deposits, mutual funds, stocks. What cannot come through here, you fill in yourself. It is read-only and you can revoke it any time."],
+  ["card","Is +91 98xxx xxx21 the number your bank accounts know?",["Yes","Use another number"]],
+  ["btn","Connect via Account Aggregator","A06"],
+  ["link","Do it manually instead","D02"]
+ ],
+ spec:{fields:["aa_mobile"],logic:["Manual path allowed but warned: the investment plan can only advise on holdings it can see. Sell and switch recommendations are given only on AA or CAS-verified holdings (open point 18 in chat)."],branches:[["Connect","A06"],["Manual","D02"]],states:[],dev:["Consent template: one-time fetch now plus periodic fetch for the quarterly review (A-Q01). Purpose code for wealth management. TSP to confirm."]}
+},
+{id:"A06",sec:"D",title:"AA consent (vendor flow)",tier:["ALL"],
+ purpose:"The AA's own consent screens inside a webview. We do not redesign these; we frame them.",
+ ui:[
+  ["card","AA webview",["1. Confirm mobile, AA OTP","2. Discover accounts across banks, RTAs, depositories","3. Select accounts to share","4. Approve consent: purpose, data types, period, frequency","5. Done"]],
+  ["btn","Continue","A07"]
+ ],
+ spec:{fields:["consent_handle"],logic:["User can deselect accounts; we record which were excluded."],branches:[["Done","A07"],["Abandoned","A08"]],states:["Discovery finds nothing on this number: offer another number or manual"],dev:["TSP options: Setu, Finvu, OneMoney. Corporate RIA FIU registration is in hand per spiff."]}
+},
+{id:"A07",sec:"D",title:"Fetching",tier:["ALL"],
+ purpose:"Institution-by-institution progress. Partial success is normal; show it honestly.",
+ ui:[
+  ["progress","Fetching your accounts",70],
+  ["rows",[["HDFC Bank","Done"],["CAMS (mutual funds)","Done"],["KFintech (mutual funds)","Fetching"],["CDSL (stocks)","Failed, will retry"]]],
+  ["btn","See what came through","A08"]
+ ],
+ spec:{fields:[],logic:["Continue is enabled once at least one institution returns."],branches:[["Continue","A08"]],states:["All failed: go to A09"],dev:["FIP timeouts are common; retry in background and merge later with a notification."]}
+},
+{id:"A08",sec:"D",title:"Here is what came through",tier:["ALL"],
+ purpose:"The user confirms, edits or excludes what AA returned. This is the picture the plan is built from.",
+ ui:[
+  ["h","Here is what came through. Sound off on anything that is off."],
+  ["card","Bank accounts (2)",["Balances Rs 3.2 L","AA-fed"]],
+  ["card","Fixed and recurring deposits (1)",["Rs 5.0 L","AA-fed"]],
+  ["card","Mutual funds (7 holdings)",["Rs 11.8 L, SIPs detected: 3","AA-fed"]],
+  ["card","Stocks (CDSL)",["Not fetched, retry or add manually"]],
+  ["chips",["Looks right","Edit","Exclude"]],
+  ["link","Something is missing, add it manually","D02"],
+  ["btn","Continue","D01"]
+ ],
+ spec:{fields:["per account: include flag, override value, source lock"],logic:["Every field carries a source: AA-fed or manual. A manual override locks the field so a later AA refresh does not overwrite it unless the user unlocks it (spiff, Q10).","On every later refresh: show the diff first, then ask, we updated N numbers, good to go? (Q01)."],branches:[["Continue","D01"],["Add manually","D02"]],states:["Nothing fetched: A09"],dev:["Holdings stored at ISIN level with units, value, SIP mandates. Needed for I02."]}
+},
+{id:"A09",sec:"D",title:"AA partial or failed",tier:["ALL"],
+ purpose:"Recovery without dead ends: retry, upload a statement, or type it in.",
+ ui:[
+  ["h","Some accounts did not come through"],
+  ["rows",[["CDSL (stocks)","Retry"],["KFintech (mutual funds)","Retry"]]],
+  ["btn2","Upload a CAS statement (CAMS or KFintech PDF)","A09"],
+  ["btn2","Enter these manually","D02"],
+  ["btn","Continue with what we have","D01"]
+ ],
+ spec:{fields:["cas_upload"],logic:["CAS upload parses holdings and marks them CAS-verified (counts as verified for sell recommendations)."],branches:[["Continue","D01"]],states:[],dev:["CAS parsing via the open-source casparser library or a vendor; password-protected PDFs need the PAN-based password prompt."]}
+},
+{id:"D01",sec:"D",title:"Family circle",tier:["ALL"],
+ purpose:"Who the plan is for. Dependants drive protection; children's ages drive education goals.",
+ ui:[
+  ["h","Let's start with who is in your circle. The plan is built around your family, not around you alone."],
+  ["card","You",["Aarav, 31"]],
+  ["card","Partner",["Name, age, earns: yes / no"]],
+  ["card","Kids",["Name, age, add another"]],
+  ["card","Parents",["Financially dependent on you: yes / no"]],
+  ["link","Add someone else","D01"],
+  ["btn","Continue","D02"]
+ ],
+ spec:{fields:["members[]: relation, name, age, dependent, earns"],logic:["Prefilled from R02 household type.","Each child suggests an education goal on D07; each dependant raises the term-cover need in F03."],branches:[["Continue","D02"]],states:["Just me: skip partner and kids cards"],dev:["Bhuvanaa asked for a family-tree feel; keep it a card list at wireframe level, Spinach decides the visual."]}
+},
+{id:"D02",sec:"D",title:"Assets AA cannot see",tier:["ALL"],
+ purpose:"Property, gold in the locker, EPF, PPF, ULIPs, anything private. Approximate is fine.",
+ ui:[
+  ["h","A few things Account Aggregator cannot see for us. Approximate values are fine; we can refine later."],
+  ["card","Property",["The home you live in: value (excluded from investable)","Investment property: value, rental income"]],
+  ["card","Gold and silver, physical",["Value or grams"]],
+  ["card","EPF / PPF / GPF balance",["Band or exact"]],
+  ["card","ULIP or endowment policies",["Surrender value, monthly premium, years completed"]],
+  ["card","Anything else",["Crypto, international, business stake, other"]],
+  ["chips",["None of these"]],
+  ["btn","Continue","D03"]
+ ],
+ spec:{fields:["per asset: type, value_band, value_exact, notes"],logic:["Self-occupied home is in net worth, excluded from investable corpus (M2 rules).","ULIP with 5+ years triggers the surrender assessment in F03 (React life-insurance rules)."],branches:[["Continue","D03"]],states:[],dev:["All band questions follow the standing band rule."]}
+},
+{id:"D03",sec:"D",title:"Loans and dues",tier:["ALL"],
+ purpose:"Outstanding, EMI, rate and tenure per loan. Feeds EMI burden, prepay verdict, and term cover.",
+ ui:[
+  ["h","Is there anything you still owe?"],
+  ["card","Home loan",["Outstanding, monthly EMI, rate, years left"]],
+  ["card","Car loan",["Outstanding, EMI, rate"]],
+  ["card","Personal or education loan",["Outstanding, EMI, rate"]],
+  ["card","Credit card balance carried over",["Amount"]],
+  ["chips",["No loans"]],
+  ["btn","Continue","D04"]
+ ],
+ spec:{fields:["loans[]: type, outstanding, emi, rate, tenure_left"],logic:["Home loan flagged tax-deductible; effective rate = rate x (1 - tax bracket). Verdict per React debt logic: prepay only if effective rate is above the investment return assumption.","EMI ceiling 30% of take-home; above it is a concern on F01."],branches:[["Continue","D04"]],states:[],dev:["Loan accounts are not reliably on AA yet; manual."]}
+},
+{id:"D04",sec:"D",title:"Insurance",tier:["ALL"],
+ purpose:"What is protected today. Life, health, and investment-linked policies.",
+ ui:[
+  ["h","Insurance is where most families are over-covered on things that do not matter and under-covered on things that do. Let's see what you have."],
+  ["card","Term life cover",["Have it: yes / no","Sum assured, annual premium, cover until age"]],
+  ["card","Health cover",["Employer only / personal / both","Sum insured, family floater: yes / no"]],
+  ["card","ULIP or endowment",["Pulled from the previous screen"]],
+  ["card","Other",["Personal accident, critical illness"]],
+  ["btn","Continue","D05"]
+ ],
+ spec:{fields:["term_cover","term_premium","health_type","health_sum_insured","other_policies"],logic:["Employer-only health cover triggers the F03 health recommendation (Rs 15 L floater + Rs 50 L top-up below Rs 2 L monthly income; Rs 25 L floater above), per the React.","Term cover need uses the React formula: liabilities + present value of future family expenses, minus assets excluding the primary home, minus current cover."],branches:[["Continue","D05"]],states:[],dev:["Insurance policies may partly arrive via AA later; keep fields overridable with source lock."]}
+},
+{id:"D05",sec:"D",title:"Income",tier:["ALL"],
+ purpose:"What your money did over the last twelve months, as best AA can see, then the user confirms take-home.",
+ ui:[
+  ["h","Here is what your money did over the last twelve months, as best I can see. Adjust anything that is not right and add what I missed."],
+  ["rows",[["Average monthly credits (salary detected)","Rs 1,82,000"],["Average monthly debits","Rs 1,31,000"]]],
+  ["card","Your monthly take-home",["Band or exact, prefilled Rs 1,82,000","AA-fed"]],
+  ["card","Partner's take-home",["Band or exact"]],
+  ["card","Rental income",["Monthly"]],
+  ["card","Business or other income",["Monthly, regular or lumpy"]],
+  ["btn","Continue","D06"]
+ ],
+ spec:{fields:["income_self","income_partner","rental","other_income","income_regularity"],logic:["Salary detection from AA bank transactions: recurring credit on a fixed day. Show as a suggestion, user confirms.","Household income from R03 is reconciled here; large mismatch prompts a check."],branches:[["Continue","D06"]],states:["No AA: fields empty, band rule applies"],dev:["Transaction categorisation is V2; V1 shows totals and the detected salary only."]}
+},
+{id:"D06",sec:"D",title:"Expenses and existing investing",tier:["ALL"],
+ purpose:"Three expense buckets plus what is already being invested. Surplus updates live.",
+ ui:[
+  ["card","Fixed",["Rent, EMIs (pulled from loans), school fees, help, subscriptions"]],
+  ["card","Variable",["Groceries, utilities, transport, fuel"]],
+  ["card","Guilt-free",["Dining, travel, hobbies, shopping"]],
+  ["card","Already investing every month",["SIPs and RDs, prefilled from AA: Rs 22,000 across 3 SIPs","AA-fed"]],
+  ["rows",[["Income","Rs 1,82,000"],["Outgoings","Rs 1,31,000"],["Surplus","Rs 51,000 / month"]]],
+  ["btn","Continue","D07"]
+ ],
+ spec:{fields:["fixed","variable","guilt_free","current_sip"],logic:["EMIs are read-only here, carried from D03.","Deficit: red line, copy per the React: you are running a deficit budget, income or expenses need a re-look. Plan still builds."],branches:[["Continue","D07"]],states:["Deficit state"],dev:["SIP detection from AA debits to RTAs; user confirms."]}
+},
+{id:"D07",sec:"D",title:"Goals and key life events",tier:["ALL"],
+ purpose:"Where we are heading and what is coming along the way. Suggested from the family circle; user edits, adds, ranks.",
+ ui:[
+  ["h","Last one, and the most important. Everything so far tells me where you are. This tells me where we are heading."],
+  ["card","Suggested for you",["Aryan's higher education, 2039","Home upgrade","Wedding","Vehicle","Travel","Business or second income","Parents' support","Health corpus","Something else"]],
+  ["card","Each goal",["Name, year or timeline, cost today (band or exact), priority rank (drag)"]],
+  ["card","Work-optional age",["Default 60, change it. This is an anchor for the maths, not a goal you must chase."]],
+  ["in","Yes list: things you want to say yes to, in your words"],
+  ["btn","Continue","D08"]
+ ],
+ spec:{fields:["goals[]: type, label, year, cost_today, priority","fi_age","yes_list[]"],logic:["Retirement is not mandatory (spiff, Q14). Work-optional age is an assumption used by the cashflow and life-events projections, defaulted to 60 and editable.","Goal types match the React key-life-events categories: education, home, vehicle, wedding, health, plus travel, business, parents, other.","No cap on goals; priority order feeds the SIP reconciliation when surplus is short (M4 stage 7)."],branches:[["Continue","D08"]],states:["No goals: plan covers emergency fund, protection, cashflow, debt, tax, and the work-optional projection"],dev:["Timeline to years map from M2 6.1."]}
+},
+{id:"D08",sec:"D",title:"Risk profile (8 questions)",tier:["ALL"],
+ purpose:"SEBI-mandated risk profiling using HoA's existing questionnaire, one question per screen as tap cards.",
+ ui:[
+  ["p","Question 5 of 8. SEBI requires this, and it decides how much of your money goes into equity."],
+  ["h","If your Rs 1,00,000 portfolio fell to Rs 75,000 within a month, you would..."],
+  ["radio",["Invest more to lower my average price","Hold and sell nothing, expecting recovery","Sell a portion to cut losses and move to safer options","Sell everything, I do not intend to take risks"]],
+  ["btn","Next","D09"]
+ ],
+ spec:{fields:["rpq_answers[8]"],logic:["Questions verbatim from HoA's questionnaire: dependants, income stability, investor knowledge, savings status, drawdown reaction, investment goal, gain-loss preference, borrowing to invest.","Q7 copy says three options and lists four; fix the copy."],branches:[["Next","D09"]],states:[],dev:["Scoring map (points per option, band cut-offs) needed from HoA. Store score, band, timestamp, questionnaire version."]}
+},
+{id:"D09",sec:"D",title:"Your risk profile",tier:["ALL"],
+ purpose:"Communicate the result and take the declaration, as the regulations require.",
+ ui:[
+  ["h","Based on your answers, you are a Moderate investor"],
+  ["p","What this means: your long-term money leans towards equity; your short-term money stays safe. You can retake this any time from Settings, and I will ask you to confirm it once a year."],
+  ["card","Declaration",["I declare the details furnished are true and correct, and I will inform you of any changes. (Full text as per HoA's questionnaire.)"]],
+  ["chips",["I confirm"]],
+  ["btn","Continue","D10"]
+ ],
+ spec:{fields:["risk_band","declaration_accepted_at"],logic:["Band feeds the cohort grid in L03.","Annual re-confirmation trigger in Q04."],branches:[["Continue","D10"]],states:[],dev:["Suitability record: store band + the advice version it applied to (advice register for SEBI records)."]}
+},
+{id:"D10",sec:"D",title:"Review and build",tier:["ALL"],
+ purpose:"One page of everything collected, with sources and approx tags, before the engine runs.",
+ ui:[
+  ["h","Here is your picture. Anything to fix before I build?"],
+  ["rows",[["Family","You, partner, 1 child"],["Assets","Rs 32.4 L (AA + manual)"],["Loans","Rs 41.0 L"],["Insurance","Term Rs 50 L, health employer only"],["Income","Rs 1,82,000 / month"],["Expenses","Rs 1,31,000 / month"],["Goals","3 goals, work optional at 55"],["Risk profile","Moderate"]]],
+  ["p","Figures marked approx come from ranges you picked; exact numbers make the plan sharper. You can refine after seeing it."],
+  ["btn","Build my plan","G01"],
+  ["link","Edit a section","O02"]
+ ],
+ spec:{fields:[],logic:["Each row links back to its screen.","The approx refinement prompt from V5 lives here."],branches:[["Build","G01"],["Edit","O02"]],states:[],dev:["Snapshot of inputs saved as plan_input_version for the advice record."]}
+}
+];
+
+// yeslyf journey wireframes v0.1 - screen data (part 2)
+var SCREENS2 = [
+// ---------- G: Outputs ----------
+{id:"G01",sec:"G",title:"Building your plan",tier:["ALL"],
+ purpose:"The engine runs in seconds. Copy says a minute; the clarity picture shows first so the wait feels earned.",
+ ui:[
+  ["progress","Building your plan on your numbers",80],
+  ["p","Every number you shared is shaping something specific to your life. Not a template. Yours."],
+  ["btn","See my clarity picture","G02"]
+ ],
+ spec:{fields:[],logic:["No human gate (spiff, Q15). A plan-being-prepared delay is a later experiment; keep a config for artificial wait time (0 by default)."],branches:[["auto","G02"]],states:["Engine error: retry; support alert"],dev:["Plan versioned: plan_version, assumptions_version, instrument_set_version."]}
+},
+{id:"G02",sec:"G",title:"Clarity picture",tier:["ALL"],
+ purpose:"Where you stand today: net worth, what is realisable, allocation, current return mix, blind spots. The first output and the adviser's call brief.",
+ ui:[
+  ["h","Where you stand today"],
+  ["num","Net worth Rs 18.6 L"],
+  ["rows",[["Realisable now","Rs 9.1 L"],["Locked (EPF, NPS, ULIP)","Rs 12.3 L"],["Property","Rs 11.0 L"],["Loans","Rs 41.0 L"]]],
+  ["chart","Allocation: cash / debt / hybrid / commodities / equity"],
+  ["rows",[["Your current mix earns about","8.1% a year"]]],
+  ["card","Blind spots",["Urgent: term cover Rs 50 L is below your home loan Rs 41 L plus family needs","Warning: health cover disappears with your job","Opportunity: Rs 5 L in FDs earning below inflation"]],
+  ["btn","See my plan","G03"]
+ ],
+ spec:{fields:[],logic:["M2 section 4: net worth, WAR, blind-spot rules.","Kept post-paywall (open point 3). Pre-paywall the hook is the reveal, not this."],branches:[["See my plan","G03"]],states:[],dev:["This screen is also the top of the adviser's pre-call view (M01)."]}
+},
+{id:"G03",sec:"G",title:"Plan: overview",tier:["ALL"],
+ purpose:"The React plan, re-laid for a phone. Tab strip across the top; one screen per tab.",
+ ui:[
+  ["tabs",["Overview","Emergency","Protection","Cashflow","Debt","Tax","Life events","Summary"]],
+  ["card","Your plan, built on what you told us",["You told us you are established but wondering if you are on track, feeling mixed, and that what you want is freedom. This plan is built on that."]],
+  ["rows",[["Monthly take-home","Rs 1,82,000"],["Fixed commitments","Rs 84,000 (46%)"],["Monthly surplus","Rs 51,000"],["What you own","Rs 32.4 L"],["What you owe","Rs 41.0 L"],["Life cover","Rs 50 L"]]],
+  ["card","What success looks like",["Aryan's education 2039: Rs 82 L, not funded","Home upgrade 2032: Rs 85 L, 40% funded","Work optional at 55: Rs 1.6 Cr on current path"]],
+  ["card","What needs attention, in this order",["Term cover gap","No emergency fund","Work-optional corpus short","Education unfunded"]],
+  ["btn","Next: Emergency fund","G04"],
+  ["link","Email me the PDF","G03"]
+ ],
+ spec:{fields:[],logic:["Content and section logic from the FP React (Overview, Emergency Fund, Life and Health Insurance, Cashflow, Debt, Tax, Key Life Events, Summary)."],branches:[["Tabs","G04"]],states:["DIFM: plan shown as read-only reference, adviser owns changes"],dev:["The 860px React does not fit a phone; each section becomes a vertical screen with the same ledger rows and callouts. Charts keep the inflation toggle and horizon slider."]}
+},
+{id:"G04",sec:"G",title:"Plan: emergency fund",tier:["ALL"],
+ purpose:"Section 1. Target, what is available, the gap, the monthly move, months to fill.",
+ ui:[
+  ["h","Emergency fund"],
+  ["card","Narrative",["You have Rs 2.8 L in a savings account with no designation. Move it today, top it up for four months, and it is done."]],
+  ["rows",[["Monthly expenses","Rs 1,31,000"],["Target, 6 months","Rs 7.9 L"],["Available (FD + debt fund)","Rs 5.0 L"],["Monthly move to liquid fund","Rs 45,000"],["Fully funded","in 7 months"]]],
+  ["card","Actionables",["1. Move Rs 2.8 L savings to a liquid fund today","2. Top up Rs 45,000 a month for 7 months"]],
+  ["btn","Next: Protection","G05"]
+ ],
+ spec:{fields:[],logic:["React EmergencyFund ledger and rules; emergency months from L02."],branches:[["Next","G05"]],states:["Already funded: Already there state"],dev:[]}
+},
+{id:"G05",sec:"G",title:"Plan: protection",tier:["ALL"],
+ purpose:"Section 2. Life insurance need ledger and the health recommendation.",
+ ui:[
+  ["h","Life insurance"],
+  ["rows",[["+ Liabilities","Rs 41.0 L"],["+ Future family expenses (PV)","Rs 2.1 Cr"],["- Current cover","Rs 50 L"],["- Assets excluding your home","Rs 21.4 L"],["Additional cover needed","Rs 1.8 Cr"]]],
+  ["card","Actionables",["3. Buy Rs 1.8 Cr additional pure term cover","4. Review the endowment policy: surrender if under half its term"]],
+  ["h","Health insurance"],
+  ["card","Your only cover is from your employer",["5. Buy a Rs 15 L family floater plus Rs 50 L top-up in your own name"]],
+  ["btn","Next: Cashflow","G06"]
+ ],
+ spec:{fields:[],logic:["React LIFE_INSURANCE formula and policy review rules (ULIP after 5-year lock-in; endowment surrender if under half term).","Health thresholds from L02."],branches:[["Next","G06"]],states:["Well protected: no actionables, positive narrative"],dev:[]}
+},
+{id:"G06",sec:"G",title:"Plan: cashflow",tier:["ALL"],
+ purpose:"Section 3. Surplus narrative, projection chart, the SIP from month N.",
+ ui:[
+  ["h","Cashflow"],
+  ["card","Narrative",["Your surplus is Rs 51,000 a month after fixed costs. Phase 1 directs it to the emergency fund; from month 8, every rupee is directed intentionally."]],
+  ["chart","Income vs expenses by age, with life events stacked; inflation toggle; view-until-age slider"],
+  ["card","Actionables",["6. From month 8, start an SIP of Rs 29,000 a month"]],
+  ["p","Invest first. Spend what remains. Set once, automatic forever."],
+  ["btn","Next: Debt","G07"]
+ ],
+ spec:{fields:[],logic:["Deficit variant per React."],branches:[["Next","G07"]],states:["Deficit state: no SIP, action 1 is fix cashflow"],dev:["Chart interactive on mobile: tap bar for detail."]}
+},
+{id:"G07",sec:"G",title:"Plan: debt",tier:["ALL"],
+ purpose:"Section 4. One block per loan with the prepay verdict.",
+ ui:[
+  ["h","Home loan"],
+  ["rows",[["Outstanding","Rs 41.0 L approx"],["EMI","Rs 38,000, 21% of take-home"],["Rate","8.5% floating"],["Effective post-tax rate","6.0%"],["Investment return assumption","11%"],["Verdict","Do not prepay"]]],
+  ["h","Car loan"],
+  ["rows",[["Rate","11.5% fixed"],["Verdict","Try repaying it early"]]],
+  ["btn","Next: Tax","G08"]
+ ],
+ spec:{fields:[],logic:["React LoanBlock rules; EMI ceiling and return assumption from L02."],branches:[["Next","G08"]],states:["No loans: section shows a one-line all-clear"],dev:[]}
+},
+{id:"G08",sec:"G",title:"Plan: tax",tier:["ALL"],
+ purpose:"Section 5. Old vs new regime with editable inputs; verdict updates live.",
+ ui:[
+  ["h","Tax: old vs new regime"],
+  ["card","On your numbers, the New regime saves you Rs 34,000 a year",["Adjust the figures below and it updates live"]],
+  ["rows",[["Salary and bonus","Rs 21.8 L"],["80C, NPS, 80D, home-loan interest","Rs 4.0 L"],["HRA: city, basic, HRA received, rent paid","..."]]],
+  ["p","A basic comparison for choosing a regime, not your tax liability. Confirm with your tax adviser."],
+  ["btn","Next: Life events","G09"]
+ ],
+ spec:{fields:["tax inputs (editable, saved)"],logic:["Slabs, rebates, surcharge, cess per FY from L02 config, not code. React has FY 2025-26 hardcoded."],branches:[["Next","G09"]],states:[],dev:["Inputs persist; re-run on change."]}
+},
+{id:"G09",sec:"G",title:"Plan: key life events",tier:["ALL"],
+ purpose:"Section 6. Timeline of events with family ages, and for each event whether it is met, as-is vs with recommendations.",
+ ui:[
+  ["h","Key life events"],
+  ["chart","Stacked bars by year: education, home, vehicle, wedding, health; family ages on the axis"],
+  ["card","Aryan's education, 2039, costs Rs 82 L",["As-is: not met, Rs 41 L available","With recommendations: met, Rs 1.1 Cr available, next 3 years covered"]],
+  ["card","Work optional at 55, 2050",["As-is: money lasts till 67","With recommendations: lasts till 91"]],
+  ["btn","Next: Summary","G10"]
+ ],
+ spec:{fields:[],logic:["React KLE and LifeEventComparisons: event met if liquid assets that year cover the cost; buffer covered if the remainder covers 3 years of expenses. Retirement shown always as the anchor event."],branches:[["Next","G10"]],states:[],dev:["Needs the net-worth growth calculator output per scenario."]}
+},
+{id:"G10",sec:"G",title:"Plan: summary",tier:["ALL"],
+ purpose:"Section 7. Every actionable in plan order, numbered, with the section it came from. The bridge into the investment plan.",
+ ui:[
+  ["h","Everything in one place"],
+  ["card","Actionables",["1. Move Rs 2.8 L to a liquid fund (Emergency)","2. Top up Rs 45,000 a month for 7 months (Emergency)","3. Buy Rs 1.8 Cr term cover (Protection)","4. Review the endowment policy (Protection)","5. Buy a Rs 15 L floater plus top-up (Protection)","6. From month 8, SIP Rs 29,000 a month (Cashflow)"]],
+  ["p","Nothing here needs a promotion, a windfall, or a change of lifestyle. It needs direction, and you now have it."],
+  ["btn","See exactly where the money goes","G11"],
+  ["link","Email me the PDF","G10"]
+ ],
+ spec:{fields:[],logic:[],branches:[["Investment plan","G11"]],states:["DIFM: this is where the app stops; next screen shows your adviser will take it from here"],dev:["PDF generated from the same data and emailed; stored in vault H06."]}
+},
+{id:"G11",sec:"G",title:"Investment plan: allocation",tier:["DIY","DIWM"],
+ purpose:"Money by horizon bucket, with the target mix from the logic panel for the user's risk band, against what they hold today.",
+ ui:[
+  ["h","Where the money goes"],
+  ["p","You are a Moderate investor. Each goal sits in a bucket by how far away it is."],
+  ["card","Short term, under 1 year",["Emergency fund, Rs 7.9 L","Cash 100%"]],
+  ["card","Medium term, 1 to 3 years",["Vehicle 2028, Rs 8 L","Debt 60, hybrid 30, cash 10"]],
+  ["card","Long term, over 3 years",["Education, home, work-optional","Equity 65, hybrid 10, debt 15, commodities 10"]],
+  ["chart","Today vs target: cash / debt / hybrid / commodities / equity"],
+  ["btn","Next: your existing holdings","G12"]
+ ],
+ spec:{fields:[],logic:["Grid from L03: risk band x horizon bucket. Horizon bucket boundaries from L03 (short under 1 year, medium 1 to 3, long over 3, editable).","Persona never affects allocation; only risk band and horizon do."],branches:[["Next","G12"]],states:[],dev:["Bucket assignment recomputed at every quarterly review as goals get closer (glide path rule in L02)."]}
+},
+{id:"G12",sec:"G",title:"Investment plan: your existing holdings",tier:["DIY","DIWM"],
+ purpose:"Hold, exit or review, per holding, against the published approved list. Simplest sell logic.",
+ ui:[
+  ["h","What you already hold"],
+  ["card","Parag Parikh Flexi Cap, Direct: Rs 4.2 L",["Hold: on the approved list for long-term goals"]],
+  ["card","XYZ Small Cap, Regular: Rs 2.1 L",["Exit in 2 tranches: not on the approved list; regular plan; LTCG below the exemption this year"]],
+  ["card","ABC Balanced Advantage: Rs 1.9 L",["Review: we do not have this fund classified yet; hold for now"]],
+  ["card","LIC endowment: surrender value Rs 1.1 L",["Surrender after checking the term completed; see Protection"]],
+  ["btn","Next: what to buy","G13"]
+ ],
+ spec:{fields:[],logic:["Rule set (spiff, Q21): on the approved list for the bucket it fits: HOLD (and add to). Not on the approved list: EXIT, staggered with tax and exit-load and lock-in checks (ELSS 3 years, ULIP 5 years, SGB windows). Unknown ISIN: REVIEW, shown to the user as hold for now and queued for the adviser in L04.","Sell and switch recommendations only on AA or CAS-verified holdings; manual entries get buy advice only."],branches:[["Next","G13"]],states:["No holdings: screen skipped"],dev:["No performance-analytics vendor needed for V1; the approved list is the judgment."]}
+},
+{id:"G13",sec:"G",title:"Investment plan: what to buy",tier:["DIY","DIWM"],
+ purpose:"Instrument cards per goal bucket with the exact amount and why. ISINs come from the logic panel.",
+ ui:[
+  ["h","What to buy, and how much"],
+  ["card","Emergency fund: liquid fund",["Nippon India Liquid Fund, Direct","Lumpsum Rs 2.8 L now, then Rs 45,000 a month for 7 months"]],
+  ["card","Long term: index and flexi cap",["Nifty 50 Index Fund, Direct: SIP Rs 14,000 from month 8","Parag Parikh Flexi Cap, Direct: SIP Rs 9,000 from month 8"]],
+  ["card","Long term: gold",["Gold ETF via smallcase: SIP Rs 3,000"]],
+  ["card","Medium term: debt",["Short duration fund, Direct: SIP Rs 3,000"]],
+  ["p","Why these: direct plans only, low cost, on House of Alpha's current approved list. Reviewed every quarter."],
+  ["btn","See my action plan","G14"]
+ ],
+ spec:{fields:[],logic:["Amounts from M4 goal SIPs and reconciliation, split across instruments by the weights in L04.","Lumpsum vs staggered (STP) decided by the L07 market rule."],branches:[["Next","G14"]],states:[],dev:["Each card links to the instrument's page (facts, costs, category) for the suitability record."]}
+},
+{id:"G14",sec:"G",title:"Action plan",tier:["DIY","DIWM"],
+ purpose:"The ordered to-do list with amounts, timing and how to do each one. This is the object the dashboard tracks.",
+ ui:[
+  ["h","Your action plan"],
+  ["card","Now",["Move Rs 2.8 L to the liquid fund: do it in the app","Apply for Rs 1.8 Cr term cover: guided, outside the app"]],
+  ["card","This month",["Buy health floater plus top-up: guided, outside the app","Exit XYZ Small Cap, tranche 1: do it in the app"]],
+  ["card","From month 8",["Start 4 SIPs, Rs 29,000 total: do it in the app"]],
+  ["card","Ongoing",["Quarterly review in the app","Step up SIPs 10% every April"]],
+  ["btn","Start executing","E01"],
+  ["link","DIWM: book your plan call first","K01"]
+ ],
+ spec:{fields:["actions[]: type, amount, due, channel (in-app / external), status"],logic:["Ordering per M4 priority sequence.","Plan upgrades from the logic panel produce a new action plan version; user sees a diff (H05)."],branches:[["Execute","E01"],["Book call","K01"]],states:["DIWM: banner suggests booking the call before executing; not enforced"],dev:["Action status: not started, in progress, done (AA-verified), done (self-reported)."]}
+},
+
+// ---------- K: Calls ----------
+{id:"K01",sec:"K",title:"Book your plan call",tier:["DIWM"],
+ purpose:"One 45-minute call with a named adviser, after the plan exists. Expectations set, slot picked.",
+ ui:[
+  ["h","Your plan discussion call"],
+  ["card","What the 45 minutes are for",["Your current situation and future aspirations","How money plays into the journey, using the 5 Alpha framework","If a big decision is coming, we run a few scenarios"]],
+  ["in","Anything specific you want from the call?"],
+  ["card","Pick a slot with Priya",["Tue 10 Feb, 7:30 pm","Wed 11 Feb, 12:30 pm","Sat 14 Feb, 10:00 am"]],
+  ["btn","Confirm","K02"]
+ ],
+ spec:{fields:["call_slot","call_expectations"],logic:["Where spiff landed on calls (Q29): one plan call at delivery; quarterly reviews are automated in-app (Q01); more calls a la carte. The four 15-minute check-ins are dropped.","Call is bookable only after G01 so the adviser reads a built plan."],branches:[["Confirm","K02"]],states:["No slots in 7 days: waitlist and a note to admin"],dev:["Calendar: Cal.com or Calendly embedded; video: Zoom or Meet. Adviser sees G02 plus the plan before the call (M01)."]}
+},
+{id:"K02",sec:"K",title:"Call confirmed",tier:["DIWM"],
+ purpose:"Confirmation, join link, and the ask to read the plan before the call.",
+ ui:[
+  ["h","Tue 10 Feb, 7:30 pm with Priya"],
+  ["p","Read your plan before we speak; the call is for questions and calibration, not a first look."],
+  ["btn","Add to calendar","K02"],
+  ["btn2","Go to my plan","G03"],
+  ["link","Reschedule","K01"]
+ ],
+ spec:{fields:[],logic:[],branches:[["Plan","G03"]],states:["Reminder 24 hours and 1 hour before"],dev:[]}
+},
+{id:"K03",sec:"K",title:"After the call",tier:["DIWM"],
+ purpose:"The adviser's notes and any input changes, visible to the user. Plan re-runs if inputs changed.",
+ ui:[
+  ["h","Notes from your call"],
+  ["card","What we agreed",["Move work-optional age to 55","Add a sabbatical goal in 2031, Rs 12 L","Term cover: apply this week"]],
+  ["p","Your plan was rebuilt with these changes. Two actions changed."],
+  ["btn","See what changed","H05"]
+ ],
+ spec:{fields:["call_notes","input_changes[]"],logic:["Adviser edits inputs in the admin tool; the engine re-runs; the user sees a diff (H05). The adviser never edits outputs by hand: advice always comes from the engine (spiff: the app is the app)."],branches:[["Diff","H05"]],states:[],dev:["Call record stored for the advice register."]}
+},
+{id:"K04",sec:"K",title:"Book a review call (a la carte)",tier:["DIY","DIWM"],
+ purpose:"Any user can buy a 30-minute call at any time. DIWM may have one included per year; config.",
+ ui:[
+  ["h","Talk to an adviser"],
+  ["p","A 30-minute call to go through your plan, a decision, or anything that changed. Rs ___."],
+  ["card","Pick a slot",["Thu 6 Mar, 6:00 pm","Sat 8 Mar, 11:00 am"]],
+  ["btn","Book and pay","K02"]
+ ],
+ spec:{fields:[],logic:["Included-call count per tier is config."],branches:[["Book","K02"]],states:[],dev:["Payment through the same Razorpay flow as P04."]}
+},
+
+// ---------- E: Execution ----------
+{id:"E01",sec:"E",title:"Execution hub",tier:["DIY","DIWM"],
+ purpose:"The action plan as a to-do list grouped by how each action is done: in the app, guided outside, or self-reported.",
+ ui:[
+  ["h","Let's do it"],
+  ["card","Invest, in the app",["Liquid fund lumpsum Rs 2.8 L: not started","4 SIPs from month 8: scheduled","Exit XYZ Small Cap tranche 1: not started"]],
+  ["card","Protect, guided outside the app",["Term cover Rs 1.8 Cr: not started","Health floater plus top-up: not started"]],
+  ["card","Housekeeping",["Nominations on all accounts: not started"]],
+  ["btn","Set up investing (one time, 10 minutes)","E02"]
+ ],
+ spec:{fields:[],logic:["First in-app investment requires E02 once."],branches:[["Set up","E02"],["Invest","E03"],["ETF","E04"],["Protect","E05"]],states:["All done: celebration state on H01"],dev:["Statuses update from AA detection (E06)."]}
+},
+{id:"E02",sec:"E",title:"One-time investing setup",tier:["DIY","DIWM"],
+ purpose:"KYC status, BSE StAR MF account (UCC), bank account, nominee, FATCA, and the SIP mandate. Once.",
+ ui:[
+  ["h","Set up investing, once"],
+  ["rows",[["KYC status","Verified via KRA"],["Bank account","Add and verify (penny drop)"],["Nominee","Add"],["FATCA declaration","Confirm"],["SIP mandate (UPI autopay or e-NACH)","Set up, Rs 50,000 a month limit"]]],
+  ["btn","Continue","E03"]
+ ],
+ spec:{fields:["bank_account","nominee","fatca","mandate"],logic:["Creates the client code on BSE StAR MF under HoA's RIA registration. Direct plans only (agreement and Reg 22A)."],branches:[["Continue","E03"]],states:["KYC not verified: start KYC with the vendor, resume later"],dev:["Direct BSE StAR MF APIs or an API layer such as Cybrilla Fintech Primitives; dev call.","Mandate limit set above total planned SIPs with headroom for step-ups."]}
+},
+{id:"E03",sec:"E",title:"Place a mutual fund order",tier:["DIY","DIWM"],
+ purpose:"Order summary from the action, authenticate, pay. Same screen for lumpsum, SIP and redemption.",
+ ui:[
+  ["h","Buy Nippon India Liquid Fund, Direct"],
+  ["rows",[["Amount","Rs 2,80,000 lumpsum"],["For","Emergency fund"],["Pay via","UPI"]]],
+  ["btn","Confirm and pay","E06"],
+  ["p","Units are allotted in 1 to 3 working days. I will mark this done when they land."]
+ ],
+ spec:{fields:["order"],logic:["SIP orders register against the mandate with start date from the action plan.","Redemptions and switches use the same screen with exit-load and tax notes shown."],branches:[["Confirm","E06"]],states:["Order rejected: reason and retry","Cut-off time passed: next working day NAV"],dev:["BSE StAR 2FA as required."]}
+},
+{id:"E04",sec:"E",title:"ETFs and stocks via smallcase",tier:["DIY","DIWM"],
+ purpose:"Connect the user's own broker through smallcase Gateway, then place the basket or order.",
+ ui:[
+  ["h","Gold ETF, Rs 3,000 a month"],
+  ["p","This runs through your own broker. Connect once."],
+  ["chips",["Zerodha","Groww","Upstox","Other"]],
+  ["btn","Connect and place order","E06"]
+ ],
+ spec:{fields:["broker","gateway_txn"],logic:["No new demat needed; the user's existing broker executes."],branches:[["Place","E06"]],states:["No broker account: show how to open one; action stays pending"],dev:["smallcase Gateway SDK; transaction status webhook."]}
+},
+{id:"E05",sec:"E",title:"Guided action outside the app",tier:["DIY","DIWM"],
+ purpose:"Insurance and other actions we cannot execute: what to do, where, what to look for, then confirm.",
+ ui:[
+  ["h","Buy Rs 1.8 Cr term cover"],
+  ["card","How",["Pure term plan, cover until your income-earning years end","Compare 2 or 3 insurers; disclose everything","Do the medicals"]],
+  ["btn2","I have done this: upload the policy","E06"],
+  ["link","Remind me in a week","E01"]
+ ],
+ spec:{fields:["policy_upload","self_reported_at"],logic:["No product names or links that could look like distribution; RIA advises, does not distribute.","Marked done (self-reported); AA premium debit can verify later."],branches:[["Done","E06"]],states:[],dev:[]}
+},
+{id:"E06",sec:"E",title:"Verification and progress",tier:["DIY","DIWM"],
+ purpose:"Actions get marked done by evidence, not by tapping.",
+ ui:[
+  ["h","Progress"],
+  ["rows",[["Liquid fund lumpsum","Done, units allotted (verified)"],["Term cover","Done, policy uploaded (self-reported)"],["SIPs from month 8","Scheduled, mandate active"],["XYZ Small Cap exit","In progress, tranche 1 placed"]]],
+  ["btn","Back to home","H01"]
+ ],
+ spec:{fields:[],logic:["Verified: AA or platform confirmation. Self-reported: user upload or tap, shown as such.","Missed SIP detected via AA: nudge with fix steps."],branches:[["Home","H01"]],states:[],dev:["Verification matrix from V5 6.2."]}
+},
+
+// ---------- H: Living dashboard ----------
+{id:"H01",sec:"H",title:"Home (plan ready)",tier:["ALL"],
+ purpose:"The living plan. Net worth live, progress, the single next action, plan-updated banner, upcoming review, community, help.",
+ ui:[
+  ["num","Net worth Rs 19.2 L"],
+  ["p","Up Rs 0.6 L since your plan. Updated today via Account Aggregator."],
+  ["card","Your next action",["Apply for Rs 1.8 Cr term cover"]],
+  ["card","Progress",["3 of 8 actions done","Wheel of wealth: protection red, emergency amber, cashflow green"]],
+  ["card","Coming up",["Quarterly review on 1 May","[DIWM] Plan call: Tue 10 Feb, 7:30 pm"]],
+  ["card","Community",["What's happening this week"]],
+  ["tabs",["Home","Plan","Actions","Vault","Help"]]
+ ],
+ spec:{fields:[],logic:["Home content is decided by state (section N). This is state S8/S9.","DIFM: no next action from the engine; card reads: your adviser manages this; shows next review date."],branches:[["Next action","E01"],["Plan","G03"],["Actions","H04"],["Vault","H06"],["Help","H07"]],states:["S6 plan ready not read: hero becomes your plan is ready","S11 plan updated: banner to H05","S12 payment failed: banner"],dev:["Net worth from AA refresh on open (async, cached first)."]}
+},
+{id:"H02",sec:"H",title:"Net worth growth",tier:["ALL"],
+ purpose:"Progress report: realisable vs locked over time since the plan started.",
+ ui:[
+  ["h","My net worth growth"],
+  ["chart","Area: realisable (blue) and locked (green) by month"],
+  ["rows",[["Since plan start","+ Rs 1.4 L"],["Invested by you","Rs 1.1 L"],["Market movement","+ Rs 0.3 L"]]],
+  ["btn","Back","H01"]
+ ],
+ spec:{fields:[],logic:[],branches:[["Back","H01"]],states:[],dev:["Monthly snapshots stored."]}
+},
+{id:"H03",sec:"H",title:"Wheel of wealth",tier:["ALL"],
+ purpose:"Six dimensions, each with a status, red sorted first. The same six from the V5 health snapshot.",
+ ui:[
+  ["h","Wheel of wealth"],
+  ["chart","Six segments: protection, emergency, cashflow, debt, goals, investments"],
+  ["rows",[["Protection","Red: term gap"],["Emergency","Amber: 60% funded"],["Cashflow","Green"],["Debt","Green"],["Goals","Amber"],["Investments","Amber: 2 exits pending"]]],
+  ["btn","Back","H01"]
+ ],
+ spec:{fields:[],logic:["Status rules from the plan's flags."],branches:[["Back","H01"]],states:[],dev:[]}
+},
+{id:"H04",sec:"H",title:"Action queue",tier:["DIY","DIWM"],
+ purpose:"All actions with status and filters; the same objects as the execution hub.",
+ ui:[
+  ["h","Actions"],
+  ["chips",["To do","In progress","Done"]],
+  ["rows",[["Term cover","To do"],["Health floater","To do"],["XYZ Small Cap exit, tranche 2","Due 15 Apr"],["Liquid fund lumpsum","Done"]]],
+  ["btn","Back","H01"]
+ ],
+ spec:{fields:[],logic:[],branches:[["Back","H01"]],states:[],dev:[]}
+},
+{id:"H05",sec:"H",title:"Your plan was updated",tier:["DIY","DIWM"],
+ purpose:"The diff screen. Triggered by a logic-panel publish, a quarterly review, or adviser input changes.",
+ ui:[
+  ["h","Your plan was updated on 12 Mar"],
+  ["card","2 changes",["Long-term equity: XYZ Index Fund replaced by ABC Index Fund (lower cost). New SIP goes to ABC from April; existing units stay.","Gold allocation raised from 5% to 10% for long-term goals. New SIP Rs 3,000 to Rs 5,000."]],
+  ["p","Why: House of Alpha reviewed the approved list this quarter."],
+  ["btn","Accept and update my action plan","G14"],
+  ["link","Ask about this","H07"]
+ ],
+ spec:{fields:["plan_version_from","plan_version_to","accepted_at"],logic:["Every change carries a reason. Nothing executes without the user accepting.","Plan upgrade job: on publish, recompute for affected users, generate diffs, notify (spiff, Q19)."],branches:[["Accept","G14"]],states:["Multiple pending updates: merged into one diff"],dev:["Diff is computed on action plan objects, not on text."]}
+},
+{id:"H06",sec:"H",title:"Vault",tier:["ALL"],
+ purpose:"Everything signed, paid for, produced or uploaded.",
+ ui:[
+  ["h","Your documents"],
+  ["rows",[["Advisory agreement, signed 3 Feb","PDF"],["Invoices","3"],["Plan PDFs","v1, v2"],["Risk profile","Moderate, 3 Feb"],["Uploaded policies","Term cover"],["CAS uploads","1"]]],
+  ["btn","Back","H01"]
+ ],
+ spec:{fields:[],logic:[],branches:[["Back","H01"]],states:[],dev:["Retention per SEBI record-keeping (5 years after the relationship ends)."]}
+},
+{id:"H07",sec:"H",title:"Help",tier:["ALL"],
+ purpose:"Tier-dependent help channel. DIY: FAQ, ask yeslyf, buy a call. DIWM: chat with adviser (one business day). DIFM: contact Harish.",
+ ui:[
+  ["h","Help"],
+  ["card","DIY",["FAQs","Ask yeslyf (answers from your plan)","Talk to an adviser: 30-minute call, Rs ___"]],
+  ["card","DIWM",["Message Priya: replies within one business day","Book your quarterly check-in"]],
+  ["card","DIFM",["Message Harish"]],
+  ["btn","Back","H01"]
+ ],
+ spec:{fields:[],logic:["One card renders, by tier."],branches:[["Call","K04"]],states:[],dev:["Chat routed to Zoho Desk (section M). No advice via chat beyond what the plan already says; anything new goes to a call or a plan re-run."]}
+},
+{id:"H08",sec:"H",title:"Community",tier:["ALL"],
+ purpose:"Link-out to the community with a small strip of what is happening. Community lives off-app (spiff, Q26).",
+ ui:[
+  ["h","What's happening in the community"],
+  ["rows",[["This week's session","Thu 8 pm"],["Members who completed their plan this week","14"]]],
+  ["btn","Open the community","H08"],
+  ["btn2","Back","H01"]
+ ],
+ spec:{fields:[],logic:[],branches:[["Back","H01"]],states:[],dev:["Deep link to the community platform with SSO if available; otherwise a plain link."]}
+},
+{id:"H09",sec:"H",title:"Profile and settings",tier:["ALL"],
+ purpose:"Update anything, manage consents and the subscription, see agreements.",
+ ui:[
+  ["h","Settings"],
+  ["rows",[["Update my answers (rebuilds the plan)",""],["Family circle",""],["Account Aggregator: consents, refresh, revoke",""],["Risk profile: retake",""],["Subscription: plan, next billing, cancel",""],["Notifications",""],["Agreements and disclosures",""],["Delete my account",""]]],
+  ["btn","Back","H01"]
+ ],
+ spec:{fields:[],logic:["Update answers reopens the relevant D screens with current values; on save the plan re-runs and H05 shows the diff.","Cancel goes to Q03."],branches:[["Cancel","Q03"]],states:[],dev:["Delete account: retention rules override for regulated records; explain in copy."]}
+},
+
+// ---------- Q: Lifecycle ----------
+{id:"Q01",sec:"Q",title:"Quarterly review (automated)",tier:["DIY","DIWM"],
+ purpose:"AA refresh, confirm what changed, anything else new, plan re-run, diff. The check-in that scales without a call.",
+ ui:[
+  ["h","Your quarterly review"],
+  ["card","We updated 3 numbers from your accounts. Good to go?",["Mutual funds: Rs 11.8 L to Rs 13.1 L","Bank balance: Rs 3.2 L to Rs 2.6 L","New SIP detected: Rs 5,000 to ABC Fund"]],
+  ["chips",["Good to go","Edit","Keep my manual number"]],
+  ["card","Anything else change?",["Income","New loan","Family","Big expense coming","Nothing"]],
+  ["btn","Rebuild my plan","H05"],
+  ["link","DIWM: book a 15-minute check-in","K04"]
+ ],
+ spec:{fields:["review_id","confirmed_changes[]","life_events[]"],logic:["Locked manual fields are not overwritten; the diff shows both and asks (spiff, Q10).","Runs on the plan anniversary quarter; user can trigger early.","Also runs on a logic-panel publish if the user is affected."],branches:[["Rebuild","H05"]],states:["AA consent expired: re-consent prompt (A06) first"],dev:["Periodic AA consent covers this fetch; frequency in the consent template."]}
+},
+{id:"Q02",sec:"Q",title:"Something changed in my life",tier:["DIY","DIWM"],
+ purpose:"Self-reported life events open only the relevant questions, then re-run.",
+ ui:[
+  ["h","What changed?"],
+  ["chips",["Got married","New child","Job or income change","Bought a home","Windfall","Lost income","Something else"]],
+  ["p","I will ask only what this affects."],
+  ["btn","Update my plan","H05"]
+ ],
+ spec:{fields:["event_type"],logic:["Event to question map; re-run; diff."],branches:[["Update","H05"]],states:[],dev:[]}
+},
+{id:"Q03",sec:"Q",title:"Subscription: cancel, failed payment, lapsed",tier:["DIY","DIWM"],
+ purpose:"The three unhappy billing states, each with a clear path back.",
+ ui:[
+  ["card","Cancel",["Why are you leaving? (options)","Offer: pause for 2 months instead","Confirm cancel: plan stays readable, refresh stops"]],
+  ["card","Payment failed",["Banner on home; retry; grace 7 days"]],
+  ["card","Lapsed",["Plan read-only, dated","AA refresh stopped","Resubscribe restores everything"]],
+  ["btn","Back","H09"]
+ ],
+ spec:{fields:["cancel_reason","grace_until"],logic:["Refund of unused period per the agreement when a period was prepaid."],branches:[["Back","H09"]],states:["S12 failed","S13 lapsed"],dev:["Razorpay subscription webhooks drive these states."]}
+},
+{id:"Q04",sec:"Q",title:"Annual: risk profile and agreement",tier:["DIY","DIWM"],
+ purpose:"Once a year: reconfirm the risk profile and renew the 12-month agreement.",
+ ui:[
+  ["h","A year with yeslyf"],
+  ["card","Confirm your risk profile",["Still a Moderate investor? Retake if anything changed"]],
+  ["card","Renew your agreement",["Same terms; sign with Aadhaar OTP"]],
+  ["btn","Continue","H01"]
+ ],
+ spec:{fields:[],logic:["Blocks new advice (plan re-runs) until done; existing plan stays readable."],branches:[["Continue","H01"]],states:[],dev:["Counsel to confirm whether auto-renewal language can replace a fresh eSign."]}
+},
+
+// ---------- N: Returning-user states ----------
+{id:"N01",sec:"N",title:"Returning-user state machine",tier:["ALL"],frame:"desktop",
+ purpose:"Every returning user is routed by state on open. This table is the contract between backend, app and nudges.",
+ ui:[
+  ["table",["State","Who","Home shows","Primary action","Nudges"],[
+   ["S1","Signed up, no reveal","Resume R01","Finish the reveal, 90 seconds","Ping at 1 hour, 1 day"],
+   ["S2","Reveal seen, not paid","X01 saved reveal","Unlock my plan","Day 1, 3, 7, 21, 82, then stop"],
+   ["S2b","Paid but eSign incomplete","Agreement pending","Sign","1 day, 3 days; refund path at 14"],
+   ["S3","Paid, nothing else","O02 hub, step 1","Connect via AA","24h, 72h"],
+   ["S4","Data partial","O02 hub, last section","Continue where you left off","24h, 72h, 7d"],
+   ["S5","Data done, risk profile pending","D08","Two minutes to finish","24h"],
+   ["S6","Plan built, not read","H01 hero: plan ready","Read your plan","48h"],
+   ["S7","DIWM: call booked","H01 with countdown","Prepare for your call","24h, 1h before"],
+   ["S8","Plan read, no action done","H01 next action","Do the first action","48h, 7d, 14d"],
+   ["S9","Executing","H01 progress","Next action","Missed SIP, verified done"],
+   ["S10","All actions done","H01 celebration","Quarterly review date","Anniversary"],
+   ["S11","Plan updated (publish)","H05 banner","Accept the update","3d if unaccepted"],
+   ["S12","Payment failed","Banner","Retry payment","Grace 7 days"],
+   ["S13","Lapsed","Read-only plan","Resubscribe","30d, 90d"],
+   ["S14","DIFM client","Dashboard without engine advice","Your adviser manages this","Review dates"],
+   ["S15","AA consent expired","Q01 with re-consent","Reconnect","At review"]
+  ]]
+ ],
+ spec:{fields:[],logic:["State is computed on every open from stored flags (M6 step determination extended).","One nudge per week maximum across all layers; deep links land on the primary action."],branches:[],states:[],dev:["Nudge channels: push, WhatsApp, email; templates live in the CRM (M01)."]}
+},
+
+// ---------- M: Admin ----------
+{id:"M01",sec:"M",title:"Admin stack (bought, not built)",tier:["ALL"],frame:"desktop",
+ purpose:"What the team needs to run the business, and which off-the-shelf tool does it. Devs build none of this; they expose the data and webhooks.",
+ ui:[
+  ["table",["Need","Tool","Notes"],[
+   ["Users, journey state, data-quality flags, plan versions, AA consent status, adviser pre-call view (G02 + plan)","Appsmith (self-hosted, free) or Retool over the app database","Read-mostly; a few write actions: reassign adviser, edit inputs on the user's behalf, force re-run, refund flag"],
+   ["Assisted onboarding at corporate sessions","Same tool: create user, enter data on their behalf","User later claims the account via OTP"],
+   ["Payments, mandates, refunds, invoices","Razorpay dashboard","Webhooks update tier and billing state"],
+   ["CRM, nudges, WhatsApp, email, support tickets","Zoho CRM + Zoho Desk (recommended); HubSpot free as the alternative","App sends events: signed_up, reveal_seen, paid, data_complete, plan_built, call_booked, action_done, payment_failed, cancelled"],
+   ["Push notifications","Firebase or OneSignal","Templates mirror the CRM journeys"],
+   ["eSign, KYC fetch","Digio console","Signed PDFs land in the vault"],
+   ["Account Aggregator","TSP console (Setu / Finvu / OneMoney)","Consent templates, FIP health"],
+   ["Adviser calendar and video","Cal.com or Calendly; Zoom or Meet","Slots per adviser; capacity cap"],
+   ["Analytics","Mixpanel","Funnel: reveal, paywall, paid, data done, plan read, first action"]
+  ]]
+ ],
+ spec:{fields:[],logic:["Zoho question (spiff, Q23): yes for CRM, nudges and support. Journey-state operations still need a low-code tool over the database; Zoho only sees events we send it."],branches:[],states:[],dev:["Event bus from the app to CRM via webhooks; one integration layer, not per-tool code."]}
+},
+
+// ---------- L: Logic panel ----------
+{id:"L01",sec:"L",title:"Logic panel: roles and layout",tier:["ALL"],frame:"desktop",
+ purpose:"The one internal tool the devs build. Advisers stage; the principal officer publishes; everything is versioned and logged.",
+ ui:[
+  ["tabs",["Assumptions","Buckets and cohorts","Instruments","Market inputs","Staging and test","Publish","Audit"]],
+  ["table",["Role","Can"],[["Adviser","Edit assumptions, grids, instruments in staging; run impact preview"],["Principal officer","Everything, plus publish and rollback"],["Viewer","Read and export"]]],
+  ["btn","Assumptions","L02"]
+ ],
+ spec:{fields:[],logic:["Nothing reaches users until published (L06)."],branches:[["Next","L02"]],states:[],dev:["Web app, desktop only. Same auth as the app with role claims."]}
+},
+{id:"L02",sec:"L",title:"Assumptions",tier:["ALL"],frame:"desktop",
+ purpose:"Every number the engine uses that is not the user's own, editable with effective dates.",
+ ui:[
+  ["table",["Assumption","Value","Used in"],[
+   ["Expected return: cash / debt / hybrid / commodities / equity","6.5 / 7 / 9 / 8 / 11 %","Projections, WAR, allocation"],
+   ["Expense inflation, education inflation","6%, 8%","Goals, cashflow chart"],
+   ["Income growth","8%","Cashflow chart"],
+   ["Withdrawal rate, life expectancy","4%, 85","Work-optional projection"],
+   ["Emergency months","6","Emergency fund"],
+   ["Default work-optional age","60","Anchor"],
+   ["Health floater rules by income","below Rs 2 L: 15 L + 50 L top-up; above: 25 L","Protection"],
+   ["EMI ceiling","30%","Debt"],
+   ["Tax slabs and rebates by FY, surcharge, cess","tables","Tax section"],
+   ["Glide path: years before goal to shift to debt","3","Bucket reassignment"],
+   ["Optimised savings rate for the reveal","by income band","R09"]
+  ]],
+  ["btn","Buckets and cohorts","L03"]
+ ],
+ spec:{fields:[],logic:["Each row: value, effective from, changed by. Changing a value creates a staging version."],branches:[["Next","L03"]],states:[],dev:["Assumptions version stored on every plan."]}
+},
+{id:"L03",sec:"L",title:"Buckets and cohorts",tier:["ALL"],frame:"desktop",
+ purpose:"Horizon boundaries, risk bands, and the allocation grid: risk band by horizon bucket, across the five asset classes.",
+ ui:[
+  ["table",["Horizon bucket","Boundary"],[["Short","up to 1 year"],["Medium","1 to 3 years"],["Long","over 3 years"]]],
+  ["table",["Risk band","RPQ score range"],[["Conservative","8 to 15"],["Moderate","16 to 24"],["Aggressive","25 to 32"]]],
+  ["table",["Grid (cash / debt / hybrid / commodities / equity)","Short","Medium","Long"],[
+   ["Conservative","100/0/0/0/0","20/70/10/0/0","10/40/20/10/20"],
+   ["Moderate","100/0/0/0/0","10/60/30/0/0","0/15/10/10/65"],
+   ["Aggressive","100/0/0/0/0","10/50/40/0/0","0/5/5/10/80"]
+  ]],
+  ["btn","Instruments","L04"]
+ ],
+ spec:{fields:[],logic:["Each row must sum to 100; the panel blocks staging otherwise.","Cohort = risk band x horizon bucket (spiff, Q20 default). Persona is not a cohort dimension."],branches:[["Next","L04"]],states:[],dev:["Scores are placeholders until HoA supplies the RPQ scoring map."]}
+},
+{id:"L04",sec:"L",title:"Instrument universe",tier:["ALL"],frame:"desktop",
+ purpose:"Add an ISIN, auto-fetch its facts, assign it to grid cells with a weight. The published set is the approved list.",
+ ui:[
+  ["in","Add instrument by ISIN"],
+  ["table",["Instrument","Fetched facts","Cells","Weight","Status"],[
+   ["Nifty 50 Index Fund, Direct","Equity, large cap, NAV, min SIP 500, no exit load","Long: Moderate, Aggressive","50%","Published"],
+   ["Parag Parikh Flexi Cap, Direct","Equity, flexi cap, exit load 1 year","Long: Moderate, Aggressive","30%","Published"],
+   ["Gold ETF","Commodity, ETF via smallcase","Long: all","100% of commodities","Staged"],
+   ["Short Duration Fund, Direct","Debt, short duration","Medium: all","60%","Published"],
+   ["Nippon India Liquid Fund, Direct","Cash, liquid","Short: all","100%","Published"],
+   ["Unknown ISINs seen in user holdings (queue)","3 to classify","Assign or mark exit","",""]
+  ]],
+  ["btn","Market inputs","L07"]
+ ],
+ spec:{fields:["isin, cells[], weight, core_or_satellite, status"],logic:["Weights within a cell's asset class sum to 100.","Unknown ISINs from user holdings queue here for classification; until classified users see hold for now (G12).","Stocks and ETFs: exchange master; execution via smallcase."],branches:[["Next","L07"]],states:[],dev:["ISIN facts via an external API (spiff, Q19): AMFI or MF data API for funds; exchange master for listed instruments. Refresh NAVs nightly."]}
+},
+{id:"L07",sec:"L",title:"Market inputs (simple)",tier:["ALL"],frame:"desktop",
+ purpose:"A few numbers typed by the adviser, used for timing text and the lumpsum-versus-staggered rule. No live feeds.",
+ ui:[
+  ["table",["Input","Value","Rule it feeds"],[["Nifty PE","22.4","Below 18: lumpsum ok; 18 to 25: stagger over 6 months; above 25: stagger strongly"],["10-year G-sec yield","7.0%","Debt bucket commentary"],["Repo rate","6.0%","Loan verdict commentary"],["FD rate reference","6.8%","Cash bucket commentary"]]],
+  ["p","Snapshot date stored with every plan; timing text carries the date."],
+  ["btn","Staging and test","L05"]
+ ],
+ spec:{fields:[],logic:["Thresholds editable in L02."],branches:[["Next","L05"]],states:[],dev:[]}
+},
+{id:"L05",sec:"L",title:"Staging and impact preview",tier:["ALL"],frame:"desktop",
+ purpose:"See what a change does before anyone sees it: users affected, actions generated, and a sample user's new plan.",
+ ui:[
+  ["card","Staged changes (v14, unpublished)",["Gold ETF added to long-term commodities","XYZ Index Fund removed from long-term equity","Equity return assumption 11% to 10.5%"]],
+  ["rows",[["Users affected","1,240 of 1,900"],["Sell actions generated","380"],["New SIP changes","1,240"],["Average monthly SIP change","+ Rs 1,100"]]],
+  ["in","Preview a user by ID or pick a persona"],
+  ["chart","Sample user: old vs new allocation and action plan diff"],
+  ["btn","Publish","L06"]
+ ],
+ spec:{fields:[],logic:["Validation blocks publish: grids not summing to 100, cells with no instruments, unknown ISINs in published cells."],branches:[["Publish","L06"]],states:[],dev:["Impact preview runs the engine against a snapshot of all active users; async job."]}
+},
+{id:"L06",sec:"L",title:"Publish",tier:["ALL"],frame:"desktop",
+ purpose:"Publish now or schedule. Users get the diff (H05). Rollback restores the previous version.",
+ ui:[
+  ["card","Publish v14",["Reason for users (shown in H05): House of Alpha reviewed the approved list this quarter","Publish now or schedule for a date","Notify affected users: push and email"]],
+  ["btn","Publish v14","L08"],
+  ["link","Roll back to v13","L08"]
+ ],
+ spec:{fields:["reason","publish_at"],logic:["Publishing creates instrument_set_version; the plan-upgrade job recomputes affected users and creates H05 diffs (spiff, Q19).","Rollback creates a new version pointing at the old set; users get another diff."],branches:[["Publish","L08"]],states:[],dev:[]}
+},
+{id:"L08",sec:"L",title:"Audit and versions",tier:["ALL"],frame:"desktop",
+ purpose:"Who changed what and when, version diffs, export for the advice register.",
+ ui:[
+  ["table",["Version","Published","By","Changes","Users affected"],[["v14","12 Mar","Harish","3","1,240"],["v13","3 Jan","Harish","1","900"],["v12","1 Dec","Bhuvanaa","5","640"]]],
+  ["btn","Export for records","L08"]
+ ],
+ spec:{fields:[],logic:["Every plan stores the versions it was built on; the register can reproduce any advice given."],branches:[],states:[],dev:["Retention 5 years minimum."]}
+}
+];
+SCREENS = SCREENS.concat(SCREENS2);
+
+(function(){
+  var TIERS = ["ALL","DIY","DIWM","DIFM"];
+  var state = { idx:0, tier:"ALL", map:false };
+  var byId = {}; SCREENS.forEach(function(s,i){ byId[s.id]=i; });
+  var secName = {}; SECTIONS.forEach(function(s){ secName[s[0]]=s[1]; });
+
+  // ---------- persistence (best effort) ----------
+  var KEY = "yeslyf_wire_v01";
+  var notes = {};
+  try { notes = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ notes = {}; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(notes)); } catch(e){} }
+  function noteFor(id){ if(!notes[id]) notes[id] = {verdict:"", text:""}; return notes[id]; }
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  function visible(s){ return state.tier==="ALL" || s.tier.indexOf("ALL")>=0 || s.tier.indexOf(state.tier)>=0; }
+
+  // ---------- wireframe element renderer ----------
+  function el(e){
+    var t = e[0];
+    switch(t){
+      case "h": return '<div class="w-h">'+esc(e[1])+'</div>';
+      case "p": return '<div class="w-p">'+esc(e[1])+'</div>';
+      case "in": return '<div class="w-in"><span>'+esc(e[1])+'</span></div>';
+      case "chips": return '<div class="w-chips">'+e[1].map(function(c){return '<span class="w-chip">'+esc(c)+'</span>';}).join("")+'</div>';
+      case "radio": return '<div class="w-radio">'+e[1].map(function(c){return '<div class="w-opt"><i></i><span>'+esc(c)+'</span></div>';}).join("")+'</div>';
+      case "btn": return '<button class="w-btn" data-go="'+esc(e[2]||"")+'">'+esc(e[1])+'</button>';
+      case "btn2": return '<button class="w-btn w-btn2" data-go="'+esc(e[2]||"")+'">'+esc(e[1])+'</button>';
+      case "link": return '<a class="w-link" data-go="'+esc(e[2]||"")+'">'+esc(e[1])+'</a>';
+      case "card": return '<div class="w-card"><div class="w-card-t">'+esc(e[1])+'</div><ul>'+e[2].map(function(r){return '<li>'+esc(r)+'</li>';}).join("")+'</ul></div>';
+      case "rows": return '<div class="w-rows">'+e[1].map(function(r){return '<div class="w-row"><span>'+esc(r[0])+'</span><b>'+esc(r[1])+'</b></div>';}).join("")+'</div>';
+      case "chart": return '<div class="w-chart"><span>'+esc(e[1])+'</span></div>';
+      case "video": return '<div class="w-video"><i></i><span>'+esc(e[1])+'</span></div>';
+      case "num": return '<div class="w-num">'+esc(e[1])+'</div>';
+      case "tabs": return '<div class="w-tabs">'+e[1].map(function(c,i){return '<span'+(i===0?' class="on"':'')+'>'+esc(c)+'</span>';}).join("")+'</div>';
+      case "badge": return '<span class="w-badge">'+esc(e[1])+'</span>';
+      case "progress": return '<div class="w-prog"><span>'+esc(e[1])+'</span><div><i style="width:'+(e[2]||50)+'%"></i></div></div>';
+      case "table": return '<table class="w-table"><thead><tr>'+e[1].map(function(c){return '<th>'+esc(c)+'</th>';}).join("")+'</tr></thead><tbody>'+e[2].map(function(r){return '<tr>'+r.map(function(c){return '<td>'+esc(c)+'</td>';}).join("")+'</tr>';}).join("")+'</tbody></table>';
+      default: return '';
+    }
+  }
+
+  // ---------- render ----------
+  function renderNav(){
+    var html = '';
+    SECTIONS.forEach(function(sec){
+      var items = SCREENS.filter(function(s){ return s.sec===sec[0]; });
+      html += '<div class="nav-sec"><div class="nav-sec-t">'+esc(sec[1])+'<em>'+items.length+'</em></div>';
+      items.forEach(function(s){
+        var i = byId[s.id]; var n = notes[s.id];
+        var cls = (i===state.idx?' on':'') + (visible(s)?'':' dim');
+        var dot = n && (n.text || n.verdict) ? '<i class="dot"></i>' : '';
+        html += '<a class="nav-item'+cls+'" href="#'+s.id+'"><span class="nav-id">'+s.id+'</span><span>'+esc(s.title)+'</span>'+dot+'</a>';
+      });
+      html += '</div>';
+    });
+    document.getElementById("nav").innerHTML = html;
+    var on = document.querySelector(".nav-item.on"); if(on && on.scrollIntoView){ try{ on.scrollIntoView({block:"nearest"}); }catch(e){} }
+  }
+
+  function renderRibbon(){
+    var s = SCREENS[state.idx];
+    document.getElementById("ribbon").innerHTML = SECTIONS.map(function(sec){
+      var first = SCREENS.filter(function(x){return x.sec===sec[0];})[0];
+      return '<a href="#'+(first?first.id:"")+'" class="rib'+(sec[0]===s.sec?' on':'')+'">'+esc(sec[1].split(" (")[0])+'</a>';
+    }).join("");
+  }
+
+  function renderScreen(){
+    var s = SCREENS[state.idx];
+    var frame = document.getElementById("frame");
+    frame.className = "frame " + (s.frame==="desktop" ? "desktop" : "phone");
+    var body = s.ui.map(el).join("");
+    var hidden = !visible(s) ? '<div class="w-hidden">Not shown to a '+esc(state.tier)+' user</div>' : '';
+    frame.innerHTML = '<div class="frame-top"><span>'+s.id+'</span><span>'+esc(s.title)+'</span></div><div class="frame-body">'+hidden+body+'</div>';
+    document.getElementById("crumb").textContent = secName[s.sec] + "  /  " + s.id + "  " + s.title;
+    document.getElementById("counter").textContent = (state.idx+1) + " of " + SCREENS.length;
+    // wire in-screen navigation
+    Array.prototype.forEach.call(frame.querySelectorAll("[data-go]"), function(b){
+      b.addEventListener("click", function(ev){ ev.preventDefault(); var t=b.getAttribute("data-go"); if(t && byId[t]!==undefined) go(byId[t]); });
+    });
+  }
+
+  function list(title, arr, linkable){
+    if(!arr || !arr.length) return '';
+    return '<div class="spec-block"><div class="spec-t">'+title+'</div><ul>'+arr.map(function(x){
+      if(linkable){ return '<li><span>'+esc(x[0])+'</span> <a href="#'+esc(x[1])+'" class="br">'+esc(x[1])+'</a></li>'; }
+      return '<li>'+esc(x)+'</li>';
+    }).join("")+'</ul></div>';
+  }
+
+  function renderSpec(){
+    var s = SCREENS[state.idx]; var n = noteFor(s.id);
+    var tiers = s.tier.join(", ");
+    var html = '<div class="spec-purpose">'+esc(s.purpose)+'</div>';
+    html += '<div class="spec-block"><div class="spec-t">Shown to</div><div class="tiers">'+esc(tiers)+'</div></div>';
+    html += list("Fields captured", s.spec.fields);
+    html += list("Logic", s.spec.logic);
+    html += list("Branches", s.spec.branches, true);
+    html += list("States", s.spec.states);
+    html += list("Dev notes", s.spec.dev);
+    document.getElementById("spec").innerHTML = html;
+
+    // review controls
+    var v = document.getElementById("verdict");
+    Array.prototype.forEach.call(v.querySelectorAll("button"), function(b){ b.className = (b.getAttribute("data-v")===n.verdict) ? "on" : ""; });
+    var ta = document.getElementById("comment"); ta.value = n.text || ""; ta.placeholder = "Team views on "+s.id+". What to keep, change or drop, and why.";
+    document.getElementById("saved").textContent = "";
+  }
+
+  function go(i){
+    if(i<0||i>=SCREENS.length) return;
+    state.idx = i; var id = SCREENS[i].id;
+    if(location.hash !== "#"+id) { history.replaceState(null,"","#"+id); }
+    renderNav(); renderRibbon(); renderScreen(); renderSpec();
+    document.getElementById("main").scrollTop = 0;
+  }
+  function step(d){
+    var i = state.idx + d;
+    while(i>=0 && i<SCREENS.length && !visible(SCREENS[i])) i += d;
+    if(i>=0 && i<SCREENS.length) go(i);
+  }
+
+  // ---------- map ----------
+  function renderMap(){
+    var html = '';
+    SECTIONS.forEach(function(sec){
+      var items = SCREENS.filter(function(s){ return s.sec===sec[0]; });
+      html += '<div class="map-sec"><h3>'+esc(sec[1])+'</h3><div class="map-row">'+items.map(function(s){
+        return '<a href="#'+s.id+'" class="map-chip'+(visible(s)?'':' dim')+'"><b>'+s.id+'</b>'+esc(s.title)+'</a>';
+      }).join("")+'</div></div>';
+    });
+    document.getElementById("map").innerHTML = html;
+  }
+  function toggleMap(force){
+    state.map = (force===undefined) ? !state.map : force;
+    document.body.classList.toggle("map-on", state.map);
+    document.getElementById("mapbtn").textContent = state.map ? "Back to screens" : "Journey map";
+    if(state.map) renderMap();
+  }
+
+  // ---------- export ----------
+  function exportNotes(){
+    var lines = ["# yeslyf journey wireframes v0.1 - team review", "Exported " + new Date().toLocaleString(), ""];
+    var count = 0;
+    SECTIONS.forEach(function(sec){
+      var items = SCREENS.filter(function(s){ return s.sec===sec[0]; }).filter(function(s){ var n=notes[s.id]; return n && (n.text||n.verdict); });
+      if(!items.length) return;
+      lines.push("## "+sec[1]);
+      items.forEach(function(s){ var n=notes[s.id]; count++;
+        lines.push("- **"+s.id+" "+s.title+"**" + (n.verdict? " ["+n.verdict+"]":""));
+        if(n.text) lines.push("  "+n.text.replace(/\n/g,"\n  "));
+      });
+      lines.push("");
+    });
+    if(!count){ lines.push("(no comments yet)"); }
+    var md = lines.join("\n");
+    try { navigator.clipboard && navigator.clipboard.writeText(md); } catch(e){}
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "yeslyf_wireframe_review_v01.md";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    document.getElementById("saved").textContent = count + " screen comment(s) exported and copied.";
+  }
+
+  // ---------- wiring ----------
+  function init(){
+    var tf = document.getElementById("tiers");
+    tf.innerHTML = TIERS.map(function(t){ return '<button data-t="'+t+'"'+(t===state.tier?' class="on"':'')+'>'+t+'</button>'; }).join("");
+    tf.addEventListener("click", function(ev){ var b = ev.target.closest("button"); if(!b) return; state.tier = b.getAttribute("data-t");
+      Array.prototype.forEach.call(tf.querySelectorAll("button"), function(x){ x.className = x===b?"on":""; });
+      go(state.idx); if(state.map) renderMap(); });
+    document.getElementById("prev").addEventListener("click", function(){ step(-1); });
+    document.getElementById("next").addEventListener("click", function(){ step(1); });
+    document.getElementById("mapbtn").addEventListener("click", function(){ toggleMap(); });
+    document.getElementById("export").addEventListener("click", exportNotes);
+    document.getElementById("verdict").addEventListener("click", function(ev){ var b = ev.target.closest("button"); if(!b) return;
+      var n = noteFor(SCREENS[state.idx].id); n.verdict = (n.verdict===b.getAttribute("data-v")) ? "" : b.getAttribute("data-v"); save(); renderSpec(); renderNav(); });
+    var ta = document.getElementById("comment"); var timer;
+    ta.addEventListener("input", function(){ var n = noteFor(SCREENS[state.idx].id); n.text = ta.value; save();
+      document.getElementById("saved").textContent = "Saving..."; clearTimeout(timer); timer = setTimeout(function(){ document.getElementById("saved").textContent = "Saved in this browser"; renderNav(); }, 500); });
+    var sel = document.getElementById("jump");
+    sel.innerHTML = SCREENS.map(function(s){ return '<option value="'+s.id+'">'+s.id+'  '+esc(s.title)+'</option>'; }).join("");
+    sel.addEventListener("change", function(){ go(byId[sel.value]); });
+    window.addEventListener("hashchange", function(){ var id = location.hash.replace("#",""); if(byId[id]!==undefined){ if(state.map) toggleMap(false); go(byId[id]); } });
+    document.addEventListener("keydown", function(ev){ if(ev.target.tagName==="TEXTAREA"||ev.target.tagName==="INPUT"||ev.target.tagName==="SELECT") return; if(ev.key==="ArrowRight") step(1); if(ev.key==="ArrowLeft") step(-1); });
+    var start = location.hash.replace("#",""); go(byId[start]!==undefined ? byId[start] : 0);
+
+  }
+  // keep the jump select in sync
+  var _go = go; go = function(i){ _go(i); var sel=document.getElementById("jump"); if(sel) sel.value = SCREENS[i].id; };
+  document.addEventListener("DOMContentLoaded", init);
+})();
+
+</script>
+</body>
+</html>
