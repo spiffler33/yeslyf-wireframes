@@ -1,0 +1,1475 @@
+{
+ "source": "input/reviews/*.md mapped to the row numbers of input/v01/yeslyf_review_log_v0.1.html",
+ "rows": [
+  {
+   "n": 1,
+   "reviewer": "Gaurav",
+   "screen": "X00",
+   "verdict": "",
+   "text": "all execution happens via smallcase GW only",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "X00",
+     "title": "How to read this file",
+     "verdict": "",
+     "text": "all execution happens via smallcase GW only",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "All execution via smallcase Gateway only."
+  },
+  {
+   "n": 2,
+   "reviewer": "Kajal",
+   "screen": "X00",
+   "verdict": "Keep",
+   "text": "Is there a no-call SKU on day one? - Yes I think we must. Different price point and different offerings.",
+   "sources": [
+    {
+     "reviewer": "Kajal",
+     "screen": "X00",
+     "title": "How to read this file",
+     "verdict": "Keep",
+     "text": "Is there a no-call SKU on day one? - Yes I think we must. Different price point and different offerings.",
+     "file": "yeslyf_wireframe_review_v01_Kajal.md"
+    }
+   ],
+   "log_say": "A no-call SKU on day one: yes, different price and offering."
+  },
+  {
+   "n": 3,
+   "reviewer": "Gaurav",
+   "screen": "A01",
+   "verdict": "",
+   "text": "in four minutes --> in the next few minutes.\n\nuse this screen to sort of welcome and prime the user",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "A01",
+     "title": "First open",
+     "verdict": "",
+     "text": "in four minutes --> in the next few minutes.\n\nuse this screen to sort of welcome and prime the user",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "'Four minutes' to 'the next few minutes'; use the screen to welcome and prime."
+  },
+  {
+   "n": 4,
+   "reviewer": "Gaurav",
+   "screen": "A02",
+   "verdict": "",
+   "text": "pre-fill via mobile fetch based on permissions.\n\n\ndon't need to explain why we are collecting mobile and not email\n\nShow a T&C here itself",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "A02",
+     "title": "Mobile number",
+     "verdict": "",
+     "text": "pre-fill via mobile fetch based on permissions.\n\n\ndon't need to explain why we are collecting mobile and not email\n\nShow a T&C here itself",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Prefill mobile from the device; drop the 'why mobile' explainer; show T&C here."
+  },
+  {
+   "n": 5,
+   "reviewer": "Gaurav",
+   "screen": "A03",
+   "verdict": "",
+   "text": "resend with exponential backoff. limited to 3 retries.\n\nSimillarly, change number should also be limited to 3 attempts.",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "A03",
+     "title": "OTP",
+     "verdict": "",
+     "text": "resend with exponential backoff. limited to 3 retries.\n\nSimillarly, change number should also be limited to 3 attempts.",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Resend with exponential backoff, max 3; change-number max 3."
+  },
+  {
+   "n": 6,
+   "reviewer": "Gaurav",
+   "screen": "A04",
+   "verdict": "",
+   "text": "Rather than auto generate captions. The video itself should have captions. We can then use that to highlight keywords as needed.\nSkip should be allowed immediately rather than a 5 second delay. instead, show a confirmation modal if needed (e.g. The video explains how you can live a Yes life today and tomorrow. Are you sure you want to skip? Y/N).\n\nTo account for slow networks, I would actually suggest bundling the video into the app itself. That way there will not be any network calls. When the videos are updated, we can publish new builds (or possibly build a config which will tell the app to load local video or fetch from source)",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "A04",
+     "title": "Welcome video",
+     "verdict": "",
+     "text": "Rather than auto generate captions. The video itself should have captions. We can then use that to highlight keywords as needed.\nSkip should be allowed immediately rather than a 5 second delay. instead, show a confirmation modal if needed (e.g. The video explains how you can live a Yes life today and tomorrow. Are you sure you want to skip? Y/N).\n\nTo account for slow networks, I would actually suggest bundling the video into the app itself. That way there will not be any network calls. When the videos are updated, we can publish new builds (or possibly build a config which will tell the app to load local video or fetch from source)",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Burned-in captions; skip immediately with a confirm modal; bundle video in the app with a config flag."
+  },
+  {
+   "n": 7,
+   "reviewer": "Gaurav",
+   "screen": "R01",
+   "verdict": "",
+   "text": "First Name --> Name\nif we're blocking under 18, then at the time of login itself, there should have been a T&C",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "R01",
+     "title": "Name and age",
+     "verdict": "",
+     "text": "First Name --> Name\nif we're blocking under 18, then at the time of login itself, there should have been a T&C",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "'First name' to 'Name'; T&C must precede an under-18 block."
+  },
+  {
+   "n": 8,
+   "reviewer": "Gaurav",
+   "screen": "R02",
+   "verdict": "",
+   "text": "Just Me | Me + Partner\nand Kids | And Parents\n\nRow 1 is a single select. If in row 1, you've selected 'Me + Partner', then row 2 becomes visible and allows multi-select\n\nthese 4 blocks (with multi- select) in row 2 handles all the scenarios.",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "R02",
+     "title": "Household and city",
+     "verdict": "",
+     "text": "Just Me | Me + Partner\nand Kids | And Parents\n\nRow 1 is a single select. If in row 1, you've selected 'Me + Partner', then row 2 becomes visible and allows multi-select\n\nthese 4 blocks (with multi- select) in row 2 handles all the scenarios.",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md",
+     "part": "first part of the R02 comment"
+    }
+   ],
+   "log_say": "Two-row selector: Just me / Me + partner, then multi-select Kids / Parents."
+  },
+  {
+   "n": 9,
+   "reviewer": "Gaurav",
+   "screen": "R02",
+   "verdict": "",
+   "text": "Why is city needed?",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "R02",
+     "title": "Household and city",
+     "verdict": "",
+     "text": "Why is city needed?",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md",
+     "part": "last paragraph of the R02 comment"
+    }
+   ],
+   "log_say": "Why is city needed?"
+  },
+  {
+   "n": 10,
+   "reviewer": "Gaurav",
+   "screen": "R04",
+   "verdict": "",
+   "text": "needs better verbiage 'other than the home you live in' is getting missed in all the text",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "R04",
+     "title": "Total saved and invested",
+     "verdict": "",
+     "text": "needs better verbiage 'other than the home you live in' is getting missed in all the text",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "'Other than the home you live in' gets missed."
+  },
+  {
+   "n": 11,
+   "reviewer": "Gaurav",
+   "screen": "R07",
+   "verdict": "",
+   "text": "this screen should have others 'type your own'",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "R07",
+     "title": "What matters at 50 / 65",
+     "verdict": "",
+     "text": "this screen should have others 'type your own'",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Add 'type your own'."
+  },
+  {
+   "n": 12,
+   "reviewer": "Bhuvanaa",
+   "screen": "R08",
+   "verdict": "Change",
+   "text": "R08 - Page 13 - Only 11% Yesly mix - mention as what can be better when the 5 Alpha framework gets to work and does its magic",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "R08",
+     "title": "Sketching your paths",
+     "verdict": "Change",
+     "text": "R08 - Page 13 - Only 11% Yesly mix - mention as what can be better when the 5 Alpha framework gets to work and does its magic",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
+    }
+   ],
+   "log_say": "Phrase the 11% yeslyf mix as what improves when the 5 Alpha framework works."
+  },
+  {
+   "n": 13,
+   "reviewer": "Gaurav",
+   "screen": "R09",
+   "verdict": "",
+   "text": "integration with martech as this will be a high likelihood drop off point",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "R09",
+     "title": "The reveal",
+     "verdict": "",
+     "text": "integration with martech as this will be a high likelihood drop off point",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Martech integration at this drop-off point."
+  },
+  {
+   "n": 14,
+   "reviewer": "Bhuvanaa",
+   "screen": "R09",
+   "verdict": "Change",
+   "text": "May need to be a bit more descriptive",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "R09",
+     "title": "The reveal",
+     "verdict": "Change",
+     "text": "May need to be a bit more descriptive",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
+    }
+   ],
+   "log_say": "More descriptive."
+  },
+  {
+   "n": 15,
+   "reviewer": "Gaurav",
+   "screen": "R10",
+   "verdict": "",
+   "text": "how will we explain? AI generated video?",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "R10",
+     "title": "Video: the 5 Alphas",
+     "verdict": "",
+     "text": "how will we explain? AI generated video?",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "How will we explain? AI-generated video?"
+  },
+  {
+   "n": 16,
+   "reviewer": "Gaurav, Kajal, Somil",
+   "screen": "R11",
+   "verdict": "",
+   "text": "Somil (R11): As a user 2 back to back videos feels a bit off to me, specially without knowing the context of the vido\n\nGaurav (R11): Generic Video?\n\nKajal (R11): Why 2 videos. Can this not  be included as one video . Or then a pretext need to be set. 2 videos can be too much .",
+   "sources": [
+    {
+     "reviewer": "Somil",
+     "screen": "R11",
+     "title": "Video: the bridge",
+     "verdict": "Change",
+     "text": "As a user 2 back to back videos feels a bit off to me, specially without knowing the context of the vido",
+     "file": "yeslyf_wireframe_review_v01(2) somil.md"
+    },
+    {
+     "reviewer": "Gaurav",
+     "screen": "R11",
+     "title": "Video: the bridge",
+     "verdict": "",
+     "text": "Generic Video?",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    },
+    {
+     "reviewer": "Kajal",
+     "screen": "R11",
+     "title": "Video: the bridge",
+     "verdict": "Change",
+     "text": "Why 2 videos. Can this not  be included as one video . Or then a pretext need to be set. 2 videos can be too much .",
+     "file": "yeslyf_wireframe_review_v01_Kajal.md"
+    }
+   ],
+   "log_say": "Two back-to-back videos is too much; is the bridge video generic?"
+  },
+  {
+   "n": 17,
+   "reviewer": "Gaurav",
+   "screen": "R12",
+   "verdict": "",
+   "text": "I think that the sequencing of R09, R10, R11, R12 and X01 needs to be revisited. If a user has been convinced and wants to move forward then he should be taken to paywall and expectation setting should be done. If a user chooses not to move forward, then you can show a sample plan to entice them to understand what they are missing out.",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "R12",
+     "title": "Sample plan preview",
+     "verdict": "",
+     "text": "I think that the sequencing of R09, R10, R11, R12 and X01 needs to be revisited. If a user has been convinced and wants to move forward then he should be taken to paywall and expectation setting should be done. If a user chooses not to move forward, then you can show a sample plan to entice them to understand what they are missing out.",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Resequence: convinced users go to the paywall; the sample plan is for those not convinced."
+  },
+  {
+   "n": 18,
+   "reviewer": "Bhuvanaa",
+   "screen": "R12",
+   "verdict": "Change",
+   "text": "We have to show sample screens of what would appear in the final plan",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "R12",
+     "title": "Sample plan preview",
+     "verdict": "Change",
+     "text": "We have to show sample screens of what would appear in the final plan",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
+    }
+   ],
+   "log_say": "Show sample screens of the final plan."
+  },
+  {
+   "n": 19,
+   "reviewer": "Gaurav",
+   "screen": "X01",
+   "verdict": "",
+   "text": "where does 'see what members are saying' take you?",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "X01",
+     "title": "Reveal saved (not paid)",
+     "verdict": "",
+     "text": "where does 'see what members are saying' take you?",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Where does 'see what members are saying' go?"
+  },
+  {
+   "n": 20,
+   "reviewer": "Bhuvanaa",
+   "screen": "P01",
+   "verdict": "Change",
+   "text": "IF we are giving more than 2 options - maybe we must explain it to them. Does a video here make sense? Also - we can drop the one time offer. If someone does not want to continue they can unsubscribe.",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "P01",
+     "title": "Paywall",
+     "verdict": "Change",
+     "text": "IF we are giving more than 2 options - maybe we must explain it to them. Does a video here make sense? Also - we can drop the one time offer. If someone does not want to continue they can unsubscribe.",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
+    }
+   ],
+   "log_say": "More than two options needs explaining, maybe a video; drop the one-time offer, unhappy users can unsubscribe."
+  },
+  {
+   "n": 21,
+   "reviewer": "Gaurav",
+   "screen": "P04",
+   "verdict": "",
+   "text": "introduce coupon?",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "P04",
+     "title": "Pay",
+     "verdict": "",
+     "text": "introduce coupon?",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Introduce a coupon."
+  },
+  {
+   "n": 22,
+   "reviewer": "Kajal",
+   "screen": "P04",
+   "verdict": "Change",
+   "text": "Payment gateway to be closed out with only UPI and Netbanking. Card payment not allowed\n\nGST logic to be included in admin/ logic panel to incorporate IGST , CGST SGST and no GST",
+   "sources": [
+    {
+     "reviewer": "Kajal",
+     "screen": "P04",
+     "title": "Pay",
+     "verdict": "Change",
+     "text": "Payment gateway to be closed out with only UPI and Netbanking. Card payment not allowed\n\nGST logic to be included in admin/ logic panel to incorporate IGST , CGST SGST and no GST",
+     "file": "yeslyf_wireframe_review_v01_Kajal.md"
+    }
+   ],
+   "log_say": "UPI and netbanking only, no cards; GST logic for IGST, CGST, SGST and no-GST."
+  },
+  {
+   "n": 23,
+   "reviewer": "Gaurav",
+   "screen": "O01",
+   "verdict": "",
+   "text": "more info should be shown for Priya / Harish. add weight to the Advisor",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "O01",
+     "title": "Meet your adviser / meet yeslyf",
+     "verdict": "",
+     "text": "more info should be shown for Priya / Harish. add weight to the Advisor",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "More weight on the adviser."
+  },
+  {
+   "n": 24,
+   "reviewer": "Kajal, Somil, Bhuvanaa",
+   "screen": "O01",
+   "verdict": "",
+   "text": "Somil (O01): do we need to select the option, or will the option be auto selected based on the plan we chose?\n\nKajal (O01): Services selected at paywall.Didnt understand this here\n\nBhuvanaa (O01): ",
+   "sources": [
+    {
+     "reviewer": "Somil",
+     "screen": "O01",
+     "title": "Meet your adviser / meet yeslyf",
+     "verdict": "Keep",
+     "text": "do we need to select the option, or will the option be auto selected based on the plan we chose?",
+     "file": "yeslyf_wireframe_review_v01(2) somil.md"
+    },
+    {
+     "reviewer": "Kajal",
+     "screen": "O01",
+     "title": "Meet your adviser / meet yeslyf",
+     "verdict": "Change",
+     "text": "Services selected at paywall.Didnt understand this here",
+     "file": "yeslyf_wireframe_review_v01_Kajal.md"
+    },
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "O01",
+     "title": "Meet your adviser / meet yeslyf",
+     "verdict": "Change",
+     "text": "",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md",
+     "part": "first part of the O01 comment"
+    }
+   ],
+   "log_say": "Is the tier chosen here or at the paywall?"
+  },
+  {
+   "n": 25,
+   "reviewer": "Bhuvanaa",
+   "screen": "O01",
+   "verdict": "Change",
+   "text": "Do they choose here or before here?\nBecause the membership amount will be different in each case. Priya is available only if DIWM is chosen.\nPriya can have a quick video (pre recorded) saying 'What to expect next'",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "O01",
+     "title": "Meet your adviser / meet yeslyf",
+     "verdict": "Change",
+     "text": "Do they choose here or before here?\nBecause the membership amount will be different in each case. Priya is available only if DIWM is chosen.\nPriya can have a quick video (pre recorded) saying 'What to expect next'",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md",
+     "part": "last paragraph of the O01 comment"
+    }
+   ],
+   "log_say": "Priya pre-recorded 'what to expect next' video."
+  },
+  {
+   "n": 26,
+   "reviewer": "Kajal",
+   "screen": "O02",
+   "verdict": "Change",
+   "text": "so this one is either 1 or 2 and then 3 . We can make that change for this to come out clearly.\n\nThis is coming up in A05 as well. are we repeating this screen",
+   "sources": [
+    {
+     "reviewer": "Kajal",
+     "screen": "O02",
+     "title": "Your next steps (hub)",
+     "verdict": "Change",
+     "text": "so this one is either 1 or 2 and then 3 . We can make that change for this to come out clearly.\n\nThis is coming up in A05 as well. are we repeating this screen",
+     "file": "yeslyf_wireframe_review_v01_Kajal.md"
+    }
+   ],
+   "log_say": "Steps read as '1 or 2, then 3'; is this repeating A05?"
+  },
+  {
+   "n": 27,
+   "reviewer": "Gaurav, Somil",
+   "screen": "A07",
+   "verdict": "",
+   "text": "Somil (A08): will there be a OTP screen before this screen appears, or will it be of the AA which we will go ahead with\n\nGaurav (A07): multiple OTP journeys to be handled when working via AA. Consent to discover, Then consent to fetch per provider",
+   "sources": [
+    {
+     "reviewer": "Somil",
+     "screen": "A08",
+     "title": "Here is what came through",
+     "verdict": "Keep",
+     "text": "will there be a OTP screen before this screen appears, or will it be of the AA which we will go ahead with",
+     "file": "yeslyf_wireframe_review_v01(2) somil.md"
+    },
+    {
+     "reviewer": "Gaurav",
+     "screen": "A07",
+     "title": "Fetching",
+     "verdict": "",
+     "text": "multiple OTP journeys to be handled when working via AA. Consent to discover, Then consent to fetch per provider",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "AA has multiple OTP journeys (discover, then fetch per provider); is there an OTP before A08?"
+  },
+  {
+   "n": 28,
+   "reviewer": "Bhuvanaa",
+   "screen": "D03",
+   "verdict": "",
+   "text": "Others? - Like payable to family members",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "D03",
+     "title": "Loans and dues",
+     "verdict": "",
+     "text": "Others? - Like payable to family members",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
+    }
+   ],
+   "log_say": "Others, like money payable to family."
+  },
+  {
+   "n": 29,
+   "reviewer": "Bhuvanaa",
+   "screen": "D04",
+   "verdict": "",
+   "text": "Can we have document uploads on these? Some integ with Safebox?",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "D04",
+     "title": "Insurance",
+     "verdict": "",
+     "text": "Can we have document uploads on these? Some integ with Safebox?",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
+    }
+   ],
+   "log_say": "Document uploads; some integration with Safebox?"
+  },
+  {
+   "n": 30,
+   "reviewer": "Bhuvanaa",
+   "screen": "D09",
+   "verdict": "",
+   "text": "Only one question for Risk assessment - I guess we need to do this a bit differently. Risk tolerance through questionnaire, risk capacity and risk needed through our assessment. Calculation logic is available.",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "D09",
+     "title": "Your risk profile",
+     "verdict": "",
+     "text": "Only one question for Risk assessment - I guess we need to do this a bit differently. Risk tolerance through questionnaire, risk capacity and risk needed through our assessment. Calculation logic is available.",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
+    }
+   ],
+   "log_say": "Risk should combine tolerance (questionnaire), capacity and need (our assessment); calculation logic is available. Also read D08 as one question."
+  },
+  {
+   "n": 31,
+   "reviewer": "Gaurav",
+   "screen": "G01",
+   "verdict": "",
+   "text": "duplicate what was done for R08",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "G01",
+     "title": "Building your plan",
+     "verdict": "",
+     "text": "duplicate what was done for R08",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Reuse the R08 pattern."
+  },
+  {
+   "n": 32,
+   "reviewer": "Bhuvanaa",
+   "screen": "G02",
+   "verdict": "Drop",
+   "text": "Is the Clarity picture necessary? I think it is only delaying the delivery of the plan. We can drop this",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "G02",
+     "title": "Clarity picture",
+     "verdict": "Drop",
+     "text": "Is the Clarity picture necessary? I think it is only delaying the delivery of the plan. We can drop this",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
+    }
+   ],
+   "log_say": "Drop Clarity; it delays the plan."
+  },
+  {
+   "n": 33,
+   "reviewer": "Somil",
+   "screen": "G08",
+   "verdict": "Drop",
+   "text": "we may not require this screen or might need some modification - need Bhuvanaa & Harish's input on this",
+   "sources": [
+    {
+     "reviewer": "Somil",
+     "screen": "G08",
+     "title": "Plan: tax",
+     "verdict": "Drop",
+     "text": "we may not require this screen or might need some modification - need Bhuvanaa & Harish's input on this",
+     "file": "yeslyf_wireframe_review_v01(2) somil.md"
+    }
+   ],
+   "log_say": "Tax: drop or modify; needs Bhuvanaa and Harish."
+  },
+  {
+   "n": 34,
+   "reviewer": "Kajal",
+   "screen": "K01",
+   "verdict": "Change",
+   "text": "Planner call not . advisory call",
+   "sources": [
+    {
+     "reviewer": "Kajal",
+     "screen": "K01",
+     "title": "Book your plan call",
+     "verdict": "Change",
+     "text": "Planner call not . advisory call",
+     "file": "yeslyf_wireframe_review_v01_Kajal.md"
+    }
+   ],
+   "log_say": "'Planner call', not advisory call."
+  },
+  {
+   "n": 35,
+   "reviewer": "Gaurav, Kajal, Somil",
+   "screen": "K04",
+   "verdict": "",
+   "text": "Somil (K04): if this is a review call, then not sure if this should be here or after the full plan along with execution steps are over\n\nGaurav (K04): should not offer book a review to a DIY customer. One off calls are expensive as advisor needs a full context.\n\nKajal (K04): For now this can only be done by Harish. I am assuming this is the call for investment plan discussion post the call with financial planner.\n\nIs there enough bandwidth for this call. Need to discuss.",
+   "sources": [
+    {
+     "reviewer": "Somil",
+     "screen": "K04",
+     "title": "Book a review call (a la carte)",
+     "verdict": "Change",
+     "text": "if this is a review call, then not sure if this should be here or after the full plan along with execution steps are over",
+     "file": "yeslyf_wireframe_review_v01(2) somil.md"
+    },
+    {
+     "reviewer": "Gaurav",
+     "screen": "K04",
+     "title": "Book a review call (a la carte)",
+     "verdict": "",
+     "text": "should not offer book a review to a DIY customer. One off calls are expensive as advisor needs a full context.",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    },
+    {
+     "reviewer": "Kajal",
+     "screen": "K04",
+     "title": "Book a review call (a la carte)",
+     "verdict": "Change",
+     "text": "For now this can only be done by Harish. I am assuming this is the call for investment plan discussion post the call with financial planner.\n\nIs there enough bandwidth for this call. Need to discuss.",
+     "file": "yeslyf_wireframe_review_v01_Kajal.md"
+    }
+   ],
+   "log_say": "No one-off calls for DIY (expensive, needs full context); only Harish can do investment calls; if kept, place after execution."
+  },
+  {
+   "n": 36,
+   "reviewer": "Gaurav",
+   "screen": "E02",
+   "verdict": "",
+   "text": "prefill nominee to spouse",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "E02",
+     "title": "One-time investing setup",
+     "verdict": "",
+     "text": "prefill nominee to spouse",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Prefill nominee to spouse."
+  },
+  {
+   "n": 37,
+   "reviewer": "Gaurav",
+   "screen": "E05",
+   "verdict": "",
+   "text": "assume that we will also need screens to upload. then some section to view uploaded documents?",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "E05",
+     "title": "Guided action outside the app",
+     "verdict": "",
+     "text": "assume that we will also need screens to upload. then some section to view uploaded documents?",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Need upload screens and a place to view uploads."
+  },
+  {
+   "n": 38,
+   "reviewer": "Bhuvanaa",
+   "screen": "E01",
+   "verdict": "",
+   "text": "Can we link insurance also through aggregators like Policy Bazaar etc?",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "E01",
+     "title": "Execution hub",
+     "verdict": "",
+     "text": "Can we link insurance also through aggregators like Policy Bazaar etc?",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
+    }
+   ],
+   "log_say": "Link insurance through aggregators like PolicyBazaar."
+  },
+  {
+   "n": 39,
+   "reviewer": "Kajal",
+   "screen": "H01",
+   "verdict": "Change",
+   "text": "Coming up will cover goals. if not we can include that as a separate tab",
+   "sources": [
+    {
+     "reviewer": "Kajal",
+     "screen": "H01",
+     "title": "Home (plan ready)",
+     "verdict": "Change",
+     "text": "Coming up will cover goals. if not we can include that as a separate tab",
+     "file": "yeslyf_wireframe_review_v01_Kajal.md"
+    }
+   ],
+   "log_say": "Goals are not covered on the dashboard."
+  },
+  {
+   "n": 40,
+   "reviewer": "Gaurav",
+   "screen": "H02",
+   "verdict": "",
+   "text": "will we be able to show market movement growth? if not, I assume that this screen can be tweaked",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "H02",
+     "title": "Net worth growth",
+     "verdict": "",
+     "text": "will we be able to show market movement growth? if not, I assume that this screen can be tweaked",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Can we show market movement?"
+  },
+  {
+   "n": 41,
+   "reviewer": "Somil",
+   "screen": "H02-H04",
+   "verdict": "",
+   "text": "Somil (H02): in which section will this screens appear\n\nSomil (H03): in which section will this screens appear\n\nSomil (H04): in which section will this screens appear",
+   "sources": [
+    {
+     "reviewer": "Somil",
+     "screen": "H02",
+     "title": "Net worth growth",
+     "verdict": "Keep",
+     "text": "in which section will this screens appear",
+     "file": "yeslyf_wireframe_review_v01(2) somil.md"
+    },
+    {
+     "reviewer": "Somil",
+     "screen": "H03",
+     "title": "Wheel of wealth",
+     "verdict": "Keep",
+     "text": "in which section will this screens appear",
+     "file": "yeslyf_wireframe_review_v01(2) somil.md"
+    },
+    {
+     "reviewer": "Somil",
+     "screen": "H04",
+     "title": "Action queue",
+     "verdict": "Keep",
+     "text": "in which section will this screens appear",
+     "file": "yeslyf_wireframe_review_v01(2) somil.md"
+    }
+   ],
+   "log_say": "Which section do these screens live in?"
+  },
+  {
+   "n": 42,
+   "reviewer": "Gaurav",
+   "screen": "H05",
+   "verdict": "",
+   "text": "where will this be surfaced from? notifications?",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "H05",
+     "title": "Your plan was updated",
+     "verdict": "",
+     "text": "where will this be surfaced from? notifications?",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Where is this surfaced from?"
+  },
+  {
+   "n": 43,
+   "reviewer": "Kajal",
+   "screen": "H05",
+   "verdict": "Change",
+   "text": "We are not showing the portfolio details on schemes/ stocks / products invested with us in any page",
+   "sources": [
+    {
+     "reviewer": "Kajal",
+     "screen": "H05",
+     "title": "Your plan was updated",
+     "verdict": "Change",
+     "text": "We are not showing the portfolio details on schemes/ stocks / products invested with us in any page",
+     "file": "yeslyf_wireframe_review_v01_Kajal.md"
+    }
+   ],
+   "log_say": "No page shows the schemes, stocks or products invested with us."
+  },
+  {
+   "n": 44,
+   "reviewer": "Gaurav",
+   "screen": "H06",
+   "verdict": "",
+   "text": "Entry Point?",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "H06",
+     "title": "Vault",
+     "verdict": "",
+     "text": "Entry Point?",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Entry point?"
+  },
+  {
+   "n": 45,
+   "reviewer": "Kajal",
+   "screen": "H07",
+   "verdict": "Change",
+   "text": "DIY - call adviser. Again same point as above. can this be call with Financial planner?",
+   "sources": [
+    {
+     "reviewer": "Kajal",
+     "screen": "H07",
+     "title": "Help",
+     "verdict": "Change",
+     "text": "DIY - call adviser. Again same point as above. can this be call with Financial planner?",
+     "file": "yeslyf_wireframe_review_v01_Kajal.md"
+    }
+   ],
+   "log_say": "DIY 'call adviser' should be a call with a financial planner."
+  },
+  {
+   "n": 46,
+   "reviewer": "Gaurav",
+   "screen": "H08",
+   "verdict": "",
+   "text": "I don't think this should be shown. if needed, give a menu to access community or some highlights",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "H08",
+     "title": "Community",
+     "verdict": "",
+     "text": "I don't think this should be shown. if needed, give a menu to access community or some highlights",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Do not show community on home; menu access or highlights only."
+  },
+  {
+   "n": 47,
+   "reviewer": "Gaurav",
+   "screen": "H09",
+   "verdict": "",
+   "text": "can a member rebuild thier plan? what happens to old data/p[lans? how often will we allow this?",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "H09",
+     "title": "Profile and settings",
+     "verdict": "",
+     "text": "can a member rebuild thier plan? what happens to old data/p[lans? how often will we allow this?",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Can a member rebuild the plan? How often? What happens to old plans?"
+  },
+  {
+   "n": 48,
+   "reviewer": "Gaurav",
+   "screen": "N01",
+   "verdict": "",
+   "text": "each of these potential drop off points should also feed into martech",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "N01",
+     "title": "Returning-user state machine",
+     "verdict": "",
+     "text": "each of these potential drop off points should also feed into martech",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Each drop-off state should feed martech."
+  },
+  {
+   "n": 49,
+   "reviewer": "Gaurav",
+   "screen": "M01",
+   "verdict": "",
+   "text": "tool:appsmith? Spinach",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "M01",
+     "title": "Admin stack (bought, not built)",
+     "verdict": "",
+     "text": "tool:appsmith? Spinach",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Appsmith? Spinach?"
+  },
+  {
+   "n": 50,
+   "reviewer": "Kajal",
+   "screen": "M01",
+   "verdict": "Change",
+   "text": "Need to do this separately",
+   "sources": [
+    {
+     "reviewer": "Kajal",
+     "screen": "M01",
+     "title": "Admin stack (bought, not built)",
+     "verdict": "Change",
+     "text": "Need to do this separately",
+     "file": "yeslyf_wireframe_review_v01_Kajal.md"
+    }
+   ],
+   "log_say": "Do this separately."
+  },
+  {
+   "n": 51,
+   "reviewer": "Gaurav",
+   "screen": "L04",
+   "verdict": "",
+   "text": "ISIN weights are a subset to category weights in L03 (cash / debt / hybrid / commodities / equity)",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "L04",
+     "title": "Instrument universe",
+     "verdict": "",
+     "text": "ISIN weights are a subset to category weights in L03 (cash / debt / hybrid / commodities / equity)",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "ISIN weights are a subset of the L03 category weights."
+  },
+  {
+   "n": 52,
+   "reviewer": "Bhuvanaa",
+   "screen": "L02",
+   "verdict": "",
+   "text": "Withdrawal rate - we need to decide how to do this",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "L02",
+     "title": "Assumptions",
+     "verdict": "",
+     "text": "Withdrawal rate - we need to decide how to do this",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
+    }
+   ],
+   "log_say": "Withdrawal rate: decide how."
+  },
+  {
+   "n": 53,
+   "reviewer": "Bhuvanaa",
+   "screen": "Q02",
+   "verdict": "",
+   "text": "What does \"I will ask only what this affects\" mean?",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "Q02",
+     "title": "Something changed in my life",
+     "verdict": "",
+     "text": "What does \"I will ask only what this affects\" mean?",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
+    }
+   ],
+   "log_say": "What does 'I will ask only what this affects' mean?"
+  },
+  {
+   "n": 54,
+   "reviewer": "Bhuvanaa",
+   "screen": "Q04",
+   "verdict": "",
+   "text": "How about - give us a review, feedback, recommend to your friends, connect in community etc?",
+   "sources": [
+    {
+     "reviewer": "Bhuvanaa",
+     "screen": "Q04",
+     "title": "Annual: risk profile and agreement",
+     "verdict": "",
+     "text": "How about - give us a review, feedback, recommend to your friends, connect in community etc?",
+     "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
+    }
+   ],
+   "log_say": "Add review, feedback, refer friends, community."
+  },
+  {
+   "n": 55,
+   "reviewer": "Gaurav",
+   "screen": "P03",
+   "verdict": "",
+   "text": "nice",
+   "sources": [
+    {
+     "reviewer": "Gaurav",
+     "screen": "P03",
+     "title": "Agreement and eSign",
+     "verdict": "",
+     "text": "nice",
+     "file": "yeslyf_wireframe_review_v01_Gaurav.md"
+    }
+   ],
+   "log_say": "Nice."
+  },
+  {
+   "n": 56,
+   "reviewer": "Somil",
+   "screen": "All",
+   "verdict": "Keep",
+   "text": "[Keep] with no comment on 78 screens: A01, A02, A03, A04, R01, R02, R03, R04, R05, R06, R07, R08, R09, R10, R12, X01, P01, P02, P03, P04, P05, O02, A05, A06, A07, A09, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, G01, G02, G03, G04, G05, G06, G07, G09, G10, G11, G12, G13, G14, K01, K02, K03, E01, E02, E03, E04, E05, E06, H01, H05, H06, H07, H08, H09, Q01, Q02, Q03, Q04, N01, M01, L01, L02, L03, L04, L07, L05, L06, L08",
+   "sources": [
+    {
+     "reviewer": "Somil",
+     "screen": "All",
+     "title": "All screens",
+     "verdict": "Keep",
+     "text": "[Keep] with no comment on 78 screens: A01, A02, A03, A04, R01, R02, R03, R04, R05, R06, R07, R08, R09, R10, R12, X01, P01, P02, P03, P04, P05, O02, A05, A06, A07, A09, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, G01, G02, G03, G04, G05, G06, G07, G09, G10, G11, G12, G13, G14, K01, K02, K03, E01, E02, E03, E04, E05, E06, H01, H05, H06, H07, H08, H09, Q01, Q02, Q03, Q04, N01, M01, L01, L02, L03, L04, L07, L05, L06, L08",
+     "file": "",
+     "screens": [
+      "A01",
+      "A02",
+      "A03",
+      "A04",
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R06",
+      "R07",
+      "R08",
+      "R09",
+      "R10",
+      "R12",
+      "X01",
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "O02",
+      "A05",
+      "A06",
+      "A07",
+      "A09",
+      "D01",
+      "D02",
+      "D03",
+      "D04",
+      "D05",
+      "D06",
+      "D07",
+      "D08",
+      "D09",
+      "D10",
+      "G01",
+      "G02",
+      "G03",
+      "G04",
+      "G05",
+      "G06",
+      "G07",
+      "G09",
+      "G10",
+      "G11",
+      "G12",
+      "G13",
+      "G14",
+      "K01",
+      "K02",
+      "K03",
+      "E01",
+      "E02",
+      "E03",
+      "E04",
+      "E05",
+      "E06",
+      "H01",
+      "H05",
+      "H06",
+      "H07",
+      "H08",
+      "H09",
+      "Q01",
+      "Q02",
+      "Q03",
+      "Q04",
+      "N01",
+      "M01",
+      "L01",
+      "L02",
+      "L03",
+      "L04",
+      "L07",
+      "L05",
+      "L06",
+      "L08"
+     ]
+    }
+   ],
+   "log_say": "Marked 68 screens Keep with no comment."
+  },
+  {
+   "n": 57,
+   "reviewer": "Harish",
+   "screen": "R08",
+   "verdict": "",
+   "text": "I am assuming we can change inflation rate at any point in back end",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "R08",
+     "title": "Sketching your paths",
+     "verdict": "",
+     "text": "I am assuming we can change inflation rate at any point in back end",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "Inflation changeable in the back end at any time?"
+  },
+  {
+   "n": 58,
+   "reviewer": "Harish",
+   "screen": "P04",
+   "verdict": "",
+   "text": "Subject to regulatory approvals on payment types",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "P04",
+     "title": "Pay",
+     "verdict": "",
+     "text": "Subject to regulatory approvals on payment types",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "Subject to regulatory approval on payment types."
+  },
+  {
+   "n": 59,
+   "reviewer": "Harish",
+   "screen": "D03",
+   "verdict": "",
+   "text": "Don't we need screens for when each loan is clicked - the next screen? Also, need field for other loans like loans to friend etc",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "D03",
+     "title": "Loans and dues",
+     "verdict": "",
+     "text": "Don't we need screens for when each loan is clicked - the next screen? Also, need field for other loans like loans to friend etc",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "A detail screen per loan; other loans such as loans to friends."
+  },
+  {
+   "n": 60,
+   "reviewer": "Harish",
+   "screen": "D04",
+   "verdict": "",
+   "text": "Same ques - don't ne need screens within each clicks?",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "D04",
+     "title": "Insurance",
+     "verdict": "",
+     "text": "Same ques - don't ne need screens within each clicks?",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "A detail screen per policy."
+  },
+  {
+   "n": 61,
+   "reviewer": "Harish",
+   "screen": "G04",
+   "verdict": "",
+   "text": "Emergency funds should be for 6 months as basic rule",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "G04",
+     "title": "Plan: emergency fund",
+     "verdict": "",
+     "text": "Emergency funds should be for 6 months as basic rule",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "Emergency fund six months as the basic rule."
+  },
+  {
+   "n": 62,
+   "reviewer": "Harish",
+   "screen": "E03",
+   "verdict": "",
+   "text": "I am not sure how this integration (and hence screens) will look like",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "E03",
+     "title": "Place a mutual fund order",
+     "verdict": "",
+     "text": "I am not sure how this integration (and hence screens) will look like",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "Unsure how the MF integration and screens will look."
+  },
+  {
+   "n": 63,
+   "reviewer": "Harish",
+   "screen": "E04",
+   "verdict": "",
+   "text": "Not sure how we will connect to brokers here or at smallcase end",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "E04",
+     "title": "ETFs and stocks via smallcase",
+     "verdict": "",
+     "text": "Not sure how we will connect to brokers here or at smallcase end",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "Unsure how brokers connect via smallcase."
+  },
+  {
+   "n": 64,
+   "reviewer": "Harish",
+   "screen": "H06",
+   "verdict": "",
+   "text": "May be we want to include rationale for investment products recommended to them",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "H06",
+     "title": "Vault",
+     "verdict": "",
+     "text": "May be we want to include rationale for investment products recommended to them",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "Include the rationale for recommended products."
+  },
+  {
+   "n": 65,
+   "reviewer": "Harish",
+   "screen": "H08",
+   "verdict": "",
+   "text": "IS community tab always available in the app - is it at homepage or in menu options or yet to be decided?",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "H08",
+     "title": "Community",
+     "verdict": "",
+     "text": "IS community tab always available in the app - is it at homepage or in menu options or yet to be decided?",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "Is the community tab always available; home or menu?"
+  },
+  {
+   "n": 66,
+   "reviewer": "Harish",
+   "screen": "Q03",
+   "verdict": "",
+   "text": "Have to check regulations of refund policy as RIA",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "Q03",
+     "title": "Subscription: cancel, failed payment, lapsed",
+     "verdict": "",
+     "text": "Have to check regulations of refund policy as RIA",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "Check RIA refund regulations."
+  },
+  {
+   "n": 67,
+   "reviewer": "Harish",
+   "screen": "N01",
+   "verdict": "",
+   "text": "More nudges should be planned rather than just 2-3, we may call them also offline",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "N01",
+     "title": "Returning-user state machine",
+     "verdict": "",
+     "text": "More nudges should be planned rather than just 2-3, we may call them also offline",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "More nudges than two or three; may call people offline."
+  },
+  {
+   "n": 68,
+   "reviewer": "Harish",
+   "screen": "L02",
+   "verdict": "",
+   "text": "Will need bucket for reits/invits",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "L02",
+     "title": "Assumptions",
+     "verdict": "",
+     "text": "Will need bucket for reits/invits",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "A bucket for REITs and InvITs."
+  },
+  {
+   "n": 69,
+   "reviewer": "Harish",
+   "screen": "L03",
+   "verdict": "",
+   "text": "Cash wont be in recommended asset allocation. Shortest/safest would be debt funds.",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "L03",
+     "title": "Buckets and cohorts",
+     "verdict": "",
+     "text": "Cash wont be in recommended asset allocation. Shortest/safest would be debt funds.",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "Cash will not be recommended; shortest and safest is liquid debt."
+  },
+  {
+   "n": 70,
+   "reviewer": "Harish",
+   "screen": "L04",
+   "verdict": "",
+   "text": "Where do we tag instrument to category? Where do we keep rules like within Equity bucket, shares should not be more than 40% or each product should not be more than 20%",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "L04",
+     "title": "Instrument universe",
+     "verdict": "",
+     "text": "Where do we tag instrument to category? Where do we keep rules like within Equity bucket, shares should not be more than 40% or each product should not be more than 20%",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "Where are instruments tagged to a category; where do constraints live?"
+  },
+  {
+   "n": 71,
+   "reviewer": "Harish",
+   "screen": "L07",
+   "verdict": "",
+   "text": "What does commentary mean here?",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "L07",
+     "title": "Market inputs (simple)",
+     "verdict": "",
+     "text": "What does commentary mean here?",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "What does commentary mean?"
+  },
+  {
+   "n": 72,
+   "reviewer": "Harish",
+   "screen": "L05",
+   "verdict": "",
+   "text": "Where are the calculations done to allocate investment plan to users?",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "L05",
+     "title": "Staging and impact preview",
+     "verdict": "",
+     "text": "Where are the calculations done to allocate investment plan to users?",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "Where are the allocations calculated?"
+  },
+  {
+   "n": 73,
+   "reviewer": "Harish",
+   "screen": "L08",
+   "verdict": "",
+   "text": "Need to check from regulatory angle what all need to be saved for audit purposes",
+   "sources": [
+    {
+     "reviewer": "Harish",
+     "screen": "L08",
+     "title": "Audit and versions",
+     "verdict": "",
+     "text": "Need to check from regulatory angle what all need to be saved for audit purposes",
+     "file": "yeslyf_wireframe_review_v01_Harish.md"
+    }
+   ],
+   "log_say": "Check what must be saved for audit."
+  }
+ ]
+}

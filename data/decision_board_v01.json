@@ -1,0 +1,822 @@
+{
+ "source": "input/v01/yeslyf_v0.2_decision_board.html",
+ "note": "Data source only. The framing of this draft (rec, owner labels, dispositions) is rejected; attribution on the site comes from data/open_items.json and data/inputs.json.",
+ "DECISIONS": [
+  {
+   "id": "D01",
+   "group": "Commercial",
+   "title": "Launch SKU set",
+   "raised": "Kajal, Bhuvanaa, Somil (rows 2, 20)",
+   "impact": "High",
+   "context": "Bhuvanaa's deck had two adviser-inclusive SKUs (one-time with a 45-minute session; monthly membership with quarterly reviews). Kajal wants a no-call SKU on day one. Bhuvanaa wants the one-time dropped.",
+   "options": [
+    [
+     "A",
+     "Two cards: Membership app-only (DIY, monthly) and Membership with adviser (DIWM, monthly). No one-time."
+    ],
+    [
+     "B",
+     "Bhuvanaa deck as is: one-time plan with session, plus adviser membership. No DIY."
+    ],
+    [
+     "C",
+     "Three cards: DIY monthly, one-time plan, adviser membership."
+    ]
+   ],
+   "rec": "A",
+   "why": "Two cards is what three reviewers converged on and it keeps one journey. The one-time SKU creates the pay-once-download-cancel arbitrage and adds a refund path. Prices stay placeholders.",
+   "screens": "P01, P04, O01, H07"
+  },
+  {
+   "id": "D02",
+   "group": "Commercial",
+   "title": "Calls for DIY members",
+   "raised": "Gaurav, Kajal, Somil (rows 35, 45)",
+   "impact": "High",
+   "context": "K04 offered a paid one-off call to any member. Reviewers: expensive (adviser needs full context), only Harish can discuss investments, and if kept it belongs after execution.",
+   "options": [
+    [
+     "A",
+     "No one-off calls for DIY. Help is FAQ, Ask yeslyf, and an upgrade to the adviser membership. DIWM keeps one plan call; paid follow-ups only after execution or at a review."
+    ],
+    [
+     "B",
+     "Keep paid one-off calls for everyone, priced high."
+    ],
+    [
+     "C",
+     "One-off calls only after execution."
+    ]
+   ],
+   "rec": "A",
+   "why": "The upgrade path monetises the same intent without a context-less call, and it protects adviser capacity, which is the constraint.",
+   "screens": "K04, H07, K01"
+  },
+  {
+   "id": "D03",
+   "group": "Execution",
+   "title": "Execution rails",
+   "raised": "Gaurav (row 1); Harish (E03, E04 uncertainty)",
+   "impact": "High",
+   "context": "Drawn as BSE StAR MF for mutual funds (needs UCC creation, mandate) plus smallcase Gateway for ETFs and stocks (user's own broker). Gaurav says smallcase Gateway only. Harish is unsure how either integration looks.",
+   "options": [
+    [
+     "A",
+     "As drawn: BSE StAR MF for MFs, smallcase Gateway for ETFs and stocks."
+    ],
+    [
+     "B",
+     "smallcase Gateway only, if it executes direct-plan MFs and SIP mandates through the user's broker under HoA's RIA code."
+    ],
+    [
+     "C",
+     "No in-app execution at launch: action plan with deep links to the user's own platform; AA verifies completion. Execution in a fast-follow."
+    ]
+   ],
+   "rec": "B",
+   "why": "If B is confirmed, E02 and E03 disappear and the one-time setup shrinks to a broker login. Two facts decide it, and they are checkable this week: does the gateway do direct MFs with SIP mandates, and can it run under the RIA code. If either is no, A. C is the date-protection fallback (see G10).",
+   "screens": "E02, E03, E04, E06"
+  },
+  {
+   "id": "D04",
+   "group": "Journey",
+   "title": "Clarity picture",
+   "raised": "Bhuvanaa (row 32); spiff earlier asked to keep it",
+   "impact": "Med",
+   "context": "G02 shows net worth, realisable vs locked, allocation, current return and blind spots before the plan. Bhuvanaa: it delays the plan. The plan overview (G03) already carries the snapshot and the concerns.",
+   "options": [
+    [
+     "A",
+     "Keep G02 as a separate step."
+    ],
+    [
+     "B",
+     "Fold into G03: add realisable vs locked, allocation and current return to the overview. One step fewer, content kept, pre-call brief kept."
+    ],
+    [
+     "C",
+     "Drop the content."
+    ]
+   ],
+   "rec": "B",
+   "why": "Nothing is lost and the user reaches the plan one tap sooner. The adviser's pre-call view reads the same data from the admin tool.",
+   "screens": "G02, G03"
+  },
+  {
+   "id": "D05",
+   "group": "Journey",
+   "title": "Pre-paywall sequence",
+   "raised": "Gaurav, Kajal, Somil, Bhuvanaa (rows 16 to 18)",
+   "impact": "Med",
+   "context": "Three reviewers: two back-to-back videos is too much. Gaurav: convinced users should go straight to the paywall; the sample plan is for the unconvinced. Bhuvanaa: the sample should show real plan screens.",
+   "options": [
+    [
+     "A",
+     "As drawn: R09 reveal, R10 video, R11 video, R12 sample, P01."
+    ],
+    [
+     "B",
+     "R09 reveal, R10 one 60-second video (5 Alpha and bridge merged), R11 text card (what is on the other side), P01. R12 becomes an optional carousel of plan screens reachable from P01 and X01."
+    ]
+   ],
+   "rec": "B",
+   "why": "Fewer taps to the paywall for the convinced; the sample plan still exists for the doubtful, in the form Bhuvanaa asked for.",
+   "screens": "R10, R11, R12, P01, X01"
+  },
+  {
+   "id": "D06",
+   "group": "Journey",
+   "title": "Community placement",
+   "raised": "Gaurav (row 46), Harish (H08)",
+   "impact": "Low",
+   "context": "Bhuvanaa's deck puts community on the returning-client home. Gaurav: menu only. Harish: is it always available, home or menu?",
+   "options": [
+    [
+     "A",
+     "Card on home, as in the deck."
+    ],
+    [
+     "B",
+     "One-line strip on home; the community itself opens from the menu; always available."
+    ],
+    [
+     "C",
+     "Menu only."
+    ]
+   ],
+   "rec": "B",
+   "why": "Home is for the next action; a strip keeps the community visible without taking the hero.",
+   "screens": "H01, H08"
+  },
+  {
+   "id": "D07",
+   "group": "Logic",
+   "title": "Asset classes in the allocation grid",
+   "raised": "Harish (L02, L03)",
+   "impact": "Med",
+   "context": "Briefed as cash, debt, hybrid, commodities, equity. Harish: cash will not be in a recommended allocation; the shortest bucket is liquid debt funds. He also wants a bucket for REITs and InvITs.",
+   "options": [
+    [
+     "A",
+     "Five classes as briefed."
+    ],
+    [
+     "B",
+     "Rename cash to liquid funds for recommendations (cash stays as a holdings category for bank balances); add real assets (REITs, InvITs) as a sixth class, configurable, default 0."
+    ]
+   ],
+   "rec": "B",
+   "why": "The grid handles any number of classes; the cost is one column. Harish sets 0 where he does not want it.",
+   "screens": "L02, L03, L04, G11"
+  },
+  {
+   "id": "D08",
+   "group": "Logic",
+   "title": "Portfolio construction constraints",
+   "raised": "Harish (L04)",
+   "impact": "Med",
+   "context": "Harish asks where rules live such as: direct shares no more than 40% of the equity bucket; no single product above 20%; where instruments are tagged to a category.",
+   "options": [
+    [
+     "A",
+     "No constraints screen in V1; the approved list and weights carry the judgment."
+    ],
+    [
+     "B",
+     "New logic panel screen L09 Constraints: max share per product, max direct shares within equity, min instruments per bucket, max small and mid cap share, with validation at staging (L05). Category tagging: fetched facts with manual override in L04."
+    ]
+   ],
+   "rec": "B",
+   "why": "Without constraints, a weight typo publishes to every user. The rules are cheap to enforce at staging and expensive to discover in production.",
+   "screens": "L04, L05, new L09"
+  },
+  {
+   "id": "D09",
+   "group": "Logic",
+   "title": "Risk profile method",
+   "raised": "Bhuvanaa (row 30)",
+   "impact": "Med",
+   "context": "Drawn as HoA's 8-question questionnaire giving a band. Bhuvanaa: risk should combine tolerance (questionnaire), capacity and need (our assessment); the calculation logic exists. The band drives allocation, so Harish signs off.",
+   "options": [
+    [
+     "A",
+     "Questionnaire band only for V1."
+    ],
+    [
+     "B",
+     "Tolerance plus capacity plus need, combined; D09 shows the three and the result; L03 holds the combination rule. Needs Bhuvanaa's logic within a week and Harish's sign-off."
+    ],
+    [
+     "C",
+     "A for launch, B as the first post-launch logic release."
+    ]
+   ],
+   "rec": "C",
+   "why": "B is better advice and the screen change is small, but the combination rule must be written and signed off. C protects the date and keeps B on the roadmap with a slot in L03.",
+   "screens": "D08, D09, L03"
+  },
+  {
+   "id": "D10",
+   "group": "Logic",
+   "title": "Retirement model",
+   "raised": "Bhuvanaa (L02)",
+   "impact": "Med",
+   "context": "L02 listed a withdrawal rate. The FP React uses corpus depletion to life expectancy (money lasts till age) with post-retirement return and inflation, which needs no withdrawal rate.",
+   "options": [
+    [
+     "A",
+     "Depletion to life expectancy, as the React does. Drop the withdrawal-rate row; add post-retirement return."
+    ],
+    [
+     "B",
+     "Withdrawal rate model."
+    ]
+   ],
+   "rec": "A",
+   "why": "One model, and it is the one already specified and shown to users on G09.",
+   "screens": "L02, G09"
+  },
+  {
+   "id": "D11",
+   "group": "Compliance",
+   "title": "Tax section",
+   "raised": "Somil (row 33)",
+   "impact": "Med",
+   "context": "G08 compares old and new regimes with editable inputs. Somil: drop or modify; needs Bhuvanaa and Harish. The agreement disclaims tax advice.",
+   "options": [
+    [
+     "A",
+     "Keep with the disclaimer; regime comparison is a calculator."
+    ],
+    [
+     "B",
+     "Drop."
+    ],
+    [
+     "C",
+     "Keep only the verdict line and remove the editable inputs."
+    ]
+   ],
+   "rec": "A",
+   "why": "It is one of the seven React sections, it answers a question every 28-year-old has in March, and the disclaimer already exists.",
+   "screens": "G08"
+  },
+  {
+   "id": "D12",
+   "group": "Compliance",
+   "title": "Insurance aggregator links",
+   "raised": "Bhuvanaa (row 38)",
+   "impact": "Med",
+   "context": "E01 guides insurance actions outside the app. Bhuvanaa: link through aggregators like PolicyBazaar.",
+   "options": [
+    [
+     "A",
+     "No links. Guidance only: what to buy, what to look for."
+    ],
+    [
+     "B",
+     "Plain links with no referral code or consideration."
+    ]
+   ],
+   "rec": "A",
+   "why": "Referral income from an aggregator is distribution income, barred for advisory clients. A plain link is legally arguable and reputationally poor for an RIA. Harish to confirm.",
+   "screens": "E05"
+  },
+  {
+   "id": "D13",
+   "group": "Operations",
+   "title": "Who takes the DIWM plan call",
+   "raised": "Kajal (row 34)",
+   "impact": "High",
+   "context": "Kajal: it is a planner call, not an advisory call; only Harish can discuss investments. The wireframe assumes a named adviser (Priya). If the planner discusses the investment plan, they must be a certified person associated with investment advice.",
+   "options": [
+    [
+     "A",
+     "A financial planner (CFP) who is certified as a person associated with advice, named on the Contact, takes the plan call including the investment plan."
+    ],
+    [
+     "B",
+     "Planner takes the financial-plan half; Harish takes investment questions by exception."
+    ],
+    [
+     "C",
+     "Harish only."
+    ]
+   ],
+   "rec": "A",
+   "why": "C caps the tier at Harish's diary. A needs one certified hire or contractor and is the only option that scales. Capacity math from earlier: about 3 hours per client-year.",
+   "screens": "O01, K01, K03, H07"
+  },
+  {
+   "id": "D14",
+   "group": "Operations",
+   "title": "Human calls as a nudge channel",
+   "raised": "Harish (N01)",
+   "impact": "Low",
+   "context": "Harish: more nudges than two or three; we may call people offline. The nudge matrix has 32 rows; it has no human channel.",
+   "options": [
+    [
+     "A",
+     "Digital channels only."
+    ],
+    [
+     "B",
+     "Add a human-call channel for high-value states (reveal seen with a high corpus band, data stalled 7 days, no action at 14 days, payment failed). Zoho creates a task for a named person."
+    ]
+   ],
+   "rec": "B",
+   "why": "Cheap to add as a policy value, and the corporate-session and community leads are exactly the ones a call converts.",
+   "screens": "N01, admin spec nudge matrix"
+  },
+  {
+   "id": "D15",
+   "group": "Compliance",
+   "title": "Refund policy in the app",
+   "raised": "Harish (Q03)",
+   "impact": "Med",
+   "context": "Q03 covers cancel, failed payment, lapsed. Harish: check RIA refund regulations. The agreement refunds the unexpired period on premature termination, with a breakage fee of at most one quarter's fee.",
+   "options": [
+    [
+     "A",
+     "Monthly membership: cancel stops the next charge, the current month runs out, no refund. Any prepaid period: pro-rata refund minus breakage as in the agreement. Copy on Q03 says exactly this. Counsel confirms."
+    ],
+    [
+     "B",
+     "Full refund within 7 days of any payment, then A."
+    ]
+   ],
+   "rec": "A",
+   "why": "A follows the agreement already in use. B is a marketing choice that can be added later without a screen change.",
+   "screens": "Q03, P01"
+  },
+  {
+   "id": "D16",
+   "group": "Compliance",
+   "title": "Payment methods",
+   "raised": "Kajal (row 22), Harish (P04)",
+   "impact": "Low",
+   "context": "Kajal: UPI and netbanking only, no cards; GST split logic. Harish: subject to regulatory approval on payment types. The agreement lists any traceable mode; cash is barred.",
+   "options": [
+    [
+     "A",
+     "UPI autopay and netbanking at launch; cards behind a config flag, enabled if mandate failures are high."
+    ],
+    [
+     "B",
+     "UPI, netbanking and cards from day one."
+    ]
+   ],
+   "rec": "A",
+   "why": "Monthly billing needs a mandate; UPI autopay covers it. Cards add cost and a dispute path. Config, not code, either way.",
+   "screens": "P04"
+  },
+  {
+   "id": "D17",
+   "group": "Compliance",
+   "title": "Records kept for audit",
+   "raised": "Harish (L08)",
+   "impact": "Med",
+   "context": "Harish: check what must be saved for audit. The admin spec lists nine records: signed agreements, KYC, risk profile and suitability, the advice register with rationale, fee invoices, grievances, AUA statements for DIFM, audit trail, five-year retention.",
+   "options": [
+    [
+     "A",
+     "Adopt the nine-record list; Harish confirms it with the compliance auditor and adds anything missing."
+    ],
+    [
+     "B",
+     "Defer until the auditor is engaged."
+    ]
+   ],
+   "rec": "A",
+   "why": "The devs need the record list before they design tables. Confirming a written list is faster than starting from none.",
+   "screens": "L08, H06, admin spec compliance table"
+  }
+ ],
+ "CONFIRM": [
+  {
+   "id": "C01",
+   "who": "Harish (R08)",
+   "q": "Inflation and other assumptions changeable in the back end at any time?",
+   "a": "Yes. L02, versioned with effective dates. A change applies to new plans and to each user's next review, not retroactively; every plan records the assumptions version it used."
+  },
+  {
+   "id": "C02",
+   "who": "Harish (G04)",
+   "q": "Emergency fund six months as the basic rule?",
+   "a": "Yes. L02 emergency months = 6, editable."
+  },
+  {
+   "id": "C03",
+   "who": "Harish (H06)",
+   "q": "Store the rationale for each recommended instrument?",
+   "a": "Yes, and it is also required for the advice register. v0.2 adds a rationale block per instrument on G13 and in the plan PDF, kept in the vault by version."
+  },
+  {
+   "id": "C04",
+   "who": "Harish (L07)",
+   "q": "What does commentary mean on market inputs?",
+   "a": "The user-facing timing text on G13 (lumpsum vs staggered) and the bucket notes. Renamed to user-facing timing notes in v0.2."
+  },
+  {
+   "id": "C05",
+   "who": "Harish (L05)",
+   "q": "Where are the investment-plan allocations computed?",
+   "a": "In the engine, not the panel: goal, horizon bucket, risk band, grid cell, instruments and weights, amounts. L05 only previews a run. v0.2 adds L00, an engine map screen, so this is visible to everyone."
+  },
+  {
+   "id": "C06",
+   "who": "Harish (D03, D04)",
+   "q": "Detail screens for each loan and each policy?",
+   "a": "Yes. v0.2 adds D03a loan detail and D04a policy detail; the list screens stay. Loans to and from friends and family added (Bhuvanaa raised the same)."
+  },
+  {
+   "id": "C07",
+   "who": "Harish (E03, E04)",
+   "q": "How do the execution integrations look?",
+   "a": "Depends on D03. Under A: BSE StAR account creation, then order and mandate screens as drawn. Under B: a broker login inside the smallcase Gateway SDK, then order screens. Either way HoA needs the commercial onboarding (gateway partnership or BSE StAR RIA access) before any screen can be built."
+  }
+ ],
+ "CHANGES": [
+  [
+   "A01",
+   "Copy: 'the next few minutes'; welcome and prime (Gaurav)"
+  ],
+  [
+   "A02",
+   "Phone prefill; drop the why-mobile link; T&C and privacy consent with over-18 statement (Gaurav)"
+  ],
+  [
+   "A03",
+   "Resend with backoff, three retries; change-number limited (Gaurav)"
+  ],
+  [
+   "A04",
+   "Burned-in captions; skip at 0 s with confirm; bundled video with remote override (Gaurav)"
+  ],
+  [
+   "R01",
+   "'Name' label (Gaurav)"
+  ],
+  [
+   "R02",
+   "Two-row household selector; city optional (Gaurav)"
+  ],
+  [
+   "R04",
+   "Callout: do not count the home you live in (Gaurav)"
+  ],
+  [
+   "R07",
+   "'Type your own' mapped to the nearest aspiration (Gaurav)"
+  ],
+  [
+   "R08",
+   "Assumption lines reworded (Bhuvanaa)"
+  ],
+  [
+   "R09",
+   "One explanatory line per path; how-we-got-here expandable (Bhuvanaa)"
+  ],
+  [
+   "X01",
+   "Testimonials strip, subject to G02 in the gap list (Gaurav)"
+  ],
+  [
+   "P04",
+   "Coupon field; GST split from KRA address; payment methods as config (Gaurav, Kajal)"
+  ],
+  [
+   "O01",
+   "Single tier card with 'because you chose'; fuller adviser profile; 30-second adviser video (Kajal, Somil, Bhuvanaa, Gaurav)"
+  ],
+  [
+   "O02",
+   "Step copy: 1 connect, 2 fill, 3 book (Kajal)"
+  ],
+  [
+   "A05",
+   "Expectation copy: two or three OTPs from the AA (Gaurav, Somil)"
+  ],
+  [
+   "D03",
+   "Money owed to or by family and friends; D03a detail screen (Bhuvanaa, Harish)"
+  ],
+  [
+   "D04",
+   "Optional policy upload to vault; D04a detail screen (Bhuvanaa, Harish)"
+  ],
+  [
+   "G01",
+   "Rotating assumption lines (Gaurav)"
+  ],
+  [
+   "G13",
+   "Rationale per instrument (Harish)"
+  ],
+  [
+   "E02",
+   "Nominee prefilled to spouse (Gaurav)"
+  ],
+  [
+   "E05",
+   "Upload sub-step; vault entry on the tab bar (Gaurav)"
+  ],
+  [
+   "H01",
+   "Plan-updated banner drawn; net worth growth shows market movement only for verified holdings (Gaurav)"
+  ],
+  [
+   "H00",
+   "New: navigation map (Somil)"
+  ],
+  [
+   "H10",
+   "New: goals progress (Kajal)"
+  ],
+  [
+   "H11",
+   "New: portfolio (Kajal)"
+  ],
+  [
+   "H09",
+   "Rebuild rule: any time, versions kept, diff shown (Gaurav)"
+  ],
+  [
+   "Q02",
+   "Copy: 'I will only ask about what this changes' plus the section list (Bhuvanaa)"
+  ],
+  [
+   "Q04",
+   "Referral and rating; also on the S10 celebration (Bhuvanaa)"
+  ],
+  [
+   "L04",
+   "Copy: weights within a cell's class; class share from L03; category tag with override (Gaurav, Harish)"
+  ],
+  [
+   "L07",
+   "Renamed to user-facing timing notes (Harish)"
+  ],
+  [
+   "L00",
+   "New: engine map (Harish)"
+  ],
+  [
+   "N01",
+   "Human-call channel if D14 = B (Harish)"
+  ]
+ ],
+ "ANSWERED": [
+  [
+   "R09 / N01",
+   "Martech at drop-off points: every state is a Zoho journey (Gaurav)"
+  ],
+  [
+   "R10",
+   "Video production is content, not wireframe (Gaurav)"
+  ],
+  [
+   "H05 / H06",
+   "Surfaced by push, WhatsApp and a banner; vault is a tab (Gaurav)"
+  ],
+  [
+   "H02 to H04",
+   "Home tab holds H02, H03; Actions tab is H04 (Somil)"
+  ],
+  [
+   "M01",
+   "Directus, not Appsmith; Spinach does UI (Gaurav, Kajal)"
+  ],
+  [
+   "All",
+   "Somil's 68 Keeps read as agreement with the flow"
+  ]
+ ],
+ "GAPS": [
+  {
+   "id": "G01",
+   "title": "Brand name lock",
+   "why": "The files say yeslyf; earlier documents say Yesly and Yalpho. Spinach cannot start a wordmark or an app icon without the final name.",
+   "rec": "Lock the name and spelling this week; it is the first line of the Spinach brief.",
+   "owner": "Founders",
+   "impact": "High"
+  },
+  {
+   "id": "G02",
+   "title": "SEBI advertisement code for IAs",
+   "why": "The reveal copy, the sample plan, testimonials (X01 strip, day-7 nudge), the app store listing and the nudges are promotional communications by an RIA. The 2023 advertisement code restricts what can be said and requires prior approval of advertisements by the supervisory body; testimonials are likely restricted.",
+   "rec": "Compliance review of every promotional surface before Spinach writes copy; drop testimonials until cleared. Confidence on the exact testimonial rule: moderate; Harish to check.",
+   "owner": "Harish",
+   "impact": "High"
+  },
+  {
+   "id": "G03",
+   "title": "DPDP Act consent and deletion",
+   "why": "A02 collects personal data and financial data follows. India's data protection law requires a consent notice with purpose, the right to withdraw, and deletion, with exceptions for records SEBI requires you to keep.",
+   "rec": "Counsel drafts the notice; A02 and H09 already have the slots; retention exceptions listed in the admin spec.",
+   "owner": "Counsel",
+   "impact": "Med"
+  },
+  {
+   "id": "G04",
+   "title": "Adviser capacity for DIWM",
+   "why": "D13 decides who; nobody has decided how many and by when. One person at about 3 hours per client-year caps near 450 clients a year, realistically 200 to 300 alongside other work.",
+   "rec": "Name the person and the cap; the K01 slot design and a waitlist depend on it.",
+   "owner": "Founders",
+   "impact": "High"
+  },
+  {
+   "id": "G05",
+   "title": "Vendor onboarding critical path",
+   "why": "AA TSP and FIU registration, Digio, Razorpay subscriptions, smallcase Gateway partnership or BSE StAR RIA access, WhatsApp provider, Zoho. Each has a contract and a lead time; none has an owner or a date in any document.",
+   "rec": "One owner, a dated list this week. This, not code, is the long pole for 1 February.",
+   "owner": "HoA ops",
+   "impact": "High"
+  },
+  {
+   "id": "G06",
+   "title": "Documents still owed",
+   "why": "RPQ scoring map; fixed-fee agreement template with the app as an advice channel; Bhuvanaa's risk logic if D09 = B or C.",
+   "rec": "Dates against each.",
+   "owner": "Harish, counsel, Bhuvanaa",
+   "impact": "Med"
+  },
+  {
+   "id": "G07",
+   "title": "Analytics instrumentation rule",
+   "why": "Drop-off analytics only work if every screen ID is an event from day one.",
+   "rec": "One line in the dev brief: screen_view with screen_id on every screen; funnel events per the admin spec.",
+   "owner": "Dev owner",
+   "impact": "Low"
+  },
+  {
+   "id": "G08",
+   "title": "Content production list",
+   "why": "Videos (A04 welcome, R10 merged, O01 adviser intro), five or six persona sample plans, FAQs, tooltips, disclaimers. Nobody owns the list.",
+   "rec": "Bhuvanaa owns; v0.2 lists every content slot with its screen ID.",
+   "owner": "Bhuvanaa",
+   "impact": "Med"
+  },
+  {
+   "id": "G09",
+   "title": "App store requirements",
+   "why": "Google Play and the App Store have financial-app declarations and require the regulator registration in the listing; review cycles take days.",
+   "rec": "Dev owner checks both policies now, not at submission.",
+   "owner": "Dev owner",
+   "impact": "Low"
+  },
+  {
+   "id": "G10",
+   "title": "Date protection: V1 without execution",
+   "why": "In-app execution (D03) is the biggest risk to 1 February because it depends on third parties. If it slips, the launch should not.",
+   "rec": "Define the fallback now: action plan with deep links to the user's own platform, AA verifies completion. Ship execution as the first post-launch release if needed.",
+   "owner": "spiff",
+   "impact": "High"
+  },
+  {
+   "id": "G11",
+   "title": "Existing HoA clients (DIFM) into the app",
+   "why": "Tier exists (S14) but nobody has said when they migrate or who enters their data.",
+   "rec": "After launch, via assisted onboarding in the admin tool; not a day-one task.",
+   "owner": "Harish",
+   "impact": "Low"
+  },
+  {
+   "id": "G12",
+   "title": "Support staffing on day one",
+   "why": "Desk tickets and adviser messages need a human within one business day from the first paid user.",
+   "rec": "Name the person; community managers can cover support, not advice.",
+   "owner": "Bhuvanaa",
+   "impact": "Med"
+  },
+  {
+   "id": "G13",
+   "title": "Closed beta before launch",
+   "why": "Nothing in any document tests the journey with real users before 1 February.",
+   "rec": "Thirty YesLifers members in January on a build with the reveal, paywall and data flow; execution optional.",
+   "owner": "spiff",
+   "impact": "Med"
+  }
+ ],
+ "HARISH_ROWS": [
+  {
+   "n": 57,
+   "scr": "R08",
+   "say": "Inflation changeable in the back end at any time?",
+   "disp": "Answered",
+   "act": "See C01."
+  },
+  {
+   "n": 58,
+   "scr": "P04",
+   "say": "Subject to regulatory approval on payment types.",
+   "disp": "Decision",
+   "act": "D16."
+  },
+  {
+   "n": 59,
+   "scr": "D03",
+   "say": "Detail screen per loan; other loans like loans to friends.",
+   "disp": "Accepted",
+   "act": "D03a; family and friends rows. See C06."
+  },
+  {
+   "n": 60,
+   "scr": "D04",
+   "say": "Detail screen per policy.",
+   "disp": "Accepted",
+   "act": "D04a. See C06."
+  },
+  {
+   "n": 61,
+   "scr": "G04",
+   "say": "Emergency fund six months.",
+   "disp": "Answered",
+   "act": "See C02."
+  },
+  {
+   "n": 62,
+   "scr": "E03",
+   "say": "Unsure how the MF integration and screens look.",
+   "disp": "Decision",
+   "act": "D03; see C07."
+  },
+  {
+   "n": 63,
+   "scr": "E04",
+   "say": "Unsure how brokers connect via smallcase.",
+   "disp": "Decision",
+   "act": "D03; see C07."
+  },
+  {
+   "n": 64,
+   "scr": "H06",
+   "say": "Include rationale for recommended products.",
+   "disp": "Accepted",
+   "act": "See C03."
+  },
+  {
+   "n": 65,
+   "scr": "H08",
+   "say": "Is community always available; home or menu?",
+   "disp": "Decision",
+   "act": "D06."
+  },
+  {
+   "n": 66,
+   "scr": "Q03",
+   "say": "Check RIA refund regulations.",
+   "disp": "Decision",
+   "act": "D15."
+  },
+  {
+   "n": 67,
+   "scr": "N01",
+   "say": "More nudges; offline calls too.",
+   "disp": "Decision",
+   "act": "D14; the matrix already has 32 rows."
+  },
+  {
+   "n": 68,
+   "scr": "L02",
+   "say": "Bucket for REITs and InvITs.",
+   "disp": "Decision",
+   "act": "D07."
+  },
+  {
+   "n": 69,
+   "scr": "L03",
+   "say": "Cash will not be recommended; shortest is liquid debt.",
+   "disp": "Decision",
+   "act": "D07."
+  },
+  {
+   "n": 70,
+   "scr": "L04",
+   "say": "Where are instruments tagged to category; where do constraints live?",
+   "disp": "Decision",
+   "act": "D08."
+  },
+  {
+   "n": 71,
+   "scr": "L07",
+   "say": "What does commentary mean?",
+   "disp": "Answered",
+   "act": "See C04."
+  },
+  {
+   "n": 72,
+   "scr": "L05",
+   "say": "Where are allocations calculated?",
+   "disp": "Answered",
+   "act": "See C05."
+  },
+  {
+   "n": 73,
+   "scr": "L08",
+   "say": "Check what must be saved for audit.",
+   "disp": "Decision",
+   "act": "D17."
+  }
+ ]
+}

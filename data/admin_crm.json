@@ -1,0 +1,1176 @@
+{
+ "source": "input/v01/yeslyf_admin_crm_spec_v0.1.html",
+ "note": "DECISIONS were written in the admin/CRM spec v0.1 by the crm-and-nudges workstream (Vatsal and Kajal); 'position' is their stated position, not a recommendation to anyone else.",
+ "STACK": [
+  {
+   "id": "zoho-crm",
+   "name": "Zoho CRM",
+   "kind": "Bought",
+   "cost": "Paid, per user",
+   "does": "The relationship: one Contact per phone number, journey stage mirrored from the app, adviser owner, deals and subscriptions, event timeline.",
+   "login": "Founders, advisers, community managers",
+   "notes": "India datacentre (zoho.in). Minimum fields: no PAN, no financial numbers beyond bands."
+  },
+  {
+   "id": "zoho-desk",
+   "name": "Zoho Desk",
+   "kind": "Bought",
+   "cost": "Paid, per agent",
+   "does": "Tickets: adviser messages from H07, support, complaints tagged as grievances (the grievance register).",
+   "login": "Advisers, support",
+   "notes": "One-business-day SLA configured here. Grievance category exports for SEBI records."
+  },
+  {
+   "id": "zoho-camp",
+   "name": "Zoho Campaigns / Marketing Automation",
+   "kind": "Bought",
+   "cost": "Paid, by contacts",
+   "does": "Email, WhatsApp and SMS journeys keyed on journey stage. The nudge matrix in this document is its content.",
+   "login": "Bhuvanaa, community managers",
+   "notes": "WhatsApp templates need Meta approval; opt-in captured at A02. One nudge per week cap enforced here."
+  },
+  {
+   "id": "zoho-book",
+   "name": "Zoho Bookings",
+   "kind": "Bought (in Zoho One)",
+   "cost": "Included or cheap",
+   "does": "Adviser slot booking behind K01 and K04.",
+   "login": "Advisers",
+   "notes": "Cal.com is the alternative if Zoho One is not bought."
+  },
+  {
+   "id": "zoho-flow",
+   "name": "Zoho Flow",
+   "kind": "Bought (in Zoho One)",
+   "cost": "Included or cheap",
+   "does": "Maps app events to CRM fields and timeline notes. Field mapping stays configuration, not code.",
+   "login": "Whoever configures Zoho",
+   "notes": "Make or Zapier if Flow falls short."
+  },
+  {
+   "id": "directus",
+   "name": "Directus",
+   "kind": "Low-code over the database",
+   "cost": "Free, self-hosted",
+   "does": "Admin over the app tables (users, journey state, financial record, plan versions, AA consents, ops queue) with roles, permissions and an activity log. Also the CMS: videos, FAQs, tooltips, disclaimers, sample plans, agreements templates, app config and SKU cards.",
+   "login": "Founders, advisers (scoped), ops",
+   "notes": "One tool for two of the doc's sections (Financial Data views and CMS). Appsmith or Retool if composed screens like the pre-call view need more than Directus gives; decide after a two-day trial."
+  },
+  {
+   "id": "metabase",
+   "name": "Metabase",
+   "kind": "Low-code over the database",
+   "cost": "Free, self-hosted",
+   "does": "The KPI dashboard and every count in the doc that comes from the database: users, paid, plans, AUA, SIP book, AA availed, integration failures. Scheduled email of the dashboard.",
+   "login": "Founders",
+   "notes": "SQL questions saved once; nobody builds a dashboard screen."
+  },
+  {
+   "id": "mixpanel",
+   "name": "Mixpanel",
+   "kind": "Bought",
+   "cost": "Free tier, then paid",
+   "does": "Behaviour: funnels, retention, drop-off by screen. Every wireframe screen ID is an event.",
+   "login": "Founders, product",
+   "notes": "If the free tier is outgrown, the same events can be stored in the database and read in Metabase with less convenience."
+  },
+  {
+   "id": "razorpay",
+   "name": "Razorpay dashboard",
+   "kind": "Bought",
+   "cost": "Transaction fees",
+   "does": "Payments, subscriptions, mandates, refunds, invoices. Source of truth for money.",
+   "login": "Founders, finance",
+   "notes": "Webhooks update tier and billing state in the app; Metabase mirrors counts."
+  },
+  {
+   "id": "digio",
+   "name": "Digio console",
+   "kind": "Bought",
+   "cost": "Per use",
+   "does": "KYC fetch (KRA/CKYC) and Aadhaar eSign records.",
+   "login": "Ops, compliance",
+   "notes": "Signed PDFs are copied into the vault (H06)."
+  },
+  {
+   "id": "tsp",
+   "name": "AA TSP console (Setu / Finvu / OneMoney)",
+   "kind": "Bought",
+   "cost": "Per fetch",
+   "does": "Consent templates, consent status, FIP health, fetch logs.",
+   "login": "Ops",
+   "notes": "AA failure rate reads from here and from the app's integration log."
+  },
+  {
+   "id": "firebase",
+   "name": "Firebase Cloud Messaging",
+   "kind": "Bought",
+   "cost": "Free",
+   "does": "Push notifications. Text lives in the app config table so it is editable without a release.",
+   "login": "Devs",
+   "notes": "Permission asked right after P05."
+  },
+  {
+   "id": "sentry",
+   "name": "Sentry + uptime monitor",
+   "kind": "Bought",
+   "cost": "Free tier",
+   "does": "Errors and integration failures with alerts. Replaces the doc's Integrations table.",
+   "login": "Devs, ops",
+   "notes": "Better Stack or UptimeRobot for the uptime side."
+  },
+  {
+   "id": "logic",
+   "name": "Logic panel (built)",
+   "kind": "Built by devs",
+   "cost": "Dev time",
+   "does": "Assumptions, cohort grid, instrument universe, market inputs, staging, publish, audit (L01 to L08).",
+   "login": "Harish, principal officer",
+   "notes": "The only internal tool the devs build."
+  }
+ ],
+ "PLACEMENT": [
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Total users",
+   "bucket": "Metabase",
+   "tool": "Metabase over users table",
+   "def": "Contacts with a verified OTP (A03).",
+   "wire": "A03",
+   "note": ""
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "New users, today / week / month",
+   "bucket": "Metabase",
+   "tool": "Metabase",
+   "def": "Same table, created_at buckets.",
+   "wire": "A03",
+   "note": ""
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Active users",
+   "bucket": "Mixpanel",
+   "tool": "Mixpanel DAU / WAU / MAU",
+   "def": "Opened the app; app_open event. Metabase can approximate from last_active.",
+   "wire": "H01",
+   "note": ""
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "In onboarding",
+   "bucket": "Metabase",
+   "tool": "Metabase",
+   "def": "Users in states S1 to S5 of the returning-user table.",
+   "wire": "N01",
+   "note": "Counted per state, not as one number, or you cannot act on it."
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Paid users",
+   "bucket": "Metabase",
+   "tool": "Metabase, reconciled to Razorpay monthly",
+   "def": "tier in (DIY, DIWM) with an active subscription or a one-time payment.",
+   "wire": "P05",
+   "note": ""
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Plan opted, by SKU",
+   "bucket": "Metabase",
+   "tool": "Metabase",
+   "def": "Count by sku from the paid event.",
+   "wire": "P01",
+   "note": "SKU set is config in Directus; the query reads it."
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Plans in progress (being prepared)",
+   "bucket": "Change",
+   "tool": "Metabase",
+   "def": "Plans build instantly (G01), so this is near zero by design. Replace with two numbers: data complete but plan not built (engine failures, should be zero) and plans built in the last 24 hours.",
+   "wire": "G01",
+   "note": "Conflicts with the no-review-gate decision; redefined."
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Plans completed (delivered)",
+   "bucket": "Metabase",
+   "tool": "Metabase for built; Mixpanel for read",
+   "def": "plan_built count; plan_read count; the gap is the unread plans (state S6).",
+   "wire": "G03",
+   "note": ""
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Pending actions (admin / adviser / customer service)",
+   "bucket": "Fold",
+   "tool": "Zoho Desk (customer conversations) + ops queue in Directus (data work)",
+   "def": "Two numbers: open tickets in Desk; open items in the ops queue: unknown ISINs to classify (L04), data-quality flags, AA failures needing follow-up, refund requests, adviser reassignments.",
+   "wire": "H07",
+   "note": "One queue table in the database, surfaced in Directus; Desk for anything the user sees."
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "AUA (assets under advisory)",
+   "bucket": "Metabase",
+   "tool": "Metabase, monthly snapshots",
+   "def": "Sum of AA- or CAS-verified holdings for users with an active plan. Split DIY / DIWM / DIFM.",
+   "wire": "A08",
+   "note": "For DIY and DIWM this is a business metric only (fixed-fee mode). For DIFM it is the fee base (AUA mode) and SEBI requires it to be demonstrable with statements: snapshot monthly and keep the statements."
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "SIP book (ongoing monthly investments)",
+   "bucket": "Metabase",
+   "tool": "Metabase",
+   "def": "Sum of active SIP mandates placed through BSE StAR (E03) plus SIPs detected via AA (D06) for users who execute elsewhere. Show the two separately.",
+   "wire": "E03",
+   "note": ""
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "AA availed",
+   "bucket": "Metabase",
+   "tool": "Metabase",
+   "def": "Consents active / declined / expired / failed, as counts and as a share of paid users.",
+   "wire": "A06",
+   "note": ""
+  },
+  {
+   "sec": "User analytics",
+   "item": "Active users, retention",
+   "bucket": "Mixpanel",
+   "tool": "Mixpanel retention report",
+   "def": "Week-N retention by cohort of paid date.",
+   "wire": "H01",
+   "note": ""
+  },
+  {
+   "sec": "User analytics",
+   "item": "Drop-offs by screen and stage",
+   "bucket": "Mixpanel",
+   "tool": "Mixpanel funnels",
+   "def": "Every wireframe screen ID is an event (screen_view with screen_id). Stage = section letter. This is the one instrumentation rule the devs must follow.",
+   "wire": "X00",
+   "note": "The wireframe IDs are the event names; nothing to invent."
+  },
+  {
+   "sec": "Onboarding analytics",
+   "item": "Completion %, average completion time, stage-wise drop-off",
+   "bucket": "Mixpanel",
+   "tool": "Mixpanel funnel R01 to P05 to D10 to G01",
+   "def": "Three funnels: reveal (R01 to R09), paywall (R12 to P05), data (O02 to D10). Time between first and last step.",
+   "wire": "R01",
+   "note": ""
+  },
+  {
+   "sec": "Onboarding analytics",
+   "item": "KYC failure rate",
+   "bucket": "Metabase",
+   "tool": "Metabase over integration_events",
+   "def": "kyc_failed / kyc_attempted from the app's integration log (P02).",
+   "wire": "P02",
+   "note": "Same log feeds the Integrations question below."
+  },
+  {
+   "sec": "Onboarding analytics",
+   "item": "AA failure rate",
+   "bucket": "Metabase",
+   "tool": "Metabase over integration_events; TSP console for FIP detail",
+   "def": "aa_failed / aa_attempted, by institution (A07, A09).",
+   "wire": "A09",
+   "note": ""
+  },
+  {
+   "sec": "Commercial analytics",
+   "item": "Sample plan to paid conversion",
+   "bucket": "Mixpanel",
+   "tool": "Mixpanel funnel R12 to P05",
+   "def": "Also reveal to paid (R09 to P05), which is the number that matters.",
+   "wire": "R12",
+   "note": ""
+  },
+  {
+   "sec": "Commercial analytics",
+   "item": "Payment conversion",
+   "bucket": "Mixpanel",
+   "tool": "Mixpanel funnel P01 to P04 to P05",
+   "def": "Paywall viewed to paid; checkout abandonment at P02, P03, P04 separately.",
+   "wire": "P04",
+   "note": ""
+  },
+  {
+   "sec": "Commercial analytics",
+   "item": "Subscription conversion",
+   "bucket": "Metabase",
+   "tool": "Metabase",
+   "def": "One-time buyers who started the membership within 60 days (credit rule on P01). Only exists if the one-time SKU survives.",
+   "wire": "P01",
+   "note": "Depends on the SKU decision."
+  },
+  {
+   "sec": "Commercial analytics",
+   "item": "Revenue",
+   "bucket": "Console",
+   "tool": "Razorpay dashboard; Metabase mirror",
+   "def": "Gross, refunds, net, by SKU and month. Razorpay is the truth; Metabase shows it next to users.",
+   "wire": "P04",
+   "note": ""
+  },
+  {
+   "sec": "Commercial analytics",
+   "item": "Plan type mix",
+   "bucket": "Metabase",
+   "tool": "Metabase",
+   "def": "Same as plan opted by SKU.",
+   "wire": "P01",
+   "note": "Duplicate of a KPI; folded."
+  },
+  {
+   "sec": "Plan analytics",
+   "item": "Plans generated, viewed, downloaded",
+   "bucket": "Mixpanel",
+   "tool": "Mixpanel events plan_built, plan_read, pdf_downloaded",
+   "def": "Counts and the ratios between them.",
+   "wire": "G10",
+   "note": ""
+  },
+  {
+   "sec": "Plan analytics",
+   "item": "Time from data completion to plan",
+   "bucket": "Fold",
+   "tool": "Metabase",
+   "def": "Seconds, by design. Keep as an engine health check (p95 build time), not a business metric.",
+   "wire": "G01",
+   "note": ""
+  },
+  {
+   "sec": "Plan analytics",
+   "item": "FP to IP conversion",
+   "bucket": "Change",
+   "tool": "Mixpanel",
+   "def": "Under the current tiers the investment plan is part of the membership, so there is no conversion to measure. If a one-time FP-only SKU survives, measure one-time to membership instead.",
+   "wire": "G11",
+   "note": "Depends on the SKU decision."
+  },
+  {
+   "sec": "Financial data",
+   "item": "Not started / partially completed / completed",
+   "bucket": "Directus",
+   "tool": "Directus user record + Metabase counts",
+   "def": "Completion flags per data screen (D01 to D09) as in the M2 completion rules; O02 reads the same flags.",
+   "wire": "O02",
+   "note": ""
+  },
+  {
+   "sec": "Financial data",
+   "item": "System generated / AA sourced / manually entered",
+   "bucket": "Directus",
+   "tool": "Directus user record",
+   "def": "Every field carries a source: AA-fed, CAS-verified, manual, derived. Same badges the user sees on A08.",
+   "wire": "A08",
+   "note": ""
+  },
+  {
+   "sec": "Financial data",
+   "item": "Needs verification",
+   "bucket": "Directus",
+   "tool": "Directus ops queue",
+   "def": "Data-quality flags (implausible values from M2), unknown ISINs (L04 queue), AA fetch failures with manual fallback. Each is a queue item with an owner.",
+   "wire": "L04",
+   "note": ""
+  },
+  {
+   "sec": "Payment dashboard",
+   "item": "Total paid, pending, failed, refunded, revenue",
+   "bucket": "Console",
+   "tool": "Razorpay dashboard",
+   "def": "Native reports. Metabase mirrors counts via webhooks for the KPI page.",
+   "wire": "Q03",
+   "note": ""
+  },
+  {
+   "sec": "Payment dashboard",
+   "item": "Conversion rate",
+   "bucket": "Mixpanel",
+   "tool": "Mixpanel",
+   "def": "Same funnel as payment conversion above.",
+   "wire": "P04",
+   "note": "Duplicate; folded."
+  },
+  {
+   "sec": "Integrations",
+   "item": "Last sync and failures: KYC, AA, payment gateway, email, WhatsApp, push",
+   "bucket": "Console",
+   "tool": "Sentry alerts + Metabase over integration_events; each vendor's console for detail",
+   "def": "The app writes one row per integration call (vendor, outcome, latency). Metabase shows last success and failure counts; Sentry pages someone when a threshold trips.",
+   "wire": "A07",
+   "note": "No status page is built."
+  },
+  {
+   "sec": "Notifications",
+   "item": "Templates: email, WhatsApp",
+   "bucket": "Zoho",
+   "tool": "Zoho Campaigns",
+   "def": "Templates built from the nudge matrix in this document. WhatsApp templates submitted to Meta.",
+   "wire": "N01",
+   "note": ""
+  },
+  {
+   "sec": "Notifications",
+   "item": "Templates: push",
+   "bucket": "Directus",
+   "tool": "App config table in Directus, sent by Firebase",
+   "def": "Push text per nudge row, editable without a release.",
+   "wire": "N01",
+   "note": ""
+  },
+  {
+   "sec": "Notifications",
+   "item": "Templates: in-app",
+   "bucket": "Directus",
+   "tool": "Directus CMS",
+   "def": "Banner and hub copy (H01, O02, X01).",
+   "wire": "H01",
+   "note": ""
+  },
+  {
+   "sec": "Notifications",
+   "item": "Trigger-based rules",
+   "bucket": "Zoho",
+   "tool": "Zoho journeys keyed on journey stage; app-side for push",
+   "def": "The rules are the state table: state changes fire the journey; offsets inside a state are the schedule. No rule engine is built.",
+   "wire": "N01",
+   "note": "State is computed in the app and mirrored; Zoho never computes state."
+  },
+  {
+   "sec": "CMS",
+   "item": "Intro and transition videos",
+   "bucket": "Directus",
+   "tool": "Directus CMS (files + collection)",
+   "def": "A04, R10, R11, O02 video slots reference a CMS entry; swap without a release.",
+   "wire": "A04",
+   "note": ""
+  },
+  {
+   "sec": "CMS",
+   "item": "Sample plan content",
+   "bucket": "Directus",
+   "tool": "Directus CMS",
+   "def": "Persona sample data sets rendered by the plan component (R12). Content, not code.",
+   "wire": "R12",
+   "note": ""
+  },
+  {
+   "sec": "CMS",
+   "item": "Questions and answer options",
+   "bucket": "Change",
+   "tool": "Wording in Directus; structure in a release",
+   "def": "Wording of questions and options is editable. Adding, removing or reordering options is not: the reveal maths (R03 to R07), persona mapping and engine input schema depend on the option set. Structural changes are versioned releases.",
+   "wire": "R03",
+   "note": "The doc treats these as content; half of them are logic."
+  },
+  {
+   "sec": "CMS",
+   "item": "Tooltips, disclaimers, educational content, general content, FAQs",
+   "bucket": "Directus",
+   "tool": "Directus CMS",
+   "def": "Keyed by screen ID so a tooltip on D04 is found under D04.",
+   "wire": "H07",
+   "note": ""
+  },
+  {
+   "sec": "CMS",
+   "item": "Agreements",
+   "bucket": "Change",
+   "tool": "Template versions in Directus; signed copies in the vault",
+   "def": "Agreement template versions (fixed-fee, DIFM AUA) with effective dates live in the CMS. Signed copies never do; they sit in the vault (H06) via Digio.",
+   "wire": "P03",
+   "note": "Counsel owns template text; ops uploads versions."
+  },
+  {
+   "sec": "Admin and settings",
+   "item": "Admin users, roles and permissions",
+   "bucket": "Directus",
+   "tool": "Directus roles; Zoho profiles; logic panel roles (L01)",
+   "def": "Three systems, three role sets, one principle: advisers see their own clients; ops sees records; founders see everything; the principal officer publishes.",
+   "wire": "L01",
+   "note": "Not one login. Accept it."
+  },
+  {
+   "sec": "Admin and settings",
+   "item": "Audit logs",
+   "bucket": "Directus",
+   "tool": "Directus activity log; logic panel audit (L08); Zoho audit",
+   "def": "Who changed what, when, on regulated records. Exportable.",
+   "wire": "L08",
+   "note": ""
+  },
+  {
+   "sec": "Admin and settings",
+   "item": "System settings",
+   "bucket": "Directus",
+   "tool": "App config table in Directus",
+   "def": "Feature flags: tiers live, artificial wait on G01, nudge cap, AA required or optional, trial period.",
+   "wire": "G01",
+   "note": ""
+  },
+  {
+   "sec": "Admin and settings",
+   "item": "Fee structure",
+   "bucket": "Directus",
+   "tool": "SKU config in Directus, mapped to Razorpay plan IDs",
+   "def": "P01 cards: name, price, period, bullets, tier flag, credit rule, included calls. Assumptions are not fees; they are in the logic panel (L02).",
+   "wire": "P01",
+   "note": ""
+  },
+  {
+   "sec": "User details (CRM)",
+   "item": "Name, email, mobile, signed-in date, last activity",
+   "bucket": "Zoho",
+   "tool": "Zoho Contact",
+   "def": "Created at signed_up; updated by events.",
+   "wire": "A03",
+   "note": ""
+  },
+  {
+   "sec": "User details (CRM)",
+   "item": "Paid user, subscription, current journey stage",
+   "bucket": "Zoho",
+   "tool": "Zoho Contact (mirrored fields)",
+   "def": "Written by events; read-only in Zoho.",
+   "wire": "N01",
+   "note": ""
+  },
+  {
+   "sec": "User details (CRM)",
+   "item": "Onboarding %, KYC status, AA status, financial plan status, investment plan status",
+   "bucket": "Directus",
+   "tool": "Directus record; mirrored to Zoho as read-only fields",
+   "def": "Truth in the database; mirror in Zoho so the adviser sees it on the Contact without opening Directus.",
+   "wire": "O02",
+   "note": ""
+  },
+  {
+   "sec": "User details (CRM)",
+   "item": "Assigned adviser / RM",
+   "bucket": "Zoho",
+   "tool": "Zoho Contact owner, synced to the app",
+   "def": "Owner set by round robin or manually; owner_changed webhook updates the app so O01 and K01 know the adviser.",
+   "wire": "O01",
+   "note": "RM is not a role in this model; the adviser is the owner."
+  }
+ ],
+ "CONTACT_FIELDS": [
+  [
+   "Phone (key)",
+   "From A02; the join key everywhere"
+  ],
+  [
+   "First name",
+   "R01"
+  ],
+  [
+   "Email",
+   "P02"
+  ],
+  [
+   "City, age band",
+   "R01, R02"
+  ],
+  [
+   "Source",
+   "community, corporate session, web reveal, organic, referral"
+  ],
+  [
+   "WhatsApp opt-in, DND flag",
+   "A02 consent; Zoho respects both"
+  ],
+  [
+   "Journey stage",
+   "Picklist = the N01 states plus S0 (community member, not started) and S0w (web reveal lead)"
+  ],
+  [
+   "Tier, SKU",
+   "free, DIY, DIWM, DIFM; SKU name"
+  ],
+  [
+   "Subscription status",
+   "active, pending mandate, failed, cancelled, lapsed"
+  ],
+  [
+   "Adviser owner",
+   "Record owner; synced to the app"
+  ],
+  [
+   "Reveal bands",
+   "income band, corpus band, savings band, aspiration; numbers as bands only"
+  ],
+  [
+   "Key dates",
+   "signed up, reveal seen, paid, data complete, plan built, plan read, last call, next review, renewal due, last activity"
+  ],
+  [
+   "Mirrors from the app (read-only)",
+   "onboarding %, KYC status, AA status, FP status, IP status, actions done / total"
+  ],
+  [
+   "Directus link",
+   "Deep link to the user's record for the pre-call view"
+  ]
+ ],
+ "DEAL_FIELDS": [
+  [
+   "Deal or Subscription",
+   "one per payment: SKU, amount, period, Razorpay ids, start, next billing, status"
+  ],
+  [
+   "Activities",
+   "calls booked, completed, no-show; tickets linked"
+  ],
+  [
+   "Tickets (Desk)",
+   "category: support, adviser message, grievance; SLA; resolution"
+  ]
+ ],
+ "EVENTS": [
+  [
+   "signed_up",
+   "A03",
+   "phone, source, whatsapp_optin, device"
+  ],
+  [
+   "reveal_seen",
+   "R09",
+   "income_band, corpus_band, savings_band, journey_feel, aspiration, path_now_band, path_yes_band, age_band, city"
+  ],
+  [
+   "paywall_viewed",
+   "P01",
+   "sku_expanded, from_state"
+  ],
+  [
+   "esign_done",
+   "P03",
+   "agreement_version, esign_ref"
+  ],
+  [
+   "paid",
+   "P05",
+   "sku, amount, period, razorpay_ids, mandate_status"
+  ],
+  [
+   "aa_connected / aa_declined / aa_failed",
+   "A06 to A09",
+   "institutions_ok[], institutions_failed[], consent_expiry"
+  ],
+  [
+   "data_progress",
+   "D01 to D09",
+   "step_id, pct_complete"
+  ],
+  [
+   "data_complete",
+   "D10",
+   "-"
+  ],
+  [
+   "plan_built",
+   "G01",
+   "plan_version, assumptions_version"
+  ],
+  [
+   "plan_read",
+   "G03",
+   "-"
+  ],
+  [
+   "pdf_downloaded",
+   "G10",
+   "plan_version"
+  ],
+  [
+   "call_booked / call_completed / no_show",
+   "K01 to K03",
+   "slot, adviser_id, summary (one line)"
+  ],
+  [
+   "action_done",
+   "E06",
+   "done_count, total_count, verified (bool)"
+  ],
+  [
+   "plan_updated",
+   "H05",
+   "from_version, to_version, reason"
+  ],
+  [
+   "update_accepted",
+   "H05",
+   "to_version"
+  ],
+  [
+   "review_due / review_done",
+   "Q01",
+   "review_id"
+  ],
+  [
+   "payment_failed / payment_recovered",
+   "Q03",
+   "grace_until"
+  ],
+  [
+   "cancelled / lapsed / resubscribed",
+   "Q03",
+   "reason"
+  ],
+  [
+   "rpq_due / agreement_due",
+   "Q04",
+   "due_date"
+  ],
+  [
+   "ticket_created",
+   "H07",
+   "ticket_id, category"
+  ]
+ ],
+ "INBOUND": [
+  [
+   "owner_changed",
+   "Zoho -> app",
+   "adviser_id; drives O01, K01 slots"
+  ],
+  [
+   "consent_changed",
+   "Zoho -> app",
+   "whatsapp_optin, dnd"
+  ],
+  [
+   "ticket_replied",
+   "Desk -> app",
+   "ticket_id, text; in-app notification"
+  ]
+ ],
+ "NUDGES": [
+  {
+   "id": "S0",
+   "state": "S0 Community member, not started",
+   "trig": "member_joined",
+   "off": "day 3, day 10",
+   "intent": "Take the four-minute reveal",
+   "link": "A01",
+   "policy": "W then E",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S1a",
+   "state": "S1 Signed up, no reveal",
+   "trig": "signed_up, no reveal_seen",
+   "off": "1 hour",
+   "intent": "You are 90 seconds from your two paths",
+   "link": "R01",
+   "policy": "P, W",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S1b",
+   "state": "S1 Signed up, no reveal",
+   "trig": "same",
+   "off": "day 1",
+   "intent": "Finish the reveal",
+   "link": "R01",
+   "policy": "W",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S2a",
+   "state": "S2 Reveal seen, not paid",
+   "trig": "reveal_seen, no paid",
+   "off": "day 1",
+   "intent": "Reveal saved, ready for the next step",
+   "link": "P01",
+   "policy": "P, W",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S2b",
+   "state": "S2 Reveal seen, not paid",
+   "trig": "same",
+   "off": "day 3",
+   "intent": "One specific insight from their reveal numbers",
+   "link": "P01",
+   "policy": "W, E",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S2c",
+   "state": "S2 Reveal seen, not paid",
+   "trig": "same",
+   "off": "day 7",
+   "intent": "Testimonials and what the plan includes",
+   "link": "P01",
+   "policy": "E, P",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S2d",
+   "state": "S2 Reveal seen, not paid",
+   "trig": "same",
+   "off": "day 21",
+   "intent": "Last thought; cost of waiting in their numbers",
+   "link": "P01",
+   "policy": "E",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S2e",
+   "state": "S2 Reveal seen, not paid",
+   "trig": "same",
+   "off": "day 82",
+   "intent": "One more, then stop",
+   "link": "P01",
+   "policy": "E",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S2f",
+   "state": "S2b Paid, eSign incomplete",
+   "trig": "paid, no esign_done",
+   "off": "day 1, day 3; day 14 refund path",
+   "intent": "Sign to unlock; we cannot advise until you do",
+   "link": "P03",
+   "policy": "W, E",
+   "kind": "Service"
+  },
+  {
+   "id": "S3a",
+   "state": "S3 Paid, nothing else",
+   "trig": "paid, no data_progress",
+   "off": "24h, 72h",
+   "intent": "Ten minutes to connect your accounts",
+   "link": "A05",
+   "policy": "P, W",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S4a",
+   "state": "S4 Data partial",
+   "trig": "data_progress stalled",
+   "off": "24h, 72h, 7d",
+   "intent": "Continue where you left off (names the section)",
+   "link": "O02",
+   "policy": "P, W, then E",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S5a",
+   "state": "S5 Data done, risk profile pending",
+   "trig": "data_complete, no plan_built",
+   "off": "24h",
+   "intent": "Two minutes to finish; your plan is waiting",
+   "link": "D08",
+   "policy": "P, W",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S6a",
+   "state": "S6 Plan built, not read",
+   "trig": "plan_built, no plan_read",
+   "off": "48h",
+   "intent": "Your plan is ready; the first thing to look at",
+   "link": "G03",
+   "policy": "P, W, E",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S7a",
+   "state": "S7 DIWM, call booked",
+   "trig": "call_booked",
+   "off": "24h before, 1h before",
+   "intent": "Reminder; read your plan first",
+   "link": "K02",
+   "policy": "W, P",
+   "kind": "Service"
+  },
+  {
+   "id": "S8a",
+   "state": "S8 Plan read, no action done",
+   "trig": "plan_read, action_done = 0",
+   "off": "48h, 7d, 14d",
+   "intent": "Do the first action; which one feels hardest?",
+   "link": "E01",
+   "policy": "P, W, then E",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S9a",
+   "state": "S9 Executing",
+   "trig": "missed SIP via AA",
+   "off": "immediately",
+   "intent": "One SIP did not go through; how to fix",
+   "link": "E06",
+   "policy": "W, P",
+   "kind": "Service"
+  },
+  {
+   "id": "S9b",
+   "state": "S9 Executing",
+   "trig": "action verified done",
+   "off": "immediately",
+   "intent": "One down; here is the next",
+   "link": "E01",
+   "policy": "P",
+   "kind": "Service"
+  },
+  {
+   "id": "S10a",
+   "state": "S10 All actions done",
+   "trig": "action_done = total",
+   "off": "immediately; anniversary",
+   "intent": "Celebrate; next review date",
+   "link": "H01",
+   "policy": "P, W",
+   "kind": "Service"
+  },
+  {
+   "id": "S11a",
+   "state": "S11 Plan updated",
+   "trig": "plan_updated, no update_accepted",
+   "off": "3d",
+   "intent": "Your plan changed; accept the update",
+   "link": "H05",
+   "policy": "P, W",
+   "kind": "Service"
+  },
+  {
+   "id": "S12a",
+   "state": "S12 Payment failed",
+   "trig": "payment_failed",
+   "off": "day 0, 3, 6 (grace 7)",
+   "intent": "Retry payment; what stops on day 7",
+   "link": "Q03",
+   "policy": "W, E, S",
+   "kind": "Service"
+  },
+  {
+   "id": "S13a",
+   "state": "S13 Lapsed",
+   "trig": "lapsed",
+   "off": "30d, 90d",
+   "intent": "Resubscribe; what has changed in markets since",
+   "link": "Q03",
+   "policy": "E, W",
+   "kind": "Behaviour"
+  },
+  {
+   "id": "S14a",
+   "state": "S14 DIFM client",
+   "trig": "review scheduled by adviser",
+   "off": "per adviser",
+   "intent": "Review date; update your numbers before",
+   "link": "Q01",
+   "policy": "W, E",
+   "kind": "Service"
+  },
+  {
+   "id": "S15a",
+   "state": "S15 AA consent expired",
+   "trig": "consent_expiry",
+   "off": "at review; 7d before expiry",
+   "intent": "Reconnect so your review uses fresh numbers",
+   "link": "A06",
+   "policy": "P, W",
+   "kind": "Service"
+  },
+  {
+   "id": "SV1",
+   "state": "Service: OTP",
+   "trig": "A02",
+   "off": "instant",
+   "intent": "Login code",
+   "link": "A03",
+   "policy": "S, W",
+   "kind": "Service"
+  },
+  {
+   "id": "SV2",
+   "state": "Service: payment receipt and invoice",
+   "trig": "paid",
+   "off": "instant",
+   "intent": "Receipt, GST invoice",
+   "link": "H06",
+   "policy": "E, W",
+   "kind": "Service"
+  },
+  {
+   "id": "SV3",
+   "state": "Service: agreement signed copy",
+   "trig": "esign_done",
+   "off": "instant",
+   "intent": "Your signed agreement",
+   "link": "H06",
+   "policy": "E",
+   "kind": "Service"
+  },
+  {
+   "id": "SV4",
+   "state": "Service: plan ready and PDF",
+   "trig": "plan_built",
+   "off": "instant",
+   "intent": "Plan ready; PDF attached",
+   "link": "G03",
+   "policy": "E, W, P",
+   "kind": "Service"
+  },
+  {
+   "id": "SV5",
+   "state": "Service: call confirmed",
+   "trig": "call_booked",
+   "off": "instant",
+   "intent": "Confirmation with join link",
+   "link": "K02",
+   "policy": "W, E",
+   "kind": "Service"
+  },
+  {
+   "id": "SV6",
+   "state": "Service: quarterly review done",
+   "trig": "review_done",
+   "off": "instant",
+   "intent": "What changed; new action plan",
+   "link": "H05",
+   "policy": "E, P",
+   "kind": "Service"
+  },
+  {
+   "id": "SV7",
+   "state": "Service: annual renewal",
+   "trig": "rpq_due, agreement_due",
+   "off": "30d, 7d before",
+   "intent": "Confirm risk profile; renew agreement",
+   "link": "Q04",
+   "policy": "E, W",
+   "kind": "Service"
+  }
+ ],
+ "NUDGE_EXAMPLES": {
+  "S2b": {
+   "push": "Aarav, your current path runs out of options at 58. The yeslyf path makes work optional at 49. Two minutes to see the bridge.",
+   "wa": "Aarav, a quick one from your reveal: on your current path your money stays compulsory until 58. On the yeslyf path it becomes optional at 49. The bridge between the two is your plan. It takes about 15 minutes to build. Link below.",
+   "email": "Subject: The 9 years between your two paths\n\nAarav,\n\nWhen you took the reveal, two numbers came out: Rs 2.1 Cr on your current path and Rs 5.4 Cr on the yeslyf path. The gap is not a bigger salary. It is five decisions, made in the right order, sized to your numbers.\n\nYour reveal is saved. Unlock the plan and the first decision is on screen tonight.\n\n[Unlock my plan]"
+  },
+  "S8a": {
+   "push": "Your plan has 8 actions. The first takes 10 minutes. Which one feels hardest? Tap to tell us.",
+   "wa": "Aarav, your plan is ready and nothing has moved yet, which is normal. The first action is moving Rs 2.8 L to a liquid fund; it takes ten minutes in the app. If something else feels hard, reply with the action and we will help.",
+   "email": ""
+  }
+ },
+ "COMPLIANCE": [
+  [
+   "Client agreement (signed, versioned)",
+   "App vault (H06) via Digio; template versions in Directus CMS",
+   "Export from Directus"
+  ],
+  [
+   "KYC record",
+   "App database (P02) via Digio; KRA reference",
+   "Directus"
+  ],
+  [
+   "Risk profile and suitability",
+   "App database (D08, D09) with questionnaire version and the advice version it applied to",
+   "Directus; annual refresh via Q04"
+  ],
+  [
+   "Advice register: dated advice and rationale",
+   "App database: plan versions, assumptions and instrument-set versions, per user (G01, L08)",
+   "Directus export; logic panel audit"
+  ],
+  [
+   "Fee records and invoices",
+   "Razorpay; invoice copies in the vault",
+   "Razorpay export"
+  ],
+  [
+   "Grievance register",
+   "Zoho Desk, category = grievance, with SCORES reference field",
+   "Desk export"
+  ],
+  [
+   "AUA statements (DIFM, AUA fee mode)",
+   "Monthly AA or CAS snapshots per client",
+   "Metabase snapshot table"
+  ],
+  [
+   "Audit trail on regulated records",
+   "Directus activity log; logic panel audit (L08)",
+   "Export"
+  ],
+  [
+   "Retention",
+   "Five years after the relationship ends; deletion requests honoured for everything else (H09)",
+   "Policy"
+  ]
+ ],
+ "DECISIONS": [
+  {
+   "id": "D1",
+   "q": "Directus, or Appsmith / Retool, as the tool over the database",
+   "position": "Directus first: it covers the Financial Data views, the CMS, roles, and the activity log in one free tool. Trial for two days against the real schema; add Appsmith only if the pre-call view needs a composed screen Directus cannot show.",
+   "owner_v01": "Dev owner + spiff",
+   "stated_by": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1"
+  },
+  {
+   "id": "D2",
+   "q": "Zoho One versus CRM + Desk + Campaigns bought separately",
+   "position": "Zoho One if Bookings and Flow are wanted (they are); otherwise three products and Cal.com. Price both for the first 12 months.",
+   "owner_v01": "Bhuvanaa",
+   "stated_by": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1"
+  },
+  {
+   "id": "D3",
+   "q": "WhatsApp route",
+   "position": "Zoho's own WhatsApp integration if it supports the template categories and volumes needed; a BSP (Gupshup, Interakt, WATI) if not. Decide after Zoho quote.",
+   "owner_v01": "Bhuvanaa",
+   "stated_by": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1"
+  },
+  {
+   "id": "D4",
+   "q": "Mixpanel or events in the database",
+   "position": "Mixpanel from day one on the free tier; every screen ID is an event. Revisit if the tier is outgrown.",
+   "owner_v01": "spiff",
+   "stated_by": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1"
+  },
+  {
+   "id": "D5",
+   "q": "Question-set editing: content or release",
+   "position": "Wording editable in Directus; adding, removing or reordering options is a versioned release because the maths depends on it.",
+   "owner_v01": "spiff, Harish",
+   "stated_by": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1"
+  },
+  {
+   "id": "D6",
+   "q": "Who owns the ops queue",
+   "position": "One named ops owner from day one; advisers get items assigned, not the whole queue.",
+   "owner_v01": "Bhuvanaa",
+   "stated_by": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1"
+  },
+  {
+   "id": "D7",
+   "q": "KPIs that depend on the SKU decision",
+   "position": "Subscription conversion and FP-to-IP conversion exist only if a one-time SKU survives. Decide the SKU set, then keep or drop both.",
+   "owner_v01": "Founders",
+   "stated_by": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1"
+  },
+  {
+   "id": "D8",
+   "q": "AUA snapshots for DIFM",
+   "position": "Monthly snapshot with statements from day one, because AUA-mode fees must be demonstrable.",
+   "owner_v01": "Harish",
+   "stated_by": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1"
+  }
+ ]
+}
