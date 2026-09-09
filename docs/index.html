@@ -560,6 +560,7 @@ This is coming up in A05 as well. are we repeating this screen</div>
   var KEY="yeslyf_board_v1"; var S={};
   try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
   function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  try{ var q=location.search||""; var qi=q.indexOf("endpoint="); if(qi>=0){ var qv=decodeURIComponent(q.slice(qi+9).split("&")[0]).trim(); if(qv){ S.endpoint=qv; save(); } if(history.replaceState) history.replaceState(null,"",location.pathname+location.hash); } }catch(e){}
   function g(k){ if(!S[k]) S[k]={}; return S[k]; }
   function who(){ return (S.who||"").trim(); }
   var ft; function flash(t){ var s=document.getElementById("saved"); if(!s) return; s.textContent=t||"Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1800); }

@@ -168,6 +168,7 @@ JS_COMMON = r"""
   var KEY="yeslyf_board_v1"; var S={};
   try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
   function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  try{ var q=location.search||""; var qi=q.indexOf("endpoint="); if(qi>=0){ var qv=decodeURIComponent(q.slice(qi+9).split("&")[0]).trim(); if(qv){ S.endpoint=qv; save(); } if(history.replaceState) history.replaceState(null,"",location.pathname+location.hash); } }catch(e){}
   function g(k){ if(!S[k]) S[k]={}; return S[k]; }
   function who(){ return (S.who||"").trim(); }
   var ft; function flash(t){ var s=document.getElementById("saved"); if(!s) return; s.textContent=t||"Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1800); }
@@ -463,7 +464,7 @@ def build_setup():
              '<details><summary>Read path after the meeting</summary><p class="meta">File, Share, Publish to web, the whole document as CSV; give Vatsal the link. scripts/pull_sheet.py reads it; last write per item wins; every row is kept in data/decisions_raw.json.</p></details>'
              '</section>')
     js = ('document.getElementById("script").textContent=' + json.dumps(APPS_SCRIPT) + ';'
-          'try{var q=location.search;var i=q.indexOf("endpoint=");if(i>=0){var v=decodeURIComponent(q.slice(i+9).split("&")[0]);var S=JSON.parse(localStorage.getItem("yeslyf_board_v1")||"{}");S.endpoint=v;localStorage.setItem("yeslyf_board_v1",JSON.stringify(S));history.replaceState(null,"",location.pathname);}}catch(e){}')
+          '')
     page = (head("yeslyf product board: setup") + '<body>\n' + header("setup.html", "product board, setup", show_export=False) +
             '<main class="main">' + steps + '</main>\n<script>' + js + '</script>\n<script>' + JS_COMMON + '</script>\n</body>\n</html>\n')
     return page
