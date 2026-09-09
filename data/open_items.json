@@ -1,0 +1,1145 @@
+{
+ "source": "PLAN.md section 9, wording refined from input/reviews/*.md; attribution unchanged",
+ "items": [
+  {
+   "id": "T1",
+   "workstream": "sku-set",
+   "owner": [
+    "Team"
+   ],
+   "control": "multi",
+   "title": "SKU set at launch",
+   "context": "P01 in v0.1 draws two cards, yeslyf Membership (monthly) and yeslyf Plan (one time), prices as Rs ___ placeholders, with a credit rule: the one-time fee counts against the subscription if the membership starts within 60 days (spec v0.1, P01 logic). The v0.1 tier flags also carry DIFM, but P01 draws no DIFM card.",
+   "positions": [
+    {
+     "who": "Bhuvanaa",
+     "position": "Two cards: a monthly membership with a named adviser, quarterly reviews and cancel any time; and a one-time plan delivered by a named adviser in one 45-minute session, with the one-time fee credited against the subscription if it starts within 60 days.",
+     "ref": "deck slide 11"
+    },
+    {
+     "who": "Bhuvanaa",
+     "position": "If there are more than two options, explain them, maybe with a video. The one-time offer can be dropped: whoever does not want to continue can unsubscribe.",
+     "ref": "review row 20 (P01)"
+    },
+    {
+     "who": "Kajal",
+     "position": "A no-call SKU on day one, at a different price point with a different offering.",
+     "ref": "review row 2 (X00)"
+    },
+    {
+     "who": "Vatsal",
+     "position": "DIY at a low monthly price; DIWM is DIY plus calls; same app.",
+     "ref": "product brief"
+    }
+   ],
+   "default": null,
+   "options": [
+    {
+     "key": "a",
+     "text": "Monthly membership with adviser calls (DIWM)",
+     "held_by": [
+      "Bhuvanaa (deck slide 11)",
+      "Vatsal (brief)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "Monthly membership, app only, no calls (DIY)",
+     "held_by": [
+      "Kajal (row 2)",
+      "Vatsal (brief)"
+     ]
+    },
+    {
+     "key": "c",
+     "text": "One-time plan with a 45-minute session",
+     "held_by": [
+      "Bhuvanaa (deck slide 11; her row 20 says it can be dropped)"
+     ]
+    },
+    {
+     "key": "d",
+     "text": "Explainer video on the paywall if more than two cards",
+     "held_by": [
+      "Bhuvanaa (row 20)"
+     ]
+    }
+   ],
+   "dependencies": [
+    {
+     "if_key": "not:c",
+     "if_text": "If T1 has no one-time card",
+     "then": "P01 becomes two cards; the 60-day credit rule goes; the subscription-conversion KPI in the admin spec goes.",
+     "recommended_by": "Vatsal"
+    }
+   ],
+   "screens": [
+    "P01",
+    "P05",
+    "O01",
+    "Q03"
+   ],
+   "impact": "High",
+   "input_rows": [
+    2,
+    20
+   ]
+  },
+  {
+   "id": "T2",
+   "workstream": "calls-model",
+   "owner": [
+    "Team"
+   ],
+   "control": "multi",
+   "title": "Calls model per tier",
+   "context": "v0.1 draws K01 (one 45-minute plan call after the plan exists, DIWM), K04 (a paid 30-minute call any user can book; included calls per tier are config) and H07 (DIY: talk to an adviser for Rs ___; DIWM: message Priya, book the quarterly check-in). Q01 runs the quarterly review in-app.",
+   "positions": [
+    {
+     "who": "Bhuvanaa",
+     "position": "A 45-minute plan call plus 15-minute quarterly check-ins for DIWM.",
+     "ref": "message"
+    },
+    {
+     "who": "Vatsal",
+     "position": "One plan call at delivery; the quarterly review is automated in-app; extra calls are paid.",
+     "ref": "chat; spec v0.1 K01 logic"
+    },
+    {
+     "who": "Gaurav",
+     "position": "Do not offer a review call to a DIY customer. One-off calls are expensive because the adviser needs the full context.",
+     "ref": "review row 35 (K04)"
+    },
+    {
+     "who": "Kajal",
+     "position": "For now only Harish can take the investment-plan call, after the financial planner call. Is there enough bandwidth; needs discussion.",
+     "ref": "review row 35 (K04)"
+    },
+    {
+     "who": "Kajal",
+     "position": "K01 is a planner call, not an advisory call.",
+     "ref": "review row 34 (K01)"
+    },
+    {
+     "who": "Kajal",
+     "position": "The DIY help card says call adviser; it should be a call with the financial planner.",
+     "ref": "review row 45 (H07)"
+    },
+    {
+     "who": "Somil",
+     "position": "A review call belongs after the full plan and the execution steps are done, not before.",
+     "ref": "review row 35 (K04)"
+    }
+   ],
+   "default": null,
+   "options": [
+    {
+     "key": "a",
+     "text": "One plan call at delivery; quarterly review automated in-app; more calls paid, a la carte",
+     "held_by": [
+      "Vatsal (chat, spec v0.1)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "Plan call plus 15-minute quarterly check-ins for DIWM",
+     "held_by": [
+      "Bhuvanaa (message)"
+     ]
+    },
+    {
+     "key": "c",
+     "text": "No one-off calls for DIY",
+     "held_by": [
+      "Gaurav (row 35)"
+     ]
+    },
+    {
+     "key": "d",
+     "text": "Calls are planner calls; investment discussion only with Harish",
+     "held_by": [
+      "Kajal (rows 34, 35, 45)"
+     ]
+    },
+    {
+     "key": "e",
+     "text": "Review call only after execution is done",
+     "held_by": [
+      "Somil (row 35)"
+     ]
+    }
+   ],
+   "dependencies": [
+    {
+     "if_key": "c",
+     "if_text": "If T2 removes one-off calls for DIY",
+     "then": "K04 becomes an upgrade prompt; the H07 DIY card changes.",
+     "recommended_by": "Vatsal"
+    }
+   ],
+   "screens": [
+    "K01",
+    "K04",
+    "H07",
+    "Q01"
+   ],
+   "impact": "High",
+   "input_rows": [
+    35,
+    45
+   ]
+  },
+  {
+   "id": "S1",
+   "workstream": "adviser-staffing",
+   "owner": [
+    "Bhuvanaa",
+    "Harish"
+   ],
+   "control": "single",
+   "title": "Who takes the DIWM plan call, certification, capacity",
+   "context": "K01 books a 45-minute call with a named adviser after the plan exists; O01 introduces Priya for DIWM and Harish for DIFM (spec v0.1). Nobody has said who takes the DIWM call, what certification they hold, or how many clients one person can carry.",
+   "positions": [
+    {
+     "who": "Kajal",
+     "position": "K01 is a planner call, not an advisory call.",
+     "ref": "review row 34 (K01)"
+    },
+    {
+     "who": "Kajal",
+     "position": "Only Harish can take the investment-plan discussion for now; bandwidth needs discussion.",
+     "ref": "review row 35 (K04)"
+    },
+    {
+     "who": "Bhuvanaa",
+     "position": "The client meets Priya, Certified Financial Planner, after paying.",
+     "ref": "deck slide 13"
+    },
+    {
+     "who": "Vatsal",
+     "position": "About 3 adviser-hours per client-year; one person tops out near 450 clients a year.",
+     "ref": "chat"
+    }
+   ],
+   "default": null,
+   "options": [
+    {
+     "key": "a",
+     "text": "A certified financial planner takes the plan call; investment questions go to Harish",
+     "held_by": [
+      "Kajal (rows 34, 35)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "The named adviser (Priya, CFP) takes the plan call",
+     "held_by": [
+      "Bhuvanaa (deck slide 13)"
+     ]
+    }
+   ],
+   "dependencies": [],
+   "screens": [
+    "K01",
+    "O01",
+    "K04",
+    "H07"
+   ],
+   "impact": "High",
+   "input_rows": [
+    34
+   ]
+  },
+  {
+   "id": "B1",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "control": "single",
+   "title": "Pre-paywall sequence",
+   "context": "v0.1 follows the deck: R09 reveal, R10 video (the 5 Alphas), R11 video (the bridge), R12 sample plan preview, P01 paywall, with X01 as the saved exit.",
+   "positions": [
+    {
+     "who": "Bhuvanaa",
+     "position": "Reveal, two videos, sample plan, paywall.",
+     "ref": "deck slides 7 to 11"
+    },
+    {
+     "who": "Bhuvanaa",
+     "position": "The reveal may need to be a bit more descriptive.",
+     "ref": "review row 14 (R09)"
+    },
+    {
+     "who": "Bhuvanaa",
+     "position": "The sample must show screens of what appears in the final plan.",
+     "ref": "review row 18 (R12)"
+    },
+    {
+     "who": "Gaurav",
+     "position": "Revisit the order of R09 to R12 and X01. A user who is convinced should go to the paywall with expectations set; a user who chooses not to go on is shown the sample plan to see what they are missing.",
+     "ref": "review row 17 (R12)"
+    },
+    {
+     "who": "Gaurav",
+     "position": "Is the bridge video generic? How will the 5 Alphas be explained; an AI-generated video?",
+     "ref": "review rows 15, 16 (R10, R11)"
+    },
+    {
+     "who": "Kajal",
+     "position": "Why two videos; one video instead, or set the pretext first. Two can be too much.",
+     "ref": "review row 16 (R11)"
+    },
+    {
+     "who": "Somil",
+     "position": "Two back-to-back videos feels off, especially without knowing the context of the video.",
+     "ref": "review row 16 (R11)"
+    }
+   ],
+   "default": {
+    "who": "Bhuvanaa",
+    "key": "a"
+   },
+   "options": [
+    {
+     "key": "a",
+     "text": "Reveal, two videos, sample plan, paywall (as drawn)",
+     "held_by": [
+      "Bhuvanaa (deck)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "Reveal, one video, sample plan, paywall",
+     "held_by": [
+      "Kajal (row 16)"
+     ]
+    },
+    {
+     "key": "c",
+     "text": "Reveal, then paywall for the convinced; sample plan only for those who do not go on",
+     "held_by": [
+      "Gaurav (row 17)"
+     ]
+    }
+   ],
+   "dependencies": [],
+   "screens": [
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "X01",
+    "P01"
+   ],
+   "impact": "High",
+   "input_rows": [
+    14,
+    15,
+    16,
+    17,
+    18
+   ]
+  },
+  {
+   "id": "B2",
+   "workstream": "financial-plan-logic",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "control": "single",
+   "title": "Clarity picture (G02)",
+   "context": "G02 shows where the user stands today: net worth, realisable vs locked, allocation, current return mix, blind spots. It is also the top of the adviser's pre-call view (spec v0.1, G02 dev). G03 already carries the snapshot rows and the what-needs-attention list (spec v0.1, G03 ui).",
+   "positions": [
+    {
+     "who": "Bhuvanaa",
+     "position": "Is the Clarity picture necessary? It only delays the delivery of the plan; drop it.",
+     "ref": "review row 32 (G02)"
+    },
+    {
+     "who": "Vatsal",
+     "position": "Keep it post-paywall as the first output and the adviser's call brief.",
+     "ref": "chat; spec v0.1 G02"
+    }
+   ],
+   "default": {
+    "who": "Bhuvanaa",
+    "key": "a"
+   },
+   "options": [
+    {
+     "key": "a",
+     "text": "Drop G02",
+     "held_by": [
+      "Bhuvanaa (row 32)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "Keep G02 post-paywall as the first output and the call brief",
+     "held_by": [
+      "Vatsal (chat, spec v0.1)"
+     ]
+    },
+    {
+     "key": "c",
+     "text": "Drop the screen; fold realisable vs locked, allocation and current return into G03; keep the call brief in the adviser view only",
+     "held_by": [],
+     "possible_form": true
+    }
+   ],
+   "dependencies": [
+    {
+     "if_key": "a",
+     "if_text": "If B2 drops G02",
+     "then": "Fold realisable vs locked, allocation and current return into G03.",
+     "recommended_by": "Vatsal"
+    }
+   ],
+   "screens": [
+    "G02",
+    "G03",
+    "M01"
+   ],
+   "impact": "Med",
+   "input_rows": [
+    32
+   ]
+  },
+  {
+   "id": "B3",
+   "workstream": "financial-plan-logic",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "control": "single",
+   "title": "Retirement model",
+   "context": "The FP React component uses depletion to life expectancy (per PLAN.md section 9; the component file is not in input/). L02 lists the assumptions the engine uses.",
+   "positions": [
+    {
+     "who": "Bhuvanaa",
+     "position": "Withdrawal rate: we need to decide how to do this.",
+     "ref": "review row 52 (L02)"
+    }
+   ],
+   "default": null,
+   "options": [
+    {
+     "key": "a",
+     "text": "A withdrawal-rate rule (a fixed percentage of the corpus each year)",
+     "held_by": [],
+     "possible_form": true
+    },
+    {
+     "key": "b",
+     "text": "Depletion to life expectancy, as the FP React does",
+     "held_by": [],
+     "possible_form": true
+    }
+   ],
+   "dependencies": [],
+   "screens": [
+    "L02",
+    "G09",
+    "G10"
+   ],
+   "impact": "Med",
+   "input_rows": [
+    52
+   ]
+  },
+  {
+   "id": "B4",
+   "workstream": "financial-plan-logic",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "control": "single",
+   "title": "Tax section (G08)",
+   "context": "G08 is the Tax tab of the plan (G03 tab strip: Overview, Emergency, Protection, Cashflow, Debt, Tax, Life events, Summary), taken from the FP React sections.",
+   "positions": [
+    {
+     "who": "Somil",
+     "position": "We may not require this screen, or it may need some modification; needs Bhuvanaa's and Harish's input.",
+     "ref": "review row 33 (G08, verdict Drop)"
+    }
+   ],
+   "default": null,
+   "options": [
+    {
+     "key": "a",
+     "text": "Drop G08",
+     "held_by": [
+      "Somil (row 33)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "Modify G08",
+     "held_by": [
+      "Somil (row 33)"
+     ]
+    },
+    {
+     "key": "c",
+     "text": "Keep as drawn",
+     "held_by": [],
+     "possible_form": true
+    }
+   ],
+   "dependencies": [],
+   "screens": [
+    "G08",
+    "G03"
+   ],
+   "impact": "Low",
+   "input_rows": [
+    33
+   ]
+  },
+  {
+   "id": "H1",
+   "workstream": "investment-advisory",
+   "owner": [
+    "Harish"
+   ],
+   "with": [
+    "Somil"
+   ],
+   "control": "single",
+   "title": "Asset classes in the allocation grid",
+   "context": "L02 and L03 in v0.1 use five classes: cash, debt, hybrid, commodities, equity. L03 holds the grid of risk band by horizon bucket across those classes; G02 and G11 show allocations against them.",
+   "positions": [
+    {
+     "who": "Harish",
+     "position": "Cash will not be in the advised asset allocation; the shortest and safest bucket is debt funds.",
+     "ref": "review row 69 (L03)"
+    },
+    {
+     "who": "Harish",
+     "position": "A bucket for REITs and InvITs is needed.",
+     "ref": "review row 68 (L02)"
+    },
+    {
+     "who": "Vatsal",
+     "position": "Five classes: cash, debt, hybrid, commodities, equity.",
+     "ref": "product brief; spec v0.1 L02, L03"
+    },
+    {
+     "who": "Gaurav",
+     "position": "ISIN weights in L04 are a subset of the category weights in L03.",
+     "ref": "review row 51 (L04)"
+    }
+   ],
+   "default": {
+    "who": "Harish",
+    "key": "a"
+   },
+   "options": [
+    {
+     "key": "a",
+     "text": "No cash class; liquid debt is the shortest bucket; add a REITs and InvITs bucket",
+     "held_by": [
+      "Harish (rows 68, 69)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "Five classes as drawn: cash, debt, hybrid, commodities, equity",
+     "held_by": [
+      "Vatsal (brief)"
+     ]
+    }
+   ],
+   "dependencies": [],
+   "screens": [
+    "L02",
+    "L03",
+    "L04",
+    "G02",
+    "G11"
+   ],
+   "impact": "High",
+   "input_rows": [
+    51,
+    68,
+    69
+   ]
+  },
+  {
+   "id": "H2",
+   "workstream": "logic-panel",
+   "owner": [
+    "Harish"
+   ],
+   "with": [
+    "Somil"
+   ],
+   "control": "single",
+   "title": "Where portfolio constraints live (L04)",
+   "context": "L04 is the instrument universe. v0.1 has no screen for category tagging or for limits such as a maximum per product or a maximum of direct shares within equity. L05 validates staged changes before publish.",
+   "positions": [
+    {
+     "who": "Harish",
+     "position": "Where do we tag an instrument to a category? Where do we keep rules like shares not more than 40% within the equity bucket, or each product not more than 20%?",
+     "ref": "review row 70 (L04)"
+    }
+   ],
+   "default": null,
+   "options": [
+    {
+     "key": "a",
+     "text": "A new constraints screen L09 (max per product, max direct shares within equity, category tag with override), validated in L05",
+     "held_by": [],
+     "possible_form": true
+    },
+    {
+     "key": "b",
+     "text": "Constraints as columns on L04 per instrument and category",
+     "held_by": [],
+     "possible_form": true
+    }
+   ],
+   "dependencies": [
+    {
+     "if_key": "a",
+     "if_text": "If H2 wants a constraints screen",
+     "then": "New L09, validated in L05 before publish.",
+     "recommended_by": "Vatsal"
+    }
+   ],
+   "screens": [
+    "L04",
+    "L05",
+    "L09"
+   ],
+   "impact": "Med",
+   "input_rows": [
+    70
+   ]
+  },
+  {
+   "id": "H3",
+   "workstream": "investment-advisory",
+   "owner": [
+    "Harish"
+   ],
+   "with": [
+    "Somil"
+   ],
+   "control": "single",
+   "title": "Risk profiling method",
+   "context": "D08 in v0.1 asks HoA's eight questions one per screen (dependants, income stability, investor knowledge, savings status, drawdown reaction, investment goal, gain-loss preference, borrowing to invest); D09 shows the band (conservative, moderate, aggressive) and takes the declaration; the band feeds the L03 grid. The scoring map is still owed by HoA (spec v0.1, D08 dev; gap G06).",
+   "positions": [
+    {
+     "who": "Harish",
+     "position": "HoA's eight-question risk profiling questionnaire; the adviser classifies the client as aggressive, moderate or conservative.",
+     "ref": "HoA risk profiling questionnaire (input/hoa)"
+    },
+    {
+     "who": "Bhuvanaa",
+     "position": "One question for risk assessment is not enough; do it differently: risk tolerance through a questionnaire, risk capacity and risk needed through our assessment. The calculation logic is available.",
+     "ref": "review row 30 (D09)"
+    }
+   ],
+   "default": {
+    "who": "Harish",
+    "key": "a"
+   },
+   "options": [
+    {
+     "key": "a",
+     "text": "HoA eight-question RPQ; band from the score",
+     "held_by": [
+      "Harish (questionnaire)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "Tolerance from the questionnaire plus capacity and need from the assessment; logic available",
+     "held_by": [
+      "Bhuvanaa (row 30)"
+     ]
+    },
+    {
+     "key": "c",
+     "text": "RPQ for tolerance; capacity and need computed from D01 to D07; combined into the band",
+     "held_by": [],
+     "possible_form": true
+    }
+   ],
+   "dependencies": [],
+   "screens": [
+    "D08",
+    "D09",
+    "L03",
+    "Q04"
+   ],
+   "impact": "High",
+   "input_rows": [
+    30
+   ]
+  },
+  {
+   "id": "H4",
+   "workstream": "compliance",
+   "owner": [
+    "Harish"
+   ],
+   "control": "single",
+   "title": "Insurance aggregator links (E01)",
+   "context": "v0.1 handles protection actions as guided action outside the app (E05): the user buys cover elsewhere and reports back; E06 verifies.",
+   "positions": [
+    {
+     "who": "Bhuvanaa",
+     "position": "Can we link insurance through aggregators like PolicyBazaar?",
+     "ref": "review row 38 (E01)"
+    }
+   ],
+   "default": null,
+   "options": [
+    {
+     "key": "a",
+     "text": "Link out to an insurance aggregator for protection actions",
+     "held_by": [
+      "Bhuvanaa (row 38)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "Guided action outside the app, no aggregator link (as drawn in E05)",
+     "held_by": [
+      "Vatsal (spec v0.1)"
+     ]
+    }
+   ],
+   "dependencies": [],
+   "screens": [
+    "E01",
+    "E05"
+   ],
+   "impact": "Med",
+   "input_rows": [
+    38
+   ]
+  },
+  {
+   "id": "H5",
+   "workstream": "compliance",
+   "owner": [
+    "Harish"
+   ],
+   "with": [
+    "Kajal"
+   ],
+   "control": "single",
+   "title": "Refund policy (Q03)",
+   "context": "Q03 refunds the unused period per the agreement when a period was prepaid (spec v0.1). The current advisory agreement (dated 2025-12-29, AUA fee mode) refunds the fees for the unexpired period on early termination, lets the adviser keep a breakage fee of at most one quarter's fee, and asks 30 days' notice for voluntary termination. The app charges a fixed fee, monthly (spec v0.1, P01 logic).",
+   "positions": [
+    {
+     "who": "Harish",
+     "position": "Have to check the regulations on refund policy as an RIA.",
+     "ref": "review row 66 (Q03)"
+    },
+    {
+     "who": "Bhuvanaa",
+     "position": "The membership is cancel any time.",
+     "ref": "deck slide 11"
+    }
+   ],
+   "default": null,
+   "options": [
+    {
+     "key": "a",
+     "text": "Refund the unexpired period less a breakage fee of at most one quarter's fee, as in the current agreement",
+     "held_by": [],
+     "possible_form": true
+    },
+    {
+     "key": "b",
+     "text": "Monthly billing, cancel any time, no refund of the current month",
+     "held_by": [],
+     "possible_form": true
+    }
+   ],
+   "dependencies": [],
+   "screens": [
+    "Q03",
+    "P03",
+    "H09"
+   ],
+   "impact": "Med",
+   "input_rows": [
+    66
+   ]
+  },
+  {
+   "id": "H6",
+   "workstream": "compliance",
+   "owner": [
+    "Harish"
+   ],
+   "with": [
+    "Kajal"
+   ],
+   "control": "single",
+   "title": "Records for audit (L08)",
+   "context": "The admin/CRM spec v0.1 (Vatsal and Kajal) lists nine records: client agreement (signed, versioned); KYC record; risk profile and suitability; advice register with dated advice and rationale; fee records and invoices; grievance register; AUA statements (DIFM); audit trail on regulated records; retention of five years after the relationship ends. L08 keeps versions and exports for the advice register (spec v0.1).",
+   "positions": [
+    {
+     "who": "Harish",
+     "position": "Need to check from the regulatory angle what all needs to be saved for audit purposes.",
+     "ref": "review row 73 (L08)"
+    }
+   ],
+   "default": null,
+   "options": [
+    {
+     "key": "a",
+     "text": "The nine records in the admin/CRM spec, plus whatever Harish adds after his check",
+     "held_by": [],
+     "possible_form": true
+    }
+   ],
+   "dependencies": [],
+   "screens": [
+    "L08",
+    "H06",
+    "M01"
+   ],
+   "impact": "Med",
+   "input_rows": [
+    73
+   ]
+  },
+  {
+   "id": "G1",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "control": "single",
+   "title": "Execution rails",
+   "context": "v0.1 draws E02 (one-time setup: KYC, BSE StAR MF client code under HoA's RIA registration, bank, nominee, FATCA, mandate), E03 (mutual fund orders on BSE StAR MF, direct plans only) and E04 (ETFs and stocks via smallcase).",
+   "positions": [
+    {
+     "who": "Gaurav",
+     "position": "All execution happens via smallcase Gateway only.",
+     "ref": "review row 1 (X00)"
+    },
+    {
+     "who": "Vatsal",
+     "position": "BSE StAR MF for mutual funds; smallcase for ETFs and stocks.",
+     "ref": "product brief; spec v0.1 E02, E03, E04"
+    },
+    {
+     "who": "Harish",
+     "position": "Not sure how the mutual fund integration, and hence the screens, will look.",
+     "ref": "review row 62 (E03)"
+    },
+    {
+     "who": "Harish",
+     "position": "Not sure how we connect to brokers here or at the smallcase end.",
+     "ref": "review row 63 (E04)"
+    }
+   ],
+   "conditions": [
+    {
+     "what": "smallcase Gateway supports mutual funds (direct plans) and SIP mandates",
+     "verifies": "Gaurav"
+    },
+    {
+     "what": "Direct plans and HoA's RIA code hold on whichever rail is chosen",
+     "verifies": "Harish"
+    }
+   ],
+   "default": {
+    "who": "Gaurav",
+    "key": "a"
+   },
+   "options": [
+    {
+     "key": "a",
+     "text": "smallcase Gateway only, for mutual funds, ETFs and stocks",
+     "held_by": [
+      "Gaurav (row 1)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "BSE StAR MF for mutual funds; smallcase for ETFs and stocks (as drawn)",
+     "held_by": [
+      "Vatsal (brief, spec v0.1)"
+     ]
+    }
+   ],
+   "dependencies": [
+    {
+     "if_key": "a",
+     "if_text": "If G1 is smallcase only",
+     "then": "E02 and E03 collapse into E04; the one-time setup becomes a broker login.",
+     "recommended_by": "Vatsal"
+    }
+   ],
+   "screens": [
+    "E02",
+    "E03",
+    "E04",
+    "X00"
+   ],
+   "impact": "High",
+   "input_rows": [
+    1,
+    62,
+    63
+   ]
+  },
+  {
+   "id": "G2",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "with": [
+    "Kajal"
+   ],
+   "control": "single",
+   "title": "Admin tool over the database",
+   "context": "M01 says the team buys, not builds, its admin tools; journey-state operations still need a low-code tool over the database (spec v0.1, M01 logic). The admin/CRM spec v0.1 (Vatsal and Kajal) puts Directus first, with a two-day trial against the real schema, and Appsmith only if the pre-call view needs a composed screen Directus cannot show.",
+   "positions": [
+    {
+     "who": "Gaurav",
+     "position": "Tool: Appsmith? Spinach?",
+     "ref": "review row 49 (M01)"
+    },
+    {
+     "who": "Vatsal",
+     "position": "Directus first, two-day trial; add Appsmith only if a composed screen is needed.",
+     "ref": "admin/CRM spec v0.1, D1 (crm-and-nudges workstream, Vatsal and Kajal)"
+    },
+    {
+     "who": "Kajal",
+     "position": "Do the admin stack separately.",
+     "ref": "review row 50 (M01)"
+    }
+   ],
+   "default": null,
+   "options": [
+    {
+     "key": "a",
+     "text": "Appsmith",
+     "held_by": [
+      "Gaurav (row 49, asked as a question)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "Directus first, two-day trial; Appsmith only if needed",
+     "held_by": [
+      "Vatsal and Kajal (admin/CRM spec v0.1)"
+     ]
+    }
+   ],
+   "dependencies": [],
+   "screens": [
+    "M01"
+   ],
+   "impact": "Med",
+   "input_rows": [
+    49,
+    50
+   ]
+  },
+  {
+   "id": "V1",
+   "workstream": "product",
+   "owner": [
+    "Vatsal"
+   ],
+   "control": "single",
+   "title": "Community placement (H08)",
+   "context": "v0.1 H01 draws a Community card on Home; H08 is a link-out to the off-app community with a small strip of what is happening; X01 links 'see what members are saying' to H08 (spec v0.1).",
+   "positions": [
+    {
+     "who": "Gaurav",
+     "position": "Community should not be shown on Home; if needed, give a menu entry to the community or some highlights.",
+     "ref": "review row 46 (H08)"
+    },
+    {
+     "who": "Bhuvanaa",
+     "position": "The returning client's home lists what is happening in the community, with net worth, growth, wheel of wealth, action queue, review date, vault and adviser chat.",
+     "ref": "deck slide 25"
+    },
+    {
+     "who": "Harish",
+     "position": "Is the community tab always available in the app; on the home page, in the menu, or yet to be decided?",
+     "ref": "review row 65 (H08)"
+    },
+    {
+     "who": "Vatsal",
+     "position": "A one-line strip on Home; the community itself from the menu.",
+     "ref": "chat; spec v0.1 H01, H08"
+    }
+   ],
+   "default": {
+    "who": "Vatsal",
+    "key": "a"
+   },
+   "options": [
+    {
+     "key": "a",
+     "text": "One-line strip on Home; community from the menu",
+     "held_by": [
+      "Vatsal (chat)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "Menu entry only, or highlights; nothing on Home",
+     "held_by": [
+      "Gaurav (row 46)"
+     ]
+    },
+    {
+     "key": "c",
+     "text": "Community block on the returning-client Home",
+     "held_by": [
+      "Bhuvanaa (deck slide 25)"
+     ]
+    }
+   ],
+   "dependencies": [],
+   "screens": [
+    "H01",
+    "H08",
+    "X01"
+   ],
+   "impact": "Low",
+   "input_rows": [
+    19,
+    46,
+    65
+   ]
+  },
+  {
+   "id": "V2",
+   "workstream": "crm-and-nudges",
+   "owner": [
+    "Vatsal",
+    "Kajal"
+   ],
+   "control": "single",
+   "title": "Human call as a nudge channel (N01)",
+   "context": "N01 in v0.1 sends nudges by push, WhatsApp and email, one per week at most across all layers; the admin/CRM spec nudge table has 30 rows across the states, each with a channel policy (spec v0.1, N01 dev; admin/CRM NUDGES).",
+   "positions": [
+    {
+     "who": "Harish",
+     "position": "Plan more nudges than just two or three; we may also call people offline.",
+     "ref": "review row 67 (N01)"
+    },
+    {
+     "who": "Vatsal",
+     "position": "Channels are push, WhatsApp and email, as drawn.",
+     "ref": "spec v0.1 N01"
+    }
+   ],
+   "default": null,
+   "options": [
+    {
+     "key": "a",
+     "text": "Add a human call as a channel; Zoho creates a task for the caller",
+     "held_by": [
+      "Harish (row 67)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "Keep push, WhatsApp and email only",
+     "held_by": [
+      "Vatsal (spec v0.1, as drawn)"
+     ]
+    }
+   ],
+   "dependencies": [
+    {
+     "if_key": "a",
+     "if_text": "If V2 adds human calls",
+     "then": "The nudge policy gains a channel value and Zoho creates tasks.",
+     "recommended_by": "Vatsal"
+    }
+   ],
+   "screens": [
+    "N01",
+    "M01"
+   ],
+   "impact": "Low",
+   "input_rows": [
+    67
+   ]
+  },
+  {
+   "id": "K1",
+   "workstream": "admin",
+   "owner": [
+    "Kajal"
+   ],
+   "control": "single",
+   "title": "Payment methods and GST (P04)",
+   "context": "v0.1 P04 draws UPI autopay, card and netbanking, with Razorpay subscriptions behind Q03 (spec v0.1).",
+   "positions": [
+    {
+     "who": "Kajal",
+     "position": "Close the payment gateway to UPI and netbanking only; card payment not allowed. GST logic in the admin or logic panel for IGST, CGST plus SGST, and no GST.",
+     "ref": "review row 22 (P04)"
+    },
+    {
+     "who": "Harish",
+     "position": "Subject to regulatory approvals on payment types.",
+     "ref": "review row 58 (P04)"
+    },
+    {
+     "who": "Vatsal",
+     "position": "UPI autopay, card and netbanking, as drawn.",
+     "ref": "spec v0.1 P04"
+    }
+   ],
+   "conditions": [
+    {
+     "what": "Regulatory approval on the payment types offered",
+     "verifies": "Harish"
+    }
+   ],
+   "default": {
+    "who": "Kajal",
+    "key": "a"
+   },
+   "options": [
+    {
+     "key": "a",
+     "text": "UPI and netbanking only, no cards; GST split logic (IGST, CGST plus SGST, no GST)",
+     "held_by": [
+      "Kajal (row 22)"
+     ]
+    },
+    {
+     "key": "b",
+     "text": "UPI autopay, card and netbanking, as drawn",
+     "held_by": [
+      "Vatsal (spec v0.1)"
+     ]
+    }
+   ],
+   "dependencies": [],
+   "screens": [
+    "P04",
+    "Q03",
+    "M01"
+   ],
+   "impact": "Med",
+   "input_rows": [
+    22,
+    58
+   ]
+  }
+ ]
+}

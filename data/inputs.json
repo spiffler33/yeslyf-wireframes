@@ -17,7 +17,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "All execution via smallcase Gateway only."
+   "log_say": "All execution via smallcase Gateway only.",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "status": "open",
+   "item": "G1",
+   "note": ""
   },
   {
    "n": 2,
@@ -35,7 +42,14 @@
      "file": "yeslyf_wireframe_review_v01_Kajal.md"
     }
    ],
-   "log_say": "A no-call SKU on day one: yes, different price and offering."
+   "log_say": "A no-call SKU on day one: yes, different price and offering.",
+   "workstream": "sku-set",
+   "owner": [
+    "Team"
+   ],
+   "status": "open",
+   "item": "T1",
+   "note": ""
   },
   {
    "n": 3,
@@ -53,7 +67,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "'Four minutes' to 'the next few minutes'; use the screen to welcome and prime."
+   "log_say": "'Four minutes' to 'the next few minutes'; use the screen to welcome and prime.",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "quick-accept",
+   "item": "",
+   "note": ""
   },
   {
    "n": 4,
@@ -71,7 +92,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Prefill mobile from the device; drop the 'why mobile' explainer; show T&C here."
+   "log_say": "Prefill mobile from the device; drop the 'why mobile' explainer; show T&C here.",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Gaurav owns tech (A02 mechanics)."
   },
   {
    "n": 5,
@@ -89,7 +117,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Resend with exponential backoff, max 3; change-number max 3."
+   "log_say": "Resend with exponential backoff, max 3; change-number max 3.",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Gaurav owns tech (OTP handling)."
   },
   {
    "n": 6,
@@ -107,7 +142,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Burned-in captions; skip immediately with a confirm modal; bundle video in the app with a config flag."
+   "log_say": "Burned-in captions; skip immediately with a confirm modal; bundle video in the app with a config flag.",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Gaurav owns tech (video delivery, A04 mechanics)."
   },
   {
    "n": 7,
@@ -125,7 +167,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "'First name' to 'Name'; T&C must precede an under-18 block."
+   "log_say": "'First name' to 'Name'; T&C must precede an under-18 block.",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "quick-accept",
+   "item": "",
+   "note": ""
   },
   {
    "n": 8,
@@ -144,7 +193,14 @@
      "part": "first part of the R02 comment"
     }
    ],
-   "log_say": "Two-row selector: Just me / Me + partner, then multi-select Kids / Parents."
+   "log_say": "Two-row selector: Just me / Me + partner, then multi-select Kids / Parents.",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "quick-accept",
+   "item": "",
+   "note": ""
   },
   {
    "n": 9,
@@ -163,7 +219,14 @@
      "part": "last paragraph of the R02 comment"
     }
    ],
-   "log_say": "Why is city needed?"
+   "log_say": "Why is city needed?",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "quick-accept",
+   "item": "",
+   "note": ""
   },
   {
    "n": 10,
@@ -181,7 +244,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "'Other than the home you live in' gets missed."
+   "log_say": "'Other than the home you live in' gets missed.",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "quick-accept",
+   "item": "",
+   "note": ""
   },
   {
    "n": 11,
@@ -199,7 +269,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Add 'type your own'."
+   "log_say": "Add 'type your own'.",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "quick-accept",
+   "item": "",
+   "note": ""
   },
   {
    "n": 12,
@@ -217,7 +294,14 @@
      "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
     }
    ],
-   "log_say": "Phrase the 11% yeslyf mix as what improves when the 5 Alpha framework works."
+   "log_say": "Phrase the 11% yeslyf mix as what improves when the 5 Alpha framework works.",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Bhuvanaa owns journey-to-paywall."
   },
   {
    "n": 13,
@@ -235,7 +319,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Martech integration at this drop-off point."
+   "log_say": "Martech integration at this drop-off point.",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Gaurav owns analytics events. X01 and N01 in v0.1 already list the drop-off states and their nudges."
   },
   {
    "n": 14,
@@ -253,7 +344,14 @@
      "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
     }
    ],
-   "log_say": "More descriptive."
+   "log_say": "More descriptive.",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "accepted",
+   "item": "B1",
+   "note": "Bhuvanaa owns the pre-paywall copy; also listed under B1."
   },
   {
    "n": 15,
@@ -271,7 +369,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "How will we explain? AI-generated video?"
+   "log_say": "How will we explain? AI-generated video?",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "quick-accept",
+   "item": "B1",
+   "note": "A question for the content owner; gap G08 covers the content list. Also listed under B1."
   },
   {
    "n": 16,
@@ -305,7 +410,14 @@
      "file": "yeslyf_wireframe_review_v01_Kajal.md"
     }
    ],
-   "log_say": "Two back-to-back videos is too much; is the bridge video generic?"
+   "log_say": "Two back-to-back videos is too much; is the bridge video generic?",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "open",
+   "item": "B1",
+   "note": ""
   },
   {
    "n": 17,
@@ -323,7 +435,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Resequence: convinced users go to the paywall; the sample plan is for those not convinced."
+   "log_say": "Resequence: convinced users go to the paywall; the sample plan is for those not convinced.",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "open",
+   "item": "B1",
+   "note": ""
   },
   {
    "n": 18,
@@ -341,7 +460,14 @@
      "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
     }
    ],
-   "log_say": "Show sample screens of the final plan."
+   "log_say": "Show sample screens of the final plan.",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "accepted",
+   "item": "B1",
+   "note": "Bhuvanaa owns the pre-paywall screens; also listed under B1."
   },
   {
    "n": 19,
@@ -359,7 +485,16 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Where does 'see what members are saying' go?"
+   "log_say": "Where does 'see what members are saying' go?",
+   "workstream": "journey-to-paywall",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "answered",
+   "item": "V1",
+   "answer": "The link goes to H08 Community (spec v0.1, X01 ui). X01 nudges: day 1 reveal saved, day 3 an insight from the reveal, day 7 testimonials and paywall details, day 21, day 82 (X01 logic). Testimonials are subject to gap G02.",
+   "answer_by": "spec v0.1",
+   "note": ""
   },
   {
    "n": 20,
@@ -377,7 +512,14 @@
      "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
     }
    ],
-   "log_say": "More than two options needs explaining, maybe a video; drop the one-time offer, unhappy users can unsubscribe."
+   "log_say": "More than two options needs explaining, maybe a video; drop the one-time offer, unhappy users can unsubscribe.",
+   "workstream": "sku-set",
+   "owner": [
+    "Team"
+   ],
+   "status": "open",
+   "item": "T1",
+   "note": ""
   },
   {
    "n": 21,
@@ -395,7 +537,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Introduce a coupon."
+   "log_say": "Introduce a coupon.",
+   "workstream": "admin",
+   "owner": [
+    "Kajal"
+   ],
+   "status": "quick-accept",
+   "item": "",
+   "note": ""
   },
   {
    "n": 22,
@@ -413,7 +562,14 @@
      "file": "yeslyf_wireframe_review_v01_Kajal.md"
     }
    ],
-   "log_say": "UPI and netbanking only, no cards; GST logic for IGST, CGST, SGST and no-GST."
+   "log_say": "UPI and netbanking only, no cards; GST logic for IGST, CGST, SGST and no-GST.",
+   "workstream": "admin",
+   "owner": [
+    "Kajal"
+   ],
+   "status": "open",
+   "item": "K1",
+   "note": ""
   },
   {
    "n": 23,
@@ -431,7 +587,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "More weight on the adviser."
+   "log_say": "More weight on the adviser.",
+   "workstream": "data-collection",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "quick-accept",
+   "item": "",
+   "note": ""
   },
   {
    "n": 24,
@@ -466,7 +629,16 @@
      "part": "first part of the O01 comment"
     }
    ],
-   "log_say": "Is the tier chosen here or at the paywall?"
+   "log_say": "Is the tier chosen here or at the paywall?",
+   "workstream": "data-collection",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "answered",
+   "item": "",
+   "answer": "The tier is chosen at the paywall (spec v0.1: P01 field sku); O01 renders one card by tier (O01 logic). The three cards in the frame are the three tier variants, not a choice.",
+   "answer_by": "spec v0.1",
+   "note": ""
   },
   {
    "n": 25,
@@ -485,7 +657,14 @@
      "part": "last paragraph of the O01 comment"
     }
    ],
-   "log_say": "Priya pre-recorded 'what to expect next' video."
+   "log_say": "Priya pre-recorded 'what to expect next' video.",
+   "workstream": "data-collection",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Bhuvanaa owns data-collection (O01)."
   },
   {
    "n": 26,
@@ -503,7 +682,14 @@
      "file": "yeslyf_wireframe_review_v01_Kajal.md"
     }
    ],
-   "log_say": "Steps read as '1 or 2, then 3'; is this repeating A05?"
+   "log_say": "Steps read as '1 or 2, then 3'; is this repeating A05?",
+   "workstream": "data-collection",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "quick-accept",
+   "item": "",
+   "note": "Step 1 leads to A05, the AA explainer; O02 is the hub the user returns to (spec v0.1, O02 logic)."
   },
   {
    "n": 27,
@@ -529,7 +715,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "AA has multiple OTP journeys (discover, then fetch per provider); is there an OTP before A08?"
+   "log_say": "AA has multiple OTP journeys (discover, then fetch per provider); is there an OTP before A08?",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Gaurav owns the AA vendor flow. His note answers Somil's question: the OTPs are the AA's own consent steps (discover, then fetch per provider), not a yeslyf screen."
   },
   {
    "n": 28,
@@ -547,7 +740,14 @@
      "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
     }
    ],
-   "log_say": "Others, like money payable to family."
+   "log_say": "Others, like money payable to family.",
+   "workstream": "data-collection",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Bhuvanaa owns data-collection."
   },
   {
    "n": 29,
@@ -565,7 +765,14 @@
      "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
     }
    ],
-   "log_say": "Document uploads; some integration with Safebox?"
+   "log_say": "Document uploads; some integration with Safebox?",
+   "workstream": "data-collection",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Bhuvanaa owns data-collection; the Safebox integration is a build question for Gaurav."
   },
   {
    "n": 30,
@@ -583,7 +790,14 @@
      "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
     }
    ],
-   "log_say": "Risk should combine tolerance (questionnaire), capacity and need (our assessment); calculation logic is available. Also read D08 as one question."
+   "log_say": "Risk should combine tolerance (questionnaire), capacity and need (our assessment); calculation logic is available. Also read D08 as one question.",
+   "workstream": "investment-advisory",
+   "owner": [
+    "Harish"
+   ],
+   "status": "open",
+   "item": "H3",
+   "note": ""
   },
   {
    "n": 31,
@@ -601,7 +815,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Reuse the R08 pattern."
+   "log_say": "Reuse the R08 pattern.",
+   "workstream": "financial-plan-logic",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "quick-accept",
+   "item": "",
+   "note": ""
   },
   {
    "n": 32,
@@ -619,7 +840,14 @@
      "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
     }
    ],
-   "log_say": "Drop Clarity; it delays the plan."
+   "log_say": "Drop Clarity; it delays the plan.",
+   "workstream": "financial-plan-logic",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "open",
+   "item": "B2",
+   "note": ""
   },
   {
    "n": 33,
@@ -637,7 +865,14 @@
      "file": "yeslyf_wireframe_review_v01(2) somil.md"
     }
    ],
-   "log_say": "Tax: drop or modify; needs Bhuvanaa and Harish."
+   "log_say": "Tax: drop or modify; needs Bhuvanaa and Harish.",
+   "workstream": "financial-plan-logic",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "open",
+   "item": "B4",
+   "note": ""
   },
   {
    "n": 34,
@@ -655,7 +890,15 @@
      "file": "yeslyf_wireframe_review_v01_Kajal.md"
     }
    ],
-   "log_say": "'Planner call', not advisory call."
+   "log_say": "'Planner call', not advisory call.",
+   "workstream": "adviser-staffing",
+   "owner": [
+    "Bhuvanaa",
+    "Harish"
+   ],
+   "status": "open",
+   "item": "S1",
+   "note": ""
   },
   {
    "n": 35,
@@ -689,7 +932,14 @@
      "file": "yeslyf_wireframe_review_v01_Kajal.md"
     }
    ],
-   "log_say": "No one-off calls for DIY (expensive, needs full context); only Harish can do investment calls; if kept, place after execution."
+   "log_say": "No one-off calls for DIY (expensive, needs full context); only Harish can do investment calls; if kept, place after execution.",
+   "workstream": "calls-model",
+   "owner": [
+    "Team"
+   ],
+   "status": "open",
+   "item": "T2",
+   "note": ""
   },
   {
    "n": 36,
@@ -707,7 +957,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Prefill nominee to spouse."
+   "log_say": "Prefill nominee to spouse.",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Gaurav owns E01-E06 integrations."
   },
   {
    "n": 37,
@@ -725,7 +982,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Need upload screens and a place to view uploads."
+   "log_say": "Need upload screens and a place to view uploads.",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Gaurav owns E01-E06 integrations."
   },
   {
    "n": 38,
@@ -743,7 +1007,14 @@
      "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
     }
    ],
-   "log_say": "Link insurance through aggregators like PolicyBazaar."
+   "log_say": "Link insurance through aggregators like PolicyBazaar.",
+   "workstream": "compliance",
+   "owner": [
+    "Harish"
+   ],
+   "status": "open",
+   "item": "H4",
+   "note": ""
   },
   {
    "n": 39,
@@ -761,7 +1032,14 @@
      "file": "yeslyf_wireframe_review_v01_Kajal.md"
     }
    ],
-   "log_say": "Goals are not covered on the dashboard."
+   "log_say": "Goals are not covered on the dashboard.",
+   "workstream": "product",
+   "owner": [
+    "Vatsal"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Vatsal owns product; accepted as a goals progress screen, H10 (PLAN.md section 9)."
   },
   {
    "n": 40,
@@ -779,7 +1057,16 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Can we show market movement?"
+   "log_say": "Can we show market movement?",
+   "workstream": "product",
+   "owner": [
+    "Vatsal"
+   ],
+   "status": "answered",
+   "item": "",
+   "answer": "v0.1 draws the split on H02: invested by you vs market movement, from monthly snapshots (H02 dev) and the AA refresh on open (H01 dev). Whether the data supports it is a build question in Gaurav's workstream.",
+   "answer_by": "spec v0.1",
+   "note": ""
   },
   {
    "n": 41,
@@ -813,7 +1100,16 @@
      "file": "yeslyf_wireframe_review_v01(2) somil.md"
     }
    ],
-   "log_say": "Which section do these screens live in?"
+   "log_say": "Which section do these screens live in?",
+   "workstream": "product",
+   "owner": [
+    "Vatsal"
+   ],
+   "status": "answered",
+   "item": "",
+   "answer": "H02 and H03 open from the Progress card on Home; H04 is the Actions tab. Home tabs: Home, Plan, Actions, Vault, Help (spec v0.1, H01 ui and branches).",
+   "answer_by": "spec v0.1",
+   "note": ""
   },
   {
    "n": 42,
@@ -831,7 +1127,16 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Where is this surfaced from?"
+   "log_say": "Where is this surfaced from?",
+   "workstream": "product",
+   "owner": [
+    "Vatsal"
+   ],
+   "status": "answered",
+   "item": "",
+   "answer": "State S11 (plan updated) puts a banner on Home that opens H05 (spec v0.1, H01 states); the nudge goes by push, WhatsApp or email per N01 (N01 dev) and the admin/CRM nudge row for S11.",
+   "answer_by": "spec v0.1",
+   "note": ""
   },
   {
    "n": 43,
@@ -849,7 +1154,14 @@
      "file": "yeslyf_wireframe_review_v01_Kajal.md"
     }
    ],
-   "log_say": "No page shows the schemes, stocks or products invested with us."
+   "log_say": "No page shows the schemes, stocks or products invested with us.",
+   "workstream": "product",
+   "owner": [
+    "Vatsal"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Vatsal owns product; accepted as a portfolio screen, H11 (PLAN.md section 9)."
   },
   {
    "n": 44,
@@ -867,7 +1179,16 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Entry point?"
+   "log_say": "Entry point?",
+   "workstream": "product",
+   "owner": [
+    "Vatsal"
+   ],
+   "status": "answered",
+   "item": "",
+   "answer": "Vault is a tab on Home (spec v0.1, H01 ui tabs; branch Vault to H06).",
+   "answer_by": "spec v0.1",
+   "note": ""
   },
   {
    "n": 45,
@@ -885,7 +1206,14 @@
      "file": "yeslyf_wireframe_review_v01_Kajal.md"
     }
    ],
-   "log_say": "DIY 'call adviser' should be a call with a financial planner."
+   "log_say": "DIY 'call adviser' should be a call with a financial planner.",
+   "workstream": "calls-model",
+   "owner": [
+    "Team"
+   ],
+   "status": "open",
+   "item": "T2",
+   "note": ""
   },
   {
    "n": 46,
@@ -903,7 +1231,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Do not show community on home; menu access or highlights only."
+   "log_say": "Do not show community on home; menu access or highlights only.",
+   "workstream": "product",
+   "owner": [
+    "Vatsal"
+   ],
+   "status": "open",
+   "item": "V1",
+   "note": ""
   },
   {
    "n": 47,
@@ -921,7 +1256,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Can a member rebuild the plan? How often? What happens to old plans?"
+   "log_say": "Can a member rebuild the plan? How often? What happens to old plans?",
+   "workstream": "product",
+   "owner": [
+    "Vatsal"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Vatsal owns product; accepted as the rebuild rule: any time, versions kept, diff shown (PLAN.md section 9). Spec v0.1 H09: update answers reopens the relevant D screens, the plan re-runs, H05 shows the diff; H06 keeps plan versions."
   },
   {
    "n": 48,
@@ -939,7 +1281,17 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Each drop-off state should feed martech."
+   "log_say": "Each drop-off state should feed martech.",
+   "workstream": "crm-and-nudges",
+   "owner": [
+    "Vatsal",
+    "Kajal"
+   ],
+   "status": "answered",
+   "item": "",
+   "answer": "Every N01 state already maps to nudge rows in the admin/CRM spec v0.1 (NUDGES table, sent as Zoho journeys keyed on journey stage; PLACEMENT, Notifications). N01 dev: templates live in the CRM.",
+   "answer_by": "spec v0.1",
+   "note": ""
   },
   {
    "n": 49,
@@ -957,7 +1309,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Appsmith? Spinach?"
+   "log_say": "Appsmith? Spinach?",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "status": "open",
+   "item": "G2",
+   "note": ""
   },
   {
    "n": 50,
@@ -975,7 +1334,14 @@
      "file": "yeslyf_wireframe_review_v01_Kajal.md"
     }
    ],
-   "log_say": "Do this separately."
+   "log_say": "Do this separately.",
+   "workstream": "admin",
+   "owner": [
+    "Kajal"
+   ],
+   "status": "accepted",
+   "item": "G2",
+   "note": "Kajal owns admin; also listed under G2."
   },
   {
    "n": 51,
@@ -993,7 +1359,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "ISIN weights are a subset of the L03 category weights."
+   "log_say": "ISIN weights are a subset of the L03 category weights.",
+   "workstream": "logic-panel",
+   "owner": [
+    "Harish"
+   ],
+   "status": "quick-accept",
+   "item": "H1",
+   "note": "Also listed under H1."
   },
   {
    "n": 52,
@@ -1011,7 +1384,14 @@
      "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
     }
    ],
-   "log_say": "Withdrawal rate: decide how."
+   "log_say": "Withdrawal rate: decide how.",
+   "workstream": "financial-plan-logic",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "open",
+   "item": "B3",
+   "note": ""
   },
   {
    "n": 53,
@@ -1029,7 +1409,16 @@
      "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
     }
    ],
-   "log_say": "What does 'I will ask only what this affects' mean?"
+   "log_say": "What does 'I will ask only what this affects' mean?",
+   "workstream": "product",
+   "owner": [
+    "Vatsal"
+   ],
+   "status": "answered",
+   "item": "",
+   "answer": "Q02 opens only the questions the chosen event affects (event to question map), re-runs the plan and shows the diff on H05 (spec v0.1, Q02 purpose and logic). Vatsal accepts a copy change on the line (PLAN.md section 9).",
+   "answer_by": "spec v0.1",
+   "note": ""
   },
   {
    "n": 54,
@@ -1047,7 +1436,14 @@
      "file": "yeslyf_wireframe_review_v01_bhuvanaa (1).md"
     }
    ],
-   "log_say": "Add review, feedback, refer friends, community."
+   "log_say": "Add review, feedback, refer friends, community.",
+   "workstream": "product",
+   "owner": [
+    "Vatsal"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Vatsal owns product; accepted (PLAN.md section 9)."
   },
   {
    "n": 55,
@@ -1065,7 +1461,14 @@
      "file": "yeslyf_wireframe_review_v01_Gaurav.md"
     }
    ],
-   "log_say": "Nice."
+   "log_say": "Nice.",
+   "workstream": "admin",
+   "owner": [
+    "Kajal"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "No change asked."
   },
   {
    "n": 56,
@@ -1163,7 +1566,12 @@
      ]
     }
    ],
-   "log_say": "Marked 68 screens Keep with no comment."
+   "log_say": "Marked 68 screens Keep with no comment.",
+   "workstream": "",
+   "owner": [],
+   "status": "accepted",
+   "item": "",
+   "note": "Keep verdicts; no change asked."
   },
   {
    "n": 57,
@@ -1181,7 +1589,16 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "Inflation changeable in the back end at any time?"
+   "log_say": "Inflation changeable in the back end at any time?",
+   "workstream": "logic-panel",
+   "owner": [
+    "Harish"
+   ],
+   "status": "answered",
+   "item": "",
+   "answer": "Yes. L02 holds every number the engine uses that is not the user's own, editable with effective dates; a change creates a staging version, and every plan stores the assumptions version it used (spec v0.1, L02).",
+   "answer_by": "spec v0.1",
+   "note": ""
   },
   {
    "n": 58,
@@ -1199,7 +1616,14 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "Subject to regulatory approval on payment types."
+   "log_say": "Subject to regulatory approval on payment types.",
+   "workstream": "compliance",
+   "owner": [
+    "Harish"
+   ],
+   "status": "open",
+   "item": "K1",
+   "note": ""
   },
   {
    "n": 59,
@@ -1217,7 +1641,14 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "A detail screen per loan; other loans such as loans to friends."
+   "log_say": "A detail screen per loan; other loans such as loans to friends.",
+   "workstream": "data-collection",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "quick-accept",
+   "item": "",
+   "note": ""
   },
   {
    "n": 60,
@@ -1235,7 +1666,14 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "A detail screen per policy."
+   "log_say": "A detail screen per policy.",
+   "workstream": "data-collection",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "quick-accept",
+   "item": "",
+   "note": ""
   },
   {
    "n": 61,
@@ -1253,7 +1691,16 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "Emergency fund six months as the basic rule."
+   "log_say": "Emergency fund six months as the basic rule.",
+   "workstream": "financial-plan-logic",
+   "owner": [
+    "Bhuvanaa"
+   ],
+   "status": "answered",
+   "item": "",
+   "answer": "Already the rule: the G04 target is 6 months of expenses, with the months value in L02 (spec v0.1, G04 ui and logic).",
+   "answer_by": "spec v0.1",
+   "note": ""
   },
   {
    "n": 62,
@@ -1271,7 +1718,14 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "Unsure how the MF integration and screens will look."
+   "log_say": "Unsure how the MF integration and screens will look.",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "status": "open",
+   "item": "G1",
+   "note": ""
   },
   {
    "n": 63,
@@ -1289,7 +1743,14 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "Unsure how brokers connect via smallcase."
+   "log_say": "Unsure how brokers connect via smallcase.",
+   "workstream": "tech",
+   "owner": [
+    "Gaurav"
+   ],
+   "status": "open",
+   "item": "G1",
+   "note": ""
   },
   {
    "n": 64,
@@ -1307,7 +1768,14 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "Include the rationale for recommended products."
+   "log_say": "Include the rationale for recommended products.",
+   "workstream": "investment-advisory",
+   "owner": [
+    "Harish"
+   ],
+   "status": "accepted",
+   "item": "",
+   "note": "Harish owns investment-advisory; rationale storage accepted (PLAN.md section 9)."
   },
   {
    "n": 65,
@@ -1325,7 +1793,14 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "Is the community tab always available; home or menu?"
+   "log_say": "Is the community tab always available; home or menu?",
+   "workstream": "product",
+   "owner": [
+    "Vatsal"
+   ],
+   "status": "open",
+   "item": "V1",
+   "note": ""
   },
   {
    "n": 66,
@@ -1343,7 +1818,14 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "Check RIA refund regulations."
+   "log_say": "Check RIA refund regulations.",
+   "workstream": "compliance",
+   "owner": [
+    "Harish"
+   ],
+   "status": "open",
+   "item": "H5",
+   "note": ""
   },
   {
    "n": 67,
@@ -1361,7 +1843,15 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "More nudges than two or three; may call people offline."
+   "log_say": "More nudges than two or three; may call people offline.",
+   "workstream": "crm-and-nudges",
+   "owner": [
+    "Vatsal",
+    "Kajal"
+   ],
+   "status": "open",
+   "item": "V2",
+   "note": ""
   },
   {
    "n": 68,
@@ -1379,7 +1869,14 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "A bucket for REITs and InvITs."
+   "log_say": "A bucket for REITs and InvITs.",
+   "workstream": "investment-advisory",
+   "owner": [
+    "Harish"
+   ],
+   "status": "open",
+   "item": "H1",
+   "note": ""
   },
   {
    "n": 69,
@@ -1397,7 +1894,14 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "Cash will not be recommended; shortest and safest is liquid debt."
+   "log_say": "Cash will not be recommended; shortest and safest is liquid debt.",
+   "workstream": "investment-advisory",
+   "owner": [
+    "Harish"
+   ],
+   "status": "open",
+   "item": "H1",
+   "note": ""
   },
   {
    "n": 70,
@@ -1415,7 +1919,14 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "Where are instruments tagged to a category; where do constraints live?"
+   "log_say": "Where are instruments tagged to a category; where do constraints live?",
+   "workstream": "logic-panel",
+   "owner": [
+    "Harish"
+   ],
+   "status": "open",
+   "item": "H2",
+   "note": ""
   },
   {
    "n": 71,
@@ -1433,7 +1944,16 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "What does commentary mean?"
+   "log_say": "What does commentary mean?",
+   "workstream": "logic-panel",
+   "owner": [
+    "Harish"
+   ],
+   "status": "answered",
+   "item": "",
+   "answer": "Commentary means the user-facing timing text: the lumpsum-versus-staggered rule fed by a few numbers the adviser types, no live feeds (spec v0.1, L07 purpose).",
+   "answer_by": "spec v0.1",
+   "note": ""
   },
   {
    "n": 72,
@@ -1451,7 +1971,16 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "Where are the allocations calculated?"
+   "log_say": "Where are the allocations calculated?",
+   "workstream": "logic-panel",
+   "owner": [
+    "Harish"
+   ],
+   "status": "answered",
+   "item": "",
+   "answer": "In the engine, not in the panel: L05 previews a staged change by running the engine against a snapshot of all active users (spec v0.1, L05 purpose and dev). The allocation logic sits behind G11 to G13.",
+   "answer_by": "spec v0.1",
+   "note": ""
   },
   {
    "n": 73,
@@ -1469,7 +1998,14 @@
      "file": "yeslyf_wireframe_review_v01_Harish.md"
     }
    ],
-   "log_say": "Check what must be saved for audit."
+   "log_say": "Check what must be saved for audit.",
+   "workstream": "compliance",
+   "owner": [
+    "Harish"
+   ],
+   "status": "open",
+   "item": "H6",
+   "note": ""
   }
  ]
 }
