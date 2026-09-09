@@ -453,7 +453,7 @@ def build_setup():
              '<label>Endpoint URL (Apps Script web app)</label><input id="endpoint" placeholder="https://script.google.com/macros/s/.../exec">'
              '<p class="meta">Stored in this browser only. Each person pastes it once, or opens the site with ?endpoint=... (see below). <button id="testrow" class="ghost">Send a test row</button></p>'
              '<h3>Three steps (about three minutes)</h3><ol>'
-             '<li>Create a Google Sheet named "yeslyf decisions" (or open the one already created). Extensions, Apps Script. Replace the code with the block below. Save.</li>'
+             '<li>Open the Google Sheet "yeslyf decisions" in Vatsal\'s Drive (created 9 Sep 2026; Vatsal shares the link). Extensions, Apps Script. Replace the code with the block below. Save.</li>'
              '<li>Deploy, New deployment, type Web app. Execute as: Me. Who has access: Anyone. Deploy, authorise, copy the web app URL.</li>'
              '<li>Paste the URL in the field above on each device that will take decisions, or share the link index.html?endpoint=THE_URL once; the page stores it and then removes it from the address bar.</li></ol>'
              '<details open><summary>Apps Script (doPost appends a row to the right tab; creates the tabs on first use)</summary><pre id="script"></pre></details>'

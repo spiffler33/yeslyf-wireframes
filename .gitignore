@@ -5,3 +5,5 @@ __pycache__/
 node_modules/
 # the two PDFs carry a client name, PAN, address and phone numbers; they stay local only
 input/hoa/*.pdf
+# local-only config (sheet id, published csv url); never committed
+.local/
