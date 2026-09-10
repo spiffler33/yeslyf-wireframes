@@ -1,0 +1,12 @@
+{
+ "source": "plan_v2.md section 6 (PLACEMENT rule) applied to the M01 screen",
+ "groups": [
+  {
+   "id": "phase6-M01", "kind": "override", "cause": "Vatsal, 10 Sep 2026 (section 6)",
+   "edits": [
+    {"op": "spec_add", "screen": "M01", "key": "logic", "value": "CRM platform: to be decided (one platform). Where this screen says Zoho the text stays; the object model and the matrix are platform-neutral."},
+    {"op": "ui_insert", "screen": "M01", "after": "end", "value": ["note", "Platform to be decided (one platform); the object model and the matrix are platform-neutral. The Admin and CRM v0.2 tab carries the v0.2 fields, the nudge matrix and the CRM backlog."]}
+   ]
+  }
+ ]
+}

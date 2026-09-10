@@ -20702,13 +20702,18 @@
      [
       "Items the team said to remember for the CRM planning session are listed on the Admin and CRM v0.2 tab, CRM backlog section."
      ]
+    ],
+    [
+     "note",
+     "Platform to be decided (one platform); the object model and the matrix are platform-neutral. The Admin and CRM v0.2 tab carries the v0.2 fields, the nudge matrix and the CRM backlog."
     ]
    ],
    "spec": {
     "fields": [],
     "logic": [
      "Zoho question (spiff, Q23): yes for CRM, nudges and support. Journey-state operations still need a low-code tool over the database; Zoho only sees events we send it.",
-     "brief G2: no choice made; the Spinach front-end question goes to the CRM backlog too."
+     "brief G2: no choice made; the Spinach front-end question goes to the CRM backlog too.",
+     "CRM platform: to be decided (one platform). Where this screen says Zoho the text stays; the object model and the matrix are platform-neutral."
     ],
     "branches": [],
     "states": [],
@@ -20733,7 +20738,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "brief G2"
+     "brief G2",
+     "Vatsal, 10 Sep 2026 (section 6)"
     ]
    }
   },

@@ -8,8 +8,9 @@
    "kind": "Bought",
    "cost": "Paid, per user",
    "does": "The relationship: one Contact per phone number, journey stage mirrored from the app, adviser owner, deals and subscriptions, event timeline.",
-   "login": "Founders, advisers, community managers",
-   "notes": "India datacentre (zoho.in). Minimum fields: no PAN, no financial numbers beyond bands."
+   "login": "Principal officer, advisers, community managers",
+   "notes": "India datacentre (zoho.in). Minimum fields: no PAN, no financial numbers beyond bands.",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "id": "zoho-desk",
@@ -18,7 +19,8 @@
    "cost": "Paid, per agent",
    "does": "Tickets: adviser messages from H07, support, complaints tagged as grievances (the grievance register).",
    "login": "Advisers, support",
-   "notes": "One-business-day SLA configured here. Grievance category exports for SEBI records."
+   "notes": "One-business-day SLA configured here. Grievance category exports for SEBI records.",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "id": "zoho-camp",
@@ -27,7 +29,8 @@
    "cost": "Paid, by contacts",
    "does": "Email, WhatsApp and SMS journeys keyed on journey stage. The nudge matrix in this document is its content.",
    "login": "Bhuvanaa, community managers",
-   "notes": "WhatsApp templates need Meta approval; opt-in captured at A02. One nudge per week cap enforced here."
+   "notes": "WhatsApp templates need Meta approval; opt-in captured at A02. One nudge per week cap enforced here.",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "id": "zoho-book",
@@ -36,7 +39,8 @@
    "cost": "Included or cheap",
    "does": "Adviser slot booking behind K01 and K04.",
    "login": "Advisers",
-   "notes": "Cal.com is the alternative if Zoho One is not bought."
+   "notes": "Cal.com is the alternative if Zoho One is not bought.",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "id": "zoho-flow",
@@ -45,7 +49,8 @@
    "cost": "Included or cheap",
    "does": "Maps app events to CRM fields and timeline notes. Field mapping stays configuration, not code.",
    "login": "Whoever configures Zoho",
-   "notes": "Make or Zapier if Flow falls short."
+   "notes": "Make or Zapier if Flow falls short.",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "id": "directus",
@@ -53,7 +58,7 @@
    "kind": "Low-code over the database",
    "cost": "Free, self-hosted",
    "does": "Admin over the app tables (users, journey state, financial record, plan versions, AA consents, ops queue) with roles, permissions and an activity log. Also the CMS: videos, FAQs, tooltips, disclaimers, sample plans, agreements templates, app config and SKU cards.",
-   "login": "Founders, advisers (scoped), ops",
+   "login": "Principal officer, advisers (scoped), ops",
    "notes": "One tool for two of the doc's sections (Financial Data views and CMS). Appsmith or Retool if composed screens like the pre-call view need more than Directus gives; decide after a two-day trial."
   },
   {
@@ -62,7 +67,7 @@
    "kind": "Low-code over the database",
    "cost": "Free, self-hosted",
    "does": "The KPI dashboard and every count in the doc that comes from the database: users, paid, plans, AUA, SIP book, AA availed, integration failures. Scheduled email of the dashboard.",
-   "login": "Founders",
+   "login": "Principal officer",
    "notes": "SQL questions saved once; nobody builds a dashboard screen."
   },
   {
@@ -71,7 +76,7 @@
    "kind": "Bought",
    "cost": "Free tier, then paid",
    "does": "Behaviour: funnels, retention, drop-off by screen. Every wireframe screen ID is an event.",
-   "login": "Founders, product",
+   "login": "Principal officer, product",
    "notes": "If the free tier is outgrown, the same events can be stored in the database and read in Metabase with less convenience."
   },
   {
@@ -80,7 +85,7 @@
    "kind": "Bought",
    "cost": "Transaction fees",
    "does": "Payments, subscriptions, mandates, refunds, invoices. Source of truth for money.",
-   "login": "Founders, finance",
+   "login": "Principal officer, finance",
    "notes": "Webhooks update tier and billing state in the app; Metabase mirrors counts."
   },
   {
@@ -209,7 +214,8 @@
    "tool": "Zoho Desk (customer conversations) + ops queue in Directus (data work)",
    "def": "Two numbers: open tickets in Desk; open items in the ops queue: unknown ISINs to classify (L04), data-quality flags, AA failures needing follow-up, refund requests, adviser reassignments.",
    "wire": "H07",
-   "note": "One queue table in the database, surfaced in Directus; Desk for anything the user sees."
+   "note": "One queue table in the database, surfaced in Directus; Desk for anything the user sees.",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "Dashboard KPIs",
@@ -416,7 +422,8 @@
    "tool": "Zoho Campaigns",
    "def": "Templates built from the nudge matrix in this document. WhatsApp templates submitted to Meta.",
    "wire": "N01",
-   "note": ""
+   "note": "",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "Notifications",
@@ -443,7 +450,8 @@
    "tool": "Zoho journeys keyed on journey stage; app-side for push",
    "def": "The rules are the state table: state changes fire the journey; offsets inside a state are the schedule. No rule engine is built.",
    "wire": "N01",
-   "note": "State is computed in the app and mirrored; Zoho never computes state."
+   "note": "State is computed in the app and mirrored; Zoho never computes state.",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "CMS",
@@ -495,9 +503,10 @@
    "item": "Admin users, roles and permissions",
    "bucket": "Directus",
    "tool": "Directus roles; Zoho profiles; logic panel roles (L01)",
-   "def": "Three systems, three role sets, one principle: advisers see their own clients; ops sees records; founders see everything; the principal officer publishes.",
+   "def": "Three systems, three role sets, one principle: advisers see their own clients; ops sees records; the principal officer sees everything; the principal officer publishes.",
    "wire": "L01",
-   "note": "Not one login. Accept it."
+   "note": "Not one login. Accept it.",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "Admin and settings",
@@ -506,7 +515,8 @@
    "tool": "Directus activity log; logic panel audit (L08); Zoho audit",
    "def": "Who changed what, when, on regulated records. Exportable.",
    "wire": "L08",
-   "note": ""
+   "note": "",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "Admin and settings",
@@ -533,7 +543,8 @@
    "tool": "Zoho Contact",
    "def": "Created at signed_up; updated by events.",
    "wire": "A03",
-   "note": ""
+   "note": "",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "User details (CRM)",
@@ -542,7 +553,8 @@
    "tool": "Zoho Contact (mirrored fields)",
    "def": "Written by events; read-only in Zoho.",
    "wire": "N01",
-   "note": ""
+   "note": "",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "User details (CRM)",
@@ -551,7 +563,8 @@
    "tool": "Directus record; mirrored to Zoho as read-only fields",
    "def": "Truth in the database; mirror in Zoho so the adviser sees it on the Contact without opening Directus.",
    "wire": "O02",
-   "note": ""
+   "note": "",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "User details (CRM)",
@@ -560,7 +573,8 @@
    "tool": "Zoho Contact owner, synced to the app",
    "def": "Owner set by round robin or manually; owner_changed webhook updates the app so O01 and K01 know the adviser.",
    "wire": "O01",
-   "note": "RM is not a role in this model; the adviser is the owner."
+   "note": "RM is not a role in this model; the adviser is the owner.",
+   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
   }
  ],
  "CONTACT_FIELDS": [
@@ -1171,6 +1185,192 @@
    "position": "Monthly snapshot with statements from day one, because AUA-mode fees must be demonstrable.",
    "owner_v01": "Harish",
    "stated_by": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1"
+  },
+  {
+   "id": "D9",
+   "q": "Payment methods and GST split (P04)",
+   "position": "UPI and netbanking only, no cards; GST split on the invoice (IGST, or CGST plus SGST, or no GST) by a rule to be supplied; coupon field.",
+   "cause": "brief K1; row 21"
+  },
+  {
+   "id": "D10",
+   "q": "Human call as a nudge channel (N01)",
+   "position": "Add a human call as a channel; the CRM creates a task for the caller carrying the state ID, the missing fields and the tier. It does not consume the user's included calls.",
+   "cause": "brief V2"
+  },
+  {
+   "id": "D11",
+   "q": "Admin front end over the bought tools (M01)",
+   "position": "Meeting note, speaker not recorded: a Spinach-built front end over the bought admin tools is under consideration; to be decided.",
+   "cause": "brief G2"
+  },
+  {
+   "id": "D12",
+   "q": "Refund policy (Q03)",
+   "position": "Pending: per the agreement; to be decided.",
+   "cause": "brief H5"
+  },
+  {
+   "id": "D13",
+   "q": "Records for audit (L08)",
+   "position": "Pending: the nine-record list stays; to be verified: record formats.",
+   "cause": "brief H6"
   }
- ]
+ ],
+ "PLACEMENT_NOTE": "The CRM platform is to be decided (one platform). Where the v0.1 spec or brief V2 says Zoho the text stays; the object model and the matrix are platform-neutral.",
+ "DEAL_FIELDS_V02": [
+  [
+   "sku",
+   "diy or diwm"
+  ],
+  [
+   "period",
+   "monthly or quarterly"
+  ],
+  [
+   "payment_method",
+   "upi or netbanking (brief K1)"
+  ],
+  [
+   "gst_type",
+   "igst, cgst_sgst or none; to be verified: the GST split rule"
+  ],
+  [
+   "coupon",
+   "code applied before GST (row 21)"
+  ],
+  [
+   "calls_included_per_period",
+   "config per SKU and period; never a drawn number"
+  ],
+  [
+   "calls_used",
+   "count this period"
+  ],
+  [
+   "a_la_carte_purchases",
+   "one record per purchase: date, amount, receipt, call id"
+  ]
+ ],
+ "CONTACT_FIELDS_V02": [
+  [
+   "aa_status",
+   "not_connected, connected, expired, declined"
+  ],
+  [
+   "consent_valid_till",
+   "date from the AA consent; drives S15"
+  ],
+  [
+   "source_completeness",
+   "gate met (yes or no); sharpen count"
+  ],
+  [
+   "last_manual_update",
+   "date; drives the S16 freshness line"
+  ],
+  [
+   "difm_prospect_flag",
+   "rule (total investable assets from D02 over Rs ___) or manual, set by any adviser after a call"
+  ],
+  [
+   "adviser_continuity",
+   "on or off (config flag, off by default)"
+  ],
+  [
+   "last_adviser",
+   "adviser id of the last call; used only when adviser_continuity is on"
+  ]
+ ],
+ "COMPLIANCE_NOTE": "unchanged; to be verified: record formats (brief H6)",
+ "CRM_BACKLOG": [
+  {
+   "item": "DIFM prospect flag",
+   "detail": "Rule: total investable assets from D02 over Rs ___, plus a manual flag any adviser can set after a call. Prospects are called by the call centre. DIFM clients are served by the House of Alpha adviser relationship, not the app.",
+   "cause": "Vatsal, 10 Sep 2026 (section 0)"
+  },
+  {
+   "item": "Call-centre routing and the adviser continuity flag",
+   "detail": "Any adviser takes any call; the config flag adviser continuity (off by default) lets the same adviser be offered again.",
+   "cause": "Vatsal, 10 Sep 2026 (section 0)"
+  },
+  {
+   "item": "Included calls per SKU and period as config",
+   "detail": "calls_included_per_period per SKU and period; never a drawn number; calls_used resets each period.",
+   "cause": "Vatsal, 10 Sep 2026 (section 0)"
+  },
+  {
+   "item": "A la carte purchase record and receipt",
+   "detail": "One record per purchase through P04's flow; receipt and GST invoice; linked to the call it bought (K04).",
+   "cause": "Vatsal, 10 Sep 2026 (section 3.2)"
+  },
+  {
+   "item": "Outbound nudge calls and their task fields",
+   "detail": "Task carries the state ID, the missing fields and the tier; created at day 7 of a data stall (S19) and on a second no-show (S20) for DIWM; does not consume included calls.",
+   "cause": "brief V2"
+  },
+  {
+   "item": "WhatsApp template approval",
+   "detail": "Every WhatsApp template in N04 needs approval before launch; to be verified: template approval lead time.",
+   "cause": "Vatsal, 10 Sep 2026 (section 5)"
+  },
+  {
+   "item": "Compliance review workflow for copy changes",
+   "detail": "Copy on flagged screens (appendix G) changes only after a compliance review; the v02_comments sheet tab is the first round.",
+   "cause": "Vatsal, 10 Sep 2026 (section 7)"
+  },
+  {
+   "item": "DPDP consent and deletion records",
+   "detail": "Consent notice at A04, deletion flow at H09 (S25); regulated records retained; to be verified: DPDP notice, deletion and retention text.",
+   "cause": "gap G03"
+  },
+  {
+   "item": "Refund workflow",
+   "detail": "S24 refund requested creates a task with the payment reference and the reason; per the agreement.",
+   "cause": "brief H5 (to be decided)"
+  },
+  {
+   "item": "Record formats",
+   "detail": "The nine records in COMPLIANCE keep their list; formats to be checked.",
+   "cause": "brief H6 (to be verified: record formats)"
+  },
+  {
+   "item": "Nudge copy slots and who edits them",
+   "detail": "Slots are IDs (N-S4-72h); the copy is content (gap G08) edited in the CRM templates, not in a release.",
+   "cause": "Vatsal, 10 Sep 2026 (section 5)"
+  },
+  {
+   "item": "Admin front end over the bought tools",
+   "detail": "Meeting note, speaker not recorded: a Spinach-built front end over the bought admin tools is under consideration; to be decided.",
+   "cause": "brief G2"
+  },
+  {
+   "item": "Recording consent and retention for calls",
+   "detail": "K06 shows recordings or notes if the CRM keeps them; to be verified: recording consent and retention.",
+   "cause": "Vatsal, 10 Sep 2026 (section 3.2)"
+  }
+ ],
+ "changes_v02": [
+  {
+   "what": "STACK login fields: the v0.1 owners word replaced by Principal officer",
+   "cause": "CLAUDE.md v2 (the word is not written); Vatsal, 10 Sep 2026"
+  },
+  {
+   "what": "PLACEMENT row Admin users, roles and permissions: the v0.1 owners line reads the principal officer sees everything",
+   "cause": "CLAUDE.md v2 (the word is not written); Vatsal, 10 Sep 2026"
+  },
+  {
+   "what": "note_v02 on 5 STACK entries and 9 PLACEMENT rows that name Zoho",
+   "cause": "Vatsal, 10 Sep 2026 (section 6 PLACEMENT rule)"
+  },
+  {
+   "what": "DECISIONS owner_v01 fields are v0.1 records and are not rendered on the v0.2 page (one carries the v0.1 owners word)",
+   "cause": "CLAUDE.md v2"
+  },
+  {
+   "what": "The v0.1 note field, the v0.1 NUDGES matrix and NUDGE_EXAMPLES are not rendered on the v0.2 page: they carry v0.1 wording (a drawn minute count, the word the reviewers must not see). The v0.2 nudge matrix comes from data/v02/states.json.",
+   "cause": "CLAUDE.md v2; Vatsal, 10 Sep 2026 (section 6)"
+  }
+ ],
+ "note_v02": "v0.2 additions sit beside the v0.1 keys, which are unchanged because the v0.1 admin page is frozen and served from docs/v01/. The v0.2 NUDGES matrix is rendered by the site from data/v02/states.json (one row per state per ladder step: state, day, channel, copy slot, deep link, tier rule, CRM task); v0.2 EVENTS are rendered from data/screens_v02.json (every screen's events plus state_enter events). The CRM platform is to be decided (one platform)."
 }
