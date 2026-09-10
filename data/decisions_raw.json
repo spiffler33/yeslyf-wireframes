@@ -1,0 +1,218 @@
+{
+ "sources": {
+  "decisions": "inputs/meeting/yeslyf decisions - decisions.csv"
+ },
+ "note": "Every row as exported, including superseded writes. data/decisions.json keeps the last write per item.",
+ "rows": {
+  "decisions": [
+   {
+    "ts": "2026-09-09T12:44:19.236Z",
+    "who": "",
+    "item_id": "T1",
+    "choice": "a",
+    "choice_text": "a Monthly membership with adviser calls (DIWM)",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T12:44:19.947Z",
+    "who": "",
+    "item_id": "T1",
+    "choice": "a, b",
+    "choice_text": "a Monthly membership with adviser calls (DIWM) | b Monthly membership, app only, no calls (DIY)",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T12:45:01.938Z",
+    "who": "",
+    "item_id": "T1",
+    "choice": "a, b, c",
+    "choice_text": "a Monthly membership with adviser calls (DIWM) | b Monthly membership, app only, no calls (DIY) | c One-time plan with a 45-minute session",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T12:52:08.503Z",
+    "who": "",
+    "item_id": "T1",
+    "choice": "a, b, c, d",
+    "choice_text": "a Monthly membership with adviser calls (DIWM) | b Monthly membership, app only, no calls (DIY) | c One-time plan with a 45-minute session | d Explainer video on the paywall if more than two cards",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:01:18.522Z",
+    "who": "",
+    "item_id": "T2",
+    "choice": "",
+    "choice_text": "",
+    "note": "DIY no calls at all only a la carte, DIWM - 4 qtrly review calls"
+   },
+   {
+    "ts": "2026-09-09T13:02:25.712Z",
+    "who": "",
+    "item_id": "S1",
+    "choice": "b",
+    "choice_text": "b The named adviser (Priya, CFP) takes the plan call",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:03:55.943Z",
+    "who": "",
+    "item_id": "B1",
+    "choice": "b",
+    "choice_text": "b Reveal, one video, sample plan, paywall",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:05:34.990Z",
+    "who": "",
+    "item_id": "B2",
+    "choice": "a",
+    "choice_text": "a Drop G02",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:08:21.950Z",
+    "who": "",
+    "item_id": "B3",
+    "choice": "b",
+    "choice_text": "b Depletion to life expectancy, as the FP React does",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:09:13.643Z",
+    "who": "",
+    "item_id": "B4",
+    "choice": "a",
+    "choice_text": "a Drop G08",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:22:53.999Z",
+    "who": "",
+    "item_id": "H1",
+    "choice": "a",
+    "choice_text": "a No cash class; liquid debt is the shortest bucket; add a REITs and InvITs bucket",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:24:28.746Z",
+    "who": "",
+    "item_id": "H2",
+    "choice": "a",
+    "choice_text": "a A new constraints screen L09 (max per product, max direct shares within equity, category tag with override), validated in L05",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:24:41.835Z",
+    "who": "",
+    "item_id": "H2",
+    "choice": "a",
+    "choice_text": "a A new constraints screen L09 (max per product, max direct shares within equity, category tag with override), validated in L05",
+    "note": "add new screens for both these qts"
+   },
+   {
+    "ts": "2026-09-09T13:27:07.540Z",
+    "who": "",
+    "item_id": "H3",
+    "choice": "a",
+    "choice_text": "a HoA eight-question RPQ; band from the score",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:29:16.323Z",
+    "who": "",
+    "item_id": "H4",
+    "choice": "b",
+    "choice_text": "b Guided action outside the app, no aggregator link (as drawn in E05)",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:33:05.884Z",
+    "who": "",
+    "item_id": "H5",
+    "choice": "",
+    "choice_text": "",
+    "note": "as per the compliance, come back later"
+   },
+   {
+    "ts": "2026-09-09T13:33:42.427Z",
+    "who": "",
+    "item_id": "H6",
+    "choice": "",
+    "choice_text": "",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:33:53.254Z",
+    "who": "",
+    "item_id": "H6",
+    "choice": "",
+    "choice_text": "",
+    "note": "to be decided"
+   },
+   {
+    "ts": "2026-09-09T13:34:12.212Z",
+    "who": "",
+    "item_id": "H6",
+    "choice": "",
+    "choice_text": "",
+    "note": "to be decided"
+   },
+   {
+    "ts": "2026-09-09T13:34:30.944Z",
+    "who": "",
+    "item_id": "H6",
+    "choice": "",
+    "choice_text": "",
+    "note": "data formats to be checked"
+   },
+   {
+    "ts": "2026-09-09T13:36:08.215Z",
+    "who": "",
+    "item_id": "G1",
+    "choice": "b",
+    "choice_text": "b BSE StAR MF for mutual funds; smallcase for ETFs and stocks (as drawn)",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:37:36.728Z",
+    "who": "",
+    "item_id": "G1",
+    "choice": "b",
+    "choice_text": "b BSE StAR MF for mutual funds; smallcase for ETFs and stocks (as drawn)",
+    "note": "new screens to be added for onboarding, transactions, reporting for BSE Star"
+   },
+   {
+    "ts": "2026-09-09T13:44:19.597Z",
+    "who": "",
+    "item_id": "G2",
+    "choice": "",
+    "choice_text": "",
+    "note": "ask from Spinach to make a front end to pull all the external admin panel related tools"
+   },
+   {
+    "ts": "2026-09-09T13:44:43.892Z",
+    "who": "",
+    "item_id": "V1",
+    "choice": "a",
+    "choice_text": "a One-line strip on Home; community from the menu",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:45:47.744Z",
+    "who": "",
+    "item_id": "V2",
+    "choice": "a",
+    "choice_text": "a Add a human call as a channel; Zoho creates a task for the caller",
+    "note": ""
+   },
+   {
+    "ts": "2026-09-09T13:45:59.486Z",
+    "who": "",
+    "item_id": "K1",
+    "choice": "a",
+    "choice_text": "a UPI and netbanking only, no cards; GST split logic (IGST, CGST plus SGST, no GST)",
+    "note": ""
+   }
+  ]
+ }
+}

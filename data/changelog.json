@@ -1,0 +1,838 @@
+{
+ "source": "scripts/apply_decisions.py over data/screens_v01.json, data/decision_effects.json and data/v02/",
+ "changed": [
+  {
+   "id": "A02",
+   "title": "Mobile number",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+   ]
+  },
+  {
+   "id": "A04",
+   "title": "Welcome video",
+   "status": "changed",
+   "causes": [
+    "gap G03 (agreed, date set)",
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+   ]
+  },
+  {
+   "id": "R02",
+   "title": "Household",
+   "status": "changed",
+   "causes": [
+    "row 9"
+   ]
+  },
+  {
+   "id": "R04",
+   "title": "Total saved and invested",
+   "status": "changed",
+   "causes": [
+    "row 10"
+   ]
+  },
+  {
+   "id": "R10",
+   "title": "Video: the 5 Alphas and the bridge",
+   "status": "changed",
+   "causes": [
+    "brief B1"
+   ]
+  },
+  {
+   "id": "R12",
+   "title": "Sample plan preview",
+   "status": "changed",
+   "causes": [
+    "brief B1",
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+   ]
+  },
+  {
+   "id": "P01",
+   "title": "Paywall",
+   "status": "rebuilt",
+   "causes": [
+    "brief T1",
+    "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+   ]
+  },
+  {
+   "id": "P03",
+   "title": "Agreement and eSign",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+   ]
+  },
+  {
+   "id": "P04",
+   "title": "Pay",
+   "status": "rebuilt",
+   "causes": [
+    "brief K1; row 21",
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+   ]
+  },
+  {
+   "id": "O01",
+   "title": "Meet yeslyf",
+   "status": "rebuilt",
+   "causes": [
+    "brief S1",
+    "Vatsal, 10 Sep 2026 (supersedes brief S1)"
+   ]
+  },
+  {
+   "id": "O02",
+   "title": "Your next steps (hub)",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+   ]
+  },
+  {
+   "id": "A09",
+   "title": "AA partial or failed",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+   ]
+  },
+  {
+   "id": "D04",
+   "title": "Insurance",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+   ]
+  },
+  {
+   "id": "D08",
+   "title": "Risk profile (8 questions)",
+   "status": "changed",
+   "causes": [
+    "brief H3"
+   ]
+  },
+  {
+   "id": "D09",
+   "title": "Your risk profile",
+   "status": "changed",
+   "causes": [
+    "brief H3"
+   ]
+  },
+  {
+   "id": "G01",
+   "title": "Building your plan",
+   "status": "changed",
+   "causes": [
+    "brief B2",
+    "row 31"
+   ]
+  },
+  {
+   "id": "G03",
+   "title": "Plan: overview",
+   "status": "changed",
+   "causes": [
+    "brief B2",
+    "brief B4",
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+   ]
+  },
+  {
+   "id": "G05",
+   "title": "Plan: protection",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+   ]
+  },
+  {
+   "id": "G07",
+   "title": "Plan: debt",
+   "status": "changed",
+   "causes": [
+    "brief B4"
+   ]
+  },
+  {
+   "id": "G09",
+   "title": "Plan: key life events",
+   "status": "changed",
+   "causes": [
+    "brief B3",
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+   ]
+  },
+  {
+   "id": "G10",
+   "title": "Plan: summary",
+   "status": "changed",
+   "causes": [
+    "brief B3",
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+   ]
+  },
+  {
+   "id": "G11",
+   "title": "Investment plan: allocation",
+   "status": "changed",
+   "causes": [
+    "brief H1"
+   ]
+  },
+  {
+   "id": "G12",
+   "title": "Investment plan: your existing holdings",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+   ]
+  },
+  {
+   "id": "G14",
+   "title": "Action plan",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+   ]
+  },
+  {
+   "id": "K01",
+   "title": "Talk to an adviser",
+   "status": "rebuilt",
+   "causes": [
+    "brief T2",
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+   ]
+  },
+  {
+   "id": "K02",
+   "title": "Call confirmed",
+   "status": "rebuilt",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+   ]
+  },
+  {
+   "id": "K03",
+   "title": "After the call",
+   "status": "rebuilt",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+   ]
+  },
+  {
+   "id": "K04",
+   "title": "Buy an extra call",
+   "status": "rebuilt",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+   ]
+  },
+  {
+   "id": "E01",
+   "title": "Execution hub",
+   "status": "changed",
+   "causes": [
+    "brief H4"
+   ]
+  },
+  {
+   "id": "E02",
+   "title": "One-time investing setup",
+   "status": "changed",
+   "causes": [
+    "brief G1 (default, not confirmed in the meeting)"
+   ]
+  },
+  {
+   "id": "E03",
+   "title": "Place a mutual fund order",
+   "status": "changed",
+   "causes": [
+    "brief G1 (default, not confirmed in the meeting)"
+   ]
+  },
+  {
+   "id": "E05",
+   "title": "Guided action outside the app",
+   "status": "changed",
+   "causes": [
+    "brief H4"
+   ]
+  },
+  {
+   "id": "E06",
+   "title": "Verification and progress",
+   "status": "changed",
+   "causes": [
+    "brief G1 (default, not confirmed in the meeting)"
+   ]
+  },
+  {
+   "id": "H01",
+   "title": "Home (plan ready)",
+   "status": "changed",
+   "causes": [
+    "brief V1"
+   ]
+  },
+  {
+   "id": "H06",
+   "title": "Vault",
+   "status": "changed",
+   "causes": [
+    "brief G1 (default, not confirmed in the meeting)"
+   ]
+  },
+  {
+   "id": "H07",
+   "title": "Help",
+   "status": "rebuilt",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief S1)"
+   ]
+  },
+  {
+   "id": "H08",
+   "title": "Community",
+   "status": "changed",
+   "causes": [
+    "brief V1",
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+   ]
+  },
+  {
+   "id": "H09",
+   "title": "Profile and settings",
+   "status": "changed",
+   "causes": [
+    "gap G03 (agreed, date set)",
+    "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+   ]
+  },
+  {
+   "id": "Q01",
+   "title": "Quarterly review (automated)",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+   ]
+  },
+  {
+   "id": "Q02",
+   "title": "Change plan",
+   "status": "rebuilt",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+   ]
+  },
+  {
+   "id": "Q03",
+   "title": "Subscription",
+   "status": "rebuilt",
+   "causes": [
+    "brief H5",
+    "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+   ]
+  },
+  {
+   "id": "N01",
+   "title": "Returning-user state machine",
+   "status": "changed",
+   "causes": [
+    "brief V2"
+   ]
+  },
+  {
+   "id": "M01",
+   "title": "Admin stack (bought, not built)",
+   "status": "changed",
+   "causes": [
+    "brief G2"
+   ]
+  },
+  {
+   "id": "L02",
+   "title": "Assumptions",
+   "status": "changed",
+   "causes": [
+    "brief B3",
+    "brief H1"
+   ]
+  },
+  {
+   "id": "L03",
+   "title": "Buckets and cohorts",
+   "status": "changed",
+   "causes": [
+    "brief H1"
+   ]
+  },
+  {
+   "id": "L04",
+   "title": "Instrument universe",
+   "status": "changed",
+   "causes": [
+    "brief H2",
+    "row 51"
+   ]
+  },
+  {
+   "id": "L05",
+   "title": "Staging and impact preview",
+   "status": "changed",
+   "causes": [
+    "brief H2"
+   ]
+  },
+  {
+   "id": "L08",
+   "title": "Audit and versions",
+   "status": "changed",
+   "causes": [
+    "brief H6",
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+   ]
+  }
+ ],
+ "added": [
+  {
+   "id": "K05",
+   "title": "Pick a slot",
+   "template": "T-picker",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+   ]
+  },
+  {
+   "id": "K06",
+   "title": "Your calls",
+   "template": "T-list",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+   ]
+  },
+  {
+   "id": "E07",
+   "title": "BSE StAR MF onboarding",
+   "template": "T-list",
+   "causes": [
+    "brief G1 (default, not confirmed in the meeting)"
+   ]
+  },
+  {
+   "id": "E08",
+   "title": "BSE StAR MF transactions",
+   "template": "T-list",
+   "causes": [
+    "brief G1 (default, not confirmed in the meeting)"
+   ]
+  },
+  {
+   "id": "E09",
+   "title": "BSE StAR MF reporting",
+   "template": "T-list",
+   "causes": [
+    "brief G1 (default, not confirmed in the meeting)"
+   ]
+  },
+  {
+   "id": "H00",
+   "title": "Navigation map",
+   "template": "T-table",
+   "causes": [
+    "row 41 (Somil); brief V1"
+   ]
+  },
+  {
+   "id": "H10",
+   "title": "Goals progress",
+   "template": "T-chart",
+   "causes": [
+    "row 39 (Kajal)"
+   ]
+  },
+  {
+   "id": "H11",
+   "title": "Portfolio",
+   "template": "T-chart",
+   "causes": [
+    "row 43 (Kajal)"
+   ]
+  },
+  {
+   "id": "Q03a",
+   "title": "Cancel",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+   ]
+  },
+  {
+   "id": "Q03b",
+   "title": "Payment failed",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+   ]
+  },
+  {
+   "id": "Q03c",
+   "title": "Lapsed",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+   ]
+  },
+  {
+   "id": "L00",
+   "title": "Engine map",
+   "template": "T-table",
+   "causes": [
+    "row 72 (Harish)"
+   ]
+  },
+  {
+   "id": "L09",
+   "title": "Portfolio constraints",
+   "template": "T-table",
+   "causes": [
+    "brief H2"
+   ]
+  }
+ ],
+ "dropped": [
+  {
+   "id": "R11",
+   "title": "Video: the bridge",
+   "pointer": "R10 (one video; the bridge content folds into the R10 script)",
+   "causes": [
+    "brief B1"
+   ]
+  },
+  {
+   "id": "G02",
+   "title": "Clarity picture",
+   "pointer": "G03 (realisable vs locked corpus, current allocation by class and current weighted return fold into G03 as ledger rows)",
+   "causes": [
+    "brief B2"
+   ]
+  },
+  {
+   "id": "G08",
+   "title": "Plan: tax",
+   "pointer": "removed; the G03 tab strip loses Tax and G07 continues to G09",
+   "causes": [
+    "brief B4"
+   ]
+  }
+ ],
+ "rerouted": [
+  {
+   "screen": "R10",
+   "label": "Continue",
+   "from": "R11",
+   "to": "R12",
+   "cause": "brief B1"
+  },
+  {
+   "screen": "R10",
+   "label": "Skip",
+   "from": "R11",
+   "to": "R12",
+   "cause": "brief B1"
+  },
+  {
+   "screen": "G07",
+   "label": "Next: Tax",
+   "from": "G08",
+   "to": "G09",
+   "cause": "brief B4"
+  }
+ ],
+ "superseded": [
+  {
+   "item": "brief T1",
+   "brief": "options a, b, c and d ticked: DIWM monthly, DIY monthly, a one-time plan, and an explainer video if more than two cards",
+   "override": "two SKUs, DIY and DIWM, each billed monthly or quarterly; no one-time card, no 60-day credit rule, no state S26, no video",
+   "cause": "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+  },
+  {
+   "item": "brief T2",
+   "brief": "no choice recorded; the note reads DIY no calls at all, a la carte only, and DIWM a fixed count of quarterly review calls",
+   "override": "included calls per SKU per period are config, never a drawn number or length; a call is a call, with a topic; any adviser from the call centre takes any call; a la carte calls for anyone on any SKU; bookable at any time",
+   "cause": "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+  },
+  {
+   "item": "brief S1",
+   "brief": "option b: a named adviser takes the plan call",
+   "override": "no named adviser on any screen; a config flag adviser continuity (off by default) lets the same adviser be offered again; the staffing discussion is not touched",
+   "cause": "Vatsal, 10 Sep 2026 (supersedes brief S1 in the wireframe only)"
+  },
+  {
+   "item": "gap G01",
+   "brief": "brand recorded with a capital, the sheet capitalising a cell",
+   "override": "yeslyf, lowercase, everywhere",
+   "cause": "Vatsal, 10 Sep 2026 (supersedes brief gap G01)"
+  }
+ ],
+ "to_be_verified": [
+  {
+   "item": "DPDP notice text (gap G03",
+   "screens": [
+    "A04",
+    "H09"
+   ]
+  },
+  {
+   "item": "call lengths in the recipe",
+   "screens": [
+    "K01",
+    "K05"
+   ]
+  },
+  {
+   "item": "direct plans and the RIA code hold on this rail",
+   "screens": [
+    "E07",
+    "E08",
+    "E09"
+   ]
+  },
+  {
+   "item": "mandate type and limits for monthly and quarterly recurring UPI",
+   "screens": [
+    "P04"
+   ]
+  },
+  {
+   "item": "proration and refund on a period switch",
+   "screens": [
+    "Q02"
+   ]
+  },
+  {
+   "item": "record formats (brief H6",
+   "screens": [
+    "L08"
+   ]
+  },
+  {
+   "item": "recording consent and retention",
+   "screens": [
+    "K06"
+   ]
+  },
+  {
+   "item": "the GST split rule",
+   "screens": [
+    "P04"
+   ]
+  },
+  {
+   "item": "the RPQ scoring map (gap G06",
+   "screens": [
+    "D08"
+   ]
+  },
+  {
+   "item": "the grid values per cell",
+   "screens": [
+    "L03"
+   ]
+  },
+  {
+   "item": "whether netbanking can carry a recurring mandate",
+   "screens": [
+    "P04"
+   ]
+  }
+ ],
+ "counts": {
+  "total": 97,
+  "unique_templates": 15,
+  "by_template": {
+   "T-card": 14,
+   "T-card-stack": 19,
+   "T-chart": 6,
+   "T-hub": 3,
+   "T-list": 14,
+   "T-num": 2,
+   "T-paywall": 2,
+   "T-picker": 1,
+   "T-progress": 3,
+   "T-review": 4,
+   "T-source": 1,
+   "T-table": 13,
+   "T-tap": 10,
+   "T-video": 2,
+   "T-webview": 3
+  },
+  "by_section": {
+   "X": {
+    "name": "Read me first",
+    "screens": 1,
+    "templates": 1,
+    "by_template": {
+     "T-card-stack": 1
+    }
+   },
+   "A": {
+    "name": "Entry and identity",
+    "screens": 4,
+    "templates": 3,
+    "by_template": {
+     "T-card": 1,
+     "T-tap": 2,
+     "T-video": 1
+    }
+   },
+   "R": {
+    "name": "Quick reveal (pre-paywall)",
+    "screens": 12,
+    "templates": 6,
+    "by_template": {
+     "T-card": 1,
+     "T-card-stack": 1,
+     "T-chart": 1,
+     "T-progress": 1,
+     "T-tap": 7,
+     "T-video": 1
+    }
+   },
+   "P": {
+    "name": "Paywall and checkout",
+    "screens": 5,
+    "templates": 3,
+    "by_template": {
+     "T-card": 2,
+     "T-paywall": 1,
+     "T-webview": 2
+    }
+   },
+   "O": {
+    "name": "Onboarding hub",
+    "screens": 2,
+    "templates": 2,
+    "by_template": {
+     "T-card-stack": 1,
+     "T-hub": 1
+    }
+   },
+   "D": {
+    "name": "Data collection",
+    "screens": 15,
+    "templates": 9,
+    "by_template": {
+     "T-card": 1,
+     "T-card-stack": 1,
+     "T-list": 5,
+     "T-num": 2,
+     "T-progress": 1,
+     "T-review": 2,
+     "T-source": 1,
+     "T-tap": 1,
+     "T-webview": 1
+    }
+   },
+   "G": {
+    "name": "Outputs: plan and investment plan",
+    "screens": 12,
+    "templates": 4,
+    "by_template": {
+     "T-card-stack": 9,
+     "T-chart": 1,
+     "T-list": 1,
+     "T-progress": 1
+    }
+   },
+   "K": {
+    "name": "Adviser calls",
+    "screens": 6,
+    "templates": 4,
+    "by_template": {
+     "T-card": 2,
+     "T-card-stack": 2,
+     "T-list": 1,
+     "T-picker": 1
+    }
+   },
+   "E": {
+    "name": "Execution",
+    "screens": 9,
+    "templates": 4,
+    "by_template": {
+     "T-card": 3,
+     "T-hub": 1,
+     "T-list": 4,
+     "T-review": 1
+    }
+   },
+   "H": {
+    "name": "Living dashboard",
+    "screens": 12,
+    "templates": 6,
+    "by_template": {
+     "T-card": 1,
+     "T-card-stack": 2,
+     "T-chart": 4,
+     "T-hub": 1,
+     "T-list": 3,
+     "T-table": 1
+    }
+   },
+   "Q": {
+    "name": "Lifecycle and reviews",
+    "screens": 7,
+    "templates": 4,
+    "by_template": {
+     "T-card": 3,
+     "T-card-stack": 2,
+     "T-paywall": 1,
+     "T-review": 1
+    }
+   },
+   "N": {
+    "name": "Returning-user states",
+    "screens": 1,
+    "templates": 1,
+    "by_template": {
+     "T-table": 1
+    }
+   },
+   "M": {
+    "name": "Admin (bought tools)",
+    "screens": 1,
+    "templates": 1,
+    "by_template": {
+     "T-table": 1
+    }
+   },
+   "L": {
+    "name": "Logic panel (built by devs)",
+    "screens": 10,
+    "templates": 1,
+    "by_template": {
+     "T-table": 10
+    }
+   }
+  },
+  "by_status": {
+   "kept": 36,
+   "changed": 38,
+   "dropped": 3,
+   "rebuilt": 10,
+   "new": 13
+  }
+ }
+}

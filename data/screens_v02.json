@@ -1,0 +1,9188 @@
+{
+ "source": "scripts/apply_decisions.py over data/screens_v01.json, data/decision_effects.json and data/v02/",
+ "sections": [
+  [
+   "X",
+   "Read me first"
+  ],
+  [
+   "A",
+   "Entry and identity"
+  ],
+  [
+   "R",
+   "Quick reveal (pre-paywall)"
+  ],
+  [
+   "P",
+   "Paywall and checkout"
+  ],
+  [
+   "O",
+   "Onboarding hub"
+  ],
+  [
+   "D",
+   "Data collection"
+  ],
+  [
+   "G",
+   "Outputs: plan and investment plan"
+  ],
+  [
+   "K",
+   "Adviser calls"
+  ],
+  [
+   "E",
+   "Execution"
+  ],
+  [
+   "H",
+   "Living dashboard"
+  ],
+  [
+   "Q",
+   "Lifecycle and reviews"
+  ],
+  [
+   "N",
+   "Returning-user states"
+  ],
+  [
+   "M",
+   "Admin (bought tools)"
+  ],
+  [
+   "L",
+   "Logic panel (built by devs)"
+  ]
+ ],
+ "screens": [
+  {
+   "id": "X00",
+   "sec": "X",
+   "title": "How to read this file",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "Clickable low-fidelity wireframes for the yeslyf app. Grey boxes show what is on a screen and in what order. Nothing here is visual design; that is Spinach's job once the flow is agreed.",
+   "ui": [
+    [
+     "h",
+     "yeslyf journey wireframes v0.1"
+    ],
+    [
+     "p",
+     "Left: the journey, section by section. Middle: the screen. Right: what the screen does, its logic, branches, and dev notes, plus your verdict and comments."
+    ],
+    [
+     "p",
+     "Tap any button inside a screen to follow the flow. Use the arrows or your keyboard to step through. Filter by tier at the top to see what a DIY, DIWM or DIFM user would see."
+    ],
+    [
+     "p",
+     "Comments save in this browser as you type. When the team is done, press Export to download a markdown file and send it to spiff. It becomes the change list for v0.2 before anything goes to Spinach."
+    ],
+    [
+     "card",
+     "Tier legend",
+     [
+      "DIY: app only, no calls",
+      "DIWM: same app plus adviser calls",
+      "DIFM: existing House of Alpha clients; app for data and dashboard, advice off-app",
+      "ALL: shown to everyone"
+     ]
+    ],
+    [
+     "card",
+     "Decisions baked into v0.1",
+     [
+      "Launch target 1 Feb 2027 (1 Jan stretch)",
+      "Phone OTP login; biometric on return",
+      "Paywall after the Quick Reveal, before data collection (Bhuvanaa V2 deck)",
+      "Reveal replaces the persona sample plan as the hook; sample plan stays as a preview of what you get",
+      "One app for all tiers; tier changes only paywall cards, adviser screens, call steps and the help channel",
+      "No human review gate; plan builds instantly",
+      "AA is the default path; manual fallback per field; source lock; refresh diff confirm",
+      "Retirement is not a mandatory goal; work-optional age is an anchor assumption",
+      "Execution in V1: BSE StAR MF for MFs, smallcase Gateway for ETFs and stocks",
+      "ISINs come from the logic panel; publish triggers a plan upgrade and a new action plan",
+      "Admin is bought tools; devs build only the logic panel",
+      "Living dashboard plus emailed PDF",
+      "The FP React defines the plan; it supersedes M4 where they conflict",
+      "Prices are placeholders everywhere"
+     ]
+    ],
+    [
+     "card",
+     "Open points for today's meeting",
+     [
+      "1. Launch SKU set: is there a no-call SKU on day one? (see P01)",
+      "2. Calls: one plan call at delivery, automated quarterly review, extra calls a la carte (see K01, Q01)",
+      "3. Clarity picture: kept post-paywall as the first output and the adviser's call brief (see G02)",
+      "4. Who is the named adviser for DIWM, and how many can they take?",
+      "5. Risk profile scoring map from HoA (see D08)",
+      "6. Agreement: fixed-fee template and the app as an advice channel; counsel"
+     ]
+    ],
+    [
+     "btn",
+     "Start the journey",
+     "A01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Screens carry an ID (A01, R09...). Reference them by ID in comments and in chat."
+    ],
+    "branches": [],
+    "states": [],
+    "dev": [
+     "Two frames: phone (390 wide) for the app, desktop for admin and logic panel."
+    ]
+   },
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "X00_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "A01",
+   "sec": "A",
+   "title": "First open",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Set the promise and the price of entry (four minutes, free) and get the user to tap Start.",
+   "ui": [
+    [
+     "num",
+     "yeslyf"
+    ],
+    [
+     "h",
+     "Your money should let you live fully today and still build everything you need for tomorrow."
+    ],
+    [
+     "p",
+     "In four minutes I will show you two versions of your future. One is where you are headed. The other is where you could be."
+    ],
+    [
+     "btn",
+     "Start, it's free",
+     "A02"
+    ],
+    [
+     "p",
+     "From House of Alpha, SEBI Registered Investment Adviser INA000012838"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Shown once. Returning users skip to A02 with the number prefilled, then to their state (section N)."
+    ],
+    "branches": [
+     [
+      "Start",
+      "A02"
+     ]
+    ],
+    "states": [
+     "First open only"
+    ],
+    "dev": [
+     "Deep links from nudges bypass this screen."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "disclosures"
+    ],
+    "note": "carries the RIA registration line",
+    "checks": [
+     "The RIA registration line, the fee schedule, the complaints and grievance path, what the app is and is not, what a call is and is not."
+    ]
+   },
+   "events": [
+    "A01_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "A02",
+   "sec": "A",
+   "title": "Mobile number",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Identity is the mobile number because Account Aggregator later keys off the number the banks know.",
+   "ui": [
+    [
+     "h",
+     "What number should I reach you on?"
+    ],
+    [
+     "in",
+     "+91 mobile number"
+    ],
+    [
+     "p",
+     "Use the number your bank accounts know. Later, with your consent, it is how I fetch your financial picture securely."
+    ],
+    [
+     "btn",
+     "Send OTP",
+     "A03"
+    ],
+    [
+     "link",
+     "Why mobile and not email?",
+     "A02"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "mobile (10 digits, +91 only at launch)"
+    ],
+    "logic": [
+     "Existing account: same flow, then route by state.",
+     "Email is captured later at checkout, not here.",
+     "Why mobile and not email? opens an explainer sheet in place."
+    ],
+    "branches": [
+     [
+      "Send OTP",
+      "A03"
+     ]
+    ],
+    "states": [
+     "Invalid number inline error",
+     "Rate limit after 5 OTPs per hour"
+    ],
+    "dev": [
+     "OTP via SMS provider; WhatsApp OTP as fallback channel.",
+     "Store consent to be contacted on this number (needed for nudges)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-tap",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "A02_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+    ]
+   }
+  },
+  {
+   "id": "A03",
+   "sec": "A",
+   "title": "OTP",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Verify the number. Detect new versus returning user.",
+   "ui": [
+    [
+     "h",
+     "Enter the 6-digit code"
+    ],
+    [
+     "in",
+     "_ _ _ _ _ _"
+    ],
+    [
+     "p",
+     "Sent to +91 98xxx xxx21. Resend in 30s."
+    ],
+    [
+     "btn",
+     "Verify",
+     "A04"
+    ],
+    [
+     "link",
+     "Change number",
+     "A02"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "otp"
+    ],
+    "logic": [
+     "New user: A04.",
+     "Returning user: offer biometric enrolment, then route by state (section N)."
+    ],
+    "branches": [
+     [
+      "Verify, new",
+      "A04"
+     ],
+     [
+      "Verify, returning",
+      "N01"
+     ]
+    ],
+    "states": [
+     "Wrong code (3 attempts)",
+     "Expired code",
+     "Auto-read on Android"
+    ],
+    "dev": [
+     "Biometric unlock stored per device after first successful login."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-tap",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "A03_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "A04",
+   "sec": "A",
+   "title": "Welcome video",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Credibility and expectation in 60 to 90 seconds. Skippable.",
+   "ui": [
+    [
+     "video",
+     "Welcome video: a welcome, a quick background on House of Alpha, what I can do for you, and in four minutes I can show you possibility. Are you ready?"
+    ],
+    [
+     "card",
+     "DPDP notice",
+     [
+      "What I collect, why, and how to delete it; to be verified: DPDP notice text (gap G03)"
+     ]
+    ],
+    [
+     "btn",
+     "I'm ready",
+     "R01"
+    ],
+    [
+     "link",
+     "Skip",
+     "R01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Skip allowed after 5 seconds. Captions on by default; most first opens are on mute."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "R01"
+     ]
+    ],
+    "states": [
+     "Slow network: show poster and let the user continue"
+    ],
+    "dev": [
+     "Name in the video via AI personalisation is a later experiment, not V1.",
+     "DPDP notice slot on this screen; to be verified: DPDP notice text (gap G03)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-video",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "consent"
+    ],
+    "note": "DPDP notice slot (gap G03)",
+    "checks": [
+     "AA consent wording and period, the DPDP notice, CAS password handling, the declaration, deletion."
+    ]
+   },
+   "events": [
+    "A04_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "gap G03 (agreed, date set)",
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+    ]
+   }
+  },
+  {
+   "id": "R01",
+   "sec": "R",
+   "title": "Name and age",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Two facts that personalise everything after this and set the horizon for the reveal.",
+   "ui": [
+    [
+     "h",
+     "What do I call you?"
+    ],
+    [
+     "in",
+     "First name"
+    ],
+    [
+     "h",
+     "How old are you?"
+    ],
+    [
+     "in",
+     "Age"
+    ],
+    [
+     "btn",
+     "Continue",
+     "R02"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "first_name",
+     "age (18 to 70)"
+    ],
+    "logic": [
+     "Age sets years to 50 and to 65 for the reveal."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "R02"
+     ]
+    ],
+    "states": [
+     "Under 18 blocked with a plain message"
+    ],
+    "dev": [
+     "Auto-advance when both filled."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-tap",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "R01_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "R02",
+   "sec": "R",
+   "title": "Household",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Household shape drives protection logic and later prefills the family circle.",
+   "ui": [
+    [
+     "h",
+     "Nice meeting you, Aarav. Which of these best describes your home right now?"
+    ],
+    [
+     "chips",
+     [
+      "Just me",
+      "Me + partner",
+      "Me + partner + kids",
+      "Me + partner + kids + parents",
+      "Me + parents",
+      "Me + kids"
+     ]
+    ],
+    [
+     "p",
+     "Good, now I know who I am talking to. Let's get a rough sense of the money picture. It need not be accurate, just close enough to see the shape of things."
+    ],
+    [
+     "btn",
+     "Continue",
+     "R03"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "household_type"
+    ],
+    "logic": [
+     "Household type prefills D01 family circle and sets has_dependants for the reveal's protection line.",
+     "City question removed (row 9, accepted)."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "R03"
+     ]
+    ],
+    "states": [],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-tap",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "R02_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "row 9"
+    ]
+   }
+  },
+  {
+   "id": "R03",
+   "sec": "R",
+   "title": "Household income",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "First of three numbers that produce the reveal. Bands with an always-visible exact field.",
+   "ui": [
+    [
+     "h",
+     "What is your household's rough annual income?"
+    ],
+    [
+     "radio",
+     [
+      "Under 10 lakhs",
+      "10 to 25 lakhs",
+      "25 to 50 lakhs",
+      "50 lakhs to 1 crore",
+      "Over 1 crore"
+     ]
+    ],
+    [
+     "in",
+     "Or type the exact amount"
+    ],
+    [
+     "p",
+     "Ok, I am assuming Rs 17.5 lakhs. Change it if that is far off."
+    ],
+    [
+     "btn",
+     "Continue",
+     "R04"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "income_band",
+     "income_exact"
+    ],
+    "logic": [
+     "Band tapped: exact field prefilled with the midpoint; user confirms or corrects.",
+     "Top band assumes Rs 1.2 crore unless exact is given.",
+     "Everything derived from a band is tagged approx in outputs."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "R04"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Standing band rule from the V5 script applies to every band question in the app."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-tap",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "R03_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "R04",
+   "sec": "R",
+   "title": "Total saved and invested",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Starting corpus for the reveal projection.",
+   "ui": [
+    [
+     "h",
+     "Not counting the home you live in: everything you have saved and invested so far, deposits, mutual funds, EPF, gold, other property. Roughly how much would that add up to?"
+    ],
+    [
+     "radio",
+     [
+      "Under 5 lakhs",
+      "5 to 25 lakhs",
+      "25 lakhs to 1 crore",
+      "1 to 5 crores",
+      "Over 5 crores"
+     ]
+    ],
+    [
+     "in",
+     "Or type the exact amount"
+    ],
+    [
+     "p",
+     "Ok, I am assuming Rs 15 lakhs."
+    ],
+    [
+     "btn",
+     "Continue",
+     "R05"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "corpus_band",
+     "corpus_exact"
+    ],
+    "logic": [
+     "Top band assumes Rs 7 crore unless exact is given.",
+     "The home you live in is excluded, said first so it is not missed (row 10, accepted)."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "R05"
+     ]
+    ],
+    "states": [],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-tap",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "R04_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "row 10"
+    ]
+   }
+  },
+  {
+   "id": "R05",
+   "sec": "R",
+   "title": "Savings rate",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Third number. Savings rate times income is the monthly investing used in the current-path projection.",
+   "ui": [
+    [
+     "h",
+     "Of what comes in as income, roughly how much gets saved or invested before you spend?"
+    ],
+    [
+     "radio",
+     [
+      "Almost nothing, less than 5%",
+      "Around 10%, small consistent chunks",
+      "Around 25%, meaningful amounts",
+      "Around 40%, some serious money",
+      "More than 40%, I live well below my means"
+     ]
+    ],
+    [
+     "in",
+     "Or type the exact % or amount"
+    ],
+    [
+     "p",
+     "Okay, this is enough for me to sketch your broad path. Two last questions. These tell me which version of your future self you would actually want to get to."
+    ],
+    [
+     "btn",
+     "Continue",
+     "R06"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "savings_rate_band",
+     "savings_rate_exact"
+    ],
+    "logic": [
+     "Midpoints 2.5%, 10%, 25%, 40%, 50%."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "R06"
+     ]
+    ],
+    "states": [],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-tap",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "R05_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "R06",
+   "sec": "R",
+   "title": "Money journey so far",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Tone calibration for the reveal and the plan voice.",
+   "ui": [
+    [
+     "h",
+     "Looking back at your money journey so far, how has it felt?"
+    ],
+    [
+     "radio",
+     [
+      "Very good, mostly things have worked out well",
+      "Some hits and some misses, it has been mixed",
+      "Not so good, I can do better"
+     ]
+    ],
+    [
+     "btn",
+     "Continue",
+     "R07"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "journey_feel"
+    ],
+    "logic": [
+     "Maps to the tone variants (confident / mixed / gentle) used in copy from here on."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "R07"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Replaces the M1 Q2 emotional-state question."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-tap",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "R06_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "R07",
+   "sec": "R",
+   "title": "What matters at 50 / 65",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Aspiration frame for the reveal and the plan narrative. Also the persona key in the background.",
+   "ui": [
+    [
+     "h",
+     "When you turn 50, or 65, which of these would matter most to you?"
+    ],
+    [
+     "radio",
+     [
+      "Choose the work I do, not out of compulsion",
+      "Take real time off to spend with people I care about",
+      "Help others in a way that matters, without worrying about money",
+      "Never worry about what could go wrong",
+      "Build something meaningful I can leave behind"
+     ]
+    ],
+    [
+     "p",
+     "Thanks for sharing that. Give me a moment as I sketch your paths."
+    ],
+    [
+     "btn",
+     "Sketch my paths",
+     "R08"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "aspiration (Freedom / Family / Generosity / Security / Legacy)"
+    ],
+    "logic": [
+     "Aspiration picks the one-line meaning under each path on R09.",
+     "Persona mapping (M1 archetypes) runs silently on household type, income band, journey feel and aspiration; used only to pick the sample plan on R12 and copy tone."
+    ],
+    "branches": [
+     [
+      "Sketch my paths",
+      "R08"
+     ]
+    ],
+    "states": [],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-tap",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "R07_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "R08",
+   "sec": "R",
+   "title": "Sketching your paths",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Three to five seconds of computed suspense. Surfaces the assumptions so the reveal is never read as a promise.",
+   "ui": [
+    [
+     "progress",
+     "Sketching your two paths",
+     60
+    ],
+    [
+     "p",
+     "Assuming 6% inflation on what life costs."
+    ],
+    [
+     "p",
+     "Assuming your current mix earns about 8% a year."
+    ],
+    [
+     "p",
+     "Assuming the yeslyf mix earns about 11% a year."
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Rotates three assumption lines. Values come from the logic panel assumptions (L02)."
+    ],
+    "branches": [
+     [
+      "auto",
+      "R09"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Projection: future_value(corpus, savings_rate x income / 12, rate, years) for years to 50 and 65. Current path uses the current-mix rate; yeslyf path uses the optimised rate and the optimised savings rate from L02. Same formula as M2 section 4.3."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-progress",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "note": "states the return assumptions behind the two paths",
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "R08_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "R09",
+   "sec": "R",
+   "title": "The reveal",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "The hook. Two personal numbers in under two minutes. This replaces the persona card as the mirror moment.",
+   "ui": [
+    [
+     "h",
+     "Two paths, Aarav"
+    ],
+    [
+     "tabs",
+     [
+      "At 50",
+      "At 65"
+     ]
+    ],
+    [
+     "card",
+     "Current path",
+     [
+      "Rs 2.1 Cr in built wealth",
+      "What this means: work stays compulsory until 58"
+     ]
+    ],
+    [
+     "card",
+     "yeslyf path",
+     [
+      "Rs 5.4 Cr in built wealth",
+      "What this means: work becomes optional at 49"
+     ]
+    ],
+    [
+     "p",
+     "Built from your five answers. An illustration, not a promise. Assumptions and the maths are one tap away."
+    ],
+    [
+     "btn",
+     "How is this possible?",
+     "R10"
+    ],
+    [
+     "link",
+     "Save my reveal, I'll come back",
+     "X01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Meaning line varies by aspiration: Freedom (work optional at age), Family (months of time off funded), Generosity (annual giving capacity), Security (years of expenses covered), Legacy (corpus left at 85).",
+     "Numbers shown as approx when any band was used."
+    ],
+    "branches": [
+     [
+      "How is this possible?",
+      "R10"
+     ],
+     [
+      "Save my reveal",
+      "X01"
+     ]
+    ],
+    "states": [
+     "Corpus zero and savings near zero: yeslyf path still positive; copy switches to gentle tone"
+    ],
+    "dev": [
+     "Store reveal snapshot: both numbers, assumptions_version. Reused verbatim in nudges (section N) and on the not-paid home.",
+     "No instrument or product is named here. This is a calculator output, not advice; keep it that way for compliance."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-chart",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "R09_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "R10",
+   "sec": "R",
+   "title": "Video: the 5 Alphas and the bridge",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "One video: why the two paths differ, and what gets built on the other side of the paywall. Skippable.",
+   "ui": [
+    [
+     "video",
+     "One script, two parts. The difference between these two paths is the 5 Alpha opportunities most people do not capitalise on: how much you save, how you allocate, what you choose, when you act, what you pay in costs and taxes. Then the bridge: the exact choices, the right order and the right size for your situation are built on the other side, on your numbers, in about N minutes of your data."
+    ],
+    [
+     "btn",
+     "Continue",
+     "R12"
+    ],
+    [
+     "link",
+     "Skip",
+     "R12"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "One video (brief B1). R11's bridge content folds into this script; content owner per gap G08.",
+     "Two edits of the video, with and without the calls line, picked by the SKU set live at launch (moved here from R11)."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "R12"
+     ],
+     [
+      "Skip",
+      "R12"
+     ]
+    ],
+    "states": [],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-video",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "R10_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief B1"
+    ]
+   }
+  },
+  {
+   "id": "R11",
+   "sec": "R",
+   "title": "Video: the bridge",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Set the expectation for what is on the other side of the paywall.",
+   "ui": [
+    [
+     "video",
+     "The exact bridge from where you are headed to what you could build, the choices, the right order, the right size for your situation, is what we build on the other side. About 15 minutes of your data. [DIWM: and a 45-minute call with a named adviser to understand and calibrate.] Keen?"
+    ],
+    [
+     "btn",
+     "Show me what it looks like",
+     "R12"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Two edits of the video: with and without the call line, picked by the SKU set live at launch."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "R12"
+     ]
+    ],
+    "states": [],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-video",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "note": "dropped in v0.2 (brief B1)",
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "R11_view"
+   ],
+   "v02": {
+    "status": "dropped",
+    "causes": [
+     "brief B1"
+    ],
+    "pointer": "R10 (one video; the bridge content folds into the R10 script)"
+   }
+  },
+  {
+   "id": "R12",
+   "sec": "R",
+   "title": "Sample plan preview",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Show the product before asking for money. Persona-matched sample plan, overview tab only, PDF downloadable.",
+   "ui": [
+    [
+     "h",
+     "Here is what it would look like"
+    ],
+    [
+     "p",
+     "This is Nisha's plan. Her numbers are not yours, but the shape is."
+    ],
+    [
+     "card",
+     "Sample plan: overview",
+     [
+      "Financial snapshot: six numbers",
+      "What success looks like: three goals, funded status",
+      "What needs attention: four concerns, in order",
+      "Then seven sections of exactly what to do"
+     ]
+    ],
+    [
+     "card",
+     "Real plan screens in the sample",
+     [
+      "Sample screens of what appears in the final plan, as an optional carousel",
+      "Overview tab in-app; the PDF has every tab"
+     ]
+    ],
+    [
+     "link",
+     "Download the full sample as PDF",
+     "R12"
+    ],
+    [
+     "btn",
+     "Unlock my plan",
+     "P01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Persona (from R07 mapping) picks which sample plan is shown. If no persona match, a default sample.",
+     "Same React component as the real plan, fed sample data. Only the Overview tab renders in-app; PDF has all tabs.",
+     "Real plan screens in the sample, optional carousel (rows 16 to 18, accepted).",
+     "Download the full sample as PDF is an in-place download."
+    ],
+    "branches": [
+     [
+      "Unlock my plan",
+      "P01"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Sample plans are content, maintained by HoA; five or six of them for the 23 to 38 personas. Not a wireframe concern."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "R12_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief B1",
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+    ]
+   }
+  },
+  {
+   "id": "X01",
+   "sec": "R",
+   "title": "Reveal saved (not paid)",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "The exit for the user who is not ready. Nothing is lost, and the nudge clock starts.",
+   "ui": [
+    [
+     "h",
+     "Your reveal is saved"
+    ],
+    [
+     "card",
+     "Two paths, Aarav",
+     [
+      "Current path: Rs 2.1 Cr",
+      "yeslyf path: Rs 5.4 Cr"
+     ]
+    ],
+    [
+     "p",
+     "This page will still be here. Take a day. Read the FAQs, look at the community, come back when it feels right."
+    ],
+    [
+     "btn",
+     "Unlock my plan",
+     "P01"
+    ],
+    [
+     "link",
+     "See what members are saying",
+     "H08"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "This is the home screen for state S2 (section N).",
+     "Nudges: day 1 reveal saved, ready for the next step; day 3 a specific insight from the reveal; day 7 testimonials and paywall details; day 21 last thought; day 82 one more, then stop."
+    ],
+    "branches": [
+     [
+      "Unlock",
+      "P01"
+     ]
+    ],
+    "states": [
+     "S2 home"
+    ],
+    "dev": [
+     "All nudges deep-link to P01 with the reveal above the fold."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "note": "repeats the two-path numbers",
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "X01_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "P01",
+   "sec": "P",
+   "title": "Paywall",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Choose a SKU and a billing period. Two SKUs, one app; DIWM adds adviser calls. Prices are placeholders.",
+   "ui": [
+    [
+     "h",
+     "Unlock my plan"
+    ],
+    [
+     "tabs",
+     [
+      "Monthly",
+      "Quarterly"
+     ]
+    ],
+    [
+     "card",
+     "yeslyf DIY, app only: Rs ___ / month or Rs ___ / quarter",
+     [
+      "Your full plan on your numbers",
+      "Refreshed every quarter",
+      "Your progress and next action always visible",
+      "Investment plan with exact instruments",
+      "A la carte calls whenever you want one",
+      "Cancel any time"
+     ]
+    ],
+    [
+     "card",
+     "yeslyf DIWM, app plus adviser calls: Rs ___ / month or Rs ___ / quarter",
+     [
+      "Everything in DIY",
+      "N calls included this <period> with the yeslyf advisers to walk you through the plan, the app and the investments",
+      "Extra calls a la carte"
+     ]
+    ],
+    [
+     "p",
+     "Prices inclusive of GST."
+    ],
+    [
+     "p",
+     "Not sure yet? Read the FAQs, check out the community, take a day. This page will still be here."
+    ],
+    [
+     "btn",
+     "Continue",
+     "P02"
+    ],
+    [
+     "link",
+     "Save and decide later",
+     "X01"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "sku (diy, diwm)",
+     "period (monthly, quarterly)"
+    ],
+    "logic": [
+     "Two SKUs, DIY and DIWM; each billed monthly or quarterly; the period toggle sits above the cards (Vatsal, 10 Sep 2026, supersedes brief T1).",
+     "No one-time card; the v0.1 credit rule for a one-time fee is removed with it.",
+     "No video: two cards (brief T1 d applies only above two cards).",
+     "Included calls per SKU per period are config: N calls included this <period>; never a drawn number.",
+     "Prices shown inclusive of GST. Fixed-fee mode under the RIA regulations; monthly billing needs no advance-fee check."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "P02"
+     ],
+     [
+      "Later",
+      "X01"
+     ]
+    ],
+    "states": [
+     "Returning S2 user lands here with the reveal above the fold"
+    ],
+    "dev": [
+     "Cards are config, not code: label, price per period, bullets, included calls per period. Marketing changes them without a release.",
+     "Track paywall_viewed, the period toggled and which card was expanded."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-paywall",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "fees and refunds",
+     "disclosures",
+     "advertising code"
+    ],
+    "checks": [
+     "Inclusive of GST, the period, cancellation, refund, breakage.",
+     "The RIA registration line, the fee schedule, the complaints and grievance path, what the app is and is not, what a call is and is not.",
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "P01_view",
+    "paywall_viewed"
+   ],
+   "v02": {
+    "status": "rebuilt",
+    "causes": [
+     "brief T1",
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+    ]
+   }
+  },
+  {
+   "id": "P02",
+   "sec": "P",
+   "title": "Your details for the agreement",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "The minimum SEBI needs before advice: identity, PAN, contact. KYC fetch by PAN and DOB fills the rest.",
+   "ui": [
+    [
+     "h",
+     "SEBI requires us to know who we are advising. Two minutes."
+    ],
+    [
+     "in",
+     "Name as per PAN"
+    ],
+    [
+     "in",
+     "PAN"
+    ],
+    [
+     "in",
+     "Date of birth"
+    ],
+    [
+     "in",
+     "Email (for your plan PDF and invoices)"
+    ],
+    [
+     "p",
+     "We will fetch your KYC record from the KRA using PAN and date of birth. If nothing comes back, we will ask for your address."
+    ],
+    [
+     "btn",
+     "Continue to agreement",
+     "P03"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "legal_name",
+     "pan",
+     "dob",
+     "email",
+     "address (only if KRA fetch fails)"
+    ],
+    "logic": [
+     "PAN format check client side; KRA lookup server side.",
+     "DOB prefilled from age; user corrects to exact."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "P03"
+     ]
+    ],
+    "states": [
+     "KRA record not found: address fields appear",
+     "PAN mismatch with name: inline error"
+    ],
+    "dev": [
+     "Vendor: Digio for KRA/CKYC fetch and eSign, unless HoA already has one.",
+     "Full KYC for execution (bank, nominee, FATCA) is deferred to E02; do not front-load it here."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-webview",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "P02_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "P03",
+   "sec": "P",
+   "title": "Agreement and eSign",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Plain-language summary of the advisory agreement, then Aadhaar OTP eSign.",
+   "ui": [
+    [
+     "h",
+     "What you are agreeing to"
+    ],
+    [
+     "card",
+     "In plain words",
+     [
+      "What you get: a financial plan and investment advice built on your numbers, delivered in this app",
+      "What it costs: the fee for the SKU and period you chose, inclusive of GST; a la carte calls are charged when you book them",
+      "No assured returns; markets carry risk",
+      "How we advise you: in this app, and by email or call from House of Alpha",
+      "Cancel any time; the unexpired period is refunded as per the agreement"
+     ]
+    ],
+    [
+     "link",
+     "Read the full agreement",
+     "P03"
+    ],
+    [
+     "btn",
+     "Sign with Aadhaar OTP",
+     "P04"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "agreement_version",
+     "esign_txn"
+    ],
+    "logic": [
+     "Cannot proceed to payment without a completed eSign.",
+     "Signed PDF stored in the vault (H06) with timestamp and version.",
+     "The agreement reflects two SKUs and the billing period (Vatsal, 10 Sep 2026).",
+     "Read the full agreement opens the agreement PDF in place."
+    ],
+    "branches": [
+     [
+      "Sign",
+      "P04"
+     ]
+    ],
+    "states": [
+     "eSign failed or abandoned: retry; agreement stays unsigned; user parked in state S2b"
+    ],
+    "dev": [
+     "Agreement template must be the fixed-fee variant and must name the app as an advice channel. Counsel task, on the critical path.",
+     "Aadhaar eSign via the same vendor as P02."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-webview",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "fees and refunds",
+     "disclosures"
+    ],
+    "checks": [
+     "Inclusive of GST, the period, cancellation, refund, breakage.",
+     "The RIA registration line, the fee schedule, the complaints and grievance path, what the app is and is not, what a call is and is not."
+    ]
+   },
+   "events": [
+    "P03_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+    ]
+   }
+  },
+  {
+   "id": "P04",
+   "sec": "P",
+   "title": "Pay",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Payment sheet. The chosen SKU and period set up a recurring mandate; first charge now. UPI and netbanking only.",
+   "ui": [
+    [
+     "h",
+     "Pay Rs ___"
+    ],
+    [
+     "p",
+     "yeslyf <SKU>, billed <period>, inclusive of GST. Cancel any time from Settings."
+    ],
+    [
+     "chips",
+     [
+      "UPI, recurring mandate",
+      "Netbanking"
+     ]
+    ],
+    [
+     "in",
+     "Coupon code"
+    ],
+    [
+     "btn",
+     "Pay securely",
+     "P05"
+    ],
+    [
+     "p",
+     "Your GST invoice is emailed to you. GST shows as IGST, or CGST plus SGST, or no GST, by the rule for your state and status."
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "payment_method (upi, netbanking)",
+     "mandate_id or txn_id",
+     "coupon",
+     "gst_type (igst, cgst_sgst, none)"
+    ],
+    "logic": [
+     "UPI and netbanking only, no cards (brief K1).",
+     "Recurring UPI mandate for the chosen period, monthly or quarterly; to be verified: mandate type and limits for monthly and quarterly recurring UPI.",
+     "Netbanking: charge per period; to be verified: whether netbanking can carry a recurring mandate.",
+     "GST split on the invoice (IGST, or CGST plus SGST, or no GST) by a rule to be supplied; to be verified: the GST split rule.",
+     "Coupon field (row 21): applied before GST; the invoice shows the discount line."
+    ],
+    "branches": [
+     [
+      "Success",
+      "P05"
+     ],
+     [
+      "After a la carte purchase",
+      "K05"
+     ]
+    ],
+    "states": [
+     "Payment failed: retry with another method; nothing is lost",
+     "Mandate pending bank approval: allow entry, mark billing as pending",
+     "A la carte call purchase (K04): single charge; after payment K05 opens"
+    ],
+    "dev": [
+     "Razorpay recurring UPI and netbanking. Webhook updates tier and billing state.",
+     "Invoice includes SEBI registration and fee mode, as the agreement requires."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "fees and refunds"
+    ],
+    "checks": [
+     "Inclusive of GST, the period, cancellation, refund, breakage."
+    ]
+   },
+   "events": [
+    "P04_view"
+   ],
+   "v02": {
+    "status": "rebuilt",
+    "causes": [
+     "brief K1; row 21",
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    ]
+   }
+  },
+  {
+   "id": "P05",
+   "sec": "P",
+   "title": "You're in",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Confirmation and the emotional handover into the paid journey.",
+   "ui": [
+    [
+     "h",
+     "You're in. Welcome to yeslyf, Aarav."
+    ],
+    [
+     "p",
+     "Thanks for trusting us to partner with you on this."
+    ],
+    [
+     "btn",
+     "Let's begin",
+     "O01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [],
+    "branches": [
+     [
+      "Begin",
+      "O01"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Fire paid event to CRM (section M)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "P05_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "O01",
+   "sec": "O",
+   "title": "Meet yeslyf",
+   "tier": [
+    "DIY",
+    "DIWM",
+    "DIFM"
+   ],
+   "purpose": "Tier-dependent introduction to how the app and the calls work. No adviser is named.",
+   "ui": [
+    [
+     "card",
+     "DIY",
+     [
+      "How yeslyf works: I ask, you answer, the plan builds itself",
+      "Ask me anything from the Help tab. Calls are available a la carte from the Help tab"
+     ]
+    ],
+    [
+     "card",
+     "DIWM",
+     [
+      "Your calls with the yeslyf advisers: N this <period>, book them whenever you want a walk-through",
+      "Any adviser from the call centre takes your call"
+     ]
+    ],
+    [
+     "card",
+     "DIFM",
+     [
+      "Your House of Alpha adviser",
+      "This app collects your data and tracks your progress. Your advice comes from your adviser directly."
+     ]
+    ],
+    [
+     "btn",
+     "Continue",
+     "O02"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Only one card renders, by tier.",
+     "No named adviser on any screen (Vatsal, 10 Sep 2026, supersedes brief S1 in the wireframe only; the staffing discussion is not touched).",
+     "DIFM: tracking only; no engine advice and no in-app upsell (Vatsal, 10 Sep 2026)."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "O02"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Adviser continuity is a config flag, off by default; when on, the same adviser can be offered again on K05.",
+     "DIFM card: the adviser relationship is handled in the CRM, not on a screen."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "disclosures"
+    ],
+    "note": "says what a call is and is not",
+    "checks": [
+     "The RIA registration line, the fee schedule, the complaints and grievance path, what the app is and is not, what a call is and is not."
+    ]
+   },
+   "events": [
+    "O01_view"
+   ],
+   "v02": {
+    "status": "rebuilt",
+    "causes": [
+     "brief S1",
+     "Vatsal, 10 Sep 2026 (supersedes brief S1)"
+    ]
+   }
+  },
+  {
+   "id": "O02",
+   "sec": "O",
+   "title": "Your next steps (hub)",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "The resume point for every partially-onboarded user. Time estimates set expectations; the ring shows progress.",
+   "ui": [
+    [
+     "progress",
+     "Your plan is 20% built",
+     20
+    ],
+    [
+     "card",
+     "1. Connect your data via Account Aggregator, about 10 minutes",
+     [
+      "Done"
+     ]
+    ],
+    [
+     "card",
+     "2. Fill in what only you know, 30 to 45 minutes",
+     [
+      "Family, other assets, insurance, income, expenses, goals, risk profile",
+      "Continue where you left off: Insurance"
+     ]
+    ],
+    [
+     "card",
+     "3. Book a call, any time",
+     [
+      "Any tier; included or a la carte, by your SKU"
+     ]
+    ],
+    [
+     "video",
+     "30-second walkthrough of the three steps"
+    ],
+    [
+     "btn",
+     "Continue",
+     "A05"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Step 3 for every tier: a call can be booked at any time (Vatsal, 10 Sep 2026).",
+     "Continue jumps to the first incomplete screen in section D.",
+     "Every data screen autosaves on every field change; this hub reads completion flags."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "A05"
+     ],
+     [
+      "Step 2",
+      "D01"
+     ],
+     [
+      "Book a call",
+      "K01"
+     ]
+    ],
+    "states": [
+     "S3: nothing done",
+     "S4: partial; shows last section",
+     "All done: replaced by G01"
+    ],
+    "dev": [
+     "Progress = weighted completion across D01 to D09 (see M2 completion rules)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "O02_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    ]
+   }
+  },
+  {
+   "id": "A05",
+   "sec": "D",
+   "title": "Account Aggregator: what and why",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Explain AA in the adviser's voice and confirm the mobile number is the one the banks know.",
+   "ui": [
+    [
+     "h",
+     "This is the one shortcut we get."
+    ],
+    [
+     "p",
+     "Consent once to Account Aggregator and I can fetch most of your financial picture in a minute: bank balances, deposits, mutual funds, stocks. What cannot come through here, you fill in yourself. It is read-only and you can revoke it any time."
+    ],
+    [
+     "card",
+     "Is +91 98xxx xxx21 the number your bank accounts know?",
+     [
+      "Yes",
+      "Use another number"
+     ]
+    ],
+    [
+     "btn",
+     "Connect via Account Aggregator",
+     "A06"
+    ],
+    [
+     "link",
+     "Do it manually instead",
+     "D02"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "aa_mobile"
+    ],
+    "logic": [
+     "Manual path allowed but warned: the investment plan can only advise on holdings it can see. Sell and switch recommendations are given only on AA or CAS-verified holdings (open point 18 in chat)."
+    ],
+    "branches": [
+     [
+      "Connect",
+      "A06"
+     ],
+     [
+      "Manual",
+      "D02"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Consent template: one-time fetch now plus periodic fetch for the quarterly review (A-Q01). Purpose code for wealth management. TSP to confirm."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-source",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "consent"
+    ],
+    "checks": [
+     "AA consent wording and period, the DPDP notice, CAS password handling, the declaration, deletion."
+    ]
+   },
+   "events": [
+    "A05_view",
+    "source_choice"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "A06",
+   "sec": "D",
+   "title": "AA consent (vendor flow)",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "The AA's own consent screens inside a webview. We do not redesign these; we frame them.",
+   "ui": [
+    [
+     "card",
+     "AA webview",
+     [
+      "1. Confirm mobile, AA OTP",
+      "2. Discover accounts across banks, RTAs, depositories",
+      "3. Select accounts to share",
+      "4. Approve consent: purpose, data types, period, frequency",
+      "5. Done"
+     ]
+    ],
+    [
+     "btn",
+     "Continue",
+     "A07"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "consent_handle"
+    ],
+    "logic": [
+     "User can deselect accounts; we record which were excluded."
+    ],
+    "branches": [
+     [
+      "Done",
+      "A07"
+     ],
+     [
+      "Abandoned",
+      "A08"
+     ]
+    ],
+    "states": [
+     "Discovery finds nothing on this number: offer another number or manual"
+    ],
+    "dev": [
+     "TSP options: Setu, Finvu, OneMoney. Corporate RIA FIU registration is in hand per spiff."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-webview",
+   "path": "aa",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "consent"
+    ],
+    "checks": [
+     "AA consent wording and period, the DPDP notice, CAS password handling, the declaration, deletion."
+    ]
+   },
+   "events": [
+    "A06_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "A07",
+   "sec": "D",
+   "title": "Fetching",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Institution-by-institution progress. Partial success is normal; show it honestly.",
+   "ui": [
+    [
+     "progress",
+     "Fetching your accounts",
+     70
+    ],
+    [
+     "rows",
+     [
+      [
+       "HDFC Bank",
+       "Done"
+      ],
+      [
+       "CAMS (mutual funds)",
+       "Done"
+      ],
+      [
+       "KFintech (mutual funds)",
+       "Fetching"
+      ],
+      [
+       "CDSL (stocks)",
+       "Failed, will retry"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "See what came through",
+     "A08"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Continue is enabled once at least one institution returns."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "A08"
+     ]
+    ],
+    "states": [
+     "All failed: go to A09"
+    ],
+    "dev": [
+     "FIP timeouts are common; retry in background and merge later with a notification."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-progress",
+   "path": "aa",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "A07_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "A08",
+   "sec": "D",
+   "title": "Here is what came through",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "The user confirms, edits or excludes what AA returned. This is the picture the plan is built from.",
+   "ui": [
+    [
+     "h",
+     "Here is what came through. Sound off on anything that is off."
+    ],
+    [
+     "card",
+     "Bank accounts (2)",
+     [
+      "Balances Rs 3.2 L",
+      "AA-fed"
+     ]
+    ],
+    [
+     "card",
+     "Fixed and recurring deposits (1)",
+     [
+      "Rs 5.0 L",
+      "AA-fed"
+     ]
+    ],
+    [
+     "card",
+     "Mutual funds (7 holdings)",
+     [
+      "Rs 11.8 L, SIPs detected: 3",
+      "AA-fed"
+     ]
+    ],
+    [
+     "card",
+     "Stocks (CDSL)",
+     [
+      "Not fetched, retry or add manually"
+     ]
+    ],
+    [
+     "chips",
+     [
+      "Looks right",
+      "Edit",
+      "Exclude"
+     ]
+    ],
+    [
+     "link",
+     "Something is missing, add it manually",
+     "D02"
+    ],
+    [
+     "btn",
+     "Continue",
+     "D01"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "per account: include flag, override value, source lock"
+    ],
+    "logic": [
+     "Every field carries a source: AA-fed or manual. A manual override locks the field so a later AA refresh does not overwrite it unless the user unlocks it (spiff, Q10).",
+     "On every later refresh: show the diff first, then ask, we updated N numbers, good to go? (Q01)."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "D01"
+     ],
+     [
+      "Add manually",
+      "D02"
+     ]
+    ],
+    "states": [
+     "Nothing fetched: A09"
+    ],
+    "dev": [
+     "Holdings stored at ISIN level with units, value, SIP mandates. Needed for I02."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-review",
+   "path": "aa",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "A08_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "A09",
+   "sec": "D",
+   "title": "AA partial or failed",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Recovery without dead ends: retry, upload a statement, or type it in.",
+   "ui": [
+    [
+     "h",
+     "Some accounts did not come through"
+    ],
+    [
+     "rows",
+     [
+      [
+       "CDSL (stocks)",
+       "Retry"
+      ],
+      [
+       "KFintech (mutual funds)",
+       "Retry"
+      ]
+     ]
+    ],
+    [
+     "btn2",
+     "Upload a CAS statement (CAMS or KFintech PDF)",
+     "A09"
+    ],
+    [
+     "btn2",
+     "Enter these manually",
+     "D02"
+    ],
+    [
+     "btn",
+     "Continue with what we have",
+     "D01"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "cas_upload"
+    ],
+    "logic": [
+     "CAS upload parses holdings and marks them CAS-verified (counts as verified for sell and switch advice)."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "D01"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "CAS parsing via the open-source casparser library or a vendor; password-protected PDFs need the PAN-based password prompt."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card",
+   "path": "aa",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "A09_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+    ]
+   }
+  },
+  {
+   "id": "D01",
+   "sec": "D",
+   "title": "Family circle",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Who the plan is for. Dependants drive protection; children's ages drive education goals.",
+   "ui": [
+    [
+     "h",
+     "Let's start with who is in your circle. The plan is built around your family, not around you alone."
+    ],
+    [
+     "card",
+     "You",
+     [
+      "Aarav, 31"
+     ]
+    ],
+    [
+     "card",
+     "Partner",
+     [
+      "Name, age, earns: yes / no"
+     ]
+    ],
+    [
+     "card",
+     "Kids",
+     [
+      "Name, age, add another"
+     ]
+    ],
+    [
+     "card",
+     "Parents",
+     [
+      "Financially dependent on you: yes / no"
+     ]
+    ],
+    [
+     "link",
+     "Add someone else",
+     "D01"
+    ],
+    [
+     "btn",
+     "Continue",
+     "D02"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "members[]: relation, name, age, dependent, earns"
+    ],
+    "logic": [
+     "Prefilled from R02 household type.",
+     "Each child suggests an education goal on D07; each dependant raises the term-cover need in F03."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "D02"
+     ]
+    ],
+    "states": [
+     "Just me: skip partner and kids cards"
+    ],
+    "dev": [
+     "Bhuvanaa asked for a family-tree feel; keep it a card list at wireframe level, Spinach decides the visual."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "D01_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "D02",
+   "sec": "D",
+   "title": "Assets AA cannot see",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Property, gold in the locker, EPF, PPF, ULIPs, anything private. Approximate is fine.",
+   "ui": [
+    [
+     "h",
+     "A few things Account Aggregator cannot see for us. Approximate values are fine; we can refine later."
+    ],
+    [
+     "card",
+     "Property",
+     [
+      "The home you live in: value (excluded from investable)",
+      "Investment property: value, rental income"
+     ]
+    ],
+    [
+     "card",
+     "Gold and silver, physical",
+     [
+      "Value or grams"
+     ]
+    ],
+    [
+     "card",
+     "EPF / PPF / GPF balance",
+     [
+      "Band or exact"
+     ]
+    ],
+    [
+     "card",
+     "ULIP or endowment policies",
+     [
+      "Surrender value, monthly premium, years completed"
+     ]
+    ],
+    [
+     "card",
+     "Anything else",
+     [
+      "Crypto, international, business stake, other"
+     ]
+    ],
+    [
+     "chips",
+     [
+      "None of these"
+     ]
+    ],
+    [
+     "btn",
+     "Continue",
+     "D03"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "per asset: type, value_band, value_exact, notes"
+    ],
+    "logic": [
+     "Self-occupied home is in net worth, excluded from investable corpus (M2 rules).",
+     "ULIP with 5+ years triggers the surrender assessment in F03 (React life-insurance rules)."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "D03"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "All band questions follow the standing band rule."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "D02_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "D03",
+   "sec": "D",
+   "title": "Loans and dues",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Outstanding, EMI, rate and tenure per loan. Feeds EMI burden, prepay verdict, and term cover.",
+   "ui": [
+    [
+     "h",
+     "Is there anything you still owe?"
+    ],
+    [
+     "card",
+     "Home loan",
+     [
+      "Outstanding, monthly EMI, rate, years left"
+     ]
+    ],
+    [
+     "card",
+     "Car loan",
+     [
+      "Outstanding, EMI, rate"
+     ]
+    ],
+    [
+     "card",
+     "Personal or education loan",
+     [
+      "Outstanding, EMI, rate"
+     ]
+    ],
+    [
+     "card",
+     "Credit card balance carried over",
+     [
+      "Amount"
+     ]
+    ],
+    [
+     "chips",
+     [
+      "No loans"
+     ]
+    ],
+    [
+     "btn",
+     "Continue",
+     "D04"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "loans[]: type, outstanding, emi, rate, tenure_left"
+    ],
+    "logic": [
+     "Home loan flagged tax-deductible; effective rate = rate x (1 - tax bracket). Verdict per React debt logic: prepay only if effective rate is above the investment return assumption.",
+     "EMI ceiling 30% of take-home; above it is a concern on F01."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "D04"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Loan accounts are not reliably on AA yet; manual."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "D03_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "D04",
+   "sec": "D",
+   "title": "Insurance",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "What is protected today. Life, health, and investment-linked policies.",
+   "ui": [
+    [
+     "h",
+     "Insurance is where most families are over-covered on things that do not matter and under-covered on things that do. Let's see what you have."
+    ],
+    [
+     "card",
+     "Term life cover",
+     [
+      "Have it: yes / no",
+      "Sum assured, annual premium, cover until age"
+     ]
+    ],
+    [
+     "card",
+     "Health cover",
+     [
+      "Employer only / personal / both",
+      "Sum insured, family floater: yes / no"
+     ]
+    ],
+    [
+     "card",
+     "ULIP or endowment",
+     [
+      "Pulled from the previous screen"
+     ]
+    ],
+    [
+     "card",
+     "Other",
+     [
+      "Personal accident, critical illness"
+     ]
+    ],
+    [
+     "btn",
+     "Continue",
+     "D05"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "term_cover",
+     "term_premium",
+     "health_type",
+     "health_sum_insured",
+     "other_policies"
+    ],
+    "logic": [
+     "Employer-only health cover triggers the F03 health advice (Rs 15 L floater + Rs 50 L top-up below Rs 2 L monthly income; Rs 25 L floater above), per the React.",
+     "Term cover need uses the React formula: liabilities + present value of future family expenses, minus assets excluding the primary home, minus current cover."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "D05"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Insurance policies may partly arrive via AA later; keep fields overridable with source lock."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "D04_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+    ]
+   }
+  },
+  {
+   "id": "D05",
+   "sec": "D",
+   "title": "Income",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "What your money did over the last twelve months, as best AA can see, then the user confirms take-home.",
+   "ui": [
+    [
+     "h",
+     "Here is what your money did over the last twelve months, as best I can see. Adjust anything that is not right and add what I missed."
+    ],
+    [
+     "rows",
+     [
+      [
+       "Average monthly credits (salary detected)",
+       "Rs 1,82,000"
+      ],
+      [
+       "Average monthly debits",
+       "Rs 1,31,000"
+      ]
+     ]
+    ],
+    [
+     "card",
+     "Your monthly take-home",
+     [
+      "Band or exact, prefilled Rs 1,82,000",
+      "AA-fed"
+     ]
+    ],
+    [
+     "card",
+     "Partner's take-home",
+     [
+      "Band or exact"
+     ]
+    ],
+    [
+     "card",
+     "Rental income",
+     [
+      "Monthly"
+     ]
+    ],
+    [
+     "card",
+     "Business or other income",
+     [
+      "Monthly, regular or lumpy"
+     ]
+    ],
+    [
+     "btn",
+     "Continue",
+     "D06"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "income_self",
+     "income_partner",
+     "rental",
+     "other_income",
+     "income_regularity"
+    ],
+    "logic": [
+     "Salary detection from AA bank transactions: recurring credit on a fixed day. Show as a suggestion, user confirms.",
+     "Household income from R03 is reconciled here; large mismatch prompts a check."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "D06"
+     ]
+    ],
+    "states": [
+     "No AA: fields empty, band rule applies"
+    ],
+    "dev": [
+     "Transaction categorisation is V2; V1 shows totals and the detected salary only."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-num",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "D05_view",
+    "D05_set",
+    "D05_skip",
+    "D05_hesitation_45",
+    "D05_hesitation_90",
+    "D05_hesitation_120",
+    "D05_band_tapped",
+    "D05_exact_entered"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "D06",
+   "sec": "D",
+   "title": "Expenses and existing investing",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Three expense buckets plus what is already being invested. Surplus updates live.",
+   "ui": [
+    [
+     "card",
+     "Fixed",
+     [
+      "Rent, EMIs (pulled from loans), school fees, help, subscriptions"
+     ]
+    ],
+    [
+     "card",
+     "Variable",
+     [
+      "Groceries, utilities, transport, fuel"
+     ]
+    ],
+    [
+     "card",
+     "Guilt-free",
+     [
+      "Dining, travel, hobbies, shopping"
+     ]
+    ],
+    [
+     "card",
+     "Already investing every month",
+     [
+      "SIPs and RDs, prefilled from AA: Rs 22,000 across 3 SIPs",
+      "AA-fed"
+     ]
+    ],
+    [
+     "rows",
+     [
+      [
+       "Income",
+       "Rs 1,82,000"
+      ],
+      [
+       "Outgoings",
+       "Rs 1,31,000"
+      ],
+      [
+       "Surplus",
+       "Rs 51,000 / month"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Continue",
+     "D07"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "fixed",
+     "variable",
+     "guilt_free",
+     "current_sip"
+    ],
+    "logic": [
+     "EMIs are read-only here, carried from D03.",
+     "Deficit: red line, copy per the React: you are running a deficit budget, income or expenses need a re-look. Plan still builds."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "D07"
+     ]
+    ],
+    "states": [
+     "Deficit state"
+    ],
+    "dev": [
+     "SIP detection from AA debits to RTAs; user confirms."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-num",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "D06_view",
+    "D06_set",
+    "D06_skip",
+    "D06_hesitation_45",
+    "D06_hesitation_90",
+    "D06_hesitation_120",
+    "D06_band_tapped",
+    "D06_exact_entered"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "D07",
+   "sec": "D",
+   "title": "Goals and key life events",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Where we are heading and what is coming along the way. Suggested from the family circle; user edits, adds, ranks.",
+   "ui": [
+    [
+     "h",
+     "Last one, and the most important. Everything so far tells me where you are. This tells me where we are heading."
+    ],
+    [
+     "card",
+     "Suggested for you",
+     [
+      "Aryan's higher education, 2039",
+      "Home upgrade",
+      "Wedding",
+      "Vehicle",
+      "Travel",
+      "Business or second income",
+      "Parents' support",
+      "Health corpus",
+      "Something else"
+     ]
+    ],
+    [
+     "card",
+     "Each goal",
+     [
+      "Name, year or timeline, cost today (band or exact), priority rank (drag)"
+     ]
+    ],
+    [
+     "card",
+     "Work-optional age",
+     [
+      "Default 60, change it. This is an anchor for the maths, not a goal you must chase."
+     ]
+    ],
+    [
+     "in",
+     "Yes list: things you want to say yes to, in your words"
+    ],
+    [
+     "btn",
+     "Continue",
+     "D08"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "goals[]: type, label, year, cost_today, priority",
+     "fi_age",
+     "yes_list[]"
+    ],
+    "logic": [
+     "Retirement is not mandatory (spiff, Q14). Work-optional age is an assumption used by the cashflow and life-events projections, defaulted to 60 and editable.",
+     "Goal types match the React key-life-events categories: education, home, vehicle, wedding, health, plus travel, business, parents, other.",
+     "No cap on goals; priority order feeds the SIP reconciliation when surplus is short (M4 stage 7)."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "D08"
+     ]
+    ],
+    "states": [
+     "No goals: plan covers emergency fund, protection, cashflow, debt, tax, and the work-optional projection"
+    ],
+    "dev": [
+     "Timeline to years map from M2 6.1."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "D07_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "D08",
+   "sec": "D",
+   "title": "Risk profile (8 questions)",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "SEBI-mandated risk profiling using HoA's existing questionnaire, one question per screen as tap cards.",
+   "ui": [
+    [
+     "p",
+     "Question 5 of 8. SEBI requires this, and it decides how much of your money goes into equity."
+    ],
+    [
+     "h",
+     "If your Rs 1,00,000 portfolio fell to Rs 75,000 within a month, you would..."
+    ],
+    [
+     "radio",
+     [
+      "Invest more to lower my average price",
+      "Hold and sell nothing, expecting recovery",
+      "Sell a portion to cut losses and move to safer options",
+      "Sell everything, I do not intend to take risks"
+     ]
+    ],
+    [
+     "btn",
+     "Next",
+     "D09"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "rpq_answers[8]"
+    ],
+    "logic": [
+     "Questions verbatim from HoA's questionnaire: dependants, income stability, investor knowledge, savings status, drawdown reaction, investment goal, gain-loss preference, borrowing to invest.",
+     "Q7 copy says three options and lists four; fix the copy.",
+     "The eight HoA questions verbatim, one screen per question (brief H3); drawn as D08a to D08h. Band from the score."
+    ],
+    "branches": [
+     [
+      "Next",
+      "D09"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "to be verified: the RPQ scoring map (gap G06). Store score, band, timestamp, questionnaire version."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-tap",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "note": "suitability questions",
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "D08_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief H3"
+    ]
+   }
+  },
+  {
+   "id": "D09",
+   "sec": "D",
+   "title": "Your risk profile",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Communicate the result and take the declaration, as the regulations require.",
+   "ui": [
+    [
+     "h",
+     "Based on your answers, you are a Moderate investor"
+    ],
+    [
+     "p",
+     "What this means: your long-term money leans towards equity; your short-term money stays safe. You can retake this any time from Settings, and I will ask you to confirm it once a year."
+    ],
+    [
+     "card",
+     "Declaration",
+     [
+      "I declare the details furnished are true and correct, and I will inform you of any changes. (Full text as per HoA's questionnaire.)"
+     ]
+    ],
+    [
+     "chips",
+     [
+      "I confirm"
+     ]
+    ],
+    [
+     "btn",
+     "Continue",
+     "D10"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "risk_band",
+     "declaration_accepted_at"
+    ],
+    "logic": [
+     "Band feeds the cohort grid in L03.",
+     "Annual re-confirmation trigger in Q04.",
+     "Band from the RPQ score (brief H3)."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "D10"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Suitability record: store band + the advice version it applied to (advice register for SEBI records)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "D09_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief H3"
+    ]
+   }
+  },
+  {
+   "id": "D10",
+   "sec": "D",
+   "title": "Review and build",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "One page of everything collected, with sources and approx tags, before the engine runs.",
+   "ui": [
+    [
+     "h",
+     "Here is your picture. Anything to fix before I build?"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Family",
+       "You, partner, 1 child"
+      ],
+      [
+       "Assets",
+       "Rs 32.4 L (AA + manual)"
+      ],
+      [
+       "Loans",
+       "Rs 41.0 L"
+      ],
+      [
+       "Insurance",
+       "Term Rs 50 L, health employer only"
+      ],
+      [
+       "Income",
+       "Rs 1,82,000 / month"
+      ],
+      [
+       "Expenses",
+       "Rs 1,31,000 / month"
+      ],
+      [
+       "Goals",
+       "3 goals, work optional at 55"
+      ],
+      [
+       "Risk profile",
+       "Moderate"
+      ]
+     ]
+    ],
+    [
+     "p",
+     "Figures marked approx come from ranges you picked; exact numbers make the plan sharper. You can refine after seeing it."
+    ],
+    [
+     "btn",
+     "Build my plan",
+     "G01"
+    ],
+    [
+     "link",
+     "Edit a section",
+     "O02"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Each row links back to its screen.",
+     "The approx refinement prompt from V5 lives here."
+    ],
+    "branches": [
+     [
+      "Build",
+      "G01"
+     ],
+     [
+      "Edit",
+      "O02"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Snapshot of inputs saved as plan_input_version for the advice record."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-review",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language",
+     "consent"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses.",
+     "AA consent wording and period, the DPDP notice, CAS password handling, the declaration, deletion."
+    ]
+   },
+   "events": [
+    "D10_view",
+    "gate_met",
+    "plan_built"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "G01",
+   "sec": "G",
+   "title": "Building your plan",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "The engine runs in seconds. Copy says a minute; the clarity picture shows first so the wait feels earned.",
+   "ui": [
+    [
+     "progress",
+     "Building your plan on your numbers",
+     80
+    ],
+    [
+     "p",
+     "Assuming 6% inflation on what life costs; your mix earning about 8% a year; the yeslyf mix about 11% a year. Values from L02."
+    ],
+    [
+     "p",
+     "Every number you shared is shaping something specific to your life. Not a template. Yours."
+    ],
+    [
+     "btn",
+     "See my plan",
+     "G03"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "No human gate (spiff, Q15). A plan-being-prepared delay is a later experiment; keep a config for artificial wait time (0 by default).",
+     "Rotates the assumption lines as R08 does (row 31, accepted)."
+    ],
+    "branches": [
+     [
+      "auto",
+      "G03"
+     ]
+    ],
+    "states": [
+     "Engine error: retry; support alert"
+    ],
+    "dev": [
+     "Plan versioned: plan_version, assumptions_version, instrument_set_version."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-progress",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "G01_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief B2",
+     "row 31"
+    ]
+   }
+  },
+  {
+   "id": "G02",
+   "sec": "G",
+   "title": "Clarity picture",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Where you stand today: net worth, what is realisable, allocation, current return mix, blind spots. The first output and the adviser's call brief.",
+   "ui": [
+    [
+     "h",
+     "Where you stand today"
+    ],
+    [
+     "num",
+     "Net worth Rs 18.6 L"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Realisable now",
+       "Rs 9.1 L"
+      ],
+      [
+       "Locked (EPF, NPS, ULIP)",
+       "Rs 12.3 L"
+      ],
+      [
+       "Property",
+       "Rs 11.0 L"
+      ],
+      [
+       "Loans",
+       "Rs 41.0 L"
+      ]
+     ]
+    ],
+    [
+     "chart",
+     "Allocation: cash / debt / hybrid / commodities / equity"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Your current mix earns about",
+       "8.1% a year"
+      ]
+     ]
+    ],
+    [
+     "card",
+     "Blind spots",
+     [
+      "Urgent: term cover Rs 50 L is below your home loan Rs 41 L plus family needs",
+      "Warning: health cover disappears with your job",
+      "Opportunity: Rs 5 L in FDs earning below inflation"
+     ]
+    ],
+    [
+     "btn",
+     "See my plan",
+     "G03"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "M2 section 4: net worth, WAR, blind-spot rules.",
+     "Kept post-paywall (open point 3). Pre-paywall the hook is the reveal, not this."
+    ],
+    "branches": [
+     [
+      "See my plan",
+      "G03"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "This screen is also the top of the adviser's pre-call view (M01)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-chart",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "note": "dropped in v0.2 (brief B2)",
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "G02_view"
+   ],
+   "v02": {
+    "status": "dropped",
+    "causes": [
+     "brief B2"
+    ],
+    "pointer": "G03 (realisable vs locked corpus, current allocation by class and current weighted return fold into G03 as ledger rows)"
+   }
+  },
+  {
+   "id": "G03",
+   "sec": "G",
+   "title": "Plan: overview",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "The React plan, re-laid for a phone. Tab strip across the top; one screen per tab.",
+   "ui": [
+    [
+     "tabs",
+     [
+      "Overview",
+      "Emergency",
+      "Protection",
+      "Cashflow",
+      "Debt",
+      "Life events",
+      "Summary"
+     ]
+    ],
+    [
+     "card",
+     "Your plan, built on what you told us",
+     [
+      "You told us you are established but wondering if you are on track, feeling mixed, and that what you want is freedom. This plan is built on that."
+     ]
+    ],
+    [
+     "rows",
+     [
+      [
+       "Monthly take-home",
+       "Rs 1,82,000"
+      ],
+      [
+       "Fixed commitments",
+       "Rs 84,000 (46%)"
+      ],
+      [
+       "Monthly surplus",
+       "Rs 51,000"
+      ],
+      [
+       "What you own",
+       "Rs 32.4 L"
+      ],
+      [
+       "What you owe",
+       "Rs 41.0 L"
+      ],
+      [
+       "Life cover",
+       "Rs 50 L"
+      ],
+      [
+       "Realisable now vs locked",
+       "Rs 9.1 L realisable; Rs 12.3 L locked (EPF, NPS, ULIP)"
+      ],
+      [
+       "Current allocation by class",
+       "liquid debt / debt / hybrid / commodities / equity / REITs and InvITs, as held today"
+      ],
+      [
+       "Current weighted return",
+       "about 8.1% a year"
+      ]
+     ]
+    ],
+    [
+     "card",
+     "What success looks like",
+     [
+      "Aryan's education 2039: Rs 82 L, not funded",
+      "Home upgrade 2032: Rs 85 L, 40% funded",
+      "Work optional at 55: Rs 1.6 Cr on current path"
+     ]
+    ],
+    [
+     "card",
+     "What needs attention, in this order",
+     [
+      "Term cover gap",
+      "No emergency fund",
+      "Work-optional corpus short",
+      "Education unfunded"
+     ]
+    ],
+    [
+     "btn",
+     "Next: Emergency fund",
+     "G04"
+    ],
+    [
+     "link",
+     "Email me the PDF",
+     "G03"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Content and section logic from the FP React (Overview, Emergency Fund, Life and Health Insurance, Cashflow, Debt, Tax, Key Life Events, Summary).",
+     "Three ledger rows from G02 (brief B2): realisable vs locked corpus, current allocation by class, current weighted return. G02 is dropped; this screen is also the top of the adviser's pre-call view (M01).",
+     "Tax section dropped (brief B4); the tab strip has seven tabs.",
+     "Email me the PDF is an in-place action: the PDF is emailed and filed in H06."
+    ],
+    "branches": [
+     [
+      "Tabs",
+      "G04"
+     ]
+    ],
+    "states": [
+     "DIFM: plan shown as read-only reference, adviser owns changes"
+    ],
+    "dev": [
+     "The 860px React does not fit a phone; each section becomes a vertical screen with the same ledger rows and callouts. Charts keep the inflation toggle and horizon slider."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "G03_view",
+    "sharpen_opened",
+    "sharpen_saved"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief B2",
+     "brief B4",
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+    ]
+   }
+  },
+  {
+   "id": "G04",
+   "sec": "G",
+   "title": "Plan: emergency fund",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Section 1. Target, what is available, the gap, the monthly move, months to fill.",
+   "ui": [
+    [
+     "h",
+     "Emergency fund"
+    ],
+    [
+     "card",
+     "Narrative",
+     [
+      "You have Rs 2.8 L in a savings account with no designation. Move it today, top it up for four months, and it is done."
+     ]
+    ],
+    [
+     "rows",
+     [
+      [
+       "Monthly expenses",
+       "Rs 1,31,000"
+      ],
+      [
+       "Target, 6 months",
+       "Rs 7.9 L"
+      ],
+      [
+       "Available (FD + debt fund)",
+       "Rs 5.0 L"
+      ],
+      [
+       "Monthly move to liquid fund",
+       "Rs 45,000"
+      ],
+      [
+       "Fully funded",
+       "in 7 months"
+      ]
+     ]
+    ],
+    [
+     "card",
+     "Actionables",
+     [
+      "1. Move Rs 2.8 L savings to a liquid fund today",
+      "2. Top up Rs 45,000 a month for 7 months"
+     ]
+    ],
+    [
+     "btn",
+     "Next: Protection",
+     "G05"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "React EmergencyFund ledger and rules; emergency months from L02."
+    ],
+    "branches": [
+     [
+      "Next",
+      "G05"
+     ]
+    ],
+    "states": [
+     "Already funded: Already there state"
+    ],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "G04_view",
+    "sharpen_opened",
+    "sharpen_saved"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "G05",
+   "sec": "G",
+   "title": "Plan: protection",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Section 2. Life insurance need ledger and the health advice.",
+   "ui": [
+    [
+     "h",
+     "Life insurance"
+    ],
+    [
+     "rows",
+     [
+      [
+       "+ Liabilities",
+       "Rs 41.0 L"
+      ],
+      [
+       "+ Future family expenses (PV)",
+       "Rs 2.1 Cr"
+      ],
+      [
+       "- Current cover",
+       "Rs 50 L"
+      ],
+      [
+       "- Assets excluding your home",
+       "Rs 21.4 L"
+      ],
+      [
+       "Additional cover needed",
+       "Rs 1.8 Cr"
+      ]
+     ]
+    ],
+    [
+     "card",
+     "Actionables",
+     [
+      "3. Buy Rs 1.8 Cr additional pure term cover",
+      "4. Review the endowment policy: surrender if under half its term"
+     ]
+    ],
+    [
+     "h",
+     "Health insurance"
+    ],
+    [
+     "card",
+     "Your only cover is from your employer",
+     [
+      "5. Buy a Rs 15 L family floater plus Rs 50 L top-up in your own name"
+     ]
+    ],
+    [
+     "btn",
+     "Next: Cashflow",
+     "G06"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "React LIFE_INSURANCE formula and policy review rules (ULIP after 5-year lock-in; endowment surrender if under half term).",
+     "Health thresholds from L02."
+    ],
+    "branches": [
+     [
+      "Next",
+      "G06"
+     ]
+    ],
+    "states": [
+     "Well protected: no actionables, positive narrative"
+    ],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "G05_view",
+    "sharpen_opened",
+    "sharpen_saved"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+    ]
+   }
+  },
+  {
+   "id": "G06",
+   "sec": "G",
+   "title": "Plan: cashflow",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Section 3. Surplus narrative, projection chart, the SIP from month N.",
+   "ui": [
+    [
+     "h",
+     "Cashflow"
+    ],
+    [
+     "card",
+     "Narrative",
+     [
+      "Your surplus is Rs 51,000 a month after fixed costs. Phase 1 directs it to the emergency fund; from month 8, every rupee is directed intentionally."
+     ]
+    ],
+    [
+     "chart",
+     "Income vs expenses by age, with life events stacked; inflation toggle; view-until-age slider"
+    ],
+    [
+     "card",
+     "Actionables",
+     [
+      "6. From month 8, start an SIP of Rs 29,000 a month"
+     ]
+    ],
+    [
+     "p",
+     "Invest first. Spend what remains. Set once, automatic forever."
+    ],
+    [
+     "btn",
+     "Next: Debt",
+     "G07"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Deficit variant per React."
+    ],
+    "branches": [
+     [
+      "Next",
+      "G07"
+     ]
+    ],
+    "states": [
+     "Deficit state: no SIP, action 1 is fix cashflow"
+    ],
+    "dev": [
+     "Chart interactive on mobile: tap bar for detail."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "G06_view",
+    "sharpen_opened",
+    "sharpen_saved"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "G07",
+   "sec": "G",
+   "title": "Plan: debt",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Section 4. One block per loan with the prepay verdict.",
+   "ui": [
+    [
+     "h",
+     "Home loan"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Outstanding",
+       "Rs 41.0 L approx"
+      ],
+      [
+       "EMI",
+       "Rs 38,000, 21% of take-home"
+      ],
+      [
+       "Rate",
+       "8.5% floating"
+      ],
+      [
+       "Effective post-tax rate",
+       "6.0%"
+      ],
+      [
+       "Investment return assumption",
+       "11%"
+      ],
+      [
+       "Verdict",
+       "Do not prepay"
+      ]
+     ]
+    ],
+    [
+     "h",
+     "Car loan"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Rate",
+       "11.5% fixed"
+      ],
+      [
+       "Verdict",
+       "Try repaying it early"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Next: Life events",
+     "G09"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "React LoanBlock rules; EMI ceiling and return assumption from L02."
+    ],
+    "branches": [
+     [
+      "Next",
+      "G09"
+     ]
+    ],
+    "states": [
+     "No loans: section shows a one-line all-clear"
+    ],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "G07_view",
+    "sharpen_opened",
+    "sharpen_saved"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief B4"
+    ]
+   }
+  },
+  {
+   "id": "G08",
+   "sec": "G",
+   "title": "Plan: tax",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Section 5. Old vs new regime with editable inputs; verdict updates live.",
+   "ui": [
+    [
+     "h",
+     "Tax: old vs new regime"
+    ],
+    [
+     "card",
+     "On your numbers, the New regime saves you Rs 34,000 a year",
+     [
+      "Adjust the figures below and it updates live"
+     ]
+    ],
+    [
+     "rows",
+     [
+      [
+       "Salary and bonus",
+       "Rs 21.8 L"
+      ],
+      [
+       "80C, NPS, 80D, home-loan interest",
+       "Rs 4.0 L"
+      ],
+      [
+       "HRA: city, basic, HRA received, rent paid",
+       "..."
+      ]
+     ]
+    ],
+    [
+     "p",
+     "A basic comparison for choosing a regime, not your tax liability. Confirm with your tax adviser."
+    ],
+    [
+     "btn",
+     "Next: Life events",
+     "G09"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "tax inputs (editable, saved)"
+    ],
+    "logic": [
+     "Slabs, rebates, surcharge, cess per FY from L02 config, not code. React has FY 2025-26 hardcoded."
+    ],
+    "branches": [
+     [
+      "Next",
+      "G09"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Inputs persist; re-run on change."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "note": "dropped in v0.2 (brief B4)",
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "G08_view"
+   ],
+   "v02": {
+    "status": "dropped",
+    "causes": [
+     "brief B4"
+    ],
+    "pointer": "removed; the G03 tab strip loses Tax and G07 continues to G09"
+   }
+  },
+  {
+   "id": "G09",
+   "sec": "G",
+   "title": "Plan: key life events",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Section 6. Timeline of events with family ages, and for each event whether it is met, as-is vs with the plan.",
+   "ui": [
+    [
+     "h",
+     "Key life events"
+    ],
+    [
+     "chart",
+     "Stacked bars by year: education, home, vehicle, wedding, health; family ages on the axis"
+    ],
+    [
+     "card",
+     "Aryan's education, 2039, costs Rs 82 L",
+     [
+      "As-is: not met, Rs 41 L available",
+      "With the plan: met, Rs 1.1 Cr available, next 3 years covered"
+     ]
+    ],
+    [
+     "card",
+     "Work optional at 55, 2050",
+     [
+      "As-is: money lasts till 67",
+      "With the plan: lasts till 91"
+     ]
+    ],
+    [
+     "btn",
+     "Next: Summary",
+     "G10"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "React KLE and LifeEventComparisons: event met if liquid assets that year cover the cost; buffer covered if the remainder covers 3 years of expenses. Retirement shown always as the anchor event.",
+     "Work-optional projection runs as depletion to life expectancy (brief B3): money lasts till age X against LIFE_EXPECTANCY from L02 (85; user-overridable to 90 or 100). No withdrawal rate."
+    ],
+    "branches": [
+     [
+      "Next",
+      "G10"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Needs the net-worth growth calculator output per scenario."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "G09_view",
+    "sharpen_opened",
+    "sharpen_saved"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief B3",
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+    ]
+   }
+  },
+  {
+   "id": "G10",
+   "sec": "G",
+   "title": "Plan: summary",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Section 7. Every actionable in plan order, numbered, with the section it came from. The bridge into the investment plan.",
+   "ui": [
+    [
+     "h",
+     "Everything in one place"
+    ],
+    [
+     "card",
+     "Actionables",
+     [
+      "1. Move Rs 2.8 L to a liquid fund (Emergency)",
+      "2. Top up Rs 45,000 a month for 7 months (Emergency)",
+      "3. Buy Rs 1.8 Cr term cover (Protection)",
+      "4. Review the endowment policy (Protection)",
+      "5. Buy a Rs 15 L floater plus top-up (Protection)",
+      "6. From month 8, SIP Rs 29,000 a month (Cashflow)"
+     ]
+    ],
+    [
+     "p",
+     "Nothing here needs a promotion, a windfall, or a change of lifestyle. It needs direction, and you now have it."
+    ],
+    [
+     "btn",
+     "See exactly where the money goes",
+     "G11"
+    ],
+    [
+     "link",
+     "Email me the PDF",
+     "G10"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "The work-optional line uses depletion to life expectancy (brief B3), as the FP React does.",
+     "Email me the PDF is an in-place action: the PDF is emailed and filed in H06."
+    ],
+    "branches": [
+     [
+      "Investment plan",
+      "G11"
+     ]
+    ],
+    "states": [
+     "DIFM: this is where the app stops; next screen shows your adviser will take it from here"
+    ],
+    "dev": [
+     "PDF generated from the same data and emailed; stored in vault H06."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "G10_view",
+    "sharpen_opened",
+    "sharpen_saved"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief B3",
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+    ]
+   }
+  },
+  {
+   "id": "G11",
+   "sec": "G",
+   "title": "Investment plan: allocation",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Money by horizon bucket, with the target mix from the logic panel for the user's risk band, against what they hold today.",
+   "ui": [
+    [
+     "h",
+     "Where the money goes"
+    ],
+    [
+     "p",
+     "You are a Moderate investor. Each goal sits in a bucket by how far away it is."
+    ],
+    [
+     "card",
+     "Short term, under 1 year",
+     [
+      "Emergency fund, Rs 7.9 L",
+      "Liquid debt 100"
+     ]
+    ],
+    [
+     "card",
+     "Medium term, 1 to 3 years",
+     [
+      "Vehicle 2028, Rs 8 L",
+      "Debt 60, hybrid 30, liquid debt 10"
+     ]
+    ],
+    [
+     "card",
+     "Long term, over 3 years",
+     [
+      "Education, home, work-optional",
+      "Equity 65, hybrid 10, debt 15, commodities 10"
+     ]
+    ],
+    [
+     "chart",
+     "Today vs target: liquid debt / debt / hybrid / commodities / equity / REITs and InvITs"
+    ],
+    [
+     "btn",
+     "Next: your existing holdings",
+     "G12"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Grid from L03: risk band x horizon bucket. Horizon bucket boundaries from L03 (short under 1 year, medium 1 to 3, long over 3, editable).",
+     "Persona never affects allocation; only risk band and horizon do.",
+     "Classes per brief H1: liquid debt, debt, hybrid, commodities, equity, REITs and InvITs; the short-term card reads Liquid debt 100. The v0.1 five-class line (cash, debt, hybrid, commodities, equity) is superseded."
+    ],
+    "branches": [
+     [
+      "Next",
+      "G12"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Bucket assignment recomputed at every quarterly review as goals get closer (glide path rule in L02)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-chart",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "G11_view",
+    "sharpen_opened",
+    "sharpen_saved"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief H1"
+    ]
+   }
+  },
+  {
+   "id": "G12",
+   "sec": "G",
+   "title": "Investment plan: your existing holdings",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Hold, exit or review, per holding, against the published approved list. Simplest sell logic.",
+   "ui": [
+    [
+     "h",
+     "What you already hold"
+    ],
+    [
+     "card",
+     "Parag Parikh Flexi Cap, Direct: Rs 4.2 L",
+     [
+      "Hold: on the approved list for long-term goals"
+     ]
+    ],
+    [
+     "card",
+     "XYZ Small Cap, Regular: Rs 2.1 L",
+     [
+      "Exit in 2 tranches: not on the approved list; regular plan; LTCG below the exemption this year"
+     ]
+    ],
+    [
+     "card",
+     "ABC Balanced Advantage: Rs 1.9 L",
+     [
+      "Review: we do not have this fund classified yet; hold for now"
+     ]
+    ],
+    [
+     "card",
+     "LIC endowment: surrender value Rs 1.1 L",
+     [
+      "Surrender after checking the term completed; see Protection"
+     ]
+    ],
+    [
+     "btn",
+     "Next: what to buy",
+     "G13"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Rule set (spiff, Q21): on the approved list for the bucket it fits: HOLD (and add to). Not on the approved list: EXIT, staggered with tax and exit-load and lock-in checks (ELSS 3 years, ULIP 5 years, SGB windows). Unknown ISIN: REVIEW, shown to the user as hold for now and queued for the adviser in L04.",
+     "Sell and switch advice only on AA or CAS-verified holdings; manual entries get buy advice only."
+    ],
+    "branches": [
+     [
+      "Next",
+      "G13"
+     ]
+    ],
+    "states": [
+     "No holdings: screen skipped"
+    ],
+    "dev": [
+     "No performance-analytics vendor needed for V1; the approved list is the judgment."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "G12_view",
+    "sharpen_opened",
+    "sharpen_saved"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+    ]
+   }
+  },
+  {
+   "id": "G13",
+   "sec": "G",
+   "title": "Investment plan: what to buy",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Instrument cards per goal bucket with the exact amount and why. ISINs come from the logic panel.",
+   "ui": [
+    [
+     "h",
+     "What to buy, and how much"
+    ],
+    [
+     "card",
+     "Emergency fund: liquid fund",
+     [
+      "Nippon India Liquid Fund, Direct",
+      "Lumpsum Rs 2.8 L now, then Rs 45,000 a month for 7 months"
+     ]
+    ],
+    [
+     "card",
+     "Long term: index and flexi cap",
+     [
+      "Nifty 50 Index Fund, Direct: SIP Rs 14,000 from month 8",
+      "Parag Parikh Flexi Cap, Direct: SIP Rs 9,000 from month 8"
+     ]
+    ],
+    [
+     "card",
+     "Long term: gold",
+     [
+      "Gold ETF via smallcase: SIP Rs 3,000"
+     ]
+    ],
+    [
+     "card",
+     "Medium term: debt",
+     [
+      "Short duration fund, Direct: SIP Rs 3,000"
+     ]
+    ],
+    [
+     "p",
+     "Why these: direct plans only, low cost, on House of Alpha's current approved list. Reviewed every quarter."
+    ],
+    [
+     "btn",
+     "See my action plan",
+     "G14"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Amounts from M4 goal SIPs and reconciliation, split across instruments by the weights in L04.",
+     "Lumpsum vs staggered (STP) decided by the L07 market rule."
+    ],
+    "branches": [
+     [
+      "Next",
+      "G14"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Each card links to the instrument's page (facts, costs, category) for the suitability record."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language",
+     "disclosures"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses.",
+     "The RIA registration line, the fee schedule, the complaints and grievance path, what the app is and is not, what a call is and is not."
+    ]
+   },
+   "events": [
+    "G13_view",
+    "sharpen_opened",
+    "sharpen_saved"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "G14",
+   "sec": "G",
+   "title": "Action plan",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "The ordered to-do list with amounts, timing and how to do each one. This is the object the dashboard tracks.",
+   "ui": [
+    [
+     "h",
+     "Your action plan"
+    ],
+    [
+     "card",
+     "Now",
+     [
+      "Move Rs 2.8 L to the liquid fund: do it in the app",
+      "Apply for Rs 1.8 Cr term cover: guided, outside the app"
+     ]
+    ],
+    [
+     "card",
+     "This month",
+     [
+      "Buy health floater plus top-up: guided, outside the app",
+      "Exit XYZ Small Cap, tranche 1: do it in the app"
+     ]
+    ],
+    [
+     "card",
+     "From month 8",
+     [
+      "Start 4 SIPs, Rs 29,000 total: do it in the app"
+     ]
+    ],
+    [
+     "card",
+     "Ongoing",
+     [
+      "Quarterly review in the app",
+      "Step up SIPs 10% every April"
+     ]
+    ],
+    [
+     "btn",
+     "Start executing",
+     "E01"
+    ],
+    [
+     "link",
+     "Book a call to walk through this plan",
+     "K01"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "actions[]: type, amount, due, channel (in-app / external), status"
+    ],
+    "logic": [
+     "Ordering per M4 priority sequence.",
+     "Plan upgrades from the logic panel produce a new action plan version; user sees a diff (H05)."
+    ],
+    "branches": [
+     [
+      "Execute",
+      "E01"
+     ],
+     [
+      "Book call",
+      "K01"
+     ]
+    ],
+    "states": [
+     "Any tier: a call can be booked before or after executing; not enforced"
+    ],
+    "dev": [
+     "Action status: not started, in progress, done (AA-verified), done (self-reported)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "G14_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    ]
+   }
+  },
+  {
+   "id": "K01",
+   "sec": "K",
+   "title": "Talk to an adviser",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Any tier books a call with the call centre, at any time, before or after the plan. The entitlement line shows what is included; a topic sets the call up.",
+   "ui": [
+    [
+     "h",
+     "Talk to an adviser"
+    ],
+    [
+     "card",
+     "What is included",
+     [
+      "DIWM: N calls included this <period>; Rs ___ per extra call",
+      "DIY: Rs ___ per call",
+      "DIFM: calls with your adviser are arranged outside the app"
+     ]
+    ],
+    [
+     "p",
+     "What is this call about?"
+    ],
+    [
+     "chips",
+     [
+      "My plan",
+      "Using the app",
+      "The investments and why they were chosen",
+      "Something changed",
+      "My numbers"
+     ]
+    ],
+    [
+     "in",
+     "Anything specific?"
+    ],
+    [
+     "btn",
+     "Pick a slot",
+     "K05"
+    ],
+    [
+     "link",
+     "Your calls",
+     "K06"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "call_topic",
+     "call_note",
+     "calls_included_per_period (config)",
+     "calls_used"
+    ],
+    "logic": [
+     "A call is a call, with a topic; there are no call types. Any adviser from the call centre takes any call (Vatsal, 10 Sep 2026, supersedes brief T2).",
+     "Calls can be booked at any time, before or after the plan; the v0.1 rule bookable only after G01 is removed.",
+     "Calls explain: using the app, the plan, the investments and why the instruments and cohorts are what they are, what changed. Nobody plans separately for a user; the app does not change per SKU.",
+     "Entitlement: included calls per SKU per period are config; a la carte calls can be bought by anyone on any SKU (K04).",
+     "Reachable from H07, the H01 cards, O02, the D-section stall state S19 and the G screens."
+    ],
+    "branches": [
+     [
+      "Pick a slot",
+      "K05"
+     ],
+     [
+      "Your calls",
+      "K06"
+     ],
+     [
+      "No included calls left",
+      "K04"
+     ]
+    ],
+    "states": [
+     "No included calls left: the a la carte line shows and Pick a slot goes through K04 first",
+     "S20 no-show: opens with a rebook line and the same topic (section 5)"
+    ],
+    "dev": [
+     "Call length is config; to be verified: call lengths in the recipe.",
+     "The call centre sees the plan (G03) and the inputs (D10) before the call (M01)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "disclosures"
+    ],
+    "checks": [
+     "The RIA registration line, the fee schedule, the complaints and grievance path, what the app is and is not, what a call is and is not."
+    ]
+   },
+   "events": [
+    "K01_view",
+    "call_booked",
+    "call_no_show"
+   ],
+   "v02": {
+    "status": "rebuilt",
+    "causes": [
+     "brief T2",
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    ]
+   }
+  },
+  {
+   "id": "K02",
+   "sec": "K",
+   "title": "Call confirmed",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Confirmation, add to calendar, and what to have open before the call. No adviser name.",
+   "ui": [
+    [
+     "h",
+     "<Day, date, time> with a yeslyf adviser"
+    ],
+    [
+     "p",
+     "If your plan is built, read it before we speak. If not, have your numbers open; the call works either way."
+    ],
+    [
+     "card",
+     "What to have open",
+     [
+      "Your plan (G03), if it is built",
+      "The screen you had a question on",
+      "Your numbers (D10), if you are mid-way"
+     ]
+    ],
+    [
+     "btn",
+     "Add to calendar",
+     "K02"
+    ],
+    [
+     "btn2",
+     "Go to my plan",
+     "G03"
+    ],
+    [
+     "link",
+     "Reschedule",
+     "K05"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "call_id",
+     "join_link"
+    ],
+    "logic": [
+     "Add to calendar is an in-place action: it writes a calendar event with the join link and the topic.",
+     "No adviser name (Vatsal, 10 Sep 2026)."
+    ],
+    "branches": [
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Reschedule",
+      "K05"
+     ]
+    ],
+    "states": [
+     "Reminder 24 hours and 1 hour before",
+     "S7 call booked (section 5)"
+    ],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "K02_view"
+   ],
+   "v02": {
+    "status": "rebuilt",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    ]
+   }
+  },
+  {
+   "id": "K03",
+   "sec": "K",
+   "title": "After the call",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "The call summary, the first action, and the diff if inputs changed on the call. Book another from here.",
+   "ui": [
+    [
+     "h",
+     "Notes from your call"
+    ],
+    [
+     "card",
+     "Summary",
+     [
+      "What we covered",
+      "What you asked, and the answer"
+     ]
+    ],
+    [
+     "card",
+     "The first action",
+     [
+      "<the one action agreed on the call>"
+     ]
+    ],
+    [
+     "p",
+     "If your inputs changed on the call, your plan was rebuilt. See what changed."
+    ],
+    [
+     "btn",
+     "See what changed",
+     "H05"
+    ],
+    [
+     "link",
+     "Book another call",
+     "K01"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "call_notes",
+     "input_changes[]"
+    ],
+    "logic": [
+     "The adviser enters inputs during the call; the engine re-runs; the user sees a diff (H05). Nobody edits outputs by hand (spec v0.1, kept).",
+     "S21: call done, no action started (section 5)."
+    ],
+    "branches": [
+     [
+      "Diff",
+      "H05"
+     ],
+     [
+      "Book another",
+      "K01"
+     ]
+    ],
+    "states": [
+     "No input changes: the diff line is replaced by a line saying the plan is unchanged",
+     "S21 call done, no action started"
+    ],
+    "dev": [
+     "Call record stored for the advice register."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "note": "call notes change inputs and re-run the plan",
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "K03_view"
+   ],
+   "v02": {
+    "status": "rebuilt",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    ]
+   }
+  },
+  {
+   "id": "K04",
+   "sec": "K",
+   "title": "Buy an extra call",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Payment for one a la carte call through the payment flow. Anyone on any SKU.",
+   "ui": [
+    [
+     "h",
+     "Buy an extra call"
+    ],
+    [
+     "p",
+     "A single call with the yeslyf advisers, on any topic."
+    ],
+    [
+     "rows",
+     [
+      [
+       "Price",
+       "Rs ___, inclusive of GST"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Pay and pick a slot",
+     "P04"
+    ],
+    [
+     "link",
+     "Back",
+     "K01"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "a_la_carte_purchase_id"
+    ],
+    "logic": [
+     "A la carte calls can be bought by anyone on any SKU (Vatsal, 10 Sep 2026).",
+     "Payment through P04's flow; the purchase and its receipt are recorded in the CRM (section 6).",
+     "After payment, K05 opens."
+    ],
+    "branches": [
+     [
+      "Pay",
+      "P04"
+     ],
+     [
+      "Back",
+      "K01"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Single charge through P04; no mandate."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "fees and refunds"
+    ],
+    "checks": [
+     "Inclusive of GST, the period, cancellation, refund, breakage."
+    ]
+   },
+   "events": [
+    "K04_view",
+    "call_purchased"
+   ],
+   "v02": {
+    "status": "rebuilt",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    ]
+   }
+  },
+  {
+   "id": "K05",
+   "sec": "K",
+   "title": "Pick a slot",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "The call-centre calendar: any available adviser, a slot, a confirmation. The adviser continuity flag adds one chip when it is on.",
+   "ui": [
+    [
+     "h",
+     "Pick a slot"
+    ],
+    [
+     "card",
+     "Call centre calendar",
+     [
+      "Any available adviser",
+      "Slots over the next 7 days, morning and evening"
+     ]
+    ],
+    [
+     "chips",
+     [
+      "Talk to the same adviser as last time"
+     ]
+    ],
+    [
+     "btn",
+     "Confirm",
+     "K02"
+    ],
+    [
+     "link",
+     "Back",
+     "K01"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "call_slot",
+     "same_adviser_requested (only when the flag is on)"
+    ],
+    "logic": [
+     "Any available adviser from the call centre; no name shown.",
+     "Config flag adviser continuity, off by default: when on, the chip Talk to the same adviser as last time appears (Vatsal, 10 Sep 2026).",
+     "Length is config; to be verified: call lengths in the recipe."
+    ],
+    "branches": [
+     [
+      "Confirm",
+      "K02"
+     ],
+     [
+      "Back",
+      "K01"
+     ]
+    ],
+    "states": [
+     "No slots in 7 days: waitlist and a task to the call centre"
+    ],
+    "dev": [
+     "Calendar from the call-centre tool; video link from the CRM (section 6)."
+    ]
+   },
+   "template": "T-picker",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "frame": "phone",
+   "events": [
+    "K05_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    ]
+   }
+  },
+  {
+   "id": "K06",
+   "sec": "K",
+   "title": "Your calls",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Call history, calls left this period, and recordings or notes if the CRM keeps them.",
+   "ui": [
+    [
+     "h",
+     "Your calls"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Calls left this period",
+       "N"
+      ],
+      [
+       "Next call",
+       "<date, time> or none"
+      ]
+     ]
+    ],
+    [
+     "card",
+     "Past calls",
+     [
+      "<date>: topic, the first action agreed",
+      "Recording or notes, if the CRM keeps them"
+     ]
+    ],
+    [
+     "btn",
+     "Book a call",
+     "K01"
+    ],
+    [
+     "link",
+     "Back",
+     "H07"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "calls[]: date, topic, notes, recording"
+    ],
+    "logic": [
+     "History, calls left this period, and recordings or notes if the CRM keeps them.",
+     "to be verified: recording consent and retention."
+    ],
+    "branches": [
+     [
+      "Book",
+      "K01"
+     ],
+     [
+      "Back",
+      "H07"
+     ]
+    ],
+    "states": [
+     "No calls yet: the history card shows a one-line explanation of what a call is for"
+    ],
+    "dev": [
+     "Reads the CRM call records; nothing is stored in the app beyond the ids."
+    ]
+   },
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "frame": "phone",
+   "events": [
+    "K06_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    ]
+   }
+  },
+  {
+   "id": "E01",
+   "sec": "E",
+   "title": "Execution hub",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "The action plan as a to-do list grouped by how each action is done: in the app, guided outside, or self-reported.",
+   "ui": [
+    [
+     "h",
+     "Let's do it"
+    ],
+    [
+     "card",
+     "Invest, in the app",
+     [
+      "Liquid fund lumpsum Rs 2.8 L: not started",
+      "4 SIPs from month 8: scheduled",
+      "Exit XYZ Small Cap tranche 1: not started"
+     ]
+    ],
+    [
+     "card",
+     "Protect, guided outside the app",
+     [
+      "Term cover Rs 1.8 Cr: not started",
+      "Health floater plus top-up: not started"
+     ]
+    ],
+    [
+     "card",
+     "Housekeeping",
+     [
+      "Nominations on all accounts: not started"
+     ]
+    ],
+    [
+     "btn",
+     "Set up investing (one time, 10 minutes)",
+     "E02"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "First in-app investment requires E02 once.",
+     "No insurance aggregator links anywhere (brief H4); protection actions go through the guided action on E05."
+    ],
+    "branches": [
+     [
+      "Set up",
+      "E02"
+     ],
+     [
+      "Invest",
+      "E03"
+     ],
+     [
+      "ETF",
+      "E04"
+     ],
+     [
+      "Protect",
+      "E05"
+     ]
+    ],
+    "states": [
+     "All done: celebration state on H01"
+    ],
+    "dev": [
+     "Statuses update from AA detection (E06)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "E01_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief H4"
+    ]
+   }
+  },
+  {
+   "id": "E02",
+   "sec": "E",
+   "title": "One-time investing setup",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "KYC status, BSE StAR MF account (UCC), bank account, nominee, FATCA, and the SIP mandate. Once.",
+   "ui": [
+    [
+     "h",
+     "Set up investing, once"
+    ],
+    [
+     "rows",
+     [
+      [
+       "KYC status",
+       "Verified via KRA"
+      ],
+      [
+       "Bank account",
+       "Add and verify (penny drop)"
+      ],
+      [
+       "Nominee",
+       "Add"
+      ],
+      [
+       "FATCA declaration",
+       "Confirm"
+      ],
+      [
+       "SIP mandate (UPI autopay or e-NACH)",
+       "Set up, Rs 50,000 a month limit"
+      ]
+     ]
+    ],
+    [
+     "link",
+     "What happens on the BSE StAR MF side",
+     "E07"
+    ],
+    [
+     "btn",
+     "Continue",
+     "E03"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "bank_account",
+     "nominee",
+     "fatca",
+     "mandate"
+    ],
+    "logic": [
+     "Creates the client code on BSE StAR MF under HoA's RIA registration. Direct plans only (agreement and Reg 22A)."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "E03"
+     ],
+     [
+      "Rail steps",
+      "E07"
+     ]
+    ],
+    "states": [
+     "KYC not verified: start KYC with the vendor, resume later"
+    ],
+    "dev": [
+     "Direct BSE StAR MF APIs or an API layer such as Cybrilla Fintech Primitives; dev call.",
+     "Mandate limit set above total planned SIPs with headroom for step-ups."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "execution"
+    ],
+    "note": "mandate language",
+    "checks": [
+     "Order and mandate language, direct plan, rail disclosures."
+    ]
+   },
+   "events": [
+    "E02_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief G1 (default, not confirmed in the meeting)"
+    ]
+   }
+  },
+  {
+   "id": "E03",
+   "sec": "E",
+   "title": "Place a mutual fund order",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Order summary from the action, authenticate, pay. Same screen for lumpsum, SIP and redemption.",
+   "ui": [
+    [
+     "h",
+     "Buy Nippon India Liquid Fund, Direct"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Amount",
+       "Rs 2,80,000 lumpsum"
+      ],
+      [
+       "For",
+       "Emergency fund"
+      ],
+      [
+       "Pay via",
+       "UPI"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Confirm and pay",
+     "E06"
+    ],
+    [
+     "link",
+     "Track this order",
+     "E08"
+    ],
+    [
+     "p",
+     "Units are allotted in 1 to 3 working days. I will mark this done when they land."
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "order"
+    ],
+    "logic": [
+     "SIP orders register against the mandate with start date from the action plan.",
+     "Redemptions and switches use the same screen with exit-load and tax notes shown."
+    ],
+    "branches": [
+     [
+      "Confirm",
+      "E06"
+     ],
+     [
+      "Track",
+      "E08"
+     ]
+    ],
+    "states": [
+     "Order rejected: reason and retry",
+     "Cut-off time passed: next working day NAV"
+    ],
+    "dev": [
+     "BSE StAR 2FA as required."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "execution"
+    ],
+    "checks": [
+     "Order and mandate language, direct plan, rail disclosures."
+    ]
+   },
+   "events": [
+    "E03_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief G1 (default, not confirmed in the meeting)"
+    ]
+   }
+  },
+  {
+   "id": "E04",
+   "sec": "E",
+   "title": "ETFs and stocks via smallcase",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Connect the user's own broker through smallcase Gateway, then place the basket or order.",
+   "ui": [
+    [
+     "h",
+     "Gold ETF, Rs 3,000 a month"
+    ],
+    [
+     "p",
+     "This runs through your own broker. Connect once."
+    ],
+    [
+     "chips",
+     [
+      "Zerodha",
+      "Groww",
+      "Upstox",
+      "Other"
+     ]
+    ],
+    [
+     "btn",
+     "Connect and place order",
+     "E06"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "broker",
+     "gateway_txn"
+    ],
+    "logic": [
+     "No new demat needed; the user's existing broker executes."
+    ],
+    "branches": [
+     [
+      "Place",
+      "E06"
+     ]
+    ],
+    "states": [
+     "No broker account: show how to open one; action stays pending"
+    ],
+    "dev": [
+     "smallcase Gateway SDK; transaction status webhook."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "execution"
+    ],
+    "checks": [
+     "Order and mandate language, direct plan, rail disclosures."
+    ]
+   },
+   "events": [
+    "E04_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "E05",
+   "sec": "E",
+   "title": "Guided action outside the app",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Insurance and other actions we cannot execute: what to do, where, what to look for, then confirm.",
+   "ui": [
+    [
+     "h",
+     "Buy Rs 1.8 Cr term cover"
+    ],
+    [
+     "card",
+     "How",
+     [
+      "Pure term plan, cover until your income-earning years end",
+      "Compare 2 or 3 insurers; disclose everything",
+      "Do the medicals"
+     ]
+    ],
+    [
+     "btn2",
+     "I have done this: upload the policy",
+     "E06"
+    ],
+    [
+     "link",
+     "Remind me in a week",
+     "E01"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "policy_upload",
+     "self_reported_at"
+    ],
+    "logic": [
+     "No product names or links that could look like distribution; RIA advises, does not distribute.",
+     "Marked done (self-reported); AA premium debit can verify later.",
+     "No aggregator links (brief H4); the guided action outside the app stands."
+    ],
+    "branches": [
+     [
+      "Done",
+      "E06"
+     ]
+    ],
+    "states": [],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "note": "guided action must not read as distribution",
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "E05_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief H4"
+    ]
+   }
+  },
+  {
+   "id": "E06",
+   "sec": "E",
+   "title": "Verification and progress",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Actions get marked done by evidence, not by tapping.",
+   "ui": [
+    [
+     "h",
+     "Progress"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Liquid fund lumpsum",
+       "Done, units allotted (verified)"
+      ],
+      [
+       "Term cover",
+       "Done, policy uploaded (self-reported)"
+      ],
+      [
+       "SIPs from month 8",
+       "Scheduled, mandate active"
+      ],
+      [
+       "XYZ Small Cap exit",
+       "In progress, tranche 1 placed"
+      ]
+     ]
+    ],
+    [
+     "link",
+     "Orders, mandate and SIP calendar",
+     "E08"
+    ],
+    [
+     "btn",
+     "Back to home",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Verified: AA or platform confirmation. Self-reported: user upload or tap, shown as such.",
+     "Missed SIP detected via AA: nudge with fix steps."
+    ],
+    "branches": [
+     [
+      "Home",
+      "H01"
+     ],
+     [
+      "Orders",
+      "E08"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Verification matrix from V5 6.2."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-review",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "E06_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief G1 (default, not confirmed in the meeting)"
+    ]
+   }
+  },
+  {
+   "id": "E07",
+   "sec": "E",
+   "title": "BSE StAR MF onboarding",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "What happens on the BSE StAR MF side of the one-time setup: client code, FATCA, bank mandate, eNACH. Shown so the user knows why each step exists.",
+   "ui": [
+    [
+     "h",
+     "Your mutual fund account, once"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Client code (UCC)",
+       "Created under House of Alpha's RIA registration"
+      ],
+      [
+       "FATCA declaration",
+       "Confirm"
+      ],
+      [
+       "Bank account",
+       "Verified by penny drop"
+      ],
+      [
+       "Bank mandate (eNACH or UPI autopay)",
+       "Set up with headroom for step-ups"
+      ]
+     ]
+    ],
+    [
+     "p",
+     "Direct plans only. Nothing is bought until you confirm an order."
+    ],
+    [
+     "btn",
+     "Back to setup",
+     "E02"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "ucc",
+     "fatca",
+     "bank_verified",
+     "mandate_id"
+    ],
+    "logic": [
+     "brief G1: default, not confirmed in the meeting.",
+     "to be verified: direct plans and the RIA code hold on this rail."
+    ],
+    "branches": [
+     [
+      "Back",
+      "E02"
+     ]
+    ],
+    "states": [
+     "UCC creation pending: setup continues; orders wait"
+    ],
+    "dev": [
+     "Direct BSE StAR MF APIs or an API layer; dev call (spec v0.1 E02)."
+    ]
+   },
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "execution"
+    ],
+    "checks": [
+     "Order and mandate language, direct plan, rail disclosures."
+    ]
+   },
+   "frame": "phone",
+   "events": [
+    "E07_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "brief G1 (default, not confirmed in the meeting)"
+    ]
+   }
+  },
+  {
+   "id": "E08",
+   "sec": "E",
+   "title": "BSE StAR MF transactions",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Order status, mandate status and the SIP calendar, from the rail.",
+   "ui": [
+    [
+     "h",
+     "Orders and SIPs"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Liquid fund lumpsum",
+       "Placed; units expected in 1 to 3 working days"
+      ],
+      [
+       "SIP mandate",
+       "Active"
+      ],
+      [
+       "SIP calendar",
+       "4 SIPs on the 5th of each month from month 8"
+      ]
+     ]
+    ],
+    [
+     "link",
+     "Statements",
+     "E09"
+    ],
+    [
+     "btn",
+     "Back to progress",
+     "E06"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "orders[]: id, status, nav_date",
+     "mandate_status",
+     "sip_calendar[]"
+    ],
+    "logic": [
+     "brief G1: default, not confirmed in the meeting.",
+     "to be verified: direct plans and the RIA code hold on this rail.",
+     "Status comes from the rail's webhooks; the app never marks an order done by itself (spec v0.1 E06)."
+    ],
+    "branches": [
+     [
+      "Statements",
+      "E09"
+     ],
+     [
+      "Back",
+      "E06"
+     ]
+    ],
+    "states": [
+     "Order rejected: reason and retry (E03)"
+    ],
+    "dev": [
+     "Webhook per order and mandate event; reconcile nightly."
+    ]
+   },
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "execution"
+    ],
+    "checks": [
+     "Order and mandate language, direct plan, rail disclosures."
+    ]
+   },
+   "frame": "phone",
+   "events": [
+    "E08_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "brief G1 (default, not confirmed in the meeting)"
+    ]
+   }
+  },
+  {
+   "id": "E09",
+   "sec": "E",
+   "title": "BSE StAR MF reporting",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Holdings and transaction statements from the rail, filed into the Vault.",
+   "ui": [
+    [
+     "h",
+     "Statements"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Holdings statement",
+       "Monthly, into the Vault"
+      ],
+      [
+       "Transaction statement",
+       "Per order, into the Vault"
+      ],
+      [
+       "Capital gains statement",
+       "Per financial year, into the Vault"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Open the Vault",
+     "H06"
+    ],
+    [
+     "link",
+     "Back",
+     "E08"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "statements[]: type, period, file"
+    ],
+    "logic": [
+     "brief G1: default, not confirmed in the meeting.",
+     "to be verified: direct plans and the RIA code hold on this rail.",
+     "Statements land in H06 and count as evidence for E06."
+    ],
+    "branches": [
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Back",
+      "E08"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Statement fetch on a schedule; store the file and a parsed summary."
+    ]
+   },
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "execution"
+    ],
+    "checks": [
+     "Order and mandate language, direct plan, rail disclosures."
+    ]
+   },
+   "frame": "phone",
+   "events": [
+    "E09_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "brief G1 (default, not confirmed in the meeting)"
+    ]
+   }
+  },
+  {
+   "id": "H01",
+   "sec": "H",
+   "title": "Home (plan ready)",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "The living plan. Net worth live, progress, the single next action, plan-updated banner, upcoming review, community, help.",
+   "ui": [
+    [
+     "num",
+     "Net worth Rs 19.2 L"
+    ],
+    [
+     "p",
+     "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."
+    ],
+    [
+     "card",
+     "Your next action",
+     [
+      "Apply for Rs 1.8 Cr term cover"
+     ]
+    ],
+    [
+     "card",
+     "Progress",
+     [
+      "3 of 8 actions done",
+      "Wheel of wealth: protection red, emergency amber, cashflow green"
+     ]
+    ],
+    [
+     "card",
+     "Coming up",
+     [
+      "Quarterly review on 1 May",
+      "[DIWM] Plan call: Tue 10 Feb, 7:30 pm"
+     ]
+    ],
+    [
+     "link",
+     "Community: this week's session and who finished their plan",
+     "H08"
+    ],
+    [
+     "tabs",
+     [
+      "Home",
+      "Plan",
+      "Actions",
+      "Vault",
+      "Help"
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Home content is decided by state (section N). This is state S8/S9.",
+     "DIFM: no next action from the engine; card reads: your adviser manages this; shows next review date.",
+     "Community is a one-line strip on Home (brief V1); the community screen opens from the menu (H00)."
+    ],
+    "branches": [
+     [
+      "Next action",
+      "E01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Actions",
+      "H04"
+     ],
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Help",
+      "H07"
+     ]
+    ],
+    "states": [
+     "S6 plan ready not read: hero becomes your plan is ready",
+     "S11 plan updated: banner to H05",
+     "S12 payment failed: banner"
+    ],
+    "dev": [
+     "Net worth from AA refresh on open (async, cached first)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "H01_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief V1"
+    ]
+   }
+  },
+  {
+   "id": "H00",
+   "sec": "H",
+   "title": "Navigation map",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "Where every screen lives once the plan exists: the five tabs and the menu. Answers the review question of which section each screen appears in.",
+   "ui": [
+    [
+     "table",
+     [
+      "Tab or menu",
+      "Screens",
+      "Notes"
+     ],
+     [
+      [
+       "Home",
+       "H01 and its state variants H01a to H01k; H02 net worth; H03 wheel of wealth; H10 goals progress",
+       "Hero card by state (section N)"
+      ],
+      [
+       "Plan",
+       "G03 to G14, G12a",
+       "Sharpen links open the D screens"
+      ],
+      [
+       "Actions",
+       "H04, E01 to E09",
+       "Same objects as the execution hub"
+      ],
+      [
+       "Vault",
+       "H06, E09 statements",
+       ""
+      ],
+      [
+       "Help",
+       "H07, K01 to K06",
+       "Talk to an adviser for every tier"
+      ],
+      [
+       "Menu (top left)",
+       "H08 community, H09 settings, H11 portfolio, Q02 change plan, Q03 subscription, Q04 annual confirmation, Q05 update your numbers",
+       "Community from the menu (brief V1)"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Home",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Accepted review row 41 (Somil): which section each screen appears in.",
+     "The tab bar on H01 is Home, Plan, Actions, Vault, Help (spec v0.1)."
+    ],
+    "branches": [
+     [
+      "Home",
+      "H01"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "The map is documentation for Spinach and the developers; it is not a screen the user sees as a table."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "H00_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "row 41 (Somil); brief V1"
+    ]
+   }
+  },
+  {
+   "id": "H02",
+   "sec": "H",
+   "title": "Net worth growth",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Progress report: realisable vs locked over time since the plan started.",
+   "ui": [
+    [
+     "h",
+     "My net worth growth"
+    ],
+    [
+     "chart",
+     "Area: realisable (blue) and locked (green) by month"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Since plan start",
+       "+ Rs 1.4 L"
+      ],
+      [
+       "Invested by you",
+       "Rs 1.1 L"
+      ],
+      [
+       "Market movement",
+       "+ Rs 0.3 L"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Back",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [],
+    "branches": [
+     [
+      "Back",
+      "H01"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Monthly snapshots stored."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-chart",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "H02_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "H03",
+   "sec": "H",
+   "title": "Wheel of wealth",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Six dimensions, each with a status, red sorted first. The same six from the V5 health snapshot.",
+   "ui": [
+    [
+     "h",
+     "Wheel of wealth"
+    ],
+    [
+     "chart",
+     "Six segments: protection, emergency, cashflow, debt, goals, investments"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Protection",
+       "Red: term gap"
+      ],
+      [
+       "Emergency",
+       "Amber: 60% funded"
+      ],
+      [
+       "Cashflow",
+       "Green"
+      ],
+      [
+       "Debt",
+       "Green"
+      ],
+      [
+       "Goals",
+       "Amber"
+      ],
+      [
+       "Investments",
+       "Amber: 2 exits pending"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Back",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Status rules from the plan's flags."
+    ],
+    "branches": [
+     [
+      "Back",
+      "H01"
+     ]
+    ],
+    "states": [],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-chart",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "H03_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "H04",
+   "sec": "H",
+   "title": "Action queue",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "All actions with status and filters; the same objects as the execution hub.",
+   "ui": [
+    [
+     "h",
+     "Actions"
+    ],
+    [
+     "chips",
+     [
+      "To do",
+      "In progress",
+      "Done"
+     ]
+    ],
+    [
+     "rows",
+     [
+      [
+       "Term cover",
+       "To do"
+      ],
+      [
+       "Health floater",
+       "To do"
+      ],
+      [
+       "XYZ Small Cap exit, tranche 2",
+       "Due 15 Apr"
+      ],
+      [
+       "Liquid fund lumpsum",
+       "Done"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Back",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [],
+    "branches": [
+     [
+      "Back",
+      "H01"
+     ]
+    ],
+    "states": [],
+    "dev": []
+   },
+   "frame": "phone",
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "H04_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "H05",
+   "sec": "H",
+   "title": "Your plan was updated",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "The diff screen. Triggered by a logic-panel publish, a quarterly review, or adviser input changes.",
+   "ui": [
+    [
+     "h",
+     "Your plan was updated on 12 Mar"
+    ],
+    [
+     "card",
+     "2 changes",
+     [
+      "Long-term equity: XYZ Index Fund replaced by ABC Index Fund (lower cost). New SIP goes to ABC from April; existing units stay.",
+      "Gold allocation raised from 5% to 10% for long-term goals. New SIP Rs 3,000 to Rs 5,000."
+     ]
+    ],
+    [
+     "p",
+     "Why: House of Alpha reviewed the approved list this quarter."
+    ],
+    [
+     "btn",
+     "Accept and update my action plan",
+     "G14"
+    ],
+    [
+     "link",
+     "Ask about this",
+     "H07"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "plan_version_from",
+     "plan_version_to",
+     "accepted_at"
+    ],
+    "logic": [
+     "Every change carries a reason. Nothing executes without the user accepting.",
+     "Plan upgrade job: on publish, recompute for affected users, generate diffs, notify (spiff, Q19)."
+    ],
+    "branches": [
+     [
+      "Accept",
+      "G14"
+     ]
+    ],
+    "states": [
+     "Multiple pending updates: merged into one diff"
+    ],
+    "dev": [
+     "Diff is computed on action plan objects, not on text."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "note": "plan changes are advice",
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "events": [
+    "H05_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "H06",
+   "sec": "H",
+   "title": "Vault",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Everything signed, paid for, produced or uploaded.",
+   "ui": [
+    [
+     "h",
+     "Your documents"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Advisory agreement, signed 3 Feb",
+       "PDF"
+      ],
+      [
+       "Invoices",
+       "3"
+      ],
+      [
+       "Plan PDFs",
+       "v1, v2"
+      ],
+      [
+       "Risk profile",
+       "Moderate, 3 Feb"
+      ],
+      [
+       "Uploaded policies",
+       "Term cover"
+      ],
+      [
+       "CAS uploads",
+       "1"
+      ]
+     ]
+    ],
+    [
+     "link",
+     "Statements from BSE StAR MF",
+     "E09"
+    ],
+    [
+     "btn",
+     "Back",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [],
+    "branches": [
+     [
+      "Back",
+      "H01"
+     ],
+     [
+      "Statements",
+      "E09"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Retention per SEBI record-keeping (5 years after the relationship ends)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "consent"
+    ],
+    "checks": [
+     "AA consent wording and period, the DPDP notice, CAS password handling, the declaration, deletion."
+    ]
+   },
+   "events": [
+    "H06_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief G1 (default, not confirmed in the meeting)"
+    ]
+   }
+  },
+  {
+   "id": "H07",
+   "sec": "H",
+   "title": "Help",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Tier-dependent help channel. Talk to an adviser goes to K01 for every tier; the entitlement line differs by SKU. No adviser is named.",
+   "ui": [
+    [
+     "h",
+     "Help"
+    ],
+    [
+     "card",
+     "DIY",
+     [
+      "FAQs",
+      "Ask yeslyf (answers from your plan)",
+      "Talk to an adviser: a la carte, Rs ___ per call"
+     ]
+    ],
+    [
+     "card",
+     "DIWM",
+     [
+      "FAQs",
+      "Ask yeslyf (answers from your plan)",
+      "Talk to an adviser: N calls included this <period>",
+      "Message the yeslyf advisers: replies within one business day"
+     ]
+    ],
+    [
+     "card",
+     "DIFM",
+     [
+      "FAQs",
+      "Message your adviser"
+     ]
+    ],
+    [
+     "btn",
+     "Talk to an adviser",
+     "K01"
+    ],
+    [
+     "link",
+     "Your calls",
+     "K06"
+    ],
+    [
+     "btn2",
+     "Back",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "One card renders, by tier.",
+     "Talk to an adviser goes to K01 for every tier (Vatsal, 10 Sep 2026)."
+    ],
+    "branches": [
+     [
+      "Call",
+      "K01"
+     ],
+     [
+      "Your calls",
+      "K06"
+     ],
+     [
+      "Back",
+      "H01"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Chat routed to the CRM desk (platform to be decided; section 6). No advice via chat beyond what the plan already says; anything new goes to a call or a plan re-run."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "H07_view"
+   ],
+   "v02": {
+    "status": "rebuilt",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief S1)"
+    ]
+   }
+  },
+  {
+   "id": "H08",
+   "sec": "H",
+   "title": "Community",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Link-out to the community with a small strip of what is happening. Community lives off-app (spiff, Q26).",
+   "ui": [
+    [
+     "h",
+     "What's happening in the community"
+    ],
+    [
+     "rows",
+     [
+      [
+       "This week's session",
+       "Thu 8 pm"
+      ],
+      [
+       "Members who completed their plan this week",
+       "14"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Open the community",
+     "H08"
+    ],
+    [
+     "btn2",
+     "Back",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Opens from the menu (H00) and from the one-line strip on H01 (brief V1). Screen unchanged.",
+     "Open the community is an in-place link out to the community platform."
+    ],
+    "branches": [
+     [
+      "Back",
+      "H01"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Deep link to the community platform with SSO if available; otherwise a plain link."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "H08_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief V1",
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+    ]
+   }
+  },
+  {
+   "id": "H09",
+   "sec": "H",
+   "title": "Profile and settings",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Update anything, manage consents and the subscription, see agreements.",
+   "ui": [
+    [
+     "h",
+     "Settings"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Update my answers (rebuilds the plan)",
+       ""
+      ],
+      [
+       "Family circle",
+       ""
+      ],
+      [
+       "Account Aggregator: consents, refresh, revoke",
+       ""
+      ],
+      [
+       "Risk profile: retake",
+       ""
+      ],
+      [
+       "Subscription: plan, next billing, cancel",
+       ""
+      ],
+      [
+       "Notifications",
+       ""
+      ],
+      [
+       "Agreements and disclosures",
+       ""
+      ],
+      [
+       "Delete my account",
+       ""
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Back",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Update answers reopens the relevant D screens with current values; on save the plan re-runs and H05 shows the diff.",
+     "Subscription goes to Q03; change plan goes to Q02."
+    ],
+    "branches": [
+     [
+      "Cancel",
+      "Q03"
+     ],
+     [
+      "Change plan",
+      "Q02"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Delete account: retention rules override for regulated records; explain in copy.",
+     "to be verified: DPDP notice text (gap G03)."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-list",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "consent"
+    ],
+    "checks": [
+     "AA consent wording and period, the DPDP notice, CAS password handling, the declaration, deletion."
+    ]
+   },
+   "events": [
+    "H09_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "gap G03 (agreed, date set)",
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+    ]
+   }
+  },
+  {
+   "id": "H10",
+   "sec": "H",
+   "title": "Goals progress",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Every goal with what is funded today against what it needs, by year. Accepted from the review (row 39).",
+   "ui": [
+    [
+     "h",
+     "Your goals"
+    ],
+    [
+     "chart",
+     "Per goal: funded today vs needed, by year"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Aryan's education, 2039",
+       "Rs 41 L of Rs 82 L; the SIP from month 8 covers the rest"
+      ],
+      [
+       "Home upgrade, 2032",
+       "40% funded"
+      ],
+      [
+       "Work optional at 55",
+       "money lasts till 67 as-is; see G09"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Back",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Funded status per goal from the plan (G09 rules).",
+     "A goal changed here reopens D07a and re-runs the plan; H05 shows the diff."
+    ],
+    "branches": [
+     [
+      "Back",
+      "H01"
+     ],
+     [
+      "Edit a goal",
+      "D07"
+     ]
+    ],
+    "states": [
+     "No goals: the screen shows the work-optional line only"
+    ],
+    "dev": [
+     "Reads the KLE output per goal; no new computation."
+    ]
+   },
+   "template": "T-chart",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advice language"
+    ],
+    "checks": [
+     "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+    ]
+   },
+   "frame": "phone",
+   "events": [
+    "H10_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "row 39 (Kajal)"
+    ]
+   }
+  },
+  {
+   "id": "H11",
+   "sec": "H",
+   "title": "Portfolio",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "What the user holds, by scheme and stock, with source tags, and the allocation today against the target. Accepted from the review (row 43).",
+   "ui": [
+    [
+     "h",
+     "What you hold"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Nippon India Liquid Fund, Direct",
+       "Rs 2.8 L; bought here"
+      ],
+      [
+       "Nifty 50 Index Fund, Direct",
+       "SIP Rs 14,000; bought here"
+      ],
+      [
+       "Parag Parikh Flexi Cap, Direct",
+       "Rs 4.2 L; AA-fed"
+      ],
+      [
+       "XYZ Small Cap, Regular",
+       "Rs 2.1 L; exit in progress; CAS-verified"
+      ]
+     ]
+    ],
+    [
+     "chart",
+     "Allocation today vs target: liquid debt / debt / hybrid / commodities / equity / REITs and InvITs"
+    ],
+    [
+     "p",
+     "Holdings come from Account Aggregator, your CAS and orders placed here. Each carries its source tag."
+    ],
+    [
+     "btn",
+     "Back",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Holdings at ISIN level with units, value and source (aa, cas, manual, bought here).",
+     "Hold, exit and review labels come from G12; this screen shows, it does not advise."
+    ],
+    "branches": [
+     [
+      "Back",
+      "H01"
+     ],
+     [
+      "Existing holdings",
+      "G12"
+     ]
+    ],
+    "states": [
+     "No holdings: the screen shows what will appear after the first order"
+    ],
+    "dev": [
+     "Same holdings store as G12 and E06."
+    ]
+   },
+   "template": "T-chart",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "frame": "phone",
+   "events": [
+    "H11_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "row 43 (Kajal)"
+    ]
+   }
+  },
+  {
+   "id": "Q01",
+   "sec": "Q",
+   "title": "Quarterly review (automated)",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "AA refresh, confirm what changed, anything else new, plan re-run, diff. The check-in that scales without a call.",
+   "ui": [
+    [
+     "h",
+     "Your quarterly review"
+    ],
+    [
+     "card",
+     "We updated 3 numbers from your accounts. Good to go?",
+     [
+      "Mutual funds: Rs 11.8 L to Rs 13.1 L",
+      "Bank balance: Rs 3.2 L to Rs 2.6 L",
+      "New SIP detected: Rs 5,000 to ABC Fund"
+     ]
+    ],
+    [
+     "chips",
+     [
+      "Good to go",
+      "Edit",
+      "Keep my manual number"
+     ]
+    ],
+    [
+     "card",
+     "Anything else change?",
+     [
+      "Income",
+      "New loan",
+      "Family",
+      "Big expense coming",
+      "Nothing"
+     ]
+    ],
+    [
+     "btn",
+     "Rebuild my plan",
+     "H05"
+    ],
+    [
+     "link",
+     "DIWM: book a call to walk through this review",
+     "K01"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "review_id",
+     "confirmed_changes[]",
+     "life_events[]"
+    ],
+    "logic": [
+     "Locked manual fields are not overwritten; the diff shows both and asks (spiff, Q10).",
+     "Runs on the plan anniversary quarter; user can trigger early.",
+     "Also runs on a logic-panel publish if the user is affected.",
+     "DIWM sees a line to book a call to walk through this review (Vatsal, 10 Sep 2026); the call is booked on K01."
+    ],
+    "branches": [
+     [
+      "Rebuild",
+      "H05"
+     ],
+     [
+      "Book a call",
+      "K01"
+     ]
+    ],
+    "states": [
+     "AA consent expired: re-consent prompt (A06) first"
+    ],
+    "dev": [
+     "Periodic AA consent covers this fetch; frequency in the consent template."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-review",
+   "path": "aa",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "events": [
+    "Q01_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    ]
+   }
+  },
+  {
+   "id": "Q02",
+   "sec": "Q",
+   "title": "Change plan",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Switch SKU or billing period from Settings. The v0.1 life-events picker that sat here is a gap, to be decided; the Anything else change card on Q01 covers self-reported changes for now.",
+   "ui": [
+    [
+     "h",
+     "Change your plan"
+    ],
+    [
+     "tabs",
+     [
+      "Monthly",
+      "Quarterly"
+     ]
+    ],
+    [
+     "card",
+     "yeslyf DIY, app only: Rs ___ / month or Rs ___ / quarter",
+     [
+      "A la carte calls whenever you want one"
+     ]
+    ],
+    [
+     "card",
+     "yeslyf DIWM, app plus adviser calls: Rs ___ / month or Rs ___ / quarter",
+     [
+      "N calls included this <period>"
+     ]
+    ],
+    [
+     "p",
+     "to be verified: proration and refund on a period switch"
+    ],
+    [
+     "btn",
+     "Confirm the change",
+     "P04"
+    ],
+    [
+     "link",
+     "Back",
+     "H09"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "sku (diy, diwm)",
+     "period (monthly, quarterly)"
+    ],
+    "logic": [
+     "Switch SKU and period (Vatsal, 10 Sep 2026); the new mandate goes through P04.",
+     "Proration line: to be verified: proration and refund on a period switch.",
+     "gap, to be decided: the v0.1 life-events picker (Something changed in my life) has no screen of its own in v0.2; Q01 carries the Anything else change card."
+    ],
+    "branches": [
+     [
+      "Confirm",
+      "P04"
+     ],
+     [
+      "Back",
+      "H09"
+     ]
+    ],
+    "states": [
+     "Downgrade mid-period: takes effect at the period end",
+     "Upgrade mid-period: to be verified: proration and refund on a period switch"
+    ],
+    "dev": [
+     "Razorpay subscription update; the invoice carries the new SKU and period."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-paywall",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "fees and refunds"
+    ],
+    "checks": [
+     "Inclusive of GST, the period, cancellation, refund, breakage."
+    ]
+   },
+   "events": [
+    "Q02_view"
+   ],
+   "v02": {
+    "status": "rebuilt",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+    ]
+   }
+  },
+  {
+   "id": "Q03",
+   "sec": "Q",
+   "title": "Subscription",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "The subscription overview and the three unhappy billing states, each drawn as its own instance: Q03a cancel, Q03b payment failed, Q03c lapsed.",
+   "ui": [
+    [
+     "h",
+     "Your subscription"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Plan",
+       "yeslyf <SKU>, billed <period>"
+      ],
+      [
+       "Next billing",
+       "<date>"
+      ],
+      [
+       "Calls left this period",
+       "N"
+      ]
+     ]
+    ],
+    [
+     "link",
+     "Change plan",
+     "Q02"
+    ],
+    [
+     "btn2",
+     "Cancel my membership",
+     "Q03a"
+    ],
+    [
+     "card",
+     "If a payment fails",
+     [
+      "Retry within 7 days; nothing is lost (Q03b)"
+     ]
+    ],
+    [
+     "card",
+     "If the membership lapses",
+     [
+      "Plan read-only, refresh stopped; resubscribe restores everything (Q03c)"
+     ]
+    ],
+    [
+     "btn",
+     "Back",
+     "H09"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "sku",
+     "period",
+     "next_billing",
+     "calls_left"
+    ],
+    "logic": [
+     "Three instances (Vatsal, 10 Sep 2026): Q03a cancel, Q03b payment failed, Q03c lapsed.",
+     "Refund line: per the agreement (brief H5: to be decided)."
+    ],
+    "branches": [
+     [
+      "Change plan",
+      "Q02"
+     ],
+     [
+      "Cancel",
+      "Q03a"
+     ],
+     [
+      "Payment failed",
+      "Q03b"
+     ],
+     [
+      "Lapsed",
+      "Q03c"
+     ],
+     [
+      "Back",
+      "H09"
+     ]
+    ],
+    "states": [
+     "S12 payment failed: opens on Q03b",
+     "S13 lapsed: opens on Q03c"
+    ],
+    "dev": [
+     "Razorpay subscription webhooks drive these states."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "fees and refunds"
+    ],
+    "checks": [
+     "Inclusive of GST, the period, cancellation, refund, breakage."
+    ]
+   },
+   "events": [
+    "Q03_view"
+   ],
+   "v02": {
+    "status": "rebuilt",
+    "causes": [
+     "brief H5",
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+    ]
+   }
+  },
+  {
+   "id": "Q03a",
+   "sec": "Q",
+   "title": "Cancel",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Cancel with a reason, a pause offer, and a confirmation. The plan stays readable; the refresh stops.",
+   "ui": [
+    [
+     "h",
+     "Cancel your membership"
+    ],
+    [
+     "radio",
+     [
+      "Too expensive",
+      "Not using it",
+      "Got what I needed",
+      "Something else"
+     ]
+    ],
+    [
+     "card",
+     "Pause instead?",
+     [
+      "Pause for 2 months; your plan stays readable and nothing is lost"
+     ]
+    ],
+    [
+     "p",
+     "Refund: per the agreement (brief H5: to be decided)."
+    ],
+    [
+     "btn",
+     "Confirm cancel",
+     "H01"
+    ],
+    [
+     "link",
+     "Keep my membership",
+     "Q03"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "cancel_reason",
+     "pause_until",
+     "refund_requested"
+    ],
+    "logic": [
+     "Confirm cancel: the plan stays readable, refresh stops (spec v0.1).",
+     "Refund per the agreement (brief H5: to be decided).",
+     "S24 refund requested follows this path (section 5)."
+    ],
+    "branches": [
+     [
+      "Confirm",
+      "H01"
+     ],
+     [
+      "Keep",
+      "Q03"
+     ]
+    ],
+    "states": [
+     "S24 refund requested",
+     "Paused: billing paused, plan readable, refresh continues"
+    ],
+    "dev": [
+     "Razorpay subscription cancel or pause; the CRM records the reason."
+    ]
+   },
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "fees and refunds"
+    ],
+    "checks": [
+     "Inclusive of GST, the period, cancellation, refund, breakage."
+    ]
+   },
+   "frame": "phone",
+   "events": [
+    "Q03a_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+    ]
+   }
+  },
+  {
+   "id": "Q03b",
+   "sec": "Q",
+   "title": "Payment failed",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "The payment failed state: retry, change the method, grace 7 days.",
+   "ui": [
+    [
+     "h",
+     "Your payment did not go through"
+    ],
+    [
+     "p",
+     "Nothing is lost. Retry, or change the method. You have 7 days before the plan refresh pauses."
+    ],
+    [
+     "chips",
+     [
+      "Retry",
+      "Change method"
+     ]
+    ],
+    [
+     "btn",
+     "Retry payment",
+     "P04"
+    ],
+    [
+     "link",
+     "Later",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "grace_until",
+     "retry_count"
+    ],
+    "logic": [
+     "Grace 7 days (spec v0.1); a banner shows on H01f until the payment succeeds (section 5).",
+     "Retry goes through P04 with the same SKU and period."
+    ],
+    "branches": [
+     [
+      "Retry",
+      "P04"
+     ],
+     [
+      "Later",
+      "H01"
+     ]
+    ],
+    "states": [
+     "S12 payment failed"
+    ],
+    "dev": [
+     "Razorpay subscription webhooks drive this state."
+    ]
+   },
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "fees and refunds"
+    ],
+    "checks": [
+     "Inclusive of GST, the period, cancellation, refund, breakage."
+    ]
+   },
+   "frame": "phone",
+   "events": [
+    "Q03b_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+    ]
+   }
+  },
+  {
+   "id": "Q03c",
+   "sec": "Q",
+   "title": "Lapsed",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "The lapsed state: plan read-only and dated, refresh stopped, resubscribe restores everything.",
+   "ui": [
+    [
+     "h",
+     "Your membership has lapsed"
+    ],
+    [
+     "rows",
+     [
+      [
+       "Your plan",
+       "Read-only, dated <date>"
+      ],
+      [
+       "Account Aggregator refresh",
+       "Stopped"
+      ],
+      [
+       "Resubscribe",
+       "Restores everything, including the review"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Resubscribe",
+     "P01"
+    ],
+    [
+     "link",
+     "Read my plan",
+     "G03"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "lapsed_at"
+    ],
+    "logic": [
+     "Plan read-only, dated; AA refresh stopped; resubscribe restores everything (spec v0.1).",
+     "Nudges at 30 and 90 days (section 5)."
+    ],
+    "branches": [
+     [
+      "Resubscribe",
+      "P01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ]
+    ],
+    "states": [
+     "S13 lapsed"
+    ],
+    "dev": [
+     "Razorpay subscription webhooks drive this state."
+    ]
+   },
+   "template": "T-card",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "fees and refunds"
+    ],
+    "checks": [
+     "Inclusive of GST, the period, cancellation, refund, breakage."
+    ]
+   },
+   "frame": "phone",
+   "events": [
+    "Q03c_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+    ]
+   }
+  },
+  {
+   "id": "Q04",
+   "sec": "Q",
+   "title": "Annual: risk profile and agreement",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Once a year: reconfirm the risk profile and renew the 12-month agreement.",
+   "ui": [
+    [
+     "h",
+     "A year with yeslyf"
+    ],
+    [
+     "card",
+     "Confirm your risk profile",
+     [
+      "Still a Moderate investor? Retake if anything changed"
+     ]
+    ],
+    [
+     "card",
+     "Renew your agreement",
+     [
+      "Same terms; sign with Aadhaar OTP"
+     ]
+    ],
+    [
+     "btn",
+     "Continue",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Blocks new advice (plan re-runs) until done; existing plan stays readable."
+    ],
+    "branches": [
+     [
+      "Continue",
+      "H01"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Counsel to confirm whether auto-renewal language can replace a fresh eSign."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-card-stack",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "disclosures"
+    ],
+    "checks": [
+     "The RIA registration line, the fee schedule, the complaints and grievance path, what the app is and is not, what a call is and is not."
+    ]
+   },
+   "events": [
+    "Q04_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "N01",
+   "sec": "N",
+   "title": "Returning-user state machine",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "Every returning user is routed by state on open. This table is the contract between backend, app and nudges.",
+   "ui": [
+    [
+     "table",
+     [
+      "State",
+      "Who",
+      "Home shows",
+      "Primary action",
+      "Nudges"
+     ],
+     [
+      [
+       "S1",
+       "Signed up, no reveal",
+       "Resume R01",
+       "Finish the reveal, 90 seconds",
+       "Ping at 1 hour, 1 day"
+      ],
+      [
+       "S2",
+       "Reveal seen, not paid",
+       "X01 saved reveal",
+       "Unlock my plan",
+       "Day 1, 3, 7, 21, 82, then stop"
+      ],
+      [
+       "S2b",
+       "Paid but eSign incomplete",
+       "Agreement pending",
+       "Sign",
+       "1 day, 3 days; refund path at 14"
+      ],
+      [
+       "S3",
+       "Paid, nothing else",
+       "O02 hub, step 1",
+       "Connect via AA",
+       "24h, 72h"
+      ],
+      [
+       "S4",
+       "Data partial",
+       "O02 hub, last section",
+       "Continue where you left off",
+       "24h, 72h, 7d"
+      ],
+      [
+       "S5",
+       "Data done, risk profile pending",
+       "D08",
+       "Two minutes to finish",
+       "24h"
+      ],
+      [
+       "S6",
+       "Plan built, not read",
+       "H01 hero: plan ready",
+       "Read your plan",
+       "48h"
+      ],
+      [
+       "S7",
+       "DIWM: call booked",
+       "H01 with countdown",
+       "Prepare for your call",
+       "24h, 1h before"
+      ],
+      [
+       "S8",
+       "Plan read, no action done",
+       "H01 next action",
+       "Do the first action",
+       "48h, 7d, 14d"
+      ],
+      [
+       "S9",
+       "Executing",
+       "H01 progress",
+       "Next action",
+       "Missed SIP, verified done"
+      ],
+      [
+       "S10",
+       "All actions done",
+       "H01 celebration",
+       "Quarterly review date",
+       "Anniversary"
+      ],
+      [
+       "S11",
+       "Plan updated (publish)",
+       "H05 banner",
+       "Accept the update",
+       "3d if unaccepted"
+      ],
+      [
+       "S12",
+       "Payment failed",
+       "Banner",
+       "Retry payment",
+       "Grace 7 days"
+      ],
+      [
+       "S13",
+       "Lapsed",
+       "Read-only plan",
+       "Resubscribe",
+       "30d, 90d"
+      ],
+      [
+       "S14",
+       "DIFM client",
+       "Dashboard without engine advice",
+       "Your adviser manages this",
+       "Review dates"
+      ],
+      [
+       "S15",
+       "AA consent expired",
+       "Q01 with re-consent",
+       "Reconnect",
+       "At review"
+      ]
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State is computed on every open from stored flags (M6 step determination extended).",
+     "One nudge per week maximum across all layers; deep links land on the primary action.",
+     "Human call is a nudge channel (brief V2): the CRM creates a task for the caller carrying the state ID, the missing fields and the tier. Detail in N02 to N04."
+    ],
+    "branches": [],
+    "states": [],
+    "dev": [
+     "Nudge channels: push, WhatsApp, email, human call (brief V2); templates live in the CRM (M01)."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "N01_view",
+    "crm_task_created"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief V2"
+    ]
+   }
+  },
+  {
+   "id": "M01",
+   "sec": "M",
+   "title": "Admin stack (bought, not built)",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "What the team needs to run the business, and which off-the-shelf tool does it. Devs build none of this; they expose the data and webhooks.",
+   "ui": [
+    [
+     "table",
+     [
+      "Need",
+      "Tool",
+      "Notes"
+     ],
+     [
+      [
+       "Users, journey state, data-quality flags, plan versions, AA consent status, adviser pre-call view (G03 plus the plan)",
+       "Appsmith (self-hosted, free) or Retool over the app database",
+       "Read-mostly; a few write actions: reassign adviser, edit inputs on the user's behalf, force re-run, refund flag"
+      ],
+      [
+       "Assisted onboarding at corporate sessions",
+       "Same tool: create user, enter data on their behalf",
+       "User later claims the account via OTP"
+      ],
+      [
+       "Payments, mandates, refunds, invoices",
+       "Razorpay dashboard",
+       "Webhooks update tier and billing state"
+      ],
+      [
+       "CRM, nudges, WhatsApp, email, support tickets",
+       "Zoho CRM + Zoho Desk (recommended); HubSpot free as the alternative",
+       "App sends events: signed_up, reveal_seen, paid, data_complete, plan_built, call_booked, action_done, payment_failed, cancelled"
+      ],
+      [
+       "Push notifications",
+       "Firebase or OneSignal",
+       "Templates mirror the CRM journeys"
+      ],
+      [
+       "eSign, KYC fetch",
+       "Digio console",
+       "Signed PDFs land in the vault"
+      ],
+      [
+       "Account Aggregator",
+       "TSP console (Setu / Finvu / OneMoney)",
+       "Consent templates, FIP health"
+      ],
+      [
+       "Adviser calendar and video",
+       "Cal.com or Calendly; Zoom or Meet",
+       "Slots per adviser; capacity cap"
+      ],
+      [
+       "Analytics",
+       "Mixpanel",
+       "Funnel: reveal, paywall, paid, data done, plan read, first action"
+      ]
+     ]
+    ],
+    [
+     "p",
+     "Meeting note, speaker not recorded (brief G2): a Spinach-built front end over the bought admin tools is under consideration; to be decided."
+    ],
+    [
+     "card",
+     "CRM backlog",
+     [
+      "Items the team said to remember for the CRM planning session are listed on the Admin and CRM v0.2 tab, CRM backlog section."
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Zoho question (spiff, Q23): yes for CRM, nudges and support. Journey-state operations still need a low-code tool over the database; Zoho only sees events we send it.",
+     "brief G2: no choice made; the Spinach front-end question goes to the CRM backlog too."
+    ],
+    "branches": [],
+    "states": [],
+    "dev": [
+     "Event bus from the app to CRM via webhooks; one integration layer, not per-tool code."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "M01_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief G2"
+    ]
+   }
+  },
+  {
+   "id": "L00",
+   "sec": "L",
+   "title": "Engine map",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "Where each investment-plan step is computed: in the engine, fed by the panel. Answers the review question on where allocations are computed (row 72).",
+   "ui": [
+    [
+     "table",
+     [
+      "Step",
+      "Computed in",
+      "Inputs",
+      "Output"
+     ],
+     [
+      [
+       "Goal and horizon bucket",
+       "engine",
+       "goals (D07), boundaries (L03)",
+       "bucket per goal"
+      ],
+      [
+       "Risk band",
+       "engine",
+       "RPQ score (D08a to D08h), bands (L03)",
+       "band"
+      ],
+      [
+       "Target mix",
+       "engine",
+       "band x bucket, grid (L03)",
+       "target mix per goal"
+      ],
+      [
+       "Instruments and weights",
+       "engine",
+       "published set (L04), constraints (L09)",
+       "instrument list per cell"
+      ],
+      [
+       "Amounts",
+       "engine",
+       "goal SIPs and reconciliation (M4)",
+       "SIP and lumpsum per instrument"
+      ],
+      [
+       "Lumpsum vs staggered",
+       "engine",
+       "market rule (L07)",
+       "timing text with its date"
+      ],
+      [
+       "Preview",
+       "L05",
+       "staged versions",
+       "impact preview"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Roles and layout",
+     "L01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Allocations are computed in the engine, not in the panel; L05 only previews a run (row 72, answered from spec v0.1)."
+    ],
+    "branches": [
+     [
+      "Next",
+      "L01"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Documentation screen for the developers and Spinach."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "L00_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "row 72 (Harish)"
+    ]
+   }
+  },
+  {
+   "id": "L01",
+   "sec": "L",
+   "title": "Logic panel: roles and layout",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "The one internal tool the devs build. Advisers stage; the principal officer publishes; everything is versioned and logged.",
+   "ui": [
+    [
+     "tabs",
+     [
+      "Assumptions",
+      "Buckets and cohorts",
+      "Instruments",
+      "Market inputs",
+      "Staging and test",
+      "Publish",
+      "Audit"
+     ]
+    ],
+    [
+     "table",
+     [
+      "Role",
+      "Can"
+     ],
+     [
+      [
+       "Adviser",
+       "Edit assumptions, grids, instruments in staging; run impact preview"
+      ],
+      [
+       "Principal officer",
+       "Everything, plus publish and rollback"
+      ],
+      [
+       "Viewer",
+       "Read and export"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Assumptions",
+     "L02"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Nothing reaches users until published (L06)."
+    ],
+    "branches": [
+     [
+      "Next",
+      "L02"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Web app, desktop only. Same auth as the app with role claims."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "L01_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "L02",
+   "sec": "L",
+   "title": "Assumptions",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "Every number the engine uses that is not the user's own, editable with effective dates.",
+   "ui": [
+    [
+     "table",
+     [
+      "Assumption",
+      "Value",
+      "Used in"
+     ],
+     [
+      [
+       "Expected return: liquid debt / debt / hybrid / commodities / equity / REITs and InvITs",
+       "6.5 / 7 / 9 / 8 / 11 %; REITs and InvITs to be verified",
+       "Projections, WAR, allocation"
+      ],
+      [
+       "Expense inflation, education inflation",
+       "6%, 8%",
+       "Goals, cashflow chart"
+      ],
+      [
+       "Income growth",
+       "8%",
+       "Cashflow chart"
+      ],
+      [
+       "Life expectancy (LIFE_EXPECTANCY)",
+       "85; user-overridable to 90 or 100",
+       "Work-optional projection: depletion to life expectancy (M2 registry). WITHDRAWAL_RATE removed."
+      ],
+      [
+       "Emergency months",
+       "6",
+       "Emergency fund"
+      ],
+      [
+       "Default work-optional age",
+       "60",
+       "Anchor"
+      ],
+      [
+       "Health floater rules by income",
+       "below Rs 2 L: 15 L + 50 L top-up; above: 25 L",
+       "Protection"
+      ],
+      [
+       "EMI ceiling",
+       "30%",
+       "Debt"
+      ],
+      [
+       "Tax slabs and rebates by FY, surcharge, cess",
+       "tables",
+       "Tax section"
+      ],
+      [
+       "Glide path: years before goal to shift to debt",
+       "3",
+       "Bucket reassignment"
+      ],
+      [
+       "Optimised savings rate for the reveal",
+       "by income band",
+       "R09"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Buckets and cohorts",
+     "L03"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Each row: value, effective from, changed by. Changing a value creates a staging version."
+    ],
+    "branches": [
+     [
+      "Next",
+      "L03"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Assumptions version stored on every plan."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "L02_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief B3",
+     "brief H1"
+    ]
+   }
+  },
+  {
+   "id": "L03",
+   "sec": "L",
+   "title": "Buckets and cohorts",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "Horizon boundaries, risk bands, and the allocation grid: risk band by horizon bucket, across six asset classes: liquid debt, debt, hybrid, commodities, equity, REITs and InvITs.",
+   "ui": [
+    [
+     "table",
+     [
+      "Horizon bucket",
+      "Boundary"
+     ],
+     [
+      [
+       "Short",
+       "up to 1 year"
+      ],
+      [
+       "Medium",
+       "1 to 3 years"
+      ],
+      [
+       "Long",
+       "over 3 years"
+      ]
+     ]
+    ],
+    [
+     "table",
+     [
+      "Risk band",
+      "RPQ score range"
+     ],
+     [
+      [
+       "Conservative",
+       "8 to 15"
+      ],
+      [
+       "Moderate",
+       "16 to 24"
+      ],
+      [
+       "Aggressive",
+       "25 to 32"
+      ]
+     ]
+    ],
+    [
+     "table",
+     [
+      "Grid (liquid debt / debt / hybrid / commodities / equity / REITs and InvITs)",
+      "Short",
+      "Medium",
+      "Long"
+     ],
+     [
+      [
+       "Conservative",
+       "100/0/0/0/0/0",
+       "20/70/10/0/0/0",
+       "10/40/20/10/20/0"
+      ],
+      [
+       "Moderate",
+       "100/0/0/0/0/0",
+       "10/60/30/0/0/0",
+       "0/15/10/10/65/0"
+      ],
+      [
+       "Aggressive",
+       "100/0/0/0/0/0",
+       "10/50/40/0/0/0",
+       "0/5/5/10/80/0"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Instruments",
+     "L04"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Each row must sum to 100; the panel blocks staging otherwise.",
+     "Cohort = risk band x horizon bucket (spiff, Q20 default). Persona is not a cohort dimension.",
+     "Classes (brief H1): liquid debt, debt, hybrid, commodities, equity, REITs and InvITs. No cash class; liquid debt is the shortest bucket. Every row still sums to 100."
+    ],
+    "branches": [
+     [
+      "Next",
+      "L04"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Scores are placeholders until HoA supplies the RPQ scoring map.",
+     "Cell values carried from v0.1 with cash mapped to liquid debt and REITs and InvITs at 0; to be verified: the grid values per cell."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "L03_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief H1"
+    ]
+   }
+  },
+  {
+   "id": "L04",
+   "sec": "L",
+   "title": "Instrument universe",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "Add an ISIN, auto-fetch its facts, assign it to grid cells with a weight. The published set is the approved list.",
+   "ui": [
+    [
+     "in",
+     "Add instrument by ISIN"
+    ],
+    [
+     "table",
+     [
+      "Instrument",
+      "Fetched facts",
+      "Cells",
+      "Weight",
+      "Status"
+     ],
+     [
+      [
+       "Nifty 50 Index Fund, Direct",
+       "Equity, large cap, NAV, min SIP 500, no exit load",
+       "Long: Moderate, Aggressive",
+       "50%",
+       "Published"
+      ],
+      [
+       "Parag Parikh Flexi Cap, Direct",
+       "Equity, flexi cap, exit load 1 year",
+       "Long: Moderate, Aggressive",
+       "30%",
+       "Published"
+      ],
+      [
+       "Gold ETF",
+       "Commodity, ETF via smallcase",
+       "Long: all",
+       "100% of commodities",
+       "Staged"
+      ],
+      [
+       "Short Duration Fund, Direct",
+       "Debt, short duration",
+       "Medium: all",
+       "60%",
+       "Published"
+      ],
+      [
+       "Nippon India Liquid Fund, Direct",
+       "Cash, liquid",
+       "Short: all",
+       "100%",
+       "Published"
+      ],
+      [
+       "Unknown ISINs seen in user holdings (queue)",
+       "3 to classify",
+       "Assign or mark exit",
+       "",
+       ""
+      ]
+     ]
+    ],
+    [
+     "link",
+     "Portfolio constraints",
+     "L09"
+    ],
+    [
+     "btn",
+     "Market inputs",
+     "L07"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "isin, cells[], weight, core_or_satellite, status"
+    ],
+    "logic": [
+     "Weights within a cell's asset class sum to 100.",
+     "Unknown ISINs from user holdings queue here for classification; until classified users see hold for now (G12).",
+     "Stocks and ETFs: exchange master; execution via smallcase.",
+     "Weights and categories must satisfy the constraints in L09 (brief H2).",
+     "ISIN weights are a subset of the category weights in L03 (row 51, accepted)."
+    ],
+    "branches": [
+     [
+      "Next",
+      "L07"
+     ],
+     [
+      "Constraints",
+      "L09"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "ISIN facts via an external API (spiff, Q19): AMFI or MF data API for funds; exchange master for listed instruments. Refresh NAVs nightly."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "L04_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief H2",
+     "row 51"
+    ]
+   }
+  },
+  {
+   "id": "L07",
+   "sec": "L",
+   "title": "Market inputs (simple)",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "A few numbers typed by the adviser, used for timing text and the lumpsum-versus-staggered rule. No live feeds.",
+   "ui": [
+    [
+     "table",
+     [
+      "Input",
+      "Value",
+      "Rule it feeds"
+     ],
+     [
+      [
+       "Nifty PE",
+       "22.4",
+       "Below 18: lumpsum ok; 18 to 25: stagger over 6 months; above 25: stagger strongly"
+      ],
+      [
+       "10-year G-sec yield",
+       "7.0%",
+       "Debt bucket commentary"
+      ],
+      [
+       "Repo rate",
+       "6.0%",
+       "Loan verdict commentary"
+      ],
+      [
+       "FD rate reference",
+       "6.8%",
+       "Cash bucket commentary"
+      ]
+     ]
+    ],
+    [
+     "p",
+     "Snapshot date stored with every plan; timing text carries the date."
+    ],
+    [
+     "btn",
+     "Staging and test",
+     "L05"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Thresholds editable in L02."
+    ],
+    "branches": [
+     [
+      "Next",
+      "L05"
+     ]
+    ],
+    "states": [],
+    "dev": []
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "L07_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "L05",
+   "sec": "L",
+   "title": "Staging and impact preview",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "See what a change does before anyone sees it: users affected, actions generated, and a sample user's new plan.",
+   "ui": [
+    [
+     "card",
+     "Staged changes (v14, unpublished)",
+     [
+      "Gold ETF added to long-term commodities",
+      "XYZ Index Fund removed from long-term equity",
+      "Equity return assumption 11% to 10.5%"
+     ]
+    ],
+    [
+     "rows",
+     [
+      [
+       "Users affected",
+       "1,240 of 1,900"
+      ],
+      [
+       "Sell actions generated",
+       "380"
+      ],
+      [
+       "New SIP changes",
+       "1,240"
+      ],
+      [
+       "Average monthly SIP change",
+       "+ Rs 1,100"
+      ]
+     ]
+    ],
+    [
+     "in",
+     "Preview a user by ID or pick a persona"
+    ],
+    [
+     "chart",
+     "Sample user: old vs new allocation and action plan diff"
+    ],
+    [
+     "btn",
+     "Publish",
+     "L06"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Validation blocks publish: grids not summing to 100, cells with no instruments, unknown ISINs in published cells, and any breach of the L09 constraints (brief H2)."
+    ],
+    "branches": [
+     [
+      "Publish",
+      "L06"
+     ]
+    ],
+    "states": [],
+    "dev": [
+     "Impact preview runs the engine against a snapshot of all active users; async job."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "L05_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief H2"
+    ]
+   }
+  },
+  {
+   "id": "L06",
+   "sec": "L",
+   "title": "Publish",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "Publish now or schedule. Users get the diff (H05). Rollback restores the previous version.",
+   "ui": [
+    [
+     "card",
+     "Publish v14",
+     [
+      "Reason for users (shown in H05): House of Alpha reviewed the approved list this quarter",
+      "Publish now or schedule for a date",
+      "Notify affected users: push and email"
+     ]
+    ],
+    [
+     "btn",
+     "Publish v14",
+     "L08"
+    ],
+    [
+     "link",
+     "Roll back to v13",
+     "L08"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "reason",
+     "publish_at"
+    ],
+    "logic": [
+     "Publishing creates instrument_set_version; the plan-upgrade job recomputes affected users and creates H05 diffs (spiff, Q19).",
+     "Rollback creates a new version pointing at the old set; users get another diff."
+    ],
+    "branches": [
+     [
+      "Publish",
+      "L08"
+     ]
+    ],
+    "states": [],
+    "dev": []
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "L06_view"
+   ],
+   "v02": {
+    "status": "kept",
+    "causes": []
+   }
+  },
+  {
+   "id": "L08",
+   "sec": "L",
+   "title": "Audit and versions",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "Who changed what and when, version diffs, export for the advice register.",
+   "ui": [
+    [
+     "table",
+     [
+      "Version",
+      "Published",
+      "By",
+      "Changes",
+      "Users affected"
+     ],
+     [
+      [
+       "v14",
+       "12 Mar",
+       "principal officer",
+       "3",
+       "1,240"
+      ],
+      [
+       "v13",
+       "3 Jan",
+       "principal officer",
+       "1",
+       "900"
+      ],
+      [
+       "v12",
+       "1 Dec",
+       "adviser",
+       "5",
+       "640"
+      ]
+     ]
+    ],
+    [
+     "card",
+     "Records kept for the register (nine, from the admin spec)",
+     [
+      "Client agreement (signed, versioned)",
+      "KYC record",
+      "Risk profile and suitability",
+      "Advice register: dated advice and rationale",
+      "Fee records and invoices",
+      "Grievance register",
+      "AUA statements (DIFM, AUA fee mode)",
+      "Audit trail on regulated records",
+      "Retention",
+      "to be verified: record formats (brief H6)"
+     ]
+    ],
+    [
+     "btn",
+     "Export for records",
+     "L08"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Every plan stores the versions it was built on; the register can reproduce any advice given.",
+     "The nine-record list stays as in the admin spec; to be verified: record formats (brief H6).",
+     "Export for records is an in-place download."
+    ],
+    "branches": [],
+    "states": [],
+    "dev": [
+     "Retention 5 years minimum."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "L08_view"
+   ],
+   "v02": {
+    "status": "changed",
+    "causes": [
+     "brief H6",
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+    ]
+   }
+  },
+  {
+   "id": "L09",
+   "sec": "L",
+   "title": "Portfolio constraints",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "The constraints the published set must satisfy: max weight per product, max direct shares within equity, a category tag per instrument with a manual override. L05 validates them before publish.",
+   "ui": [
+    [
+     "table",
+     [
+      "Constraint",
+      "Value",
+      "Applies to"
+     ],
+     [
+      [
+       "Max weight per product",
+       "___ %",
+       "every grid cell"
+      ],
+      [
+       "Max direct shares within equity",
+       "___ % of the equity slice",
+       "long-term cells"
+      ],
+      [
+       "Category tag per instrument",
+       "fetched facts set it; manual override allowed, logged",
+       "every instrument in L04"
+      ]
+     ]
+    ],
+    [
+     "table",
+     [
+      "Instrument",
+      "Fetched category",
+      "Override",
+      "Breach"
+     ],
+     [
+      [
+       "Nifty 50 Index Fund, Direct",
+       "Equity, large cap",
+       "none",
+       "no"
+      ],
+      [
+       "Parag Parikh Flexi Cap, Direct",
+       "Equity, flexi cap",
+       "none",
+       "no"
+      ],
+      [
+       "Gold ETF",
+       "Commodity, ETF",
+       "none",
+       "no"
+      ]
+     ]
+    ],
+    [
+     "btn",
+     "Staging and test",
+     "L05"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     "max_weight_per_product",
+     "max_direct_shares_in_equity",
+     "category_tag[isin]",
+     "category_override[isin]"
+    ],
+    "logic": [
+     "L05 validation blocks publish on a constraint breach (brief H2).",
+     "Category tag: fetched facts set it; a manual override is logged with who and when.",
+     "Constraint values are config with effective dates, like L02."
+    ],
+    "branches": [
+     [
+      "Next",
+      "L05"
+     ]
+    ],
+    "states": [
+     "Breach in staging: the row shows the breach and L05 blocks publish"
+    ],
+    "dev": [
+     "Weights in L04 are checked against these constraints on every staging save."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "events": [
+    "L09_view"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "brief H2"
+    ]
+   }
+  }
+ ]
+}

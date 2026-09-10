@@ -1,0 +1,408 @@
+{
+ "sources": {
+  "decisions": "inputs/meeting/yeslyf decisions - decisions.csv"
+ },
+ "brief": "inputs/meeting/yeslyf_meeting_brief_2026-09-09.md",
+ "items": [
+  {
+   "item_id": "B1",
+   "choice": [
+    "b"
+   ],
+   "note": "",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T13:03:55.943Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "B2",
+   "choice": [
+    "a"
+   ],
+   "note": "",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T13:05:34.990Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "B3",
+   "choice": [
+    "b"
+   ],
+   "note": "",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T13:08:21.950Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "B4",
+   "choice": [
+    "a"
+   ],
+   "note": "",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T13:09:13.643Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "G1",
+   "choice": [
+    "b"
+   ],
+   "note": "new screens to be added for onboarding, transactions, reporting for BSE Star",
+   "status": "default, Gaurav's position; not confirmed in the meeting",
+   "ts": "2026-09-09T13:37:36.728Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "G2",
+   "choice": [],
+   "note": "ask from Spinach to make a front end to pull all the external admin panel related tools",
+   "status": "no choice made; Gaurav to decide",
+   "ts": "2026-09-09T13:44:19.597Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "H1",
+   "choice": [
+    "a"
+   ],
+   "note": "",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T13:22:53.999Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "H2",
+   "choice": [
+    "a"
+   ],
+   "note": "add new screens for both these qts",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T13:24:41.835Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "H3",
+   "choice": [
+    "a"
+   ],
+   "note": "",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T13:27:07.540Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "H4",
+   "choice": [
+    "b"
+   ],
+   "note": "",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T13:29:16.323Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "H5",
+   "choice": [],
+   "note": "as per the compliance, come back later",
+   "status": "no choice made; Harish to decide",
+   "ts": "2026-09-09T13:33:05.884Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "H6",
+   "choice": [],
+   "note": "data formats to be checked",
+   "status": "no choice made; Harish to decide",
+   "ts": "2026-09-09T13:34:30.944Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "K1",
+   "choice": [
+    "a"
+   ],
+   "note": "",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T13:45:59.486Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "S1",
+   "choice": [
+    "b"
+   ],
+   "note": "",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T13:02:25.712Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "T1",
+   "choice": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "note": "",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T12:52:08.503Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "T2",
+   "choice": [],
+   "note": "DIY no calls at all only a la carte, DIWM - 4 qtrly review calls",
+   "status": "no choice made",
+   "ts": "2026-09-09T13:01:18.522Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "V1",
+   "choice": [
+    "a"
+   ],
+   "note": "",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T13:44:43.892Z",
+   "decided_by": "",
+   "source": "sheet"
+  },
+  {
+   "item_id": "V2",
+   "choice": [
+    "a"
+   ],
+   "note": "",
+   "status": "decided in the meeting",
+   "ts": "2026-09-09T13:45:47.744Z",
+   "decided_by": "",
+   "source": "sheet"
+  }
+ ],
+ "quick_accepts": [
+  {
+   "n": 3,
+   "screen": "A01",
+   "accept": "decline",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 7,
+   "screen": "R01",
+   "accept": "decline",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 8,
+   "screen": "R02",
+   "accept": "decline",
+   "note": "Add pets",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 9,
+   "screen": "R02",
+   "accept": "accept",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 10,
+   "screen": "R04",
+   "accept": "accept",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 11,
+   "screen": "R07",
+   "accept": "not ticked",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 15,
+   "screen": "R10",
+   "accept": "not ticked",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 21,
+   "screen": "P04",
+   "accept": "accept",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 23,
+   "screen": "O01",
+   "accept": "not ticked",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 26,
+   "screen": "O02",
+   "accept": "decline",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 31,
+   "screen": "G01",
+   "accept": "accept",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 51,
+   "screen": "L04",
+   "accept": "accept",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 59,
+   "screen": "D03",
+   "accept": "accept",
+   "note": "additional screens needed here",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "n": 60,
+   "screen": "D04",
+   "accept": "accept",
+   "note": "additional screens needed here",
+   "ts": "",
+   "source": "brief"
+  }
+ ],
+ "gaps": [
+  {
+   "id": "G01",
+   "status": "agreed, date set",
+   "note": "Yeslyf",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "id": "G02",
+   "status": "agreed, date set",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "id": "G03",
+   "status": "agreed, date set",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "id": "G04",
+   "status": "no status",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "id": "G05",
+   "status": "no status",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "id": "G06",
+   "status": "no status",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "id": "G07",
+   "status": "no status",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "id": "G08",
+   "status": "no status",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "id": "G09",
+   "status": "no status",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "id": "G10",
+   "status": "no status",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "id": "G11",
+   "status": "no status",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "id": "G12",
+   "status": "no status",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  },
+  {
+   "id": "G13",
+   "status": "no status",
+   "note": "",
+   "ts": "",
+   "source": "brief"
+  }
+ ]
+}

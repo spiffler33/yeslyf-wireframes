@@ -74,7 +74,13 @@
    ],
    "status": "quick-accept",
    "item": "",
-   "note": ""
+   "note": "",
+   "meeting": {
+    "decision": "decline",
+    "note": "",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 4,
@@ -174,7 +180,13 @@
    ],
    "status": "quick-accept",
    "item": "",
-   "note": ""
+   "note": "",
+   "meeting": {
+    "decision": "decline",
+    "note": "",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 8,
@@ -200,7 +212,13 @@
    ],
    "status": "quick-accept",
    "item": "",
-   "note": ""
+   "note": "",
+   "meeting": {
+    "decision": "decline",
+    "note": "Add pets",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 9,
@@ -226,7 +244,13 @@
    ],
    "status": "quick-accept",
    "item": "",
-   "note": ""
+   "note": "",
+   "meeting": {
+    "decision": "accept",
+    "note": "",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 10,
@@ -251,7 +275,13 @@
    ],
    "status": "quick-accept",
    "item": "",
-   "note": ""
+   "note": "",
+   "meeting": {
+    "decision": "accept",
+    "note": "",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 11,
@@ -276,7 +306,13 @@
    ],
    "status": "quick-accept",
    "item": "",
-   "note": ""
+   "note": "",
+   "meeting": {
+    "decision": "not ticked",
+    "note": "",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 12,
@@ -376,7 +412,13 @@
    ],
    "status": "quick-accept",
    "item": "B1",
-   "note": "A question for the content owner; gap G08 covers the content list. Also listed under B1."
+   "note": "A question for the content owner; gap G08 covers the content list. Also listed under B1.",
+   "meeting": {
+    "decision": "not ticked",
+    "note": "",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 16,
@@ -544,7 +586,13 @@
    ],
    "status": "quick-accept",
    "item": "",
-   "note": ""
+   "note": "",
+   "meeting": {
+    "decision": "accept",
+    "note": "",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 22,
@@ -594,7 +642,13 @@
    ],
    "status": "quick-accept",
    "item": "",
-   "note": ""
+   "note": "",
+   "meeting": {
+    "decision": "not ticked",
+    "note": "",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 24,
@@ -689,7 +743,13 @@
    ],
    "status": "quick-accept",
    "item": "",
-   "note": "Step 1 leads to A05, the AA explainer; O02 is the hub the user returns to (spec v0.1, O02 logic)."
+   "note": "Step 1 leads to A05, the AA explainer; O02 is the hub the user returns to (spec v0.1, O02 logic).",
+   "meeting": {
+    "decision": "decline",
+    "note": "",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 27,
@@ -822,7 +882,13 @@
    ],
    "status": "quick-accept",
    "item": "",
-   "note": ""
+   "note": "",
+   "meeting": {
+    "decision": "accept",
+    "note": "",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 32,
@@ -1366,7 +1432,13 @@
    ],
    "status": "quick-accept",
    "item": "H1",
-   "note": "Also listed under H1."
+   "note": "Also listed under H1.",
+   "meeting": {
+    "decision": "accept",
+    "note": "",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 52,
@@ -1648,7 +1720,13 @@
    ],
    "status": "quick-accept",
    "item": "",
-   "note": ""
+   "note": "",
+   "meeting": {
+    "decision": "accept",
+    "note": "additional screens needed here",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 60,
@@ -1673,7 +1751,13 @@
    ],
    "status": "quick-accept",
    "item": "",
-   "note": ""
+   "note": "",
+   "meeting": {
+    "decision": "accept",
+    "note": "additional screens needed here",
+    "on": "9 Sep 2026",
+    "source": "brief quick-accepts list (sheet quick_accepts tab agrees)"
+   }
   },
   {
    "n": 61,

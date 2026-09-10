@@ -1,0 +1,38 @@
+{
+ "source": "plan_v2.md appendix G",
+ "note": "Reason categories for the compliance flag on every v0.2 screen, and what the compliance reviewers are asked to check for each. Screens with no user-facing copy carry review false with the reason internal; user-facing screens with no regulated content carry review false with the reason plain copy.",
+ "reasons": {
+  "advertising code": {
+   "review": true,
+   "check": "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+  },
+  "advice language": {
+   "review": true,
+   "check": "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+  },
+  "disclosures": {
+   "review": true,
+   "check": "The RIA registration line, the fee schedule, the complaints and grievance path, what the app is and is not, what a call is and is not."
+  },
+  "fees and refunds": {
+   "review": true,
+   "check": "Inclusive of GST, the period, cancellation, refund, breakage."
+  },
+  "consent": {
+   "review": true,
+   "check": "AA consent wording and period, the DPDP notice, CAS password handling, the declaration, deletion."
+  },
+  "execution": {
+   "review": true,
+   "check": "Order and mandate language, direct plan, rail disclosures."
+  },
+  "internal": {
+   "review": false,
+   "check": "No user-facing copy; nothing to review."
+  },
+  "plain copy": {
+   "review": false,
+   "check": "No regulated content identified. Comment on language if anything reads as advice or a promise."
+  }
+ }
+}

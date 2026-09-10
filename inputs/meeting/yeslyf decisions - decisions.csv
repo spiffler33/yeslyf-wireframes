@@ -1,0 +1,27 @@
+ts,who,item_id,choice,choice_text,note
+2026-09-09T12:44:19.236Z,,T1,a,a Monthly membership with adviser calls (DIWM),
+2026-09-09T12:44:19.947Z,,T1,"a, b","a Monthly membership with adviser calls (DIWM) | b Monthly membership, app only, no calls (DIY)",
+2026-09-09T12:45:01.938Z,,T1,"a, b, c","a Monthly membership with adviser calls (DIWM) | b Monthly membership, app only, no calls (DIY) | c One-time plan with a 45-minute session",
+2026-09-09T12:52:08.503Z,,T1,"a, b, c, d","a Monthly membership with adviser calls (DIWM) | b Monthly membership, app only, no calls (DIY) | c One-time plan with a 45-minute session | d Explainer video on the paywall if more than two cards",
+2026-09-09T13:01:18.522Z,,T2,,,"DIY no calls at all only a la carte, DIWM - 4 qtrly review calls"
+2026-09-09T13:02:25.712Z,,S1,b,"b The named adviser (Priya, CFP) takes the plan call",
+2026-09-09T13:03:55.943Z,,B1,b,"b Reveal, one video, sample plan, paywall",
+2026-09-09T13:05:34.990Z,,B2,a,a Drop G02,
+2026-09-09T13:08:21.950Z,,B3,b,"b Depletion to life expectancy, as the FP React does",
+2026-09-09T13:09:13.643Z,,B4,a,a Drop G08,
+2026-09-09T13:22:53.999Z,,H1,a,a No cash class; liquid debt is the shortest bucket; add a REITs and InvITs bucket,
+2026-09-09T13:24:28.746Z,,H2,a,"a A new constraints screen L09 (max per product, max direct shares within equity, category tag with override), validated in L05",
+2026-09-09T13:24:41.835Z,,H2,a,"a A new constraints screen L09 (max per product, max direct shares within equity, category tag with override), validated in L05",add new screens for both these qts
+2026-09-09T13:27:07.540Z,,H3,a,a HoA eight-question RPQ; band from the score,
+2026-09-09T13:29:16.323Z,,H4,b,"b Guided action outside the app, no aggregator link (as drawn in E05)",
+2026-09-09T13:33:05.884Z,,H5,,,"as per the compliance, come back later"
+2026-09-09T13:33:42.427Z,,H6,,,
+2026-09-09T13:33:53.254Z,,H6,,,to be decided
+2026-09-09T13:34:12.212Z,,H6,,,to be decided
+2026-09-09T13:34:30.944Z,,H6,,,data formats to be checked
+2026-09-09T13:36:08.215Z,,G1,b,b BSE StAR MF for mutual funds; smallcase for ETFs and stocks (as drawn),
+2026-09-09T13:37:36.728Z,,G1,b,b BSE StAR MF for mutual funds; smallcase for ETFs and stocks (as drawn),"new screens to be added for onboarding, transactions, reporting for BSE Star"
+2026-09-09T13:44:19.597Z,,G2,,,ask from Spinach to make a front end to pull all the external admin panel related tools
+2026-09-09T13:44:43.892Z,,V1,a,a One-line strip on Home; community from the menu,
+2026-09-09T13:45:47.744Z,,V2,a,a Add a human call as a channel; Zoho creates a task for the caller,
+2026-09-09T13:45:59.486Z,,K1,a,"a UPI and netbanking only, no cards; GST split logic (IGST, CGST plus SGST, no GST)",

@@ -1,0 +1,641 @@
+{
+ "source": "plan_v2.md section 3 (meeting decisions and the section 0 overrides), applied by scripts/apply_decisions.py",
+ "note": "Groups apply in file order: the meeting brief first (kind brief, row), then the section 0 overrides (kind override), then wording required by CLAUDE.md v2. Every group carries the cause written on each screen it touches. Matches are exact strings from data/screens_v01.json; the script stops if a match is not found.",
+ "superseded": [
+  {"item": "brief T1", "brief": "options a, b, c and d ticked: DIWM monthly, DIY monthly, a one-time plan, and an explainer video if more than two cards", "override": "two SKUs, DIY and DIWM, each billed monthly or quarterly; no one-time card, no 60-day credit rule, no state S26, no video", "cause": "Vatsal, 10 Sep 2026 (supersedes brief T1)"},
+  {"item": "brief T2", "brief": "no choice recorded; the note reads DIY no calls at all, a la carte only, and DIWM a fixed count of quarterly review calls", "override": "included calls per SKU per period are config, never a drawn number or length; a call is a call, with a topic; any adviser from the call centre takes any call; a la carte calls for anyone on any SKU; bookable at any time", "cause": "Vatsal, 10 Sep 2026 (supersedes brief T2)"},
+  {"item": "brief S1", "brief": "option b: a named adviser takes the plan call", "override": "no named adviser on any screen; a config flag adviser continuity (off by default) lets the same adviser be offered again; the staffing discussion is not touched", "cause": "Vatsal, 10 Sep 2026 (supersedes brief S1 in the wireframe only)"},
+  {"item": "gap G01", "brief": "brand recorded with a capital, the sheet capitalising a cell", "override": "yeslyf, lowercase, everywhere", "cause": "Vatsal, 10 Sep 2026 (supersedes brief gap G01)"}
+ ],
+ "groups": [
+  {
+   "id": "brief-T1", "kind": "brief", "cause": "brief T1",
+   "edits": [
+    {"op": "ui_replace", "screen": "P01", "match": ["card", "yeslyf Membership: Rs ___ / month"], "value": ["card", "yeslyf DIWM: Rs ___ / month, app plus adviser calls", ["Your full plan, built on your numbers", "Refreshed every quarter as your life and the market move", "Adviser calls included"]]},
+    {"op": "ui_insert", "screen": "P01", "after": ["card", "yeslyf DIWM: Rs ___ / month, app plus adviser calls"], "value": ["card", "yeslyf DIY: Rs ___ / month, app only, no calls", ["Your full plan, built on your numbers", "Refreshed every quarter", "Cancel any time"]]},
+    {"op": "ui_insert", "screen": "P01", "after": ["card", "yeslyf Plan: Rs ___ one time"], "value": ["video", "Explainer video on the paywall, shown because there are more than two cards (brief T1 d)"]},
+    {"op": "spec_add", "screen": "P01", "key": "logic", "value": "brief T1: options a, b, c and d ticked (DIWM monthly, DIY monthly, one-time plan, explainer video above two cards)."}
+   ]
+  },
+  {
+   "id": "brief-T2", "kind": "brief", "cause": "brief T2",
+   "edits": [
+    {"op": "spec_add", "screen": "K01", "key": "logic", "value": "brief T2: no choice recorded. Note from the meeting: DIY no calls at all, a la carte only; DIWM a fixed count of quarterly review calls."}
+   ]
+  },
+  {
+   "id": "brief-S1", "kind": "brief", "cause": "brief S1",
+   "edits": [
+    {"op": "spec_add", "screen": "O01", "key": "logic", "value": "brief S1: option b, a named adviser takes the plan call."}
+   ]
+  },
+  {
+   "id": "brief-B1", "kind": "brief", "cause": "brief B1",
+   "edits": [
+    {"op": "set", "screen": "R10", "key": "title", "value": "Video: the 5 Alphas and the bridge"},
+    {"op": "set", "screen": "R10", "key": "purpose", "value": "One video: why the two paths differ, and what gets built on the other side of the paywall. Skippable."},
+    {"op": "ui_replace", "screen": "R10", "match": ["video", "The difference between these two paths is the 5 Alpha opportunities most people do not capitalise on: how much you save, how you allocate, what you choose, when you act, what you pay in costs and taxes. And then acting, consistently."], "value": ["video", "One script, two parts. The difference between these two paths is the 5 Alpha opportunities most people do not capitalise on: how much you save, how you allocate, what you choose, when you act, what you pay in costs and taxes. Then the bridge: the exact choices, the right order and the right size for your situation are built on the other side, on your numbers, in about N minutes of your data."]},
+    {"op": "reroute", "screen": "R10", "from": "R11", "to": "R12"},
+    {"op": "spec_set", "screen": "R10", "key": "logic", "value": ["One video (brief B1). R11's bridge content folds into this script; content owner per gap G08.", "Two edits of the video, with and without the calls line, picked by the SKU set live at launch (moved here from R11)."]},
+    {"op": "spec_set", "screen": "R10", "key": "branches", "value": [["Continue", "R12"], ["Skip", "R12"]]},
+    {"op": "drop", "screen": "R11", "pointer": "R10 (one video; the bridge content folds into the R10 script)"},
+    {"op": "ui_insert", "screen": "R12", "after": ["card", "Sample plan: overview"], "value": ["card", "Real plan screens in the sample", ["Sample screens of what appears in the final plan, as an optional carousel", "Overview tab in-app; the PDF has every tab"]]},
+    {"op": "spec_add", "screen": "R12", "key": "logic", "value": "Real plan screens in the sample, optional carousel (rows 16 to 18, accepted)."}
+   ]
+  },
+  {
+   "id": "brief-B2", "kind": "brief", "cause": "brief B2",
+   "edits": [
+    {"op": "drop", "screen": "G02", "pointer": "G03 (realisable vs locked corpus, current allocation by class and current weighted return fold into G03 as ledger rows)"},
+    {"op": "ui_replace", "screen": "G01", "match": ["btn", "See my clarity picture"], "value": ["btn", "See my plan", "G03"]},
+    {"op": "spec_set", "screen": "G01", "key": "branches", "value": [["auto", "G03"]]},
+    {"op": "reroute", "screen": "*", "from": "G02", "to": "G03"},
+    {"op": "ui_replace", "screen": "G03", "match": ["rows", null], "value": ["rows", [["Monthly take-home", "Rs 1,82,000"], ["Fixed commitments", "Rs 84,000 (46%)"], ["Monthly surplus", "Rs 51,000"], ["What you own", "Rs 32.4 L"], ["What you owe", "Rs 41.0 L"], ["Life cover", "Rs 50 L"], ["Realisable now vs locked", "Rs 9.1 L realisable; Rs 12.3 L locked (EPF, NPS, ULIP)"], ["Current allocation by class", "liquid debt / debt / hybrid / commodities / equity / REITs and InvITs, as held today"], ["Current weighted return", "about 8.1% a year"]]]},
+    {"op": "spec_add", "screen": "G03", "key": "logic", "value": "Three ledger rows from G02 (brief B2): realisable vs locked corpus, current allocation by class, current weighted return. G02 is dropped; this screen is also the top of the adviser's pre-call view (M01)."}
+   ]
+  },
+  {
+   "id": "brief-B3", "kind": "brief", "cause": "brief B3",
+   "edits": [
+    {"op": "table_row", "screen": "L02", "index": 0, "row": "Withdrawal rate, life expectancy", "value": ["Life expectancy (LIFE_EXPECTANCY)", "85; user-overridable to 90 or 100", "Work-optional projection: depletion to life expectancy (M2 registry). WITHDRAWAL_RATE removed."]},
+    {"op": "spec_add", "screen": "G09", "key": "logic", "value": "Work-optional projection runs as depletion to life expectancy (brief B3): money lasts till age X against LIFE_EXPECTANCY from L02 (85; user-overridable to 90 or 100). No withdrawal rate."},
+    {"op": "spec_add", "screen": "G10", "key": "logic", "value": "The work-optional line uses depletion to life expectancy (brief B3), as the FP React does."}
+   ]
+  },
+  {
+   "id": "brief-B4", "kind": "brief", "cause": "brief B4",
+   "edits": [
+    {"op": "drop", "screen": "G08", "pointer": "removed; the G03 tab strip loses Tax and G07 continues to G09"},
+    {"op": "ui_replace", "screen": "G03", "match": ["tabs", null], "value": ["tabs", ["Overview", "Emergency", "Protection", "Cashflow", "Debt", "Life events", "Summary"]]},
+    {"op": "reroute", "screen": "G07", "from": "G08", "to": "G09"},
+    {"op": "ui_replace", "screen": "G07", "match": ["btn", "Next: Tax"], "value": ["btn", "Next: Life events", "G09"]},
+    {"op": "spec_add", "screen": "G03", "key": "logic", "value": "Tax section dropped (brief B4); the tab strip has seven tabs."}
+   ]
+  },
+  {
+   "id": "brief-H1", "kind": "brief", "cause": "brief H1",
+   "edits": [
+    {"op": "table_replace", "screen": "L03", "index": 2, "value": ["table", ["Grid (liquid debt / debt / hybrid / commodities / equity / REITs and InvITs)", "Short", "Medium", "Long"], [["Conservative", "100/0/0/0/0/0", "20/70/10/0/0/0", "10/40/20/10/20/0"], ["Moderate", "100/0/0/0/0/0", "10/60/30/0/0/0", "0/15/10/10/65/0"], ["Aggressive", "100/0/0/0/0/0", "10/50/40/0/0/0", "0/5/5/10/80/0"]]]},
+    {"op": "set", "screen": "L03", "key": "purpose", "value": "Horizon boundaries, risk bands, and the allocation grid: risk band by horizon bucket, across six asset classes: liquid debt, debt, hybrid, commodities, equity, REITs and InvITs."},
+    {"op": "spec_add", "screen": "L03", "key": "logic", "value": "Classes (brief H1): liquid debt, debt, hybrid, commodities, equity, REITs and InvITs. No cash class; liquid debt is the shortest bucket. Every row still sums to 100."},
+    {"op": "spec_add", "screen": "L03", "key": "dev", "value": "Cell values carried from v0.1 with cash mapped to liquid debt and REITs and InvITs at 0; to be verified: the grid values per cell."},
+    {"op": "table_row", "screen": "L02", "index": 0, "row": "Expected return: cash / debt / hybrid / commodities / equity", "value": ["Expected return: liquid debt / debt / hybrid / commodities / equity / REITs and InvITs", "6.5 / 7 / 9 / 8 / 11 %; REITs and InvITs to be verified", "Projections, WAR, allocation"]},
+    {"op": "ui_replace", "screen": "G11", "match": ["card", "Short term, under 1 year"], "value": ["card", "Short term, under 1 year", ["Emergency fund, Rs 7.9 L", "Liquid debt 100"]]},
+    {"op": "ui_replace", "screen": "G11", "match": ["card", "Medium term, 1 to 3 years"], "value": ["card", "Medium term, 1 to 3 years", ["Vehicle 2028, Rs 8 L", "Debt 60, hybrid 30, liquid debt 10"]]},
+    {"op": "ui_replace", "screen": "G11", "match": ["chart", "Today vs target: cash / debt / hybrid / commodities / equity"], "value": ["chart", "Today vs target: liquid debt / debt / hybrid / commodities / equity / REITs and InvITs"]},
+    {"op": "spec_add", "screen": "G11", "key": "logic", "value": "Classes per brief H1: liquid debt, debt, hybrid, commodities, equity, REITs and InvITs; the short-term card reads Liquid debt 100. The v0.1 five-class line (cash, debt, hybrid, commodities, equity) is superseded."}
+   ]
+  },
+  {
+   "id": "brief-H2", "kind": "brief", "cause": "brief H2",
+   "edits": [
+    {"op": "add", "after": "L08", "value": {
+     "id": "L09", "sec": "L", "title": "Portfolio constraints", "tier": ["ALL"], "frame": "desktop",
+     "purpose": "The constraints the published set must satisfy: max weight per product, max direct shares within equity, a category tag per instrument with a manual override. L05 validates them before publish.",
+     "ui": [
+      ["table", ["Constraint", "Value", "Applies to"], [["Max weight per product", "___ %", "every grid cell"], ["Max direct shares within equity", "___ % of the equity slice", "long-term cells"], ["Category tag per instrument", "fetched facts set it; manual override allowed, logged", "every instrument in L04"]]],
+      ["table", ["Instrument", "Fetched category", "Override", "Breach"], [["Nifty 50 Index Fund, Direct", "Equity, large cap", "none", "no"], ["Parag Parikh Flexi Cap, Direct", "Equity, flexi cap", "none", "no"], ["Gold ETF", "Commodity, ETF", "none", "no"]]],
+      ["btn", "Staging and test", "L05"]
+     ],
+     "spec": {
+      "fields": ["max_weight_per_product", "max_direct_shares_in_equity", "category_tag[isin]", "category_override[isin]"],
+      "logic": ["L05 validation blocks publish on a constraint breach (brief H2).", "Category tag: fetched facts set it; a manual override is logged with who and when.", "Constraint values are config with effective dates, like L02."],
+      "branches": [["Next", "L05"]],
+      "states": ["Breach in staging: the row shows the breach and L05 blocks publish"],
+      "dev": ["Weights in L04 are checked against these constraints on every staging save."]
+     },
+     "template": "T-table", "path": "both", "compliance": {"review": false, "reasons": ["internal"]}
+    }},
+    {"op": "ui_insert", "screen": "L04", "after": ["table", null], "value": ["link", "Portfolio constraints", "L09"]},
+    {"op": "spec_add", "screen": "L04", "key": "logic", "value": "Weights and categories must satisfy the constraints in L09 (brief H2)."},
+    {"op": "spec_add", "screen": "L04", "key": "branches", "value": ["Constraints", "L09"]},
+    {"op": "spec_replace", "screen": "L05", "key": "logic", "match": "Validation blocks publish: grids not summing to 100, cells with no instruments, unknown ISINs in published cells.", "value": "Validation blocks publish: grids not summing to 100, cells with no instruments, unknown ISINs in published cells, and any breach of the L09 constraints (brief H2)."}
+   ]
+  },
+  {
+   "id": "brief-H3", "kind": "brief", "cause": "brief H3",
+   "edits": [
+    {"op": "spec_add", "screen": "D08", "key": "logic", "value": "The eight HoA questions verbatim, one screen per question (brief H3); drawn as D08a to D08h. Band from the score."},
+    {"op": "spec_replace", "screen": "D08", "key": "dev", "match": "Scoring map (points per option, band cut-offs) needed from HoA. Store score, band, timestamp, questionnaire version.", "value": "to be verified: the RPQ scoring map (gap G06). Store score, band, timestamp, questionnaire version."},
+    {"op": "spec_add", "screen": "D09", "key": "logic", "value": "Band from the RPQ score (brief H3)."}
+   ]
+  },
+  {
+   "id": "brief-H4", "kind": "brief", "cause": "brief H4",
+   "edits": [
+    {"op": "spec_add", "screen": "E01", "key": "logic", "value": "No insurance aggregator links anywhere (brief H4); protection actions go through the guided action on E05."},
+    {"op": "spec_add", "screen": "E05", "key": "logic", "value": "No aggregator links (brief H4); the guided action outside the app stands."}
+   ]
+  },
+  {
+   "id": "brief-H5", "kind": "brief", "cause": "brief H5",
+   "edits": [
+    {"op": "spec_replace", "screen": "Q03", "key": "logic", "match": "Refund of unused period per the agreement when a period was prepaid.", "value": "Refund line: per the agreement (brief H5: to be decided)."}
+   ]
+  },
+  {
+   "id": "brief-H6", "kind": "brief", "cause": "brief H6",
+   "edits": [
+    {"op": "ui_insert", "screen": "L08", "after": ["table", null], "value": ["card", "Records kept for the register (nine, from the admin spec)", ["Client agreement (signed, versioned)", "KYC record", "Risk profile and suitability", "Advice register: dated advice and rationale", "Fee records and invoices", "Grievance register", "AUA statements (DIFM, AUA fee mode)", "Audit trail on regulated records", "Retention", "to be verified: record formats (brief H6)"]]},
+    {"op": "spec_add", "screen": "L08", "key": "logic", "value": "The nine-record list stays as in the admin spec; to be verified: record formats (brief H6)."}
+   ]
+  },
+  {
+   "id": "brief-G1", "kind": "brief", "cause": "brief G1 (default, not confirmed in the meeting)",
+   "edits": [
+    {"op": "add", "after": "E06", "value": {
+     "id": "E07", "sec": "E", "title": "BSE StAR MF onboarding", "tier": ["DIY", "DIWM"],
+     "purpose": "What happens on the BSE StAR MF side of the one-time setup: client code, FATCA, bank mandate, eNACH. Shown so the user knows why each step exists.",
+     "ui": [
+      ["h", "Your mutual fund account, once"],
+      ["rows", [["Client code (UCC)", "Created under House of Alpha's RIA registration"], ["FATCA declaration", "Confirm"], ["Bank account", "Verified by penny drop"], ["Bank mandate (eNACH or UPI autopay)", "Set up with headroom for step-ups"]]],
+      ["p", "Direct plans only. Nothing is bought until you confirm an order."],
+      ["btn", "Back to setup", "E02"]
+     ],
+     "spec": {
+      "fields": ["ucc", "fatca", "bank_verified", "mandate_id"],
+      "logic": ["brief G1: default, not confirmed in the meeting.", "to be verified: direct plans and the RIA code hold on this rail."],
+      "branches": [["Back", "E02"]],
+      "states": ["UCC creation pending: setup continues; orders wait"],
+      "dev": ["Direct BSE StAR MF APIs or an API layer; dev call (spec v0.1 E02)."]
+     },
+     "template": "T-list", "path": "both", "compliance": {"review": true, "reasons": ["execution"]}
+    }},
+    {"op": "add", "after": "E07", "value": {
+     "id": "E08", "sec": "E", "title": "BSE StAR MF transactions", "tier": ["DIY", "DIWM"],
+     "purpose": "Order status, mandate status and the SIP calendar, from the rail.",
+     "ui": [
+      ["h", "Orders and SIPs"],
+      ["rows", [["Liquid fund lumpsum", "Placed; units expected in 1 to 3 working days"], ["SIP mandate", "Active"], ["SIP calendar", "4 SIPs on the 5th of each month from month 8"]]],
+      ["link", "Statements", "E09"],
+      ["btn", "Back to progress", "E06"]
+     ],
+     "spec": {
+      "fields": ["orders[]: id, status, nav_date", "mandate_status", "sip_calendar[]"],
+      "logic": ["brief G1: default, not confirmed in the meeting.", "to be verified: direct plans and the RIA code hold on this rail.", "Status comes from the rail's webhooks; the app never marks an order done by itself (spec v0.1 E06)."],
+      "branches": [["Statements", "E09"], ["Back", "E06"]],
+      "states": ["Order rejected: reason and retry (E03)"],
+      "dev": ["Webhook per order and mandate event; reconcile nightly."]
+     },
+     "template": "T-list", "path": "both", "compliance": {"review": true, "reasons": ["execution"]}
+    }},
+    {"op": "add", "after": "E08", "value": {
+     "id": "E09", "sec": "E", "title": "BSE StAR MF reporting", "tier": ["DIY", "DIWM"],
+     "purpose": "Holdings and transaction statements from the rail, filed into the Vault.",
+     "ui": [
+      ["h", "Statements"],
+      ["rows", [["Holdings statement", "Monthly, into the Vault"], ["Transaction statement", "Per order, into the Vault"], ["Capital gains statement", "Per financial year, into the Vault"]]],
+      ["btn", "Open the Vault", "H06"],
+      ["link", "Back", "E08"]
+     ],
+     "spec": {
+      "fields": ["statements[]: type, period, file"],
+      "logic": ["brief G1: default, not confirmed in the meeting.", "to be verified: direct plans and the RIA code hold on this rail.", "Statements land in H06 and count as evidence for E06."],
+      "branches": [["Vault", "H06"], ["Back", "E08"]],
+      "states": [],
+      "dev": ["Statement fetch on a schedule; store the file and a parsed summary."]
+     },
+     "template": "T-list", "path": "both", "compliance": {"review": true, "reasons": ["execution"]}
+    }},
+    {"op": "ui_insert", "screen": "E02", "after": ["rows", null], "value": ["link", "What happens on the BSE StAR MF side", "E07"]},
+    {"op": "spec_add", "screen": "E02", "key": "branches", "value": ["Rail steps", "E07"]},
+    {"op": "ui_insert", "screen": "E03", "after": ["btn", "Confirm and pay"], "value": ["link", "Track this order", "E08"]},
+    {"op": "spec_add", "screen": "E03", "key": "branches", "value": ["Track", "E08"]},
+    {"op": "ui_insert", "screen": "E06", "after": ["rows", null], "value": ["link", "Orders, mandate and SIP calendar", "E08"]},
+    {"op": "spec_add", "screen": "E06", "key": "branches", "value": ["Orders", "E08"]},
+    {"op": "ui_insert", "screen": "H06", "after": ["rows", null], "value": ["link", "Statements from BSE StAR MF", "E09"]},
+    {"op": "spec_add", "screen": "H06", "key": "branches", "value": ["Statements", "E09"]}
+   ]
+  },
+  {
+   "id": "brief-G2", "kind": "brief", "cause": "brief G2",
+   "edits": [
+    {"op": "table_row", "screen": "M01", "index": 0, "row": "Users, journey state, data-quality flags, plan versions, AA consent status, adviser pre-call view (G02 + plan)", "value": ["Users, journey state, data-quality flags, plan versions, AA consent status, adviser pre-call view (G03 plus the plan)", "Appsmith (self-hosted, free) or Retool over the app database", "Read-mostly; a few write actions: reassign adviser, edit inputs on the user's behalf, force re-run, refund flag"]},
+    {"op": "ui_insert", "screen": "M01", "after": "end", "value": ["p", "Meeting note, speaker not recorded (brief G2): a Spinach-built front end over the bought admin tools is under consideration; to be decided."]},
+    {"op": "ui_insert", "screen": "M01", "after": "end", "value": ["card", "CRM backlog", ["Items the team said to remember for the CRM planning session are listed on the Admin and CRM v0.2 tab, CRM backlog section."]]},
+    {"op": "spec_add", "screen": "M01", "key": "logic", "value": "brief G2: no choice made; the Spinach front-end question goes to the CRM backlog too."}
+   ]
+  },
+  {
+   "id": "brief-V1", "kind": "brief", "cause": "brief V1",
+   "edits": [
+    {"op": "ui_replace", "screen": "H01", "match": ["card", "Community"], "value": ["link", "Community: this week's session and who finished their plan", "H08"]},
+    {"op": "spec_add", "screen": "H01", "key": "logic", "value": "Community is a one-line strip on Home (brief V1); the community screen opens from the menu (H00)."},
+    {"op": "spec_add", "screen": "H08", "key": "logic", "value": "Opens from the menu (H00) and from the one-line strip on H01 (brief V1). Screen unchanged."},
+    {"op": "add", "after": "H01", "cause": "row 41 (Somil); brief V1", "value": {
+     "id": "H00", "sec": "H", "title": "Navigation map", "tier": ["ALL"], "frame": "desktop",
+     "purpose": "Where every screen lives once the plan exists: the five tabs and the menu. Answers the review question of which section each screen appears in.",
+     "ui": [
+      ["table", ["Tab or menu", "Screens", "Notes"], [["Home", "H01 and its state variants H01a to H01k; H02 net worth; H03 wheel of wealth; H10 goals progress", "Hero card by state (section N)"], ["Plan", "G03 to G14, G12a", "Sharpen links open the D screens"], ["Actions", "H04, E01 to E09", "Same objects as the execution hub"], ["Vault", "H06, E09 statements", ""], ["Help", "H07, K01 to K06", "Talk to an adviser for every tier"], ["Menu (top left)", "H08 community, H09 settings, H11 portfolio, Q02 change plan, Q03 subscription, Q04 annual confirmation, Q05 update your numbers", "Community from the menu (brief V1)"]]],
+      ["btn", "Home", "H01"]
+     ],
+     "spec": {
+      "fields": [],
+      "logic": ["Accepted review row 41 (Somil): which section each screen appears in.", "The tab bar on H01 is Home, Plan, Actions, Vault, Help (spec v0.1)."],
+      "branches": [["Home", "H01"]],
+      "states": [],
+      "dev": ["The map is documentation for Spinach and the developers; it is not a screen the user sees as a table."]
+     },
+     "template": "T-table", "path": "both", "compliance": {"review": false, "reasons": ["internal"]}
+    }},
+    {"op": "add", "after": "H09", "cause": "row 39 (Kajal)", "value": {
+     "id": "H10", "sec": "H", "title": "Goals progress", "tier": ["ALL"],
+     "purpose": "Every goal with what is funded today against what it needs, by year. Accepted from the review (row 39).",
+     "ui": [
+      ["h", "Your goals"],
+      ["chart", "Per goal: funded today vs needed, by year"],
+      ["rows", [["Aryan's education, 2039", "Rs 41 L of Rs 82 L; the SIP from month 8 covers the rest"], ["Home upgrade, 2032", "40% funded"], ["Work optional at 55", "money lasts till 67 as-is; see G09"]]],
+      ["btn", "Back", "H01"]
+     ],
+     "spec": {
+      "fields": [],
+      "logic": ["Funded status per goal from the plan (G09 rules).", "A goal changed here reopens D07a and re-runs the plan; H05 shows the diff."],
+      "branches": [["Back", "H01"], ["Edit a goal", "D07"]],
+      "states": ["No goals: the screen shows the work-optional line only"],
+      "dev": ["Reads the KLE output per goal; no new computation."]
+     },
+     "template": "T-chart", "path": "both", "compliance": {"review": true, "reasons": ["advice language"]}
+    }},
+    {"op": "add", "after": "H10", "cause": "row 43 (Kajal)", "value": {
+     "id": "H11", "sec": "H", "title": "Portfolio", "tier": ["DIY", "DIWM"],
+     "purpose": "What the user holds, by scheme and stock, with source tags, and the allocation today against the target. Accepted from the review (row 43).",
+     "ui": [
+      ["h", "What you hold"],
+      ["rows", [["Nippon India Liquid Fund, Direct", "Rs 2.8 L; bought here"], ["Nifty 50 Index Fund, Direct", "SIP Rs 14,000; bought here"], ["Parag Parikh Flexi Cap, Direct", "Rs 4.2 L; AA-fed"], ["XYZ Small Cap, Regular", "Rs 2.1 L; exit in progress; CAS-verified"]]],
+      ["chart", "Allocation today vs target: liquid debt / debt / hybrid / commodities / equity / REITs and InvITs"],
+      ["p", "Holdings come from Account Aggregator, your CAS and orders placed here. Each carries its source tag."],
+      ["btn", "Back", "H01"]
+     ],
+     "spec": {
+      "fields": [],
+      "logic": ["Holdings at ISIN level with units, value and source (aa, cas, manual, bought here).", "Hold, exit and review labels come from G12; this screen shows, it does not advise."],
+      "branches": [["Back", "H01"], ["Existing holdings", "G12"]],
+      "states": ["No holdings: the screen shows what will appear after the first order"],
+      "dev": ["Same holdings store as G12 and E06."]
+     },
+     "template": "T-chart", "path": "both", "compliance": {"review": false, "reasons": ["plain copy"]}
+    }},
+    {"op": "add", "before": "L01", "cause": "row 72 (Harish)", "value": {
+     "id": "L00", "sec": "L", "title": "Engine map", "tier": ["ALL"], "frame": "desktop",
+     "purpose": "Where each investment-plan step is computed: in the engine, fed by the panel. Answers the review question on where allocations are computed (row 72).",
+     "ui": [
+      ["table", ["Step", "Computed in", "Inputs", "Output"], [["Goal and horizon bucket", "engine", "goals (D07), boundaries (L03)", "bucket per goal"], ["Risk band", "engine", "RPQ score (D08a to D08h), bands (L03)", "band"], ["Target mix", "engine", "band x bucket, grid (L03)", "target mix per goal"], ["Instruments and weights", "engine", "published set (L04), constraints (L09)", "instrument list per cell"], ["Amounts", "engine", "goal SIPs and reconciliation (M4)", "SIP and lumpsum per instrument"], ["Lumpsum vs staggered", "engine", "market rule (L07)", "timing text with its date"], ["Preview", "L05", "staged versions", "impact preview"]]],
+      ["btn", "Roles and layout", "L01"]
+     ],
+     "spec": {
+      "fields": [],
+      "logic": ["Allocations are computed in the engine, not in the panel; L05 only previews a run (row 72, answered from spec v0.1)."],
+      "branches": [["Next", "L01"]],
+      "states": [],
+      "dev": ["Documentation screen for the developers and Spinach."]
+     },
+     "template": "T-table", "path": "both", "compliance": {"review": false, "reasons": ["internal"]}
+    }}
+   ]
+  },
+  {
+   "id": "brief-V2", "kind": "brief", "cause": "brief V2",
+   "edits": [
+    {"op": "spec_add", "screen": "N01", "key": "logic", "value": "Human call is a nudge channel (brief V2): the CRM creates a task for the caller carrying the state ID, the missing fields and the tier. Detail in N02 to N04."},
+    {"op": "spec_replace", "screen": "N01", "key": "dev", "match": "Nudge channels: push, WhatsApp, email; templates live in the CRM (M01).", "value": "Nudge channels: push, WhatsApp, email, human call (brief V2); templates live in the CRM (M01)."}
+   ]
+  },
+  {
+   "id": "brief-K1", "kind": "brief", "cause": "brief K1; row 21",
+   "edits": [
+    {"op": "set", "screen": "P04", "key": "purpose", "value": "Payment sheet. The chosen SKU and period set up a recurring mandate; first charge now. UPI and netbanking only."},
+    {"op": "ui", "screen": "P04", "value": [
+     ["h", "Pay Rs ___"],
+     ["p", "yeslyf <SKU>, billed <period>, inclusive of GST. Cancel any time from Settings."],
+     ["chips", ["UPI, recurring mandate", "Netbanking"]],
+     ["in", "Coupon code"],
+     ["btn", "Pay securely", "P05"],
+     ["p", "Your GST invoice is emailed to you. GST shows as IGST, or CGST plus SGST, or no GST, by the rule for your state and status."]
+    ]},
+    {"op": "spec_set", "screen": "P04", "key": "fields", "value": ["payment_method (upi, netbanking)", "mandate_id or txn_id", "coupon", "gst_type (igst, cgst_sgst, none)"]},
+    {"op": "spec_set", "screen": "P04", "key": "logic", "value": [
+     "UPI and netbanking only, no cards (brief K1).",
+     "Recurring UPI mandate for the chosen period, monthly or quarterly; to be verified: mandate type and limits for monthly and quarterly recurring UPI.",
+     "Netbanking: charge per period; to be verified: whether netbanking can carry a recurring mandate.",
+     "GST split on the invoice (IGST, or CGST plus SGST, or no GST) by a rule to be supplied; to be verified: the GST split rule.",
+     "Coupon field (row 21): applied before GST; the invoice shows the discount line."
+    ]},
+    {"op": "spec_set", "screen": "P04", "key": "dev", "value": ["Razorpay recurring UPI and netbanking. Webhook updates tier and billing state.", "Invoice includes SEBI registration and fee mode, as the agreement requires."]}
+   ]
+  },
+  {
+   "id": "brief-gaps", "kind": "gap", "cause": "gap G03 (agreed, date set)",
+   "edits": [
+    {"op": "ui_insert", "screen": "A04", "after": ["video", null], "value": ["card", "DPDP notice", ["What I collect, why, and how to delete it; to be verified: DPDP notice text (gap G03)"]]},
+    {"op": "spec_add", "screen": "A04", "key": "dev", "value": "DPDP notice slot on this screen; to be verified: DPDP notice text (gap G03)."},
+    {"op": "spec_add", "screen": "H09", "key": "dev", "value": "to be verified: DPDP notice text (gap G03)."}
+   ]
+  },
+  {
+   "id": "rows-accepted", "kind": "row", "cause": "rows 9, 10, 31, 51 (accepted)",
+   "edits": [
+    {"op": "ui_remove", "screen": "R02", "match": ["h", "Which city do you live in?"], "cause": "row 9"},
+    {"op": "ui_remove", "screen": "R02", "match": ["in", "City"], "cause": "row 9"},
+    {"op": "set", "screen": "R02", "key": "title", "value": "Household", "cause": "row 9"},
+    {"op": "spec_set", "screen": "R02", "key": "fields", "value": ["household_type"], "cause": "row 9"},
+    {"op": "spec_replace", "screen": "R02", "key": "logic", "match": "City sets metro flag (HRA, cost bands).", "value": "City question removed (row 9, accepted).", "cause": "row 9"},
+    {"op": "spec_remove", "screen": "R02", "key": "dev", "match": "City autocomplete from a short metro list plus free text.", "cause": "row 9"},
+    {"op": "ui_replace", "screen": "R04", "match": ["h", "Everything you have saved and invested so far: deposits, mutual funds, EPF, gold, property other than the home you live in. Roughly how much would that add up to?"], "value": ["h", "Not counting the home you live in: everything you have saved and invested so far, deposits, mutual funds, EPF, gold, other property. Roughly how much would that add up to?"], "cause": "row 10"},
+    {"op": "spec_add", "screen": "R04", "key": "logic", "value": "The home you live in is excluded, said first so it is not missed (row 10, accepted).", "cause": "row 10"},
+    {"op": "ui_insert", "screen": "G01", "after": ["progress", null], "value": ["p", "Assuming 6% inflation on what life costs; your mix earning about 8% a year; the yeslyf mix about 11% a year. Values from L02."], "cause": "row 31"},
+    {"op": "spec_add", "screen": "G01", "key": "logic", "value": "Rotates the assumption lines as R08 does (row 31, accepted).", "cause": "row 31"},
+    {"op": "spec_add", "screen": "L04", "key": "logic", "value": "ISIN weights are a subset of the category weights in L03 (row 51, accepted).", "cause": "row 51"}
+   ]
+  },
+  {
+   "id": "override-T1", "kind": "override", "cause": "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+   "edits": [
+    {"op": "set", "screen": "P01", "key": "purpose", "value": "Choose a SKU and a billing period. Two SKUs, one app; DIWM adds adviser calls. Prices are placeholders."},
+    {"op": "ui", "screen": "P01", "value": [
+     ["h", "Unlock my plan"],
+     ["tabs", ["Monthly", "Quarterly"]],
+     ["card", "yeslyf DIY, app only: Rs ___ / month or Rs ___ / quarter", ["Your full plan on your numbers", "Refreshed every quarter", "Your progress and next action always visible", "Investment plan with exact instruments", "A la carte calls whenever you want one", "Cancel any time"]],
+     ["card", "yeslyf DIWM, app plus adviser calls: Rs ___ / month or Rs ___ / quarter", ["Everything in DIY", "N calls included this <period> with the yeslyf advisers to walk you through the plan, the app and the investments", "Extra calls a la carte"]],
+     ["p", "Prices inclusive of GST."],
+     ["p", "Not sure yet? Read the FAQs, check out the community, take a day. This page will still be here."],
+     ["btn", "Continue", "P02"],
+     ["link", "Save and decide later", "X01"]
+    ]},
+    {"op": "spec_set", "screen": "P01", "key": "fields", "value": ["sku (diy, diwm)", "period (monthly, quarterly)"]},
+    {"op": "spec_set", "screen": "P01", "key": "logic", "value": [
+     "Two SKUs, DIY and DIWM; each billed monthly or quarterly; the period toggle sits above the cards (Vatsal, 10 Sep 2026, supersedes brief T1).",
+     "No one-time card; the v0.1 credit rule for a one-time fee is removed with it.",
+     "No video: two cards (brief T1 d applies only above two cards).",
+     "Included calls per SKU per period are config: N calls included this <period>; never a drawn number.",
+     "Prices shown inclusive of GST. Fixed-fee mode under the RIA regulations; monthly billing needs no advance-fee check."
+    ]},
+    {"op": "spec_set", "screen": "P01", "key": "branches", "value": [["Continue", "P02"], ["Later", "X01"]]},
+    {"op": "spec_set", "screen": "P01", "key": "dev", "value": ["Cards are config, not code: label, price per period, bullets, included calls per period. Marketing changes them without a release.", "Track paywall_viewed, the period toggled and which card was expanded."]},
+    {"op": "ui_replace", "screen": "P03", "match": ["card", "In plain words"], "value": ["card", "In plain words", ["What you get: a financial plan and investment advice built on your numbers, delivered in this app", "What it costs: the fee for the SKU and period you chose, inclusive of GST; a la carte calls are charged when you book them", "No assured returns; markets carry risk", "How we advise you: in this app, and by email or call from House of Alpha", "Cancel any time; the unexpired period is refunded as per the agreement"]]},
+    {"op": "spec_add", "screen": "P03", "key": "logic", "value": "The agreement reflects two SKUs and the billing period (Vatsal, 10 Sep 2026)."},
+    {"op": "set", "screen": "Q02", "key": "title", "value": "Change plan"},
+    {"op": "set", "screen": "Q02", "key": "purpose", "value": "Switch SKU or billing period from Settings. The v0.1 life-events picker that sat here is a gap, to be decided; the Anything else change card on Q01 covers self-reported changes for now."},
+    {"op": "ui", "screen": "Q02", "value": [
+     ["h", "Change your plan"],
+     ["tabs", ["Monthly", "Quarterly"]],
+     ["card", "yeslyf DIY, app only: Rs ___ / month or Rs ___ / quarter", ["A la carte calls whenever you want one"]],
+     ["card", "yeslyf DIWM, app plus adviser calls: Rs ___ / month or Rs ___ / quarter", ["N calls included this <period>"]],
+     ["p", "to be verified: proration and refund on a period switch"],
+     ["btn", "Confirm the change", "P04"],
+     ["link", "Back", "H09"]
+    ]},
+    {"op": "spec_set", "screen": "Q02", "key": "fields", "value": ["sku (diy, diwm)", "period (monthly, quarterly)"]},
+    {"op": "spec_set", "screen": "Q02", "key": "logic", "value": ["Switch SKU and period (Vatsal, 10 Sep 2026); the new mandate goes through P04.", "Proration line: to be verified: proration and refund on a period switch.", "gap, to be decided: the v0.1 life-events picker (Something changed in my life) has no screen of its own in v0.2; Q01 carries the Anything else change card."]},
+    {"op": "spec_set", "screen": "Q02", "key": "branches", "value": [["Confirm", "P04"], ["Back", "H09"]]},
+    {"op": "spec_set", "screen": "Q02", "key": "states", "value": ["Downgrade mid-period: takes effect at the period end", "Upgrade mid-period: to be verified: proration and refund on a period switch"]},
+    {"op": "spec_set", "screen": "Q02", "key": "dev", "value": ["Razorpay subscription update; the invoice carries the new SKU and period."]},
+    {"op": "set", "screen": "Q03", "key": "title", "value": "Subscription"},
+    {"op": "set", "screen": "Q03", "key": "purpose", "value": "The subscription overview and the three unhappy billing states, each drawn as its own instance: Q03a cancel, Q03b payment failed, Q03c lapsed."},
+    {"op": "ui", "screen": "Q03", "value": [
+     ["h", "Your subscription"],
+     ["rows", [["Plan", "yeslyf <SKU>, billed <period>"], ["Next billing", "<date>"], ["Calls left this period", "N"]]],
+     ["link", "Change plan", "Q02"],
+     ["btn2", "Cancel my membership", "Q03a"],
+     ["card", "If a payment fails", ["Retry within 7 days; nothing is lost (Q03b)"]],
+     ["card", "If the membership lapses", ["Plan read-only, refresh stopped; resubscribe restores everything (Q03c)"]],
+     ["btn", "Back", "H09"]
+    ]},
+    {"op": "spec_set", "screen": "Q03", "key": "fields", "value": ["sku", "period", "next_billing", "calls_left"]},
+    {"op": "spec_set", "screen": "Q03", "key": "logic", "value": ["Three instances (Vatsal, 10 Sep 2026): Q03a cancel, Q03b payment failed, Q03c lapsed.", "Refund line: per the agreement (brief H5: to be decided)."]},
+    {"op": "spec_set", "screen": "Q03", "key": "branches", "value": [["Change plan", "Q02"], ["Cancel", "Q03a"], ["Payment failed", "Q03b"], ["Lapsed", "Q03c"], ["Back", "H09"]]},
+    {"op": "spec_set", "screen": "Q03", "key": "states", "value": ["S12 payment failed: opens on Q03b", "S13 lapsed: opens on Q03c"]},
+    {"op": "add", "after": "Q03", "value": {
+     "id": "Q03a", "sec": "Q", "title": "Cancel", "tier": ["DIY", "DIWM"],
+     "purpose": "Cancel with a reason, a pause offer, and a confirmation. The plan stays readable; the refresh stops.",
+     "ui": [
+      ["h", "Cancel your membership"],
+      ["radio", ["Too expensive", "Not using it", "Got what I needed", "Something else"]],
+      ["card", "Pause instead?", ["Pause for 2 months; your plan stays readable and nothing is lost"]],
+      ["p", "Refund: per the agreement (brief H5: to be decided)."],
+      ["btn", "Confirm cancel", "H01"],
+      ["link", "Keep my membership", "Q03"]
+     ],
+     "spec": {
+      "fields": ["cancel_reason", "pause_until", "refund_requested"],
+      "logic": ["Confirm cancel: the plan stays readable, refresh stops (spec v0.1).", "Refund per the agreement (brief H5: to be decided).", "S24 refund requested follows this path (section 5)."],
+      "branches": [["Confirm", "H01"], ["Keep", "Q03"]],
+      "states": ["S24 refund requested", "Paused: billing paused, plan readable, refresh continues"],
+      "dev": ["Razorpay subscription cancel or pause; the CRM records the reason."]
+     },
+     "template": "T-card", "path": "both", "compliance": {"review": true, "reasons": ["fees and refunds"]}
+    }},
+    {"op": "add", "after": "Q03a", "value": {
+     "id": "Q03b", "sec": "Q", "title": "Payment failed", "tier": ["DIY", "DIWM"],
+     "purpose": "The payment failed state: retry, change the method, grace 7 days.",
+     "ui": [
+      ["h", "Your payment did not go through"],
+      ["p", "Nothing is lost. Retry, or change the method. You have 7 days before the plan refresh pauses."],
+      ["chips", ["Retry", "Change method"]],
+      ["btn", "Retry payment", "P04"],
+      ["link", "Later", "H01"]
+     ],
+     "spec": {
+      "fields": ["grace_until", "retry_count"],
+      "logic": ["Grace 7 days (spec v0.1); a banner shows on H01f until the payment succeeds (section 5).", "Retry goes through P04 with the same SKU and period."],
+      "branches": [["Retry", "P04"], ["Later", "H01"]],
+      "states": ["S12 payment failed"],
+      "dev": ["Razorpay subscription webhooks drive this state."]
+     },
+     "template": "T-card", "path": "both", "compliance": {"review": true, "reasons": ["fees and refunds"]}
+    }},
+    {"op": "add", "after": "Q03b", "value": {
+     "id": "Q03c", "sec": "Q", "title": "Lapsed", "tier": ["DIY", "DIWM"],
+     "purpose": "The lapsed state: plan read-only and dated, refresh stopped, resubscribe restores everything.",
+     "ui": [
+      ["h", "Your membership has lapsed"],
+      ["rows", [["Your plan", "Read-only, dated <date>"], ["Account Aggregator refresh", "Stopped"], ["Resubscribe", "Restores everything, including the review"]]],
+      ["btn", "Resubscribe", "P01"],
+      ["link", "Read my plan", "G03"]
+     ],
+     "spec": {
+      "fields": ["lapsed_at"],
+      "logic": ["Plan read-only, dated; AA refresh stopped; resubscribe restores everything (spec v0.1).", "Nudges at 30 and 90 days (section 5)."],
+      "branches": [["Resubscribe", "P01"], ["Plan", "G03"]],
+      "states": ["S13 lapsed"],
+      "dev": ["Razorpay subscription webhooks drive this state."]
+     },
+     "template": "T-card", "path": "both", "compliance": {"review": true, "reasons": ["fees and refunds"]}
+    }},
+    {"op": "spec_replace", "screen": "H09", "key": "logic", "match": "Cancel goes to Q03.", "value": "Subscription goes to Q03; change plan goes to Q02."},
+    {"op": "spec_add", "screen": "H09", "key": "branches", "value": ["Change plan", "Q02"]}
+   ]
+  },
+  {
+   "id": "override-S1", "kind": "override", "cause": "Vatsal, 10 Sep 2026 (supersedes brief S1)",
+   "edits": [
+    {"op": "set", "screen": "O01", "key": "title", "value": "Meet yeslyf"},
+    {"op": "set", "screen": "O01", "key": "purpose", "value": "Tier-dependent introduction to how the app and the calls work. No adviser is named."},
+    {"op": "ui", "screen": "O01", "value": [
+     ["card", "DIY", ["How yeslyf works: I ask, you answer, the plan builds itself", "Ask me anything from the Help tab. Calls are available a la carte from the Help tab"]],
+     ["card", "DIWM", ["Your calls with the yeslyf advisers: N this <period>, book them whenever you want a walk-through", "Any adviser from the call centre takes your call"]],
+     ["card", "DIFM", ["Your House of Alpha adviser", "This app collects your data and tracks your progress. Your advice comes from your adviser directly."]],
+     ["btn", "Continue", "O02"]
+    ]},
+    {"op": "spec_set", "screen": "O01", "key": "logic", "value": ["Only one card renders, by tier.", "No named adviser on any screen (Vatsal, 10 Sep 2026, supersedes brief S1 in the wireframe only; the staffing discussion is not touched).", "DIFM: tracking only; no engine advice and no in-app upsell (Vatsal, 10 Sep 2026)."]},
+    {"op": "spec_set", "screen": "O01", "key": "dev", "value": ["Adviser continuity is a config flag, off by default; when on, the same adviser can be offered again on K05.", "DIFM card: the adviser relationship is handled in the CRM, not on a screen."]},
+    {"op": "ui", "screen": "H07", "value": [
+     ["h", "Help"],
+     ["card", "DIY", ["FAQs", "Ask yeslyf (answers from your plan)", "Talk to an adviser: a la carte, Rs ___ per call"]],
+     ["card", "DIWM", ["FAQs", "Ask yeslyf (answers from your plan)", "Talk to an adviser: N calls included this <period>", "Message the yeslyf advisers: replies within one business day"]],
+     ["card", "DIFM", ["FAQs", "Message your adviser"]],
+     ["btn", "Talk to an adviser", "K01"],
+     ["link", "Your calls", "K06"],
+     ["btn2", "Back", "H01"]
+    ]},
+    {"op": "set", "screen": "H07", "key": "purpose", "value": "Tier-dependent help channel. Talk to an adviser goes to K01 for every tier; the entitlement line differs by SKU. No adviser is named."},
+    {"op": "spec_set", "screen": "H07", "key": "logic", "value": ["One card renders, by tier.", "Talk to an adviser goes to K01 for every tier (Vatsal, 10 Sep 2026)."]},
+    {"op": "spec_set", "screen": "H07", "key": "branches", "value": [["Call", "K01"], ["Your calls", "K06"], ["Back", "H01"]]},
+    {"op": "spec_set", "screen": "H07", "key": "dev", "value": ["Chat routed to the CRM desk (platform to be decided; section 6). No advice via chat beyond what the plan already says; anything new goes to a call or a plan re-run."]}
+   ]
+  },
+  {
+   "id": "override-T2", "kind": "override", "cause": "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+   "edits": [
+    {"op": "set", "screen": "K01", "key": "title", "value": "Talk to an adviser"},
+    {"op": "set", "screen": "K01", "key": "purpose", "value": "Any tier books a call with the call centre, at any time, before or after the plan. The entitlement line shows what is included; a topic sets the call up."},
+    {"op": "set", "screen": "K01", "key": "tier", "value": ["ALL"]},
+    {"op": "ui", "screen": "K01", "value": [
+     ["h", "Talk to an adviser"],
+     ["card", "What is included", ["DIWM: N calls included this <period>; Rs ___ per extra call", "DIY: Rs ___ per call", "DIFM: calls with your adviser are arranged outside the app"]],
+     ["p", "What is this call about?"],
+     ["chips", ["My plan", "Using the app", "The investments and why they were chosen", "Something changed", "My numbers"]],
+     ["in", "Anything specific?"],
+     ["btn", "Pick a slot", "K05"],
+     ["link", "Your calls", "K06"]
+    ]},
+    {"op": "spec_set", "screen": "K01", "key": "fields", "value": ["call_topic", "call_note", "calls_included_per_period (config)", "calls_used"]},
+    {"op": "spec_set", "screen": "K01", "key": "logic", "value": [
+     "A call is a call, with a topic; there are no call types. Any adviser from the call centre takes any call (Vatsal, 10 Sep 2026, supersedes brief T2).",
+     "Calls can be booked at any time, before or after the plan; the v0.1 rule bookable only after G01 is removed.",
+     "Calls explain: using the app, the plan, the investments and why the instruments and cohorts are what they are, what changed. Nobody plans separately for a user; the app does not change per SKU.",
+     "Entitlement: included calls per SKU per period are config; a la carte calls can be bought by anyone on any SKU (K04).",
+     "Reachable from H07, the H01 cards, O02, the D-section stall state S19 and the G screens."
+    ]},
+    {"op": "spec_set", "screen": "K01", "key": "branches", "value": [["Pick a slot", "K05"], ["Your calls", "K06"], ["No included calls left", "K04"]]},
+    {"op": "spec_set", "screen": "K01", "key": "states", "value": ["No included calls left: the a la carte line shows and Pick a slot goes through K04 first", "S20 no-show: opens with a rebook line and the same topic (section 5)"]},
+    {"op": "spec_set", "screen": "K01", "key": "dev", "value": ["Call length is config; to be verified: call lengths in the recipe.", "The call centre sees the plan (G03) and the inputs (D10) before the call (M01)."]},
+    {"op": "add", "after": "K04", "value": {
+     "id": "K05", "sec": "K", "title": "Pick a slot", "tier": ["ALL"],
+     "purpose": "The call-centre calendar: any available adviser, a slot, a confirmation. The adviser continuity flag adds one chip when it is on.",
+     "ui": [
+      ["h", "Pick a slot"],
+      ["card", "Call centre calendar", ["Any available adviser", "Slots over the next 7 days, morning and evening"]],
+      ["chips", ["Talk to the same adviser as last time"]],
+      ["btn", "Confirm", "K02"],
+      ["link", "Back", "K01"]
+     ],
+     "spec": {
+      "fields": ["call_slot", "same_adviser_requested (only when the flag is on)"],
+      "logic": ["Any available adviser from the call centre; no name shown.", "Config flag adviser continuity, off by default: when on, the chip Talk to the same adviser as last time appears (Vatsal, 10 Sep 2026).", "Length is config; to be verified: call lengths in the recipe."],
+      "branches": [["Confirm", "K02"], ["Back", "K01"]],
+      "states": ["No slots in 7 days: waitlist and a task to the call centre"],
+      "dev": ["Calendar from the call-centre tool; video link from the CRM (section 6)."]
+     },
+     "template": "T-picker", "path": "both", "compliance": {"review": false, "reasons": ["plain copy"]}
+    }},
+    {"op": "set", "screen": "K02", "key": "tier", "value": ["ALL"]},
+    {"op": "set", "screen": "K02", "key": "purpose", "value": "Confirmation, add to calendar, and what to have open before the call. No adviser name."},
+    {"op": "ui", "screen": "K02", "value": [
+     ["h", "<Day, date, time> with a yeslyf adviser"],
+     ["p", "If your plan is built, read it before we speak. If not, have your numbers open; the call works either way."],
+     ["card", "What to have open", ["Your plan (G03), if it is built", "The screen you had a question on", "Your numbers (D10), if you are mid-way"]],
+     ["btn", "Add to calendar", "K02"],
+     ["btn2", "Go to my plan", "G03"],
+     ["link", "Reschedule", "K05"]
+     ]},
+    {"op": "spec_set", "screen": "K02", "key": "fields", "value": ["call_id", "join_link"]},
+    {"op": "spec_set", "screen": "K02", "key": "logic", "value": ["Add to calendar is an in-place action: it writes a calendar event with the join link and the topic.", "No adviser name (Vatsal, 10 Sep 2026)."]},
+    {"op": "spec_set", "screen": "K02", "key": "branches", "value": [["Plan", "G03"], ["Reschedule", "K05"]]},
+    {"op": "spec_set", "screen": "K02", "key": "states", "value": ["Reminder 24 hours and 1 hour before", "S7 call booked (section 5)"]},
+    {"op": "set", "screen": "K03", "key": "tier", "value": ["ALL"]},
+    {"op": "set", "screen": "K03", "key": "purpose", "value": "The call summary, the first action, and the diff if inputs changed on the call. Book another from here."},
+    {"op": "ui", "screen": "K03", "value": [
+     ["h", "Notes from your call"],
+     ["card", "Summary", ["What we covered", "What you asked, and the answer"]],
+     ["card", "The first action", ["<the one action agreed on the call>"]],
+     ["p", "If your inputs changed on the call, your plan was rebuilt. See what changed."],
+     ["btn", "See what changed", "H05"],
+     ["link", "Book another call", "K01"]
+    ]},
+    {"op": "spec_set", "screen": "K03", "key": "logic", "value": ["The adviser enters inputs during the call; the engine re-runs; the user sees a diff (H05). Nobody edits outputs by hand (spec v0.1, kept).", "S21: call done, no action started (section 5)."]},
+    {"op": "spec_set", "screen": "K03", "key": "branches", "value": [["Diff", "H05"], ["Book another", "K01"]]},
+    {"op": "spec_set", "screen": "K03", "key": "states", "value": ["No input changes: the diff line is replaced by a line saying the plan is unchanged", "S21 call done, no action started"]},
+    {"op": "set", "screen": "K04", "key": "title", "value": "Buy an extra call"},
+    {"op": "set", "screen": "K04", "key": "tier", "value": ["ALL"]},
+    {"op": "set", "screen": "K04", "key": "purpose", "value": "Payment for one a la carte call through the payment flow. Anyone on any SKU."},
+    {"op": "ui", "screen": "K04", "value": [
+     ["h", "Buy an extra call"],
+     ["p", "A single call with the yeslyf advisers, on any topic."],
+     ["rows", [["Price", "Rs ___, inclusive of GST"]]],
+     ["btn", "Pay and pick a slot", "P04"],
+     ["link", "Back", "K01"]
+    ]},
+    {"op": "spec_set", "screen": "K04", "key": "fields", "value": ["a_la_carte_purchase_id"]},
+    {"op": "spec_set", "screen": "K04", "key": "logic", "value": ["A la carte calls can be bought by anyone on any SKU (Vatsal, 10 Sep 2026).", "Payment through P04's flow; the purchase and its receipt are recorded in the CRM (section 6).", "After payment, K05 opens."]},
+    {"op": "spec_set", "screen": "K04", "key": "branches", "value": [["Pay", "P04"], ["Back", "K01"]]},
+    {"op": "spec_set", "screen": "K04", "key": "dev", "value": ["Single charge through P04; no mandate."]},
+    {"op": "add", "after": "K05", "value": {
+     "id": "K06", "sec": "K", "title": "Your calls", "tier": ["ALL"],
+     "purpose": "Call history, calls left this period, and recordings or notes if the CRM keeps them.",
+     "ui": [
+      ["h", "Your calls"],
+      ["rows", [["Calls left this period", "N"], ["Next call", "<date, time> or none"]]],
+      ["card", "Past calls", ["<date>: topic, the first action agreed", "Recording or notes, if the CRM keeps them"]],
+      ["btn", "Book a call", "K01"],
+      ["link", "Back", "H07"]
+     ],
+     "spec": {
+      "fields": ["calls[]: date, topic, notes, recording"],
+      "logic": ["History, calls left this period, and recordings or notes if the CRM keeps them.", "to be verified: recording consent and retention."],
+      "branches": [["Book", "K01"], ["Back", "H07"]],
+      "states": ["No calls yet: the history card shows a one-line explanation of what a call is for"],
+      "dev": ["Reads the CRM call records; nothing is stored in the app beyond the ids."]
+     },
+     "template": "T-list", "path": "both", "compliance": {"review": false, "reasons": ["plain copy"]}
+    }},
+    {"op": "spec_add", "screen": "P04", "key": "states", "value": "A la carte call purchase (K04): single charge; after payment K05 opens"},
+    {"op": "spec_add", "screen": "P04", "key": "branches", "value": ["After a la carte purchase", "K05"]},
+    {"op": "ui_replace", "screen": "Q01", "match": ["link", "DIWM: book a 15-minute check-in"], "value": ["link", "DIWM: book a call to walk through this review", "K01"]},
+    {"op": "spec_set", "screen": "Q01", "key": "branches", "value": [["Rebuild", "H05"], ["Book a call", "K01"]]},
+    {"op": "spec_add", "screen": "Q01", "key": "logic", "value": "DIWM sees a line to book a call to walk through this review (Vatsal, 10 Sep 2026); the call is booked on K01."},
+    {"op": "ui_replace", "screen": "G14", "match": ["link", "DIWM: book your plan call first"], "value": ["link", "Book a call to walk through this plan", "K01"]},
+    {"op": "spec_set", "screen": "G14", "key": "branches", "value": [["Execute", "E01"], ["Book call", "K01"]]},
+    {"op": "spec_replace", "screen": "G14", "key": "states", "match": "DIWM: banner suggests booking the call before executing; not enforced", "value": "Any tier: a call can be booked before or after executing; not enforced"},
+    {"op": "ui_replace", "screen": "O02", "match": ["card", "3. Book your plan call, 2 minutes [DIWM]"], "value": ["card", "3. Book a call, any time", ["Any tier; included or a la carte, by your SKU"]]},
+    {"op": "spec_replace", "screen": "O02", "key": "logic", "match": "Step 3 only for DIWM.", "value": "Step 3 for every tier: a call can be booked at any time (Vatsal, 10 Sep 2026)."},
+    {"op": "spec_add", "screen": "O02", "key": "branches", "value": ["Book a call", "K01"]}
+   ]
+  },
+  {
+   "id": "wording", "kind": "override", "cause": "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
+   "edits": [
+    {"op": "spec_replace", "screen": "A09", "key": "logic", "match": "CAS upload parses holdings and marks them CAS-verified (counts as verified for sell recommendations).", "value": "CAS upload parses holdings and marks them CAS-verified (counts as verified for sell and switch advice)."},
+    {"op": "spec_replace", "screen": "D04", "key": "logic", "match": "Employer-only health cover triggers the F03 health recommendation (Rs 15 L floater + Rs 50 L top-up below Rs 2 L monthly income; Rs 25 L floater above), per the React.", "value": "Employer-only health cover triggers the F03 health advice (Rs 15 L floater + Rs 50 L top-up below Rs 2 L monthly income; Rs 25 L floater above), per the React."},
+    {"op": "set", "screen": "G05", "key": "purpose", "value": "Section 2. Life insurance need ledger and the health advice."},
+    {"op": "set", "screen": "G09", "key": "purpose", "value": "Section 6. Timeline of events with family ages, and for each event whether it is met, as-is vs with the plan."},
+    {"op": "ui_replace", "screen": "G09", "match": ["card", "Aryan's education, 2039, costs Rs 82 L"], "value": ["card", "Aryan's education, 2039, costs Rs 82 L", ["As-is: not met, Rs 41 L available", "With the plan: met, Rs 1.1 Cr available, next 3 years covered"]]},
+    {"op": "ui_replace", "screen": "G09", "match": ["card", "Work optional at 55, 2050"], "value": ["card", "Work optional at 55, 2050", ["As-is: money lasts till 67", "With the plan: lasts till 91"]]},
+    {"op": "spec_replace", "screen": "G12", "key": "logic", "match": "Sell and switch recommendations only on AA or CAS-verified holdings; manual entries get buy advice only.", "value": "Sell and switch advice only on AA or CAS-verified holdings; manual entries get buy advice only."},
+    {"op": "ui_replace", "screen": "A04", "match": ["video", "Bhuvanaa: welcome, quick background, what I can do for you, in 4 minutes I can show you possibility, are you ready?"], "value": ["video", "Welcome video: a welcome, a quick background on House of Alpha, what I can do for you, and in four minutes I can show you possibility. Are you ready?"]},
+    {"op": "table_replace", "screen": "L08", "index": 0, "value": ["table", ["Version", "Published", "By", "Changes", "Users affected"], [["v14", "12 Mar", "principal officer", "3", "1,240"], ["v13", "3 Jan", "principal officer", "1", "900"], ["v12", "1 Dec", "adviser", "5", "640"]]]}
+   ]
+  },
+  {
+   "id": "self-links", "kind": "override", "cause": "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
+   "edits": [
+    {"op": "spec_add", "screen": "A02", "key": "logic", "value": "Why mobile and not email? opens an explainer sheet in place."},
+    {"op": "spec_add", "screen": "P03", "key": "logic", "value": "Read the full agreement opens the agreement PDF in place."},
+    {"op": "spec_add", "screen": "R12", "key": "logic", "value": "Download the full sample as PDF is an in-place download."},
+    {"op": "spec_add", "screen": "G03", "key": "logic", "value": "Email me the PDF is an in-place action: the PDF is emailed and filed in H06."},
+    {"op": "spec_add", "screen": "G10", "key": "logic", "value": "Email me the PDF is an in-place action: the PDF is emailed and filed in H06."},
+    {"op": "spec_add", "screen": "H08", "key": "logic", "value": "Open the community is an in-place link out to the community platform."},
+    {"op": "spec_add", "screen": "L08", "key": "logic", "value": "Export for records is an in-place download."}
+   ]
+  }
+ ]
+}
