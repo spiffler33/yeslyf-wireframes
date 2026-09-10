@@ -6,7 +6,6 @@ The two v0.1 files are copied byte-identical into docs/v01/ and served as-is.
 Style reuses the v0.1 tokens. Choices save in localStorage (try/catch), post to the sheet endpoint
 when one is configured, and export as a markdown build brief. Every page carries noindex.
 """
-import datetime
 import html
 import json
 import os
@@ -20,7 +19,7 @@ V01_IN = os.path.join(ROOT, "inputs", "v01")
 V01_FILES = ["yeslyf_wireframes_v0.1.html", "yeslyf_admin_crm_spec_v0.1.html"]
 WIRE = "v01/yeslyf_wireframes_v0.1.html"
 ADMIN = "v01/yeslyf_admin_crm_spec_v0.1.html"
-TODAY = datetime.date.today().strftime("%d %b %Y")
+MEETING_DATE = "09 Sep 2026"  # the meeting the board was built for; not today, so a rebuild does not relabel the page
 
 
 def load(name):
@@ -310,7 +309,6 @@ def render_item(it):
 
 
 def render_qa(row):
-    src = row["sources"][0]
     txt = row["text"]
     h = ['<div class="qa" id="qa-%d">' % row["n"]]
     h.append('<div class="t"><b>row %d, %s, %s:</b> %s</div>' % (row["n"], esc(row["screen"]), esc(row["reviewer"]), esc(txt)))
@@ -319,8 +317,7 @@ def render_qa(row):
     return "\n".join(h)
 
 
-def build_meeting(items, inputs, gaps, ownership):
-    groups = []  # (label, owner list, item ids)
+def build_meeting(items, inputs, gaps):
     order = []
     for it in items:
         key = names(it["owner"])
@@ -362,7 +359,7 @@ def build_meeting(items, inputs, gaps, ownership):
              '<div class="stats"><div class="stat"><b>%d</b><span>open items</span></div><div class="stat"><b>%d</b><span>Team items, no default</span></div>'
              '<div class="stat"><b>%d</b><span>quick-accepts to tick</span></div><div class="stat"><b>%d</b><span>gaps needing an owner</span></div>'
              '<div class="stat"><b>%d</b><span>review rows, all with a status</span></div></div></section>' % (len(items), team_items, n_qa, len(gaps), len(inputs)))
-    page = (head("yeslyf product board: meeting") + '<body>\n' + header("index.html", "product board, meeting " + TODAY) +
+    page = (head("yeslyf product board: meeting") + '<body>\n' + header("index.html", "product board, meeting " + MEETING_DATE) +
             '<div class="layout"><nav class="nav"><a href="#s-how">How to read this</a>' + "".join(nav) +
             '<a href="gaps.html" style="margin-top:10px;color:var(--mute)">Gaps (%d)</a><a href="inputs.html" style="color:var(--mute)">Inputs (%d)</a></nav>' % (len(gaps), len(inputs)) +
             '<main class="main">' + intro + "\n".join(body) +
@@ -514,7 +511,7 @@ def main():
     for f in V01_FILES:
         shutil.copyfile(os.path.join(V01_IN, f), os.path.join(DOCS, "v01", f))
     pages = {
-        "index.html": build_meeting(items, inputs, gaps, ownership),
+        "index.html": build_meeting(items, inputs, gaps),
         "gaps.html": build_gaps(items, inputs, gaps),
         "inputs.html": build_inputs(items, inputs, gaps, ownership),
         "wireframes.html": build_frame_page("wireframes.html", "wireframes v0.1, served as-is", "yeslyf wireframes v0.1", WIRE, screens),

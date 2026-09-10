@@ -249,3 +249,26 @@ G13 Closed beta with thirty community members in January - Vatsal - Med.
 - The wireframe and admin tabs load from docs/v01/ and their screen IDs deep-link.
 - Export works with the sheet endpoint blank.
 - noindex present; Pages URL loads over HTTPS; spiff has reviewed the defaults before anyone else sees the page.
+
+## 12. Status, 10 Sep 2026
+
+Closed. Phases 0, 1a, 1b, 1c and 2 shipped and the meeting ran on the live site on 9 Sep 2026.
+- Repo spiffler33/yeslyf-wireframes, private, Pages from main /docs: https://spiffler33.github.io/yeslyf-wireframes/
+- Data layer complete: screens_v01, admin_crm, review_rows_v01, decision_board_v01, inputs (73 rows, every row with
+  a status), ownership, open_items (18), gaps (13).
+- Sheet write-back live and tested end to end: the Google Sheet "yeslyf decisions" with tabs decisions, gaps and
+  quick_accepts, written by the Apps Script web app. The sheet id and endpoint are in .local/sheet.json, gitignored.
+- The meeting brief is at inputs/meeting/yeslyf_meeting_brief_2026-09-09.md.
+
+Superseded. Sections 7 to 11 of this file are replaced by plan_v2.md; do not run Phase 3 from here.
+Sections 1 to 6 still hold: the repo, the data layer, the ownership map and the attribution rules are unchanged.
+
+Known limitations carried into v0.2.
+- The header date on the generated site is pinned to the meeting date in scripts/build_site.py; change it there,
+  not in docs/.
+- Two items in the meeting brief need resolving before they can be applied: T1 carries all four SKU options
+  ticked, including the one-time card whose dependency block removes the 60-day credit rule; T2 records no
+  choice, only the note "DIY no calls at all only a la carte, DIWM - 4 qtrly review calls".
+- Every sheet row and the brief header carry the name of whoever ran the meeting screen, not the owner of the
+  item. The owner of each position is fixed by data/open_items.json and the ownership map, not by that field.
+- plan_v2.md section 0 holds two defaults that become Vatsal's decisions if the plan is run unedited.
