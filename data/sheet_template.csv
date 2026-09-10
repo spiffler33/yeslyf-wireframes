@@ -4,3 +4,5 @@ ts,who,item_id,choice,choice_text,note
 ts,who,gap_id,status,owner_date,note
 # tab: quick_accepts
 ts,who,input_n,accept,note
+# tab: v02_comments
+ts,who,screen,verdict,reason,text

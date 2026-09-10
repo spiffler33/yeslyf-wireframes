@@ -28,13 +28,15 @@
   .pill.on{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
   .top .primary{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
   .top .ghost{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:6px;cursor:pointer}
+  .frozen{padding:6px 18px;background:#F1F2F4;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--mute)}
+  .decided-line{font-size:12.5px;margin:0 0 8px;padding:5px 10px;border-radius:6px;background:var(--accent-soft);border:1px solid #C9A800}
   .layout{display:grid;grid-template-columns:240px minmax(0,1fr)}
   .nav{position:sticky;top:49px;height:calc(100vh - 49px);overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:10px 0}
   .nav a{display:block;padding:6px 14px 6px 11px;text-decoration:none;font-size:13px;border-left:3px solid transparent}
   .nav a:hover{background:#F5F6F8}
   .nav .sub{padding-left:24px;font-size:12px;color:var(--mute)}
   .main{padding:18px 26px 120px;max-width:1150px}
-  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px;scroll-margin-top:60px}
   h1{font-size:22px;margin:0 0 6px}
   h2{font-size:17px;margin:0 0 4px}
   h2 small{font-weight:400;color:var(--mute);font-size:13px;margin-left:8px}
@@ -54,6 +56,8 @@
   .tag.hi{border-color:#B2434F;color:#B2434F;font-weight:600}
   .tag.team{border-color:var(--ink);color:var(--ink);font-weight:600}
   .tag.done{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .tag.new{border-color:var(--ink);color:var(--ink)}
+  .tag.changed{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
   .screens a{font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;margin-right:3px;background:#fff}
   .ctx{font-size:13px;margin:0 0 8px;color:#3B4250}
   .pos{margin:0 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
@@ -81,6 +85,7 @@
   .qa button.on{background:var(--accent);border-color:#C9A800;font-weight:600}
   .qa button.on.no{background:#F1F2F4;border-color:var(--ink)}
   .qa input{padding:4px 6px;border:1px solid var(--line);border-radius:5px;width:180px}
+  .qa .decided-line{grid-column:1 / -1;margin:0}
   .gap{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 8px;background:#FCFCFD;scroll-margin-top:60px}
   .gap-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
   .gap .why{font-size:12.5px;color:#3B4250;margin:6px 0}
@@ -106,15 +111,19 @@
   .frame-bar{display:flex;gap:10px;align-items:center;padding:6px 18px;background:var(--panel);border-bottom:1px solid var(--line);font-size:12px;color:var(--mute);flex-wrap:wrap}
   .frame-bar select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff;max-width:360px}
   .frame-wrap.with-bar{height:calc(100vh - 88px)}
+  .wrap{overflow-x:auto}
+  .sid{font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;background:#fff;white-space:nowrap}
+  .cause{color:var(--mute);font-size:11.5px}
   @media (max-width:1000px){.layout{display:block}.nav{display:none}.main{padding:12px}.who{margin-left:0}.qa{grid-template-columns:1fr}.qa .c{justify-content:flex-start}}
 </style>
 </head>
 <body>
-<header class="top"><div class="brand">yeslyf <span>product board, setup</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM</a><a href="setup.html" class="on">Setup</a></nav><div class="who">Decided by <input id="who" placeholder="your first name"></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a></header>
-<main class="main"><section class="setup"><h1>Setup: sheet write-back</h1><p class="lead">The site works without this: choices save per browser and Export brief produces the record. With an endpoint, every change is also appended to the Google Sheet "yeslyf decisions" as it happens, from every device, no login needed for anyone.</p><label>Endpoint URL (Apps Script web app)</label><input id="endpoint" placeholder="https://script.google.com/macros/s/.../exec"><p class="meta">Stored in this browser only. Each person pastes it once, or opens the site with ?endpoint=... (see below). <button id="testrow" class="ghost">Send a test row</button></p><h3>Three steps (about three minutes)</h3><ol><li>Open the Google Sheet "yeslyf decisions" in Vatsal's Drive (created 9 Sep 2026; Vatsal shares the link). Extensions, Apps Script. Replace the code with the block below. Save.</li><li>Deploy, New deployment, type Web app. Execute as: Me. Who has access: Anyone. Deploy, authorise, copy the web app URL.</li><li>Paste the URL in the field above on each device that will take decisions, or share the link index.html?endpoint=THE_URL once; the page stores it and then removes it from the address bar.</li></ol><details open><summary>Apps Script (doPost appends a row to the right tab; creates the tabs on first use)</summary><pre id="script"></pre></details><details><summary>Sheet columns (also in sheet_template.csv)</summary><pre>decisions:     ts, who, item_id, choice, choice_text, note
+<header class="top"><div class="brand">yeslyf <span>product board, setup</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html">Wireframes v0.2</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="changelog.html">Changelog</a><a href="setup.html" class="on">Setup</a></nav><div class="who">Decided by <input id="who" placeholder="your first name"></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a></header>
+<main class="main"><section class="setup"><h1>Setup: sheet write-back</h1><p class="lead">The site works without this: choices save per browser and Export brief produces the record. With an endpoint, every change is also appended to the Google Sheet "yeslyf decisions" as it happens, from every device, no login needed for anyone.</p><label>Endpoint URL (Apps Script web app)</label><input id="endpoint" placeholder="https://script.google.com/macros/s/.../exec"><p class="meta">Stored in this browser only. Each person pastes it once, or opens the site with ?endpoint=... (see below). <button id="testrow" class="ghost">Send a test row</button></p><h3>Three steps (about three minutes)</h3><ol><li>Open the Google Sheet "yeslyf decisions" in Vatsal's Drive (created 9 Sep 2026; Vatsal shares the link). Extensions, Apps Script. Replace the code with the block below. Save.</li><li>Deploy, New deployment, type Web app. Execute as: Me. Who has access: Anyone. Deploy, authorise, copy the web app URL.</li><li>Paste the URL in the field above on each device that will take decisions, or share the link index.html?endpoint=THE_URL once; the page stores it and then removes it from the address bar.</li></ol><p class="rule">v0.2 review comments write to a fourth tab, v02_comments, which the script below creates on first use; redeploy the web app once with this version of the script (Deploy, Manage deployments, edit, new version) or the rows land on the "other" tab as JSON.</p><details open><summary>Apps Script (doPost appends a row to the right tab; creates the tabs on first use)</summary><pre id="script"></pre></details><details><summary>Sheet columns (also in sheet_template.csv)</summary><pre>decisions:     ts, who, item_id, choice, choice_text, note
 gaps:          ts, who, gap_id, status, owner_date, note
-quick_accepts: ts, who, input_n, accept, note</pre><p class="meta"><a href="sheet_template.csv">Download sheet_template.csv</a> (one block per tab, to paste if you prefer to create the tabs by hand).</p></details><details><summary>Read path after the meeting</summary><p class="meta">File, Share, Publish to web, the whole document as CSV; give Vatsal the link. scripts/pull_sheet.py reads it; last write per item wins; every row is kept in data/decisions_raw.json.</p></details></section></main>
-<script>document.getElementById("script").textContent="function doPost(e) {\n  var ss = SpreadsheetApp.getActiveSpreadsheet();\n  var d = JSON.parse(e.postData.contents);\n  var tabs = {\n    decisions: [\"ts\", \"who\", \"item_id\", \"choice\", \"choice_text\", \"note\"],\n    gaps: [\"ts\", \"who\", \"gap_id\", \"status\", \"owner_date\", \"note\"],\n    quick_accepts: [\"ts\", \"who\", \"input_n\", \"accept\", \"note\"]\n  };\n  var name = tabs[d.kind] ? d.kind : \"other\";\n  var cols = tabs[name] || [\"ts\", \"who\", \"kind\", \"payload\"];\n  var sh = ss.getSheetByName(name);\n  if (!sh) { sh = ss.insertSheet(name); sh.appendRow(cols); }\n  var row = cols.map(function (c) { return c === \"payload\" ? JSON.stringify(d) : (d[c] === undefined ? \"\" : d[c]); });\n  sh.appendRow(row);\n  return ContentService.createTextOutput(\"ok\");\n}\n";</script>
+quick_accepts: ts, who, input_n, accept, note
+v02_comments:  ts, who, screen, verdict, reason, text</pre><p class="meta"><a href="sheet_template.csv">Download sheet_template.csv</a> (one block per tab, to paste if you prefer to create the tabs by hand).</p></details><details><summary>Read path after the meeting</summary><p class="meta">File, Share, Publish to web, the whole document as CSV; give Vatsal the link. scripts/pull_sheet.py reads it; last write per item wins; every row is kept in data/decisions_raw.json.</p></details></section></main>
+<script>document.getElementById("script").textContent="function doPost(e) {\n  var ss = SpreadsheetApp.getActiveSpreadsheet();\n  var d = JSON.parse(e.postData.contents);\n  var tabs = {\n    decisions: [\"ts\", \"who\", \"item_id\", \"choice\", \"choice_text\", \"note\"],\n    gaps: [\"ts\", \"who\", \"gap_id\", \"status\", \"owner_date\", \"note\"],\n    quick_accepts: [\"ts\", \"who\", \"input_n\", \"accept\", \"note\"],\n    v02_comments: [\"ts\", \"who\", \"screen\", \"verdict\", \"reason\", \"text\"]\n  };\n  var name = (d.tab && String(d.tab).length) ? String(d.tab) : (tabs[d.kind] ? d.kind : \"other\");\n  var cols = tabs[name] || ((d.cols && d.cols.length) ? d.cols : [\"ts\", \"who\", \"kind\", \"payload\"]);\n  var sh = ss.getSheetByName(name);\n  if (!sh) { sh = ss.insertSheet(name); sh.appendRow(cols); }\n  var row = cols.map(function (c) { return c === \"payload\" ? JSON.stringify(d) : (d[c] === undefined ? \"\" : d[c]); });\n  sh.appendRow(row);\n  return ContentService.createTextOutput(\"ok\");\n}\n";</script>
 <script>
 (function(){
   var KEY="yeslyf_board_v1"; var S={};

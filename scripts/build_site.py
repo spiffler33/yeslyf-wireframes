@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Generate docs/ (the GitHub Pages root) from data/*.json. Never hand-edit docs/.
 
-Pages: index.html (Meeting), gaps.html, inputs.html, wireframes.html, admin.html, setup.html.
+Pages: index.html (Meeting, frozen), gaps.html (frozen), inputs.html (frozen), wireframes.html (v0.1 as-is),
+admin.html (v0.1 as-is), wireframes_v02.html (generated from data/screens_v02.json with the v0.2 renderer in
+scripts/renderer_v02.js), admin_v02.html (data/admin_crm.json plus the v0.2 additions, the CRM backlog and the
+nudge matrix from data/v02/states.json), changelog.html (data/changelog.json), setup.html.
 The two v0.1 files are copied byte-identical into docs/v01/ and served as-is.
 Style reuses the v0.1 tokens. Choices save in localStorage (try/catch), post to the sheet endpoint
 when one is configured, and export as a markdown build brief. Every page carries noindex.
 """
+import filecmp
 import html
 import json
 import os
@@ -15,16 +19,35 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
 DOCS = os.path.join(ROOT, "docs")
+SCRIPTS = os.path.dirname(os.path.abspath(__file__))
 V01_IN = os.path.join(ROOT, "inputs", "v01")
 V01_FILES = ["yeslyf_wireframes_v0.1.html", "yeslyf_admin_crm_spec_v0.1.html"]
 WIRE = "v01/yeslyf_wireframes_v0.1.html"
 ADMIN = "v01/yeslyf_admin_crm_spec_v0.1.html"
 MEETING_DATE = "09 Sep 2026"  # the meeting the board was built for; not today, so a rebuild does not relabel the page
+FROZEN_BANNER = "Frozen on 9 Sep 2026; decisions recorded below; controls disabled"
+PENDING = "arrives with phase 5 (data/v02/states.json)"
+# Strings that must not appear on a v0.2 page (plan_v2.md section 7, check 6). The frozen pages keep their v0.1 wording.
+FORBIDDEN = ["Priya", "founders", "Founders", "Yeslyf", "recommendation", "Recommendation"]
+V02_PAGES = ["wireframes_v02.html", "admin_v02.html", "changelog.html"]
 
 
 def load(name):
     with open(os.path.join(DATA, name)) as fh:
         return json.load(fh)
+
+
+def load_optional(*parts):
+    path = os.path.join(DATA, *parts)
+    if not os.path.exists(path):
+        return None
+    with open(path) as fh:
+        return json.load(fh)
+
+
+def read_script(name):
+    with open(os.path.join(SCRIPTS, name)) as fh:
+        return fh.read()
 
 
 def esc(s):
@@ -33,6 +56,11 @@ def esc(s):
 
 def names(lst):
     return " and ".join(lst)
+
+
+def js_blob(obj):
+    # JSON inside a script tag: ASCII only, and no "</" so a string can never close the tag.
+    return json.dumps(obj, ensure_ascii=True).replace("</", "<\\/")
 
 
 CSS = """
@@ -58,13 +86,15 @@ CSS = """
   .pill.on{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
   .top .primary{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
   .top .ghost{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:6px;cursor:pointer}
+  .frozen{padding:6px 18px;background:#F1F2F4;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--mute)}
+  .decided-line{font-size:12.5px;margin:0 0 8px;padding:5px 10px;border-radius:6px;background:var(--accent-soft);border:1px solid #C9A800}
   .layout{display:grid;grid-template-columns:240px minmax(0,1fr)}
   .nav{position:sticky;top:49px;height:calc(100vh - 49px);overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:10px 0}
   .nav a{display:block;padding:6px 14px 6px 11px;text-decoration:none;font-size:13px;border-left:3px solid transparent}
   .nav a:hover{background:#F5F6F8}
   .nav .sub{padding-left:24px;font-size:12px;color:var(--mute)}
   .main{padding:18px 26px 120px;max-width:1150px}
-  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px;scroll-margin-top:60px}
   h1{font-size:22px;margin:0 0 6px}
   h2{font-size:17px;margin:0 0 4px}
   h2 small{font-weight:400;color:var(--mute);font-size:13px;margin-left:8px}
@@ -84,6 +114,8 @@ CSS = """
   .tag.hi{border-color:#B2434F;color:#B2434F;font-weight:600}
   .tag.team{border-color:var(--ink);color:var(--ink);font-weight:600}
   .tag.done{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .tag.new{border-color:var(--ink);color:var(--ink)}
+  .tag.changed{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
   .screens a{font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;margin-right:3px;background:#fff}
   .ctx{font-size:13px;margin:0 0 8px;color:#3B4250}
   .pos{margin:0 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
@@ -111,6 +143,7 @@ CSS = """
   .qa button.on{background:var(--accent);border-color:#C9A800;font-weight:600}
   .qa button.on.no{background:#F1F2F4;border-color:var(--ink)}
   .qa input{padding:4px 6px;border:1px solid var(--line);border-radius:5px;width:180px}
+  .qa .decided-line{grid-column:1 / -1;margin:0}
   .gap{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 8px;background:#FCFCFD;scroll-margin-top:60px}
   .gap-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
   .gap .why{font-size:12.5px;color:#3B4250;margin:6px 0}
@@ -136,30 +169,40 @@ CSS = """
   .frame-bar{display:flex;gap:10px;align-items:center;padding:6px 18px;background:var(--panel);border-bottom:1px solid var(--line);font-size:12px;color:var(--mute);flex-wrap:wrap}
   .frame-bar select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff;max-width:360px}
   .frame-wrap.with-bar{height:calc(100vh - 88px)}
+  .wrap{overflow-x:auto}
+  .sid{font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;background:#fff;white-space:nowrap}
+  .cause{color:var(--mute);font-size:11.5px}
   @media (max-width:1000px){.layout{display:block}.nav{display:none}.main{padding:12px}.who{margin-left:0}.qa{grid-template-columns:1fr}.qa .c{justify-content:flex-start}}
 """
 
 TABS = [("index.html", "Meeting"), ("gaps.html", "Gaps"), ("inputs.html", "Inputs"),
-        ("wireframes.html", "Wireframes v0.1"), ("admin.html", "Admin and CRM"), ("setup.html", "Setup")]
+        ("wireframes.html", "Wireframes v0.1"), ("admin.html", "Admin and CRM v0.1"),
+        ("wireframes_v02.html", "Wireframes v0.2"), ("admin_v02.html", "Admin and CRM v0.2"),
+        ("changelog.html", "Changelog"), ("setup.html", "Setup")]
 
 
-def head(title, extra_css=""):
+def head(title, css=None):
     return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '<meta name="robots" content="noindex, nofollow">\n'
-            '<title>' + esc(title) + '</title>\n<style>' + CSS + extra_css + '</style>\n</head>\n')
+            '<title>' + esc(title) + '</title>\n<style>' + (CSS if css is None else css) + '</style>\n</head>\n')
 
 
-def header(current, subtitle, show_export=True):
+def header(current, subtitle, show_export=True, who_html=None, export_label="Export brief"):
     tabs = "".join('<a href="%s"%s>%s</a>' % (href, ' class="on"' if href == current else "", esc(label))
                    for href, label in TABS)
-    right = ('<div class="who">Decided by <input id="who" placeholder="your first name"></div>'
-             '<div id="saved" class="saved"></div>'
+    if who_html is None:
+        who_html = '<div class="who">Decided by <input id="who" placeholder="your first name"></div>'
+    right = (who_html + '<div id="saved" class="saved"></div>'
              '<a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a>')
     if show_export:
-        right += '<button id="export" class="primary">Export brief</button>'
+        right += '<button id="export" class="primary">%s</button>' % esc(export_label)
     return ('<header class="top"><div class="brand">yeslyf <span>' + esc(subtitle) + '</span></div>'
             '<nav class="tabs">' + tabs + '</nav>' + right + '</header>\n')
+
+
+def frozen_banner():
+    return '<div class="frozen">%s</div>\n' % esc(FROZEN_BANNER)
 
 
 JS_COMMON = r"""
@@ -239,6 +282,16 @@ JS_COMMON = r"""
 })();
 """
 
+# The v0.2 static pages (admin, changelog) carry only the endpoint capture and the sheet pill; no board controls.
+JS_PILL = r"""
+(function(){
+  var KEY="yeslyf_board_v1"; var S={};
+  try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
+  try{ var q=location.search||""; var qi=q.indexOf("endpoint="); if(qi>=0){ var qv=decodeURIComponent(q.slice(qi+9).split("&")[0]).trim(); if(qv){ S.endpoint=qv; try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} } if(history.replaceState) history.replaceState(null,"",location.pathname+location.hash); } }catch(e){}
+  document.addEventListener("DOMContentLoaded",function(){ var p=document.getElementById("sheetpill"); if(!p) return; var on=!!(S.endpoint||"").trim(); p.textContent=on?"sheet: on":"sheet: off"; p.className="pill"+(on?" on":""); });
+})();
+"""
+
 
 def build_data_blob(items, inputs, gaps):
     d = {"items": {}, "order": [], "qa": {}, "qa_order": [], "gaps": {}, "gap_order": []}
@@ -265,10 +318,29 @@ def screen_links(ids):
     return '<span class="screens">' + "".join('<a href="wireframes.html#%s" target="_blank" title="open in the v0.1 wireframes">%s</a>' % (esc(s), esc(s)) for s in ids) + '</span>'
 
 
-def render_item(it):
+# ---- the recorded decisions (data/decisions.json), shown on the frozen pages ------------------------------------
+
+def decided_text(rec):
+    """'Decided: <keys>; <status>; note: <note>' with the status reduced to one of three neutral phrases."""
+    keys = ", ".join(rec.get("choice") or [])
+    status = rec.get("status") or ""
+    if not keys:
+        phrase = "no choice made"
+    elif status.startswith("default"):
+        phrase = "default; not confirmed in the meeting"
+    else:
+        phrase = "decided in the meeting"
+    line = "Decided: " + (keys if keys else "no choice") + "; " + phrase
+    if rec.get("note"):
+        line += "; note: " + rec["note"]
+    return line
+
+
+def render_item(it, decided=None):
     owner = names(it["owner"])
     with_ = (" (with " + ", ".join(it["with"]) + ")") if it.get("with") else ""
     team = it["owner"] == ["Team"]
+    dis = " disabled" if decided is not None else ""
     h = ['<div class="item" id="item-%s">' % esc(it["id"])]
     h.append('<div class="item-h"><b>%s %s</b>' % (esc(it["id"]), esc(it["title"])))
     h.append('<span class="tag%s">%s%s</span>' % (" team" if team else "", esc(owner), esc(with_)))
@@ -276,6 +348,8 @@ def render_item(it):
     h.append('<span class="tag%s">impact %s</span>' % (" hi" if it["impact"] == "High" else "", esc(it["impact"])))
     h.append('<span class="tag done" style="display:none">decided</span>')
     h.append(screen_links(it["screens"]) + '</div>')
+    if decided is not None:
+        h.append('<div class="decided-line">%s</div>' % esc(decided_text(decided)))
     h.append('<p class="ctx">%s</p>' % esc(it["context"]))
     h.append('<ul class="pos">')
     for p in it["positions"]:
@@ -294,30 +368,39 @@ def render_item(it):
     for o in it["options"]:
         is_d = bool(d) and o["key"] == d["key"]
         held = ("held by: " + ", ".join(o["held_by"])) if o.get("held_by") else ""
-        h.append('<label class="opt%s"><input type="%s" name="item-%s" value="%s" data-item="%s"%s><span>%s. %s%s%s<span class="held">%s</span></span></label>' % (
-            " dflt" if is_d else "", typ, esc(it["id"]), esc(o["key"]), esc(it["id"]), " checked" if is_d else "",
+        h.append('<label class="opt%s"><input type="%s" name="item-%s" value="%s" data-item="%s"%s%s><span>%s. %s%s%s<span class="held">%s</span></span></label>' % (
+            " dflt" if is_d else "", typ, esc(it["id"]), esc(o["key"]), esc(it["id"]), " checked" if is_d else "", dis,
             esc(o["key"]), esc(o["text"]),
             '<span class="dpill">default: %s</span>' % esc(d["who"]) if is_d else "",
             '<span class="ppill">possible form</span>' if not o.get("held_by") else "",
             esc(held)))
     for dep in it.get("dependencies", []):
         h.append('<div class="dep" data-if="%s"><b>%s</b> (Vatsal recommendation): %s</div>' % (esc(dep["if_key"]), esc(dep["if_text"]), esc(dep["then"])))
-    h.append('<textarea class="note" data-item="%s" placeholder="Note from the meeting (who said what, conditions, dates)"></textarea>' % esc(it["id"]))
-    h.append('<label class="decided"><input type="checkbox" data-decided="%s"> Decided in the meeting</label>' % esc(it["id"]))
+    h.append('<textarea class="note" data-item="%s" placeholder="Note from the meeting (who said what, conditions, dates)"%s></textarea>' % (esc(it["id"]), dis))
+    h.append('<label class="decided"><input type="checkbox" data-decided="%s"%s> Decided in the meeting</label>' % (esc(it["id"]), dis))
     h.append('</div>')
     return "\n".join(h)
 
 
-def render_qa(row):
+def render_qa(row, decided=None):
     txt = row["text"]
+    dis = " disabled" if decided is not None else ""
     h = ['<div class="qa" id="qa-%d">' % row["n"]]
     h.append('<div class="t"><b>row %d, %s, %s:</b> %s</div>' % (row["n"], esc(row["screen"]), esc(row["reviewer"]), esc(txt)))
-    h.append('<div class="c"><button data-qa="%d" data-v="accept">Accept</button><button data-qa="%d" data-v="decline">Decline</button><input data-qan="%d" placeholder="note"></div>' % (row["n"], row["n"], row["n"]))
+    h.append('<div class="c"><button data-qa="%d" data-v="accept"%s>Accept</button><button data-qa="%d" data-v="decline"%s>Decline</button><input data-qan="%d" placeholder="note"%s></div>' % (row["n"], dis, row["n"], dis, row["n"], dis))
+    if decided is not None:
+        line = "Decided: " + (decided.get("accept") or "not ticked")
+        if decided.get("note"):
+            line += "; note: " + decided["note"]
+        h.append('<div class="decided-line">%s</div>' % esc(line))
     h.append('</div>')
     return "\n".join(h)
 
 
-def build_meeting(items, inputs, gaps):
+def build_meeting(items, inputs, gaps, decisions=None):
+    dec_items = {d["item_id"]: d for d in (decisions or {}).get("items", [])}
+    dec_qa = {str(q["n"]): q for q in (decisions or {}).get("quick_accepts", [])}
+    frozen = decisions is not None
     order = []
     for it in items:
         key = names(it["owner"])
@@ -344,11 +427,11 @@ def build_meeting(items, inputs, gaps):
             nav.append('<a class="sub" href="#item/%s">%s %s</a>' % (esc(it["id"]), esc(it["id"]), esc(it["title"])))
         body.append('<section id="%s"><h2>%s<small>%s</small></h2>' % (sec_id, esc(k), "decides in the meeting; nothing preselected" if k == "Team" else "owner; the stated position is the default"))
         for it in its:
-            body.append(render_item(it))
+            body.append(render_item(it, dec_items.get(it["id"], {"choice": [], "status": "", "note": ""}) if frozen else None))
         if qas:
             body.append('<h3>Quick-accepts for %s</h3><p class="meta">Suggestions by others inside this workstream. Only the owner accepts or declines; one line each.</p>' % esc(k))
             for row in qas:
-                body.append(render_qa(row))
+                body.append(render_qa(row, dec_qa.get(str(row["n"]), {"accept": "", "note": ""}) if frozen else None))
         body.append('</section>')
     intro = ('<section id="s-how"><h1>Meeting: open items, by owner</h1>'
              '<p class="lead">Every position carries the first name of the person who said it and where. The owner of a workstream holds the default: '
@@ -359,32 +442,39 @@ def build_meeting(items, inputs, gaps):
              '<div class="stats"><div class="stat"><b>%d</b><span>open items</span></div><div class="stat"><b>%d</b><span>Team items, no default</span></div>'
              '<div class="stat"><b>%d</b><span>quick-accepts to tick</span></div><div class="stat"><b>%d</b><span>gaps needing an owner</span></div>'
              '<div class="stat"><b>%d</b><span>review rows, all with a status</span></div></div></section>' % (len(items), team_items, n_qa, len(gaps), len(inputs)))
-    page = (head("yeslyf product board: meeting") + '<body>\n' + header("index.html", "product board, meeting " + MEETING_DATE) +
+    reset = '<button id="reset" class="ghost"%s>Clear this browser</button>' % (" disabled" if frozen else "")
+    page = (head("yeslyf product board: meeting") + '<body>\n' + header("index.html", "product board, meeting " + MEETING_DATE) + (frozen_banner() if frozen else "") +
             '<div class="layout"><nav class="nav"><a href="#s-how">How to read this</a>' + "".join(nav) +
             '<a href="gaps.html" style="margin-top:10px;color:var(--mute)">Gaps (%d)</a><a href="inputs.html" style="color:var(--mute)">Inputs (%d)</a></nav>' % (len(gaps), len(inputs)) +
             '<main class="main">' + intro + "\n".join(body) +
-            '<section><h2>Housekeeping</h2><p class="meta">Choices and notes save in this browser only, per device. <button id="reset" class="ghost">Clear this browser</button></p></section>' +
+            '<section><h2>Housekeeping</h2><p class="meta">Choices and notes save in this browser only, per device. ' + reset + '</p></section>' +
             '</main></div>\n<script>var DATA=' + build_data_blob(items, inputs, gaps) + ';</script>\n<script>' + JS_COMMON + '</script>\n</body>\n</html>\n')
     return page
 
 
-def build_gaps(items, inputs, gaps):
+def build_gaps(items, inputs, gaps, decisions=None):
+    frozen = decisions is not None
+    dec_gaps = {g["id"]: g for g in (decisions or {}).get("gaps", [])}
+    dis = " disabled" if frozen else ""
     body = ['<section><h1>Gaps: things nobody raised</h1><p class="lead">Each gap carries a Vatsal recommendation and a suggested owner by first name. The meeting gives each one an owner and a date, or drops it. Nothing here is decided until the owner says so.</p></section>']
     for gp in gaps:
         body.append('<div class="gap" id="gap-%s"><div class="gap-h"><b>%s %s</b><span class="tag%s">impact %s</span><span class="tag">suggested owner: %s</span></div>' % (
             esc(gp["id"]), esc(gp["id"]), esc(gp["title"]), " hi" if gp["impact"] == "High" else "", esc(gp["impact"]), esc(names(gp["suggested_owner"]))))
+        if frozen:
+            rec = dec_gaps.get(gp["id"], {})
+            body.append('<div class="decided-line">%s</div>' % esc("Recorded in the meeting: " + (rec.get("status") or "no status")))
         body.append('<div class="why">%s</div>' % esc(gp["why"]))
         body.append('<div class="rec"><b>Vatsal recommendation:</b> %s</div>' % esc(gp["recommendation"]))
-        body.append('<div class="gap-c"><label>Status <select data-gap="%s" data-f="status"><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label>'
-                    '<label>Owner <input data-gap="%s" data-f="owner" placeholder="first name"></label><label>By <input type="date" data-gap="%s" data-f="date"></label></div>' % (esc(gp["id"]), esc(gp["id"]), esc(gp["id"])))
-        body.append('<textarea class="note" data-gap="%s" data-f="note" placeholder="Note"></textarea></div>' % esc(gp["id"]))
-    page = (head("yeslyf product board: gaps") + '<body>\n' + header("gaps.html", "product board, gaps") +
+        body.append('<div class="gap-c"><label>Status <select data-gap="%s" data-f="status"%s><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label>'
+                    '<label>Owner <input data-gap="%s" data-f="owner" placeholder="first name"%s></label><label>By <input type="date" data-gap="%s" data-f="date"%s></label></div>' % (esc(gp["id"]), dis, esc(gp["id"]), dis, esc(gp["id"]), dis))
+        body.append('<textarea class="note" data-gap="%s" data-f="note" placeholder="Note"%s></textarea></div>' % (esc(gp["id"]), dis))
+    page = (head("yeslyf product board: gaps") + '<body>\n' + header("gaps.html", "product board, gaps") + (frozen_banner() if frozen else "") +
             '<div class="layout"><nav class="nav">' + "".join('<a class="sub" href="#gap/%s">%s %s</a>' % (esc(g["id"]), esc(g["id"]), esc(g["title"][:40])) for g in gaps) + '</nav>' +
             '<main class="main">' + "\n".join(body) + '</main></div>\n<script>var DATA=' + build_data_blob(items, inputs, gaps) + ';</script>\n<script>' + JS_COMMON + '</script>\n</body>\n</html>\n')
     return page
 
 
-def build_inputs(items, inputs, gaps, ownership):
+def build_inputs(items, inputs, gaps, ownership, frozen=False):
     reviewers = ["Bhuvanaa", "Gaurav", "Harish", "Kajal", "Somil"]
     ws_ids = [w["id"] for w in ownership]
     statuses = ["open", "quick-accept", "accepted", "answered"]
@@ -420,7 +510,7 @@ def build_inputs(items, inputs, gaps, ownership):
              'open (attached to an item on the Meeting tab), quick-accept (the owner ticks it in the meeting), accepted (the owner of the workstream said it, or nothing is asked), '
              'answered (a factual question the v0.1 spec answers; the answer is quoted and credited to spec v0.1).</p>'
              '<div class="stats">%s</div></section>' % "".join('<div class="stat"><b>%d</b><span>%s</span></div>' % (counts.get(s, 0), s) for s in statuses))
-    page = (head("yeslyf product board: inputs") + '<body>\n' + header("inputs.html", "product board, inputs", show_export=False) +
+    page = (head("yeslyf product board: inputs") + '<body>\n' + header("inputs.html", "product board, inputs", show_export=False) + (frozen_banner() if frozen else "") +
             '<main class="main" style="max-width:none">' + intro + '<section>' + filters +
             '<div style="overflow-x:auto"><table><thead><tr><th>#</th><th>Reviewer</th><th>Screen</th><th>Verdict</th><th>Comment (raw)</th><th>Workstream, owner</th><th>Status</th><th>Item</th></tr></thead><tbody>' +
             "\n".join(rows) + '</tbody></table></div></section></main>\n<script>var DATA=' + build_data_blob(items, inputs, gaps) + ';</script>\n<script>' + JS_COMMON + '</script>\n</body>\n</html>\n')
@@ -445,6 +535,216 @@ def build_frame_page(current, subtitle, title, src, screens=None):
     return page
 
 
+# ---- v0.2 pages --------------------------------------------------------------------------------------------------
+
+def sid_link(sid, live_ids):
+    if sid in live_ids:
+        return '<a class="sid" href="wireframes_v02.html#%s">%s</a>' % (esc(sid), esc(sid))
+    return '<span class="sid">%s</span>' % esc(sid)
+
+
+def build_wire_v02(v02, states, reasons):
+    live = [s for s in v02["screens"] if s["v02"]["status"] != "dropped"]
+    dropped = [s["id"] for s in v02["screens"] if s["v02"]["status"] == "dropped"]
+    who = '<div class="who">Reviewing as <select id="reviewer"></select></div>'
+    bar = ('<div class="bar"><div id="tiers" class="tiers"></div>'
+           '<label>Path <select id="fpath"></select></label>'
+           '<label id="fstate-wrap">State <select id="fstate"></select></label>'
+           '<label>Compliance <select id="fcomp"></select></label>'
+           '<label>Template <select id="ftpl"></select></label>'
+           '<div class="actions"><button id="mapbtn">Journey map</button></div></div>\n'
+           '<div class="banner">All copy is placeholder pending compliance review; comment on language on any screen.</div>\n')
+    layout = ('<div class="layout">\n<aside id="nav" class="nav"></aside>\n'
+              '<main id="main" class="main"><div class="mobile-jump"><select id="jump"></select></div>'
+              '<div id="ribbon" class="ribbon"></div><div class="crumb-row"><span id="crumb"></span><span id="counter"></span></div>'
+              '<div id="statestrip" class="strip off"></div>'
+              '<div class="stage"><button id="prev" class="arrow" title="Previous screen">&larr;</button><div id="frame" class="frame phone"></div>'
+              '<button id="next" class="arrow" title="Next screen">&rarr;</button></div></main>\n'
+              '<aside class="side"><div class="review"><div class="review-t">Your verdict on this screen</div>'
+              '<div id="verdict" class="verdict"></div><div id="reason-wrap" class="reason-wrap off"><select id="reason"></select></div>'
+              '<textarea id="comment"></textarea></div><div id="spec" class="spec"></div></aside>\n</div>\n<div id="map" class="map"></div>\n')
+    data = ('<script>var SECTIONS=' + js_blob(v02["sections"]) + ';\nvar SCREENS=' + js_blob(live) + ';\nvar DROPPED=' + js_blob(dropped) +
+            ';\nvar STATES=' + js_blob(states["states"] if states else []) + ';\nvar REASONS=' + js_blob(reasons) + ';</script>\n')
+    page = (head("yeslyf wireframes v0.2", read_script("renderer_v02.css")) + '<body>\n' +
+            header("wireframes_v02.html", "wireframes v0.2, " + str(len(live)) + " screens", who_html=who, export_label="Export comments") +
+            bar + layout + data + '<script>' + read_script("renderer_v02.js") + '</script>\n</body>\n</html>\n')
+    return page
+
+
+def table_html(cols, rows):
+    return ('<div class="wrap"><table><thead><tr>' + "".join('<th>%s</th>' % esc(c) for c in cols) + '</tr></thead><tbody>' +
+            "".join('<tr>' + "".join('<td>%s</td>' % cell for cell in r) + '</tr>' for r in rows) + '</tbody></table></div>')
+
+
+def cell(v):
+    if isinstance(v, list):
+        return esc(", ".join(str(x) for x in v))
+    if isinstance(v, dict):
+        return esc("; ".join("%s: %s" % (k, x) for k, x in v.items()))
+    if isinstance(v, bool):
+        return "yes" if v else "no"
+    return esc(v)
+
+
+def generic(value, headers=None):
+    """Render any data shape as a table, a list or a paragraph; unknown shapes never break the build."""
+    if value is None:
+        return '<p class="meta">none</p>'
+    if isinstance(value, str):
+        return '<p>%s</p>' % esc(value)
+    if isinstance(value, dict):
+        if value and all(isinstance(x, dict) for x in value.values()):
+            keys = []
+            for x in value.values():
+                for k in x:
+                    if k not in keys:
+                        keys.append(k)
+            return table_html(["key"] + keys, [[esc(k)] + [cell(x.get(c, "")) for c in keys] for k, x in value.items()])
+        return table_html(["key", "value"], [[esc(k), cell(v)] for k, v in value.items()])
+    if isinstance(value, list):
+        if not value:
+            return '<p class="meta">none</p>'
+        if all(isinstance(x, dict) for x in value):
+            keys = []
+            for x in value:
+                for k in x:
+                    if k not in keys:
+                        keys.append(k)
+            return table_html(keys, [[cell(x.get(c, "")) for c in keys] for x in value])
+        if all(isinstance(x, list) for x in value):
+            width = max(len(x) for x in value)
+            cols = list(headers or [])
+            while len(cols) < width:
+                cols.append("col %d" % (len(cols) + 1))
+            return table_html(cols[:width], [[cell(c) for c in x] + [""] * (width - len(x)) for x in value])
+        return '<ul>' + "".join('<li>%s</li>' % cell(x) for x in value) + '</ul>'
+    return '<p>%s</p>' % esc(value)
+
+
+V01_ADMIN_SECTIONS = [
+    ("STACK", "Stack: bought tools", None),
+    ("PLACEMENT", "Placement: where each need lives", None),
+    ("CONTACT_FIELDS", "Contact fields", ["Field", "Source and use"]),
+    ("DEAL_FIELDS", "Deal fields", ["Field", "Detail"]),
+    ("EVENTS", "Events: app to CRM", ["Event", "Screen", "Fields"]),
+    ("INBOUND", "Inbound: CRM to app", ["Event", "Direction", "Fields"]),
+    ("NUDGES", "Nudges (v0.1 matrix)", None),
+    ("NUDGE_EXAMPLES", "Nudge examples", None),
+    ("COMPLIANCE", "Compliance records", ["Record", "Where it lives", "Export"]),
+    ("DECISIONS", "Decisions in the admin spec", None),
+]
+V02_ADMIN_SECTIONS = [
+    ("note_v02", "Note on v0.2"),
+    ("changes_v02", "Changes in v0.2"),
+    ("PLACEMENT_NOTE", "Placement note (v0.2)"),
+    ("DEAL_FIELDS_V02", "Deal fields added in v0.2"),
+    ("CONTACT_FIELDS_V02", "Contact fields added in v0.2"),
+    ("COMPLIANCE_NOTE", "Compliance records note (v0.2)"),
+]
+
+
+def nudge_matrix(states):
+    if not states:
+        return '<p class="meta">%s</p>' % esc(PENDING)
+    rows = []
+    for st in states["states"]:
+        esc_ = st.get("escalation") or {}
+        tier_rule = "; ".join("%s: %s" % (k.upper(), v) for k, v in esc_.items()) if isinstance(esc_, dict) else cell(esc_)
+        task = st.get("crm_task") or {}
+        if isinstance(task, dict):
+            task_txt = ("yes: " + cell(task.get("fields", ""))) if task.get("created") else "no"
+        else:
+            task_txt = cell(task)
+        ladder = st.get("ladder") or []
+        if not ladder:
+            rows.append([esc(st["id"]) + " " + esc(st.get("who", "")), "-", "-", "-", "-", esc(tier_rule), esc(task_txt)])
+        for step in ladder:
+            link = step.get("link", "")
+            rows.append([esc(st["id"]) + " " + esc(st.get("who", "")), cell(step.get("day", "")), cell(step.get("channel", "")), cell(step.get("slot", "")),
+                         esc(link), esc(tier_rule), esc(task_txt)])
+    return table_html(["State", "Day", "Channel", "Copy slot", "Deep link", "Tier rule", "CRM task"], rows)
+
+
+def build_admin_v02(admin, v02, states):
+    live = [s for s in v02["screens"] if s["v02"]["status"] != "dropped"]
+    body = ['<section><h1>Admin and CRM v0.2</h1><p class="lead">The v0.1 admin and CRM spec carried forward, then the v0.2 additions from plan_v2.md section 6: '
+            'the platform is to be decided (one platform); the nudge matrix covers states S1 to S25; the CRM backlog holds what the team said to remember for the CRM planning session.</p>'
+            '<p class="meta">Source: data/admin_crm.json and data/v02/states.json. The v0.1 spec is also served as-is on the Admin and CRM v0.1 tab.</p></section>']
+    nav = []
+    for key, title, headers in V01_ADMIN_SECTIONS:
+        if key not in admin:
+            continue
+        sec_id = "a-" + key.lower()
+        nav.append('<a href="#%s">%s</a>' % (sec_id, esc(title)))
+        note = admin.get(key + "_NOTE_V02") or admin.get(key.lower() + "_note_v02")
+        value = admin[key]
+        if key == "DECISIONS":
+            # owner_v01 is a v0.1 record kept in the data; the v0.2 page shows the question, the position and who stated it
+            value = [{k: v for k, v in d.items() if k != "owner_v01"} for d in value]
+        body.append('<section id="%s"><h2>%s</h2>%s%s</section>' % (sec_id, esc(title), ('<p class="rule">%s</p>' % esc(note)) if note else "", generic(value, headers)))
+    body.append('<section id="a-v02"><h2>v0.2 additions</h2><p class="meta">Cause on every row where the data carries one.</p></section>')
+    nav.append('<a href="#a-v02">v0.2 additions</a>')
+    for key, title in V02_ADMIN_SECTIONS:
+        if key in admin:
+            sec_id = "a-" + key.lower()
+            nav.append('<a class="sub" href="#%s">%s</a>' % (sec_id, esc(title)))
+            body.append('<section id="%s"><h3>%s</h3>%s</section>' % (sec_id, esc(title), generic(admin[key])))
+    v02_dec = [d for d in admin.get("DECISIONS", []) if d.get("id") not in ("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8")]
+    if v02_dec:
+        nav.append('<a class="sub" href="#a-decisions-v02">Decisions added in v0.2</a>')
+        body.append('<section id="a-decisions-v02"><h3>Decisions added in v0.2</h3>%s</section>' % generic(v02_dec))
+    nav.append('<a class="sub" href="#a-events-v02">Events v0.2</a>')
+    body.append('<section id="a-events-v02"><h3>Events v0.2 (every live screen, appendix D)</h3>%s</section>' % table_html(
+        ["Screen", "Template", "Events"], [[sid_link(s["id"], {x["id"] for x in live}), esc(s["template"]), esc(", ".join(s.get("events", [])))] for s in live]))
+    nav.append('<a class="sub" href="#a-nudges-v02">Nudges matrix v0.2</a>')
+    body.append('<section id="a-nudges-v02"><h3>Nudges matrix v0.2 (one row per state per ladder step)</h3>%s%s</section>' % (
+        ('<ul>' + "".join('<li>%s</li>' % esc(r) for r in states.get("rules", [])) + '</ul>') if states and states.get("rules") else "", nudge_matrix(states)))
+    nav.append('<a href="#a-backlog">CRM backlog</a>')
+    backlog = admin.get("CRM_BACKLOG")
+    body.append('<section id="a-backlog"><h2>CRM backlog</h2><p class="lead">Items the team said to remember for the CRM planning session.</p>%s</section>' % (
+        generic(backlog) if backlog else '<p class="meta">arrives with phase 6 (CRM_BACKLOG in data/admin_crm.json)</p>'))
+    page = (head("yeslyf admin and CRM v0.2") + '<body>\n' + header("admin_v02.html", "admin and CRM v0.2", show_export=False) +
+            '<div class="layout"><nav class="nav">' + "".join(nav) + '</nav><main class="main" style="max-width:none">' + "\n".join(body) +
+            '</main></div>\n<script>' + JS_PILL + '</script>\n</body>\n</html>\n')
+    return page
+
+
+def build_changelog(chg, v02):
+    live_ids = {s["id"] for s in v02["screens"] if s["v02"]["status"] != "dropped"}
+    c = chg["counts"]
+    body = ['<section><h1>Changelog: v0.1 to v0.2</h1><p class="lead">Every touched screen with its cause: a brief item, a review row, or "Vatsal, 10 Sep 2026". '
+            'Dropped screens keep their ID and point to where their content went. Counts for Spinach are at the end.</p>'
+            '<div class="stats"><div class="stat"><b>%d</b><span>screens in v0.2</span></div><div class="stat"><b>%d</b><span>changed</span></div>'
+            '<div class="stat"><b>%d</b><span>added</span></div><div class="stat"><b>%d</b><span>dropped</span></div><div class="stat"><b>%d</b><span>branches rerouted</span></div>'
+            '<div class="stat"><b>%d</b><span>brief items superseded</span></div><div class="stat"><b>%d</b><span>to be verified</span></div><div class="stat"><b>%d</b><span>templates</span></div></div></section>' % (
+                c["total"], len(chg["changed"]), len(chg["added"]), len(chg["dropped"]), len(chg["rerouted"]), len(chg["superseded"]), len(chg["to_be_verified"]), c["unique_templates"])]
+    body.append('<section id="c-changed"><h2>Changed<small>%d screens</small></h2>%s</section>' % (len(chg["changed"]), table_html(
+        ["Screen", "Title", "Status", "Cause"], [[sid_link(x["id"], live_ids), esc(x["title"]), '<span class="tag changed">%s</span>' % esc(x["status"]), esc("; ".join(x["causes"]))] for x in chg["changed"]])))
+    body.append('<section id="c-added"><h2>Added<small>%d screens</small></h2>%s</section>' % (len(chg["added"]), table_html(
+        ["Screen", "Title", "Template", "Cause"], [[sid_link(x["id"], live_ids), esc(x["title"]), esc(x.get("template", "")), esc("; ".join(x["causes"]))] for x in chg["added"]])))
+    body.append('<section id="c-dropped"><h2>Dropped<small>%d screens; IDs stay reserved</small></h2>%s</section>' % (len(chg["dropped"]), table_html(
+        ["Screen", "Title", "Where the content went", "Cause"], [[esc(x["id"]), esc(x["title"]), esc(x["pointer"]), esc("; ".join(x["causes"]))] for x in chg["dropped"]])))
+    body.append('<section id="c-rerouted"><h2>Rerouted branches<small>%d</small></h2>%s</section>' % (len(chg["rerouted"]), table_html(
+        ["Screen", "Branch", "From", "To", "Cause"], [[sid_link(x["screen"], live_ids), esc(x["label"]), esc(x["from"]), sid_link(x["to"], live_ids), esc(x.get("cause", ""))] for x in chg["rerouted"]])))
+    body.append('<section id="c-superseded"><h2>Superseded brief items<small>plan_v2.md section 0</small></h2>%s</section>' % table_html(
+        ["Item", "The brief recorded", "Applied instead", "Cause"], [[esc(x["item"]), esc(x["brief"]), esc(x["override"]), esc(x["cause"])] for x in chg["superseded"]]))
+    body.append('<section id="c-tbv"><h2>To be verified<small>%d items, by item</small></h2>%s</section>' % (len(chg["to_be_verified"]), table_html(
+        ["Item", "Screens"], [[esc(x["item"]), " ".join(sid_link(s, live_ids) for s in x["screens"])] for x in chg["to_be_verified"]])))
+    by_sec_rows = []
+    for sec, info in c["by_section"].items():
+        by_sec_rows.append([esc(sec), esc(info["name"]), str(info["screens"]), str(info["templates"]), esc(", ".join("%s %d" % kv for kv in info["by_template"].items()))])
+    body.append('<section id="c-counts"><h2>Counts for Spinach<small>templates and instances</small></h2>'
+                '<p class="meta">%d screens in v0.2 across %d unique templates. Status: %s.</p><h3>By section</h3>%s<h3>By template</h3>%s</section>' % (
+                    c["total"], c["unique_templates"], esc(", ".join("%s %d" % kv for kv in sorted(c["by_status"].items()))),
+                    table_html(["Section", "Name", "Screens", "Templates", "Instances per template"], by_sec_rows),
+                    table_html(["Template", "Screens"], [[esc(k), str(v)] for k, v in c["by_template"].items()])))
+    nav = "".join('<a href="#%s">%s</a>' % (a, b) for a, b in [("c-changed", "Changed"), ("c-added", "Added"), ("c-dropped", "Dropped"), ("c-rerouted", "Rerouted branches"),
+                                                                ("c-superseded", "Superseded brief items"), ("c-tbv", "To be verified"), ("c-counts", "Counts for Spinach")])
+    page = (head("yeslyf changelog v0.1 to v0.2") + '<body>\n' + header("changelog.html", "changelog, v0.1 to v0.2", show_export=False) +
+            '<div class="layout"><nav class="nav">' + nav + '</nav><main class="main">' + "\n".join(body) + '</main></div>\n<script>' + JS_PILL + '</script>\n</body>\n</html>\n')
+    return page
+
+
 def build_setup():
     steps = ('<section class="setup"><h1>Setup: sheet write-back</h1>'
              '<p class="lead">The site works without this: choices save per browser and Export brief produces the record. With an endpoint, every change is also appended to the Google Sheet "yeslyf decisions" as it happens, from every device, no login needed for anyone.</p>'
@@ -454,9 +754,10 @@ def build_setup():
              '<li>Open the Google Sheet "yeslyf decisions" in Vatsal\'s Drive (created 9 Sep 2026; Vatsal shares the link). Extensions, Apps Script. Replace the code with the block below. Save.</li>'
              '<li>Deploy, New deployment, type Web app. Execute as: Me. Who has access: Anyone. Deploy, authorise, copy the web app URL.</li>'
              '<li>Paste the URL in the field above on each device that will take decisions, or share the link index.html?endpoint=THE_URL once; the page stores it and then removes it from the address bar.</li></ol>'
+             '<p class="rule">v0.2 review comments write to a fourth tab, v02_comments, which the script below creates on first use; redeploy the web app once with this version of the script (Deploy, Manage deployments, edit, new version) or the rows land on the "other" tab as JSON.</p>'
              '<details open><summary>Apps Script (doPost appends a row to the right tab; creates the tabs on first use)</summary><pre id="script"></pre></details>'
              '<details><summary>Sheet columns (also in sheet_template.csv)</summary><pre>decisions:     ts, who, item_id, choice, choice_text, note\n'
-             'gaps:          ts, who, gap_id, status, owner_date, note\nquick_accepts: ts, who, input_n, accept, note</pre>'
+             'gaps:          ts, who, gap_id, status, owner_date, note\nquick_accepts: ts, who, input_n, accept, note\nv02_comments:  ts, who, screen, verdict, reason, text</pre>'
              '<p class="meta"><a href="sheet_template.csv">Download sheet_template.csv</a> (one block per tab, to paste if you prefer to create the tabs by hand).</p></details>'
              '<details><summary>Read path after the meeting</summary><p class="meta">File, Share, Publish to web, the whole document as CSV; give Vatsal the link. scripts/pull_sheet.py reads it; last write per item wins; every row is kept in data/decisions_raw.json.</p></details>'
              '</section>')
@@ -473,10 +774,11 @@ APPS_SCRIPT = """function doPost(e) {
   var tabs = {
     decisions: ["ts", "who", "item_id", "choice", "choice_text", "note"],
     gaps: ["ts", "who", "gap_id", "status", "owner_date", "note"],
-    quick_accepts: ["ts", "who", "input_n", "accept", "note"]
+    quick_accepts: ["ts", "who", "input_n", "accept", "note"],
+    v02_comments: ["ts", "who", "screen", "verdict", "reason", "text"]
   };
-  var name = tabs[d.kind] ? d.kind : "other";
-  var cols = tabs[name] || ["ts", "who", "kind", "payload"];
+  var name = (d.tab && String(d.tab).length) ? String(d.tab) : (tabs[d.kind] ? d.kind : "other");
+  var cols = tabs[name] || ((d.cols && d.cols.length) ? d.cols : ["ts", "who", "kind", "payload"]);
   var sh = ss.getSheetByName(name);
   if (!sh) { sh = ss.insertSheet(name); sh.appendRow(cols); }
   var row = cols.map(function (c) { return c === "payload" ? JSON.stringify(d) : (d[c] === undefined ? "" : d[c]); });
@@ -491,6 +793,8 @@ ts,who,item_id,choice,choice_text,note
 ts,who,gap_id,status,owner_date,note
 # tab: quick_accepts
 ts,who,input_n,accept,note
+# tab: v02_comments
+ts,who,screen,verdict,reason,text
 """
 
 
@@ -506,16 +810,25 @@ def main():
     gaps = load("gaps.json")["gaps"]
     ownership = load("ownership.json")["workstreams"]
     screens = load("screens_v01.json")["screens"]
+    decisions = load("decisions.json")
+    v02 = load("screens_v02.json")
+    changelog = load("changelog.json")
+    reasons = load("compliance_reasons.json")["reasons"]
+    admin = load("admin_crm.json")
+    states = load_optional("v02", "states.json")
 
     os.makedirs(os.path.join(DOCS, "v01"), exist_ok=True)
     for f in V01_FILES:
         shutil.copyfile(os.path.join(V01_IN, f), os.path.join(DOCS, "v01", f))
     pages = {
-        "index.html": build_meeting(items, inputs, gaps),
-        "gaps.html": build_gaps(items, inputs, gaps),
-        "inputs.html": build_inputs(items, inputs, gaps, ownership),
+        "index.html": build_meeting(items, inputs, gaps, decisions),
+        "gaps.html": build_gaps(items, inputs, gaps, decisions),
+        "inputs.html": build_inputs(items, inputs, gaps, ownership, frozen=True),
         "wireframes.html": build_frame_page("wireframes.html", "wireframes v0.1, served as-is", "yeslyf wireframes v0.1", WIRE, screens),
         "admin.html": build_frame_page("admin.html", "admin and CRM spec v0.1, served as-is", "yeslyf admin and CRM spec v0.1", ADMIN),
+        "wireframes_v02.html": build_wire_v02(v02, states, reasons),
+        "admin_v02.html": build_admin_v02(admin, v02, states),
+        "changelog.html": build_changelog(changelog, v02),
         "setup.html": build_setup(),
         "sheet_template.csv": SHEET_TEMPLATE,
     }
@@ -536,20 +849,32 @@ def main():
     if markup.lower().count("recommendation") != n_dep:
         problems.append("meeting page: 'recommendation' appears %d times, expected %d (dependency blocks only)" % (markup.lower().count("recommendation"), n_dep))
     for name, text in pages.items():
-        if "founder" in text.lower():
-            problems.append(name + " contains 'founders'")
         if name.endswith(".html") and 'name="robots" content="noindex' not in text:
             problems.append(name + " lacks noindex")
+    for name in V02_PAGES:
+        text = pages[name]
+        for word in FORBIDDEN:
+            i = text.find(word)
+            while i >= 0:
+                problems.append("%s contains %r: ...%s..." % (name, word, text[max(0, i - 50):i + len(word) + 30].replace("\n", " ")))
+                i = text.find(word, i + 1)
     for it in items:
         if it["owner"] == ["Team"] and ('name="item-%s"' % it["id"]) in meeting and ("checked" in meeting.split('id="item-%s"' % it["id"])[1].split("</div>\n<div class=\"item\"")[0].split("<textarea")[0]):
             problems.append("Team item %s has something preselected" % it["id"])
+    for f in V01_FILES:
+        if not filecmp.cmp(os.path.join(V01_IN, f), os.path.join(DOCS, "v01", f), shallow=False):
+            problems.append("docs/v01/%s differs from inputs/v01/" % f)
     if problems:
-        for p in problems:
+        for p in problems[:60]:
             print("ERROR: " + p)
+        if len(problems) > 60:
+            print("ERROR: ... %d more" % (len(problems) - 60))
         sys.exit(1)
     for name, text in pages.items():
         print("wrote docs/%s (%d bytes)" % (name, len(text)))
     print("copied %d v0.1 files into docs/v01/ unchanged" % len(V01_FILES))
+    if states is None:
+        print("note: data/v02/states.json absent; the state filter and the nudge matrix show the placeholder line")
 
 
 if __name__ == "__main__":

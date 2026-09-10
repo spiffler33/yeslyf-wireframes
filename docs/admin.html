@@ -28,13 +28,15 @@
   .pill.on{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
   .top .primary{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
   .top .ghost{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:6px;cursor:pointer}
+  .frozen{padding:6px 18px;background:#F1F2F4;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--mute)}
+  .decided-line{font-size:12.5px;margin:0 0 8px;padding:5px 10px;border-radius:6px;background:var(--accent-soft);border:1px solid #C9A800}
   .layout{display:grid;grid-template-columns:240px minmax(0,1fr)}
   .nav{position:sticky;top:49px;height:calc(100vh - 49px);overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:10px 0}
   .nav a{display:block;padding:6px 14px 6px 11px;text-decoration:none;font-size:13px;border-left:3px solid transparent}
   .nav a:hover{background:#F5F6F8}
   .nav .sub{padding-left:24px;font-size:12px;color:var(--mute)}
   .main{padding:18px 26px 120px;max-width:1150px}
-  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px;scroll-margin-top:60px}
   h1{font-size:22px;margin:0 0 6px}
   h2{font-size:17px;margin:0 0 4px}
   h2 small{font-weight:400;color:var(--mute);font-size:13px;margin-left:8px}
@@ -54,6 +56,8 @@
   .tag.hi{border-color:#B2434F;color:#B2434F;font-weight:600}
   .tag.team{border-color:var(--ink);color:var(--ink);font-weight:600}
   .tag.done{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .tag.new{border-color:var(--ink);color:var(--ink)}
+  .tag.changed{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
   .screens a{font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;margin-right:3px;background:#fff}
   .ctx{font-size:13px;margin:0 0 8px;color:#3B4250}
   .pos{margin:0 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
@@ -81,6 +85,7 @@
   .qa button.on{background:var(--accent);border-color:#C9A800;font-weight:600}
   .qa button.on.no{background:#F1F2F4;border-color:var(--ink)}
   .qa input{padding:4px 6px;border:1px solid var(--line);border-radius:5px;width:180px}
+  .qa .decided-line{grid-column:1 / -1;margin:0}
   .gap{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 8px;background:#FCFCFD;scroll-margin-top:60px}
   .gap-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
   .gap .why{font-size:12.5px;color:#3B4250;margin:6px 0}
@@ -106,11 +111,14 @@
   .frame-bar{display:flex;gap:10px;align-items:center;padding:6px 18px;background:var(--panel);border-bottom:1px solid var(--line);font-size:12px;color:var(--mute);flex-wrap:wrap}
   .frame-bar select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff;max-width:360px}
   .frame-wrap.with-bar{height:calc(100vh - 88px)}
+  .wrap{overflow-x:auto}
+  .sid{font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;background:#fff;white-space:nowrap}
+  .cause{color:var(--mute);font-size:11.5px}
   @media (max-width:1000px){.layout{display:block}.nav{display:none}.main{padding:12px}.who{margin-left:0}.qa{grid-template-columns:1fr}.qa .c{justify-content:flex-start}}
 </style>
 </head>
 <body>
-<header class="top"><div class="brand">yeslyf <span>admin and CRM spec v0.1, served as-is</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html" class="on">Admin and CRM</a><a href="setup.html">Setup</a></nav><div class="who">Decided by <input id="who" placeholder="your first name"></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a></header>
+<header class="top"><div class="brand">yeslyf <span>admin and CRM spec v0.1, served as-is</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html" class="on">Admin and CRM v0.1</a><a href="wireframes_v02.html">Wireframes v0.2</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="changelog.html">Changelog</a><a href="setup.html">Setup</a></nav><div class="who">Decided by <input id="who" placeholder="your first name"></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a></header>
 <div class="frame-bar"><a href="v01/yeslyf_admin_crm_spec_v0.1.html" target="_blank">Open the v0.1 file in its own tab</a><span>Served as-is from docs/v01/; screen IDs inside it link to the wireframes.</span></div><div class="frame-wrap with-bar"><iframe id="fr" title="yeslyf admin and CRM spec v0.1"></iframe></div>
 <script>var fr=document.getElementById("fr");fr.src="v01/yeslyf_admin_crm_spec_v0.1.html"+(location.hash||"");</script>
 <script>
