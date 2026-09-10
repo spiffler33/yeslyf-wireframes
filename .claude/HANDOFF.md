@@ -1,37 +1,46 @@
-# Handoff - 10 Sep 2026 (phase closed: the meeting board, PLAN.md Phases 0 to 2)
+# Handoff - 10 Sep 2026 (phase closed: wireframes v0.2, plan_v2.md phases 3 to 8)
 
-State: the yeslyf product board is built, live and finished its job. The team meeting ran on it on
-9 Sep 2026, the decisions are exported, and the next unit of work is wireframes v0.2 from plan_v2.md.
+State: v0.2 is built, checked and live. The next unit of work is the second review round (the team, Spinach and
+the compliance reviewers comment through the v0.2 tabs; rows land on the v02_comments sheet tab once spiff
+redeploys the Apps Script) and the CRM planning session (Admin and CRM v0.2 tab, CRM backlog section).
 
 ## Read first
-1. `plan_v2.md` - the plan to run. Section 0 holds two defaults that become Vatsal's decisions if the
-   plan is run unedited; check with spiff whether he has edited them before starting.
-2. `inputs/meeting/yeslyf_meeting_brief_2026-09-09.md` - what the room decided, all 18 items.
-3. `PLAN.md` section 12 (status) plus sections 1 to 6, which still hold. Sections 7 to 11 are superseded.
+1. `plan_v2.md` (the brief that was run) and `CLAUDE.md` v2 (the rules; v0.2 pages carry causes, never owner
+   markers or names on callouts).
+2. `PLAN.md` section 13 (status) plus sections 1 to 6 (repo, data layer).
+3. `data/changelog.json` for what changed and why; `docs/changelog.html` is its page.
 
 ## Verify before coding
-- `git status --short` is empty; HEAD is the 10 Sep phase-boundary commit.
-- `python3 scripts/build_site.py` prints seven "wrote docs/..." lines and rebuilds `docs/` byte-identical
-  to what is committed. `git status --short` must still be empty afterwards.
-- `python3 scripts/assign_inputs.py` exits 0 and prints `{'open': 26, 'quick-accept': 14, 'accepted': 21,
-  'answered': 12}` (73 rows). It is the data-layer validator; run it after any change to data/.
-- `cmp inputs/v01/yeslyf_wireframes_v0.1.html docs/v01/yeslyf_wireframes_v0.1.html` is silent, same for
-  the admin/CRM file.
+- `git status --short` is empty; HEAD is the v0.2 final commit.
+- `python3 scripts/apply_decisions.py` rebuilds `data/screens_v02.json` and `data/changelog.json` unchanged
+  (188 live screens, 21 templates); `python3 scripts/validate_v02.py` prints seven PASS lines.
+- `python3 scripts/build_site.py` rewrites docs/ byte-identical; `python3 scripts/check_site.py` prints three PASS
+  lines; `git status --short` is still empty afterwards.
+- `cmp inputs/v01/yeslyf_wireframes_v0.1.html docs/v01/yeslyf_wireframes_v0.1.html` is silent, same for the
+  admin file.
 
-## What to do next
-Run plan_v2.md, Phase 3 onward. Do not run Phase 3 from PLAN.md; it describes a different plan.
+## How the build is layered (edit data, never docs/)
+- v0.1 skeleton (`data/screens_v01.json`, never edited) -> `data/screen_meta_v02.json` (template, path, compliance,
+  events per carried screen) -> `data/decision_effects.json` groups in order (brief items, then the section 0
+  overrides, then CLAUDE.md wording) -> `data/v02/*edits*.json` groups (phases 4 to 6) -> `data/v02/screens_*.json`
+  full screens -> generated instances (`scripts/gen_spine.py` over `data/v02/spine.json`; `scripts/gen_states.py`
+  over `data/v02/states.json`) -> `data/v02/flow.json` order -> events by template -> validation -> write.
+- Every edit op matches an exact existing string and stops the build if it is not found. Every screen carries
+  v02.status and v02.causes; the changelog derives from them.
+- `UNTIL_PHASE=4 python3 scripts/apply_decisions.py` builds without the phase 5 files (used for the phase commits).
 
-Constraints carried forward.
-- The two v0.1 HTML files are frozen. spiff, 9 Sep 2026: "do not change wireframes as well as crm/admin
-  htmls at all - everyone is used to them now". They are served byte-identical from `docs/v01/`.
-- `inputs/` is read-only. `docs/` is generated; never hand-edit it. `data/*.json` is the single source.
-- The repo's own CLAUDE.md governs voice and attribution: first names only, never "founders", never
-  "recommendation" on an open item, "Vatsal recommendation" only on gaps and dependency blocks, ASCII
-  only, "Rs" never the rupee symbol.
-- Screen IDs are permanent; new screens take the next free number in their section.
-- Two brief anomalies to resolve before applying them: T1 has all four SKU options ticked, including the
-  one-time card whose dependency block removes the 60-day credit rule; T2 records no choice, only the
-  note "DIY no calls at all only a la carte, DIWM - 4 qtrly review calls".
-- Secrets stay out of the repo. The sheet id and Apps Script endpoint live in `.local/sheet.json`,
-  gitignored. The two HoA PDFs are gitignored: they carry a client's name, PAN, address and phone.
-- The Pages site is private-repo but publicly reachable by URL; noindex stays on every generated page.
+## Constraints carried forward
+- inputs/ is read-only; docs/ is generated; docs/v01/ stays byte-identical to inputs/v01/.
+- Screen IDs are permanent; dropped screens keep their ID with a pointer (R11, G02, G08, D05, D06, D08).
+- No adviser is named on any screen; "yeslyf" lowercase; "Rs"; "N calls"; "about N minutes"; "Rs ___".
+- The frozen Meeting, Gaps and Inputs tabs keep their v0.1 content; new gaps go under the v02 key of
+  data/gaps.json; meeting outcomes sit on inputs.json rows as a "meeting" field, statuses untouched.
+- Subagents: Opus is the floor, never Sonnet (spiff, 10 Sep 2026).
+- Secrets stay out of the repo (.local/sheet.json); the Pages site is noindex and shared by URL only.
+
+## Open items
+- spiff: redeploy the Apps Script web app once (Deploy, Manage deployments, edit, new version) so the
+  v02_comments tab receives rows; until then v0.2 comments land on the "other" tab as JSON payloads.
+- The to-be-verified list (24 items) and gaps G14 to G16 are on the Changelog tab.
+- The FP React analysis found the component crashes on any missing money field; branch B is recorded in
+  data/fp_react_inputs.json for the developers.
