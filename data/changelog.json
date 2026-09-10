@@ -2,6 +2,14 @@
  "source": "scripts/apply_decisions.py over data/screens_v01.json, data/decision_effects.json and data/v02/",
  "changed": [
   {
+   "id": "X00",
+   "title": "How to read this file",
+   "status": "rebuilt",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
    "id": "A02",
    "title": "Mobile number",
    "status": "changed",
@@ -90,33 +98,64 @@
   {
    "id": "O02",
    "title": "Your next steps (hub)",
+   "status": "rebuilt",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+    "Vatsal, 10 Sep 2026",
+    "row 26 (declined, no change to the step wording)"
+   ]
+  },
+  {
+   "id": "A05",
+   "title": "How should I get your numbers?",
+   "status": "rebuilt",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "4.1 bug fix"
+   ]
+  },
+  {
+   "id": "A06",
+   "title": "AA consent (vendor flow)",
    "status": "changed",
    "causes": [
-    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "A07",
+   "title": "Fetching",
+   "status": "changed",
+   "causes": [
+    "4.1 bug fix"
+   ]
+  },
+  {
+   "id": "A08",
+   "title": "Here is what came through",
+   "status": "changed",
+   "causes": [
+    "4.1 bug fix"
    ]
   },
   {
    "id": "A09",
    "title": "AA partial or failed",
-   "status": "changed",
+   "status": "rebuilt",
    "causes": [
-    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
+    "4.1 bug fix",
+    "Vatsal, 10 Sep 2026"
    ]
   },
   {
-   "id": "D04",
-   "title": "Insurance",
+   "id": "D01",
+   "title": "Family circle",
    "status": "changed",
    "causes": [
-    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
-   ]
-  },
-  {
-   "id": "D08",
-   "title": "Risk profile (8 questions)",
-   "status": "changed",
-   "causes": [
-    "brief H3"
+    "Vatsal, 10 Sep 2026",
+    "row 8",
+    "4.1 bug fix"
    ]
   },
   {
@@ -124,7 +163,52 @@
    "title": "Your risk profile",
    "status": "changed",
    "causes": [
-    "brief H3"
+    "brief H3",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D02",
+   "title": "Your investments, by type",
+   "status": "rebuilt",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "4.1 bug fix"
+   ]
+  },
+  {
+   "id": "D03",
+   "title": "Loans and dues",
+   "status": "changed",
+   "causes": [
+    "row 59",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D04",
+   "title": "Insurance",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
+    "row 60",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D07",
+   "title": "Goals and key life events",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D10",
+   "title": "Review, build, and what would sharpen it",
+   "status": "rebuilt",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
    ]
   },
   {
@@ -143,7 +227,16 @@
    "causes": [
     "brief B2",
     "brief B4",
-    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "G04",
+   "title": "Plan: emergency fund",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
    ]
   },
   {
@@ -151,7 +244,16 @@
    "title": "Plan: protection",
    "status": "changed",
    "causes": [
-    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "G06",
+   "title": "Plan: cashflow",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
    ]
   },
   {
@@ -159,7 +261,8 @@
    "title": "Plan: debt",
    "status": "changed",
    "causes": [
-    "brief B4"
+    "brief B4",
+    "Vatsal, 10 Sep 2026"
    ]
   },
   {
@@ -168,7 +271,8 @@
    "status": "changed",
    "causes": [
     "brief B3",
-    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
+    "Vatsal, 10 Sep 2026"
    ]
   },
   {
@@ -177,7 +281,8 @@
    "status": "changed",
    "causes": [
     "brief B3",
-    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
+    "Vatsal, 10 Sep 2026"
    ]
   },
   {
@@ -185,7 +290,8 @@
    "title": "Investment plan: allocation",
    "status": "changed",
    "causes": [
-    "brief H1"
+    "brief H1",
+    "Vatsal, 10 Sep 2026"
    ]
   },
   {
@@ -193,7 +299,16 @@
    "title": "Investment plan: your existing holdings",
    "status": "changed",
    "causes": [
-    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "G13",
+   "title": "Investment plan: what to buy",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
    ]
   },
   {
@@ -201,7 +316,8 @@
    "title": "Action plan",
    "status": "changed",
    "causes": [
-    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+    "Vatsal, 10 Sep 2026"
    ]
   },
   {
@@ -290,7 +406,8 @@
    "title": "Vault",
    "status": "changed",
    "causes": [
-    "brief G1 (default, not confirmed in the meeting)"
+    "brief G1 (default, not confirmed in the meeting)",
+    "Vatsal, 10 Sep 2026"
    ]
   },
   {
@@ -366,7 +483,8 @@
    "status": "changed",
    "causes": [
     "brief B3",
-    "brief H1"
+    "brief H1",
+    "Vatsal, 10 Sep 2026"
    ]
   },
   {
@@ -406,6 +524,456 @@
   }
  ],
  "added": [
+  {
+   "id": "O03",
+   "title": "When will you finish?",
+   "template": "T-sheet",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "A05a",
+   "title": "Your bank is slow right now",
+   "template": "T-source",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "A10",
+   "title": "Your CAS: request it",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "4.1 bug fix"
+   ]
+  },
+  {
+   "id": "A10a",
+   "title": "Your CAS: waiting for the email",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "A10b",
+   "title": "Your CAS: upload and password",
+   "template": "T-upload",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "A10c",
+   "title": "Your CAS: what I read",
+   "template": "T-review",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D00",
+   "title": "Before you start",
+   "template": "T-card-stack",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D01a",
+   "title": "Member detail",
+   "template": "T-detail",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D12a",
+   "title": "Section insight: family",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Stage 3"
+   ]
+  },
+  {
+   "id": "D08a",
+   "title": "Risk profile question 1",
+   "template": "T-tap",
+   "causes": [
+    "brief H3",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D08b",
+   "title": "Risk profile question 2",
+   "template": "T-tap",
+   "causes": [
+    "brief H3",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D08c",
+   "title": "Risk profile question 3",
+   "template": "T-tap",
+   "causes": [
+    "brief H3",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D08d",
+   "title": "Risk profile question 4",
+   "template": "T-tap",
+   "causes": [
+    "brief H3",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D08e",
+   "title": "Risk profile question 5",
+   "template": "T-tap",
+   "causes": [
+    "brief H3",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D08f",
+   "title": "Risk profile question 6",
+   "template": "T-tap",
+   "causes": [
+    "brief H3",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D08g",
+   "title": "Risk profile question 7",
+   "template": "T-tap",
+   "causes": [
+    "brief H3",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D08h",
+   "title": "Risk profile question 8",
+   "template": "T-tap",
+   "causes": [
+    "brief H3",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D12b",
+   "title": "Section insight: risk profile",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Stage 3"
+   ]
+  },
+  {
+   "id": "D05a",
+   "title": "Your monthly take-home",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D05b",
+   "title": "Partner's take-home",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D05c",
+   "title": "Rental income",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D05d",
+   "title": "Other income",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D12c",
+   "title": "Section insight: income",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Stage 3"
+   ]
+  },
+  {
+   "id": "D06a",
+   "title": "Total monthly outgoings",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D06b",
+   "title": "The three buckets",
+   "template": "T-split",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D06c",
+   "title": "How the month ends",
+   "template": "T-tap",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Q1.4"
+   ]
+  },
+  {
+   "id": "D06d",
+   "title": "Already investing every month",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D12d",
+   "title": "Section insight: expenses",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Stage 3"
+   ]
+  },
+  {
+   "id": "D02a",
+   "title": "Bank balances and deposits",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D02b",
+   "title": "Mutual funds",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D02c",
+   "title": "Stocks and ETFs",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D02d",
+   "title": "NPS",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D02e",
+   "title": "EPF",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D02f",
+   "title": "PPF and post office",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D02g",
+   "title": "Gold and silver",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D02h",
+   "title": "Property",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D02i",
+   "title": "ULIP or endowment",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D02j",
+   "title": "Anything else",
+   "template": "T-num",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D12e",
+   "title": "Section insight: investments",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Stage 3"
+   ]
+  },
+  {
+   "id": "D03a",
+   "title": "Loan detail",
+   "template": "T-detail",
+   "causes": [
+    "row 59",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D12f",
+   "title": "Section insight: loans",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Stage 3"
+   ]
+  },
+  {
+   "id": "D04a",
+   "title": "Term cover",
+   "template": "T-detail",
+   "causes": [
+    "row 60",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D04b",
+   "title": "Health cover",
+   "template": "T-detail",
+   "causes": [
+    "row 60",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D04c",
+   "title": "Other policy",
+   "template": "T-detail",
+   "causes": [
+    "row 60",
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D12g",
+   "title": "Section insight: insurance",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Stage 3"
+   ]
+  },
+  {
+   "id": "D07a",
+   "title": "Goal detail",
+   "template": "T-detail",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Q4.4b"
+   ]
+  },
+  {
+   "id": "D07b",
+   "title": "Work-optional age",
+   "template": "T-tap",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D12h",
+   "title": "Section insight: goals",
+   "template": "T-card",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Stage 3"
+   ]
+  },
+  {
+   "id": "D11a",
+   "title": "Still there? (45 seconds)",
+   "template": "T-sheet",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Stage 3"
+   ]
+  },
+  {
+   "id": "D11b",
+   "title": "Why this one matters (90 seconds)",
+   "template": "T-sheet",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Stage 3"
+   ]
+  },
+  {
+   "id": "D11c",
+   "title": "Skip for now (120 seconds)",
+   "template": "T-sheet",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "V5 Stage 3"
+   ]
+  },
+  {
+   "id": "G01a",
+   "title": "Building your plan, built on what we have",
+   "template": "T-progress",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "G12a",
+   "title": "Locked holdings",
+   "template": "T-locked",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
   {
    "id": "K05",
    "title": "Pick a slot",
@@ -521,6 +1089,30 @@
    ]
   },
   {
+   "id": "D05",
+   "title": "Income",
+   "pointer": "split into D05a to D05d (one question per screen, rule 2)",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D06",
+   "title": "Expenses and existing investing",
+   "pointer": "split into D06a to D06d (one question per screen, rule 2)",
+   "causes": [
+    "Vatsal, 10 Sep 2026"
+   ]
+  },
+  {
+   "id": "D08",
+   "title": "Risk profile (8 questions)",
+   "pointer": "drawn as D08a to D08h, one HoA question per screen (brief H3)",
+   "causes": [
+    "brief H3"
+   ]
+  },
+  {
    "id": "G02",
    "title": "Clarity picture",
    "pointer": "G03 (realisable vs locked corpus, current allocation by class and current weighted return fold into G03 as ledger rows)",
@@ -588,10 +1180,38 @@
  ],
  "to_be_verified": [
   {
+   "item": "CAS parsing effort in V1",
+   "screens": [
+    "A10"
+   ]
+  },
+  {
    "item": "DPDP notice text (gap G03",
    "screens": [
     "A04",
     "H09"
+   ]
+  },
+  {
+   "item": "NPS on AA",
+   "screens": [
+    "D02d"
+   ]
+  },
+  {
+   "item": "TSP FIP health API readable before consent",
+   "screens": [
+    "A05a"
+   ]
+  },
+  {
+   "item": "V1 covers CAS only via A10",
+   "screens": [
+    "D02d",
+    "D04a",
+    "D04b",
+    "D04c",
+    "H06"
    ]
   },
   {
@@ -613,6 +1233,13 @@
    "item": "mandate type and limits for monthly and quarterly recurring UPI",
    "screens": [
     "P04"
+   ]
+  },
+  {
+   "item": "maximum AA consent validity and fetch frequency under the wealth-management purpose",
+   "screens": [
+    "A05",
+    "A06"
    ]
   },
   {
@@ -640,9 +1267,48 @@
    ]
   },
   {
+   "item": "the Q7 wording",
+   "screens": [
+    "D08g"
+   ]
+  },
+  {
+   "item": "the Q8 wording",
+   "screens": [
+    "D08h"
+   ]
+  },
+  {
    "item": "the RPQ scoring map (gap G06",
    "screens": [
-    "D08"
+    "D08a",
+    "D08b",
+    "D08c",
+    "D08d",
+    "D08e",
+    "D08f",
+    "D08g",
+    "D08h",
+    "D09"
+   ]
+  },
+  {
+   "item": "the current service numbers and that the deep link works on both platforms",
+   "screens": [
+    "D02e"
+   ]
+  },
+  {
+   "item": "the declaration wording against HoA's current questionnaire",
+   "screens": [
+    "D10"
+   ]
+  },
+  {
+   "item": "the default asset mix for unknown splits",
+   "screens": [
+    "D02",
+    "L02"
    ]
   },
   {
@@ -659,22 +1325,27 @@
   }
  ],
  "counts": {
-  "total": 97,
-  "unique_templates": 15,
+  "total": 147,
+  "unique_templates": 20,
   "by_template": {
-   "T-card": 14,
-   "T-card-stack": 19,
+   "T-card": 24,
+   "T-card-stack": 20,
    "T-chart": 6,
+   "T-detail": 6,
    "T-hub": 3,
    "T-list": 14,
-   "T-num": 2,
+   "T-locked": 1,
+   "T-num": 16,
    "T-paywall": 2,
    "T-picker": 1,
-   "T-progress": 3,
-   "T-review": 4,
-   "T-source": 1,
+   "T-progress": 4,
+   "T-review": 5,
+   "T-sheet": 4,
+   "T-source": 2,
+   "T-split": 1,
    "T-table": 13,
-   "T-tap": 10,
+   "T-tap": 19,
+   "T-upload": 1,
    "T-video": 2,
    "T-webview": 3
   },
@@ -722,38 +1393,44 @@
    },
    "O": {
     "name": "Onboarding hub",
-    "screens": 2,
-    "templates": 2,
+    "screens": 3,
+    "templates": 3,
     "by_template": {
      "T-card-stack": 1,
-     "T-hub": 1
+     "T-hub": 1,
+     "T-sheet": 1
     }
    },
    "D": {
     "name": "Data collection",
-    "screens": 15,
-    "templates": 9,
+    "screens": 62,
+    "templates": 13,
     "by_template": {
-     "T-card": 1,
-     "T-card-stack": 1,
+     "T-card": 11,
+     "T-card-stack": 2,
+     "T-detail": 6,
      "T-list": 5,
-     "T-num": 2,
+     "T-num": 16,
      "T-progress": 1,
-     "T-review": 2,
-     "T-source": 1,
-     "T-tap": 1,
+     "T-review": 3,
+     "T-sheet": 3,
+     "T-source": 2,
+     "T-split": 1,
+     "T-tap": 10,
+     "T-upload": 1,
      "T-webview": 1
     }
    },
    "G": {
     "name": "Outputs: plan and investment plan",
-    "screens": 12,
-    "templates": 4,
+    "screens": 14,
+    "templates": 5,
     "by_template": {
      "T-card-stack": 9,
      "T-chart": 1,
      "T-list": 1,
-     "T-progress": 1
+     "T-locked": 1,
+     "T-progress": 2
     }
    },
    "K": {
@@ -828,11 +1505,11 @@
    }
   },
   "by_status": {
-   "kept": 36,
-   "changed": 38,
-   "dropped": 3,
-   "rebuilt": 10,
-   "new": 13
+   "rebuilt": 16,
+   "kept": 21,
+   "changed": 44,
+   "new": 66,
+   "dropped": 6
   }
  }
 }

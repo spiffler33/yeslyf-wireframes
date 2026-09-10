@@ -170,6 +170,12 @@ class Build:
                 raise SystemExit("%s: ui[%d] is not a table" % (s["id"], e["index"]))
             s["ui"][e["index"]] = e["value"]
             self.touch(s, cause)
+        elif op == "table_add_row":
+            row = s["ui"][e["index"]]
+            if row[0] != "table":
+                raise SystemExit("%s: ui[%d] is not a table" % (s["id"], e["index"]))
+            row[2].append(e["value"])
+            self.touch(s, cause)
         elif op in ("spec_replace", "spec_remove"):
             lines = s["spec"][e["key"]]
             hits = [i for i, l in enumerate(lines) if l == e["match"]]
@@ -223,20 +229,64 @@ class Build:
 
     # ---- overlays -----------------------------------------------------------------------------------------
     def overlay(self):
+        """Phases 4 and 5: edit groups (data/v02/*edits*.json), full screens (data/v02/screens_*.json),
+        generated instances (gen_spine over spine.json, gen_states over states.json), then flow.json order."""
         files = sorted(glob.glob(os.path.join(DATA, "v02", "*.json")))
+        until = int(os.environ.get("UNTIL_PHASE", "9"))
+        if until < 5:
+            files = [p for p in files if not os.path.basename(p).startswith("phase5") and os.path.basename(p) != "states.json"]
         for path in files:
             name = os.path.basename(path)
-            if name == "flow.json":
+            if "edits" not in name:
                 continue
             with open(path) as fh:
                 doc = json.load(fh)
-            for s in doc.get("screens", []):
+            for g in doc["groups"]:
+                for e in g["edits"]:
+                    self.apply(e, g["cause"])
+        for path in files:
+            name = os.path.basename(path)
+            if not name.startswith("screens_"):
+                continue
+            with open(path) as fh:
+                doc = json.load(fh)
+            self.merge(doc.get("screens", []), name)
+            for r in doc.get("rerouted", []):
+                self.rerouted.append(r)
+        spine = os.path.join(DATA, "v02", "spine.json")
+        if os.path.exists(spine):
+            import gen_spine
+            with open(spine) as fh:
+                self.merge(gen_spine.generate(json.load(fh)), "spine.json")
+        states = os.path.join(DATA, "v02", "states.json")
+        if os.path.exists(states) and until >= 5:
+            import gen_states
+            with open(states) as fh:
+                self.merge(gen_states.generate(json.load(fh), self.byid), "states.json")
+        flow = os.path.join(DATA, "v02", "flow.json")
+        if os.path.exists(flow):
+            with open(flow) as fh:
+                order = json.load(fh)["order"]
+            pos = {sid: i for i, sid in enumerate(order)}
+            missing = [s["id"] for s in self.screens if s["id"] not in pos and s["v02"]["status"] != "dropped"]
+            unknown = [sid for sid in order if sid not in self.byid]
+            if missing:
+                raise SystemExit("flow.json lacks: %s" % " ".join(missing))
+            if unknown:
+                print("note: flow.json names screens not built yet: %s" % " ".join(unknown))
+            self.screens.sort(key=lambda s: pos.get(s["id"], 10 ** 6))
+            self.byid = {x["id"]: x for x in self.screens}
+
+    def merge(self, screens, name):
+        for s in screens:
+            if True:
                 s = copy.deepcopy(s)
                 s.setdefault("frame", "phone")
                 s.setdefault("events", [])
                 v = s.get("v02") or {}
                 if "causes" not in v or not v["causes"]:
                     raise SystemExit("%s: %s carries no cause" % (name, s["id"]))
+                after, before = s.pop("after", None), s.pop("before", None)
                 if s["id"] in self.byid:
                     old = self.byid[s["id"]]
                     status = v.get("status", "rebuilt")
@@ -249,19 +299,11 @@ class Build:
                     self.byid[s["id"]] = s
                 else:
                     s["v02"] = {"status": v.get("status", "new"), "causes": v["causes"]}
-                    self.add_screen(s, after=s.pop("after", None), before=s.pop("before", None))
-            for r in doc.get("rerouted", []):
-                self.rerouted.append(r)
-        flow = os.path.join(DATA, "v02", "flow.json")
-        if os.path.exists(flow):
-            with open(flow) as fh:
-                order = json.load(fh)["order"]
-            pos = {sid: i for i, sid in enumerate(order)}
-            missing = [s["id"] for s in self.screens if s["id"] not in pos and s["v02"]["status"] != "dropped"]
-            if missing:
-                raise SystemExit("flow.json lacks: %s" % " ".join(missing))
-            self.screens.sort(key=lambda s: pos.get(s["id"], 10 ** 6))
-            self.byid = {x["id"]: x for x in self.screens}
+                    if after is not None and after not in self.byid:
+                        after = None
+                    if before is not None and before not in self.byid:
+                        before = None
+                    self.add_screen(s, after=after, before=before)
 
     # ---- finish -------------------------------------------------------------------------------------------
     def finish(self, reasons):

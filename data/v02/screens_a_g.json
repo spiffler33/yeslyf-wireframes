@@ -1,0 +1,368 @@
+{
+ "source": "plan_v2.md sections 4.1, 4.3, 4.4 and 4.7; hand-authored v0.2 screens for the A-section source and CAS flow, the locked card, the day-7 build and X00",
+ "screens": [
+  {
+   "id": "A05", "sec": "D", "title": "How should I get your numbers?", "tier": ["ALL"], "frame": "phone",
+   "purpose": "Make Account Aggregator the obvious default by showing what it does now and what it keeps doing: the net worth on H02 stays live, the quarterly review runs itself, the switch advice on G12 unlocks. The other three ways stay visible and honest; none is penalised in copy.",
+   "ui": [
+    ["h", "Two ways to do this. One takes a minute and then keeps itself current. The other takes about N minutes and you keep it current by hand."],
+    ["card", "Connect via Account Aggregator", ["Banks, deposits, mutual funds and stocks fetched in about a minute", "Your net worth and your quarterly review update themselves", "Switch advice on what you already hold", "Read-only; you pick the accounts; revoke any time"]],
+    ["card", "What it cannot see (I ask you either way)", ["EPF, PPF, property, gold, insurance details, loans"]],
+    ["card", "Is +91 98xxx xxx21 the number your bank accounts know?", ["Yes", "Use another number"]],
+    ["card", "Which bank is your salary account with?", ["Eight banks, then Other"]],
+    ["chips", ["Bank 1", "Bank 2", "Bank 3", "Bank 4", "Bank 5", "Bank 6", "Bank 7", "Bank 8", "Other"]],
+    ["btn", "Connect via Account Aggregator", "A06"],
+    ["btn2", "Upload a CAS statement instead (holdings only)", "A10"],
+    ["btn2", "Type it in (about N minutes)", "D01"],
+    ["link", "Not now. I will type today and connect later", "D01"]
+   ],
+   "spec": {
+    "fields": [
+     {"f": "aa_mobile", "gate": false, "source": "manual", "precision": "exact", "note": "the number the banks know; prefilled from A02"},
+     {"f": "salary_bank", "gate": false, "source": "manual", "precision": "exact", "note": "one of eight chips plus Other; feeds the FIP health check"},
+     {"f": "aa_status", "gate": false, "source": "manual", "precision": "exact", "note": "connected, not_connected, cas_uploaded or later"}
+    ],
+    "logic": [
+     "Purpose (Vatsal, 10 Sep 2026): make AA the obvious default by showing what it does now and what it keeps doing. Keep the other three ways visible and honest; penalise none of them in copy. The AA card is drawn larger as the default option.",
+     "Not now and Type it in set aa_status = not_connected and schedule two re-asks, at G12a and at Q01.",
+     "Upload a CAS statement covers holdings only (mutual funds, shares); everything else is typed either way.",
+     "Every way lands on D01 next; no screen is bypassed on any path (rule 1). AA users arrive on the spine with fields prefilled and tagged AA-fed; CAS users with holdings tagged CAS-verified; manual users with empty fields.",
+     "Sell and switch advice is given only on AA-fed or CAS-verified holdings; manual entries get buy advice only (spec v0.1 A05, kept)."
+    ],
+    "branches": [["Connect", "A06"], ["CAS", "A10"], ["Type it in", "D01"], ["Not now", "D01"]],
+    "states": [
+     "A05a Your bank is slow right now: the AA card shows the message and the CAS and manual buttons move up",
+     "Re-ask from G12a or Q01 for a user with aa_status = not_connected: the same four ways, opened from the locked card or the review"
+    ],
+    "dev": [
+     "Consent template asks for a periodic consent: fetch now plus quarterly for the review; validity as long as the rails allow; to be verified: maximum AA consent validity and fetch frequency under the wealth-management purpose.",
+     "Store consent_status, consent_valid_till, fetch_frequency, last_fetch_at per FIP.",
+     "The eight bank chips are config from the FIP health check, not code; the placeholders stand for the eight banks the check ranks highest.",
+     "Event source_choice carries aa, cas, manual or later."
+    ]
+   },
+   "template": "T-source", "path": "both", "events": ["source_choice"],
+   "compliance": {"review": true, "reasons": ["consent"]},
+   "v02": {"status": "rebuilt", "causes": ["Vatsal, 10 Sep 2026", "4.1 bug fix"]}
+  },
+  {
+   "id": "A05a", "sec": "D", "title": "Your bank is slow right now", "tier": ["ALL"], "frame": "phone", "after": "A05",
+   "purpose": "The A05 instance shown when the FIP health check says the user's salary bank is answering slowly or not at all. The AA card carries the message; the CAS and manual buttons move up so nobody waits on a bank.",
+   "ui": [
+    ["h", "Your bank is slow right now"],
+    ["card", "Account Aggregator: <bank> is answering slowly today", ["I can still try, or I can remind you to connect later", "Everything else works the same"]],
+    ["btn2", "Upload a CAS statement instead (holdings only)", "A10"],
+    ["btn2", "Type it in (about N minutes)", "D01"],
+    ["btn", "Try Account Aggregator anyway", "A06"],
+    ["link", "Remind me to connect later", "D01"]
+   ],
+   "spec": {
+    "fields": [
+     {"f": "aa_status", "gate": false, "source": "manual", "precision": "exact", "note": "later when the user takes the reminder"}
+    ],
+    "logic": [
+     "Instance of A05 (Vatsal, 10 Sep 2026): the same four ways; the AA card shows the slow message and the CAS and manual buttons move above it.",
+     "Remind me to connect later sets aa_status = later and schedules the re-asks at G12a and Q01, as on A05."
+    ],
+    "branches": [["CAS", "A10"], ["Type it in", "D01"], ["Try anyway", "A06"], ["Later", "D01"]],
+    "states": ["Bank back to normal on a later open: A05 renders instead"],
+    "dev": [
+     "to be verified: TSP FIP health API readable before consent.",
+     "The salary-bank chip on A05 names the FIP whose health is checked."
+    ]
+   },
+   "template": "T-source", "path": "both", "events": ["source_choice"],
+   "compliance": {"review": true, "reasons": ["consent"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "A09", "sec": "D", "title": "AA partial or failed", "tier": ["ALL"], "frame": "phone",
+   "purpose": "Recovery without dead ends: retry, upload a CAS statement, or type it in. Every exit lands on a real screen.",
+   "ui": [
+    ["h", "Some accounts did not come through"],
+    ["rows", [["CDSL (stocks)", "Retry"], ["KFintech (mutual funds)", "Retry"]]],
+    ["btn2", "Upload a CAS statement", "A10"],
+    ["btn2", "Enter these manually", "D02"],
+    ["btn", "Continue with what we have", "D01"]
+   ],
+   "spec": {
+    "fields": [
+     {"f": "retry_queue", "gate": false, "source": "aa", "precision": "exact", "note": "FIPs to retry in the background"}
+    ],
+    "logic": [
+     "The v0.1 CAS button linked to itself and no upload screen existed (4.1 bug fix); it now opens A10.",
+     "Continue with what we have lands on D01 because no screen is bypassed on any path (rule 1); what came through is tagged AA-fed and the rest is typed on the spine.",
+     "Enter these manually opens D02, the investments overview, where the missing types show as not fetched.",
+     "CAS upload parses holdings and marks them CAS-verified (counts as verified for sell and switch advice) (spec v0.1 A09)."
+    ],
+    "branches": [["CAS", "A10"], ["Manual", "D02"], ["Continue", "D01"]],
+    "states": [
+     "Everything failed: the rows list every FIP with Retry and the CAS button sits first",
+     "A retry succeeds later: A08 shows the merged picture with a notification"
+    ],
+    "dev": [
+     "Retry in the background and merge later with a notification (spec v0.1 A07).",
+     "Each failed FIP keeps its own retry count and last error for the ops queue."
+    ]
+   },
+   "template": "T-card", "path": "aa", "events": [],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "rebuilt", "causes": ["4.1 bug fix", "Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "A10", "sec": "D", "title": "Your CAS: request it", "tier": ["ALL"], "frame": "phone", "after": "A09",
+   "purpose": "Request a Consolidated Account Statement from the registrars or depositories, outside the app, then come back with the PDF. Holdings only; the rest is typed either way.",
+   "ui": [
+    ["h", "Get your holdings from a CAS"],
+    ["card", "Mutual funds", ["CAMS or KFintech: request a Consolidated Account Statement for your PAN", "The link opens outside the app"]],
+    ["card", "Shares and funds together", ["NSDL or CDSL: request the consolidated statement for your PAN", "The link opens outside the app"]],
+    ["p", "Look for the email subject Consolidated Account Statement. I will remind you in an hour."],
+    ["btn", "I have requested it", "A10a"],
+    ["btn2", "I already have the PDF", "A10b"],
+    ["link", "Type it instead", "D02"]
+   ],
+   "spec": {
+    "fields": [
+     {"f": "cas_requested_at", "gate": false, "source": "cas", "precision": "exact", "note": "starts the reminder clock"},
+     {"f": "cas_source", "gate": false, "source": "cas", "precision": "exact", "note": "cams_kfintech or nsdl_cdsl"}
+    ],
+    "logic": [
+     "Four instances (Vatsal, 10 Sep 2026): A10 request it, A10a waiting for the email, A10b upload and password, A10c what I read.",
+     "Reminder at one hour and at 24 hours; state S17 while the email is awaited.",
+     "Type it instead opens D02; the CAS can still be uploaded later from D02b, D02c or H06.",
+     "In V1 (Vatsal, 10 Sep 2026); to be verified: CAS parsing effort in V1."
+    ],
+    "branches": [["Requested", "A10a"], ["Have the PDF", "A10b"], ["Type it", "D02"]],
+    "states": ["S17 CAS requested, awaiting the email"],
+    "dev": [
+     "The registrar and depository links are config; they open in the system browser.",
+     "Event cas_requested carries cas_source."
+    ]
+   },
+   "template": "T-card", "path": "both", "events": ["cas_requested"],
+   "compliance": {"review": true, "reasons": ["consent"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026", "4.1 bug fix"]}
+  },
+  {
+   "id": "A10a", "sec": "D", "title": "Your CAS: waiting for the email", "tier": ["ALL"], "frame": "phone", "after": "A10",
+   "purpose": "The S17 landing: the statement is requested and the email has not been uploaded yet. Upload it, type instead, or take another reminder.",
+   "ui": [
+    ["h", "Waiting for your statement"],
+    ["p", "The email can take a while. The subject reads Consolidated Account Statement; the PDF is password protected."],
+    ["btn", "Upload it", "A10b"],
+    ["btn2", "Type it instead", "D02"],
+    ["link", "Remind me again in an hour", "A10a"]
+   ],
+   "spec": {
+    "fields": [
+     {"f": "cas_reminder_count", "gate": false, "source": "cas", "precision": "exact", "note": "one hour, then 24 hours"}
+    ],
+    "logic": [
+     "Remind me again in an hour is an in-place action: it schedules one more push and keeps this screen.",
+     "Exit S17 on upload (A10b) or on Type it instead (D02).",
+     "Opened from a nudge deep link or from O02 while S17 holds."
+    ],
+    "branches": [["Upload", "A10b"], ["Type it", "D02"]],
+    "states": [
+     "S17 CAS requested, awaiting the email",
+     "24 hours passed: the copy offers Type it instead first"
+    ],
+    "dev": ["Nudge slots N-S17-1h and N-S17-24h (section 5)."]
+   },
+   "template": "T-card", "path": "both", "events": [],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "A10b", "sec": "D", "title": "Your CAS: upload and password", "tier": ["ALL"], "frame": "phone", "after": "A10a",
+   "purpose": "Upload the CAS PDF and give its password so the app can read it. The password is used once and not stored.",
+   "ui": [
+    ["h", "Upload your statement"],
+    ["card", "Drop the PDF here", ["From your email, or from the Vault"]],
+    ["in", "The password you set when requesting, or your PAN"],
+    ["btn", "Read it", "A10c"],
+    ["link", "Back", "A10a"]
+   ],
+   "spec": {
+    "fields": [
+     {"f": "cas_file", "gate": false, "source": "cas", "precision": "exact", "note": "stored in H06"},
+     {"f": "cas_password", "gate": false, "source": "cas", "precision": "exact", "note": "used once to parse; not stored"}
+    ],
+    "logic": [
+     "The password is used once to open the PDF and is not stored; the file is filed in the Vault (H06).",
+     "A wrong password shows an inline error with the two usual formats: the password set at request time, or the PAN."
+    ],
+    "branches": [["Read", "A10c"], ["Back", "A10a"]],
+    "states": [
+     "Wrong password: inline error, three attempts, then the request links again",
+     "File is not a CAS: plain message, try another file"
+    ],
+    "dev": [
+     "Parsing via the open-source casparser library or a vendor (spec v0.1 A09).",
+     "Password handling for the compliance reviewers: entered on the device, used once to open the PDF, not stored; where parsing runs (device or server) is a dev call; the PDF itself is retained in H06."
+    ]
+   },
+   "template": "T-upload", "path": "both", "events": ["cas_uploaded"],
+   "compliance": {"review": true, "reasons": ["consent"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "A10c", "sec": "D", "title": "Your CAS: what I read", "tier": ["ALL"], "frame": "phone", "after": "A10b",
+   "purpose": "The parsed holdings, one row each, for the user to confirm. Confirmed rows are CAS-verified and count as verified for the switch and sell advice.",
+   "ui": [
+    ["h", "Here is what I read from your statement"],
+    ["rows", [["Mutual funds", "7 holdings, Rs 11.8 L, SIPs detected: 3"], ["Parag Parikh Flexi Cap, Direct", "units, Rs 4.2 L, SIP detected"], ["XYZ Small Cap, Regular", "units, Rs 2.1 L"], ["ABC Balanced Advantage", "units, Rs 1.9 L, SIP detected"], ["Shares (CDSL)", "not in this statement"]]],
+    ["badge", "CAS-verified"],
+    ["chips", ["Looks right", "Something is off"]],
+    ["btn", "Continue", "D01"]
+   ],
+   "spec": {
+    "fields": [
+     {"f": "mutual_funds", "gate": true, "source": "cas", "precision": "exact", "note": "holdings at ISIN level with units and value"},
+     {"f": "stocks", "gate": true, "source": "cas", "precision": "exact", "note": "when the statement is from NSDL or CDSL"},
+     {"f": "current_sip", "gate": false, "source": "cas", "precision": "exact", "note": "SIPs detected from the transaction rows"}
+    ],
+    "logic": [
+     "Parsed holdings are CAS-verified and count as verified for G12 (spec v0.1 A09 rule).",
+     "Continue goes to the screen that sent the user here (D02b, D02c, G12a or Q05), else D01.",
+     "Something is off opens the row for an edit; an edited row becomes manual and loses the CAS-verified tag."
+    ],
+    "branches": [["Continue", "D01"]],
+    "states": ["Nothing parsed: plain message, upload again or type it instead"],
+    "dev": [
+     "Holdings stored at ISIN level with units, value, SIP mandates (spec v0.1 A08).",
+     "Event cas_parsed carries the holding count and the statement date."
+    ]
+   },
+   "template": "T-review", "path": "both", "events": ["cas_parsed"],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "G12a", "sec": "G", "title": "Locked holdings", "tier": ["DIY", "DIWM"], "frame": "phone", "after": "G12",
+   "purpose": "The G12 instance for holdings that are not AA-fed or CAS-verified: the switch and sell advice stays locked behind two unlock actions. G11 still renders; G13 gives buy advice for new money only.",
+   "ui": [
+    ["h", "Switch and sell advice needs holdings I can verify"],
+    ["card", "Locked: what you already hold", ["Your typed holdings count in your net worth and your allocation", "Hold, switch and sell advice unlocks once I can see them"]],
+    ["btn2", "Connect via Account Aggregator", "A05"],
+    ["btn2", "Upload your CAS", "A10"],
+    ["link", "Back to what to buy", "G13"]
+   ],
+   "spec": {
+    "fields": [
+     {"f": "mutual_funds", "gate": true, "source": "manual", "precision": "approx", "note": "typed on D02b; not verified"},
+     {"f": "stocks", "gate": true, "source": "manual", "precision": "approx", "note": "typed on D02c; not verified"},
+     {"f": "aa_status", "gate": false, "source": "manual", "precision": "exact", "note": "not_connected or later"}
+    ],
+    "logic": [
+     "Section 0 (Vatsal, 10 Sep 2026): for holdings that are not AA-fed or CAS-verified, G11 renders; G12 renders as this locked card with two unlock actions (connect AA, upload CAS); G13 renders buy advice for new money with one line saying existing holdings were not assessed.",
+     "This is the first of the two re-asks for a user who chose Not now on A05; the second is Q01.",
+     "Compliance flag on the wording: the locked card must not read as a diagnosis of the typed holdings."
+    ],
+    "branches": [["Connect", "A05"], ["CAS", "A10"], ["Back", "G13"]],
+    "states": [
+     "Holdings verified later: G12 unlocks and the plan re-runs (H05)",
+     "Mixed holdings, some verified: G12 shows the verified rows and this card for the rest"
+    ],
+    "dev": [
+     "Renders in place of G12 when no holding carries source aa or cas.",
+     "Events sharpen_opened and sharpen_saved fire when the user comes back with verified holdings."
+    ]
+   },
+   "template": "T-locked", "path": "both", "events": ["sharpen_opened", "sharpen_saved"],
+   "compliance": {"review": true, "reasons": ["advice language"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "G01a", "sec": "G", "title": "Building your plan, built on what we have", "tier": ["ALL"], "frame": "phone", "after": "G01",
+   "purpose": "The day-7 build for a user who stalled below a full set of numbers (state S18): the plan builds on what is known, with assumed and not-sure fields counted and named so each can be sharpened from the plan.",
+   "ui": [
+    ["progress", "Building your plan on what we have", 80],
+    ["p", "Built on what we have: N numbers assumed or not sure yet. Each one can be sharpened from the plan, and the plan re-runs when you do."],
+    ["p", "Assuming 6% inflation on what life costs; your mix earning about 8% a year; the yeslyf mix about 11% a year. Values from L02."],
+    ["btn", "See my plan", "G03"]
+   ],
+   "spec": {
+    "fields": [
+     {"f": "assumed_count", "gate": false, "source": "assumed", "precision": "exact", "note": "fields filled from the L02 assumptions (branch B)"},
+     {"f": "unknown_count", "gate": false, "source": "manual", "precision": "unknown", "note": "not-sure fields still open"}
+    ],
+    "logic": [
+     "Instance of G01 for the day-7 build (section 5, S18): the gate is met with assumed values where the user said not sure; each assumed field is tagged assumed and gets a verify action in the plan.",
+     "Copy names the count of assumed or not-sure fields and that each can be sharpened from the plan (Vatsal, 10 Sep 2026).",
+     "No human gate (spec v0.1 G01); the artificial wait config applies here too."
+    ],
+    "branches": [["auto", "G03"]],
+    "states": [
+     "S18 plan built on partial data: lands H01j after this build",
+     "Engine error: retry; support alert"
+    ],
+    "dev": [
+     "Event plan_built carries assumed_count and unknown_count.",
+     "Plan versioned as on G01: plan_version, assumptions_version, instrument_set_version, plus plan_input_version with source and precision per field."
+    ]
+   },
+   "template": "T-progress", "path": "both", "events": ["plan_built"],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "X00", "sec": "X", "title": "How to read this file", "tier": ["ALL"], "frame": "desktop",
+   "purpose": "Clickable low-fidelity wireframes for the yeslyf app, v0.2. Grey boxes show what is on a screen and in what order. Nothing here is visual design; that is the studio's job once the flow is agreed.",
+   "ui": [
+    ["h", "yeslyf journey wireframes v0.2"],
+    ["p", "Left: the journey, section by section. Middle: the screen. Right: what the screen does, its fields with gate, source and precision, its logic, branches, states, dev notes, events and compliance flag, plus your verdict and comments."],
+    ["p", "Tap any button inside a screen to follow the flow. Use the arrows or your keyboard to step through. Filters at the top: tier (DIY, DIWM, DIFM), path (aa, manual, both), state (pick a returning-user state to see its landing and its home variant), compliance (flagged screens only, by reason), template (one layout at a time, for the studio's count)."],
+    ["p", "Every touched screen carries a marker, Changed in v0.2 or New in v0.2, with its cause: a brief item, a review row, or the post-meeting decision date. Dropped screens are listed on the Changelog tab and never drawn."],
+    ["p", "Comments save in this browser as you type and write to the v02_comments sheet tab when the endpoint is set. Pick your name, or Spinach or Compliance, before commenting. Export downloads a markdown build brief."],
+    ["card", "Tier legend", ["DIY: app only, calls a la carte", "DIWM: same app plus included adviser calls", "DIFM: existing House of Alpha clients; app for data and dashboard, advice off-app", "ALL: shown to everyone"]],
+    ["card", "Decisions baked into v0.2", [
+     "Two SKUs, DIY and DIWM, each billed monthly or quarterly; no one-time card, no credit rule, no one-time state",
+     "Calls: included calls per SKU per period are config, never a drawn number or length; a call is a call, with a topic; any adviser from the call centre takes any call; a la carte calls for anyone on any SKU; bookable at any time, before or after the plan",
+     "No named adviser on any screen; a config flag, adviser continuity (off by default), lets the same adviser be offered again",
+     "DIFM: not a shown SKU, no in-app upsell; DIFM clients exist in the app for tracking only; prospects are flagged in the CRM and called by the call centre",
+     "Holdings that are not AA-fed or CAS-verified: G11 renders, G12 is a locked card with two unlock actions, G13 gives buy advice for new money only",
+     "Brand: yeslyf, lowercase, everywhere"
+    ]],
+    ["card", "Why the data spine was rebuilt", [
+     "v0.1 bug, flagged by the studio: the manual branch (A05 Do it manually instead, to D02) never asked a manual user for bank balances, deposits, mutual funds or stocks, and skipped D01; A09's CAS button linked to itself and no upload screen existed",
+     "About 60 percent of the fields the plan needs are manual for every user, AA or not. The manual path is the main road; AA prefills one lane and, more importantly, keeps the plan current afterwards"
+    ]],
+    ["card", "Standing rules for every D screen", [
+     "1. One spine, both paths: AA users arrive prefilled and tagged AA-fed, CAS users with holdings tagged CAS-verified, manual users with empty fields; no screen is bypassed on any path; order D01, D08, D09, D05, D06, D02, D03, D04, D07, D10",
+     "2. One question per screen for numbers; taps may auto-advance; list items get a list screen plus a detail screen per item type; every instance is its own screen ID with a template tag",
+     "3. Band rule: every band question shows a visible exact input; a tapped band prefills the exact field with the midpoint; exact removes the approx tag; bands are dynamic by income tier with midpoints from L02; each field is exact-first or band-first",
+     "4. Readback and units: every amount shows a readback in words, a per-month or per-year toggle where either applies, L and Cr multipliers and the numeric keypad; plausibility checks against the reveal prompt a check, never a block",
+     "5. Hesitation detection: at 45 seconds a warm line (D11a), at 90 seconds the why-this-matters line (D11b), at 120 seconds or on a second return the skip offer (D11c); copy slots only",
+     "6. Tri-state fields: value, explicit none, not sure; None chips set explicit none; Not sure yet, skip sets not sure; not sure is never stored as zero; blindspot and concern copy fires on explicit none only; not sure produces a verify action",
+     "7. Gate and sharpen: each field carries gate true or false; the plan builds when every gate field is value or explicit none; sharpen fields appear inside the plan section they improve as Sharpen this links that reopen the single screen and re-run",
+     "8. Capture ladder: under the exact input and the bands, the lower-friction sources for that item, in order where they apply: AA, CAS upload, guided lookup, document to the Vault, then Not sure yet, skip; no partner ask anywhere",
+     "9. Source and precision tags on every field: source aa, cas, manual or assumed; precision exact, approx or unknown; D10 and every G screen show them; a manual override locks the field against AA refresh",
+     "10. Section micro-feedback: after the last screen of each spine section, one card in the adviser voice, chosen by the answers, no numbers (D12a to D12h); copy slots only",
+     "11. Endowed progress: the ring starts at 20 percent after the reveal, weighted gate fields first; minutes are about N minutes",
+     "12. Exit from any D screen: autosave, then O03 When will you finish; the chosen time replaces the first scheduled nudge and the standard ladder follows",
+     "13. Events and compliance flags on every screen (appendices D and G)"
+    ]],
+    ["card", "Beta rule", ["If fewer than 70 percent of paid users in the January beta reach the gate within 7 days, the gate list is cut again before the studio starts screens"]],
+    ["card", "Frozen", ["The v0.1 wireframe and admin files are served byte-identical under v01/", "The Meeting, Gaps and Inputs tabs are frozen as of 9 Sep 2026; decisions are shown on them and their controls are disabled"]],
+    ["btn", "Start the journey", "A01"]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Screens carry an ID (A01, R09, D02a...). Reference them by ID in comments and in chat. IDs are permanent; instances carry a letter suffix on their parent.",
+     "Every screen carries a template tag (appendix F), a path set, at least one event and a compliance flag with reasons."
+    ],
+    "branches": [["Start", "A01"]],
+    "states": [],
+    "dev": [
+     "Two frames: phone (390 wide) for the app, desktop for the admin, the logic panel and the state tables.",
+     "Generated from data/screens_v02.json; never hand-edited."
+    ]
+   },
+   "template": "T-card-stack", "path": "both", "events": [],
+   "compliance": {"review": false, "reasons": ["internal"]},
+   "v02": {"status": "rebuilt", "causes": ["Vatsal, 10 Sep 2026"]}
+  }
+ ]
+}

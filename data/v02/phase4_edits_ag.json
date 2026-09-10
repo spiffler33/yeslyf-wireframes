@@ -1,0 +1,193 @@
+{
+ "source": "plan_v2.md sections 4.1, 4.4 and 4.7; edits to existing screens in the data/decision_effects.json group format, merged by the orchestrator",
+ "groups": [
+  {
+   "id": "p4-A06", "kind": "override", "cause": "Vatsal, 10 Sep 2026",
+   "edits": [
+    {"op": "ui_insert", "screen": "A06", "after": "start", "value": ["p", "I am asking for 12 months, fetched every quarter, read-only. The number is subject to verification."]},
+    {"op": "spec_add", "screen": "A06", "key": "logic", "value": "Consent period in plain words above the webview (Vatsal, 10 Sep 2026): 12 months, fetched every quarter, read-only; to be verified: maximum AA consent validity and fetch frequency under the wealth-management purpose."},
+    {"op": "spec_add", "screen": "A06", "key": "dev", "value": "Consent template: periodic consent, fetch now plus quarterly for the review; store consent_status, consent_valid_till, fetch_frequency, last_fetch_at per FIP (as on A05)."}
+   ]
+  },
+  {
+   "id": "p4-A07", "kind": "override", "cause": "4.1 bug fix",
+   "edits": [
+    {"op": "ui_insert", "screen": "A07", "after": ["btn", "See what came through"], "value": ["link", "Nothing came through", "A09"]},
+    {"op": "spec_add", "screen": "A07", "key": "branches", "value": ["All failed", "A09"]}
+   ]
+  },
+  {
+   "id": "p4-A08", "kind": "override", "cause": "4.1 bug fix",
+   "edits": [
+    {"op": "spec_add", "screen": "A08", "key": "logic", "value": "Continue goes to D01 because no screen is bypassed on any path (rule 1); AA-fed fields arrive on the spine prefilled and tagged. Something is missing opens D02, the investments overview."}
+   ]
+  },
+  {
+   "id": "p4-sharpen", "kind": "override", "cause": "Vatsal, 10 Sep 2026",
+   "edits": [
+    {"op": "spec_set", "screen": "G03", "key": "fields", "value": [
+     {"f": "take_home", "gate": true, "source": "aa or manual", "precision": "exact or approx", "note": "monthly take-home row"},
+     {"f": "total_outgoings", "gate": true, "source": "manual", "precision": "exact or approx", "note": "fixed commitments and surplus rows"},
+     {"f": "bank_and_deposits", "gate": true, "source": "aa or manual", "precision": "exact or approx", "note": "what you own"},
+     {"f": "mutual_funds", "gate": true, "source": "aa, cas or manual", "precision": "exact or approx", "note": "what you own; allocation by class"},
+     {"f": "stocks", "gate": true, "source": "aa, cas or manual", "precision": "exact or approx", "note": "what you own; allocation by class"},
+     {"f": "epf", "gate": true, "source": "manual", "precision": "exact or approx", "note": "what you own; locked corpus"},
+     {"f": "has_loans", "gate": true, "source": "manual", "precision": "exact", "note": "what you owe"},
+     {"f": "total_emi", "gate": true, "source": "manual", "precision": "exact or approx", "note": "fixed commitments"},
+     {"f": "goals", "gate": true, "source": "manual", "precision": "exact or approx", "note": "what success looks like"},
+     {"f": "work_optional_age", "gate": true, "source": "manual or assumed", "precision": "exact", "note": "what success looks like"},
+     {"f": "term_sum_assured", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "life cover row; sharpen"},
+     {"f": "nps", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "locked corpus; sharpen"},
+     {"f": "ppf", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "locked corpus; sharpen"},
+     {"f": "gold", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "allocation by class; sharpen"},
+     {"f": "home_value", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "net worth, excluded from investable; sharpen"},
+     {"f": "investment_property_value", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "what you own; sharpen"},
+     {"f": "ulip_surrender_value", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "locked corpus; sharpen"},
+     {"f": "other_assets", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "what you own; sharpen"}
+    ]},
+    {"op": "ui_insert", "screen": "G03", "after": ["card", "What needs attention, in this order"], "value": ["link", "Sharpen this: the numbers this section could use", "G03"]},
+    {"op": "spec_add", "screen": "G03", "key": "logic", "value": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."},
+    {"op": "spec_set", "screen": "G04", "key": "fields", "value": [
+     {"f": "total_outgoings", "gate": true, "source": "manual", "precision": "exact or approx", "note": "monthly expenses; the target is months of these"},
+     {"f": "bank_and_deposits", "gate": true, "source": "aa or manual", "precision": "exact or approx", "note": "available: savings and FDs"},
+     {"f": "mutual_funds", "gate": true, "source": "aa, cas or manual", "precision": "exact or approx", "note": "available: the debt-fund line"}
+    ]},
+    {"op": "ui_insert", "screen": "G04", "after": ["card", "Actionables"], "value": ["link", "Sharpen this: the numbers this section could use", "G04"]},
+    {"op": "spec_add", "screen": "G04", "key": "logic", "value": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."},
+    {"op": "spec_set", "screen": "G05", "key": "fields", "value": [
+     {"f": "members", "gate": true, "source": "manual", "precision": "exact", "note": "future family expenses"},
+     {"f": "has_dependants", "gate": true, "source": "manual", "precision": "exact", "note": "whether a life cover need exists"},
+     {"f": "has_loans", "gate": true, "source": "manual", "precision": "exact", "note": "liabilities"},
+     {"f": "total_emi", "gate": true, "source": "manual", "precision": "exact or approx", "note": "liabilities"},
+     {"f": "take_home", "gate": true, "source": "aa or manual", "precision": "exact or approx", "note": "health thresholds from L02"},
+     {"f": "term_status", "gate": true, "source": "manual", "precision": "exact", "note": "have, not sure, or none"},
+     {"f": "health_status", "gate": true, "source": "manual", "precision": "exact", "note": "employer only, personal, both, or none"},
+     {"f": "term_sum_assured", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "current cover; sharpen"},
+     {"f": "health_sum_insured", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "sharpen"},
+     {"f": "health_floater", "gate": false, "source": "manual", "precision": "unknown", "note": "sharpen"},
+     {"f": "other_policies", "gate": false, "source": "manual", "precision": "unknown", "note": "policy review; sharpen"},
+     {"f": "ulip_years_completed", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "policy review verdict; also an action-queue item on H04"},
+     {"f": "home_value", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "assets excluding your home; sharpen"}
+    ]},
+    {"op": "ui_insert", "screen": "G05", "after": ["card", "Your only cover is from your employer"], "value": ["link", "Sharpen this: the numbers this section could use", "G05"]},
+    {"op": "spec_add", "screen": "G05", "key": "logic", "value": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."},
+    {"op": "spec_add", "screen": "G05", "key": "logic", "value": "Rule 6 (Vatsal, 10 Sep 2026): a not-sure cover produces a verify action (tell me your cover to check it), never a gap diagnosis; the gap ledger and the blindspot copy fire on explicit none only."},
+    {"op": "spec_set", "screen": "G06", "key": "fields", "value": [
+     {"f": "take_home", "gate": true, "source": "aa or manual", "precision": "exact or approx", "note": "income line"},
+     {"f": "total_outgoings", "gate": true, "source": "manual", "precision": "exact or approx", "note": "expenses line; surplus"},
+     {"f": "goals", "gate": true, "source": "manual", "precision": "exact or approx", "note": "life events stacked on the chart"},
+     {"f": "work_optional_age", "gate": true, "source": "manual or assumed", "precision": "exact", "note": "where active income ends on the chart"},
+     {"f": "partner_take_home", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "household income; sharpen"},
+     {"f": "rental_income", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "sharpen"},
+     {"f": "other_income", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "sharpen"},
+     {"f": "bucket_fixed", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "the three buckets; sharpen"},
+     {"f": "bucket_variable", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "the three buckets; sharpen"},
+     {"f": "bucket_guilt_free", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "the three buckets; sharpen"},
+     {"f": "month_end_pattern", "gate": false, "source": "manual", "precision": "unknown", "note": "narrative tone; sharpen"},
+     {"f": "current_sip", "gate": false, "source": "aa, cas or manual", "precision": "approx or unknown", "note": "already investing; sharpen"}
+    ]},
+    {"op": "ui_insert", "screen": "G06", "after": ["p", "Invest first. Spend what remains. Set once, automatic forever."], "value": ["link", "Sharpen this: the numbers this section could use", "G06"]},
+    {"op": "spec_add", "screen": "G06", "key": "logic", "value": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."},
+    {"op": "spec_set", "screen": "G07", "key": "fields", "value": [
+     {"f": "has_loans", "gate": true, "source": "manual", "precision": "exact", "note": "no loans shows the one-line all-clear"},
+     {"f": "total_emi", "gate": true, "source": "manual", "precision": "exact or approx", "note": "EMI burden against take-home"},
+     {"f": "take_home", "gate": true, "source": "aa or manual", "precision": "exact or approx", "note": "EMI ceiling from L02"},
+     {"f": "loans", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "per loan: outstanding, years left, rate; the prepay verdict; sharpen; rate is also an action-queue item on H04"},
+     {"f": "credit_card_balance", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "sharpen"}
+    ]},
+    {"op": "ui_insert", "screen": "G07", "after": ["rows", [["Rate", "11.5% fixed"], ["Verdict", "Try repaying it early"]]], "value": ["link", "Sharpen this: the numbers this section could use", "G07"]},
+    {"op": "spec_add", "screen": "G07", "key": "logic", "value": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."},
+    {"op": "spec_add", "screen": "G07", "key": "logic", "value": "Rule 6 (Vatsal, 10 Sep 2026): a not-sure rate or outstanding produces a verify action (tell me your rate to check the verdict), never a gap diagnosis; the verdict waits for the value."},
+    {"op": "spec_set", "screen": "G09", "key": "fields", "value": [
+     {"f": "goals", "gate": true, "source": "manual", "precision": "exact or approx", "note": "events on the timeline; met or not"},
+     {"f": "work_optional_age", "gate": true, "source": "manual or assumed", "precision": "exact", "note": "the anchor event"},
+     {"f": "members", "gate": true, "source": "manual", "precision": "exact", "note": "family ages on the axis"},
+     {"f": "bank_and_deposits", "gate": true, "source": "aa or manual", "precision": "exact or approx", "note": "liquid assets that year"},
+     {"f": "mutual_funds", "gate": true, "source": "aa, cas or manual", "precision": "exact or approx", "note": "liquid assets that year"},
+     {"f": "stocks", "gate": true, "source": "aa, cas or manual", "precision": "exact or approx", "note": "liquid assets that year"},
+     {"f": "epf", "gate": true, "source": "manual", "precision": "exact or approx", "note": "locked until the anchor"},
+     {"f": "nps", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "sharpen"},
+     {"f": "ppf", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "sharpen"},
+     {"f": "gold", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "sharpen"},
+     {"f": "investment_property_value", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "sharpen"},
+     {"f": "other_assets", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "sharpen"}
+    ]},
+    {"op": "ui_insert", "screen": "G09", "after": ["card", "Work optional at 55, 2050"], "value": ["link", "Sharpen this: the numbers this section could use", "G09"]},
+    {"op": "spec_add", "screen": "G09", "key": "logic", "value": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026). Goal cost and year sharpen here."},
+    {"op": "spec_set", "screen": "G10", "key": "fields", "value": [
+     {"f": "members", "gate": true, "source": "manual", "precision": "exact", "note": "every field the seven sections read; listed on each section"},
+     {"f": "has_dependants", "gate": true, "source": "manual", "precision": "exact", "note": ""},
+     {"f": "take_home", "gate": true, "source": "aa or manual", "precision": "exact or approx", "note": ""},
+     {"f": "total_outgoings", "gate": true, "source": "manual", "precision": "exact or approx", "note": ""},
+     {"f": "bank_and_deposits", "gate": true, "source": "aa or manual", "precision": "exact or approx", "note": ""},
+     {"f": "mutual_funds", "gate": true, "source": "aa, cas or manual", "precision": "exact or approx", "note": ""},
+     {"f": "stocks", "gate": true, "source": "aa, cas or manual", "precision": "exact or approx", "note": ""},
+     {"f": "epf", "gate": true, "source": "manual", "precision": "exact or approx", "note": ""},
+     {"f": "has_loans", "gate": true, "source": "manual", "precision": "exact", "note": ""},
+     {"f": "total_emi", "gate": true, "source": "manual", "precision": "exact or approx", "note": ""},
+     {"f": "term_status", "gate": true, "source": "manual", "precision": "exact", "note": ""},
+     {"f": "health_status", "gate": true, "source": "manual", "precision": "exact", "note": ""},
+     {"f": "goals", "gate": true, "source": "manual", "precision": "exact or approx", "note": ""},
+     {"f": "work_optional_age", "gate": true, "source": "manual or assumed", "precision": "exact", "note": ""}
+    ]},
+    {"op": "ui_insert", "screen": "G10", "after": ["p", "Nothing here needs a promotion, a windfall, or a change of lifestyle. It needs direction, and you now have it."], "value": ["link", "Sharpen this: the numbers this section could use", "G10"]},
+    {"op": "spec_add", "screen": "G10", "key": "logic", "value": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026). The summary lists every open sharpen item across the seven sections."},
+    {"op": "spec_set", "screen": "G11", "key": "fields", "value": [
+     {"f": "risk_band", "gate": true, "source": "manual", "precision": "exact", "note": "the grid row; no fallback"},
+     {"f": "goals", "gate": true, "source": "manual", "precision": "exact or approx", "note": "bucket per goal by horizon"},
+     {"f": "work_optional_age", "gate": true, "source": "manual or assumed", "precision": "exact", "note": "the long-term anchor"},
+     {"f": "bank_and_deposits", "gate": true, "source": "aa or manual", "precision": "exact or approx", "note": "today's mix"},
+     {"f": "mutual_funds", "gate": true, "source": "aa, cas or manual", "precision": "exact or approx", "note": "today's mix"},
+     {"f": "stocks", "gate": true, "source": "aa, cas or manual", "precision": "exact or approx", "note": "today's mix"},
+     {"f": "epf", "gate": true, "source": "manual", "precision": "exact or approx", "note": "today's mix"},
+     {"f": "nps", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "today's mix; sharpen"},
+     {"f": "ppf", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "today's mix; sharpen"},
+     {"f": "gold", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "commodities today; sharpen"}
+    ]},
+    {"op": "ui_insert", "screen": "G11", "after": ["chart", null], "value": ["link", "Sharpen this: the numbers this section could use", "G11"]},
+    {"op": "spec_add", "screen": "G11", "key": "logic", "value": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."},
+    {"op": "spec_set", "screen": "G12", "key": "fields", "value": [
+     {"f": "mutual_funds", "gate": true, "source": "aa or cas", "precision": "exact", "note": "holdings at ISIN level; manual holdings go to G12a"},
+     {"f": "stocks", "gate": true, "source": "aa or cas", "precision": "exact", "note": "holdings at ISIN level; manual holdings go to G12a"},
+     {"f": "risk_band", "gate": true, "source": "manual", "precision": "exact", "note": "which bucket a holding fits"},
+     {"f": "ulip_surrender_value", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "the endowment card; sharpen"},
+     {"f": "ulip_years_completed", "gate": false, "source": "manual", "precision": "approx or unknown", "note": "surrender verdict; sharpen"}
+    ]},
+    {"op": "ui_insert", "screen": "G12", "after": ["card", "LIC endowment: surrender value Rs 1.1 L"], "value": ["link", "Sharpen this: the numbers this section could use", "G12"]},
+    {"op": "ui_insert", "screen": "G12", "after": ["link", "Sharpen this: the numbers this section could use"], "value": ["btn2", "Holdings I cannot verify", "G12a"]},
+    {"op": "spec_add", "screen": "G12", "key": "logic", "value": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."},
+    {"op": "spec_add", "screen": "G12", "key": "states", "value": "Holdings not AA-fed or CAS-verified: G12a locked card"},
+    {"op": "spec_add", "screen": "G12", "key": "branches", "value": ["Locked", "G12a"]},
+    {"op": "spec_set", "screen": "G13", "key": "fields", "value": [
+     {"f": "risk_band", "gate": true, "source": "manual", "precision": "exact", "note": "instruments per grid cell"},
+     {"f": "goals", "gate": true, "source": "manual", "precision": "exact or approx", "note": "amount per goal bucket"},
+     {"f": "total_outgoings", "gate": true, "source": "manual", "precision": "exact or approx", "note": "the emergency lumpsum"},
+     {"f": "mutual_funds", "gate": true, "source": "aa, cas or manual", "precision": "exact or approx", "note": "what is already held; unverified holdings are not assessed"},
+     {"f": "stocks", "gate": true, "source": "aa, cas or manual", "precision": "exact or approx", "note": "what is already held; unverified holdings are not assessed"},
+     {"f": "current_sip", "gate": false, "source": "aa, cas or manual", "precision": "approx or unknown", "note": "existing SIPs netted off; sharpen"}
+    ]},
+    {"op": "ui_insert", "screen": "G13", "after": ["p", "Why these: direct plans only, low cost, on House of Alpha's current approved list. Reviewed every quarter."], "value": ["link", "Sharpen this: the numbers this section could use", "G13"]},
+    {"op": "ui_insert", "screen": "G13", "after": ["link", "Sharpen this: the numbers this section could use"], "value": ["p", "Your existing holdings were not assessed; connect Account Aggregator or upload your CAS to switch or sell."]},
+    {"op": "spec_add", "screen": "G13", "key": "logic", "value": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."},
+    {"op": "spec_add", "screen": "G13", "key": "states", "value": "Buy advice for new money only; existing holdings not assessed (holdings unverified): the line above the button shows and G12a sits behind it"},
+    {"op": "meta", "screen": "G13", "compliance": {"review": true, "reasons": ["advice language", "disclosures"]}},
+    {"op": "spec_set", "screen": "G14", "key": "fields", "value": [
+     {"f": "actions", "gate": false, "source": "assumed", "precision": "exact", "note": "actions[]: type, amount, due, channel (in-app or external), status; produced by G04 to G13"},
+     {"f": "current_sip", "gate": false, "source": "aa, cas or manual", "precision": "approx or unknown", "note": "SIP step-up and netting; sharpen"},
+     {"f": "has_loans", "gate": true, "source": "manual", "precision": "exact", "note": "prepay actions"}
+    ]},
+    {"op": "ui_insert", "screen": "G14", "after": ["card", "Ongoing"], "value": ["link", "Sharpen this: the numbers this section could use", "G14"]},
+    {"op": "spec_add", "screen": "G14", "key": "logic", "value": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."},
+    {"op": "meta", "screen": "G14", "events": ["sharpen_opened", "sharpen_saved"]}
+   ]
+  },
+  {
+   "id": "p4-H06", "kind": "override", "cause": "Vatsal, 10 Sep 2026",
+   "edits": [
+    {"op": "ui_insert", "screen": "H06", "after": ["h", "Your documents"], "value": ["p", "Drop a document here and it gets read: policy schedules, loan statements, passbooks. Until it is read the field stays not sure."]},
+    {"op": "spec_add", "screen": "H06", "key": "logic", "value": "Drop it here and it gets read (Vatsal, 10 Sep 2026): a dropped document is filed and, where extraction exists, its numbers are offered to the field with the document as evidence; until then the field stays not sure."},
+    {"op": "spec_add", "screen": "H06", "key": "dev", "value": "to be verified: V1 covers CAS only via A10; other document extraction is V1.5."}
+   ]
+  }
+ ]
+}

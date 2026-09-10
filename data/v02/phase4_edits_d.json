@@ -1,0 +1,22 @@
+{
+ "source": "plan_v2.md 4.3 rule 3 (L02 rows), 4.6 (splits), appendix B (Branch B fallback rows)",
+ "groups": [
+  {
+   "id": "phase4-splits", "kind": "override", "cause": "Vatsal, 10 Sep 2026",
+   "edits": [
+    {"op": "drop", "screen": "D05", "pointer": "split into D05a to D05d (one question per screen, rule 2)"},
+    {"op": "drop", "screen": "D06", "pointer": "split into D06a to D06d (one question per screen, rule 2)"},
+    {"op": "drop", "screen": "D08", "pointer": "drawn as D08a to D08h, one HoA question per screen (brief H3)", "cause": "brief H3"}
+   ]
+  },
+  {
+   "id": "phase4-L02", "kind": "override", "cause": "Vatsal, 10 Sep 2026",
+   "edits": [
+    {"op": "table_add_row", "screen": "L02", "index": 0, "value": ["Income tier boundaries (monthly take-home)", "Tier 1 under Rs 75,000; Tier 2 Rs 75,000 to Rs 1,25,000; Tier 3 Rs 1,25,000 to Rs 2,00,000; Tier 4 Rs 2,00,000 to Rs 3,50,000; Tier 5 above Rs 3,50,000 (V5 Stage 3)", "Dynamic bands on every number screen (rule 3)"]},
+    {"op": "table_add_row", "screen": "L02", "index": 0, "value": ["Band multipliers by income tier", "Tier 3 tables from V5; gap, to be decided: multipliers for tiers 1, 2, 4 and 5", "Band midpoints on every number screen (rule 3)"]},
+    {"op": "table_add_row", "screen": "L02", "index": 0, "value": ["Default asset mix for an unknown split", "to be verified: the default asset mix for unknown splits", "Branch B fallback: R04 corpus band split across bank, funds, stocks, EPF (appendix B)"]},
+    {"op": "spec_add", "screen": "L02", "key": "logic", "value": "New rows for v0.2 (rule 3 and appendix B): income tier boundaries and band multipliers feed the dynamic bands; the default asset mix feeds the Branch B fallback for unknown gate fields."}
+   ]
+  }
+ ]
+}

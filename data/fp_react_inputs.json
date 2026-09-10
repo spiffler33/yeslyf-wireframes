@@ -1,0 +1,353 @@
+{
+ "source": "inputs/hoa/yeslyf_fp_react.jsx read in full; per-field verdicts on what the component does when the value is null or undefined",
+ "branch": "B",
+ "why": "The component needs a value for every field it reads: 10 of 16 gate fields break (the money formatters formatINR at line 166 and formatINRFull at line 1962 call toLocaleString on the raw value, and the loop reads over family, loans and goals throw on a missing array), 3 fail silently with wrong maths, and only 1 tolerates a missing value. So the build gate is every field the React reads; Not sure on any such field maps to a stated assumption from L02 (appendix B gives the source per field), tagged assumed, with a verify action in the plan. The sharpen loop then works on assumptions instead of unknowns. The tri-state rule (4.3 rule 6) and the gate concept hold either way.",
+ "counts": {
+  "gate": {
+   "breaks": 10,
+   "not read": 2,
+   "silent": 3,
+   "tolerates": 1
+  },
+  "sharpen": {
+   "not read": 6,
+   "tolerates": 5,
+   "silent": 8,
+   "breaks": 5
+  }
+ },
+ "fallbacks_branch_b": {
+  "members, has_dependants": "from R02 household type; partner earns assumed no",
+  "rpq_answers, risk_band": "no fallback; mandatory (SEBI suitability)",
+  "take_home": "R03 band midpoint, approx",
+  "total_outgoings": "income times (1 minus R05 savings rate), approx",
+  "bank_and_deposits, mutual_funds, stocks, epf": "R04 corpus band split by the L02 default mix, assumed; to be verified: the default asset mix for unknown splits",
+  "has_loans, total_emi": "assumed none, verify action",
+  "term_status, health_status": "assumed none, verify action",
+  "goals, work_optional_age": "work_optional_age 60; goals none"
+ },
+ "schema_note": "No input schema of any kind. No propTypes, no defaultProps, no TypeScript types or interfaces, no JSON schema, no zod/yup, no required-field list, and no runtime validation - `grep -E 'propTypes|defaultProps|interface |PropTypes'` returns 0 hits and the file is plain .jsx with untyped destructured props ({ data }, { goals, retirement }, { loan, ctx, first }). Every data constant is a module-level object literal with hardcoded sample values (SNAPSHOT 158, GOALS 348, RETIREMENT 373, CONCERNS 620, EMERGENCY_FUND 775, LIFE_INSURANCE 1076, HEALTH_INSURANCE 1325, CASH_FLOW 1505, DEBT 1932, TAX_DEFAULTS 2289, KLE 2713); nothing is fetched, parsed or checked. The only documentation of expected inputs is prose block comments naming the intended rules: 14-20 psychometrics, 156-157 SNAPSHOT wiring, 345-347 goals/retirement, 618-619 concerns rules engine, 1068-1075 life-insurance formula, 1089-1094 policy review rules, 1317-1324 health-insurance thresholds, 1498-1504 cashflow surplus/deficit, 1526-1529 SIP rule, 1921-1931 debt rules, 2186-2209 tax rules, 2706-2712 KLE chart, 2754-2767 funding comparison. Cross-constant consistency is asserted only by two comments - `// keep in sync with SNAPSHOT.monthlyTakeHome` at 1331 and 1936 - with no code enforcing them, and several constants already disagree (expenses 145000 vs 150800; liabilities 3800000 vs 6200000; the home upgrade at 2500000 vs 8500000).",
+ "fields": [
+  {
+   "field": "members",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "KLE.family[].name (KeyLifeEvents, lines 2898, 2904, 2905); KLE.family[].ageInStartYear (KeyLifeEvents, lines 2831, 2832, 2833); KLE.family (length) (KeyLifeEvents, lines 2904, 2905); KLE.startYear (KeyLifeEvents, lines 2828, 2832)",
+   "note": "The Key Life Events tab is the only place the member list is read, and it reads it twice with a bare .map, so a missing family array throws on render. An empty array [] renders cleanly (no age rows, no left-hand name column entries). Members appear nowhere else: the children's names in GOALS (350, 357), in CONCERNS[3].detail (641) and in the KLE event labels (2731, 2733, 2734, 2735) are literal strings, not derived from this list."
+  },
+  {
+   "field": "has_dependants",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "not read",
+   "reads": "",
+   "note": "Nothing branches on whether the user has dependants. Dependants exist only as baked-in rows in KLE.family (2722-2723) and as goal names. The sections that would need the flag ignore it: HealthInsurance always recommends a family floater (1335, 1414, 1424) and LifeInsurance always adds pvFutureExpenses (1084) under the label 'Future family expenses / Present value of what your family will need' (1124-1125). A single childless user gets the identical page."
+  },
+  {
+   "field": "rpq_answers",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "PSYCHOMETRICS.stage.answer (PlanNarrative, lines 133); PSYCHOMETRICS.feeling.answer (PlanNarrative, lines 134); PSYCHOMETRICS.aspiration.answer (PlanNarrative, lines 136); PSYCHOMETRICS.aspiration.answer (SuccessOutlook, lines 447)",
+   "note": "Two levels of property access with no optional chaining anywhere in the file, so a missing p.stage throws on reading .answer. If the sub-object exists but .answer is undefined, React renders nothing and the sentence reads 'You told us you're . That you're feeling .' - a broken sentence with the yellow highlight still painted. Caveat on mapping: the only questionnaire answers the file reads are the three psychometric intake items (stage, feeling, aspiration) declared at 22-35; if rpq_answers means risk-tolerance answers specifically, nothing reads them."
+  },
+  {
+   "field": "risk_band",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "not read",
+   "reads": "",
+   "note": "There is no asset-allocation section, no equity/debt split, and no risk-band property. The only return assumption is DEBT.equityReturnPct: 11 (1938), a flat constant used solely for the prepay-vs-invest verdict at 1973, and RETIREMENT.projectedCorpus (378), which is supplied pre-computed rather than derived from any risk profile. Nothing in the plan changes if the risk band changes."
+  },
+  {
+   "field": "take_home",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "SNAPSHOT.monthlyTakeHome (FinancialSnapshot, lines 179, 181, 188, 196, 203); HEALTH_INSURANCE.monthlyIncome (HealthInsurance, lines 1342); CASH_FLOW.monthlyIncome (CashFlow, lines 1539); CASH_FLOW.monthlyIncome (CashflowProjection, lines 1640, 1652); DEBT.monthlyTakeHome (LoanBlock, lines 1967); TAX_DEFAULTS.salary (TaxSection/computeRegimes, lines 2256, 2499)",
+   "note": "The single most duplicated input in the file: the same monthly take-home is hand-copied into five separate constants (SNAPSHOT.monthlyTakeHome 159, HEALTH_INSURANCE.monthlyIncome 1331, CASH_FLOW.monthlyIncome 1510, DEBT.monthlyTakeHome 1936, and annualised into TAX_DEFAULTS.salary 2290) with nothing but two `// keep in sync with SNAPSHOT.monthlyTakeHome` comments (1331, 1936) holding them together. Line 188 throws first if the value is missing; the health-insurance branch at 1342 would silently drop to the low-income recommendation, and the EMI percentage at 1967 would become NaN and render '~NaN%'."
+  },
+  {
+   "field": "total_outgoings",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "SNAPSHOT.fixedCommitments (FinancialSnapshot, lines 179, 181, 195, 196); EMERGENCY_FUND.monthlyExpenses (EmergencyFundLedger, lines 933, 943); CASH_FLOW.monthlyExpenses (CashFlow, lines 1539); CASH_FLOW.monthlyExpenses (CashflowProjection, lines 1641, 1653); KLE.baseAnnualExpenses (LifeEventComparisons, lines 3239, 3315)",
+   "note": "Read in four constants and every downstream number depends on it: the emergency-fund target (933), the surplus on both tabs (179, 1539), the projection bars (1641) and the three-year buffer test (3239). Missing value throws at 195 or 943. The four copies do not agree today - see the expense_buckets entry."
+  },
+  {
+   "field": "bank_and_deposits",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "EMERGENCY_FUND.availableFD (EmergencyFundLedger, lines 934, 952); SNAPSHOT.totalAssets (FinancialSnapshot, lines 183, 209)",
+   "note": "Only the fixed-deposit slice has its own property. The savings-account balance is not a property at all - the two places that quote it (EMERGENCY_FUND.narrative 781 'You have Rs 2.8 lakhs in a savings account' and CONCERNS[1].detail 631 'Rs 2.8L in savings has no designation') are hardcoded prose that will not change when the number changes. availableFD undefined throws at 952."
+  },
+  {
+   "field": "mutual_funds",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "EMERGENCY_FUND.availableDebtFund (EmergencyFundLedger, lines 934, 953); TAX_DEFAULTS.debtMFGains (TaxSection/computeRegimes, lines 2256, 2511); TAX_DEFAULTS.ltcgEquity (TaxSection/computeRegimes, lines 2257, 2518); SNAPSHOT.totalAssets (FinancialSnapshot, lines 183, 209)",
+   "note": "Only the debt-fund slice earmarked for the emergency fund has a dedicated property (785); equity mutual fund holdings have none and are invisible except inside SNAPSHOT.totalAssets. Gains figures exist on the tax tab (debtMFGains, ltcgEquity) but default to 0 (2292-2293), so an untouched tax tab silently assumes the user realised nothing."
+  },
+  {
+   "field": "stocks",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "silent",
+   "reads": "SNAPSHOT.totalAssets (FinancialSnapshot, lines 183, 209); LIFE_INSURANCE.assetsExclPrimaryHome (LifeInsurance, lines 1112, 1140); TAX_DEFAULTS.stcgEquity (TaxSection/computeRegimes, lines 2258, 2524)",
+   "note": "No dedicated property. Direct equity holdings are only visible inside two hand-supplied aggregates. Omitting them does not throw - it silently shrinks the 'What you own' card (209) and net worth (183), and shrinks the subtrahend at 1112, which silently INFLATES the additional life-cover requirement printed at 1305. Nothing on the page names the asset class."
+  },
+  {
+   "field": "epf",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "silent",
+   "reads": "SNAPSHOT.totalAssets (FinancialSnapshot, lines 183, 209); EMERGENCY_FUND.monthlyContribution (EmergencyFundLedger, lines 937, 960, 1046)",
+   "note": "No EPF property exists. The balance folds into SNAPSHOT.totalAssets, and the monthly contribution is already netted out before it reaches the component - line 786 is a pre-computed number and 959 is the copy that states that assumption. So an EPF figure that is wrong or missing produces no error and no visible signal; the component cannot detect it. formatINR(data.monthlyContribution) at 960 and 1046 does throw if the pre-computed number itself is absent."
+  },
+  {
+   "field": "has_loans",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "DEBT.loans (DebtSection, lines 2177, 2178); SNAPSHOT.totalLiabilities (FinancialSnapshot, lines 183, 215); LIFE_INSURANCE.liabilities (LifeInsurance, lines 1110, 1120)",
+   "note": "A missing loans array throws at 2177. Worse for the no-loan case: `loans: []` renders a Debt tab that is nothing but the eyebrow 'Section 4 of 7 - Debt' (2175) - no heading, no empty state, no copy. There is no has_loans boolean anywhere, and the LifeInsurance ledger unconditionally renders a '+ Liabilities' row (1117-1121) even when the figure is zero."
+  },
+  {
+   "field": "total_emi",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "DEBT.loans[].monthlyEMI (LoanBlock, lines 1967, 1983); DEBT.emiCeilingPct (LoanBlock, lines 1968, 1990, 1991)",
+   "note": "There is no combined-EMI figure anywhere, even though the stated rule at 1923-1924 is 'EMI burden = monthly EMI / monthly take-home. Healthy ceiling = 30% (all EMIs combined).' LoanBlock computes emiPct per loan (1967) and tests each one separately against the 30% ceiling (1968), so a user with three loans at 15% each is told each one is 'within ceiling' while the real combined burden is 45%. The documented rule is not implemented."
+  },
+  {
+   "field": "term_status",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "LIFE_INSURANCE.coverTerm (LifeInsurance, lines 1108, 1131); SNAPSHOT.lifeCover (FinancialSnapshot, lines 223)",
+   "note": "No have/have-not boolean; only an amount, and it is passed straight to formatINR at 1131 so a missing value throws. There is no zero-cover branch: the ledger always renders the 'Current insurance cover' subtraction row (1128-1135) and the actionable at 1097 always says 'Buy Rs 2 Cr additional pure term cover' regardless of what the requirement computes to - line 1305 clamps the displayed requirement with Math.max(requirement, 0) but the hardcoded actionable is unaffected. Also note the two tabs disagree on definition: Overview calls Rs 1 Cr 'Life cover / Current protection' (163, 222-226) while the narrative at 1082 says 'Your term cover is Rs 75 lakhs'."
+  },
+  {
+   "field": "health_status",
+   "gate": true,
+   "tolerates_null": true,
+   "verdict": "tolerates",
+   "reads": "HEALTH_INSURANCE.employerCoverOnly (HealthInsurance, lines 1364); HEALTH_INSURANCE.monthlyIncome (HealthInsurance, lines 1342); HEALTH_INSURANCE.incomeThreshold (HealthInsurance, lines 1342)",
+   "note": "The only real conditional-render guard tied to an input in the whole file: employerCoverOnly missing or false simply hides the narrative callout (1364-1390) and the page still renders. But that is the only thing it gates - the recommendation rows (1393-1489) and the 'Buy a Rs 25L family floater health policy' actionable (1335, 1491) render unconditionally, so a user who already holds adequate personal cover is still told to buy a floater. The recommendation depends only on income (1342-1345), never on what the user has."
+  },
+  {
+   "field": "goals",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "GOALS.(array) (SuccessOutlook, lines 460, 472); GOALS.[].status / [].fundedPct (SuccessOutlook, lines 473, 541, 542); KLE.events (KeyLifeEvents, lines 2837, 2838, 2941); KLE.events (LifeEventComparisons, lines 3236); CASH_FLOW.lifeEvents (CashflowProjection, lines 1649)",
+   "note": "Undefined throws at 460 before the map at 472 is even reached. An EMPTY array is tolerated but reads badly: 'Your top 0 goals, what each will cost in its target year' (460) followed by an empty grid, with the retirement panel below still rendering. Line 473 is one of only two genuine value fallbacks in the file. Note the goal list is maintained three times over - GOALS (348-371), KLE.events (2729-2737) and CASH_FLOW.lifeEvents (1519-1525) - and the three copies do not match: the home upgrade is Rs 85L in GOALS (368) and KLE (2730) but Rs 25L in CASH_FLOW.lifeEvents (1520), and the two weddings totalling Rs 85L (2734-2735) are missing from the cashflow projection entirely."
+  },
+  {
+   "field": "work_optional_age",
+   "gate": true,
+   "tolerates_null": false,
+   "verdict": "silent",
+   "reads": "CASH_FLOW.retirementAge (CashflowProjection, lines 1652, 1760, 1834); RETIREMENT.age (SuccessOutlook, lines 609); RETIREMENT.year (SuccessOutlook, lines 609)",
+   "note": "The most misleading silent failure in the file. With retirementAge undefined, `age < undefined` at 1652 is false for every year, so the blue income bar is zero across the entire chart while the italic caption still promises 'The opportunity window - income exceeds expenses today' (1700-1701) and the takeaway still describes 'the gap between the income and expense bars during your earning years' (1909-1912). Nothing throws. The dashed retirement ReferenceLine (1759-1770) simply does not draw, the slider min (1834) falls back to 0, and line 609 renders 'at age  ()'."
+  },
+  {
+   "field": "partner_take_home",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "not read",
+   "reads": "",
+   "note": "No second-earner concept exists. Income is a single figure per constant, and the Overview card note at 189 reads 'What lands in your account' - singular. KLE.family (2720-2724) lists only 'You', 'Aryan' and 'Priya', so no partner age is carried either. A household with two earners has to have the two incomes pre-added before they reach any constant, and no line on the page discloses that."
+  },
+  {
+   "field": "rental_income",
+   "gate": false,
+   "tolerates_null": true,
+   "verdict": "tolerates",
+   "reads": "TAX_DEFAULTS.otherIncome (TaxSection/computeRegimes, lines 2256, 2503, 2504, 2505)",
+   "note": "Rental income reaches exactly one place, the tax comparison, where it is defaulted to 0 at 2291 and re-coerced with `|| 0` at 2346, so it never breaks. It never reaches SNAPSHOT.monthlyTakeHome (159), CASH_FLOW.monthlyIncome (1510) or the projection chart, so a landlord's surplus, emergency-fund maths and cashflow bars all silently exclude it. If a wired-in object omits the property entirely, 2256 produces NaN - see the note on other_income for what that does."
+  },
+  {
+   "field": "other_income",
+   "gate": false,
+   "tolerates_null": true,
+   "verdict": "tolerates",
+   "reads": "TAX_DEFAULTS.otherIncome (TaxSection/computeRegimes, lines 2256, 2505); TAX_DEFAULTS.debtMFGains (TaxSection/computeRegimes, lines 2256, 2511)",
+   "note": "Tolerated only because TAX_DEFAULTS hardcodes zeros. If a real wired object omits otherIncome, 2256 yields NaN, which flows to oldTaxable (2268) and newTaxable (2275) - Math.max(NaN, 0) is NaN, so both regime cards print Rs NaN via formatINRFull (2422) - and then `const newWins = r.newTax <= r.oldTax;` (2369) evaluates NaN comparisons as false, so the callout at 2486-2490 states 'the Old Tax Regime works out better - it saves you Rs NaN a year' with full confidence. Like rental_income, other income never enters the surplus or cashflow numbers."
+  },
+  {
+   "field": "expense_buckets",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "silent",
+   "reads": "SNAPSHOT.fixedCommitments (FinancialSnapshot, lines 179, 181, 195, 196); EMERGENCY_FUND.monthlyExpenses (EmergencyFundLedger, lines 933, 943); CASH_FLOW.monthlyExpenses (CashFlow, lines 1539); KLE.baseAnnualExpenses (LifeEventComparisons, lines 3239, 3315)",
+   "note": "There is no three-way split - `grep -i -E 'guilt|discretionary|variable'` returns 0 hits. The only split rendered is fixed-versus-leftover: the 'Fixed commitments' card with `${commitPct}% of your income` (194-198) and the derived 'Monthly surplus / Left over each month' card (200-206). Worse, the four expense constants disagree today: 145000 on Overview and Emergency Fund (160, 782) but 150800 on Cash Flow and KLE (1511, 2727 = 150800 x 12), so the same person is shown a Rs 1,05,000 surplus at 179 and a Rs 99,200 surplus at 1539. Nothing detects or reconciles this."
+  },
+  {
+   "field": "month_end_pattern",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "not read",
+   "reads": "",
+   "note": "No property captures how the month actually ends. The Cash Flow callout branches on arithmetic only (1591-1597): if the two supplied numbers happen to net positive it prints 'Your surplus is Rs X/month after fixed costs', even for a user who reports running out every month. There is no under-reporting check and no month-to-month variance concept anywhere."
+  },
+  {
+   "field": "current_sip",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "RETIREMENT.monthlyInvesting (SuccessOutlook, lines 586); RETIREMENT.surplusInvestedPct (SuccessOutlook, lines 587); EMERGENCY_FUND.monthlyContribution (EmergencyFundLedger, lines 937, 960, 1046)",
+   "note": "monthlyInvesting goes straight to formatINR at 586, so it throws when missing. surplusInvestedPct (377) is a hand-entered 43 rather than a computed ratio, and if it is missing line 587 silently renders '% of your monthly surplus'. Existing SIPs are otherwise only netted out inside pre-computed numbers - EMERGENCY_FUND.monthlyContribution (786, commented 'after EPF & existing SIPs') and the hardcoded 'start an SIP of Rs 54,200/month' actionable at 1532. Note the ratio only reconciles against the Overview surplus (45000/105000 = 43%), not the Cash Flow one (45000/99200 = 45%)."
+  },
+  {
+   "field": "nps",
+   "gate": false,
+   "tolerates_null": true,
+   "verdict": "tolerates",
+   "reads": "TAX_DEFAULTS.dedNPS (TaxSection/computeRegimes, lines 2263, 2537, 2539); SNAPSHOT.totalAssets (FinancialSnapshot, lines 183, 209)",
+   "note": "Only the 80CCD(1B) deduction is read, and only on the tax tab, where it has a literal default of 50000 (2300), a cap (2263) and input coercion (2346). The NPS corpus itself has no property and is invisible except inside SNAPSHOT.totalAssets. Caution: the default at 2300 assumes the full Rs 50,000 is being claimed, so a user who contributes nothing to NPS gets an old-regime tax figure that is understated until they edit the field."
+  },
+  {
+   "field": "ppf",
+   "gate": false,
+   "tolerates_null": true,
+   "verdict": "tolerates",
+   "reads": "TAX_DEFAULTS.ded80C (TaxSection/computeRegimes, lines 2262, 2531, 2532, 2533); SNAPSHOT.totalAssets (FinancialSnapshot, lines 183, 209)",
+   "note": "PPF reaches the page only as an undifferentiated part of the 80C deduction, which defaults to the full Rs 1,50,000 cap (2299). The balance has no property and is only inside SNAPSHOT.totalAssets. Same caution as NPS: the default asserts the cap is fully used, so the old-regime number is optimistic until edited."
+  },
+  {
+   "field": "gold",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "silent",
+   "reads": "SNAPSHOT.totalAssets (FinancialSnapshot, lines 183, 209); LIFE_INSURANCE.assetsExclPrimaryHome (LifeInsurance, lines 1112, 1140)",
+   "note": "No dedicated property and no line of copy naming gold. It exists only as an unlabelled part of two aggregates. Omitting it does not throw; it silently reduces net worth (183) and, via 1112, silently raises the additional life-cover requirement printed at 1305. There is no liquid-versus-illiquid distinction, so gold counted in totalAssets is indistinguishable from cash."
+  },
+  {
+   "field": "property_value",
+   "gate": false,
+   "tolerates_null": true,
+   "verdict": "tolerates",
+   "reads": "LIFE_INSURANCE.assetsExclPrimaryHome (LifeInsurance, lines 1112, 1140); SNAPSHOT.totalAssets (FinancialSnapshot, lines 183, 209)",
+   "note": "The section that would most need it deliberately excludes it, and says so in the copy at 1139 - so a missing primary-home value costs the life-insurance calculation nothing. Elsewhere it is only a silent part of SNAPSHOT.totalAssets. There is no property-value property, no second-property handling and no rental-yield link, so the home upgrade goal (366, 2730) is priced with no reference to what the current home is worth. Note the aggregate itself (1088) does throw at 1140 if absent."
+  },
+  {
+   "field": "ulip_detail",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "not read",
+   "reads": "",
+   "note": "The file's most detailed documented rule (the POLICY REVIEW RULES block, 1089-1094) has zero implementation. Only the sum assured is carried (coverULIP 1086, coverEndowment 1087). What the section shows instead is a hardcoded actionable at 1101-1102, 'Redeem the policy that has completed 5 years / Redirect the proceeds and future premiums into better-yielding investments' - which asserts the rule's conclusion without any input establishing that any policy has completed five years, or that a surrender is the right call."
+  },
+  {
+   "field": "other_assets",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "silent",
+   "reads": "SNAPSHOT.totalAssets (FinancialSnapshot, lines 183, 209); LIFE_INSURANCE.assetsExclPrimaryHome (LifeInsurance, lines 1112, 1140)",
+   "note": "Same shape as stocks and gold: no dedicated property, only the two aggregates. There is no itemised asset list on any tab - the Overview shows a single 'What you own / Total assets' card and nothing breaks the figure down, so a missing or wrong other-assets number is undetectable from the page."
+  },
+  {
+   "field": "loan_outstanding",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "DEBT.loans[].outstanding (LoanBlock, lines 1977, 1978); SNAPSHOT.totalLiabilities (FinancialSnapshot, lines 183, 215); LIFE_INSURANCE.liabilities (LifeInsurance, lines 1110, 1120)",
+   "note": "Carried in three constants that must be kept consistent by hand - the per-loan figure (1943, 1952), the Overview total (162) and the life-insurance liabilities line (1083). They agree today only for the home loan: LIFE_INSURANCE.liabilities is 6200000, exactly the home loan, while SNAPSHOT.totalLiabilities is 3800000, which is LESS than the home loan alone (6200000) and ignores the car loan (650000). The three numbers are mutually contradictory and nothing checks them."
+  },
+  {
+   "field": "loan_years_left",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "not read",
+   "reads": "",
+   "note": "The loan block shows five rows and none is tenure: outstanding, monthly EMI, EMI as % of take-home, rate, and the investment return assumption (1975-2003). The prepay verdict at 1973 (`const doNotPrepay = effectiveRate < ctx.equityReturnPct;`) is a pure rate comparison, so 'Do not prepay' (2139) is issued with no knowledge of whether the loan has 2 years or 22 years left, and no payoff-date or interest-saved figure is ever computed."
+  },
+  {
+   "field": "loan_rate",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "silent",
+   "reads": "DEBT.loans[].ratePct (LoanBlock, lines 1969, 1970, 1971, 1972, 1973, 1995, 2044); DEBT.taxBracketPct (LoanBlock, lines 1970); DEBT.equityReturnPct (LoanBlock, lines 1973, 2000, 2046, 2047)",
+   "note": "The most dangerous silent failure in the file. A missing rate makes effectiveRate NaN, and `NaN < 11` at 1973 is false, so doNotPrepay flips to false and the verdict row at 2139 confidently prints 'Try repaying it early' with the justification 'You are borrowing at a higher rate than your investments earn - clearing it early saves more' (2152). Nothing throws. The row at 1995 renders 'undefined% p.a.' and the narrative at 2044 renders 'effective post-tax loan rate of NaN%', but the verdict badge stands on its own and looks authoritative."
+  },
+  {
+   "field": "loan_detail",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "silent",
+   "reads": "DEBT.loans[].title (LoanBlock, lines 1977, 1994, 2018); DEBT.loans[].title (DebtSection, lines 2178); DEBT.loans[].taxDeductible (LoanBlock, lines 1969); DEBT.loans[].rateTag (LoanBlock, lines 1996, 2101); DEBT.loans[].narrative (LoanBlock, lines 2021)",
+   "note": "Mixed. The booleans degrade quietly: a missing taxDeductible is falsy at 1969, so a home loan is silently treated as non-deductible and its effective rate jumps from 5.95% to 8.5% with no indication; a missing narrative just hides the callout via the guard at 2021; a missing rateTag renders an empty italic tag at 2101. But a missing title is visible and ugly - line 1977 prints 'undefined outstanding' as a row label, 2018 renders an empty h2 heading, and 2178 gives every untitled loan the same React key."
+  },
+  {
+   "field": "term_sum_assured",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "LIFE_INSURANCE.coverTerm (LifeInsurance, lines 1108, 1131); SNAPSHOT.lifeCover (FinancialSnapshot, lines 223)",
+   "note": "Passed straight to formatINR at 1131, so missing throws. The value is duplicated: SNAPSHOT.lifeCover (163) is Rs 1 Cr, which happens to equal coverTerm + coverULIP + coverEndowment (1085-1087), but nothing computes it from them - it is a separate hand-entered number labelled 'Life cover / Current protection' (222-226) while the Life Insurance narrative at 1082 quotes Rs 75 lakhs for the same person."
+  },
+  {
+   "field": "health_sum_insured",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "not read",
+   "reads": "",
+   "note": "There is no property for the cover the user already holds. What the section shows instead is a recommendation derived entirely from income: 1342-1345 `const highIncome = data.monthlyIncome >= data.incomeThreshold;` then `rec = highIncome ? { base: 2500000, topUp: null } : { base: 1500000, topUp: 5000000 };`, rendered at 1437 and 1484. A user with Rs 50L of personal cover and a user with none see the identical Rs 25L recommendation."
+  },
+  {
+   "field": "health_floater",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "not read",
+   "reads": "",
+   "note": "Floater is the hardcoded shape of the recommendation, not an input. The row label is a literal 'Basic family floater' (1414) with the fixed sub-line 'Independent cover for the whole family, in your name' (1424), and the actionable is 'Buy a Rs 25L family floater health policy' (1335). Nothing reads who is covered or whether an individual policy would be the right structure, and there is no link to KLE.family (2720-2724) for family size."
+  },
+  {
+   "field": "policy_detail",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "LIFE_INSURANCE.coverULIP (LifeInsurance, lines 1108, 1132); LIFE_INSURANCE.coverEndowment (LifeInsurance, lines 1108, 1133)",
+   "note": "Only two numbers survive from an existing policy - the ULIP and endowment sums assured - and both go straight into formatINR at 1132-1133, so either being absent throws. Everything else the plan engine says it needs (policy term, years elapsed, premium, surrender value, per 1089-1094) has no property. A user with no ULIP must supply an explicit 0; leaving the key out crashes the Protection tab."
+  },
+  {
+   "field": "goal_cost",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "breaks",
+   "reads": "GOALS.[].futureValue (SuccessOutlook, lines 517); GOALS.[].todayCost (SuccessOutlook, lines 528); KLE.events[].amount (KeyLifeEvents, lines 2840, 2935); KLE.events[].amount (LifeEventComparisons, lines 3288, 3295, 3301); CASH_FLOW.lifeEvents[].amount (CashflowProjection, lines 1654)",
+   "note": "Both goal amounts go straight to formatINR, so either being missing throws. futureValue is supplied pre-inflated and is never derived - CASH_FLOW.inflationRate (1518) and KLE.expenseInflation (2728) exist but are used only for expense projection (1647, 3240), never to inflate a goal cost, so there is no fallback from todayCost. Within ScenarioPanel a missing cost is silent instead: `const met = liquid >= cost;` (3007) with cost undefined is false, printing a red 'Not met' badge."
+  },
+  {
+   "field": "goal_year",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "silent",
+   "reads": "GOALS.[].year (SuccessOutlook, lines 495, 528); KLE.events[].year (KeyLifeEvents, lines 2838, 2941); KLE.events[].year (LifeEventComparisons, lines 3237, 3278, 3288); CASH_FLOW.lifeEvents[].age (CashflowProjection, lines 1649)",
+   "note": "A goal with no year vanishes rather than errors. The strict filter at 2838 never matches, so the event silently drops off the Key Life Events chart; the find at 1649 never matches, so it drops off the cashflow projection too. It still appears in the comparison list below, where `undefined - 2026` makes threeYrNeed NaN (3237-3241) and `liquid - cost >= NaN` at 3008 is false, printing a red 'Not covered' badge that has nothing to do with the user's position. On the goal card, 495 renders a blank line and 528 renders 'Cost in  (Rs 40 L today)'."
+  },
+  {
+   "field": "life_expectancy",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "silent",
+   "reads": "KLE.retirement.lifeExpectancy (LifeEventComparisons, lines 3364, 3372); KLE.retirement.lifeExpectancy (RetirementScenarioPanel, lines 3113); CASH_FLOW.horizonAge (CashflowProjection, lines 1835)",
+   "note": "With lifeExpectancy undefined, `69 >= undefined` and `92 >= undefined` are both false at 3113, so BOTH retirement scenarios render the red 'Age NN' badge (3190-3197) - including the recommended path that actually lasts to 92, seven years past the intended 85. The user is told the plan fails either way, with no error and no visible cause. CASH_FLOW.horizonAge missing is harmless: `max={undefined}` at 1835 falls back to the HTML range default and the slider still works."
+  },
+  {
+   "field": "retirement_age",
+   "gate": false,
+   "tolerates_null": false,
+   "verdict": "silent",
+   "reads": "RETIREMENT.age / year (SuccessOutlook, lines 609); CASH_FLOW.retirementAge (CashflowProjection, lines 1652, 1760, 1834); KLE.retirement.age / retirement.year (LifeEventComparisons, lines 3354); KLE.retirement.year (LifeEventComparisons, lines 3316)",
+   "note": "Same properties as work_optional_age but carried in four constants (RETIREMENT.age 374, CASH_FLOW.retirementAge 1516, KLE.retirement.age 2746, plus the paired year at 375 and 2747). Age and year are hand-maintained separately and never cross-checked: the person is 41 in 2026 (1515, 2721), which puts age 60 in 2045, yet both year fields say 2046. If retirement.year is missing, 3316 makes expensesAtRet NaN and RetirementScenarioPanel prints 'Rs NaN/yr' at 3140 without throwing."
+  }
+ ],
+ "mapping_note": "The React has no risk-profile logic: for rpq_answers and risk_band the breaks verdict belongs to the three narrative intake answers (PSYCHOMETRICS, read at lines 133 to 136) that the overview narrative depends on; v0.2 captures those on R06 and R07. For stocks, epf, nps, ppf, gold, home_value, investment_property_value and other_assets the React reads only aggregates (SNAPSHOT.totalAssets, LIFE_INSURANCE.assetsExclPrimaryHome), so a missing item shrinks a total silently rather than throwing. rental_income, other_income and nps reach only the tax section, which is dropped in v0.2 (brief B4)."
+}

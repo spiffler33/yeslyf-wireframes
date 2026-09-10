@@ -1,0 +1,452 @@
+{
+ "source": "plan_v2.md 4.3, 4.5, 4.6; V5 Stage 3 (Q1.4, Q4.4b, Q4.1 wording); M2 6.1 (timeline map); rows 8, 59, 60",
+ "screens": [
+  {
+   "id": "D00", "sec": "D", "title": "Before you start", "tier": ["ALL"], "frame": "phone",
+   "purpose": "What to have open, per section, with minutes. Shown once; the hub reopens it.",
+   "ui": [
+    ["h", "Before you start"],
+    ["p", "Have these open and it takes about N minutes. Without them, about 2N. You can skip anything and come back."],
+    ["rows", [["Salary slip, or your bank app", "take-home"], ["Latest CAS, or I fetch it", "mutual funds and stocks"], ["Loan statement, or just the EMI", "loans"], ["Term and health policy PDFs", "cover amounts"], ["EPF passbook (UMANG app)", "EPF"]]],
+    ["card", "Per section", ["Family: about N minutes", "Risk profile: about N minutes", "Income and expenses: about N minutes", "Investments: about N minutes", "Loans and insurance: about N minutes", "Goals: about N minutes"]],
+    ["btn", "Start", "A05"]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": ["Start goes to A05 on first entry, else to the first incomplete screen.", "Shown once; What to have ready on O02 reopens it.", "Minutes are placeholders measured in the January beta (gap G13)."],
+    "branches": [["Start", "A05"]],
+    "states": ["Reopened from O02: Start goes to the first incomplete D screen"],
+    "dev": ["Flag before_you_start_seen per user."]
+   },
+   "template": "T-card-stack", "path": "both", "events": [],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "D01", "sec": "D", "title": "Family circle", "tier": ["ALL"], "frame": "phone",
+   "purpose": "Who the plan is for. The entry screen for both paths; dependants drive protection, children's ages drive education goals.",
+   "ui": [
+    ["h", "Let's start with who is in your circle. The plan is built around your family, not around you alone."],
+    ["card", "You", ["Aarav, 31"]],
+    ["card", "Partner", ["Name, age, earns yes or no; tap to edit"]],
+    ["card", "Kids", ["Name, age; add another"]],
+    ["card", "Dependant parents", ["Age; lives with you yes or no"]],
+    ["card", "Pets", ["Yes or no; adds a recurring expense line inside Fixed on D06b"]],
+    ["chips", ["Just me"]],
+    ["link", "Add someone", "D01a"],
+    ["btn", "Continue", "D12a"]
+   ],
+   "spec": {
+    "fields": [{"f": "members", "gate": true, "source": "manual", "precision": "exact", "note": "list; prefilled from R02"}, {"f": "has_dependants", "gate": true, "source": "manual", "precision": "exact", "note": "explicit none via Just me"}, {"f": "partner_earns", "gate": false, "source": "manual", "precision": "exact", "note": "opens D05b when yes"}, {"f": "pets", "gate": false, "source": "manual", "precision": "exact", "note": "row 8 note"}],
+    "logic": ["Entry screen for both paths (rule 1): AA users arrive from A08, CAS users from A10c, manual users from A05. No path bypasses it.", "Prefilled from R02 household type (spec v0.1).", "Each child suggests an education goal on D07; each dependant raises the term-cover need in G05 (spec v0.1).", "Just me sets members to you only and has_dependants to explicit none (rule 6).", "Pets card (row 8 note): yes or no; feeds a recurring expense line inside Fixed on D06b."],
+    "branches": [["Add someone", "D01a"], ["Edit a card", "D01a"], ["Continue", "D12a"]],
+    "states": ["Just me: partner, kids and parent cards collapse", "Family is always typed; AA has nothing to prefill here", "Exit (rule 12): autosave, then O03"],
+    "dev": ["Bhuvanaa asked for a family-tree feel in v0.1; keep it a card list at wireframe level, Spinach decides the visual (spec v0.1)."]
+   },
+   "template": "T-list", "path": "both", "events": [],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "changed", "causes": ["Vatsal, 10 Sep 2026", "row 8", "4.1 bug fix"]}
+  },
+  {
+   "id": "D01a", "sec": "D", "title": "Member detail", "tier": ["ALL"], "frame": "phone",
+   "purpose": "One member at a time: partner, child or dependant parent.",
+   "ui": [
+    ["h", "Tell me about them"],
+    ["chips", ["Partner", "Child", "Dependant parent"]],
+    ["in", "Name"],
+    ["in", "Age"],
+    ["chips", ["Earns: yes", "Earns: no"]],
+    ["chips", ["Lives with you: yes", "Lives with you: no"]],
+    ["btn", "Save", "D01"]
+   ],
+   "spec": {
+    "fields": [{"f": "members", "gate": true, "source": "manual", "precision": "exact", "note": "relation, name, age, earns, lives_with_you"}],
+    "logic": ["Partner: name, age, earns yes or no (yes opens D05b in the income run). Child: name, age (suggests an education goal on D07). Dependant parent: age, lives with you.", "The chips that do not apply to the chosen relation hide."],
+    "branches": [["Save", "D01"]],
+    "states": ["Editing an existing member: fields prefilled"],
+    "dev": ["Age drives the family ages on the G09 timeline."]
+   },
+   "template": "T-detail", "path": "both", "events": [],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "D09", "sec": "D", "title": "Your risk profile", "tier": ["ALL"], "frame": "phone",
+   "purpose": "The band, what it changes, and a retake. The declaration moves to D10.",
+   "ui": [
+    ["h", "Based on your answers, you are a Moderate investor"],
+    ["p", "What this means: your long-term money leans towards equity; your short-term money stays safe. You can retake this any time from Settings, and I will ask you to confirm it once a year."],
+    ["card", "What it changes", ["The target mix for every goal bucket (L03 grid)", "Which instruments I pick for you (L04)"]],
+    ["link", "Retake", "D08a"],
+    ["btn", "Continue", "D12b"]
+   ],
+   "spec": {
+    "fields": [{"f": "risk_band", "gate": true, "source": "manual", "precision": "exact", "note": "from the RPQ score; no fallback"}],
+    "logic": ["Band from the RPQ score (brief H3).", "Band feeds the cohort grid in L03 (spec v0.1).", "The declaration card moves to D10 (Vatsal, 10 Sep 2026).", "Annual re-confirmation trigger in Q04 (spec v0.1)."],
+    "branches": [["Retake", "D08a"], ["Continue", "D12b"]],
+    "states": ["Retake: D08a to D08h with answers prefilled", "Exit (rule 12): autosave, then O03"],
+    "dev": ["Suitability record: store band plus the advice version it applied to (spec v0.1).", "to be verified: the RPQ scoring map (gap G06)."]
+   },
+   "template": "T-card-stack", "path": "both", "events": [],
+   "compliance": {"review": true, "reasons": ["advice language"]},
+   "v02": {"status": "changed", "causes": ["brief H3", "Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "D02", "sec": "D", "title": "Your investments, by type", "tier": ["ALL"], "frame": "phone",
+   "purpose": "The overview list for what you own: one row per type with its status and source tag. Both paths pass through it.",
+   "ui": [
+    ["h", "Now what you own. One type at a time; approximate is fine, I mark it so."],
+    ["rows", [["Bank balances and deposits", "AA-fed Rs 8.2 L; edit or add"], ["Mutual funds", "AA-fed Rs 11.8 L; edit or add"], ["Stocks and ETFs", "not fetched; add"], ["NPS", "not asked yet"], ["EPF", "not asked yet"], ["PPF and post office", "not asked yet"], ["Gold and silver", "not asked yet"], ["Property", "not asked yet"], ["ULIP or endowment", "not asked yet"], ["Anything else", "not asked yet"]]],
+    ["note", "Running total so far: Rs ___ against the Rs 15 L you guessed earlier (R04)"],
+    ["btn", "Continue", "D02a"]
+   ],
+   "spec": {
+    "fields": [{"f": "bank_and_deposits", "gate": true, "source": "aa | manual", "precision": "exact | approx | unknown", "note": "D02a"}, {"f": "mutual_funds", "gate": true, "source": "aa | cas | manual", "precision": "exact | approx | unknown", "note": "D02b"}, {"f": "stocks", "gate": true, "source": "aa | cas | manual", "precision": "exact | approx | unknown", "note": "D02c"}, {"f": "epf", "gate": true, "source": "manual", "precision": "exact | approx | unknown", "note": "D02e"}, {"f": "nps", "gate": false, "source": "aa | manual", "precision": "exact | approx | unknown", "note": "D02d"}, {"f": "ppf", "gate": false, "source": "manual", "precision": "exact | approx | unknown", "note": "D02f"}, {"f": "gold", "gate": false, "source": "manual", "precision": "exact | approx | unknown", "note": "D02g"}, {"f": "home_value", "gate": false, "source": "manual", "precision": "approx | unknown", "note": "D02h"}, {"f": "investment_property_value", "gate": false, "source": "manual", "precision": "approx | unknown", "note": "D02h"}, {"f": "ulip_surrender_value", "gate": false, "source": "manual", "precision": "exact | approx | unknown", "note": "D02i"}, {"f": "other_assets", "gate": false, "source": "manual", "precision": "approx | unknown", "note": "D02j"}],
+    "logic": ["Overview list (rule 2): one row per type with its status (value, none, not sure, not asked yet) and its source tag; AA-fed rows show the value and edit or add.", "Continue walks the ten type screens in order; a row opens its screen directly.", "Plausibility (rule 4): the running total against the R04 corpus band; a mismatch prompts a check, never a block.", "Gate fields in this section: bank_and_deposits, mutual_funds, stocks, epf (appendix B); the rest sharpen the plan.", "Branch B (4.2): an unknown gate item maps to the R04 corpus band split by the L02 default mix, tagged assumed with a verify action in the plan; to be verified: the default asset mix for unknown splits."],
+    "branches": [["Continue", "D02a"], ["Bank balances and deposits", "D02a"], ["Mutual funds", "D02b"], ["Stocks and ETFs", "D02c"], ["NPS", "D02d"], ["EPF", "D02e"], ["PPF and post office", "D02f"], ["Gold and silver", "D02g"], ["Property", "D02h"], ["ULIP or endowment", "D02i"], ["Anything else", "D02j"]],
+    "states": ["AA path: bank, deposits, mutual funds and stocks rows prefilled and tagged AA-fed", "CAS path: mutual funds and stocks rows tagged CAS-verified", "Manual path: every row not asked yet", "Exit (rule 12): autosave, then O03"],
+    "dev": ["Holdings stored at ISIN level with units, value, SIP mandates when AA or CAS supplies them (spec v0.1 A08); typed totals stored as one value with the source tag."]
+   },
+   "template": "T-list", "path": "both", "events": [],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "rebuilt", "causes": ["Vatsal, 10 Sep 2026", "4.1 bug fix"]}
+  },
+  {
+   "id": "D03", "sec": "D", "title": "Loans and dues", "tier": ["ALL"], "frame": "phone",
+   "purpose": "Every loan as a list; EMI exact, outstanding and years left as bands, rate derived. Feeds the EMI burden, the prepay verdict and term cover.",
+   "ui": [
+    ["h", "Is there anything you still owe?"],
+    ["card", "Home loan", ["EMI exact; outstanding and years left as bands; rate derived: about N percent, correct it if you know it"]],
+    ["card", "Car loan", ["EMI exact; outstanding and years left as bands; rate derived"]],
+    ["card", "Personal or education loan", ["EMI exact; outstanding and years left as bands; rate derived"]],
+    ["card", "Credit card balance carried over", ["Amount"]],
+    ["card", "Loans to or from friends and family", ["Amount and direction"]],
+    ["chips", ["No loans"]],
+    ["link", "Add a loan", "D03a"],
+    ["btn", "Continue", "D12f"]
+   ],
+   "spec": {
+    "fields": [{"f": "has_loans", "gate": true, "source": "manual", "precision": "exact", "note": "explicit none via No loans"}, {"f": "total_emi", "gate": true, "source": "manual", "precision": "exact", "note": "sum of the EMIs; zero as a value when No loans"}, {"f": "loans", "gate": false, "source": "manual", "precision": "exact | approx | unknown", "note": "per loan: type, emi, outstanding, years_left, rate, lender, tax_deductible, prepayment_allowed"}, {"f": "credit_card_balance", "gate": false, "source": "manual", "precision": "exact | approx | unknown", "note": ""}, {"f": "informal_loans", "gate": false, "source": "manual", "precision": "exact | approx | unknown", "note": "to or from friends and family"}],
+    "logic": ["Per loan (rule 3 and appendix C): EMI exact-first, outstanding band-first, years left band-first; rate derived from the three and shown as about N percent, correct it if you know it.", "EMI ceiling 30 percent of take-home; above it is a concern (spec v0.1); the check prompts, never blocks (rule 4).", "Home loan flagged tax-deductible on D03a; effective rate = rate x (1 - tax bracket); prepay verdict per the React debt logic (spec v0.1).", "No loans sets has_loans to explicit none and total_emi to zero as a value, not a not-sure (rule 6).", "Loan detail (D03a) holds lender, the tax-deductible flag and whether prepayment is allowed (row 59)."],
+    "branches": [["Add a loan", "D03a"], ["Tap a loan", "D03a"], ["Continue", "D12f"]],
+    "states": ["Loans are not reliably on AA yet; manual (spec v0.1)", "Not sure on outstanding, years left or rate: a verify action on G07 and H04 (rule 6)", "Exit (rule 12): autosave, then O03"],
+    "dev": ["The derived rate uses the standard EMI formula; store the derived flag so a typed rate overrides it."]
+   },
+   "template": "T-list", "path": "both", "events": [],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "changed", "causes": ["row 59", "Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "D03a", "sec": "D", "title": "Loan detail", "tier": ["ALL"], "frame": "phone",
+   "purpose": "One loan: type, EMI, outstanding, years left, the derived rate, lender, tax flag, prepayment.",
+   "ui": [
+    ["h", "About this loan"],
+    ["chips", ["Home", "Car", "Personal", "Education", "Credit card", "Friends and family"]],
+    ["in", "Monthly EMI, Rs ___, exact"],
+    ["p", "Outstanding, roughly:"],
+    ["chips", ["Under Rs ___", "Rs ___ to ___", "Rs ___ to ___", "Over Rs ___"]],
+    ["p", "Years left, roughly:"],
+    ["chips", ["Under 2", "2 to 5", "5 to 10", "Over 10"]],
+    ["note", "Rate: about N percent, derived from the three; correct it if you know it"],
+    ["in", "Lender"],
+    ["chips", ["Tax-deductible: yes", "Tax-deductible: no"]],
+    ["chips", ["Prepayment allowed: yes", "Prepayment allowed: no", "Not sure"]],
+    ["chips", ["Not sure yet, skip"]],
+    ["btn", "Save", "D03"]
+   ],
+   "spec": {
+    "fields": [{"f": "loans", "gate": false, "source": "manual", "precision": "exact | approx | unknown", "note": "one entry per loan"}],
+    "logic": ["EMI exact; outstanding and years left as bands; rate derived (appendix C). The bands move with the income tier (L02).", "Not sure on outstanding, years left or rate keeps the field not sure; G07 shows a verify action (rule 6). The loan rate decides a verdict, so it also queues on H04 (rule 7).", "Lender, tax-deductible flag and prepayment allowed (row 59): the flag sets the effective rate; prepayment allowed gates the prepay action on G14."],
+    "branches": [["Save", "D03"]],
+    "states": ["Editing an existing loan: fields prefilled", "Hesitation (rule 5): D11a, D11b, D11c", "Exit (rule 12): autosave, then O03"],
+    "dev": ["Store emi, outstanding, years_left, rate (derived or typed), lender, tax_deductible, prepayment_allowed with source and precision per field (rule 9)."]
+   },
+   "template": "T-detail", "path": "both", "events": ["D03a_set", "D03a_skip", "D03a_hesitation_45", "D03a_hesitation_90", "D03a_hesitation_120", "D03a_band_tapped", "D03a_exact_entered"],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["row 59", "Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "D04", "sec": "D", "title": "Insurance", "tier": ["ALL"], "frame": "phone",
+   "purpose": "What is protected today, as a list. Three answers per policy type; only the first opens an amount screen.",
+   "ui": [
+    ["h", "Insurance is where most families are over-covered on things that do not matter and under-covered on things that do. Let's see what you have."],
+    ["card", "Term life cover", ["Have it and know the amount", "Have it, not sure of the amount", "Do not have it"]],
+    ["card", "Health cover", ["Have it and know the amount", "Have it, not sure of the amount", "Do not have it"]],
+    ["card", "ULIP or endowment", ["Pulled from D02i; tap to edit"]],
+    ["card", "Other", ["Personal accident, critical illness"]],
+    ["btn", "Continue", "D12g"]
+   ],
+   "spec": {
+    "fields": [{"f": "term_status", "gate": true, "source": "manual", "precision": "exact", "note": "have | not sure of the amount | none"}, {"f": "health_status", "gate": true, "source": "manual", "precision": "exact", "note": "have | not sure of the amount | none"}, {"f": "other_policies", "gate": false, "source": "manual", "precision": "exact | approx | unknown", "note": "D04c"}],
+    "logic": ["Per policy type three chips (rule 6): Have it and know the amount opens the amount screen (D04a, D04b); Have it, not sure of the amount sets the amount to not sure and offers the ladder (the policy schedule PDF to the Vault; the premium from the bank debit); Do not have it sets explicit none.", "Blindspot and concern copy fires on explicit none only; not sure produces a verify action on G05 and H04 (rule 6).", "Term cover need uses the React formula (spec v0.1). Employer-only health cover triggers the health advice per the React; thresholds from L02 (spec v0.1).", "Additional screens per policy type (row 60): D04a term, D04b health, D04c other."],
+    "branches": [["Term cover", "D04a"], ["Health cover", "D04b"], ["Other", "D04c"], ["ULIP or endowment", "D02i"], ["Continue", "D12g"]],
+    "states": ["Insurance may partly arrive via AA later; fields stay overridable with source lock (spec v0.1)", "Exit (rule 12): autosave, then O03"],
+    "dev": ["Store term_status and health_status as tri-state values separate from the amounts (rule 6)."]
+   },
+   "template": "T-list", "path": "both", "events": [],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "changed", "causes": ["row 60", "Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "D04a", "sec": "D", "title": "Term cover", "tier": ["ALL"], "frame": "phone",
+   "purpose": "Sum assured, premium, cover until age; the ladder for the schedule.",
+   "ui": [
+    ["h", "Your term cover"],
+    ["in", "Sum assured, Rs ___"],
+    ["chips", ["Under Rs ___", "Rs ___ to ___", "Rs ___ to ___", "Over Rs ___"]],
+    ["in", "Annual premium, Rs ___, exact"],
+    ["in", "Cover until age"],
+    ["p", "Easier ways to get this number:"],
+    ["link", "Drop the policy schedule PDF in the Vault", "H06"],
+    ["note", "Premium: from the bank debit"],
+    ["chips", ["Not sure yet, skip"]],
+    ["btn", "Save", "D04"]
+   ],
+   "spec": {
+    "fields": [{"f": "term_sum_assured", "gate": false, "source": "manual", "precision": "exact | approx | unknown", "note": "sharpen: G05"}, {"f": "term_premium", "gate": false, "source": "manual", "precision": "exact", "note": ""}, {"f": "term_cover_until_age", "gate": false, "source": "manual", "precision": "exact | unknown", "note": ""}],
+    "logic": ["Sum assured band-first with the exact input visible (rule 3); premium exact-first.", "Ladder (appendix C): the policy schedule PDF from email to the Vault; the premium from the bank debit; band.", "Not sure keeps the sum assured unknown; G05 shows a verify action, tell me your cover to check it (rule 6)."],
+    "branches": [["Vault", "H06"], ["Save", "D04"]],
+    "states": ["Hesitation (rule 5): D11a, D11b, D11c", "Exit (rule 12): autosave, then O03"],
+    "dev": ["to be verified: V1 covers CAS only via A10; other document extraction is V1.5; until then the Vault stores the file and the field stays not sure."],
+    "ladder": [["vault", "Drop the policy schedule PDF in the Vault"], ["typed", "Premium from the bank debit"], ["band", "A band by your income tier"]]
+   },
+   "template": "T-detail", "path": "both", "events": ["D04a_set", "D04a_skip", "D04a_hesitation_45", "D04a_hesitation_90", "D04a_hesitation_120", "D04a_band_tapped", "D04a_exact_entered", "D04a_ladder_vault"],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["row 60", "Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "D04b", "sec": "D", "title": "Health cover", "tier": ["ALL"], "frame": "phone",
+   "purpose": "Employer only, personal or both; sum insured band-first; floater; premium.",
+   "ui": [
+    ["h", "Your health cover"],
+    ["chips", ["Employer only", "Personal", "Both"]],
+    ["in", "Sum insured, Rs ___"],
+    ["chips", ["Under Rs ___", "Rs ___ to ___", "Rs ___ to ___", "Over Rs ___"]],
+    ["chips", ["Family floater: yes", "Family floater: no"]],
+    ["in", "Annual premium, Rs ___, exact"],
+    ["p", "Easier ways to get this number:"],
+    ["link", "Drop the policy schedule PDF in the Vault", "H06"],
+    ["note", "Premium: from the bank debit"],
+    ["chips", ["Not sure yet, skip"]],
+    ["btn", "Save", "D04"]
+   ],
+   "spec": {
+    "fields": [{"f": "health_type", "gate": false, "source": "manual", "precision": "exact", "note": "employer only | personal | both"}, {"f": "health_sum_insured", "gate": false, "source": "manual", "precision": "exact | approx | unknown", "note": "sharpen: G05"}, {"f": "health_floater", "gate": false, "source": "manual", "precision": "exact | unknown", "note": "sharpen: G05"}, {"f": "health_premium", "gate": false, "source": "manual", "precision": "exact", "note": ""}],
+    "logic": ["Sum insured band-first (rule 3); the bands move with the income tier (L02).", "Employer only triggers the health advice per the React (spec v0.1); the amount refines it.", "Not sure keeps the sum insured unknown; G05 shows a verify action (rule 6)."],
+    "branches": [["Vault", "H06"], ["Save", "D04"]],
+    "states": ["Hesitation (rule 5): D11a, D11b, D11c", "Exit (rule 12): autosave, then O03"],
+    "dev": ["to be verified: V1 covers CAS only via A10; other document extraction is V1.5; until then the Vault stores the file and the field stays not sure."],
+    "ladder": [["vault", "Drop the policy schedule PDF in the Vault"], ["typed", "Premium from the bank debit"], ["band", "A band by your income tier"]]
+   },
+   "template": "T-detail", "path": "both", "events": ["D04b_set", "D04b_skip", "D04b_hesitation_45", "D04b_hesitation_90", "D04b_hesitation_120", "D04b_band_tapped", "D04b_exact_entered", "D04b_ladder_vault"],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["row 60", "Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "D04c", "sec": "D", "title": "Other policy", "tier": ["ALL"], "frame": "phone",
+   "purpose": "Personal accident, critical illness, anything else; ULIP or endowment links to D02i.",
+   "ui": [
+    ["h", "Another policy"],
+    ["chips", ["Personal accident", "Critical illness", "ULIP or endowment", "Something else"]],
+    ["in", "Cover amount, Rs ___"],
+    ["in", "Annual premium, Rs ___, exact"],
+    ["link", "ULIP or endowment details are on D02i", "D02i"],
+    ["link", "Drop the policy schedule PDF in the Vault", "H06"],
+    ["chips", ["Not sure yet, skip"]],
+    ["btn", "Save", "D04"]
+   ],
+   "spec": {
+    "fields": [{"f": "other_policies", "gate": false, "source": "manual", "precision": "exact | approx | unknown", "note": "sharpen: G05"}],
+    "logic": ["ULIP or endowment goes to D02i (surrender value, premium, years completed); the rest are recorded here.", "Sharpen field: G05 lists policy detail (appendix B)."],
+    "branches": [["ULIP", "D02i"], ["Vault", "H06"], ["Save", "D04"]],
+    "states": ["Hesitation (rule 5): D11a, D11b, D11c", "Exit (rule 12): autosave, then O03"],
+    "dev": ["to be verified: V1 covers CAS only via A10; other document extraction is V1.5; until then the Vault stores the file and the field stays not sure."],
+    "ladder": [["vault", "Drop the policy schedule PDF in the Vault"], ["typed", "Cover and premium typed"]]
+   },
+   "template": "T-detail", "path": "both", "events": ["D04c_set", "D04c_skip", "D04c_ladder_vault"],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["row 60", "Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "D06b", "sec": "D", "title": "The three buckets", "tier": ["ALL"], "frame": "phone",
+   "purpose": "Fixed, variable and guilt-free as a three-way split of the total from D06a. Sharpen field.",
+   "ui": [
+    ["h", "Roughly, how does it split?"],
+    ["p", "Fixed: rent, EMIs, school, help, subscriptions. Variable: groceries, utilities, transport. Guilt-free: dining, travel, hobbies, shopping."],
+    ["note", "Three-way slider summing to your total from D06a; bands first, exact if you know it"],
+    ["rows", [["Fixed", "Rs ___ (about ___ percent)"], ["Variable", "Rs ___"], ["Guilt-free", "Rs ___"], ["Total", "Rs 1,31,000 from D06a"]]],
+    ["chips", ["Not sure yet, skip"]],
+    ["btn", "Continue", "D06c"]
+   ],
+   "spec": {
+    "fields": [{"f": "bucket_fixed", "gate": false, "source": "manual", "precision": "approx | exact | unknown", "note": "sharpen: G06"}, {"f": "bucket_variable", "gate": false, "source": "manual", "precision": "approx | exact | unknown", "note": "sharpen: G06"}, {"f": "bucket_guilt_free", "gate": false, "source": "manual", "precision": "approx | exact | unknown", "note": "sharpen: G06"}],
+    "logic": ["Three-way slider summing to the total from D06a (rule 2); band-first with the exact input visible per bucket (rule 3).", "EMIs from D03 sit inside Fixed read-only once known; the Pets line (row 8 note) sits inside Fixed.", "Sharpen field: G06 shows the split; not sure keeps the single total from D06a (rule 6)."],
+    "branches": [["Continue", "D06c"], ["Skip", "D06c"]],
+    "states": ["Manual: slider starts at an even split, tagged approx", "Hesitation (rule 5): D11a, D11b, D11c", "Exit (rule 12): autosave, then O03"],
+    "dev": ["Store three values with precision approx until typed (rule 9)."]
+   },
+   "template": "T-split", "path": "both", "events": ["D06b_set", "D06b_skip", "D06b_hesitation_45", "D06b_hesitation_90", "D06b_hesitation_120", "D06b_band_tapped", "D06b_exact_entered"],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "D06c", "sec": "D", "title": "How the month ends", "tier": ["ALL"], "frame": "phone",
+   "purpose": "The V5 end-of-month pattern, four options, one tap.",
+   "ui": [
+    ["h", "Honestly - how does the month typically end?"],
+    ["radio", ["I have a meaningful surplus - I'm actively deciding where it goes", "I'm roughly break-even - income and spending are well matched", "It varies - some months surplus, some months tight", "I'm often short - the month runs out before the salary arrives"]],
+    ["btn", "Continue", "D06d"]
+   ],
+   "spec": {
+    "fields": [{"f": "month_end_pattern", "gate": false, "source": "manual", "precision": "exact", "note": "sharpen: G06"}],
+    "logic": ["V5 Q1.4, four options verbatim; a tap auto-advances (rule 2).", "Feeds the expenses micro-feedback (D12d) and the cashflow concern when the month is often short (V5 4.3).", "A check against D06a: often short with a large surplus prompts a look at the outgoings number, never a block (rule 4)."],
+    "branches": [["Continue", "D06d"]],
+    "states": ["Exit (rule 12): autosave, then O03"],
+    "dev": ["Store the option key; the concern rule reads option D."]
+   },
+   "template": "T-tap", "path": "both", "events": [],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026", "V5 Q1.4"]}
+  },
+  {
+   "id": "D07", "sec": "D", "title": "Goals and key life events", "tier": ["ALL"], "frame": "phone",
+   "purpose": "Where we are heading and what is coming along the way. Suggested from the family circle; the user edits, adds, ranks.",
+   "ui": [
+    ["h", "Last one, and the most important. Everything so far tells me where you are. This tells me where we are heading."],
+    ["card", "Suggested for you", ["Aryan's higher education, 2039", "Home upgrade", "Wedding", "Vehicle", "Travel", "Business or second income", "Parents' support", "Health corpus", "Something else"]],
+    ["card", "Your goals", ["Name, year, cost today, priority; tap to edit"]],
+    ["chips", ["No goals for now"]],
+    ["link", "Add a goal", "D07a"],
+    ["link", "Work-optional age: 60 by default, change it", "D07b"],
+    ["in", "Yes list: things you want to say yes to, in your words"],
+    ["btn", "Continue", "D12h"]
+   ],
+   "spec": {
+    "fields": [{"f": "goals", "gate": true, "source": "manual", "precision": "exact | approx | unknown", "note": "at least one goal or explicit none"}, {"f": "work_optional_age", "gate": true, "source": "manual | assumed", "precision": "exact", "note": "D07b; default 60"}, {"f": "yes_list", "gate": false, "source": "manual", "precision": "exact", "note": "display only"}],
+    "logic": ["Gate (appendix B): at least one goal or explicit none (No goals for now), plus work_optional_age.", "Suggested goals come from D01: each child an education goal (spec v0.1).", "Retirement is not mandatory; work-optional age is an anchor assumption with its own screen D07b, default 60 (spec v0.1; Vatsal, 10 Sep 2026).", "Goal types match the React key-life-events categories: education, home, vehicle, wedding, health, plus travel, business, parents, other (spec v0.1).", "No cap on goals; priority order feeds the SIP reconciliation when surplus is short (M4 stage 7) (spec v0.1).", "A goal with no timeline or budget is stored as-is, excluded from the SIP maths and shown on the Yes list only (M2 6.1)."],
+    "branches": [["Add a goal", "D07a"], ["Edit a goal", "D07a"], ["Work-optional age", "D07b"], ["Continue", "D12h"]],
+    "states": ["No goals: the plan covers emergency fund, protection, cashflow, debt and the work-optional projection (spec v0.1)", "Exit (rule 12): autosave, then O03"],
+    "dev": ["Timeline to years map from M2 6.1 (see D07a)."]
+   },
+   "template": "T-list", "path": "both", "events": [],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "changed", "causes": ["Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "D07a", "sec": "D", "title": "Goal detail", "tier": ["ALL"], "frame": "phone",
+   "purpose": "One goal: name, when, cost today (band-first, with the not-sure estimate), priority.",
+   "ui": [
+    ["h", "About this goal"],
+    ["in", "Name"],
+    ["p", "When?"],
+    ["chips", ["1-2 years", "3-5 years", "5-10 years", "10-15 years", "15+ years"]],
+    ["in", "Or the exact year"],
+    ["p", "Cost today, roughly:"],
+    ["in", "Rs ___"],
+    ["chips", ["Under Rs ___", "Rs ___ to ___", "Rs ___ to ___", "Over Rs ___"]],
+    ["chips", ["I am not sure yet"]],
+    ["note", "I am not sure yet uses the estimate for your profile, tagged assumed; you check it from the plan"],
+    ["chips", ["Priority: must", "Priority: should", "Priority: nice to have"]],
+    ["btn", "Save", "D07"]
+   ],
+   "spec": {
+    "fields": [{"f": "goals", "gate": true, "source": "manual | assumed", "precision": "exact | approx | unknown", "note": "per goal: name, year or timeline, cost_today, priority"}],
+    "logic": ["Cost today band-first (rule 3); the bands move with the income tier (L02).", "I am not sure yet maps to the persona estimate (V5 Q4.4b), tagged assumed, with a verify action in G09 (rule 6 and 7).", "gap, to be decided: the archetype-to-amount estimate table for goal costs (V5 Q4.4b names it; none is written).", "Timeline to years map (M2 6.1): 1-2 years = 2, 3-5 years = 4, 5-10 years = 7, 10-15 years = 12, 15+ years = 20; an exact year overrides.", "Sharpen: goal cost and year inside G09 (appendix B)."],
+    "branches": [["Save", "D07"]],
+    "states": ["Editing an existing goal: fields prefilled", "Hesitation (rule 5): D11a, D11b, D11c", "Exit (rule 12): autosave, then O03"],
+    "dev": ["Store cost_today with source assumed when the estimate is used (rule 9)."]
+   },
+   "template": "T-detail", "path": "both", "events": ["D07a_set", "D07a_skip", "D07a_hesitation_45", "D07a_hesitation_90", "D07a_hesitation_120", "D07a_band_tapped", "D07a_exact_entered"],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026", "V5 Q4.4b"]}
+  },
+  {
+   "id": "D07b", "sec": "D", "title": "Work-optional age", "tier": ["ALL"], "frame": "phone",
+   "purpose": "The anchor assumption for the maths, on its own screen. Default 60.",
+   "ui": [
+    ["h", "When would you like work to become optional?"],
+    ["p", "This is an anchor for the maths, not a goal you must chase. 60 unless you change it."],
+    ["note", "Slider 45 to 70; default 60"],
+    ["chips", ["50", "55", "60", "65", "I have not thought about it: use 60"]],
+    ["btn", "Continue", "D07"]
+   ],
+   "spec": {
+    "fields": [{"f": "work_optional_age", "gate": true, "source": "manual | assumed", "precision": "exact", "note": "default 60"}],
+    "logic": ["Default 60 (M2: fi_age or 60); slider 45 to 70 (Vatsal, 10 Sep 2026).", "I have not thought about it sets 60 as a value tagged assumed, not a not-sure (rule 6; V5 Q4.1 wording: we will use 60 as a working assumption).", "Feeds the cashflow and life-events projections; depletion to life expectancy (brief B3)."],
+    "branches": [["Continue", "D07"]],
+    "states": ["Below the current age: flagged, the slider snaps to current age plus one (M2 FI_AGE_INVALID)", "Exit (rule 12): autosave, then O03"],
+    "dev": ["Store the value and the assumed tag."]
+   },
+   "template": "T-tap", "path": "both", "events": [],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "D10", "sec": "D", "title": "Review, build, and what would sharpen it", "tier": ["ALL"], "frame": "phone",
+   "purpose": "Everything collected with its source and precision tags, the gate, what would sharpen the plan, the two paths re-run, and the declaration.",
+   "ui": [
+    ["h", "Here is your picture. Anything to fix before I build?"],
+    ["rows", [["Family", "You, partner, 1 child; typed; exact"], ["Risk profile", "Moderate; typed; exact"], ["Income", "Rs 1,20,000 a month; AA-fed; exact"], ["Expenses", "Rs 1,31,000 a month; typed; approx"], ["Investments", "Rs 32.4 L; AA-fed and typed; approx"], ["Loans", "Rs 41.0 L; typed; approx"], ["Insurance", "Term Rs 50 L; health employer only; typed; exact"], ["Goals", "3 goals; work optional at 55; typed; approx"]]],
+    ["card", "Ready to build", ["Every gate field is a value or explicit none", "Or: N fields missing, about N minutes"]],
+    ["card", "These would sharpen it", ["Partner's take-home: cashflow (G06)", "Loan rate: debt (G07)", "Health sum insured: protection (G05)"]],
+    ["card", "Your two paths, updated", ["Current path: Rs 2.1 Cr; yeslyf path: Rs 5.4 Cr, on what is now known", "The only place the numbers update during data entry; tone from R06"]],
+    ["card", "Declaration", ["I hereby declare that the details furnished are true and correct to the best of my knowledge and belief and I undertake to inform you of any changes therein, immediately.", "to be verified: the declaration wording against HoA's current questionnaire"]],
+    ["chips", ["I confirm"]],
+    ["btn", "Build my plan", "G01"],
+    ["link", "Edit a section", "O02"]
+   ],
+   "spec": {
+    "fields": [{"f": "plan_input_version", "gate": false, "source": "system", "precision": "exact", "note": "snapshot with source and precision per field"}, {"f": "declaration_accepted_at", "gate": true, "source": "manual", "precision": "exact", "note": "moved from D09"}],
+    "logic": ["Rows per section with value, source tag and precision tag, each linking back to its screen (rule 9).", "Ready to build: the gate is met when every gate field is a value or explicit none (rule 7); otherwise the missing fields with minutes.", "These would sharpen it: the not-sure and approx fields with the plan section each improves (appendix B).", "Your two paths, updated: the R09 numbers re-run on what is now known, R06 tone variant; the only place numbers update during data entry.", "Declaration moved here from D09 (Vatsal, 10 Sep 2026): the details furnished are true and correct; full text to be verified against HoA's current wording.", "Build my plan enables when the gate is met and the declaration is confirmed.", "Branch B (4.2): assumed fields are listed with their L02 fallback and a verify action; G01a names their count on the day-7 build."],
+    "branches": [["Build", "G01"], ["Edit", "O02"], ["Family", "D01"], ["Risk profile", "D09"], ["Income", "D05a"], ["Expenses", "D06a"], ["Investments", "D02"], ["Loans", "D03"], ["Insurance", "D04"], ["Goals", "D07"]],
+    "states": ["Gate not met: Build my plan disabled; the Ready to build card lists the missing fields with minutes (S5 lands here when the gate is met but the declaration is not confirmed)", "Declaration not confirmed: Build disabled", "Day-7 partial build (S18): Build goes to G01a instead"],
+    "dev": ["Snapshot of inputs as plan_input_version with source and precision per field (advice record).", "Events gate_met and plan_built {assumed_count, unknown_count} (appendix D)."]
+   },
+   "template": "T-review", "path": "both", "events": ["gate_met", "plan_built"],
+   "compliance": {"review": true, "reasons": ["advice language", "consent"]},
+   "v02": {"status": "rebuilt", "causes": ["Vatsal, 10 Sep 2026"]}
+  },
+  {
+   "id": "O02", "sec": "O", "title": "Your next steps (hub)", "tier": ["ALL"], "frame": "phone",
+   "purpose": "The resume point for every partially onboarded user: source status, where you left off, the build, a call. The ring shows endowed progress.",
+   "ui": [
+    ["progress", "Your plan is 20% built", 20],
+    ["card", "1. Get your numbers in", ["Connected via Account Aggregator on <date> / CAS uploaded / typing it in / not connected: connect for a live plan", "Continue where you left off: <screen>"]],
+    ["card", "2. Review and build", ["Enabled when the gate is met; about N minutes left"]],
+    ["card", "3. Book a call, any time", ["Any tier; included or a la carte, by your SKU"]],
+    ["link", "What to have ready", "D00"],
+    ["video", "30-second walkthrough of the three steps"],
+    ["btn", "Continue where you left off", "A05"]
+   ],
+   "spec": {
+    "fields": [{"f": "aa_status", "gate": false, "source": "system", "precision": "exact", "note": "connected | cas | manual | not_connected"}, {"f": "progress_pct", "gate": false, "source": "system", "precision": "exact", "note": "endowed 20 percent"}],
+    "logic": ["Endowed progress (rule 11; spec v0.1 O02, kept): the ring starts at 20 percent after the reveal, weighted gate fields first; minutes are about N minutes.", "Card 1 shows the source status from aa_status and the CAS state, and the screen to continue from.", "Card 2 enables when the gate is met (rule 7) and opens D10.", "Card 3 for every tier (Vatsal, 10 Sep 2026): a call can be booked at any time.", "Continue: A05 on first entry; else the first incomplete screen in section D (spec v0.1).", "Every data screen autosaves on every field change; this hub reads completion flags (spec v0.1)."],
+    "branches": [["Continue", "A05"], ["Numbers", "A05"], ["Review and build", "D10"], ["Book a call", "K01"], ["What to have ready", "D00"], ["Section", "D01"]],
+    "states": ["S3: nothing done; D00 offered", "S4: partial; continue where you left off", "S5: gate met, D10 not confirmed; card 2 leads", "S16: not connected; card 1 says connect for a live plan", "S17: CAS requested; card 1 says waiting for the email (A10a)", "S19: stalled below the gate at day 7; card 1 lists the missing fields with minutes; DIWM outbound call task, DIY a la carte offer (section 5)"],
+    "dev": ["Progress = weighted completion across the gate fields (rule 11); reads completion flags."]
+   },
+   "template": "T-hub", "path": "both", "events": [],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "rebuilt", "causes": ["Vatsal, 10 Sep 2026", "row 26 (declined, no change to the step wording)"]}
+  },
+  {
+   "id": "O03", "sec": "O", "title": "When will you finish?", "tier": ["ALL"], "frame": "phone",
+   "purpose": "The sheet over any D screen on exit: pick a time, and that time replaces the first scheduled nudge.",
+   "ui": [
+    ["h", "When will you finish?"],
+    ["chips", ["Tonight", "Tomorrow morning", "This weekend", "I will come back on my own"]],
+    ["btn", "Save and exit", "O02"]
+   ],
+   "spec": {
+    "fields": [{"f": "return_time", "gate": false, "source": "manual", "precision": "exact", "note": "slot or none"}],
+    "logic": ["Sheet over any D screen on exit (rule 12): autosave first, then this.", "The chosen time schedules the first push (WhatsApp if opted in) and skips the 24-hour default; the standard ladder (section 5) follows. I will come back on my own keeps the standard ladder.", "The push deep-links to the screen the user left, with its minutes."],
+    "branches": [["Save and exit", "O02"]],
+    "states": ["S4 data partial: the ladder starts from the chosen time"],
+    "dev": ["Event return_time_picked {slot}; the CRM schedules the first nudge from it."]
+   },
+   "template": "T-sheet", "path": "both", "events": ["return_time_picked"],
+   "compliance": {"review": false, "reasons": ["plain copy"]},
+   "v02": {"status": "new", "causes": ["Vatsal, 10 Sep 2026"]}
+  }
+ ]
+}

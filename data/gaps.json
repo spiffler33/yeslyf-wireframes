@@ -1,44 +1,164 @@
 {
  "source": "PLAN.md section 10; why and recommendation text in Vatsal's voice (the only file where 'Vatsal recommendation' appears besides dependency blocks)",
  "gaps": [
-  {"id": "G01", "title": "Brand name lock (yeslyf vs Yesly vs Yalpho)", "suggested_owner": ["Team"], "impact": "High",
+  {
+   "id": "G01",
+   "title": "Brand name lock (yeslyf vs Yesly vs Yalpho)",
+   "suggested_owner": [
+    "Team"
+   ],
+   "impact": "High",
    "why": "The files say yeslyf; earlier documents say Yesly and Yalpho. Spinach cannot start a wordmark or an app icon without the final name.",
-   "recommendation": "Lock the name and spelling this week; it is the first line of the Spinach brief."},
-  {"id": "G02", "title": "SEBI advertisement code review of reveal, sample plan, testimonials, listing, nudges", "suggested_owner": ["Harish"], "impact": "High",
+   "recommendation": "Lock the name and spelling this week; it is the first line of the Spinach brief."
+  },
+  {
+   "id": "G02",
+   "title": "SEBI advertisement code review of reveal, sample plan, testimonials, listing, nudges",
+   "suggested_owner": [
+    "Harish"
+   ],
+   "impact": "High",
    "why": "The reveal copy, the sample plan, testimonials (X01 strip, day-7 nudge), the app store listing and the nudges are promotional communications by an RIA. The 2023 advertisement code restricts what can be said and requires prior approval of advertisements by the supervisory body; testimonials are likely restricted.",
-   "recommendation": "Compliance review of every promotional surface before Spinach writes copy; drop testimonials until cleared. Confidence on the exact testimonial rule: moderate; Harish to check."},
-  {"id": "G03", "title": "DPDP consent notice and deletion", "suggested_owner": ["Harish"], "impact": "Med",
+   "recommendation": "Compliance review of every promotional surface before Spinach writes copy; drop testimonials until cleared. Confidence on the exact testimonial rule: moderate; Harish to check."
+  },
+  {
+   "id": "G03",
+   "title": "DPDP consent notice and deletion",
+   "suggested_owner": [
+    "Harish"
+   ],
+   "impact": "Med",
    "why": "A02 collects personal data and financial data follows. India's data protection law requires a consent notice with purpose, the right to withdraw, and deletion, with exceptions for records SEBI requires you to keep.",
-   "recommendation": "Draft the notice with counsel; A02 and H09 already have the slots; retention exceptions are listed in the admin/CRM spec."},
-  {"id": "G04", "title": "Adviser capacity number and slot design", "suggested_owner": ["Bhuvanaa", "Harish"], "impact": "High",
+   "recommendation": "Draft the notice with counsel; A02 and H09 already have the slots; retention exceptions are listed in the admin/CRM spec."
+  },
+  {
+   "id": "G04",
+   "title": "Adviser capacity number and slot design",
+   "suggested_owner": [
+    "Bhuvanaa",
+    "Harish"
+   ],
+   "impact": "High",
    "why": "S1 decides who takes the DIWM call; nobody has decided how many clients and by when. One person at about 3 hours per client-year caps near 450 clients a year, realistically 200 to 300 alongside other work.",
-   "recommendation": "Name the person and the cap; the K01 slot design and a waitlist depend on it."},
-  {"id": "G05", "title": "Vendor onboarding critical path with owner and dates", "suggested_owner": ["Kajal"], "impact": "High",
+   "recommendation": "Name the person and the cap; the K01 slot design and a waitlist depend on it."
+  },
+  {
+   "id": "G05",
+   "title": "Vendor onboarding critical path with owner and dates",
+   "suggested_owner": [
+    "Kajal"
+   ],
+   "impact": "High",
    "why": "AA TSP and FIU registration, Digio, Razorpay subscriptions, smallcase Gateway partnership or BSE StAR RIA access, WhatsApp provider, Zoho. Each has a contract and a lead time; none has an owner or a date in any document.",
-   "recommendation": "One owner, a dated list this week. This, not code, is the long pole for 1 February."},
-  {"id": "G06", "title": "Documents owed: RPQ scoring map, fixed-fee agreement with the app as a channel, risk logic", "suggested_owner": ["Harish", "Bhuvanaa"], "impact": "Med",
+   "recommendation": "One owner, a dated list this week. This, not code, is the long pole for 1 February."
+  },
+  {
+   "id": "G06",
+   "title": "Documents owed: RPQ scoring map, fixed-fee agreement with the app as a channel, risk logic",
+   "suggested_owner": [
+    "Harish",
+    "Bhuvanaa"
+   ],
+   "impact": "Med",
    "why": "The RPQ scoring map (D08 dev note); a fixed-fee agreement template with the app as an advice channel (the current agreement is AUA mode); Bhuvanaa's risk logic if H3 goes to option b or c.",
-   "recommendation": "A date against each document."},
-  {"id": "G07", "title": "Analytics instrumentation rule: every screen ID is an event", "suggested_owner": ["Gaurav"], "impact": "Low",
+   "recommendation": "A date against each document."
+  },
+  {
+   "id": "G07",
+   "title": "Analytics instrumentation rule: every screen ID is an event",
+   "suggested_owner": [
+    "Gaurav"
+   ],
+   "impact": "Low",
    "why": "Drop-off analytics only work if every screen ID is an event from day one.",
-   "recommendation": "One line in the dev brief: screen_view with screen_id on every screen; funnel events per the admin/CRM spec."},
-  {"id": "G08", "title": "Content production list with screen IDs", "suggested_owner": ["Bhuvanaa"], "impact": "Med",
+   "recommendation": "One line in the dev brief: screen_view with screen_id on every screen; funnel events per the admin/CRM spec."
+  },
+  {
+   "id": "G08",
+   "title": "Content production list with screen IDs",
+   "suggested_owner": [
+    "Bhuvanaa"
+   ],
+   "impact": "Med",
    "why": "Videos (A04 welcome, R10 and R11, O01 adviser intro), five or six persona sample plans, FAQs, tooltips, disclaimers. Nobody owns the list.",
-   "recommendation": "Bhuvanaa owns it; v0.2 lists every content slot with its screen ID."},
-  {"id": "G09", "title": "App store financial-app requirements", "suggested_owner": ["Gaurav"], "impact": "Low",
+   "recommendation": "Bhuvanaa owns it; v0.2 lists every content slot with its screen ID."
+  },
+  {
+   "id": "G09",
+   "title": "App store financial-app requirements",
+   "suggested_owner": [
+    "Gaurav"
+   ],
+   "impact": "Low",
    "why": "Google Play and the App Store have financial-app declarations and require the regulator registration in the listing; review cycles take days.",
-   "recommendation": "Check both policies now, not at submission."},
-  {"id": "G10", "title": "Date protection: define V1 without in-app execution", "suggested_owner": ["Vatsal"], "impact": "High",
+   "recommendation": "Check both policies now, not at submission."
+  },
+  {
+   "id": "G10",
+   "title": "Date protection: define V1 without in-app execution",
+   "suggested_owner": [
+    "Vatsal"
+   ],
+   "impact": "High",
    "why": "In-app execution (G1) is the biggest risk to 1 February because it depends on third parties. If it slips, the launch should not.",
-   "recommendation": "Define the fallback now: action plan with deep links to the user's own platform, AA verifies completion. Ship execution as the first post-launch release if needed."},
-  {"id": "G11", "title": "Existing HoA clients into the app after launch via assisted onboarding", "suggested_owner": ["Harish"], "impact": "Low",
+   "recommendation": "Define the fallback now: action plan with deep links to the user's own platform, AA verifies completion. Ship execution as the first post-launch release if needed."
+  },
+  {
+   "id": "G11",
+   "title": "Existing HoA clients into the app after launch via assisted onboarding",
+   "suggested_owner": [
+    "Harish"
+   ],
+   "impact": "Low",
    "why": "The DIFM tier exists (state S14) but nobody has said when existing clients migrate or who enters their data.",
-   "recommendation": "After launch, via assisted onboarding in the admin tool; not a day-one task."},
-  {"id": "G12", "title": "Support staffing on day one", "suggested_owner": ["Kajal"], "impact": "Med",
+   "recommendation": "After launch, via assisted onboarding in the admin tool; not a day-one task."
+  },
+  {
+   "id": "G12",
+   "title": "Support staffing on day one",
+   "suggested_owner": [
+    "Kajal"
+   ],
+   "impact": "Med",
    "why": "Desk tickets and adviser messages need a human within one business day from the first paid user.",
-   "recommendation": "Name the person; community managers can cover support, not advice."},
-  {"id": "G13", "title": "Closed beta with thirty community members in January", "suggested_owner": ["Vatsal"], "impact": "Med",
+   "recommendation": "Name the person; community managers can cover support, not advice."
+  },
+  {
+   "id": "G13",
+   "title": "Closed beta with thirty community members in January",
+   "suggested_owner": [
+    "Vatsal"
+   ],
+   "impact": "Med",
    "why": "Nothing in any document tests the journey with real users before 1 February.",
-   "recommendation": "Thirty community members in January on a build with the reveal, paywall and data flow; execution optional."}
+   "recommendation": "Thirty community members in January on a build with the reveal, paywall and data flow; execution optional."
+  }
+ ],
+ "v02_note": "Gaps found during the v0.2 build (CLAUDE.md v2: gap, to be decided, with the screen it came from). Listed on the Changelog tab; the frozen Gaps tab renders the v0.1 list above unchanged.",
+ "v02": [
+  {
+   "id": "G14",
+   "title": "The v0.1 life-events picker (Q02, Something changed in my life) has no screen of its own in v0.2",
+   "screen": "Q02",
+   "why": "plan_v2 3.1 repurposes Q02 as Change plan (SKU and period). Self-reported changes are covered for now by the Anything else change card on Q01.",
+   "status": "gap, to be decided",
+   "cause": "Vatsal, 10 Sep 2026"
+  },
+  {
+   "id": "G15",
+   "title": "Archetype-to-amount estimate table for goal costs when the user picks I am not sure yet",
+   "screen": "D07a",
+   "why": "V5 Q4.4b names an estimate from the profile archetype; no table or selection rule is written anywhere.",
+   "status": "gap, to be decided",
+   "cause": "Vatsal, 10 Sep 2026"
+  },
+  {
+   "id": "G16",
+   "title": "Band multipliers for income tiers 1, 2, 4 and 5",
+   "screen": "L02",
+   "why": "V5 Stage 3 defines five income tiers and writes band tables for Tier 3 only; the other tiers' multipliers are not written.",
+   "status": "gap, to be decided",
+   "cause": "Vatsal, 10 Sep 2026"
+  }
  ]
 }
