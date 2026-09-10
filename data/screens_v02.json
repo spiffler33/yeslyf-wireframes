@@ -11663,6 +11663,13 @@
      ]
     ],
     [
+     "card",
+     "Missed your call?",
+     [
+      "Rebook: same topic, new slot (S20)"
+     ]
+    ],
+    [
      "p",
      "What is this call about?"
     ],
@@ -11703,7 +11710,8 @@
      "Calls can be booked at any time, before or after the plan; the v0.1 rule bookable only after G01 is removed.",
      "Calls explain: using the app, the plan, the investments and why the instruments and cohorts are what they are, what changed. Nobody plans separately for a user; the app does not change per SKU.",
      "Entitlement: included calls per SKU per period are config; a la carte calls can be bought by anyone on any SKU (K04).",
-     "Reachable from H07, the H01 cards, O02, the D-section stall state S19 and the G screens."
+     "Reachable from H07, the H01 cards, O02, the D-section stall state S19 and the G screens.",
+     "S20 no-show (section 5): the screen opens with the rebook card; 1h and 24h nudges; a second no-show creates a CRM task (DIWM outbound call; DIY a la carte offer, K04) (brief V2)."
     ],
     "branches": [
      [
@@ -11749,7 +11757,8 @@
     "status": "rebuilt",
     "causes": [
      "brief T2",
-     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+     "Vatsal, 10 Sep 2026 (section 5)"
     ]
    }
   },
@@ -11979,7 +11988,8 @@
     ],
     "logic": [
      "The adviser enters inputs during the call; the engine re-runs; the user sees a diff (H05). Nobody edits outputs by hand (spec v0.1, kept).",
-     "S21: call done, no action started (section 5)."
+     "S21: call done, no action started (section 5).",
+     "S21 (section 5): 48h push and 7d WhatsApp to the first action; exit when an action starts."
     ],
     "branches": [
      [
@@ -12018,7 +12028,8 @@
    "v02": {
     "status": "rebuilt",
     "causes": [
-     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+     "Vatsal, 10 Sep 2026 (section 5)"
     ]
    }
   },
@@ -13097,11 +13108,11 @@
   {
    "id": "H01",
    "sec": "H",
-   "title": "Home (plan ready)",
+   "title": "Home base",
    "tier": [
     "ALL"
    ],
-   "purpose": "The living plan. Net worth live, progress, the single next action, plan-updated banner, upcoming review, community, help.",
+   "purpose": "The living plan. Net worth live, progress, the single next action, upcoming review, the community strip, help. The hero card changes by state: this base is S8; H01a to H01k draw the other states.",
    "ui": [
     [
      "num",
@@ -13110,6 +13121,11 @@
     [
      "p",
      "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."
+    ],
+    [
+     "link",
+     "Net worth growth",
+     "H02"
     ],
     [
      "card",
@@ -13123,15 +13139,26 @@
      "Progress",
      [
       "3 of 8 actions done",
-      "Wheel of wealth: protection red, emergency amber, cashflow green"
+      "Wheel of wealth: protection red, emergency amber, cashflow green",
+      "Goals: 1 of 3 on track"
      ]
+    ],
+    [
+     "link",
+     "Wheel of wealth",
+     "H03"
+    ],
+    [
+     "link",
+     "Goals progress",
+     "H10"
     ],
     [
      "card",
      "Coming up",
      [
       "Quarterly review on 1 May",
-      "[DIWM] Plan call: Tue 10 Feb, 7:30 pm"
+      "Your call: <date, time>, if one is booked"
      ]
     ],
     [
@@ -13153,7 +13180,7 @@
    "spec": {
     "fields": [],
     "logic": [
-     "Home content is decided by state (section N). This is state S8/S9.",
+     "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3).",
      "DIFM: no next action from the engine; card reads: your adviser manages this; shows next review date.",
      "Community is a one-line strip on Home (brief V1); the community screen opens from the menu (H00)."
     ],
@@ -13177,12 +13204,36 @@
      [
       "Help",
       "H07"
+     ],
+     [
+      "Net worth",
+      "H02"
+     ],
+     [
+      "Wheel",
+      "H03"
+     ],
+     [
+      "Goals",
+      "H10"
+     ],
+     [
+      "Call",
+      "K02"
      ]
     ],
     "states": [
-     "S6 plan ready not read: hero becomes your plan is ready",
-     "S11 plan updated: banner to H05",
-     "S12 payment failed: banner"
+     "S8 plan read, no action: this base",
+     "S6 plan ready: H01a",
+     "S9 executing: H01c",
+     "S10 all done: H01d",
+     "S11 updated: H01e",
+     "S12 payment failed: H01f",
+     "S13 lapsed: H01g",
+     "S14 DIFM: H01h",
+     "S16 not connected: H01i",
+     "S18 built on partial data: H01j",
+     "S22 review overdue: H01k"
     ],
     "dev": [
      "Net worth from AA refresh on open (async, cached first)."
@@ -13206,7 +13257,1763 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "brief V1"
+     "brief V1",
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "H01a",
+   "sec": "H",
+   "title": "Home: plan ready",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Home for state S6: Your plan is ready. The hero card and the state card change; the tabs and the community strip stay.",
+   "ui": [
+    [
+     "num",
+     "Net worth Rs 19.2 L"
+    ],
+    [
+     "p",
+     "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."
+    ],
+    [
+     "link",
+     "Net worth growth",
+     "H02"
+    ],
+    [
+     "card",
+     "Your plan is ready",
+     [
+      "Read it first: Plan overview, about N minutes",
+      "What success looks like, then what needs attention, in order"
+     ]
+    ],
+    [
+     "btn",
+     "Read my plan",
+     "G03"
+    ],
+    [
+     "card",
+     "Progress",
+     [
+      "3 of 8 actions done",
+      "Wheel of wealth: protection red, emergency amber, cashflow green",
+      "Goals: 1 of 3 on track"
+     ]
+    ],
+    [
+     "link",
+     "Wheel of wealth",
+     "H03"
+    ],
+    [
+     "link",
+     "Goals progress",
+     "H10"
+    ],
+    [
+     "card",
+     "Coming up",
+     [
+      "Quarterly review on 1 May",
+      "Your call: <date, time>, if one is booked"
+     ]
+    ],
+    [
+     "link",
+     "Community: this week's session and who finished their plan",
+     "H08"
+    ],
+    [
+     "tabs",
+     [
+      "Home",
+      "Plan",
+      "Actions",
+      "Vault",
+      "Help"
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Variant of H01 for state S6 (section 5.3); the base logic applies.",
+     "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3)."
+    ],
+    "branches": [
+     [
+      "Next action",
+      "E01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Actions",
+      "H04"
+     ],
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Help",
+      "H07"
+     ],
+     [
+      "Net worth",
+      "H02"
+     ],
+     [
+      "Wheel",
+      "H03"
+     ],
+     [
+      "Goals",
+      "H10"
+     ],
+     [
+      "Call",
+      "K02"
+     ],
+     [
+      "Read",
+      "G03"
+     ]
+    ],
+    "states": [
+     "S6 (this variant)"
+    ],
+    "dev": [
+     "Hero card and state card come from the state table (N01); nothing else changes between variants."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "H01a_view",
+    "state_enter_S6"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "H01b",
+   "sec": "H",
+   "title": "Home: next action",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Home for state S8: Your next action. The hero card and the state card change; the tabs and the community strip stay.",
+   "ui": [
+    [
+     "num",
+     "Net worth Rs 19.2 L"
+    ],
+    [
+     "p",
+     "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."
+    ],
+    [
+     "link",
+     "Net worth growth",
+     "H02"
+    ],
+    [
+     "card",
+     "Your next action",
+     [
+      "<the first action from the action plan>",
+      "In the app, or guided outside it: about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Do the first action",
+     "E01"
+    ],
+    [
+     "card",
+     "Progress",
+     [
+      "3 of 8 actions done",
+      "Wheel of wealth: protection red, emergency amber, cashflow green",
+      "Goals: 1 of 3 on track"
+     ]
+    ],
+    [
+     "link",
+     "Wheel of wealth",
+     "H03"
+    ],
+    [
+     "link",
+     "Goals progress",
+     "H10"
+    ],
+    [
+     "card",
+     "Coming up",
+     [
+      "Quarterly review on 1 May",
+      "Your call: <date, time>, if one is booked"
+     ]
+    ],
+    [
+     "link",
+     "Community: this week's session and who finished their plan",
+     "H08"
+    ],
+    [
+     "tabs",
+     [
+      "Home",
+      "Plan",
+      "Actions",
+      "Vault",
+      "Help"
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Variant of H01 for state S8 (section 5.3); the base logic applies.",
+     "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3)."
+    ],
+    "branches": [
+     [
+      "Next action",
+      "E01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Actions",
+      "H04"
+     ],
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Help",
+      "H07"
+     ],
+     [
+      "Net worth",
+      "H02"
+     ],
+     [
+      "Wheel",
+      "H03"
+     ],
+     [
+      "Goals",
+      "H10"
+     ],
+     [
+      "Call",
+      "K02"
+     ]
+    ],
+    "states": [
+     "S8 (this variant)"
+    ],
+    "dev": [
+     "Hero card and state card come from the state table (N01); nothing else changes between variants."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "H01b_view",
+    "state_enter_S8"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "H01c",
+   "sec": "H",
+   "title": "Home: executing",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Home for state S9: In progress. The hero card and the state card change; the tabs and the community strip stay.",
+   "ui": [
+    [
+     "num",
+     "Net worth Rs 19.2 L"
+    ],
+    [
+     "p",
+     "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."
+    ],
+    [
+     "link",
+     "Net worth growth",
+     "H02"
+    ],
+    [
+     "card",
+     "In progress",
+     [
+      "N of N actions done",
+      "Next: <the next action>"
+     ]
+    ],
+    [
+     "btn",
+     "Next action",
+     "E01"
+    ],
+    [
+     "card",
+     "Progress",
+     [
+      "3 of 8 actions done",
+      "Wheel of wealth: protection red, emergency amber, cashflow green",
+      "Goals: 1 of 3 on track"
+     ]
+    ],
+    [
+     "link",
+     "Wheel of wealth",
+     "H03"
+    ],
+    [
+     "link",
+     "Goals progress",
+     "H10"
+    ],
+    [
+     "card",
+     "Coming up",
+     [
+      "Quarterly review on 1 May",
+      "Your call: <date, time>, if one is booked"
+     ]
+    ],
+    [
+     "link",
+     "Community: this week's session and who finished their plan",
+     "H08"
+    ],
+    [
+     "tabs",
+     [
+      "Home",
+      "Plan",
+      "Actions",
+      "Vault",
+      "Help"
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Variant of H01 for state S9 (section 5.3); the base logic applies.",
+     "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3)."
+    ],
+    "branches": [
+     [
+      "Next action",
+      "E01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Actions",
+      "H04"
+     ],
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Help",
+      "H07"
+     ],
+     [
+      "Net worth",
+      "H02"
+     ],
+     [
+      "Wheel",
+      "H03"
+     ],
+     [
+      "Goals",
+      "H10"
+     ],
+     [
+      "Call",
+      "K02"
+     ]
+    ],
+    "states": [
+     "S9 (this variant)"
+    ],
+    "dev": [
+     "Hero card and state card come from the state table (N01); nothing else changes between variants."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "H01c_view",
+    "state_enter_S9"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "H01d",
+   "sec": "H",
+   "title": "Home: all actions done",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Home for state S10: All actions done. The hero card and the state card change; the tabs and the community strip stay.",
+   "ui": [
+    [
+     "num",
+     "Net worth Rs 19.2 L"
+    ],
+    [
+     "p",
+     "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."
+    ],
+    [
+     "link",
+     "Net worth growth",
+     "H02"
+    ],
+    [
+     "card",
+     "All actions done",
+     [
+      "Your quarterly review is on <date>",
+      "Anniversary: confirm your risk profile and renew (Q04)"
+     ]
+    ],
+    [
+     "btn",
+     "See my progress",
+     "H02"
+    ],
+    [
+     "card",
+     "Progress",
+     [
+      "3 of 8 actions done",
+      "Wheel of wealth: protection red, emergency amber, cashflow green",
+      "Goals: 1 of 3 on track"
+     ]
+    ],
+    [
+     "link",
+     "Wheel of wealth",
+     "H03"
+    ],
+    [
+     "link",
+     "Goals progress",
+     "H10"
+    ],
+    [
+     "card",
+     "Coming up",
+     [
+      "Quarterly review on 1 May",
+      "Your call: <date, time>, if one is booked"
+     ]
+    ],
+    [
+     "link",
+     "Community: this week's session and who finished their plan",
+     "H08"
+    ],
+    [
+     "tabs",
+     [
+      "Home",
+      "Plan",
+      "Actions",
+      "Vault",
+      "Help"
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Variant of H01 for state S10 (section 5.3); the base logic applies.",
+     "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3)."
+    ],
+    "branches": [
+     [
+      "Next action",
+      "E01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Actions",
+      "H04"
+     ],
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Help",
+      "H07"
+     ],
+     [
+      "Net worth",
+      "H02"
+     ],
+     [
+      "Wheel",
+      "H03"
+     ],
+     [
+      "Goals",
+      "H10"
+     ],
+     [
+      "Call",
+      "K02"
+     ],
+     [
+      "Progress",
+      "H02"
+     ],
+     [
+      "Anniversary",
+      "Q04"
+     ]
+    ],
+    "states": [
+     "S10 (this variant)"
+    ],
+    "dev": [
+     "Hero card and state card come from the state table (N01); nothing else changes between variants."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "H01d_view",
+    "state_enter_S10"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "H01e",
+   "sec": "H",
+   "title": "Home: plan updated",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Home for state S11: Your plan was updated. The hero card and the state card change; the tabs and the community strip stay.",
+   "ui": [
+    [
+     "num",
+     "Net worth Rs 19.2 L"
+    ],
+    [
+     "p",
+     "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."
+    ],
+    [
+     "link",
+     "Net worth growth",
+     "H02"
+    ],
+    [
+     "card",
+     "Your plan was updated",
+     [
+      "N changes, each with its reason",
+      "Accept the update to refresh your action plan"
+     ]
+    ],
+    [
+     "btn",
+     "See what changed",
+     "H05"
+    ],
+    [
+     "card",
+     "Progress",
+     [
+      "3 of 8 actions done",
+      "Wheel of wealth: protection red, emergency amber, cashflow green",
+      "Goals: 1 of 3 on track"
+     ]
+    ],
+    [
+     "link",
+     "Wheel of wealth",
+     "H03"
+    ],
+    [
+     "link",
+     "Goals progress",
+     "H10"
+    ],
+    [
+     "card",
+     "Coming up",
+     [
+      "Quarterly review on 1 May",
+      "Your call: <date, time>, if one is booked"
+     ]
+    ],
+    [
+     "link",
+     "Community: this week's session and who finished their plan",
+     "H08"
+    ],
+    [
+     "tabs",
+     [
+      "Home",
+      "Plan",
+      "Actions",
+      "Vault",
+      "Help"
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Variant of H01 for state S11 (section 5.3); the base logic applies.",
+     "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3)."
+    ],
+    "branches": [
+     [
+      "Next action",
+      "E01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Actions",
+      "H04"
+     ],
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Help",
+      "H07"
+     ],
+     [
+      "Net worth",
+      "H02"
+     ],
+     [
+      "Wheel",
+      "H03"
+     ],
+     [
+      "Goals",
+      "H10"
+     ],
+     [
+      "Call",
+      "K02"
+     ],
+     [
+      "Update",
+      "H05"
+     ]
+    ],
+    "states": [
+     "S11 (this variant)"
+    ],
+    "dev": [
+     "Hero card and state card come from the state table (N01); nothing else changes between variants."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "H01e_view",
+    "state_enter_S11"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "H01f",
+   "sec": "H",
+   "title": "Home: payment failed",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Home for state S12: Your payment did not go through. The hero card and the state card change; the tabs and the community strip stay.",
+   "ui": [
+    [
+     "num",
+     "Net worth Rs 19.2 L"
+    ],
+    [
+     "p",
+     "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."
+    ],
+    [
+     "link",
+     "Net worth growth",
+     "H02"
+    ],
+    [
+     "card",
+     "Your payment did not go through",
+     [
+      "Retry within 7 days; nothing is lost",
+      "The plan refresh pauses on day 7"
+     ]
+    ],
+    [
+     "btn",
+     "Retry payment",
+     "Q03b"
+    ],
+    [
+     "card",
+     "Progress",
+     [
+      "3 of 8 actions done",
+      "Wheel of wealth: protection red, emergency amber, cashflow green",
+      "Goals: 1 of 3 on track"
+     ]
+    ],
+    [
+     "link",
+     "Wheel of wealth",
+     "H03"
+    ],
+    [
+     "link",
+     "Goals progress",
+     "H10"
+    ],
+    [
+     "card",
+     "Coming up",
+     [
+      "Quarterly review on 1 May",
+      "Your call: <date, time>, if one is booked"
+     ]
+    ],
+    [
+     "link",
+     "Community: this week's session and who finished their plan",
+     "H08"
+    ],
+    [
+     "tabs",
+     [
+      "Home",
+      "Plan",
+      "Actions",
+      "Vault",
+      "Help"
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Variant of H01 for state S12 (section 5.3); the base logic applies.",
+     "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3)."
+    ],
+    "branches": [
+     [
+      "Next action",
+      "E01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Actions",
+      "H04"
+     ],
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Help",
+      "H07"
+     ],
+     [
+      "Net worth",
+      "H02"
+     ],
+     [
+      "Wheel",
+      "H03"
+     ],
+     [
+      "Goals",
+      "H10"
+     ],
+     [
+      "Call",
+      "K02"
+     ],
+     [
+      "Retry",
+      "Q03b"
+     ]
+    ],
+    "states": [
+     "S12 (this variant)"
+    ],
+    "dev": [
+     "Hero card and state card come from the state table (N01); nothing else changes between variants."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "H01f_view",
+    "state_enter_S12"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "H01g",
+   "sec": "H",
+   "title": "Home: lapsed",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "purpose": "Home for state S13: Your membership has lapsed. The hero card and the state card change; the tabs and the community strip stay.",
+   "ui": [
+    [
+     "num",
+     "Net worth Rs 19.2 L"
+    ],
+    [
+     "p",
+     "Read-only since <date>. Refresh stopped."
+    ],
+    [
+     "link",
+     "Net worth growth",
+     "H02"
+    ],
+    [
+     "card",
+     "Your membership has lapsed",
+     [
+      "Plan read-only, dated <date>; refresh stopped",
+      "Resubscribe restores everything"
+     ]
+    ],
+    [
+     "btn",
+     "Resubscribe",
+     "Q03c"
+    ],
+    [
+     "card",
+     "Progress",
+     [
+      "3 of 8 actions done",
+      "Wheel of wealth: protection red, emergency amber, cashflow green",
+      "Goals: 1 of 3 on track"
+     ]
+    ],
+    [
+     "link",
+     "Wheel of wealth",
+     "H03"
+    ],
+    [
+     "link",
+     "Goals progress",
+     "H10"
+    ],
+    [
+     "card",
+     "Coming up",
+     [
+      "Quarterly review on 1 May",
+      "Your call: <date, time>, if one is booked"
+     ]
+    ],
+    [
+     "link",
+     "Community: this week's session and who finished their plan",
+     "H08"
+    ],
+    [
+     "tabs",
+     [
+      "Home",
+      "Plan",
+      "Actions",
+      "Vault",
+      "Help"
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Variant of H01 for state S13 (section 5.3); the base logic applies.",
+     "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3)."
+    ],
+    "branches": [
+     [
+      "Next action",
+      "E01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Actions",
+      "H04"
+     ],
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Help",
+      "H07"
+     ],
+     [
+      "Net worth",
+      "H02"
+     ],
+     [
+      "Wheel",
+      "H03"
+     ],
+     [
+      "Goals",
+      "H10"
+     ],
+     [
+      "Call",
+      "K02"
+     ],
+     [
+      "Resubscribe",
+      "Q03c"
+     ]
+    ],
+    "states": [
+     "S13 (this variant)"
+    ],
+    "dev": [
+     "Hero card and state card come from the state table (N01); nothing else changes between variants."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "H01g_view",
+    "state_enter_S13"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "H01h",
+   "sec": "H",
+   "title": "Home: DIFM",
+   "tier": [
+    "DIFM"
+   ],
+   "purpose": "Home for state S14: Your adviser manages this. The hero card and the state card change; the tabs and the community strip stay.",
+   "ui": [
+    [
+     "num",
+     "Net worth Rs 19.2 L"
+    ],
+    [
+     "p",
+     "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."
+    ],
+    [
+     "link",
+     "Net worth growth",
+     "H02"
+    ],
+    [
+     "card",
+     "Your adviser manages this",
+     [
+      "This app tracks your progress; advice comes from your adviser directly",
+      "Next review: <date>"
+     ]
+    ],
+    [
+     "btn",
+     "Update my numbers",
+     "H09"
+    ],
+    [
+     "card",
+     "Progress",
+     [
+      "3 of 8 actions done",
+      "Wheel of wealth: protection red, emergency amber, cashflow green",
+      "Goals: 1 of 3 on track"
+     ]
+    ],
+    [
+     "link",
+     "Wheel of wealth",
+     "H03"
+    ],
+    [
+     "link",
+     "Goals progress",
+     "H10"
+    ],
+    [
+     "card",
+     "Coming up",
+     [
+      "Quarterly review on 1 May",
+      "Your call: <date, time>, if one is booked"
+     ]
+    ],
+    [
+     "link",
+     "Community: this week's session and who finished their plan",
+     "H08"
+    ],
+    [
+     "tabs",
+     [
+      "Home",
+      "Plan",
+      "Actions",
+      "Vault",
+      "Help"
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Variant of H01 for state S14 (section 5.3); the base logic applies.",
+     "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3).",
+     "DIFM: no next action from the engine and no in-app upsell; the card reads your adviser manages this (Vatsal, 10 Sep 2026)."
+    ],
+    "branches": [
+     [
+      "Next action",
+      "E01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Actions",
+      "H04"
+     ],
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Help",
+      "H07"
+     ],
+     [
+      "Net worth",
+      "H02"
+     ],
+     [
+      "Wheel",
+      "H03"
+     ],
+     [
+      "Goals",
+      "H10"
+     ],
+     [
+      "Call",
+      "K02"
+     ],
+     [
+      "Update",
+      "H09"
+     ]
+    ],
+    "states": [
+     "S14 (this variant)"
+    ],
+    "dev": [
+     "Hero card and state card come from the state table (N01); nothing else changes between variants."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "H01h_view",
+    "state_enter_S14"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "H01i",
+   "sec": "H",
+   "title": "Home: not connected",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Home for state S16: Your next action. The hero card and the state card change; the tabs and the community strip stay.",
+   "ui": [
+    [
+     "num",
+     "Net worth Rs 19.2 L"
+    ],
+    [
+     "p",
+     "Last updated by you N days ago; connect Account Aggregator to keep this live."
+    ],
+    [
+     "link",
+     "Net worth growth",
+     "H02"
+    ],
+    [
+     "card",
+     "Your next action",
+     [
+      "<the first action from the action plan>",
+      "About N minutes"
+     ]
+    ],
+    [
+     "link",
+     "Connect Account Aggregator to keep this live",
+     "A05"
+    ],
+    [
+     "btn",
+     "Do the first action",
+     "E01"
+    ],
+    [
+     "card",
+     "Progress",
+     [
+      "3 of 8 actions done",
+      "Wheel of wealth: protection red, emergency amber, cashflow green",
+      "Goals: 1 of 3 on track"
+     ]
+    ],
+    [
+     "link",
+     "Wheel of wealth",
+     "H03"
+    ],
+    [
+     "link",
+     "Goals progress",
+     "H10"
+    ],
+    [
+     "card",
+     "Coming up",
+     [
+      "Quarterly review on 1 May",
+      "Your call: <date, time>, if one is booked"
+     ]
+    ],
+    [
+     "link",
+     "Community: this week's session and who finished their plan",
+     "H08"
+    ],
+    [
+     "tabs",
+     [
+      "Home",
+      "Plan",
+      "Actions",
+      "Vault",
+      "Help"
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Variant of H01 for state S16 (section 5.3); the base logic applies.",
+     "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3).",
+     "S16: numbers typed by the user; the freshness line re-asks for Account Aggregator (Vatsal, 10 Sep 2026)."
+    ],
+    "branches": [
+     [
+      "Next action",
+      "E01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Actions",
+      "H04"
+     ],
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Help",
+      "H07"
+     ],
+     [
+      "Net worth",
+      "H02"
+     ],
+     [
+      "Wheel",
+      "H03"
+     ],
+     [
+      "Goals",
+      "H10"
+     ],
+     [
+      "Call",
+      "K02"
+     ],
+     [
+      "Connect",
+      "A05"
+     ]
+    ],
+    "states": [
+     "S16 (this variant)"
+    ],
+    "dev": [
+     "Hero card and state card come from the state table (N01); nothing else changes between variants."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "manual",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "H01i_view",
+    "state_enter_S16"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "H01j",
+   "sec": "H",
+   "title": "Home: built on partial data",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Home for state S18: Built on what we have. The hero card and the state card change; the tabs and the community strip stay.",
+   "ui": [
+    [
+     "num",
+     "Net worth Rs 19.2 L"
+    ],
+    [
+     "p",
+     "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."
+    ],
+    [
+     "link",
+     "Net worth growth",
+     "H02"
+    ],
+    [
+     "card",
+     "Built on what we have",
+     [
+      "N numbers are still missing; each can be sharpened from the plan",
+      "The plan works today; sharper numbers make it yours"
+     ]
+    ],
+    [
+     "card",
+     "Sharpen",
+     [
+      "Take-home: approx, from your reveal. Sharpen this",
+      "Term cover: not sure. Sharpen this",
+      "Each link opens the single screen and re-runs; H05 shows the diff"
+     ]
+    ],
+    [
+     "card",
+     "Sunday sharpen",
+     [
+      "Want me to ask you for the N numbers I am still missing on Sunday?",
+      "Nudge slot N-S18-sunday"
+     ]
+    ],
+    [
+     "chips",
+     [
+      "Yes, Sunday",
+      "Not now"
+     ]
+    ],
+    [
+     "btn",
+     "Sharpen now",
+     "D10"
+    ],
+    [
+     "card",
+     "Progress",
+     [
+      "3 of 8 actions done",
+      "Wheel of wealth: protection red, emergency amber, cashflow green",
+      "Goals: 1 of 3 on track"
+     ]
+    ],
+    [
+     "link",
+     "Wheel of wealth",
+     "H03"
+    ],
+    [
+     "link",
+     "Goals progress",
+     "H10"
+    ],
+    [
+     "card",
+     "Coming up",
+     [
+      "Quarterly review on 1 May",
+      "Your call: <date, time>, if one is booked"
+     ]
+    ],
+    [
+     "link",
+     "Community: this week's session and who finished their plan",
+     "H08"
+    ],
+    [
+     "tabs",
+     [
+      "Home",
+      "Plan",
+      "Actions",
+      "Vault",
+      "Help"
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Variant of H01 for state S18 (section 5.3); the base logic applies.",
+     "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3).",
+     "S18: the Sunday sharpen card schedules the nudge slot N-S18-sunday; the sharpen strip lists the assumed and not-sure fields (Vatsal, 10 Sep 2026)."
+    ],
+    "branches": [
+     [
+      "Next action",
+      "E01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Actions",
+      "H04"
+     ],
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Help",
+      "H07"
+     ],
+     [
+      "Net worth",
+      "H02"
+     ],
+     [
+      "Wheel",
+      "H03"
+     ],
+     [
+      "Goals",
+      "H10"
+     ],
+     [
+      "Call",
+      "K02"
+     ],
+     [
+      "Sharpen",
+      "D10"
+     ]
+    ],
+    "states": [
+     "S18 (this variant)"
+    ],
+    "dev": [
+     "Hero card and state card come from the state table (N01); nothing else changes between variants."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "H01j_view",
+    "state_enter_S18"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "H01k",
+   "sec": "H",
+   "title": "Home: review overdue",
+   "tier": [
+    "ALL"
+   ],
+   "purpose": "Home for state S22: Your quarterly review is waiting. The hero card and the state card change; the tabs and the community strip stay.",
+   "ui": [
+    [
+     "num",
+     "Net worth Rs 19.2 L"
+    ],
+    [
+     "p",
+     "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."
+    ],
+    [
+     "link",
+     "Net worth growth",
+     "H02"
+    ],
+    [
+     "card",
+     "Your quarterly review is waiting",
+     [
+      "About N minutes: confirm what changed and rebuild",
+      "DIWM: book a call to walk through it"
+     ]
+    ],
+    [
+     "btn",
+     "Open the review",
+     "Q01"
+    ],
+    [
+     "link",
+     "Book a call",
+     "K01"
+    ],
+    [
+     "card",
+     "Progress",
+     [
+      "3 of 8 actions done",
+      "Wheel of wealth: protection red, emergency amber, cashflow green",
+      "Goals: 1 of 3 on track"
+     ]
+    ],
+    [
+     "link",
+     "Wheel of wealth",
+     "H03"
+    ],
+    [
+     "link",
+     "Goals progress",
+     "H10"
+    ],
+    [
+     "card",
+     "Coming up",
+     [
+      "Quarterly review on 1 May",
+      "Your call: <date, time>, if one is booked"
+     ]
+    ],
+    [
+     "link",
+     "Community: this week's session and who finished their plan",
+     "H08"
+    ],
+    [
+     "tabs",
+     [
+      "Home",
+      "Plan",
+      "Actions",
+      "Vault",
+      "Help"
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Variant of H01 for state S22 (section 5.3); the base logic applies.",
+     "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3)."
+    ],
+    "branches": [
+     [
+      "Next action",
+      "E01"
+     ],
+     [
+      "Plan",
+      "G03"
+     ],
+     [
+      "Actions",
+      "H04"
+     ],
+     [
+      "Vault",
+      "H06"
+     ],
+     [
+      "Help",
+      "H07"
+     ],
+     [
+      "Net worth",
+      "H02"
+     ],
+     [
+      "Wheel",
+      "H03"
+     ],
+     [
+      "Goals",
+      "H10"
+     ],
+     [
+      "Call",
+      "K02"
+     ],
+     [
+      "Review",
+      "Q01"
+     ],
+     [
+      "Call",
+      "K01"
+     ]
+    ],
+    "states": [
+     "S22 (this variant)"
+    ],
+    "dev": [
+     "Hero card and state card come from the state table (N01); nothing else changes between variants."
+    ]
+   },
+   "frame": "phone",
+   "template": "T-hub",
+   "path": "both",
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "events": [
+    "H01k_view",
+    "state_enter_S22"
+   ],
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
     ]
    }
   },
@@ -13222,6 +15029,10 @@
     [
      "h",
      "My net worth growth"
+    ],
+    [
+     "p",
+     "Updated <date> via Account Aggregator. Or: last updated by you N days ago; connect Account Aggregator to keep this live."
     ],
     [
      "chart",
@@ -13245,6 +15056,11 @@
      ]
     ],
     [
+     "link",
+     "Connect Account Aggregator",
+     "A05"
+    ],
+    [
      "btn",
      "Back",
      "H01"
@@ -13252,14 +15068,23 @@
    ],
    "spec": {
     "fields": [],
-    "logic": [],
+    "logic": [
+     "Source and freshness line (section 5.3): AA users see the last fetch date; manual users see last updated by you N days ago with the connect prompt (S16)."
+    ],
     "branches": [
      [
       "Back",
       "H01"
+     ],
+     [
+      "Connect",
+      "A05"
      ]
     ],
-    "states": [],
+    "states": [
+     "AA-fed: fetch date shown",
+     "S16 manual: freshness line and the connect link"
+    ],
     "dev": [
      "Monthly snapshots stored."
     ]
@@ -13280,8 +15105,10 @@
     "H02_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
    }
   },
   {
@@ -13414,6 +15241,19 @@
      ]
     ],
     [
+     "card",
+     "Verify",
+     [
+      "Tell me your term cover to check it",
+      "Not-sure fields become verify actions here, never gap diagnoses"
+     ]
+    ],
+    [
+     "link",
+     "Verify term cover",
+     "D04a"
+    ],
+    [
      "btn",
      "Back",
      "H01"
@@ -13421,14 +15261,23 @@
    ],
    "spec": {
     "fields": [],
-    "logic": [],
+    "logic": [
+     "Verify actions from not-sure fields (section 4.3 rule 6; section 5.3): a field left as not sure produces a verify action here, in G05 and G07; explicit none produces the concern copy instead."
+    ],
     "branches": [
      [
       "Back",
       "H01"
+     ],
+     [
+      "Verify term cover",
+      "D04a"
      ]
     ],
-    "states": [],
+    "states": [
+     "Verify actions present: the Verify card shows first",
+     "All fields known: no Verify card"
+    ],
     "dev": []
    },
    "frame": "phone",
@@ -13447,8 +15296,10 @@
     "H04_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
    }
   },
   {
@@ -13859,7 +15710,7 @@
       ],
       [
        "Delete my account",
-       ""
+       "DPDP flow; regulated records retained"
       ]
      ]
     ],
@@ -13873,7 +15724,8 @@
     "fields": [],
     "logic": [
      "Update answers reopens the relevant D screens with current values; on save the plan re-runs and H05 shows the diff.",
-     "Subscription goes to Q03; change plan goes to Q02."
+     "Subscription goes to Q03; change plan goes to Q02.",
+     "Delete my account (S25): DPDP flow; regulated records retained; to be verified: DPDP notice, deletion and retention text."
     ],
     "branches": [
      [
@@ -13885,7 +15737,9 @@
       "Q02"
      ]
     ],
-    "states": [],
+    "states": [
+     "S25 account deletion requested: the deletion row shows the request status and what is retained"
+    ],
     "dev": [
      "Delete account: retention rules override for regulated records; explain in copy.",
      "to be verified: DPDP notice text (gap G03)."
@@ -13910,7 +15764,8 @@
     "status": "changed",
     "causes": [
      "gap G03 (agreed, date set)",
-     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+     "Vatsal, 10 Sep 2026 (section 5)"
     ]
    }
   },
@@ -14108,6 +15963,11 @@
      "Your quarterly review"
     ],
     [
+     "link",
+     "Reconnect Account Aggregator first (consent expired)",
+     "A06"
+    ],
+    [
      "card",
      "We updated 3 numbers from your accounts. Good to go?",
      [
@@ -14166,10 +16026,16 @@
      [
       "Book a call",
       "K01"
+     ],
+     [
+      "Re-consent",
+      "A06"
      ]
     ],
     "states": [
-     "AA consent expired: re-consent prompt (A06) first"
+     "S15 AA consent expired: re-consent prompt (A06) first",
+     "S22 review ignored: Q01 not opened 14 days after generation; H01k carries the review card (section 5)",
+     "Manual users: Q05 is their review"
     ],
     "dev": [
      "Periodic AA consent covers this fetch; frequency in the consent template."
@@ -14193,7 +16059,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+     "Vatsal, 10 Sep 2026 (section 5)"
     ]
    }
   },
@@ -14476,7 +16343,8 @@
     "logic": [
      "Confirm cancel: the plan stays readable, refresh stops (spec v0.1).",
      "Refund per the agreement (brief H5: to be decided).",
-     "S24 refund requested follows this path (section 5)."
+     "S24 refund requested follows this path (section 5).",
+     "S24 refund requested (section 5): the CRM creates a task with the payment reference and the reason; the refund follows brief H5 (to be decided)."
     ],
     "branches": [
      [
@@ -14514,7 +16382,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+     "Vatsal, 10 Sep 2026 (section 5)"
     ]
    }
   },
@@ -14720,6 +16589,10 @@
      ]
     ],
     [
+     "p",
+     "to be verified: what happens to advice if the annual confirmation is not given (brief compliance)"
+    ],
+    [
      "btn",
      "Continue",
      "H01"
@@ -14736,7 +16609,9 @@
       "H01"
      ]
     ],
-    "states": [],
+    "states": [
+     "S23 annual confirmation overdue (section 5): nudges 7 days before, on the day, 7 days after; to be verified: what happens to advice if the annual confirmation is not given (brief compliance)"
+    ],
     "dev": [
      "Counsel to confirm whether auto-renewal language can replace a fresh eSign."
     ]
@@ -14757,8 +16632,197 @@
     "Q04_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "Q05",
+   "sec": "Q",
+   "title": "Update your numbers",
+   "tier": [
+    "DIY",
+    "DIWM"
+   ],
+   "frame": "phone",
+   "purpose": "The manual quarterly review for users without Account Aggregator (S16): the fields that move, the capture ladder, and the CAS route again. Mixed users keep their manual number where they locked it.",
+   "ui": [
+    [
+     "h",
+     "Update your numbers"
+    ],
+    [
+     "p",
+     "Your plan runs on numbers you typed. Once a quarter I ask for the ones that move; about N minutes."
+    ],
+    [
+     "rows",
+     [
+      [
+       "Monthly take-home",
+       "Rs ___, typed on <date>"
+      ],
+      [
+       "Monthly outgoings",
+       "Rs ___, typed"
+      ],
+      [
+       "Bank balances and deposits",
+       "Rs ___, typed"
+      ],
+      [
+       "Mutual funds",
+       "Rs ___, typed"
+      ],
+      [
+       "Stocks and ETFs",
+       "Rs ___, typed"
+      ]
+     ]
+    ],
+    [
+     "chips",
+     [
+      "Keep my manual number",
+      "Update"
+     ]
+    ],
+    [
+     "card",
+     "Faster ways",
+     [
+      "Connect Account Aggregator: keeps these live from now on",
+      "Upload your CAS: mutual funds and stocks in one go"
+     ]
+    ],
+    [
+     "btn2",
+     "Connect Account Aggregator",
+     "A05"
+    ],
+    [
+     "btn2",
+     "Upload my CAS",
+     "A10"
+    ],
+    [
+     "link",
+     "Edit take-home",
+     "D05a"
+    ],
+    [
+     "link",
+     "Edit outgoings",
+     "D06a"
+    ],
+    [
+     "link",
+     "Edit investments",
+     "D02"
+    ],
+    [
+     "btn",
+     "Rebuild my plan",
+     "H05"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     {
+      "f": "take_home",
+      "gate": true,
+      "source": "manual",
+      "precision": "exact or approx",
+      "note": "locked manual value stays unless updated here"
+     },
+     {
+      "f": "total_outgoings",
+      "gate": true,
+      "source": "manual",
+      "precision": "exact or approx"
+     },
+     {
+      "f": "bank_and_deposits",
+      "gate": true,
+      "source": "manual",
+      "precision": "exact or approx"
+     },
+     {
+      "f": "mutual_funds",
+      "gate": true,
+      "source": "manual or cas",
+      "precision": "exact or approx"
+     },
+     {
+      "f": "stocks",
+      "gate": true,
+      "source": "manual or cas",
+      "precision": "exact or approx"
+     }
+    ],
+    "logic": [
+     "Manual quarterly review for S16 users (Vatsal, 10 Sep 2026): the fields that move, with the capture ladder and A10 again.",
+     "Keep my manual number stays for mixed users: a locked manual field is not overwritten by a later Account Aggregator fetch (spec v0.1 A08, kept).",
+     "The Account Aggregator re-ask lives here and at G12a (section 5.2, S16).",
+     "Rebuild my plan re-runs the engine; H05 shows the diff."
+    ],
+    "branches": [
+     [
+      "Connect",
+      "A05"
+     ],
+     [
+      "CAS",
+      "A10"
+     ],
+     [
+      "Take-home",
+      "D05a"
+     ],
+     [
+      "Outgoings",
+      "D06a"
+     ],
+     [
+      "Investments",
+      "D02"
+     ],
+     [
+      "Rebuild",
+      "H05"
+     ]
+    ],
+    "states": [
+     "S16 AA not connected: this is the review",
+     "Mixed sources: AA-fed rows show the fetched value and the manual lock; only typed rows are asked"
+    ],
+    "dev": [
+     "Runs on the plan anniversary quarter like Q01; the same review_id and diff pipeline.",
+     "Each row links to its single D screen; saving there returns here."
+    ]
+   },
+   "template": "T-review",
+   "path": "manual",
+   "events": [
+    "Q05_view",
+    "state_enter_S16"
+   ],
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
    }
   },
   {
@@ -14769,129 +16833,253 @@
     "ALL"
    ],
    "frame": "desktop",
-   "purpose": "Every returning user is routed by state on open. This table is the contract between backend, app and nudges.",
+   "purpose": "Every returning user is routed by state on open. One row per state: who, where it lands, the primary action, the nudge ladder, the human escalation by tier, the exit. The contract between backend, app and nudges.",
    "ui": [
     [
      "table",
      [
       "State",
       "Who",
-      "Home shows",
+      "Lands on",
       "Primary action",
-      "Nudges"
+      "Nudge ladder",
+      "Human escalation by tier",
+      "Exit"
      ],
      [
       [
        "S1",
        "Signed up, no reveal",
-       "Resume R01",
-       "Finish the reveal, 90 seconds",
-       "Ping at 1 hour, 1 day"
+       "R01",
+       "Finish the reveal",
+       "1h push; day 1 WhatsApp",
+       "DIWM: ladder only (not paid yet). DIY: ladder only (not paid yet). DIFM: not applicable.",
+       "reveal seen (R09) -> S2; paid -> S2b or S3"
       ],
       [
        "S2",
        "Reveal seen, not paid",
-       "X01 saved reveal",
+       "X01",
        "Unlock my plan",
-       "Day 1, 3, 7, 21, 82, then stop"
+       "day 1 push; day 3 WhatsApp; day 7 email; day 21 email; day 82 email",
+       "DIWM: ladder only, then stop. DIY: ladder only, then stop. DIFM: not applicable.",
+       "paid -> S2b or S3; day 82 -> stop"
       ],
       [
        "S2b",
-       "Paid but eSign incomplete",
-       "Agreement pending",
-       "Sign",
-       "1 day, 3 days; refund path at 14"
+       "Paid, eSign incomplete",
+       "P03",
+       "Sign the agreement",
+       "day 1 push; day 3 WhatsApp; day 14 email",
+       "DIWM: day 14: refund path (brief H5: to be decided); CRM task. DIY: day 14: refund path (brief H5: to be decided); CRM task. DIFM: not applicable.",
+       "eSign done (P03) -> S3; day 14 unsigned -> refund path (brief H5: to be decided)"
       ],
       [
        "S3",
        "Paid, nothing else",
-       "O02 hub, step 1",
-       "Connect via AA",
-       "24h, 72h"
+       "O02",
+       "Start with Before you start (D00)",
+       "24h push; 72h WhatsApp; day 7 push",
+       "DIWM: day 7 -> S19 (outbound call task). DIY: day 7 -> S19 (a la carte offer). DIFM: adviser relationship.",
+       "any D screen saved -> S4; gate met -> S5; day 7 -> S19"
       ],
       [
        "S4",
        "Data partial",
-       "O02 hub, last section",
-       "Continue where you left off",
-       "24h, 72h, 7d"
+       "O02",
+       "Continue where you left off: <screen>",
+       "O03 time, when set push; 24h push; 72h WhatsApp; day 7 push",
+       "DIWM: day 7 -> S19 (outbound call task). DIY: day 7 -> S19 (a la carte offer). DIFM: adviser relationship.",
+       "gate met -> S5; day 7 below the gate -> S19"
       ],
       [
        "S5",
-       "Data done, risk profile pending",
-       "D08",
-       "Two minutes to finish",
-       "24h"
+       "Gate met, D10 not confirmed",
+       "D10",
+       "Build my plan",
+       "24h push; day 7 WhatsApp",
+       "DIWM: ladder only. DIY: ladder only. DIFM: adviser relationship.",
+       "Build my plan (D10) -> S6; day 7 -> built on what we have (G01a) -> S18"
       ],
       [
        "S6",
        "Plan built, not read",
-       "H01 hero: plan ready",
-       "Read your plan",
-       "48h"
+       "H01a",
+       "Read your plan (G03)",
+       "48h push",
+       "DIWM: ladder only; the H01a card offers a call. DIY: ladder only. DIFM: not applicable (no engine plan).",
+       "plan read (G03) -> S8; call booked -> S7"
       ],
       [
        "S7",
-       "DIWM: call booked",
-       "H01 with countdown",
-       "Prepare for your call",
-       "24h, 1h before"
+       "Call booked, any tier",
+       "K02",
+       "Prepare for your call: read your plan",
+       "24h before WhatsApp; 1h before push",
+       "DIWM: service reminders only. DIY: service reminders only. DIFM: adviser relationship.",
+       "call done -> S21 (no action started) or the previous state; no-show -> S20"
       ],
       [
        "S8",
        "Plan read, no action done",
-       "H01 next action",
-       "Do the first action",
-       "48h, 7d, 14d"
+       "H01b",
+       "Do the first action (E01)",
+       "48h push; 7d WhatsApp; 14d email",
+       "DIWM: ladder only; the H01b card offers a call. DIY: ladder only. DIFM: not applicable.",
+       "first action started -> S9"
       ],
       [
        "S9",
        "Executing",
-       "H01 progress",
+       "H01c",
        "Next action",
-       "Missed SIP, verified done"
+       "immediately, missed SIP detected WhatsApp; immediately, action verified done push",
+       "DIWM: service nudges only. DIY: service nudges only. DIFM: not applicable.",
+       "all actions done -> S10; plan updated -> S11"
       ],
       [
        "S10",
        "All actions done",
-       "H01 celebration",
-       "Quarterly review date",
-       "Anniversary"
+       "H01d",
+       "Your quarterly review date",
+       "immediately push; anniversary WhatsApp",
+       "DIWM: none. DIY: none. DIFM: not applicable.",
+       "quarterly review generated -> Q01 (S22 if ignored); plan updated -> S11"
       ],
       [
        "S11",
-       "Plan updated (publish)",
-       "H05 banner",
-       "Accept the update",
-       "3d if unaccepted"
+       "Plan updated (publish), not accepted",
+       "H01e",
+       "Accept the update (H05)",
+       "3d push",
+       "DIWM: ladder only. DIY: ladder only. DIFM: not applicable.",
+       "update accepted (H05) -> the previous state (S8, S9 or S10)"
       ],
       [
        "S12",
        "Payment failed",
-       "Banner",
-       "Retry payment",
-       "Grace 7 days"
+       "H01f",
+       "Retry payment (Q03b)",
+       "day 0 WhatsApp; day 3 email; day 6 push",
+       "DIWM: ladder only; grace 7 days. DIY: ladder only; grace 7 days. DIFM: not applicable.",
+       "payment recovered -> the previous state; day 7 -> S13"
       ],
       [
        "S13",
        "Lapsed",
-       "Read-only plan",
-       "Resubscribe",
-       "30d, 90d"
+       "H01g",
+       "Resubscribe (Q03c)",
+       "30d email; 90d WhatsApp",
+       "DIWM: ladder only. DIY: ladder only. DIFM: not applicable.",
+       "resubscribed (P01) -> S8 or S9; everything restored"
       ],
       [
        "S14",
        "DIFM client",
-       "Dashboard without engine advice",
-       "Your adviser manages this",
-       "Review dates"
+       "H01h",
+       "Your adviser manages this; update your numbers before the review",
+       "per adviser, before the review WhatsApp (DIFM)",
+       "DIWM: not applicable. DIY: not applicable. DIFM: adviser relationship; no ladder beyond the review reminder.",
+       "stays; the adviser relationship sets the review dates"
       ],
       [
        "S15",
        "AA consent expired",
-       "Q01 with re-consent",
-       "Reconnect",
-       "At review"
+       "Q01",
+       "Reconnect Account Aggregator first (A06)",
+       "7d before expiry push; at review WhatsApp",
+       "DIWM: ladder only. DIY: ladder only. DIFM: adviser relationship.",
+       "consent renewed -> the previous state; declined -> S16 (manual)"
+      ],
+      [
+       "S16",
+       "AA not connected, manual in progress or done",
+       "H01i",
+       "Connect Account Aggregator to keep this live (A05)",
+       "review quarter WhatsApp",
+       "DIWM: ladder only; re-asks in-app at G12a and Q05. DIY: ladder only; re-asks in-app at G12a and Q05. DIFM: adviser relationship.",
+       "AA connected (A06) -> the AA states; mid-way users are S4 on the spine"
+      ],
+      [
+       "S17",
+       "CAS requested, awaiting the email",
+       "A10a",
+       "Upload your CAS (A10b)",
+       "1h push; 24h WhatsApp",
+       "DIWM: ladder only. DIY: ladder only. DIFM: adviser relationship.",
+       "upload (A10b) or type it instead (D02) -> S4 or S5"
+      ],
+      [
+       "S18",
+       "Plan built on partial data",
+       "H01j",
+       "Sharpen the N numbers still missing",
+       "the chosen Sunday push; day 7 WhatsApp; day 21 email",
+       "DIWM: ladder only; the H01j card offers a call. DIY: ladder only. DIFM: not applicable.",
+       "no sharpen items remain -> S8 or S9"
+      ],
+      [
+       "S19",
+       "Stalled below the gate at day 7",
+       "O02",
+       "Finish the N fields that build your plan",
+       "day 7 push; day 7 human call (DIWM); day 7 push (DIY); day 10 WhatsApp; day 14 email; monthly email",
+       "DIWM: day 7: outbound call task from the call centre (does not consume included calls). DIY: day 7: a la carte offer (K04). DIFM: adviser relationship.",
+       "gate met -> S5"
+      ],
+      [
+       "S20",
+       "Call booked, no-show",
+       "K01",
+       "Rebook your call (K05)",
+       "1h after push; 24h WhatsApp; second no-show human call (DIWM); second no-show push (DIY)",
+       "DIWM: second no-show: outbound call task. DIY: second no-show: a la carte offer (K04). DIFM: adviser relationship.",
+       "rebooked (K05) -> S7; second no-show -> CRM task"
+      ],
+      [
+       "S21",
+       "Call done, no action started",
+       "K03",
+       "Do the first action from the call",
+       "48h push; 7d WhatsApp",
+       "DIWM: ladder only. DIY: ladder only. DIFM: adviser relationship.",
+       "first action started -> S9"
+      ],
+      [
+       "S22",
+       "Quarterly review ignored: Q01 not opened 14 days after generation",
+       "H01k",
+       "Open your quarterly review (Q01)",
+       "7d push; 14d email",
+       "DIWM: the review card carries a book-a-call line (K01). DIY: ladder only. DIFM: not applicable.",
+       "Q01 opened and rebuilt -> S8, S9 or S10"
+      ],
+      [
+       "S23",
+       "Annual confirmation overdue (Q04)",
+       "Q04",
+       "Confirm your risk profile and renew the agreement",
+       "7 days before email; day of push; 7 days after WhatsApp",
+       "DIWM: ladder only. DIY: ladder only. DIFM: adviser relationship.",
+       "confirmed and renewed (Q04) -> the previous state; to be verified: what happens to advice if the annual confirmation is not given (brief compliance)"
+      ],
+      [
+       "S24",
+       "Refund requested",
+       "Q03a",
+       "Refund status",
+       "immediately email",
+       "DIWM: CRM task for the refund; brief H5: to be decided. DIY: CRM task for the refund; brief H5: to be decided. DIFM: adviser relationship.",
+       "refund processed -> S13 (lapsed) or account closed; brief H5: to be decided"
+      ],
+      [
+       "S25",
+       "Account deletion requested (H09)",
+       "H09",
+       "Confirm deletion",
+       "immediately email",
+       "DIWM: CRM task for the deletion; regulated records retained. DIY: CRM task for the deletion; regulated records retained. DIFM: adviser relationship.",
+       "deletion done -> account closed; to be verified: DPDP notice, deletion and retention text"
       ]
      ]
     ]
@@ -14899,18 +17087,30 @@
    "spec": {
     "fields": [],
     "logic": [
-     "State is computed on every open from stored flags (M6 step determination extended).",
-     "One nudge per week maximum across all layers; deep links land on the primary action.",
-     "Human call is a nudge channel (brief V2): the CRM creates a task for the caller carrying the state ID, the missing fields and the tier. Detail in N02 to N04."
+     "One nudge per week maximum across layers (spec v0.1, kept) applies from day 14 after payment. Before day 14 the onboarding states may nudge at 24 hours, 72 hours and day 7 (spec v0.1 S3, S4 cadence, kept). Vatsal, 10 Sep 2026.",
+     "Every nudge deep-links to the primary action and names the specific next screen and its minutes; never continue your journey. Vatsal, 10 Sep 2026.",
+     "O03's chosen time replaces the first scheduled nudge when it exists. Vatsal, 10 Sep 2026.",
+     "Human escalation is an outbound call from the call centre; the CRM creates a task carrying the state ID, the missing fields and the tier. It does not consume the user's included calls. During the call the adviser enters inputs and the engine re-runs; nobody edits outputs by hand (spec v0.1, kept). brief V2.",
+     "Escalation by tier: DIWM gets the outbound call at day 7 of a data stall and on a second no-show; DIY gets the a la carte offer (K04) at the same points; DIFM is handled by the adviser relationship, not the ladder. Vatsal, 10 Sep 2026.",
+     "Nudge copy slots are IDs (N-S4-72h); copy is content (gap G08) and lives in the CRM templates. The message text in this file is placeholder copy. Vatsal, 10 Sep 2026.",
+     "State is computed on every open from stored flags; deep links land on the primary action (spec v0.1, kept).",
+     "States run S1 to S25. The next number is not used, and there is no state for anyone but the user. Vatsal, 10 Sep 2026.",
+     "States run S1 to S25; the next number is not used (Vatsal, 10 Sep 2026).",
+     "H01 states land on their variant H01a to H01k (section 5.3)."
     ],
     "branches": [],
     "states": [],
     "dev": [
-     "Nudge channels: push, WhatsApp, email, human call (brief V2); templates live in the CRM (M01)."
+     "State is computed on every open from stored flags (M6 step determination extended).",
+     "Nudge channels: push, WhatsApp, email, human call (brief V2); templates live in the CRM (N04)."
     ]
    },
    "template": "T-table",
    "path": "both",
+   "events": [
+    "N01_view",
+    "crm_task_created"
+   ],
    "compliance": {
     "review": false,
     "reasons": [
@@ -14920,14 +17120,3510 @@
      "No user-facing copy; nothing to review."
     ]
    },
+   "v02": {
+    "status": "rebuilt",
+    "causes": [
+     "brief V2",
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N02",
+   "sec": "N",
+   "title": "Onboarding ladder (paid, before the plan)",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "States S2b, S3, S4, S5, S16, S17 and S19 day by day: one row per ladder step with its channel, copy slot, deep link, tier rule and whether the CRM creates a task.",
+   "ui": [
+    [
+     "table",
+     [
+      "State",
+      "Day",
+      "Channel",
+      "Copy slot",
+      "Deep link",
+      "Tier rule",
+      "CRM task"
+     ],
+     [
+      [
+       "S2b",
+       "day 1",
+       "push",
+       "N-S2b-d1",
+       "P03",
+       "all",
+       "no"
+      ],
+      [
+       "S2b",
+       "day 3",
+       "WhatsApp",
+       "N-S2b-d3",
+       "P03",
+       "all",
+       "no"
+      ],
+      [
+       "S2b",
+       "day 14",
+       "email",
+       "N-S2b-d14",
+       "Q03a",
+       "all",
+       "yes: state_id, tier, payment_reference, days_unsigned"
+      ],
+      [
+       "S3",
+       "24h",
+       "push",
+       "N-S3-24h",
+       "O02",
+       "all",
+       "no"
+      ],
+      [
+       "S3",
+       "72h",
+       "WhatsApp",
+       "N-S3-72h",
+       "O02",
+       "all",
+       "no"
+      ],
+      [
+       "S3",
+       "day 7",
+       "push",
+       "N-S3-d7",
+       "O02",
+       "all",
+       "no"
+      ],
+      [
+       "S4",
+       "O03 time, when set",
+       "push",
+       "N-S4-o03",
+       "O02",
+       "all",
+       "no"
+      ],
+      [
+       "S4",
+       "24h",
+       "push",
+       "N-S4-24h",
+       "O02",
+       "all",
+       "no"
+      ],
+      [
+       "S4",
+       "72h",
+       "WhatsApp",
+       "N-S4-72h",
+       "O02",
+       "all",
+       "no"
+      ],
+      [
+       "S4",
+       "day 7",
+       "push",
+       "N-S4-d7",
+       "O02",
+       "all",
+       "no"
+      ],
+      [
+       "S5",
+       "24h",
+       "push",
+       "N-S5-24h",
+       "D10",
+       "all",
+       "no"
+      ],
+      [
+       "S5",
+       "day 7",
+       "WhatsApp",
+       "N-S5-d7",
+       "G01a",
+       "all",
+       "no"
+      ],
+      [
+       "S16",
+       "review quarter",
+       "WhatsApp",
+       "N-S16-review",
+       "Q05",
+       "all",
+       "no"
+      ],
+      [
+       "S17",
+       "1h",
+       "push",
+       "N-S17-1h",
+       "A10a",
+       "all",
+       "no"
+      ],
+      [
+       "S17",
+       "24h",
+       "WhatsApp",
+       "N-S17-24h",
+       "A10a",
+       "all",
+       "no"
+      ],
+      [
+       "S19",
+       "day 7",
+       "push",
+       "N-S19-d7",
+       "O02",
+       "all",
+       "no"
+      ],
+      [
+       "S19",
+       "day 7",
+       "human call",
+       "N-S19-d7-call",
+       "O02",
+       "DIWM",
+       "yes: state_id, missing_fields, tier, last_screen, minutes_left"
+      ],
+      [
+       "S19",
+       "day 7",
+       "push",
+       "N-S19-d7-alacarte",
+       "K04",
+       "DIY",
+       "no"
+      ],
+      [
+       "S19",
+       "day 10",
+       "WhatsApp",
+       "N-S19-d10",
+       "O02",
+       "all",
+       "no"
+      ],
+      [
+       "S19",
+       "day 14",
+       "email",
+       "N-S19-d14",
+       "O02",
+       "all",
+       "no"
+      ],
+      [
+       "S19",
+       "monthly",
+       "email",
+       "N-S19-monthly",
+       "O02",
+       "all",
+       "yes: state_id, missing_fields, tier, last_screen, minutes_left"
+      ]
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Before day 14 after payment the onboarding states may nudge at 24 hours, 72 hours and day 7 (spec v0.1, kept).",
+     "O03's chosen time replaces the first scheduled nudge when it exists (Vatsal, 10 Sep 2026).",
+     "Day 7 below the gate is S19: DIWM gets the outbound call task, DIY the a la carte offer (Vatsal, 10 Sep 2026; brief V2)."
+    ],
+    "branches": [],
+    "states": [],
+    "dev": [
+     "The CRM task fields are the columns the call centre sees: state ID, missing fields, tier, last screen, minutes left."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
    "events": [
-    "N01_view",
+    "N02_view"
+   ],
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "brief V2"
+    ]
+   }
+  },
+  {
+   "id": "N03",
+   "sec": "N",
+   "title": "Post-plan ladder",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "States S6 to S13, S15, S18 and S20 to S25 day by day, under the one-nudge-a-week cap from day 14 after payment.",
+   "ui": [
+    [
+     "table",
+     [
+      "State",
+      "Day",
+      "Channel",
+      "Copy slot",
+      "Deep link",
+      "Tier rule",
+      "CRM task"
+     ],
+     [
+      [
+       "S6",
+       "48h",
+       "push",
+       "N-S6-48h",
+       "G03",
+       "all",
+       "no"
+      ],
+      [
+       "S7",
+       "24h before",
+       "WhatsApp",
+       "N-S7-24h-before",
+       "K02",
+       "all",
+       "no"
+      ],
+      [
+       "S7",
+       "1h before",
+       "push",
+       "N-S7-1h-before",
+       "K02",
+       "all",
+       "no"
+      ],
+      [
+       "S8",
+       "48h",
+       "push",
+       "N-S8-48h",
+       "E01",
+       "all",
+       "no"
+      ],
+      [
+       "S8",
+       "7d",
+       "WhatsApp",
+       "N-S8-7d",
+       "E01",
+       "all",
+       "no"
+      ],
+      [
+       "S8",
+       "14d",
+       "email",
+       "N-S8-14d",
+       "E01",
+       "all",
+       "no"
+      ],
+      [
+       "S9",
+       "immediately, missed SIP detected",
+       "WhatsApp",
+       "N-S9-missed-sip",
+       "E06",
+       "all",
+       "no"
+      ],
+      [
+       "S9",
+       "immediately, action verified done",
+       "push",
+       "N-S9-done",
+       "E01",
+       "all",
+       "no"
+      ],
+      [
+       "S10",
+       "immediately",
+       "push",
+       "N-S10-now",
+       "H01d",
+       "all",
+       "no"
+      ],
+      [
+       "S10",
+       "anniversary",
+       "WhatsApp",
+       "N-S10-anniv",
+       "Q04",
+       "all",
+       "no"
+      ],
+      [
+       "S11",
+       "3d",
+       "push",
+       "N-S11-3d",
+       "H05",
+       "all",
+       "no"
+      ],
+      [
+       "S12",
+       "day 0",
+       "WhatsApp",
+       "N-S12-d0",
+       "Q03b",
+       "all",
+       "no"
+      ],
+      [
+       "S12",
+       "day 3",
+       "email",
+       "N-S12-d3",
+       "Q03b",
+       "all",
+       "no"
+      ],
+      [
+       "S12",
+       "day 6",
+       "push",
+       "N-S12-d6",
+       "Q03b",
+       "all",
+       "no"
+      ],
+      [
+       "S13",
+       "30d",
+       "email",
+       "N-S13-30d",
+       "Q03c",
+       "all",
+       "no"
+      ],
+      [
+       "S13",
+       "90d",
+       "WhatsApp",
+       "N-S13-90d",
+       "Q03c",
+       "all",
+       "no"
+      ],
+      [
+       "S15",
+       "7d before expiry",
+       "push",
+       "N-S15-7d-before",
+       "A06",
+       "all",
+       "no"
+      ],
+      [
+       "S15",
+       "at review",
+       "WhatsApp",
+       "N-S15-review",
+       "Q01",
+       "all",
+       "no"
+      ],
+      [
+       "S18",
+       "the chosen Sunday",
+       "push",
+       "N-S18-sunday",
+       "H01j",
+       "all",
+       "no"
+      ],
+      [
+       "S18",
+       "day 7",
+       "WhatsApp",
+       "N-S18-d7",
+       "H01j",
+       "all",
+       "no"
+      ],
+      [
+       "S18",
+       "day 21",
+       "email",
+       "N-S18-d21",
+       "H01j",
+       "all",
+       "no"
+      ],
+      [
+       "S20",
+       "1h after",
+       "push",
+       "N-S20-1h",
+       "K01",
+       "all",
+       "no"
+      ],
+      [
+       "S20",
+       "24h",
+       "WhatsApp",
+       "N-S20-24h",
+       "K01",
+       "all",
+       "no"
+      ],
+      [
+       "S20",
+       "second no-show",
+       "human call",
+       "N-S20-2nd-call",
+       "K01",
+       "DIWM",
+       "yes: state_id, tier, call_topic, no_show_count"
+      ],
+      [
+       "S20",
+       "second no-show",
+       "push",
+       "N-S20-2nd-alacarte",
+       "K04",
+       "DIY",
+       "no"
+      ],
+      [
+       "S21",
+       "48h",
+       "push",
+       "N-S21-48h",
+       "K03",
+       "all",
+       "no"
+      ],
+      [
+       "S21",
+       "7d",
+       "WhatsApp",
+       "N-S21-7d",
+       "E01",
+       "all",
+       "no"
+      ],
+      [
+       "S22",
+       "7d",
+       "push",
+       "N-S22-7d",
+       "Q01",
+       "all",
+       "no"
+      ],
+      [
+       "S22",
+       "14d",
+       "email",
+       "N-S22-14d",
+       "Q01",
+       "all",
+       "no"
+      ],
+      [
+       "S23",
+       "7 days before",
+       "email",
+       "N-S23-7d-before",
+       "Q04",
+       "all",
+       "no"
+      ],
+      [
+       "S23",
+       "day of",
+       "push",
+       "N-S23-d0",
+       "Q04",
+       "all",
+       "no"
+      ],
+      [
+       "S23",
+       "7 days after",
+       "WhatsApp",
+       "N-S23-7d-after",
+       "Q04",
+       "all",
+       "no"
+      ],
+      [
+       "S24",
+       "immediately",
+       "email",
+       "N-S24-received",
+       "Q03a",
+       "all",
+       "yes: state_id, tier, payment_reference, cancel_reason, period_unexpired"
+      ],
+      [
+       "S25",
+       "immediately",
+       "email",
+       "N-S25-received",
+       "H09",
+       "all",
+       "yes: state_id, tier, records_retained, requested_at"
+      ]
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "One nudge per week maximum across layers from day 14 after payment (spec v0.1, kept).",
+     "Service nudges (a missed SIP, an action verified, a receipt) are not counted against the cap (spec v0.1, kept).",
+     "Second no-show (S20): DIWM outbound call task, DIY a la carte offer (Vatsal, 10 Sep 2026; brief V2)."
+    ],
+    "branches": [],
+    "states": [],
+    "dev": [
+     "S14 DIFM is not on this ladder; the adviser relationship sets its dates."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "events": [
+    "N03_view"
+   ],
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "internal"
+    ],
+    "checks": [
+     "No user-facing copy; nothing to review."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "brief V2"
+    ]
+   }
+  },
+  {
+   "id": "N04",
+   "sec": "N",
+   "title": "Message templates",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "desktop",
+   "purpose": "Every push, WhatsApp and email template with its copy slot ID, channel, deep link and the state it serves. The text is placeholder copy (gap G08).",
+   "ui": [
+    [
+     "table",
+     [
+      "Copy slot",
+      "Channel",
+      "State",
+      "Deep link",
+      "Placeholder text"
+     ],
+     [
+      [
+       "N-S1-1h",
+       "push",
+       "S1",
+       "R01",
+       "Your two paths are about N minutes away. Pick up at your name and age."
+      ],
+      [
+       "N-S1-d1",
+       "WhatsApp",
+       "S1",
+       "R01",
+       "Hi, it is yeslyf. You started your reveal and stopped at your name and age. About N minutes from here to your two paths. Pick up where you left off."
+      ],
+      [
+       "N-S2-d1",
+       "push",
+       "S2",
+       "P01",
+       "Your reveal is saved. Unlock my plan is one screen: two cards, one choice, about N minutes."
+      ],
+      [
+       "N-S2-d3",
+       "WhatsApp",
+       "S2",
+       "P01",
+       "One thing from your reveal: the gap between your two paths comes from what you save and how it is placed. Unlock my plan shows what the plan does about it. About N minutes."
+      ],
+      [
+       "N-S2-d7",
+       "email",
+       "S2",
+       "P01",
+       "What the plan includes, and what members say, with Unlock my plan one tap away. Placeholder; advertising code review."
+      ],
+      [
+       "N-S2-d21",
+       "email",
+       "S2",
+       "P01",
+       "What the plan includes, and what members say, with Unlock my plan one tap away. Placeholder; advertising code review."
+      ],
+      [
+       "N-S2-d82",
+       "email",
+       "S2",
+       "P01",
+       "What the plan includes, and what members say, with Unlock my plan one tap away. Placeholder; advertising code review."
+      ],
+      [
+       "N-S2b-d1",
+       "push",
+       "S2b",
+       "P03",
+       "One signature stands between you and your plan. Sign the agreement: about N minutes."
+      ],
+      [
+       "N-S2b-d3",
+       "WhatsApp",
+       "S2b",
+       "P03",
+       "Your payment went through and the agreement is unsigned. I cannot advise until you sign. Aadhaar OTP on Agreement and eSign, about N minutes."
+      ],
+      [
+       "N-S2b-d14",
+       "email",
+       "S2b",
+       "Q03a",
+       "Fourteen days unsigned: the refund path opens (per the agreement; brief H5: to be decided)."
+      ],
+      [
+       "N-S3-24h",
+       "push",
+       "S3",
+       "O02",
+       "Your plan starts with what to have ready. Before you start: about N minutes."
+      ],
+      [
+       "N-S3-72h",
+       "WhatsApp",
+       "S3",
+       "O02",
+       "Paid, and nothing else yet. Start with Before you start: what to have open, and about N minutes to the first section. You can skip anything and come back."
+      ],
+      [
+       "N-S3-d7",
+       "push",
+       "S3",
+       "O02",
+       "Your plan starts with what to have ready. Before you start: about N minutes."
+      ],
+      [
+       "N-S4-o03",
+       "push",
+       "S4",
+       "O02",
+       "Continue where you left off: <section>, about N minutes."
+      ],
+      [
+       "N-S4-24h",
+       "push",
+       "S4",
+       "O02",
+       "Continue where you left off: <section>, about N minutes."
+      ],
+      [
+       "N-S4-72h",
+       "WhatsApp",
+       "S4",
+       "O02",
+       "You left off at <section>. About N minutes to finish it; everything so far is saved. Pick up at Your next steps."
+      ],
+      [
+       "N-S4-d7",
+       "push",
+       "S4",
+       "O02",
+       "Continue where you left off: <section>, about N minutes."
+      ],
+      [
+       "N-S5-24h",
+       "push",
+       "S5",
+       "D10",
+       "Everything the plan needs is in. Review and build: about N minutes."
+      ],
+      [
+       "N-S5-d7",
+       "WhatsApp",
+       "S5",
+       "G01a",
+       "Your numbers are in and the gate is met. One screen left: Review, build, and what would sharpen it. About N minutes to a built plan; on day 7 I build it on what we have."
+      ],
+      [
+       "N-S6-48h",
+       "push",
+       "S6",
+       "G03",
+       "Your plan is ready. Plan overview: about N minutes to read."
+      ],
+      [
+       "N-S7-24h-before",
+       "WhatsApp",
+       "S7",
+       "K02",
+       "Your call with a yeslyf adviser is tomorrow at <time>. Read your plan first if it is built; the call is for questions, not a first look. Call confirmed has the join link."
+      ],
+      [
+       "N-S7-1h-before",
+       "push",
+       "S7",
+       "K02",
+       "Your call is in an hour. Call confirmed has the join link; have your plan open."
+      ],
+      [
+       "N-S8-48h",
+       "push",
+       "S8",
+       "E01",
+       "First action: <action>. Execution hub, about N minutes."
+      ],
+      [
+       "N-S8-7d",
+       "WhatsApp",
+       "S8",
+       "E01",
+       "You have read your plan. The first action is <action>; the Execution hub walks you through it in about N minutes. Which one feels hardest?"
+      ],
+      [
+       "N-S8-14d",
+       "email",
+       "S8",
+       "E01",
+       "Two weeks in: the first action, and what it changes. Execution hub."
+      ],
+      [
+       "N-S9-missed-sip",
+       "WhatsApp",
+       "S9",
+       "E06",
+       "A SIP did not go through this month. Verification and progress shows which one and the fix. About N minutes."
+      ],
+      [
+       "N-S9-done",
+       "push",
+       "S9",
+       "E01",
+       "One down. The next action is on the Execution hub, about N minutes."
+      ],
+      [
+       "N-S10-now",
+       "push",
+       "S10",
+       "H01d",
+       "Every action is done. Your quarterly review is on <date>."
+      ],
+      [
+       "N-S10-anniv",
+       "WhatsApp",
+       "S10",
+       "Q04",
+       "A year with yeslyf. Nothing to do until the review; on the anniversary I ask you to confirm your risk profile and renew, about N minutes."
+      ],
+      [
+       "N-S11-3d",
+       "push",
+       "S11",
+       "H05",
+       "Your plan changed. Your plan was updated: accept in about N minutes."
+      ],
+      [
+       "N-S12-d0",
+       "WhatsApp",
+       "S12",
+       "Q03b",
+       "Your payment did not go through. Payment failed shows the retry and the change-method option; you have 7 days before the plan refresh pauses. Nothing is lost."
+      ],
+      [
+       "N-S12-d3",
+       "email",
+       "S12",
+       "Q03b",
+       "Retry payment; what stops on day 7 and what does not."
+      ],
+      [
+       "N-S12-d6",
+       "push",
+       "S12",
+       "Q03b",
+       "Tomorrow the plan refresh pauses. Retry payment: about N minutes; nothing is lost."
+      ],
+      [
+       "N-S13-30d",
+       "email",
+       "S13",
+       "Q03c",
+       "Resubscribe; what has changed in the markets since your plan was last refreshed. Placeholder; advertising code review."
+      ],
+      [
+       "N-S13-90d",
+       "WhatsApp",
+       "S13",
+       "Q03c",
+       "Three months since your membership lapsed. Lapsed shows what stopped; resubscribe restores the refresh and the review. About N minutes."
+      ],
+      [
+       "N-S14-review",
+       "WhatsApp",
+       "S14",
+       "H09",
+       "Your review with your adviser is on <date>. Update your numbers from Settings before it, about N minutes, so the review runs on fresh figures."
+      ],
+      [
+       "N-S15-7d-before",
+       "push",
+       "S15",
+       "A06",
+       "Your Account Aggregator consent ends in 7 days. Reconnect: about N minutes."
+      ],
+      [
+       "N-S15-review",
+       "WhatsApp",
+       "S15",
+       "Q01",
+       "Your consent has ended and the quarterly review needs fresh numbers. Consent framing: reconnect in about N minutes; read-only, revoke any time."
+      ],
+      [
+       "N-S16-review",
+       "WhatsApp",
+       "S16",
+       "Q05",
+       "Your numbers were last updated by you N days ago. Update your numbers takes about N minutes; connecting Account Aggregator keeps them live from then on."
+      ],
+      [
+       "N-S17-1h",
+       "push",
+       "S17",
+       "A10a",
+       "Your CAS should be in your inbox. Upload it: about N minutes."
+      ],
+      [
+       "N-S17-24h",
+       "WhatsApp",
+       "S17",
+       "A10a",
+       "Look for the email subject Consolidated Account Statement. Your CAS: waiting for the email has the upload; the password is the one you set when requesting, or your PAN. About N minutes. Or type it instead."
+      ],
+      [
+       "N-S18-sunday",
+       "push",
+       "S18",
+       "H01j",
+       "Sunday: the N numbers your plan is still missing, about N minutes."
+      ],
+      [
+       "N-S18-d7",
+       "WhatsApp",
+       "S18",
+       "H01j",
+       "Your plan is built on what we have. N numbers would sharpen it; Home shows each with a Sharpen this link. About N minutes, on the Sunday you picked."
+      ],
+      [
+       "N-S18-d21",
+       "email",
+       "S18",
+       "H01j",
+       "Three weeks on: the numbers still assumed, and what each changes in the plan."
+      ],
+      [
+       "N-S19-d7",
+       "push",
+       "S19",
+       "O02",
+       "N fields build your plan. Your next steps shows them, about N minutes."
+      ],
+      [
+       "N-S19-d7-call",
+       "human call",
+       "S19",
+       "O02",
+       "Outbound call from the call centre; the CRM task carries the state ID, the missing fields and the tier."
+      ],
+      [
+       "N-S19-d7-alacarte",
+       "push",
+       "S19",
+       "K04",
+       "N fields build your plan. Your next steps shows them, about N minutes."
+      ],
+      [
+       "N-S19-d10",
+       "WhatsApp",
+       "S19",
+       "O02",
+       "Your plan needs N more fields: <fields>. Your next steps lists them with the minutes each takes. Type what you know; skip the rest."
+      ],
+      [
+       "N-S19-d14",
+       "email",
+       "S19",
+       "O02",
+       "What the plan can already say, and the N fields that finish it. Your next steps."
+      ],
+      [
+       "N-S19-monthly",
+       "email",
+       "S19",
+       "O02",
+       "What the plan can already say, and the N fields that finish it. Your next steps."
+      ],
+      [
+       "N-S20-1h",
+       "push",
+       "S20",
+       "K01",
+       "We missed you. Rebook your call: same topic, new slot, about N minutes."
+      ],
+      [
+       "N-S20-24h",
+       "WhatsApp",
+       "S20",
+       "K01",
+       "Your call did not happen. Talk to an adviser has a rebook card with the same topic; pick a new slot in about N minutes."
+      ],
+      [
+       "N-S20-2nd-call",
+       "human call",
+       "S20",
+       "K01",
+       "Outbound call from the call centre; the CRM task carries the state ID, the missing fields and the tier."
+      ],
+      [
+       "N-S20-2nd-alacarte",
+       "push",
+       "S20",
+       "K04",
+       "We missed you. Rebook your call: same topic, new slot, about N minutes."
+      ],
+      [
+       "N-S21-48h",
+       "push",
+       "S21",
+       "K03",
+       "From your call: <first action>. After the call shows it, about N minutes."
+      ],
+      [
+       "N-S21-7d",
+       "WhatsApp",
+       "S21",
+       "E01",
+       "Notes from your call are in After the call, with the first action we agreed. The Execution hub walks you through it, about N minutes."
+      ],
+      [
+       "N-S22-7d",
+       "push",
+       "S22",
+       "Q01",
+       "Your quarterly review is waiting. Quarterly review: about N minutes."
+      ],
+      [
+       "N-S22-14d",
+       "email",
+       "S22",
+       "Q01",
+       "What moved this quarter, and the one screen that turns it into an updated plan."
+      ],
+      [
+       "N-S23-7d-before",
+       "email",
+       "S23",
+       "Q04",
+       "Your annual confirmation is due on <date>: the risk profile and the agreement, about N minutes."
+      ],
+      [
+       "N-S23-d0",
+       "push",
+       "S23",
+       "Q04",
+       "Your annual confirmation is due today. A year with yeslyf: about N minutes."
+      ],
+      [
+       "N-S23-7d-after",
+       "WhatsApp",
+       "S23",
+       "Q04",
+       "Once a year I ask you to confirm your risk profile and renew the agreement. A year with yeslyf: about N minutes, Aadhaar OTP."
+      ],
+      [
+       "N-S24-received",
+       "email",
+       "S24",
+       "Q03a",
+       "Refund request received; what the agreement says about the unexpired period (brief H5: to be decided)."
+      ],
+      [
+       "N-S25-received",
+       "email",
+       "S25",
+       "H09",
+       "Deletion request received; the DPDP flow, and the regulated records that are retained."
+      ]
+     ]
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "Copy slots are IDs; the copy is content (gap G08) and lives in the CRM templates (Vatsal, 10 Sep 2026).",
+     "Every nudge names the specific next screen and its minutes; never continue your journey (Vatsal, 10 Sep 2026).",
+     "WhatsApp templates need approval before launch; to be verified: WhatsApp template approval lead time."
+    ],
+    "branches": [],
+    "states": [],
+    "dev": [
+     "Human-call rows are CRM tasks, not messages; the caller reads the task fields."
+    ]
+   },
+   "template": "T-table",
+   "path": "both",
+   "events": [
+    "N04_view",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "brief V2"
+    ]
+   }
+  },
+  {
+   "id": "N05",
+   "sec": "N",
+   "title": "State S1: Signed up, no reveal",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S1: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S1 Signed up, no reveal"
+    ],
+    [
+     "card",
+     "Push (N-S1-1h)",
+     [
+      "Your two paths are about N minutes away. Pick up at your name and age."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S1-d1)",
+     [
+      "Hi, it is yeslyf. You started your reveal and stopped at your name and age. About N minutes from here to your two paths. Pick up where you left off."
+     ]
+    ],
+    [
+     "card",
+     "Lands on R01 Name and age",
+     [
+      "Primary action: Finish the reveal",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open R01",
+     "R01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S1: Signed up, no reveal. Lands on R01; the nudges deep-link to R01.",
+     "Ladder: 1h push; day 1 WhatsApp.",
+     "Escalation: DIWM: ladder only (not paid yet). DIY: ladder only (not paid yet). DIFM: not applicable.",
+     "Exit: reveal seen (R09) -> S2; paid -> S2b or S3."
+    ],
+    "branches": [
+     [
+      "Open",
+      "R01"
+     ]
+    ],
+    "states": [
+     "S1"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S1 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N05_view",
+    "state_enter_S1",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N06",
+   "sec": "N",
+   "title": "State S2: Reveal seen, not paid",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S2: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S2 Reveal seen, not paid"
+    ],
+    [
+     "card",
+     "Push (N-S2-d1)",
+     [
+      "Your reveal is saved. Unlock my plan is one screen: two cards, one choice, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S2-d3)",
+     [
+      "One thing from your reveal: the gap between your two paths comes from what you save and how it is placed. Unlock my plan shows what the plan does about it. About N minutes."
+     ]
+    ],
+    [
+     "card",
+     "Email (N-S2-d7)",
+     [
+      "What the plan includes, and what members say, with Unlock my plan one tap away. Placeholder; advertising code review."
+     ]
+    ],
+    [
+     "card",
+     "Lands on X01 Reveal saved (not paid)",
+     [
+      "Primary action: Unlock my plan",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open X01",
+     "X01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S2: Reveal seen, not paid. Lands on X01; the nudges deep-link to P01.",
+     "Ladder: day 1 push; day 3 WhatsApp; day 7 email; day 21 email; day 82 email.",
+     "Escalation: DIWM: ladder only, then stop. DIY: ladder only, then stop. DIFM: not applicable.",
+     "Exit: paid -> S2b or S3; day 82 -> stop."
+    ],
+    "branches": [
+     [
+      "Open",
+      "X01"
+     ]
+    ],
+    "states": [
+     "S2"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S2 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N06_view",
+    "state_enter_S2",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N07",
+   "sec": "N",
+   "title": "State S2b: Paid, eSign incomplete",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S2b: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S2b Paid, eSign incomplete"
+    ],
+    [
+     "card",
+     "Push (N-S2b-d1)",
+     [
+      "One signature stands between you and your plan. Sign the agreement: about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S2b-d3)",
+     [
+      "Your payment went through and the agreement is unsigned. I cannot advise until you sign. Aadhaar OTP on Agreement and eSign, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "Email (N-S2b-d14)",
+     [
+      "Fourteen days unsigned: the refund path opens (per the agreement; brief H5: to be decided)."
+     ]
+    ],
+    [
+     "card",
+     "Lands on P03 Agreement and eSign",
+     [
+      "Primary action: Sign the agreement",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open P03",
+     "P03"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S2b: Paid, eSign incomplete. Lands on P03; the nudges deep-link to P03.",
+     "Ladder: day 1 push; day 3 WhatsApp; day 14 email.",
+     "Escalation: DIWM: day 14: refund path (brief H5: to be decided); CRM task. DIY: day 14: refund path (brief H5: to be decided); CRM task. DIFM: not applicable.",
+     "Exit: eSign done (P03) -> S3; day 14 unsigned -> refund path (brief H5: to be decided).",
+     "CRM task: state_id, tier, payment_reference, days_unsigned (brief V2)."
+    ],
+    "branches": [
+     [
+      "Open",
+      "P03"
+     ]
+    ],
+    "states": [
+     "S2b"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S2b fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N07_view",
+    "state_enter_S2b",
+    "nudge_sent",
+    "nudge_opened",
     "crm_task_created"
    ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
    "v02": {
-    "status": "changed",
+    "status": "new",
     "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "brief H5"
+    ]
+   }
+  },
+  {
+   "id": "N08",
+   "sec": "N",
+   "title": "State S3: Paid, nothing else",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S3: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S3 Paid, nothing else"
+    ],
+    [
+     "card",
+     "Push (N-S3-24h)",
+     [
+      "Your plan starts with what to have ready. Before you start: about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S3-72h)",
+     [
+      "Paid, and nothing else yet. Start with Before you start: what to have open, and about N minutes to the first section. You can skip anything and come back."
+     ]
+    ],
+    [
+     "card",
+     "Lands on O02 Your next steps (hub)",
+     [
+      "Primary action: Start with Before you start (D00)",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open O02",
+     "O02"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S3: Paid, nothing else. Lands on O02; the nudges deep-link to O02.",
+     "Ladder: 24h push; 72h WhatsApp; day 7 push.",
+     "Escalation: DIWM: day 7 -> S19 (outbound call task). DIY: day 7 -> S19 (a la carte offer). DIFM: adviser relationship.",
+     "Exit: any D screen saved -> S4; gate met -> S5; day 7 -> S19."
+    ],
+    "branches": [
+     [
+      "Open",
+      "O02"
+     ]
+    ],
+    "states": [
+     "S3"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S3 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N08_view",
+    "state_enter_S3",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N09",
+   "sec": "N",
+   "title": "State S4: Data partial",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S4: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S4 Data partial"
+    ],
+    [
+     "card",
+     "Push (N-S4-24h)",
+     [
+      "Continue where you left off: <section>, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S4-72h)",
+     [
+      "You left off at <section>. About N minutes to finish it; everything so far is saved. Pick up at Your next steps."
+     ]
+    ],
+    [
+     "card",
+     "Lands on O02 Your next steps (hub)",
+     [
+      "Primary action: Continue where you left off: <screen>",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open O02",
+     "O02"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S4: Data partial. Lands on O02; the nudges deep-link to O02.",
+     "Ladder: O03 time, when set push; 24h push; 72h WhatsApp; day 7 push.",
+     "Escalation: DIWM: day 7 -> S19 (outbound call task). DIY: day 7 -> S19 (a la carte offer). DIFM: adviser relationship.",
+     "Exit: gate met -> S5; day 7 below the gate -> S19."
+    ],
+    "branches": [
+     [
+      "Open",
+      "O02"
+     ]
+    ],
+    "states": [
+     "S4"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S4 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N09_view",
+    "state_enter_S4",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N10",
+   "sec": "N",
+   "title": "State S5: Gate met, D10 not confirmed",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S5: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S5 Gate met, D10 not confirmed"
+    ],
+    [
+     "card",
+     "Push (N-S5-24h)",
+     [
+      "Everything the plan needs is in. Review and build: about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S5-d7)",
+     [
+      "Your numbers are in and the gate is met. One screen left: Review, build, and what would sharpen it. About N minutes to a built plan; on day 7 I build it on what we have."
+     ]
+    ],
+    [
+     "card",
+     "Lands on D10 Review, build, and what would sharpen it",
+     [
+      "Primary action: Build my plan",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open D10",
+     "D10"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S5: Gate met, D10 not confirmed. Lands on D10; the nudges deep-link to D10.",
+     "Ladder: 24h push; day 7 WhatsApp.",
+     "Escalation: DIWM: ladder only. DIY: ladder only. DIFM: adviser relationship.",
+     "Exit: Build my plan (D10) -> S6; day 7 -> built on what we have (G01a) -> S18."
+    ],
+    "branches": [
+     [
+      "Open",
+      "D10"
+     ]
+    ],
+    "states": [
+     "S5"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S5 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N10_view",
+    "state_enter_S5",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N11",
+   "sec": "N",
+   "title": "State S6: Plan built, not read",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S6: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S6 Plan built, not read"
+    ],
+    [
+     "card",
+     "Push (N-S6-48h)",
+     [
+      "Your plan is ready. Plan overview: about N minutes to read."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S6-48h)",
+     [
+      "Your plan is built on your numbers. Start with the Plan overview: what success looks like and what needs attention, in order. About N minutes."
+     ]
+    ],
+    [
+     "card",
+     "Email (N-S6-48h)",
+     [
+      "Plan ready; the PDF is attached and filed in your Vault."
+     ]
+    ],
+    [
+     "card",
+     "Lands on H01a H01a",
+     [
+      "Primary action: Read your plan (G03)",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open H01a",
+     "H01a"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S6: Plan built, not read. Lands on H01a; the nudges deep-link to G03.",
+     "Ladder: 48h push.",
+     "Escalation: DIWM: ladder only; the H01a card offers a call. DIY: ladder only. DIFM: not applicable (no engine plan).",
+     "Exit: plan read (G03) -> S8; call booked -> S7."
+    ],
+    "branches": [
+     [
+      "Open",
+      "H01a"
+     ]
+    ],
+    "states": [
+     "S6"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S6 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N11_view",
+    "state_enter_S6",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N12",
+   "sec": "N",
+   "title": "State S7: Call booked, any tier",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S7: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S7 Call booked, any tier"
+    ],
+    [
+     "card",
+     "Push (N-S7-1h-before)",
+     [
+      "Your call is in an hour. Call confirmed has the join link; have your plan open."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S7-24h-before)",
+     [
+      "Your call with a yeslyf adviser is tomorrow at <time>. Read your plan first if it is built; the call is for questions, not a first look. Call confirmed has the join link."
+     ]
+    ],
+    [
+     "card",
+     "Lands on K02 Call confirmed",
+     [
+      "Primary action: Prepare for your call: read your plan"
+     ]
+    ],
+    [
+     "btn",
+     "Open K02",
+     "K02"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S7: Call booked, any tier. Lands on K02; the nudges deep-link to K02.",
+     "Ladder: 24h before WhatsApp; 1h before push.",
+     "Escalation: DIWM: service reminders only. DIY: service reminders only. DIFM: adviser relationship.",
+     "Exit: call done -> S21 (no action started) or the previous state; no-show -> S20."
+    ],
+    "branches": [
+     [
+      "Open",
+      "K02"
+     ]
+    ],
+    "states": [
+     "S7"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S7 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N12_view",
+    "state_enter_S7",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N13",
+   "sec": "N",
+   "title": "State S8: Plan read, no action done",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S8: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S8 Plan read, no action done"
+    ],
+    [
+     "card",
+     "Push (N-S8-48h)",
+     [
+      "First action: <action>. Execution hub, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S8-7d)",
+     [
+      "You have read your plan. The first action is <action>; the Execution hub walks you through it in about N minutes. Which one feels hardest?"
+     ]
+    ],
+    [
+     "card",
+     "Email (N-S8-14d)",
+     [
+      "Two weeks in: the first action, and what it changes. Execution hub."
+     ]
+    ],
+    [
+     "card",
+     "Lands on H01b H01b",
+     [
+      "Primary action: Do the first action (E01)",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open H01b",
+     "H01b"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S8: Plan read, no action done. Lands on H01b; the nudges deep-link to E01.",
+     "Ladder: 48h push; 7d WhatsApp; 14d email.",
+     "Escalation: DIWM: ladder only; the H01b card offers a call. DIY: ladder only. DIFM: not applicable.",
+     "Exit: first action started -> S9."
+    ],
+    "branches": [
+     [
+      "Open",
+      "H01b"
+     ]
+    ],
+    "states": [
+     "S8"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S8 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N13_view",
+    "state_enter_S8",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N14",
+   "sec": "N",
+   "title": "State S9: Executing",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S9: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S9 Executing"
+    ],
+    [
+     "card",
+     "Push (N-S9-done)",
+     [
+      "One down. The next action is on the Execution hub, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S9-missed-sip)",
+     [
+      "A SIP did not go through this month. Verification and progress shows which one and the fix. About N minutes."
+     ]
+    ],
+    [
+     "card",
+     "Lands on H01c H01c",
+     [
+      "Primary action: Next action",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open H01c",
+     "H01c"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S9: Executing. Lands on H01c; the nudges deep-link to E01.",
+     "Ladder: immediately, missed SIP detected WhatsApp; immediately, action verified done push.",
+     "Escalation: DIWM: service nudges only. DIY: service nudges only. DIFM: not applicable.",
+     "Exit: all actions done -> S10; plan updated -> S11."
+    ],
+    "branches": [
+     [
+      "Open",
+      "H01c"
+     ]
+    ],
+    "states": [
+     "S9"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S9 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N14_view",
+    "state_enter_S9",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N15",
+   "sec": "N",
+   "title": "State S10: All actions done",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S10: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S10 All actions done"
+    ],
+    [
+     "card",
+     "Push (N-S10-now)",
+     [
+      "Every action is done. Your quarterly review is on <date>."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S10-anniv)",
+     [
+      "A year with yeslyf. Nothing to do until the review; on the anniversary I ask you to confirm your risk profile and renew, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "Lands on H01d H01d",
+     [
+      "Primary action: Your quarterly review date"
+     ]
+    ],
+    [
+     "btn",
+     "Open H01d",
+     "H01d"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S10: All actions done. Lands on H01d; the nudges deep-link to H01d.",
+     "Ladder: immediately push; anniversary WhatsApp.",
+     "Escalation: DIWM: none. DIY: none. DIFM: not applicable.",
+     "Exit: quarterly review generated -> Q01 (S22 if ignored); plan updated -> S11."
+    ],
+    "branches": [
+     [
+      "Open",
+      "H01d"
+     ]
+    ],
+    "states": [
+     "S10"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S10 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N15_view",
+    "state_enter_S10",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N16",
+   "sec": "N",
+   "title": "State S11: Plan updated (publish), not accepted",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S11: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S11 Plan updated (publish), not accepted"
+    ],
+    [
+     "card",
+     "Push (N-S11-3d)",
+     [
+      "Your plan changed. Your plan was updated: accept in about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S11-3d)",
+     [
+      "House of Alpha reviewed the approved list; your plan has N changes, each with its reason. Your plan was updated shows them; accept to refresh your action plan. About N minutes."
+     ]
+    ],
+    [
+     "card",
+     "Lands on H01e H01e",
+     [
+      "Primary action: Accept the update (H05)",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open H01e",
+     "H01e"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S11: Plan updated (publish), not accepted. Lands on H01e; the nudges deep-link to H05.",
+     "Ladder: 3d push.",
+     "Escalation: DIWM: ladder only. DIY: ladder only. DIFM: not applicable.",
+     "Exit: update accepted (H05) -> the previous state (S8, S9 or S10)."
+    ],
+    "branches": [
+     [
+      "Open",
+      "H01e"
+     ]
+    ],
+    "states": [
+     "S11"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S11 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N16_view",
+    "state_enter_S11",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N17",
+   "sec": "N",
+   "title": "State S12: Payment failed",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S12: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S12 Payment failed"
+    ],
+    [
+     "card",
+     "Push (N-S12-d6)",
+     [
+      "Tomorrow the plan refresh pauses. Retry payment: about N minutes; nothing is lost."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S12-d0)",
+     [
+      "Your payment did not go through. Payment failed shows the retry and the change-method option; you have 7 days before the plan refresh pauses. Nothing is lost."
+     ]
+    ],
+    [
+     "card",
+     "Email (N-S12-d3)",
+     [
+      "Retry payment; what stops on day 7 and what does not."
+     ]
+    ],
+    [
+     "card",
+     "Lands on H01f H01f",
+     [
+      "Primary action: Retry payment (Q03b)",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open H01f",
+     "H01f"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S12: Payment failed. Lands on H01f; the nudges deep-link to Q03b.",
+     "Ladder: day 0 WhatsApp; day 3 email; day 6 push.",
+     "Escalation: DIWM: ladder only; grace 7 days. DIY: ladder only; grace 7 days. DIFM: not applicable.",
+     "Exit: payment recovered -> the previous state; day 7 -> S13."
+    ],
+    "branches": [
+     [
+      "Open",
+      "H01f"
+     ]
+    ],
+    "states": [
+     "S12"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S12 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N17_view",
+    "state_enter_S12",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N18",
+   "sec": "N",
+   "title": "State S13: Lapsed",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S13: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S13 Lapsed"
+    ],
+    [
+     "card",
+     "Push (N-S13-90d)",
+     [
+      "Your plan is read-only since <date>. Resubscribe restores everything, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S13-90d)",
+     [
+      "Three months since your membership lapsed. Lapsed shows what stopped; resubscribe restores the refresh and the review. About N minutes."
+     ]
+    ],
+    [
+     "card",
+     "Email (N-S13-30d)",
+     [
+      "Resubscribe; what has changed in the markets since your plan was last refreshed. Placeholder; advertising code review."
+     ]
+    ],
+    [
+     "card",
+     "Lands on H01g H01g",
+     [
+      "Primary action: Resubscribe (Q03c)",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open H01g",
+     "H01g"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S13: Lapsed. Lands on H01g; the nudges deep-link to Q03c.",
+     "Ladder: 30d email; 90d WhatsApp.",
+     "Escalation: DIWM: ladder only. DIY: ladder only. DIFM: not applicable.",
+     "Exit: resubscribed (P01) -> S8 or S9; everything restored."
+    ],
+    "branches": [
+     [
+      "Open",
+      "H01g"
+     ]
+    ],
+    "states": [
+     "S13"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S13 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N18_view",
+    "state_enter_S13",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N19",
+   "sec": "N",
+   "title": "State S14: DIFM client",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S14: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S14 DIFM client"
+    ],
+    [
+     "card",
+     "Push (N-S14-review)",
+     [
+      "Your review is on <date>. Update your numbers from Settings before it: about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S14-review)",
+     [
+      "Your review with your adviser is on <date>. Update your numbers from Settings before it, about N minutes, so the review runs on fresh figures."
+     ]
+    ],
+    [
+     "card",
+     "Lands on H01h H01h",
+     [
+      "Primary action: Your adviser manages this; update your numbers before the review",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open H01h",
+     "H01h"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S14: DIFM client. Lands on H01h; the nudges deep-link to H09.",
+     "Ladder: per adviser, before the review WhatsApp (DIFM).",
+     "Escalation: DIWM: not applicable. DIY: not applicable. DIFM: adviser relationship; no ladder beyond the review reminder.",
+     "Exit: stays; the adviser relationship sets the review dates."
+    ],
+    "branches": [
+     [
+      "Open",
+      "H01h"
+     ]
+    ],
+    "states": [
+     "S14"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S14 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N19_view",
+    "state_enter_S14",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N20",
+   "sec": "N",
+   "title": "State S15: AA consent expired",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S15: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S15 AA consent expired"
+    ],
+    [
+     "card",
+     "Push (N-S15-7d-before)",
+     [
+      "Your Account Aggregator consent ends in 7 days. Reconnect: about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S15-review)",
+     [
+      "Your consent has ended and the quarterly review needs fresh numbers. Consent framing: reconnect in about N minutes; read-only, revoke any time."
+     ]
+    ],
+    [
+     "card",
+     "Lands on Q01 Quarterly review (automated)",
+     [
+      "Primary action: Reconnect Account Aggregator first (A06)",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open Q01",
+     "Q01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S15: AA consent expired. Lands on Q01; the nudges deep-link to A06.",
+     "Ladder: 7d before expiry push; at review WhatsApp.",
+     "Escalation: DIWM: ladder only. DIY: ladder only. DIFM: adviser relationship.",
+     "Exit: consent renewed -> the previous state; declined -> S16 (manual)."
+    ],
+    "branches": [
+     [
+      "Open",
+      "Q01"
+     ]
+    ],
+    "states": [
+     "S15"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S15 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N20_view",
+    "state_enter_S15",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N21",
+   "sec": "N",
+   "title": "State S16: AA not connected, manual in progress or done",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S16: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S16 AA not connected, manual in progress or done"
+    ],
+    [
+     "card",
+     "Push (N-S16-review)",
+     [
+      "Your numbers were last updated by you N days ago. Update your numbers: about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S16-review)",
+     [
+      "Your numbers were last updated by you N days ago. Update your numbers takes about N minutes; connecting Account Aggregator keeps them live from then on."
+     ]
+    ],
+    [
+     "card",
+     "Lands on H01i H01i",
+     [
+      "Primary action: Connect Account Aggregator to keep this live (A05)",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open H01i",
+     "H01i"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S16: AA not connected, manual in progress or done. Lands on H01i; the nudges deep-link to A05.",
+     "Ladder: review quarter WhatsApp.",
+     "Escalation: DIWM: ladder only; re-asks in-app at G12a and Q05. DIY: ladder only; re-asks in-app at G12a and Q05. DIFM: adviser relationship.",
+     "Exit: AA connected (A06) -> the AA states; mid-way users are S4 on the spine."
+    ],
+    "branches": [
+     [
+      "Open",
+      "H01i"
+     ]
+    ],
+    "states": [
+     "S16"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S16 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N21_view",
+    "state_enter_S16",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N22",
+   "sec": "N",
+   "title": "State S17: CAS requested, awaiting the email",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S17: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S17 CAS requested, awaiting the email"
+    ],
+    [
+     "card",
+     "Push (N-S17-1h)",
+     [
+      "Your CAS should be in your inbox. Upload it: about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S17-24h)",
+     [
+      "Look for the email subject Consolidated Account Statement. Your CAS: waiting for the email has the upload; the password is the one you set when requesting, or your PAN. About N minutes. Or type it instead."
+     ]
+    ],
+    [
+     "card",
+     "Lands on A10a Your CAS: waiting for the email",
+     [
+      "Primary action: Upload your CAS (A10b)",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open A10a",
+     "A10a"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S17: CAS requested, awaiting the email. Lands on A10a; the nudges deep-link to A10a.",
+     "Ladder: 1h push; 24h WhatsApp.",
+     "Escalation: DIWM: ladder only. DIY: ladder only. DIFM: adviser relationship.",
+     "Exit: upload (A10b) or type it instead (D02) -> S4 or S5."
+    ],
+    "branches": [
+     [
+      "Open",
+      "A10a"
+     ]
+    ],
+    "states": [
+     "S17"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S17 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N22_view",
+    "state_enter_S17",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N23",
+   "sec": "N",
+   "title": "State S18: Plan built on partial data",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S18: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S18 Plan built on partial data"
+    ],
+    [
+     "card",
+     "Push (N-S18-sunday)",
+     [
+      "Sunday: the N numbers your plan is still missing, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S18-d7)",
+     [
+      "Your plan is built on what we have. N numbers would sharpen it; Home shows each with a Sharpen this link. About N minutes, on the Sunday you picked."
+     ]
+    ],
+    [
+     "card",
+     "Email (N-S18-d21)",
+     [
+      "Three weeks on: the numbers still assumed, and what each changes in the plan."
+     ]
+    ],
+    [
+     "card",
+     "Lands on H01j H01j",
+     [
+      "Primary action: Sharpen the N numbers still missing",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open H01j",
+     "H01j"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S18: Plan built on partial data. Lands on H01j; the nudges deep-link to H01j.",
+     "Ladder: the chosen Sunday push; day 7 WhatsApp; day 21 email.",
+     "Escalation: DIWM: ladder only; the H01j card offers a call. DIY: ladder only. DIFM: not applicable.",
+     "Exit: no sharpen items remain -> S8 or S9."
+    ],
+    "branches": [
+     [
+      "Open",
+      "H01j"
+     ]
+    ],
+    "states": [
+     "S18"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S18 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N23_view",
+    "state_enter_S18",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N24",
+   "sec": "N",
+   "title": "State S19: Stalled below the gate at day 7",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S19: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S19 Stalled below the gate at day 7"
+    ],
+    [
+     "card",
+     "Push (N-S19-d7)",
+     [
+      "N fields build your plan. Your next steps shows them, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S19-d10)",
+     [
+      "Your plan needs N more fields: <fields>. Your next steps lists them with the minutes each takes. Type what you know; skip the rest."
+     ]
+    ],
+    [
+     "card",
+     "Email (N-S19-d14)",
+     [
+      "What the plan can already say, and the N fields that finish it. Your next steps."
+     ]
+    ],
+    [
+     "card",
+     "Lands on O02 Your next steps (hub)",
+     [
+      "Primary action: Finish the N fields that build your plan",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open O02",
+     "O02"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S19: Stalled below the gate at day 7. Lands on O02; the nudges deep-link to O02.",
+     "Ladder: day 7 push; day 7 human call (DIWM); day 7 push (DIY); day 10 WhatsApp; day 14 email; monthly email.",
+     "Escalation: DIWM: day 7: outbound call task from the call centre (does not consume included calls). DIY: day 7: a la carte offer (K04). DIFM: adviser relationship.",
+     "Exit: gate met -> S5.",
+     "CRM task: state_id, missing_fields, tier, last_screen, minutes_left (brief V2)."
+    ],
+    "branches": [
+     [
+      "Open",
+      "O02"
+     ]
+    ],
+    "states": [
+     "S19"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S19 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N24_view",
+    "state_enter_S19",
+    "nudge_sent",
+    "nudge_opened",
+    "crm_task_created"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)",
      "brief V2"
+    ]
+   }
+  },
+  {
+   "id": "N25",
+   "sec": "N",
+   "title": "State S20: Call booked, no-show",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S20: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S20 Call booked, no-show"
+    ],
+    [
+     "card",
+     "Push (N-S20-1h)",
+     [
+      "We missed you. Rebook your call: same topic, new slot, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S20-24h)",
+     [
+      "Your call did not happen. Talk to an adviser has a rebook card with the same topic; pick a new slot in about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "Lands on K01 Talk to an adviser",
+     [
+      "Primary action: Rebook your call (K05)",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open K01",
+     "K01"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S20: Call booked, no-show. Lands on K01; the nudges deep-link to K01.",
+     "Ladder: 1h after push; 24h WhatsApp; second no-show human call (DIWM); second no-show push (DIY).",
+     "Escalation: DIWM: second no-show: outbound call task. DIY: second no-show: a la carte offer (K04). DIFM: adviser relationship.",
+     "Exit: rebooked (K05) -> S7; second no-show -> CRM task.",
+     "CRM task: state_id, tier, call_topic, no_show_count (brief V2)."
+    ],
+    "branches": [
+     [
+      "Open",
+      "K01"
+     ]
+    ],
+    "states": [
+     "S20"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S20 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N25_view",
+    "state_enter_S20",
+    "nudge_sent",
+    "nudge_opened",
+    "crm_task_created"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "brief V2"
+    ]
+   }
+  },
+  {
+   "id": "N26",
+   "sec": "N",
+   "title": "State S21: Call done, no action started",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S21: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S21 Call done, no action started"
+    ],
+    [
+     "card",
+     "Push (N-S21-48h)",
+     [
+      "From your call: <first action>. After the call shows it, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S21-7d)",
+     [
+      "Notes from your call are in After the call, with the first action we agreed. The Execution hub walks you through it, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "Lands on K03 After the call",
+     [
+      "Primary action: Do the first action from the call",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open K03",
+     "K03"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S21: Call done, no action started. Lands on K03; the nudges deep-link to K03.",
+     "Ladder: 48h push; 7d WhatsApp.",
+     "Escalation: DIWM: ladder only. DIY: ladder only. DIFM: adviser relationship.",
+     "Exit: first action started -> S9."
+    ],
+    "branches": [
+     [
+      "Open",
+      "K03"
+     ]
+    ],
+    "states": [
+     "S21"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S21 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N26_view",
+    "state_enter_S21",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N27",
+   "sec": "N",
+   "title": "State S22: Quarterly review ignored: Q01 not opened 14 days after generation",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S22: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S22 Quarterly review ignored: Q01 not opened 14 days after generation"
+    ],
+    [
+     "card",
+     "Push (N-S22-7d)",
+     [
+      "Your quarterly review is waiting. Quarterly review: about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S22-7d)",
+     [
+      "Your numbers were refreshed 14 days ago and the review is unopened. Quarterly review: confirm what changed and rebuild, about N minutes. DIWM: book a call to walk through it."
+     ]
+    ],
+    [
+     "card",
+     "Email (N-S22-14d)",
+     [
+      "What moved this quarter, and the one screen that turns it into an updated plan."
+     ]
+    ],
+    [
+     "card",
+     "Lands on H01k H01k",
+     [
+      "Primary action: Open your quarterly review (Q01)",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open H01k",
+     "H01k"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S22: Quarterly review ignored: Q01 not opened 14 days after generation. Lands on H01k; the nudges deep-link to Q01.",
+     "Ladder: 7d push; 14d email.",
+     "Escalation: DIWM: the review card carries a book-a-call line (K01). DIY: ladder only. DIFM: not applicable.",
+     "Exit: Q01 opened and rebuilt -> S8, S9 or S10."
+    ],
+    "branches": [
+     [
+      "Open",
+      "H01k"
+     ]
+    ],
+    "states": [
+     "S22"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S22 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N27_view",
+    "state_enter_S22",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N28",
+   "sec": "N",
+   "title": "State S23: Annual confirmation overdue (Q04)",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S23: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S23 Annual confirmation overdue (Q04)"
+    ],
+    [
+     "card",
+     "Push (N-S23-d0)",
+     [
+      "Your annual confirmation is due today. A year with yeslyf: about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S23-7d-after)",
+     [
+      "Once a year I ask you to confirm your risk profile and renew the agreement. A year with yeslyf: about N minutes, Aadhaar OTP."
+     ]
+    ],
+    [
+     "card",
+     "Email (N-S23-7d-before)",
+     [
+      "Your annual confirmation is due on <date>: the risk profile and the agreement, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "Lands on Q04 Annual: risk profile and agreement",
+     [
+      "Primary action: Confirm your risk profile and renew the agreement",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open Q04",
+     "Q04"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S23: Annual confirmation overdue (Q04). Lands on Q04; the nudges deep-link to Q04.",
+     "Ladder: 7 days before email; day of push; 7 days after WhatsApp.",
+     "Escalation: DIWM: ladder only. DIY: ladder only. DIFM: adviser relationship.",
+     "Exit: confirmed and renewed (Q04) -> the previous state; to be verified: what happens to advice if the annual confirmation is not given (brief compliance)."
+    ],
+    "branches": [
+     [
+      "Open",
+      "Q04"
+     ]
+    ],
+    "states": [
+     "S23"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S23 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N28_view",
+    "state_enter_S23",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N29",
+   "sec": "N",
+   "title": "State S24: Refund requested",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S24: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S24 Refund requested"
+    ],
+    [
+     "card",
+     "Push (N-S24-received)",
+     [
+      "Your refund request is received. Cancel shows the status."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S24-received)",
+     [
+      "Your refund request is received. Cancel shows the status; the refund follows the agreement (brief H5: to be decided)."
+     ]
+    ],
+    [
+     "card",
+     "Email (N-S24-received)",
+     [
+      "Refund request received; what the agreement says about the unexpired period (brief H5: to be decided)."
+     ]
+    ],
+    [
+     "card",
+     "Lands on Q03a Cancel",
+     [
+      "Primary action: Refund status"
+     ]
+    ],
+    [
+     "btn",
+     "Open Q03a",
+     "Q03a"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S24: Refund requested. Lands on Q03a; the nudges deep-link to Q03a.",
+     "Ladder: immediately email.",
+     "Escalation: DIWM: CRM task for the refund; brief H5: to be decided. DIY: CRM task for the refund; brief H5: to be decided. DIFM: adviser relationship.",
+     "Exit: refund processed -> S13 (lapsed) or account closed; brief H5: to be decided.",
+     "CRM task: state_id, tier, payment_reference, cancel_reason, period_unexpired (brief V2)."
+    ],
+    "branches": [
+     [
+      "Open",
+      "Q03a"
+     ]
+    ],
+    "states": [
+     "S24"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S24 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N29_view",
+    "state_enter_S24",
+    "nudge_sent",
+    "nudge_opened",
+    "crm_task_created"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "brief H5"
+    ]
+   }
+  },
+  {
+   "id": "N30",
+   "sec": "N",
+   "title": "State S25: Account deletion requested (H09)",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S25: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S25 Account deletion requested (H09)"
+    ],
+    [
+     "card",
+     "Push (N-S25-received)",
+     [
+      "Your deletion request is received. Settings shows what is deleted and what is retained."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S25-received)",
+     [
+      "Your deletion request is received. Settings shows what is deleted and which regulated records are retained; to be verified: DPDP notice, deletion and retention text."
+     ]
+    ],
+    [
+     "card",
+     "Email (N-S25-received)",
+     [
+      "Deletion request received; the DPDP flow, and the regulated records that are retained."
+     ]
+    ],
+    [
+     "card",
+     "Lands on H09 Profile and settings",
+     [
+      "Primary action: Confirm deletion",
+      "about N minutes"
+     ]
+    ],
+    [
+     "btn",
+     "Open H09",
+     "H09"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S25: Account deletion requested (H09). Lands on H09; the nudges deep-link to H09.",
+     "Ladder: immediately email.",
+     "Escalation: DIWM: CRM task for the deletion; regulated records retained. DIY: CRM task for the deletion; regulated records retained. DIFM: adviser relationship.",
+     "Exit: deletion done -> account closed; to be verified: DPDP notice, deletion and retention text.",
+     "CRM task: state_id, tier, records_retained, requested_at (brief V2)."
+    ],
+    "branches": [
+     [
+      "Open",
+      "H09"
+     ]
+    ],
+    "states": [
+     "S25"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S25 fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N30_view",
+    "state_enter_S25",
+    "nudge_sent",
+    "nudge_opened",
+    "crm_task_created"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
     ]
    }
   },

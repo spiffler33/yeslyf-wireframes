@@ -326,7 +326,8 @@
    "status": "rebuilt",
    "causes": [
     "brief T2",
-    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+    "Vatsal, 10 Sep 2026 (section 5)"
    ]
   },
   {
@@ -342,7 +343,8 @@
    "title": "After the call",
    "status": "rebuilt",
    "causes": [
-    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+    "Vatsal, 10 Sep 2026 (section 5)"
    ]
   },
   {
@@ -395,10 +397,27 @@
   },
   {
    "id": "H01",
-   "title": "Home (plan ready)",
+   "title": "Home base",
    "status": "changed",
    "causes": [
-    "brief V1"
+    "brief V1",
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "H02",
+   "title": "Net worth growth",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "H04",
+   "title": "Action queue",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
    ]
   },
   {
@@ -433,7 +452,8 @@
    "status": "changed",
    "causes": [
     "gap G03 (agreed, date set)",
-    "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+    "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+    "Vatsal, 10 Sep 2026 (section 5)"
    ]
   },
   {
@@ -441,7 +461,8 @@
    "title": "Quarterly review (automated)",
    "status": "changed",
    "causes": [
-    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+    "Vatsal, 10 Sep 2026 (section 5)"
    ]
   },
   {
@@ -462,11 +483,20 @@
    ]
   },
   {
-   "id": "N01",
-   "title": "Returning-user state machine",
+   "id": "Q04",
+   "title": "Annual: risk profile and agreement",
    "status": "changed",
    "causes": [
-    "brief V2"
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N01",
+   "title": "Returning-user state machine",
+   "status": "rebuilt",
+   "causes": [
+    "brief V2",
+    "Vatsal, 10 Sep 2026 (section 5)"
    ]
   },
   {
@@ -1023,6 +1053,94 @@
    ]
   },
   {
+   "id": "H01a",
+   "title": "Home: plan ready",
+   "template": "T-hub",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "H01b",
+   "title": "Home: next action",
+   "template": "T-hub",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "H01c",
+   "title": "Home: executing",
+   "template": "T-hub",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "H01d",
+   "title": "Home: all actions done",
+   "template": "T-hub",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "H01e",
+   "title": "Home: plan updated",
+   "template": "T-hub",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "H01f",
+   "title": "Home: payment failed",
+   "template": "T-hub",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "H01g",
+   "title": "Home: lapsed",
+   "template": "T-hub",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "H01h",
+   "title": "Home: DIFM",
+   "template": "T-hub",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "H01i",
+   "title": "Home: not connected",
+   "template": "T-hub",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "H01j",
+   "title": "Home: built on partial data",
+   "template": "T-hub",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "H01k",
+   "title": "Home: review overdue",
+   "template": "T-hub",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
    "id": "H10",
    "title": "Goals progress",
    "template": "T-chart",
@@ -1043,7 +1161,8 @@
    "title": "Cancel",
    "template": "T-card",
    "causes": [
-    "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+    "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+    "Vatsal, 10 Sep 2026 (section 5)"
    ]
   },
   {
@@ -1060,6 +1179,253 @@
    "template": "T-card",
    "causes": [
     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+   ]
+  },
+  {
+   "id": "Q05",
+   "title": "Update your numbers",
+   "template": "T-review",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N02",
+   "title": "Onboarding ladder (paid, before the plan)",
+   "template": "T-table",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)",
+    "brief V2"
+   ]
+  },
+  {
+   "id": "N03",
+   "title": "Post-plan ladder",
+   "template": "T-table",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)",
+    "brief V2"
+   ]
+  },
+  {
+   "id": "N04",
+   "title": "Message templates",
+   "template": "T-table",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)",
+    "brief V2"
+   ]
+  },
+  {
+   "id": "N05",
+   "title": "State S1: Signed up, no reveal",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N06",
+   "title": "State S2: Reveal seen, not paid",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N07",
+   "title": "State S2b: Paid, eSign incomplete",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)",
+    "brief H5"
+   ]
+  },
+  {
+   "id": "N08",
+   "title": "State S3: Paid, nothing else",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N09",
+   "title": "State S4: Data partial",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N10",
+   "title": "State S5: Gate met, D10 not confirmed",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N11",
+   "title": "State S6: Plan built, not read",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N12",
+   "title": "State S7: Call booked, any tier",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N13",
+   "title": "State S8: Plan read, no action done",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N14",
+   "title": "State S9: Executing",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N15",
+   "title": "State S10: All actions done",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N16",
+   "title": "State S11: Plan updated (publish), not accepted",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N17",
+   "title": "State S12: Payment failed",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N18",
+   "title": "State S13: Lapsed",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N19",
+   "title": "State S14: DIFM client",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N20",
+   "title": "State S15: AA consent expired",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N21",
+   "title": "State S16: AA not connected, manual in progress or done",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N22",
+   "title": "State S17: CAS requested, awaiting the email",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N23",
+   "title": "State S18: Plan built on partial data",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N24",
+   "title": "State S19: Stalled below the gate at day 7",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)",
+    "brief V2"
+   ]
+  },
+  {
+   "id": "N25",
+   "title": "State S20: Call booked, no-show",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)",
+    "brief V2"
+   ]
+  },
+  {
+   "id": "N26",
+   "title": "State S21: Call done, no action started",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N27",
+   "title": "State S22: Quarterly review ignored: Q01 not opened 14 days after generation",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N28",
+   "title": "State S23: Annual confirmation overdue (Q04)",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
+   ]
+  },
+  {
+   "id": "N29",
+   "title": "State S24: Refund requested",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)",
+    "brief H5"
+   ]
+  },
+  {
+   "id": "N30",
+   "title": "State S25: Account deletion requested (H09)",
+   "template": "T-msg",
+   "causes": [
+    "Vatsal, 10 Sep 2026 (section 5)"
    ]
   },
   {
@@ -1193,6 +1559,14 @@
    ]
   },
   {
+   "item": "DPDP notice, deletion and retention text",
+   "screens": [
+    "H09",
+    "N01",
+    "N30"
+   ]
+  },
+  {
    "item": "NPS on AA",
    "screens": [
     "D02d"
@@ -1212,6 +1586,12 @@
     "D04b",
     "D04c",
     "H06"
+   ]
+  },
+  {
+   "item": "WhatsApp template approval lead time",
+   "screens": [
+    "N04"
    ]
   },
   {
@@ -1318,6 +1698,14 @@
    ]
   },
   {
+   "item": "what happens to advice if the annual confirmation is not given (brief compliance",
+   "screens": [
+    "Q04",
+    "N01",
+    "N28"
+   ]
+  },
+  {
    "item": "whether netbanking can carry a recurring mandate",
    "screens": [
     "P04"
@@ -1325,25 +1713,26 @@
   }
  ],
  "counts": {
-  "total": 147,
-  "unique_templates": 20,
+  "total": 188,
+  "unique_templates": 21,
   "by_template": {
    "T-card": 24,
    "T-card-stack": 20,
    "T-chart": 6,
    "T-detail": 6,
-   "T-hub": 3,
+   "T-hub": 14,
    "T-list": 14,
    "T-locked": 1,
+   "T-msg": 26,
    "T-num": 16,
    "T-paywall": 2,
    "T-picker": 1,
    "T-progress": 4,
-   "T-review": 5,
+   "T-review": 6,
    "T-sheet": 4,
    "T-source": 2,
    "T-split": 1,
-   "T-table": 13,
+   "T-table": 16,
    "T-tap": 19,
    "T-upload": 1,
    "T-video": 2,
@@ -1457,34 +1846,35 @@
    },
    "H": {
     "name": "Living dashboard",
-    "screens": 12,
+    "screens": 23,
     "templates": 6,
     "by_template": {
      "T-card": 1,
      "T-card-stack": 2,
      "T-chart": 4,
-     "T-hub": 1,
+     "T-hub": 12,
      "T-list": 3,
      "T-table": 1
     }
    },
    "Q": {
     "name": "Lifecycle and reviews",
-    "screens": 7,
+    "screens": 8,
     "templates": 4,
     "by_template": {
      "T-card": 3,
      "T-card-stack": 2,
      "T-paywall": 1,
-     "T-review": 1
+     "T-review": 2
     }
    },
    "N": {
     "name": "Returning-user states",
-    "screens": 1,
-    "templates": 1,
+    "screens": 30,
+    "templates": 2,
     "by_template": {
-     "T-table": 1
+     "T-msg": 26,
+     "T-table": 4
     }
    },
    "M": {
@@ -1505,10 +1895,10 @@
    }
   },
   "by_status": {
-   "rebuilt": 16,
-   "kept": 21,
-   "changed": 44,
-   "new": 66,
+   "rebuilt": 17,
+   "kept": 18,
+   "changed": 46,
+   "new": 107,
    "dropped": 6
   }
  }

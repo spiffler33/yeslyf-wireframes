@@ -1,0 +1,71 @@
+{
+ "source": "plan_v2.md section 5.3, screens touched",
+ "note": "Small edits to existing screens for the returning-user states. Same op format as data/decision_effects.json; matches are exact strings from data/screens_v02.json after phase 3.",
+ "groups": [
+  {
+   "id": "phase5-H01", "kind": "override", "cause": "Vatsal, 10 Sep 2026 (section 5)",
+   "edits": [
+    {"op": "set", "screen": "H01", "key": "title", "value": "Home base"},
+    {"op": "set", "screen": "H01", "key": "purpose", "value": "The living plan. Net worth live, progress, the single next action, upcoming review, the community strip, help. The hero card changes by state: this base is S8; H01a to H01k draw the other states."},
+    {"op": "ui_insert", "screen": "H01", "after": ["p", "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."], "value": ["link", "Net worth growth", "H02"]},
+    {"op": "ui_replace", "screen": "H01", "match": ["card", "Progress"], "value": ["card", "Progress", ["3 of 8 actions done", "Wheel of wealth: protection red, emergency amber, cashflow green", "Goals: 1 of 3 on track"]]},
+    {"op": "ui_insert", "screen": "H01", "after": ["card", "Progress"], "value": ["link", "Wheel of wealth", "H03"]},
+    {"op": "ui_insert", "screen": "H01", "after": ["link", "Wheel of wealth"], "value": ["link", "Goals progress", "H10"]},
+    {"op": "ui_replace", "screen": "H01", "match": ["card", "Coming up"], "value": ["card", "Coming up", ["Quarterly review on 1 May", "Your call: <date, time>, if one is booked"]]},
+    {"op": "spec_replace", "screen": "H01", "key": "logic", "match": "Home content is decided by state (section N). This is state S8/S9.", "value": "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3)."},
+    {"op": "spec_add", "screen": "H01", "key": "branches", "value": ["Net worth", "H02"]},
+    {"op": "spec_add", "screen": "H01", "key": "branches", "value": ["Wheel", "H03"]},
+    {"op": "spec_add", "screen": "H01", "key": "branches", "value": ["Goals", "H10"]},
+    {"op": "spec_add", "screen": "H01", "key": "branches", "value": ["Call", "K02"]},
+    {"op": "spec_set", "screen": "H01", "key": "states", "value": ["S8 plan read, no action: this base", "S6 plan ready: H01a", "S9 executing: H01c", "S10 all done: H01d", "S11 updated: H01e", "S12 payment failed: H01f", "S13 lapsed: H01g", "S14 DIFM: H01h", "S16 not connected: H01i", "S18 built on partial data: H01j", "S22 review overdue: H01k"]}
+   ]
+  },
+  {
+   "id": "phase5-H02", "kind": "override", "cause": "Vatsal, 10 Sep 2026 (section 5)",
+   "edits": [
+    {"op": "ui_insert", "screen": "H02", "after": ["h", "My net worth growth"], "value": ["p", "Updated <date> via Account Aggregator. Or: last updated by you N days ago; connect Account Aggregator to keep this live."]},
+    {"op": "ui_insert", "screen": "H02", "after": ["rows", null], "value": ["link", "Connect Account Aggregator", "A05"]},
+    {"op": "spec_add", "screen": "H02", "key": "logic", "value": "Source and freshness line (section 5.3): AA users see the last fetch date; manual users see last updated by you N days ago with the connect prompt (S16)."},
+    {"op": "spec_add", "screen": "H02", "key": "branches", "value": ["Connect", "A05"]},
+    {"op": "spec_set", "screen": "H02", "key": "states", "value": ["AA-fed: fetch date shown", "S16 manual: freshness line and the connect link"]}
+   ]
+  },
+  {
+   "id": "phase5-H04", "kind": "override", "cause": "Vatsal, 10 Sep 2026 (section 5)",
+   "edits": [
+    {"op": "ui_insert", "screen": "H04", "after": ["rows", null], "value": ["card", "Verify", ["Tell me your term cover to check it", "Not-sure fields become verify actions here, never gap diagnoses"]]},
+    {"op": "ui_insert", "screen": "H04", "after": ["card", "Verify"], "value": ["link", "Verify term cover", "D04a"]},
+    {"op": "spec_add", "screen": "H04", "key": "logic", "value": "Verify actions from not-sure fields (section 4.3 rule 6; section 5.3): a field left as not sure produces a verify action here, in G05 and G07; explicit none produces the concern copy instead."},
+    {"op": "spec_add", "screen": "H04", "key": "branches", "value": ["Verify term cover", "D04a"]},
+    {"op": "spec_set", "screen": "H04", "key": "states", "value": ["Verify actions present: the Verify card shows first", "All fields known: no Verify card"]}
+   ]
+  },
+  {
+   "id": "phase5-K", "kind": "override", "cause": "Vatsal, 10 Sep 2026 (section 5)",
+   "edits": [
+    {"op": "ui_insert", "screen": "K01", "after": ["card", "What is included"], "value": ["card", "Missed your call?", ["Rebook: same topic, new slot (S20)"]]},
+    {"op": "spec_add", "screen": "K01", "key": "logic", "value": "S20 no-show (section 5): the screen opens with the rebook card; 1h and 24h nudges; a second no-show creates a CRM task (DIWM outbound call; DIY a la carte offer, K04) (brief V2)."},
+    {"op": "spec_add", "screen": "K03", "key": "logic", "value": "S21 (section 5): 48h push and 7d WhatsApp to the first action; exit when an action starts."}
+   ]
+  },
+  {
+   "id": "phase5-Q", "kind": "override", "cause": "Vatsal, 10 Sep 2026 (section 5)",
+   "edits": [
+    {"op": "spec_add", "screen": "Q03a", "key": "logic", "value": "S24 refund requested (section 5): the CRM creates a task with the payment reference and the reason; the refund follows brief H5 (to be decided)."},
+    {"op": "ui_insert", "screen": "Q04", "after": ["card", "Renew your agreement"], "value": ["p", "to be verified: what happens to advice if the annual confirmation is not given (brief compliance)"]},
+    {"op": "spec_set", "screen": "Q04", "key": "states", "value": ["S23 annual confirmation overdue (section 5): nudges 7 days before, on the day, 7 days after; to be verified: what happens to advice if the annual confirmation is not given (brief compliance)"]},
+    {"op": "spec_add", "screen": "Q01", "key": "branches", "value": ["Re-consent", "A06"]},
+    {"op": "ui_insert", "screen": "Q01", "after": ["h", "Your quarterly review"], "value": ["link", "Reconnect Account Aggregator first (consent expired)", "A06"]},
+    {"op": "spec_set", "screen": "Q01", "key": "states", "value": ["S15 AA consent expired: re-consent prompt (A06) first", "S22 review ignored: Q01 not opened 14 days after generation; H01k carries the review card (section 5)", "Manual users: Q05 is their review"]}
+   ]
+  },
+  {
+   "id": "phase5-H09", "kind": "override", "cause": "Vatsal, 10 Sep 2026 (section 5)",
+   "edits": [
+    {"op": "ui_replace", "screen": "H09", "match": ["rows", null], "value": ["rows", [["Update my answers (rebuilds the plan)", ""], ["Family circle", ""], ["Account Aggregator: consents, refresh, revoke", ""], ["Risk profile: retake", ""], ["Subscription: plan, next billing, cancel", ""], ["Notifications", ""], ["Agreements and disclosures", ""], ["Delete my account", "DPDP flow; regulated records retained"]]]},
+    {"op": "spec_add", "screen": "H09", "key": "logic", "value": "Delete my account (S25): DPDP flow; regulated records retained; to be verified: DPDP notice, deletion and retention text."},
+    {"op": "spec_set", "screen": "H09", "key": "states", "value": ["S25 account deletion requested: the deletion row shows the request status and what is retained"]}
+   ]
+  }
+ ]
+}
