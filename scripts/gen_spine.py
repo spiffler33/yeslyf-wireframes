@@ -11,6 +11,7 @@ by data/v02/flow.json.
 """
 
 CAUSE = "Vatsal, 10 Sep 2026"
+CAUSE_P9 = "Vatsal, 11 Sep 2026"  # phase 9: no client-data assumptions, data-capture improvements
 SHEET_TARGETS = {"aa": "A05", "cas": "A10", "vault": "H06"}
 
 
@@ -52,9 +53,9 @@ def num_screen(item, doc):
                        "precision": "exact | approx | unknown", "note": item["mode"]})
     logic = [
         "%s (rule 3): %s" % (item["mode"].capitalize(), "the exact input leads; the bands sit under it" if item["mode"] == "exact-first" else "the bands lead; the exact input stays visible"),
-        "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+        "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
         "Tri-state (rule 6): value, explicit none (the %s chip) or not sure (skip). Not sure is never stored as zero." % item.get("none", "None"),
-        "Gate (rule 7): %s" % ("this field gates the plan build; the plan builds when it is a value or explicit none." if any(f in doc["gate_fields"] for f in item["fields"]) else "sharpen field; the plan builds without it and %s shows a Sharpen this link." % ", ".join(item.get("sharpen_in", ["the plan"]))),
+        "Gate (rule 7; Vatsal, 11 Sep 2026): %s The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02." % ("gate field (appendix B)." if any(f in doc["gate_fields"] for f in item["fields"]) else "sharpen field (appendix B); %s shows a Sharpen this link for it." % ", ".join(item.get("sharpen_in", ["the plan"]))),
         "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
     ]
     if item.get("plausibility"):
@@ -75,7 +76,7 @@ def num_screen(item, doc):
     states.extend(item.get("states", []))
     dev = [
         "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-        "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields.",
+        "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields.",
     ]
     dev.extend(item.get("dev", []))
     return {
@@ -84,7 +85,7 @@ def num_screen(item, doc):
         "spec": {"fields": fields, "logic": logic, "branches": branches, "states": states, "dev": dev, "ladder": ladder},
         "template": "T-num", "path": "both", "events": [],
         "compliance": {"review": False, "reasons": ["plain copy"]},
-        "v02": {"status": "new", "causes": [CAUSE] + item.get("causes", [])},
+        "v02": {"status": "new", "causes": [CAUSE, CAUSE_P9] + item.get("causes", [])},
     }
 
 

@@ -1,0 +1,718 @@
+{
+ "source": "Phase 9 (Vatsal, 11 Sep 2026): the reversal (no client-data assumptions), the seven data-capture improvements, the split relabel. Groups with stage after_generation apply after the spine and the states are generated.",
+ "groups": [
+  {
+   "id": "p9a-carried",
+   "kind": "override",
+   "cause": "Vatsal, 11 Sep 2026",
+   "edits": [
+    {
+     "op": "spec_replace",
+     "screen": "G03",
+     "key": "logic",
+     "match": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026).",
+     "value": "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G04",
+     "key": "logic",
+     "match": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026).",
+     "value": "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G05",
+     "key": "logic",
+     "match": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026).",
+     "value": "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G06",
+     "key": "logic",
+     "match": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026).",
+     "value": "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G07",
+     "key": "logic",
+     "match": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026).",
+     "value": "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G11",
+     "key": "logic",
+     "match": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026).",
+     "value": "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G12",
+     "key": "logic",
+     "match": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026).",
+     "value": "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G13",
+     "key": "logic",
+     "match": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026).",
+     "value": "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G14",
+     "key": "logic",
+     "match": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026).",
+     "value": "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G09",
+     "key": "logic",
+     "match": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026). Goal cost and year sharpen here.",
+     "value": "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026). Goal cost and year sharpen here."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G10",
+     "key": "logic",
+     "match": "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026). The summary lists every open sharpen item across the seven sections.",
+     "value": "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026). The summary lists every open sharpen item across the seven sections."
+    },
+    {
+     "op": "field_replace",
+     "screen": "G03",
+     "field": "work_optional_age",
+     "value": {
+      "f": "work_optional_age",
+      "gate": true,
+      "source": "manual or default accepted (D07b)",
+      "precision": "exact",
+      "note": "what success looks like"
+     }
+    },
+    {
+     "op": "field_replace",
+     "screen": "G06",
+     "field": "work_optional_age",
+     "value": {
+      "f": "work_optional_age",
+      "gate": true,
+      "source": "manual or default accepted (D07b)",
+      "precision": "exact",
+      "note": "where active income ends on the chart"
+     }
+    },
+    {
+     "op": "field_replace",
+     "screen": "G09",
+     "field": "work_optional_age",
+     "value": {
+      "f": "work_optional_age",
+      "gate": true,
+      "source": "manual or default accepted (D07b)",
+      "precision": "exact",
+      "note": "the anchor event"
+     }
+    },
+    {
+     "op": "field_replace",
+     "screen": "G10",
+     "field": "work_optional_age",
+     "value": {
+      "f": "work_optional_age",
+      "gate": true,
+      "source": "manual or default accepted (D07b)",
+      "precision": "exact",
+      "note": ""
+     }
+    },
+    {
+     "op": "field_replace",
+     "screen": "G11",
+     "field": "work_optional_age",
+     "value": {
+      "f": "work_optional_age",
+      "gate": true,
+      "source": "manual or default accepted (D07b)",
+      "precision": "exact",
+      "note": "the long-term anchor"
+     }
+    },
+    {
+     "op": "field_replace",
+     "screen": "G14",
+     "field": "actions",
+     "value": {
+      "f": "actions",
+      "gate": false,
+      "source": "system",
+      "precision": "exact",
+      "note": "actions[]: type, amount, due, channel (in-app or external), status; produced by G04 to G13"
+     }
+    },
+    {
+     "op": "spec_add",
+     "screen": "G09",
+     "key": "logic",
+     "value": "Yes list (Vatsal, 11 Sep 2026): a goal whose cost is not sure is not priced and not passed to the life-events loop; it sits on the Yes list, excluded from the SIP maths (M2 6.1), with the verify action price this goal to fund it, which opens D07a."
+    },
+    {
+     "op": "ui_insert",
+     "screen": "G09",
+     "after": [
+      "card",
+      "Work optional at 55, 2050"
+     ],
+     "value": [
+      "card",
+      "Yes list: not priced yet",
+      [
+       "Trip to Japan: price this goal to fund it",
+       "Unpriced goals stay out of the SIP maths until you price them"
+      ]
+     ]
+    },
+    {
+     "op": "ui_insert",
+     "screen": "G09",
+     "after": [
+      "card",
+      "Yes list: not priced yet"
+     ],
+     "value": [
+      "link",
+      "Price this goal to fund it",
+      "D07a"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "G09",
+     "key": "branches",
+     "value": [
+      "Price this goal",
+      "D07a"
+     ]
+    },
+    {
+     "op": "table_remove_row",
+     "screen": "L02",
+     "index": 0,
+     "row": "Income tier boundaries (monthly take-home)"
+    },
+    {
+     "op": "table_remove_row",
+     "screen": "L02",
+     "index": 0,
+     "row": "Band multipliers by income tier"
+    },
+    {
+     "op": "table_remove_row",
+     "screen": "L02",
+     "index": 0,
+     "row": "Default asset mix for an unknown split"
+    },
+    {
+     "op": "spec_remove",
+     "screen": "L02",
+     "key": "logic",
+     "match": "New rows for v0.2 (rule 3 and appendix B): income tier boundaries and band multipliers feed the dynamic bands; the default asset mix feeds the Branch B fallback for unknown gate fields."
+    },
+    {
+     "op": "spec_add",
+     "screen": "L02",
+     "key": "logic",
+     "value": "No client-data fallback rows (Vatsal, 11 Sep 2026): the three client-data rows added on 10 Sep are removed; bands are fixed per field (M2 tables 9.1 to 9.5) and a missing number is asked for on D13, never filled in. This panel keeps the engine assumptions only: returns, inflation, income growth, life expectancy, thresholds."
+    },
+    {
+     "op": "set",
+     "screen": "L02",
+     "key": "purpose",
+     "value": "Every number the engine uses that is not the user's own, editable with effective dates. Engine assumptions only; nothing here stands in for a client's number."
+    }
+   ]
+  },
+  {
+   "id": "p9a-generated",
+   "kind": "override",
+   "cause": "Vatsal, 11 Sep 2026",
+   "stage": "after_generation",
+   "edits": [
+    {
+     "op": "ui_replace",
+     "screen": "X00",
+     "match": [
+      "card",
+      "Standing rules for every D screen"
+     ],
+     "value": [
+      "card",
+      "Standing rules for every D screen",
+      [
+       "1. One spine, both paths: AA users arrive prefilled and tagged AA-fed, CAS users with holdings tagged CAS-verified, manual users with empty fields; no screen is bypassed on any path; order D01, D08, D09, D05, D06, D02, D03, D04, D07, D10",
+       "2. One question per screen for numbers; taps may auto-advance; list items get a list screen plus a detail screen per item type; every instance is its own screen ID with a template tag",
+       "3. Band rule: every band question shows a visible exact input; a tapped band prefills the exact field with the midpoint; exact removes the approx tag; fixed bands per field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; dynamic bands are shelved until the data flywheel exists; each field is exact-first or band-first",
+       "4. Readback and units: every amount shows a readback in words, a per-month or per-year toggle where either applies, L and Cr multipliers and the numeric keypad; plausibility checks against the reveal prompt a check, never a block",
+       "5. Hesitation detection: at 45 seconds a warm line (D11a), at 90 seconds the why-this-matters line (D11b), at 120 seconds or on a second return the skip offer (D11c); copy slots only",
+       "6. Tri-state fields: value, explicit none, not sure; None chips set explicit none; Not sure yet, skip sets not sure; not sure is never stored as zero; blindspot and concern copy fires on explicit none only; not sure produces a verify action",
+       "7. Gate and sharpen: the plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure field blocks the build and is asked for as a quick range on D13, never filled from an assumption; sharpen fields appear inside the plan section they improve as Sharpen this links that reopen the single screen and re-run",
+       "8. Capture ladder: under the exact input and the bands, the lower-friction sources for that item, in order where they apply: AA, CAS upload, guided lookup, document to the Vault, then Not sure yet, skip; no partner ask anywhere",
+       "9. Source and precision tags on every field: source aa, cas or manual, plus default accepted for the one default the user takes on screen (D07b work-optional age 60); precision exact, approx or unknown; D10 and every G screen show them; a manual override locks the field against AA refresh",
+       "10. Section micro-feedback: after the last screen of each spine section, one card in the adviser voice, chosen by the answers, no numbers (D12a to D12h); copy slots only",
+       "11. Endowed progress: the ring starts at 20 percent after the reveal, weighted gate fields first; minutes are about N minutes",
+       "12. Exit from any D screen: autosave, then O03 When will you finish; the chosen time replaces the first scheduled nudge and the standard ladder follows",
+       "13. Events and compliance flags on every screen (appendices D and G)"
+      ]
+     ]
+    },
+    {
+     "op": "ui_insert",
+     "screen": "X00",
+     "after": [
+      "card",
+      "Standing rules for every D screen"
+     ],
+     "value": [
+      "card",
+      "Changed on 11 Sep 2026",
+      [
+       "No client-data assumptions: every number in a plan is the client's own, exact or as a band they chose; fixed bands per field (M2); dynamic bands shelved until the data flywheel exists",
+       "A not-sure field blocks the build: D13 Quick ranges collects a band for each; G01a builds on bands, never on a value the user did not give",
+       "The only default the plan takes is the work-optional age 60 the user accepts on D07b, tagged default accepted",
+       "A goal with an unknown cost stays on the Yes list, out of the SIP maths, with the verify action price this goal to fund it (G09)"
+      ]
+     ]
+    },
+    {
+     "op": "ui_replace",
+     "screen": "D10",
+     "match": [
+      "card",
+      "Ready to build"
+     ],
+     "value": [
+      "card",
+      "Ready to build",
+      [
+       "Every field the React reads is a value (exact or band) or explicit none",
+       "Or: N fields missing, about N minutes",
+       "Or: N numbers need at least a rough range"
+      ]
+     ]
+    },
+    {
+     "op": "ui_insert",
+     "screen": "D10",
+     "after": [
+      "card",
+      "Ready to build"
+     ],
+     "value": [
+      "link",
+      "Give quick ranges for the N numbers",
+      "D13"
+     ]
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D10",
+     "key": "logic",
+     "match": "Ready to build: the gate is met when every gate field is a value or explicit none (rule 7); otherwise the missing fields with minutes.",
+     "value": "Ready to build (rule 7; Vatsal, 11 Sep 2026): the plan builds when every field the React reads is a value (exact or band) or explicit none; otherwise the card lists the missing fields with minutes, or N numbers need at least a rough range with a link to D13 Quick ranges."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D10",
+     "key": "logic",
+     "match": "Branch B (4.2): assumed fields are listed with their L02 fallback and a verify action; G01a names their count on the day-7 build.",
+     "value": "No assumptions (Vatsal, 11 Sep 2026): a not-sure field is never filled from L02; D13 collects a band for each before the build; fields entered as bands are tagged approx and carry Sharpen this links in the plan; G01a builds on bands."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D10",
+     "key": "dev",
+     "match": "Events gate_met and plan_built {assumed_count, unknown_count} (appendix D).",
+     "value": "Events gate_met and plan_built {band_count} (appendix D)."
+    },
+    {
+     "op": "spec_add",
+     "screen": "D10",
+     "key": "states",
+     "value": "N numbers need at least a rough range: Build my plan disabled; the Ready to build card links to D13 Quick ranges (S19 lands there when ranges are the only missing items)"
+    },
+    {
+     "op": "spec_add",
+     "screen": "D10",
+     "key": "branches",
+     "value": [
+      "Quick ranges",
+      "D13"
+     ]
+    },
+    {
+     "op": "add",
+     "after": "D10",
+     "value": {
+      "id": "D13",
+      "sec": "D",
+      "title": "Quick ranges",
+      "tier": [
+       "ALL"
+      ],
+      "frame": "phone",
+      "purpose": "One row per field the React reads that is still not sure: a set of fixed band chips each. A band is enough to build; exact is better and can be given later from the plan.",
+      "ui": [
+       [
+        "h",
+        "A rough range is enough for these"
+       ],
+       [
+        "p",
+        "N numbers are still not sure. Pick a band for each and your plan builds; you can sharpen any of them later from the plan."
+       ],
+       [
+        "p",
+        "Monthly take-home"
+       ],
+       [
+        "chips",
+        [
+         "Under Rs ___",
+         "Rs ___ to ___",
+         "Rs ___ to ___",
+         "Over Rs ___"
+        ]
+       ],
+       [
+        "p",
+        "Mutual funds, all together"
+       ],
+       [
+        "chips",
+        [
+         "Under Rs ___",
+         "Rs ___ to ___",
+         "Rs ___ to ___",
+         "Over Rs ___"
+        ]
+       ],
+       [
+        "p",
+        "Term cover, sum assured"
+       ],
+       [
+        "chips",
+        [
+         "Under Rs ___",
+         "Rs ___ to ___",
+         "Rs ___ to ___",
+         "Over Rs ___"
+        ]
+       ],
+       [
+        "note",
+        "One row per not-sure field, in spine order; each row uses the field's own fixed bands (M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholders). A row links to its screen for the exact number."
+       ],
+       [
+        "link",
+        "Type the exact take-home instead",
+        "D05a"
+       ],
+       [
+        "btn",
+        "Done",
+        "D10"
+       ]
+      ],
+      "spec": {
+       "fields": [
+        {
+         "f": "not_sure_fields[]",
+         "gate": true,
+         "source": "manual",
+         "precision": "approx",
+         "note": "one band per field the React reads that was not sure; the midpoint is stored tagged approx"
+        }
+       ],
+       "logic": [
+        "Rule 7 (Vatsal, 11 Sep 2026): the plan builds when every field the React reads is a value (exact or band) or explicit none; this screen collects the band for each field that is still not sure, so nothing stands in for a number the user did not give.",
+        "One row per not-sure field, in spine order; each row is that field's fixed band chips (rule 3); a tapped band stores the midpoint tagged approx and the row ticks.",
+        "Done returns to D10, where the Ready to build card updates; Build my plan enables when no row is left.",
+        "Reached from D10 (N numbers need at least a rough range) and as the S19 landing when the only missing items are ranges.",
+        "Every field entered here shows in the plan with a Sharpen this link (rule 7)."
+       ],
+       "branches": [
+        [
+         "Done",
+         "D10"
+        ],
+        [
+         "Exact take-home",
+         "D05a"
+        ]
+       ],
+       "states": [
+        "No not-sure field: this screen does not open; D10 goes straight to Build my plan",
+        "S19 stalled below the gate at day 7, only ranges missing: lands here; nudge copy slot N-S19-d7 reads N quick ranges and your plan builds",
+        "Exit (rule 12): autosave, then O03"
+       ],
+       "dev": [
+        "Rows come from fp_react_inputs.json (fallback: band required on every field) crossed with the stored tri-state per field.",
+        "Store each band as value = midpoint, source manual, precision approx, with the band label (rule 9); events range_picked {field} and ranges_done {count}."
+       ]
+      },
+      "template": "T-list",
+      "path": "both",
+      "events": [
+       "range_picked",
+       "ranges_done"
+      ],
+      "compliance": {
+       "review": false,
+       "reasons": [
+        "plain copy"
+       ]
+      }
+     }
+    },
+    {
+     "op": "set",
+     "screen": "G01a",
+     "key": "purpose",
+     "value": "The day-7 build for a user who stalled below a full set of numbers (state S18): the plan builds on what is known, with N fields given as bands (quick ranges) rather than exact figures, each of which can be sharpened from the plan. No value stands in for one the user did not give."
+    },
+    {
+     "op": "ui_replace",
+     "screen": "G01a",
+     "match": [
+      "p",
+      "Built on what we have: N numbers assumed or not sure yet. Each one can be sharpened from the plan, and the plan re-runs when you do."
+     ],
+     "value": [
+      "p",
+      "Built on what we have: N numbers are bands you picked, not exact figures. Each one can be sharpened from the plan, and the plan re-runs when you do."
+     ]
+    },
+    {
+     "op": "field_replace",
+     "screen": "G01a",
+     "field": "assumed_count",
+     "value": {
+      "f": "band_count",
+      "gate": false,
+      "source": "manual",
+      "precision": "approx",
+      "note": "fields entered as a band (on D13 or a number screen) rather than an exact figure"
+     }
+    },
+    {
+     "op": "spec_remove",
+     "screen": "G01a",
+     "key": "fields",
+     "match": {
+      "f": "unknown_count",
+      "gate": false,
+      "source": "manual",
+      "precision": "unknown",
+      "note": "not-sure fields still open"
+     }
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G01a",
+     "key": "logic",
+     "match": "Instance of G01 for the day-7 build (section 5, S18): the gate is met with assumed values where the user said not sure; each assumed field is tagged assumed and gets a verify action in the plan.",
+     "value": "Instance of G01 for the day-7 build (section 5, S18): every field the React reads is a value (exact or band) or explicit none (rule 7); the fields the user gave as bands are tagged approx and get a Sharpen this link in the plan. No value stands in for one the user did not give (Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G01a",
+     "key": "logic",
+     "match": "Copy names the count of assumed or not-sure fields and that each can be sharpened from the plan (Vatsal, 10 Sep 2026).",
+     "value": "Copy names the count of fields given as bands and that each can be sharpened from the plan (Vatsal, 10 Sep 2026; reworded Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "G01a",
+     "key": "dev",
+     "match": "Event plan_built carries assumed_count and unknown_count.",
+     "value": "Event plan_built carries band_count."
+    },
+    {
+     "op": "spec_remove",
+     "screen": "D02",
+     "key": "logic",
+     "match": "Branch B (4.2): an unknown gate item maps to the R04 corpus band split by the L02 default mix, tagged assumed with a verify action in the plan; to be verified: the default asset mix for unknown splits."
+    },
+    {
+     "op": "spec_add",
+     "screen": "D02",
+     "key": "logic",
+     "value": "No assumptions (Vatsal, 11 Sep 2026): an unknown type is never split from the R04 band; a type that is not sure is asked for as a quick range on D13 before the build (rule 7)."
+    },
+    {
+     "op": "set",
+     "screen": "D07a",
+     "key": "purpose",
+     "value": "One goal: name, when, cost today (band-first; I am not sure yet keeps the goal on the Yes list until it is priced), priority."
+    },
+    {
+     "op": "ui_replace",
+     "screen": "D07a",
+     "match": [
+      "note",
+      "I am not sure yet uses the estimate for your profile, tagged assumed; you check it from the plan"
+     ],
+     "value": [
+      "note",
+      "I am not sure yet keeps this goal on your Yes list, out of the SIP maths, until you price it; the plan shows: price this goal to fund it"
+     ]
+    },
+    {
+     "op": "field_replace",
+     "screen": "D07a",
+     "field": "goals",
+     "value": {
+      "f": "goals",
+      "gate": true,
+      "source": "manual",
+      "precision": "exact | approx | unknown",
+      "note": "per goal: name, year or timeline, cost_today, priority; cost_today unknown keeps the goal unpriced on the Yes list"
+     }
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D07a",
+     "key": "logic",
+     "match": "Cost today band-first (rule 3); the bands move with the income tier (L02).",
+     "value": "Cost today band-first (rule 3); fixed bands for this field (M2 table where one exists, else Rs ___ placeholders)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D07a",
+     "key": "logic",
+     "match": "I am not sure yet maps to the persona estimate (V5 Q4.4b), tagged assumed, with a verify action in G09 (rule 6 and 7).",
+     "value": "I am not sure yet maps to no estimate (Vatsal, 11 Sep 2026): the goal is stored on the Yes list, excluded from the SIP maths (M2 6.1), with the verify action price this goal to fund it in G09 (rule 6)."
+    },
+    {
+     "op": "spec_remove",
+     "screen": "D07a",
+     "key": "logic",
+     "match": "gap, to be decided: the archetype-to-amount estimate table for goal costs (V5 Q4.4b names it; none is written)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D07a",
+     "key": "dev",
+     "match": "Store cost_today with source assumed when the estimate is used (rule 9).",
+     "value": "Unpriced goals (cost_today not sure) are not passed to the React's life-events loop; they stay on the Yes list until priced (Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "field_replace",
+     "screen": "D07",
+     "field": "work_optional_age",
+     "value": {
+      "f": "work_optional_age",
+      "gate": true,
+      "source": "manual | default accepted",
+      "precision": "exact",
+      "note": "D07b; default 60 only when accepted on screen"
+     }
+    },
+    {
+     "op": "ui_replace",
+     "screen": "D07",
+     "match": [
+      "card",
+      "Your goals"
+     ],
+     "value": [
+      "card",
+      "Your goals",
+      [
+       "Name, year, cost today, priority; tap to edit",
+       "A goal without a cost stays on your Yes list until you price it; the plan reminds you"
+      ]
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "D07",
+     "key": "logic",
+     "value": "A goal whose cost is not sure stays on the Yes list with the verify action price this goal to fund it in G09; no estimate is used (Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "field_replace",
+     "screen": "D07b",
+     "field": "work_optional_age",
+     "value": {
+      "f": "work_optional_age",
+      "gate": true,
+      "source": "manual | default accepted",
+      "precision": "exact",
+      "note": "default 60, tagged default accepted only when the user takes it on this screen"
+     }
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D07b",
+     "key": "logic",
+     "match": "I have not thought about it sets 60 as a value tagged assumed, not a not-sure (rule 6; V5 Q4.1 wording: we will use 60 as a working assumption).",
+     "value": "I have not thought about it: use 60 sets 60 as a value tagged default accepted, not a not-sure (rule 6). This is the only assumed value the plan ever carries, and only because the user accepted it on this screen (Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D07b",
+     "key": "dev",
+     "match": "Store the value and the assumed tag.",
+     "value": "Store the value with source default accepted when the chip is used; the tag exists nowhere else."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D03a",
+     "key": "logic",
+     "match": "EMI exact; outstanding and years left as bands; rate derived (appendix C). The bands move with the income tier (L02).",
+     "value": "EMI exact; outstanding and years left as bands; rate derived (appendix C). Fixed bands for these fields (M2 table where one exists, else Rs ___ placeholders)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D04b",
+     "key": "logic",
+     "match": "Sum insured band-first (rule 3); the bands move with the income tier (L02).",
+     "value": "Sum insured band-first (rule 3); fixed bands for this field (M2 table where one exists, else Rs ___ placeholders)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D04a",
+     "key": "ladder",
+     "match": [
+      "band",
+      "A band by your income tier"
+     ],
+     "value": [
+      "band",
+      "A band for this field: fixed bands (M2 table where one exists, else Rs ___ placeholders); the midpoint fills the field, tagged approx"
+     ]
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D04b",
+     "key": "ladder",
+     "match": [
+      "band",
+      "A band by your income tier"
+     ],
+     "value": [
+      "band",
+      "A band for this field: fixed bands (M2 table where one exists, else Rs ___ placeholders); the midpoint fills the field, tagged approx"
+     ]
+    }
+   ]
+  }
+ ]
+}

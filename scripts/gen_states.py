@@ -12,6 +12,8 @@ import copy
 
 CAUSE = "Vatsal, 10 Sep 2026 (section 5)"
 CAUSE_V2 = "brief V2"
+CAUSE_P9 = "Vatsal, 11 Sep 2026"  # phase 9: no client-data assumptions; confirm or correct on Q05
+VARIANT_CAUSES = {"j": [CAUSE_P9]}
 ONBOARDING = ["S2b", "S3", "S4", "S5", "S16", "S17", "S19"]
 POST_PLAN = ["S6", "S7", "S8", "S9", "S10", "S11", "S12", "S13", "S15", "S18", "S20", "S21", "S22", "S23", "S24", "S25"]
 CHANNEL_LABEL = {"push": "push", "whatsapp": "WhatsApp", "email": "email", "human call": "human call"}
@@ -47,9 +49,9 @@ VARIANTS = [
   ("Your next action", ["<the first action from the action plan>", "About N minutes"]),
   [["link", "Connect Account Aggregator to keep this live", "A05"], ["btn", "Do the first action", "E01"]], [["Connect", "A05"], ["Next action", "E01"]]),
  ("j", "S18", "Home: built on partial data", ["ALL"], "both",
-  ("Built on what we have", ["N numbers are still missing; each can be sharpened from the plan", "The plan works today; sharper numbers make it yours"]),
-  [["card", "Sharpen", ["Take-home: approx, from your reveal. Sharpen this", "Term cover: not sure. Sharpen this", "Each link opens the single screen and re-runs; H05 shows the diff"]],
-   ["card", "Sunday sharpen", ["Want me to ask you for the N numbers I am still missing on Sunday?", "Nudge slot N-S18-sunday"]],
+  ("Built on what we have", ["N numbers are bands you picked, not exact figures; each can be sharpened from the plan", "The plan works today; exact numbers make it yours"]),
+  [["card", "Sharpen", ["Take-home: a band you picked. Sharpen this", "Term cover: a band you picked. Sharpen this", "Each link opens the single screen and re-runs; H05 shows the diff"]],
+   ["card", "Sunday sharpen", ["Want me to ask you for the N exact numbers on Sunday?", "Nudge slot N-S18-sunday"]],
    ["chips", ["Yes, Sunday", "Not now"]],
    ["btn", "Sharpen now", "D10"]], [["Sharpen", "D10"]]),
  ("k", "S22", "Home: review overdue", ["ALL"], "both",
@@ -73,7 +75,17 @@ def causes(st):
         out.append(CAUSE_V2)
     if "brief H5" in st.get("cause", ""):
         out.append("brief H5")
+    if "11 Sep 2026" in st.get("cause", ""):
+        out.append(CAUSE_P9)
     return out
+
+
+def lands_text(st):
+    """Landing screen for the N01 table: the alternate landing, when the contract has one, in brackets."""
+    alt = st.get("lands_on_alt")
+    if alt:
+        return "%s (%s when %s)" % (st["lands_on"], alt["screen"], alt["when"])
+    return st["lands_on"]
 
 
 def desk(sid, title, purpose, ui, logic, dev, after, compliance, cause_list, events=None):
@@ -113,14 +125,15 @@ def generate(states_doc, byid):
     out = []
 
     # N01 master table, rebuilt
-    rows = [[st["id"], st["who"], st["lands_on"], st["primary_action"], ladder_summary(st), escalation_summary(st), st["exit"]]
+    rows = [[st["id"], st["who"], lands_text(st), st["primary_action"], ladder_summary(st), escalation_summary(st), st["exit"]]
             for st in states]
+    p9 = [CAUSE_P9] if any("11 Sep 2026" in st.get("cause", "") for st in states) else []
     n01 = desk("N01", "Returning-user state machine",
                "Every returning user is routed by state on open. One row per state: who, where it lands, the primary action, the nudge ladder, the human escalation by tier, the exit. The contract between backend, app and nudges.",
                [["table", ["State", "Who", "Lands on", "Primary action", "Nudge ladder", "Human escalation by tier", "Exit"], rows]],
                rules + ["States run S1 to S25; the next number is not used (Vatsal, 10 Sep 2026).", "H01 states land on their variant H01a to H01k (section 5.3)."],
                ["State is computed on every open from stored flags (M6 step determination extended).", "Nudge channels: push, WhatsApp, email, human call (brief V2); templates live in the CRM (N04)."],
-               None, {"review": False, "reasons": ["internal"]}, [CAUSE, CAUSE_V2], ["crm_task_created"])
+               None, {"review": False, "reasons": ["internal"]}, [CAUSE, CAUSE_V2] + p9, ["crm_task_created"])
     n01.pop("after")
     n01["v02"]["status"] = "rebuilt"
     out.append(n01)
@@ -148,7 +161,7 @@ def generate(states_doc, byid):
                     [["table", ["Copy slot", "Channel", "State", "Deep link", "Placeholder text"], trows]],
                     ["Copy slots are IDs; the copy is content (gap G08) and lives in the CRM templates (Vatsal, 10 Sep 2026).", "Every nudge names the specific next screen and its minutes; never continue your journey (Vatsal, 10 Sep 2026).", "WhatsApp templates need approval before launch; to be verified: WhatsApp template approval lead time."],
                     ["Human-call rows are CRM tasks, not messages; the caller reads the task fields."],
-                    "N03", {"review": True, "reasons": ["advertising code"]}, [CAUSE, CAUSE_V2], ["nudge_sent", "nudge_opened"]))
+                    "N03", {"review": True, "reasons": ["advertising code"]}, [CAUSE, CAUSE_V2] + p9, ["nudge_sent", "nudge_opened"]))
 
     # N05 to N30 mocks
     prev = "N04"
@@ -165,13 +178,18 @@ def generate(states_doc, byid):
         ]
         if st.get("email"):
             ui.append(["card", "Email (%s)" % st["email"]["slot"], [st["email"]["text"]]])
+        alt = st.get("lands_on_alt")
+        if alt:
+            lines.append("When %s: lands on %s instead" % (alt["when"], alt["screen"]))
         ui.append(["card", "Lands on %s %s" % (st["lands_on"], land_title), lines])
         ui.append(["btn", "Open %s" % st["lands_on"], st["lands_on"]])
+        if alt:
+            ui.append(["btn2", "Open %s" % alt["screen"], alt["screen"]])
         events = ["state_enter_%s" % st["id"], "nudge_sent", "nudge_opened"]
         if st["crm_task"]["created"]:
             events.append("crm_task_created")
         logic = [
-            "State %s: %s. Lands on %s; the nudges deep-link to %s." % (st["id"], st["who"], st["lands_on"], st["deep_link"]),
+            "State %s: %s. Lands on %s; the nudges deep-link to %s." % (st["id"], st["who"], lands_text(st), st["deep_link"]),
             "Ladder: %s." % ladder_summary(st),
             "Escalation: %s" % escalation_summary(st),
             "Exit: %s." % st["exit"],
@@ -182,7 +200,7 @@ def generate(states_doc, byid):
             "id": st["mock"], "sec": "N", "title": "State %s: %s" % (st["id"], st["who"]), "tier": ["ALL"], "frame": "phone",
             "purpose": "Message-and-landing mock for state %s: the push and WhatsApp message on the left, the landing screen on the right." % st["id"],
             "ui": ui,
-            "spec": {"fields": [], "logic": logic, "branches": [["Open", st["lands_on"]]], "states": [st["id"]],
+            "spec": {"fields": [], "logic": logic, "branches": [["Open", st["lands_on"]]] + ([["Open", alt["screen"]]] if alt else []), "states": [st["id"]],
                      "dev": ["Copy slots are IDs; the text is placeholder copy (gap G08).", "state_enter_%s fires on open; nudge_sent and nudge_opened carry the slot and channel." % st["id"]]},
             "template": "T-msg", "path": "both", "events": events,
             "compliance": {"review": True, "reasons": ["advertising code"]},
@@ -236,10 +254,10 @@ def generate(states_doc, byid):
         if suffix == "i":
             spec["logic"].append("S16: numbers typed by the user; the freshness line re-asks for Account Aggregator (Vatsal, 10 Sep 2026).")
         if suffix == "j":
-            spec["logic"].append("S18: the Sunday sharpen card schedules the nudge slot N-S18-sunday; the sharpen strip lists the assumed and not-sure fields (Vatsal, 10 Sep 2026).")
+            spec["logic"].append("S18: the Sunday sharpen card schedules the nudge slot N-S18-sunday; the sharpen strip lists the fields entered as bands, never a value the user did not give (Vatsal, 11 Sep 2026).")
         spec["dev"] = ["Hero card and state card come from the state table (N01); nothing else changes between variants."]
         s["events"] = ["state_enter_%s" % state]
-        s["v02"] = {"status": "new", "causes": [CAUSE]}
+        s["v02"] = {"status": "new", "causes": [CAUSE] + VARIANT_CAUSES.get(suffix, [])}
         s["after"] = prev
         out.append(s)
         prev = s["id"]

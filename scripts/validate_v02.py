@@ -34,7 +34,7 @@ STATES = ["S1", "S2", "S2b", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S
 
 
 def live(screens):
-    return [s for s in screens if s["v02"]["status"] != "dropped"]
+    return [s for s in screens if s["v02"]["status"] not in ("dropped", "split")]
 
 
 def links(s):
@@ -85,6 +85,14 @@ def structural(screens):
             if not s["v02"].get("pointer"):
                 p.append("%s: dropped without a pointer" % sid)
             continue
+        if s["v02"]["status"] == "split":
+            if not s["v02"].get("instances"):
+                p.append("%s: split without its instances" % sid)
+            for inst in s["v02"].get("instances", []):
+                t = byid.get(inst)
+                if t is None or t["v02"]["status"] in ("dropped", "split"):
+                    p.append("%s: split instance %s is not a live screen" % (sid, inst))
+            continue
         for key in ("fields", "logic", "branches", "states", "dev"):
             if key not in s["spec"]:
                 p.append("%s: spec lacks %s" % (sid, key))
@@ -103,8 +111,8 @@ def structural(screens):
             t = byid.get(target)
             if t is None:
                 p.append("%s: branch %r -> %s does not exist" % (sid, label, target))
-            elif t["v02"]["status"] == "dropped":
-                p.append("%s: branch %r -> %s points at a dropped screen" % (sid, label, target))
+            elif t["v02"]["status"] in ("dropped", "split"):
+                p.append("%s: branch %r -> %s points at a %s screen" % (sid, label, target, t["v02"]["status"]))
         for txt in texts(s):
             for ch in txt:
                 if ord(ch) > 126:

@@ -125,17 +125,27 @@
      [
       "1. One spine, both paths: AA users arrive prefilled and tagged AA-fed, CAS users with holdings tagged CAS-verified, manual users with empty fields; no screen is bypassed on any path; order D01, D08, D09, D05, D06, D02, D03, D04, D07, D10",
       "2. One question per screen for numbers; taps may auto-advance; list items get a list screen plus a detail screen per item type; every instance is its own screen ID with a template tag",
-      "3. Band rule: every band question shows a visible exact input; a tapped band prefills the exact field with the midpoint; exact removes the approx tag; bands are dynamic by income tier with midpoints from L02; each field is exact-first or band-first",
+      "3. Band rule: every band question shows a visible exact input; a tapped band prefills the exact field with the midpoint; exact removes the approx tag; fixed bands per field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; dynamic bands are shelved until the data flywheel exists; each field is exact-first or band-first",
       "4. Readback and units: every amount shows a readback in words, a per-month or per-year toggle where either applies, L and Cr multipliers and the numeric keypad; plausibility checks against the reveal prompt a check, never a block",
       "5. Hesitation detection: at 45 seconds a warm line (D11a), at 90 seconds the why-this-matters line (D11b), at 120 seconds or on a second return the skip offer (D11c); copy slots only",
       "6. Tri-state fields: value, explicit none, not sure; None chips set explicit none; Not sure yet, skip sets not sure; not sure is never stored as zero; blindspot and concern copy fires on explicit none only; not sure produces a verify action",
-      "7. Gate and sharpen: each field carries gate true or false; the plan builds when every gate field is value or explicit none; sharpen fields appear inside the plan section they improve as Sharpen this links that reopen the single screen and re-run",
+      "7. Gate and sharpen: the plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure field blocks the build and is asked for as a quick range on D13, never filled from an assumption; sharpen fields appear inside the plan section they improve as Sharpen this links that reopen the single screen and re-run",
       "8. Capture ladder: under the exact input and the bands, the lower-friction sources for that item, in order where they apply: AA, CAS upload, guided lookup, document to the Vault, then Not sure yet, skip; no partner ask anywhere",
-      "9. Source and precision tags on every field: source aa, cas, manual or assumed; precision exact, approx or unknown; D10 and every G screen show them; a manual override locks the field against AA refresh",
+      "9. Source and precision tags on every field: source aa, cas or manual, plus default accepted for the one default the user takes on screen (D07b work-optional age 60); precision exact, approx or unknown; D10 and every G screen show them; a manual override locks the field against AA refresh",
       "10. Section micro-feedback: after the last screen of each spine section, one card in the adviser voice, chosen by the answers, no numbers (D12a to D12h); copy slots only",
       "11. Endowed progress: the ring starts at 20 percent after the reveal, weighted gate fields first; minutes are about N minutes",
       "12. Exit from any D screen: autosave, then O03 When will you finish; the chosen time replaces the first scheduled nudge and the standard ladder follows",
       "13. Events and compliance flags on every screen (appendices D and G)"
+     ]
+    ],
+    [
+     "card",
+     "Changed on 11 Sep 2026",
+     [
+      "No client-data assumptions: every number in a plan is the client's own, exact or as a band they chose; fixed bands per field (M2); dynamic bands shelved until the data flywheel exists",
+      "A not-sure field blocks the build: D13 Quick ranges collects a band for each; G01a builds on bands, never on a value the user did not give",
+      "The only default the plan takes is the work-optional age 60 the user accepts on D07b, tagged default accepted",
+      "A goal with an unknown cost stays on the Yes list, out of the SIP maths, with the verify action price this goal to fund it (G09)"
      ]
     ],
     [
@@ -194,7 +204,8 @@
    "v02": {
     "status": "rebuilt",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -4519,7 +4530,7 @@
     ],
     [
      "p",
-     "Or pick a band. The bands move with your income tier; the midpoint fills the exact field and is tagged approx until you type a number (L02)."
+     "Or pick a band. Fixed bands for this field; the midpoint fills the exact field and is tagged approx until you type a number."
     ],
     [
      "chips",
@@ -4545,7 +4556,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -4572,9 +4583,9 @@
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the No regular income chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): this field gates the plan build; the plan builds when it is a value or explicit none.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): gate field (appendix B). The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
      "Plausibility (rule 4): take-home against the R03 household income band; a mismatch prompts a check, never a block.",
      "Salary detection from AA bank transactions: a recurring credit on a fixed day, shown as a suggestion the user confirms (spec v0.1 D05)."
@@ -4602,7 +4613,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields.",
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields.",
      "Transaction categorisation is V2; V1 shows totals and the detected salary only (spec v0.1 D05)."
     ],
     "ladder": [
@@ -4616,7 +4627,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -4647,7 +4658,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -4686,7 +4698,7 @@
     ],
     [
      "p",
-     "Pick a band, or type the exact number above. The bands move with your income tier; the midpoint fills the exact field and is tagged approx (L02)."
+     "Pick a band, or type the exact number above. Fixed bands for this field; the midpoint fills the exact field and is tagged approx."
     ],
     [
      "chips",
@@ -4707,7 +4719,7 @@
     ],
     [
      "note",
-     "A band by your household income tier: midpoint fills the field, tagged approx"
+     "A band for this field (household take-home): midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -4734,9 +4746,9 @@
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the Partner does not earn chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): sharpen field; the plan builds without it and G06 shows a Sharpen this link.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G06 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
     ],
     "branches": [
@@ -4757,7 +4769,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
     ],
     "ladder": [
      [
@@ -4766,7 +4778,7 @@
      ],
      [
       "band",
-      "A band by your household income tier: midpoint fills the field, tagged approx"
+      "A band for this field (household take-home): midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -4796,7 +4808,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -4835,7 +4848,7 @@
     ],
     [
      "p",
-     "Or pick a band. The bands move with your income tier; the midpoint fills the exact field and is tagged approx until you type a number (L02)."
+     "Or pick a band. Fixed bands for this field; the midpoint fills the exact field and is tagged approx until you type a number."
     ],
     [
      "chips",
@@ -4856,7 +4869,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -4883,9 +4896,9 @@
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the No rent chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): sharpen field; the plan builds without it and G06 shows a Sharpen this link.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G06 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
     ],
     "branches": [
@@ -4906,7 +4919,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
     ],
     "ladder": [
      [
@@ -4915,7 +4928,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -4945,7 +4958,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -4984,7 +4998,7 @@
     ],
     [
      "p",
-     "Pick a band, or type the exact number above. The bands move with your income tier; the midpoint fills the exact field and is tagged approx (L02)."
+     "Pick a band, or type the exact number above. Fixed bands for this field; the midpoint fills the exact field and is tagged approx."
     ],
     [
      "chips",
@@ -5005,7 +5019,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -5032,9 +5046,9 @@
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the Nothing else chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): sharpen field; the plan builds without it and G06 shows a Sharpen this link.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G06 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
      "Regular or lumpy: two chips under the amount set income_regularity (spec v0.1 D05); lumpy income is averaged over the year in the cashflow."
     ],
@@ -5055,7 +5069,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
     ],
     "ladder": [
      [
@@ -5064,7 +5078,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -5094,7 +5108,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -5194,7 +5209,7 @@
     ],
     [
      "p",
-     "Or pick a band. The bands move with your income tier; the midpoint fills the exact field and is tagged approx until you type a number (L02)."
+     "Or pick a band. Fixed bands for this field; the midpoint fills the exact field and is tagged approx until you type a number."
     ],
     [
      "chips",
@@ -5220,7 +5235,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -5247,9 +5262,9 @@
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the None chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): this field gates the plan build; the plan builds when it is a value or explicit none.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): gate field (appendix B). The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
      "Plausibility (rule 4): outgoings against take-home (D05a) and the R05 savings rate; EMIs from D03 against 30 percent of take-home; a mismatch prompts a check, never a block.",
      "Live surplus line under the input: take-home minus outgoings, updating as the user types.",
@@ -5278,7 +5293,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields.",
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields.",
      "The Pets card on D01 (row 8 note) adds a recurring expense line inside the fixed bucket on D06b."
     ],
     "ladder": [
@@ -5292,7 +5307,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -5323,7 +5338,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -5565,7 +5581,7 @@
     ],
     [
      "p",
-     "Or pick a band. The bands move with your income tier; the midpoint fills the exact field and is tagged approx until you type a number (L02)."
+     "Or pick a band. Fixed bands for this field; the midpoint fills the exact field and is tagged approx until you type a number."
     ],
     [
      "chips",
@@ -5591,7 +5607,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -5618,9 +5634,9 @@
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the Nothing on autopilot chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): sharpen field; the plan builds without it and G06 shows a Sharpen this link.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G06 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
      "SIP detection from AA debits to RTAs; the user confirms (spec v0.1 D06)."
     ],
@@ -5646,7 +5662,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
     ],
     "ladder": [
      [
@@ -5659,7 +5675,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -5690,7 +5706,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -5912,7 +5929,7 @@
      "Continue walks the ten type screens in order; a row opens its screen directly.",
      "Plausibility (rule 4): the running total against the R04 corpus band; a mismatch prompts a check, never a block.",
      "Gate fields in this section: bank_and_deposits, mutual_funds, stocks, epf (appendix B); the rest sharpen the plan.",
-     "Branch B (4.2): an unknown gate item maps to the R04 corpus band split by the L02 default mix, tagged assumed with a verify action in the plan; to be verified: the default asset mix for unknown splits."
+     "No assumptions (Vatsal, 11 Sep 2026): an unknown type is never split from the R04 band; a type that is not sure is asked for as a quick range on D13 before the build (rule 7)."
     ],
     "branches": [
      [
@@ -5988,7 +6005,8 @@
     "status": "rebuilt",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "4.1 bug fix"
+     "4.1 bug fix",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -6020,7 +6038,7 @@
     ],
     [
      "p",
-     "Or pick a band. The bands move with your income tier; the midpoint fills the exact field and is tagged approx until you type a number (L02)."
+     "Or pick a band. Fixed bands for this field; the midpoint fills the exact field and is tagged approx until you type a number."
     ],
     [
      "chips",
@@ -6046,7 +6064,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -6073,9 +6091,9 @@
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the None chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): this field gates the plan build; the plan builds when it is a value or explicit none.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): gate field (appendix B). The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
      "Plausibility (rule 4): the running total of D02 against the R04 corpus band; a mismatch prompts a check, never a block."
     ],
@@ -6101,7 +6119,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
     ],
     "ladder": [
      [
@@ -6114,7 +6132,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -6145,7 +6163,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -6177,7 +6196,7 @@
     ],
     [
      "p",
-     "Or pick a band. The bands move with your income tier; the midpoint fills the exact field and is tagged approx until you type a number (L02)."
+     "Or pick a band. Fixed bands for this field; the midpoint fills the exact field and is tagged approx until you type a number."
     ],
     [
      "chips",
@@ -6208,7 +6227,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -6235,9 +6254,9 @@
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the No mutual funds chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): this field gates the plan build; the plan builds when it is a value or explicit none.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): gate field (appendix B). The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
      "Typed totals get buy advice only; switch and sell advice needs AA-fed or CAS-verified holdings (G12a)."
     ],
@@ -6268,7 +6287,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
     ],
     "ladder": [
      [
@@ -6285,7 +6304,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -6317,7 +6336,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -6349,7 +6369,7 @@
     ],
     [
      "p",
-     "Or pick a band. The bands move with your income tier; the midpoint fills the exact field and is tagged approx until you type a number (L02)."
+     "Or pick a band. Fixed bands for this field; the midpoint fills the exact field and is tagged approx until you type a number."
     ],
     [
      "chips",
@@ -6380,7 +6400,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -6407,9 +6427,9 @@
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the No stocks or ETFs chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): this field gates the plan build; the plan builds when it is a value or explicit none.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): gate field (appendix B). The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
     ],
     "branches": [
@@ -6439,7 +6459,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
     ],
     "ladder": [
      [
@@ -6456,7 +6476,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -6488,7 +6508,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -6520,7 +6541,7 @@
     ],
     [
      "p",
-     "Pick a band, or type the exact number above. The bands move with your income tier; the midpoint fills the exact field and is tagged approx (L02)."
+     "Pick a band, or type the exact number above. Fixed bands for this field; the midpoint fills the exact field and is tagged approx."
     ],
     [
      "chips",
@@ -6547,7 +6568,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -6574,9 +6595,9 @@
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the No NPS chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): sharpen field; the plan builds without it and G03, G09, G11 shows a Sharpen this link.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G03, G09, G11 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
     ],
     "branches": [
@@ -6604,7 +6625,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields.",
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields.",
      "to be verified: V1 covers CAS only via A10; other document extraction is V1.5; until then the Vault stores the file and the field stays not sure."
     ],
     "ladder": [
@@ -6618,7 +6639,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -6649,7 +6670,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -6681,7 +6703,7 @@
     ],
     [
      "p",
-     "Or pick a band. The bands move with your income tier; the midpoint fills the exact field and is tagged approx until you type a number (L02)."
+     "Or pick a band. Fixed bands for this field; the midpoint fills the exact field and is tagged approx until you type a number."
     ],
     [
      "chips",
@@ -6707,7 +6729,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -6734,9 +6756,9 @@
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the No EPF chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): this field gates the plan build; the plan builds when it is a value or explicit none.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): gate field (appendix B). The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
     ],
     "branches": [
@@ -6760,7 +6782,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields.",
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields.",
      "Guided lookup steps are content (gap G08); the deep link prefills the SMS on Android where it exists."
     ],
     "ladder": [
@@ -6774,7 +6796,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -6805,7 +6827,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -6837,7 +6860,7 @@
     ],
     [
      "p",
-     "Pick a band, or type the exact number above. The bands move with your income tier; the midpoint fills the exact field and is tagged approx (L02)."
+     "Pick a band, or type the exact number above. Fixed bands for this field; the midpoint fills the exact field and is tagged approx."
     ],
     [
      "chips",
@@ -6858,7 +6881,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -6885,9 +6908,9 @@
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the None chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): sharpen field; the plan builds without it and G03, G09 shows a Sharpen this link.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G03, G09 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
     ],
     "branches": [
@@ -6907,7 +6930,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
     ],
     "ladder": [
      [
@@ -6916,7 +6939,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -6946,7 +6969,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -6978,7 +7002,7 @@
     ],
     [
      "p",
-     "Pick a band, or type the exact number above. The bands move with your income tier; the midpoint fills the exact field and is tagged approx (L02)."
+     "Pick a band, or type the exact number above. Fixed bands for this field; the midpoint fills the exact field and is tagged approx."
     ],
     [
      "chips",
@@ -6999,7 +7023,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -7026,9 +7050,9 @@
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the None chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): sharpen field; the plan builds without it and G03, G11 shows a Sharpen this link.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G03, G11 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
      "Grams are priced from the L07 market inputs; the price date is stored with the value."
     ],
@@ -7049,7 +7073,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
     ],
     "ladder": [
      [
@@ -7058,7 +7082,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -7088,7 +7112,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -7120,7 +7145,7 @@
     ],
     [
      "p",
-     "Pick a band, or type the exact number above. The bands move with your income tier; the midpoint fills the exact field and is tagged approx (L02)."
+     "Pick a band, or type the exact number above. Fixed bands for this field; the midpoint fills the exact field and is tagged approx."
     ],
     [
      "chips",
@@ -7141,7 +7166,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -7182,9 +7207,9 @@
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the No property chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): sharpen field; the plan builds without it and G03, G09 shows a Sharpen this link.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G03, G09 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
      "Self-occupied home is in net worth, excluded from investable corpus (M2 rules; spec v0.1 D02).",
      "Investment property: value band-first and rent exact; adding one opens D05c for the rent."
@@ -7207,7 +7232,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
     ],
     "ladder": [
      [
@@ -7216,7 +7241,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -7246,7 +7271,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -7278,7 +7304,7 @@
     ],
     [
      "p",
-     "Or pick a band. The bands move with your income tier; the midpoint fills the exact field and is tagged approx until you type a number (L02)."
+     "Or pick a band. Fixed bands for this field; the midpoint fills the exact field and is tagged approx until you type a number."
     ],
     [
      "chips",
@@ -7304,7 +7330,7 @@
     ],
     [
      "note",
-     "A band by your income tier for the surrender value: midpoint fills the field, tagged approx"
+     "A band for this field (surrender value): midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -7345,9 +7371,9 @@
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the No such policy chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): sharpen field; the plan builds without it and G05, G03 shows a Sharpen this link.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G05, G03 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
      "ULIP years completed decides a verdict (surrender assessment; React life-insurance rules), so a not-sure here is also an action-queue item on H04 (rule 7).",
      "D04c links back here for policy detail."
@@ -7373,7 +7399,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
     ],
     "ladder": [
      [
@@ -7386,7 +7412,7 @@
      ],
      [
       "band",
-      "A band by your income tier for the surrender value: midpoint fills the field, tagged approx"
+      "A band for this field (surrender value): midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -7417,7 +7443,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -7449,7 +7476,7 @@
     ],
     [
      "p",
-     "Pick a band, or type the exact number above. The bands move with your income tier; the midpoint fills the exact field and is tagged approx (L02)."
+     "Pick a band, or type the exact number above. Fixed bands for this field; the midpoint fills the exact field and is tagged approx."
     ],
     [
      "chips",
@@ -7470,7 +7497,7 @@
     ],
     [
      "note",
-     "A band by your income tier: midpoint fills the field, tagged approx"
+     "A band for this field: midpoint fills the field, tagged approx"
     ],
     [
      "chips",
@@ -7497,9 +7524,9 @@
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
-     "Band rule (V5): a tapped band fills the exact field with the midpoint for your income tier (L02) and tags the value approx; typing an exact number removes the tag.",
+     "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the Nothing else chip) or not sure (skip). Not sure is never stored as zero.",
-     "Gate (rule 7): sharpen field; the plan builds without it and G03, G11 shows a Sharpen this link.",
+     "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G03, G11 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
     ],
     "branches": [
@@ -7519,7 +7546,7 @@
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
-     "Store source (aa, cas, manual, assumed) and precision (exact, approx, unknown) per field (rule 9); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
+     "Store source (aa, cas, manual) and precision (exact, approx, unknown) per field (rule 9); the only default the plan takes is the work-optional age accepted on D07b, tagged default accepted (Vatsal, 11 Sep 2026); M2's COALESCE(exact, band, 0) is superseded for not-sure fields."
     ],
     "ladder": [
      [
@@ -7528,7 +7555,7 @@
      ],
      [
       "band",
-      "A band by your income tier: midpoint fills the field, tagged approx"
+      "A band for this field: midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -7558,7 +7585,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -7883,7 +7911,7 @@
      }
     ],
     "logic": [
-     "EMI exact; outstanding and years left as bands; rate derived (appendix C). The bands move with the income tier (L02).",
+     "EMI exact; outstanding and years left as bands; rate derived (appendix C). Fixed bands for these fields (M2 table where one exists, else Rs ___ placeholders).",
      "Not sure on outstanding, years left or rate keeps the field not sure; G07 shows a verify action (rule 6). The loan rate decides a verdict, so it also queues on H04 (rule 7).",
      "Lender, tax-deductible flag and prepayment allowed (row 59): the flag sets the effective rate; prepayment allowed gates the prepay action on G14."
     ],
@@ -7927,7 +7955,8 @@
     "status": "new",
     "causes": [
      "row 59",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -8247,7 +8276,7 @@
      ],
      [
       "band",
-      "A band by your income tier"
+      "A band for this field: fixed bands (M2 table where one exists, else Rs ___ placeholders); the midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -8277,7 +8306,8 @@
     "status": "new",
     "causes": [
      "row 60",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -8384,7 +8414,7 @@
      }
     ],
     "logic": [
-     "Sum insured band-first (rule 3); the bands move with the income tier (L02).",
+     "Sum insured band-first (rule 3); fixed bands for this field (M2 table where one exists, else Rs ___ placeholders).",
      "Employer only triggers the health advice per the React (spec v0.1); the amount refines it.",
      "Not sure keeps the sum insured unknown; G05 shows a verify action (rule 6)."
     ],
@@ -8416,7 +8446,7 @@
      ],
      [
       "band",
-      "A band by your income tier"
+      "A band for this field: fixed bands (M2 table where one exists, else Rs ___ placeholders); the midpoint fills the field, tagged approx"
      ]
     ]
    },
@@ -8446,7 +8476,8 @@
     "status": "new",
     "causes": [
      "row 60",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -8671,7 +8702,8 @@
      "card",
      "Your goals",
      [
-      "Name, year, cost today, priority; tap to edit"
+      "Name, year, cost today, priority; tap to edit",
+      "A goal without a cost stays on your Yes list until you price it; the plan reminds you"
      ]
     ],
     [
@@ -8712,9 +8744,9 @@
      {
       "f": "work_optional_age",
       "gate": true,
-      "source": "manual | assumed",
+      "source": "manual | default accepted",
       "precision": "exact",
-      "note": "D07b; default 60"
+      "note": "D07b; default 60 only when accepted on screen"
      },
      {
       "f": "yes_list",
@@ -8730,7 +8762,8 @@
      "Retirement is not mandatory; work-optional age is an anchor assumption with its own screen D07b, default 60 (spec v0.1; Vatsal, 10 Sep 2026).",
      "Goal types match the React key-life-events categories: education, home, vehicle, wedding, health, plus travel, business, parents, other (spec v0.1).",
      "No cap on goals; priority order feeds the SIP reconciliation when surplus is short (M4 stage 7) (spec v0.1).",
-     "A goal with no timeline or budget is stored as-is, excluded from the SIP maths and shown on the Yes list only (M2 6.1)."
+     "A goal with no timeline or budget is stored as-is, excluded from the SIP maths and shown on the Yes list only (M2 6.1).",
+     "A goal whose cost is not sure stays on the Yes list with the verify action price this goal to fund it in G09; no estimate is used (Vatsal, 11 Sep 2026)."
     ],
     "branches": [
      [
@@ -8775,7 +8808,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -8787,7 +8821,7 @@
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "One goal: name, when, cost today (band-first, with the not-sure estimate), priority.",
+   "purpose": "One goal: name, when, cost today (band-first; I am not sure yet keeps the goal on the Yes list until it is priced), priority.",
    "ui": [
     [
      "h",
@@ -8840,7 +8874,7 @@
     ],
     [
      "note",
-     "I am not sure yet uses the estimate for your profile, tagged assumed; you check it from the plan"
+     "I am not sure yet keeps this goal on your Yes list, out of the SIP maths, until you price it; the plan shows: price this goal to fund it"
     ],
     [
      "chips",
@@ -8861,15 +8895,14 @@
      {
       "f": "goals",
       "gate": true,
-      "source": "manual | assumed",
+      "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "per goal: name, year or timeline, cost_today, priority"
+      "note": "per goal: name, year or timeline, cost_today, priority; cost_today unknown keeps the goal unpriced on the Yes list"
      }
     ],
     "logic": [
-     "Cost today band-first (rule 3); the bands move with the income tier (L02).",
-     "I am not sure yet maps to the persona estimate (V5 Q4.4b), tagged assumed, with a verify action in G09 (rule 6 and 7).",
-     "gap, to be decided: the archetype-to-amount estimate table for goal costs (V5 Q4.4b names it; none is written).",
+     "Cost today band-first (rule 3); fixed bands for this field (M2 table where one exists, else Rs ___ placeholders).",
+     "I am not sure yet maps to no estimate (Vatsal, 11 Sep 2026): the goal is stored on the Yes list, excluded from the SIP maths (M2 6.1), with the verify action price this goal to fund it in G09 (rule 6).",
      "Timeline to years map (M2 6.1): 1-2 years = 2, 3-5 years = 4, 5-10 years = 7, 10-15 years = 12, 15+ years = 20; an exact year overrides.",
      "Sharpen: goal cost and year inside G09 (appendix B)."
     ],
@@ -8885,7 +8918,7 @@
      "Exit (rule 12): autosave, then O03"
     ],
     "dev": [
-     "Store cost_today with source assumed when the estimate is used (rule 9)."
+     "Unpriced goals (cost_today not sure) are not passed to the React's life-events loop; they stay on the Yes list until priced (Vatsal, 11 Sep 2026)."
     ]
    },
    "template": "T-detail",
@@ -8913,7 +8946,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "V5 Q4.4b"
+     "V5 Q4.4b",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -8960,14 +8994,14 @@
      {
       "f": "work_optional_age",
       "gate": true,
-      "source": "manual | assumed",
+      "source": "manual | default accepted",
       "precision": "exact",
-      "note": "default 60"
+      "note": "default 60, tagged default accepted only when the user takes it on this screen"
      }
     ],
     "logic": [
      "Default 60 (M2: fi_age or 60); slider 45 to 70 (Vatsal, 10 Sep 2026).",
-     "I have not thought about it sets 60 as a value tagged assumed, not a not-sure (rule 6; V5 Q4.1 wording: we will use 60 as a working assumption).",
+     "I have not thought about it: use 60 sets 60 as a value tagged default accepted, not a not-sure (rule 6). This is the only assumed value the plan ever carries, and only because the user accepted it on this screen (Vatsal, 11 Sep 2026).",
      "Feeds the cashflow and life-events projections; depletion to life expectancy (brief B3)."
     ],
     "branches": [
@@ -8981,7 +9015,7 @@
      "Exit (rule 12): autosave, then O03"
     ],
     "dev": [
-     "Store the value and the assumed tag."
+     "Store the value with source default accepted when the chip is used; the tag exists nowhere else."
     ]
    },
    "template": "T-tap",
@@ -9001,7 +9035,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -9124,9 +9159,15 @@
      "card",
      "Ready to build",
      [
-      "Every gate field is a value or explicit none",
-      "Or: N fields missing, about N minutes"
+      "Every field the React reads is a value (exact or band) or explicit none",
+      "Or: N fields missing, about N minutes",
+      "Or: N numbers need at least a rough range"
      ]
+    ],
+    [
+     "link",
+     "Give quick ranges for the N numbers",
+     "D13"
     ],
     [
      "card",
@@ -9189,12 +9230,12 @@
     ],
     "logic": [
      "Rows per section with value, source tag and precision tag, each linking back to its screen (rule 9).",
-     "Ready to build: the gate is met when every gate field is a value or explicit none (rule 7); otherwise the missing fields with minutes.",
+     "Ready to build (rule 7; Vatsal, 11 Sep 2026): the plan builds when every field the React reads is a value (exact or band) or explicit none; otherwise the card lists the missing fields with minutes, or N numbers need at least a rough range with a link to D13 Quick ranges.",
      "These would sharpen it: the not-sure and approx fields with the plan section each improves (appendix B).",
      "Your two paths, updated: the R09 numbers re-run on what is now known, R06 tone variant; the only place numbers update during data entry.",
      "Declaration moved here from D09 (Vatsal, 10 Sep 2026): the details furnished are true and correct; full text to be verified against HoA's current wording.",
      "Build my plan enables when the gate is met and the declaration is confirmed.",
-     "Branch B (4.2): assumed fields are listed with their L02 fallback and a verify action; G01a names their count on the day-7 build."
+     "No assumptions (Vatsal, 11 Sep 2026): a not-sure field is never filled from L02; D13 collects a band for each before the build; fields entered as bands are tagged approx and carry Sharpen this links in the plan; G01a builds on bands."
     ],
     "branches": [
      [
@@ -9236,16 +9277,21 @@
      [
       "Goals",
       "D07"
+     ],
+     [
+      "Quick ranges",
+      "D13"
      ]
     ],
     "states": [
      "Gate not met: Build my plan disabled; the Ready to build card lists the missing fields with minutes (S5 lands here when the gate is met but the declaration is not confirmed)",
      "Declaration not confirmed: Build disabled",
-     "Day-7 partial build (S18): Build goes to G01a instead"
+     "Day-7 partial build (S18): Build goes to G01a instead",
+     "N numbers need at least a rough range: Build my plan disabled; the Ready to build card links to D13 Quick ranges (S19 lands there when ranges are the only missing items)"
     ],
     "dev": [
      "Snapshot of inputs as plan_input_version with source and precision per field (advice record).",
-     "Events gate_met and plan_built {assumed_count, unknown_count} (appendix D)."
+     "Events gate_met and plan_built {band_count} (appendix D)."
     ]
    },
    "template": "T-review",
@@ -9269,7 +9315,140 @@
    "v02": {
     "status": "rebuilt",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
+    ]
+   }
+  },
+  {
+   "id": "D13",
+   "sec": "D",
+   "title": "Quick ranges",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "One row per field the React reads that is still not sure: a set of fixed band chips each. A band is enough to build; exact is better and can be given later from the plan.",
+   "ui": [
+    [
+     "h",
+     "A rough range is enough for these"
+    ],
+    [
+     "p",
+     "N numbers are still not sure. Pick a band for each and your plan builds; you can sharpen any of them later from the plan."
+    ],
+    [
+     "p",
+     "Monthly take-home"
+    ],
+    [
+     "chips",
+     [
+      "Under Rs ___",
+      "Rs ___ to ___",
+      "Rs ___ to ___",
+      "Over Rs ___"
+     ]
+    ],
+    [
+     "p",
+     "Mutual funds, all together"
+    ],
+    [
+     "chips",
+     [
+      "Under Rs ___",
+      "Rs ___ to ___",
+      "Rs ___ to ___",
+      "Over Rs ___"
+     ]
+    ],
+    [
+     "p",
+     "Term cover, sum assured"
+    ],
+    [
+     "chips",
+     [
+      "Under Rs ___",
+      "Rs ___ to ___",
+      "Rs ___ to ___",
+      "Over Rs ___"
+     ]
+    ],
+    [
+     "note",
+     "One row per not-sure field, in spine order; each row uses the field's own fixed bands (M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholders). A row links to its screen for the exact number."
+    ],
+    [
+     "link",
+     "Type the exact take-home instead",
+     "D05a"
+    ],
+    [
+     "btn",
+     "Done",
+     "D10"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     {
+      "f": "not_sure_fields[]",
+      "gate": true,
+      "source": "manual",
+      "precision": "approx",
+      "note": "one band per field the React reads that was not sure; the midpoint is stored tagged approx"
+     }
+    ],
+    "logic": [
+     "Rule 7 (Vatsal, 11 Sep 2026): the plan builds when every field the React reads is a value (exact or band) or explicit none; this screen collects the band for each field that is still not sure, so nothing stands in for a number the user did not give.",
+     "One row per not-sure field, in spine order; each row is that field's fixed band chips (rule 3); a tapped band stores the midpoint tagged approx and the row ticks.",
+     "Done returns to D10, where the Ready to build card updates; Build my plan enables when no row is left.",
+     "Reached from D10 (N numbers need at least a rough range) and as the S19 landing when the only missing items are ranges.",
+     "Every field entered here shows in the plan with a Sharpen this link (rule 7)."
+    ],
+    "branches": [
+     [
+      "Done",
+      "D10"
+     ],
+     [
+      "Exact take-home",
+      "D05a"
+     ]
+    ],
+    "states": [
+     "No not-sure field: this screen does not open; D10 goes straight to Build my plan",
+     "S19 stalled below the gate at day 7, only ranges missing: lands here; nudge copy slot N-S19-d7 reads N quick ranges and your plan builds",
+     "Exit (rule 12): autosave, then O03"
+    ],
+    "dev": [
+     "Rows come from fp_react_inputs.json (fallback: band required on every field) crossed with the stored tri-state per field.",
+     "Store each band as value = midpoint, source manual, precision approx, with the band label (rule 9); events range_picked {field} and ranges_done {count}."
+    ]
+   },
+   "template": "T-list",
+   "path": "both",
+   "events": [
+    "D13_view",
+    "range_picked",
+    "ranges_done"
+   ],
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -9549,7 +9728,7 @@
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "The day-7 build for a user who stalled below a full set of numbers (state S18): the plan builds on what is known, with assumed and not-sure fields counted and named so each can be sharpened from the plan.",
+   "purpose": "The day-7 build for a user who stalled below a full set of numbers (state S18): the plan builds on what is known, with N fields given as bands (quick ranges) rather than exact figures, each of which can be sharpened from the plan. No value stands in for one the user did not give.",
    "ui": [
     [
      "progress",
@@ -9558,7 +9737,7 @@
     ],
     [
      "p",
-     "Built on what we have: N numbers assumed or not sure yet. Each one can be sharpened from the plan, and the plan re-runs when you do."
+     "Built on what we have: N numbers are bands you picked, not exact figures. Each one can be sharpened from the plan, and the plan re-runs when you do."
     ],
     [
      "p",
@@ -9573,23 +9752,16 @@
    "spec": {
     "fields": [
      {
-      "f": "assumed_count",
-      "gate": false,
-      "source": "assumed",
-      "precision": "exact",
-      "note": "fields filled from the L02 assumptions (branch B)"
-     },
-     {
-      "f": "unknown_count",
+      "f": "band_count",
       "gate": false,
       "source": "manual",
-      "precision": "unknown",
-      "note": "not-sure fields still open"
+      "precision": "approx",
+      "note": "fields entered as a band (on D13 or a number screen) rather than an exact figure"
      }
     ],
     "logic": [
-     "Instance of G01 for the day-7 build (section 5, S18): the gate is met with assumed values where the user said not sure; each assumed field is tagged assumed and gets a verify action in the plan.",
-     "Copy names the count of assumed or not-sure fields and that each can be sharpened from the plan (Vatsal, 10 Sep 2026).",
+     "Instance of G01 for the day-7 build (section 5, S18): every field the React reads is a value (exact or band) or explicit none (rule 7); the fields the user gave as bands are tagged approx and get a Sharpen this link in the plan. No value stands in for one the user did not give (Vatsal, 11 Sep 2026).",
+     "Copy names the count of fields given as bands and that each can be sharpened from the plan (Vatsal, 10 Sep 2026; reworded Vatsal, 11 Sep 2026).",
      "No human gate (spec v0.1 G01); the artificial wait config applies here too."
     ],
     "branches": [
@@ -9603,7 +9775,7 @@
      "Engine error: retry; support alert"
     ],
     "dev": [
-     "Event plan_built carries assumed_count and unknown_count.",
+     "Event plan_built carries band_count.",
      "Plan versioned as on G01: plan_version, assumptions_version, instrument_set_version, plus plan_input_version with source and precision per field."
     ]
    },
@@ -9625,7 +9797,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -9801,7 +9974,7 @@
      {
       "f": "work_optional_age",
       "gate": true,
-      "source": "manual or assumed",
+      "source": "manual or default accepted (D07b)",
       "precision": "exact",
       "note": "what success looks like"
      },
@@ -9867,7 +10040,7 @@
      "Three ledger rows from G02 (brief B2): realisable vs locked corpus, current allocation by class, current weighted return. G02 is dropped; this screen is also the top of the adviser's pre-call view (M01).",
      "Tax section dropped (brief B4); the tab strip has seven tabs.",
      "Email me the PDF is an in-place action: the PDF is emailed and filed in H06.",
-     "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."
+     "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
     ],
     "branches": [
      [
@@ -9905,7 +10078,8 @@
      "brief B2",
      "brief B4",
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -9999,7 +10173,7 @@
     ],
     "logic": [
      "React EmergencyFund ledger and rules; emergency months from L02.",
-     "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."
+     "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
     ],
     "branches": [
      [
@@ -10032,7 +10206,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -10201,7 +10376,7 @@
     "logic": [
      "React LIFE_INSURANCE formula and policy review rules (ULIP after 5-year lock-in; endowment surrender if under half term).",
      "Health thresholds from L02.",
-     "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026).",
+     "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026).",
      "Rule 6 (Vatsal, 10 Sep 2026): a not-sure cover produces a verify action (tell me your cover to check it), never a gap diagnosis; the gap ledger and the blindspot copy fire on explicit none only."
     ],
     "branches": [
@@ -10236,7 +10411,8 @@
     "status": "changed",
     "causes": [
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -10312,7 +10488,7 @@
      {
       "f": "work_optional_age",
       "gate": true,
-      "source": "manual or assumed",
+      "source": "manual or default accepted (D07b)",
       "precision": "exact",
       "note": "where active income ends on the chart"
      },
@@ -10375,7 +10551,7 @@
     ],
     "logic": [
      "Deficit variant per React.",
-     "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."
+     "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
     ],
     "branches": [
      [
@@ -10410,7 +10586,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -10524,7 +10701,7 @@
     ],
     "logic": [
      "React LoanBlock rules; EMI ceiling and return assumption from L02.",
-     "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026).",
+     "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026).",
      "Rule 6 (Vatsal, 10 Sep 2026): a not-sure rate or outstanding produces a verify action (tell me your rate to check the verdict), never a gap diagnosis; the verdict waits for the value."
     ],
     "branches": [
@@ -10559,7 +10736,8 @@
     "status": "changed",
     "causes": [
      "brief B4",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -10597,6 +10775,19 @@
      ]
     ],
     [
+     "card",
+     "Yes list: not priced yet",
+     [
+      "Trip to Japan: price this goal to fund it",
+      "Unpriced goals stay out of the SIP maths until you price them"
+     ]
+    ],
+    [
+     "link",
+     "Price this goal to fund it",
+     "D07a"
+    ],
+    [
      "link",
      "Sharpen this: the numbers this section could use",
      "G09"
@@ -10619,7 +10810,7 @@
      {
       "f": "work_optional_age",
       "gate": true,
-      "source": "manual or assumed",
+      "source": "manual or default accepted (D07b)",
       "precision": "exact",
       "note": "the anchor event"
      },
@@ -10697,12 +10888,17 @@
     "logic": [
      "React KLE and LifeEventComparisons: event met if liquid assets that year cover the cost; buffer covered if the remainder covers 3 years of expenses. Retirement shown always as the anchor event.",
      "Work-optional projection runs as depletion to life expectancy (brief B3): money lasts till age X against LIFE_EXPECTANCY from L02 (85; user-overridable to 90 or 100). No withdrawal rate.",
-     "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026). Goal cost and year sharpen here."
+     "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026). Goal cost and year sharpen here.",
+     "Yes list (Vatsal, 11 Sep 2026): a goal whose cost is not sure is not priced and not passed to the life-events loop; it sits on the Yes list, excluded from the SIP maths (M2 6.1), with the verify action price this goal to fund it, which opens D07a."
     ],
     "branches": [
      [
       "Next",
       "G10"
+     ],
+     [
+      "Price this goal",
+      "D07a"
      ]
     ],
     "states": [],
@@ -10732,7 +10928,8 @@
     "causes": [
      "brief B3",
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -10877,7 +11074,7 @@
      {
       "f": "work_optional_age",
       "gate": true,
-      "source": "manual or assumed",
+      "source": "manual or default accepted (D07b)",
       "precision": "exact",
       "note": ""
      }
@@ -10885,7 +11082,7 @@
     "logic": [
      "The work-optional line uses depletion to life expectancy (brief B3), as the FP React does.",
      "Email me the PDF is an in-place action: the PDF is emailed and filed in H06.",
-     "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026). The summary lists every open sharpen item across the seven sections."
+     "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026). The summary lists every open sharpen item across the seven sections."
     ],
     "branches": [
      [
@@ -10922,7 +11119,8 @@
     "causes": [
      "brief B3",
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -11002,7 +11200,7 @@
      {
       "f": "work_optional_age",
       "gate": true,
-      "source": "manual or assumed",
+      "source": "manual or default accepted (D07b)",
       "precision": "exact",
       "note": "the long-term anchor"
      },
@@ -11060,7 +11258,7 @@
      "Grid from L03: risk band x horizon bucket. Horizon bucket boundaries from L03 (short under 1 year, medium 1 to 3, long over 3, editable).",
      "Persona never affects allocation; only risk band and horizon do.",
      "Classes per brief H1: liquid debt, debt, hybrid, commodities, equity, REITs and InvITs; the short-term card reads Liquid debt 100. The v0.1 five-class line (cash, debt, hybrid, commodities, equity) is superseded.",
-     "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."
+     "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
     ],
     "branches": [
      [
@@ -11094,7 +11292,8 @@
     "status": "changed",
     "causes": [
      "brief H1",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -11197,7 +11396,7 @@
     "logic": [
      "Rule set (spiff, Q21): on the approved list for the bucket it fits: HOLD (and add to). Not on the approved list: EXIT, staggered with tax and exit-load and lock-in checks (ELSS 3 years, ULIP 5 years, SGB windows). Unknown ISIN: REVIEW, shown to the user as hold for now and queued for the adviser in L04.",
      "Sell and switch advice only on AA or CAS-verified holdings; manual entries get buy advice only.",
-     "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."
+     "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
     ],
     "branches": [
      [
@@ -11238,7 +11437,8 @@
     "status": "changed",
     "causes": [
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -11467,7 +11667,7 @@
     "logic": [
      "Amounts from M4 goal SIPs and reconciliation, split across instruments by the weights in L04.",
      "Lumpsum vs staggered (STP) decided by the L07 market rule.",
-     "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."
+     "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
     ],
     "branches": [
      [
@@ -11504,7 +11704,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -11574,7 +11775,7 @@
      {
       "f": "actions",
       "gate": false,
-      "source": "assumed",
+      "source": "system",
       "precision": "exact",
       "note": "actions[]: type, amount, due, channel (in-app or external), status; produced by G04 to G13"
      },
@@ -11596,7 +11797,7 @@
     "logic": [
      "Ordering per M4 priority sequence.",
      "Plan upgrades from the logic panel produce a new action plan version; user sees a diff (H05).",
-     "Sharpen this: the numbers this section could use opens an in-place list of the approx, not sure or assumed fields this section reads; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026)."
+     "Sharpen this: the numbers this section could use opens an in-place list of the fields this section reads that are approx (a band) or not sure; each opens the single D screen and, on save, re-runs and lands on H05 with the diff (Vatsal, 10 Sep 2026; bands and not-sure only, Vatsal, 11 Sep 2026)."
     ],
     "branches": [
      [
@@ -11636,7 +11837,8 @@
     "status": "changed",
     "causes": [
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -14697,16 +14899,16 @@
      "card",
      "Built on what we have",
      [
-      "N numbers are still missing; each can be sharpened from the plan",
-      "The plan works today; sharper numbers make it yours"
+      "N numbers are bands you picked, not exact figures; each can be sharpened from the plan",
+      "The plan works today; exact numbers make it yours"
      ]
     ],
     [
      "card",
      "Sharpen",
      [
-      "Take-home: approx, from your reveal. Sharpen this",
-      "Term cover: not sure. Sharpen this",
+      "Take-home: a band you picked. Sharpen this",
+      "Term cover: a band you picked. Sharpen this",
       "Each link opens the single screen and re-runs; H05 shows the diff"
      ]
     ],
@@ -14714,7 +14916,7 @@
      "card",
      "Sunday sharpen",
      [
-      "Want me to ask you for the N numbers I am still missing on Sunday?",
+      "Want me to ask you for the N exact numbers on Sunday?",
       "Nudge slot N-S18-sunday"
      ]
     ],
@@ -14778,7 +14980,7 @@
     "logic": [
      "Variant of H01 for state S18 (section 5.3); the base logic applies.",
      "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3).",
-     "S18: the Sunday sharpen card schedules the nudge slot N-S18-sunday; the sharpen strip lists the assumed and not-sure fields (Vatsal, 10 Sep 2026)."
+     "S18: the Sunday sharpen card schedules the nudge slot N-S18-sunday; the sharpen strip lists the fields entered as bands, never a value the user did not give (Vatsal, 11 Sep 2026)."
     ],
     "branches": [
      [
@@ -14848,7 +15050,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026 (section 5)"
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -17013,7 +17216,7 @@
        "S18",
        "Plan built on partial data",
        "H01j",
-       "Sharpen the N numbers still missing",
+       "Sharpen the N numbers entered as bands",
        "the chosen Sunday push; day 7 WhatsApp; day 21 email",
        "DIWM: ladder only; the H01j card offers a call. DIY: ladder only. DIFM: not applicable.",
        "no sharpen items remain -> S8 or S9"
@@ -17021,7 +17224,7 @@
       [
        "S19",
        "Stalled below the gate at day 7",
-       "O02",
+       "O02 (D13 when the only missing items are ranges)",
        "Finish the N fields that build your plan",
        "day 7 push; day 7 human call (DIWM); day 7 push (DIY); day 10 WhatsApp; day 14 email; monthly email",
        "DIWM: day 7: outbound call task from the call centre (does not consume included calls). DIY: day 7: a la carte offer (K04). DIFM: adviser relationship.",
@@ -17124,7 +17327,8 @@
     "status": "rebuilt",
     "causes": [
      "brief V2",
-     "Vatsal, 10 Sep 2026 (section 5)"
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -18055,7 +18259,7 @@
        "push",
        "S18",
        "H01j",
-       "Sunday: the N numbers your plan is still missing, about N minutes."
+       "Sunday: the N exact numbers that sharpen your plan; you gave them as bands. About N minutes."
       ],
       [
        "N-S18-d7",
@@ -18069,14 +18273,14 @@
        "email",
        "S18",
        "H01j",
-       "Three weeks on: the numbers still assumed, and what each changes in the plan."
+       "Three weeks on: the numbers still given as bands, and what each changes in the plan."
       ],
       [
        "N-S19-d7",
        "push",
        "S19",
        "O02",
-       "N fields build your plan. Your next steps shows them, about N minutes."
+       "N quick ranges and your plan builds. About N minutes."
       ],
       [
        "N-S19-d7-call",
@@ -18090,14 +18294,14 @@
        "push",
        "S19",
        "K04",
-       "N fields build your plan. Your next steps shows them, about N minutes."
+       "N quick ranges and your plan builds. About N minutes."
       ],
       [
        "N-S19-d10",
        "WhatsApp",
        "S19",
        "O02",
-       "Your plan needs N more fields: <fields>. Your next steps lists them with the minutes each takes. Type what you know; skip the rest."
+       "Your plan needs N more fields: <fields>. Your next steps lists them with the minutes each takes. Type what you know; a rough range does for the rest."
       ],
       [
        "N-S19-d14",
@@ -18240,7 +18444,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)",
-     "brief V2"
+     "brief V2",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -19889,7 +20094,7 @@
      "card",
      "Push (N-S18-sunday)",
      [
-      "Sunday: the N numbers your plan is still missing, about N minutes."
+      "Sunday: the N exact numbers that sharpen your plan; you gave them as bands. About N minutes."
      ]
     ],
     [
@@ -19903,14 +20108,14 @@
      "card",
      "Email (N-S18-d21)",
      [
-      "Three weeks on: the numbers still assumed, and what each changes in the plan."
+      "Three weeks on: the numbers still given as bands, and what each changes in the plan."
      ]
     ],
     [
      "card",
      "Lands on H01j H01j",
      [
-      "Primary action: Sharpen the N numbers still missing",
+      "Primary action: Sharpen the N numbers entered as bands",
       "about N minutes"
      ]
     ],
@@ -19962,7 +20167,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026 (section 5)"
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -19984,14 +20190,14 @@
      "card",
      "Push (N-S19-d7)",
      [
-      "N fields build your plan. Your next steps shows them, about N minutes."
+      "N quick ranges and your plan builds. About N minutes."
      ]
     ],
     [
      "card",
      "WhatsApp (N-S19-d10)",
      [
-      "Your plan needs N more fields: <fields>. Your next steps lists them with the minutes each takes. Type what you know; skip the rest."
+      "Your plan needs N more fields: <fields>. Your next steps lists them with the minutes each takes. Type what you know; a rough range does for the rest."
      ]
     ],
     [
@@ -20006,19 +20212,25 @@
      "Lands on O02 Your next steps (hub)",
      [
       "Primary action: Finish the N fields that build your plan",
-      "about N minutes"
+      "about N minutes",
+      "When the only missing items are ranges: lands on D13 instead"
      ]
     ],
     [
      "btn",
      "Open O02",
      "O02"
+    ],
+    [
+     "btn2",
+     "Open D13",
+     "D13"
     ]
    ],
    "spec": {
     "fields": [],
     "logic": [
-     "State S19: Stalled below the gate at day 7. Lands on O02; the nudges deep-link to O02.",
+     "State S19: Stalled below the gate at day 7. Lands on O02 (D13 when the only missing items are ranges); the nudges deep-link to O02.",
      "Ladder: day 7 push; day 7 human call (DIWM); day 7 push (DIY); day 10 WhatsApp; day 14 email; monthly email.",
      "Escalation: DIWM: day 7: outbound call task from the call centre (does not consume included calls). DIY: day 7: a la carte offer (K04). DIFM: adviser relationship.",
      "Exit: gate met -> S5.",
@@ -20028,6 +20240,10 @@
      [
       "Open",
       "O02"
+     ],
+     [
+      "Open",
+      "D13"
      ]
     ],
     "states": [
@@ -20060,7 +20276,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)",
-     "brief V2"
+     "brief V2",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -20941,7 +21158,7 @@
     "ALL"
    ],
    "frame": "desktop",
-   "purpose": "Every number the engine uses that is not the user's own, editable with effective dates.",
+   "purpose": "Every number the engine uses that is not the user's own, editable with effective dates. Engine assumptions only; nothing here stands in for a client's number.",
    "ui": [
     [
      "table",
@@ -21005,21 +21222,6 @@
        "Optimised savings rate for the reveal",
        "by income band",
        "R09"
-      ],
-      [
-       "Income tier boundaries (monthly take-home)",
-       "Tier 1 under Rs 75,000; Tier 2 Rs 75,000 to Rs 1,25,000; Tier 3 Rs 1,25,000 to Rs 2,00,000; Tier 4 Rs 2,00,000 to Rs 3,50,000; Tier 5 above Rs 3,50,000 (V5 Stage 3)",
-       "Dynamic bands on every number screen (rule 3)"
-      ],
-      [
-       "Band multipliers by income tier",
-       "Tier 3 tables from V5; gap, to be decided: multipliers for tiers 1, 2, 4 and 5",
-       "Band midpoints on every number screen (rule 3)"
-      ],
-      [
-       "Default asset mix for an unknown split",
-       "to be verified: the default asset mix for unknown splits",
-       "Branch B fallback: R04 corpus band split across bank, funds, stocks, EPF (appendix B)"
       ]
      ]
     ],
@@ -21033,7 +21235,7 @@
     "fields": [],
     "logic": [
      "Each row: value, effective from, changed by. Changing a value creates a staging version.",
-     "New rows for v0.2 (rule 3 and appendix B): income tier boundaries and band multipliers feed the dynamic bands; the default asset mix feeds the Branch B fallback for unknown gate fields."
+     "No client-data fallback rows (Vatsal, 11 Sep 2026): the three client-data rows added on 10 Sep are removed; bands are fixed per field (M2 tables 9.1 to 9.5) and a missing number is asked for on D13, never filled in. This panel keeps the engine assumptions only: returns, inflation, income growth, life expectancy, thresholds."
     ],
     "branches": [
      [
@@ -21065,7 +21267,8 @@
     "causes": [
      "brief B3",
      "brief H1",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },

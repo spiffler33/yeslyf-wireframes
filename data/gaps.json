@@ -149,16 +149,26 @@
    "title": "Archetype-to-amount estimate table for goal costs when the user picks I am not sure yet",
    "screen": "D07a",
    "why": "V5 Q4.4b names an estimate from the profile archetype; no table or selection rule is written anywhere.",
-   "status": "gap, to be decided",
-   "cause": "Vatsal, 10 Sep 2026"
+   "status": "not needed",
+   "cause": "Vatsal, 10 Sep 2026; closed: Vatsal, 11 Sep 2026",
+   "closed_note": "I am not sure yet on a goal cost no longer maps to any estimate; the goal stays on the Yes list, excluded from the SIP maths (M2 6.1), with the verify action price this goal to fund it in G09."
   },
   {
    "id": "G16",
    "title": "Band multipliers for income tiers 1, 2, 4 and 5",
    "screen": "L02",
    "why": "V5 Stage 3 defines five income tiers and writes band tables for Tier 3 only; the other tiers' multipliers are not written.",
+   "status": "not needed",
+   "cause": "Vatsal, 10 Sep 2026; closed: Vatsal, 11 Sep 2026",
+   "closed_note": "Bands are fixed per field (M2 tables 9.1 to 9.5); dynamic bands by income tier are shelved until the data flywheel exists, so no tier multipliers are needed and the L02 rows are removed."
+  },
+  {
+   "id": "G17",
+   "title": "Which fields have an M2 band table (tables 9.1 to 9.5); every band chip stays a Rs ___ placeholder until the mapping is written",
+   "screen": "D13",
+   "why": "Bands are fixed per field from the M2 tables where a table exists. M2 is not in inputs/, so no per-field table mapping is written; the chips on every number screen and on D13 stay Rs ___ placeholders.",
    "status": "gap, to be decided",
-   "cause": "Vatsal, 10 Sep 2026"
+   "cause": "Vatsal, 11 Sep 2026"
   }
  ]
 }

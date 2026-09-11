@@ -3,8 +3,8 @@
  "cause": "Vatsal, 10 Sep 2026",
  "gate_fields": ["members", "has_dependants", "rpq_answers", "risk_band", "take_home", "total_outgoings", "bank_and_deposits", "mutual_funds", "stocks", "epf", "has_loans", "total_emi", "term_status", "health_status", "goals", "work_optional_age"],
  "bands": {
-  "caption_exact_first": "Or pick a band. The bands move with your income tier; the midpoint fills the exact field and is tagged approx until you type a number (L02).",
-  "caption_band_first": "Pick a band, or type the exact number above. The bands move with your income tier; the midpoint fills the exact field and is tagged approx (L02).",
+  "caption_exact_first": "Or pick a band. Fixed bands for this field; the midpoint fills the exact field and is tagged approx until you type a number.",
+  "caption_band_first": "Pick a band, or type the exact number above. Fixed bands for this field; the midpoint fills the exact field and is tagged approx.",
   "chips": ["Under Rs ___", "Rs ___ to ___", "Rs ___ to ___", "Over Rs ___"]
  },
  "hesitation": [
@@ -31,7 +31,7 @@
    "suggestion": "You said about Rs 17.5 L a year earlier; roughly Rs 1.2 L a month after tax? (from R03; change it if that is off)",
    "input_label": "Rs ___ a month, exact", "period_toggle": true,
    "readback": "one lakh twenty thousand a month, about Rs 14.4 L a year",
-   "ladder": [["aa", "Fetched from Account Aggregator: the salary credit detected on a fixed day", "connect now if not yet"], ["typed", "Your salary slip or your bank app", "type the credited amount"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["aa", "Fetched from Account Aggregator: the salary credit detected on a fixed day", "connect now if not yet"], ["typed", "Your salary slip or your bank app", "type the credited amount"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "No regular income",
    "plausibility": "take-home against the R03 household income band",
    "next": "D05b",
@@ -46,7 +46,7 @@
    "hint": "A band is fine here. Exact if you know it.",
    "input_label": "Rs ___ a month", "period_toggle": true,
    "readback": "eighty thousand a month, about Rs 9.6 L a year",
-   "ladder": [["typed", "Your partner's salary slip or bank app", "type the credited amount"], ["band", "A band by your household income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["typed", "Your partner's salary slip or bank app", "type the credited amount"], ["band", "A band for this field (household take-home)", "midpoint fills the field, tagged approx"]],
    "none": "Partner does not earn",
    "next": "D05c", "sharpen_in": ["G06"],
    "states": ["Skipped when D01 records no partner or a partner who does not earn"]
@@ -58,7 +58,7 @@
    "hint": "What lands in the account, after the society and the agent take their share.",
    "input_label": "Rs ___ a month, exact", "period_toggle": true,
    "readback": "twenty-five thousand a month, Rs 3 L a year",
-   "ladder": [["typed", "The rent agreement or the bank credit", "type the monthly credit"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["typed", "The rent agreement or the bank credit", "type the monthly credit"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "No rent",
    "next": "D05d", "sharpen_in": ["G06"],
    "states": ["Shown in the income run only when an investment property is already known (AA or an earlier answer); otherwise it opens from D02h when an investment property is added and returns there on save"]
@@ -70,7 +70,7 @@
    "hint": "Regular or lumpy, either is fine; say which.",
    "input_label": "Rs ___ a year", "period_toggle": true,
    "readback": "two lakh a year, about Rs 17,000 a month",
-   "ladder": [["typed", "Last year's total, from your tax return or your bank app", "type the yearly total"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["typed", "Last year's total, from your tax return or your bank app", "type the yearly total"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "Nothing else",
    "next": "D12c", "sharpen_in": ["G06"],
    "logic": ["Regular or lumpy: two chips under the amount set income_regularity (spec v0.1 D05); lumpy income is averaged over the year in the cashflow."]
@@ -83,7 +83,7 @@
    "suggestion": "From what you told me about saving (R05), about Rs ___ a month goes out. Fix it if that is off.",
    "input_label": "Rs ___ a month, exact",
    "readback": "one lakh thirty thousand a month, about Rs 15.7 L a year",
-   "ladder": [["aa", "Fetched from Account Aggregator: average monthly debits over twelve months", "connect now if not yet"], ["typed", "Your bank app: last month's debits", "type the total"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["aa", "Fetched from Account Aggregator: average monthly debits over twelve months", "connect now if not yet"], ["typed", "Your bank app: last month's debits", "type the total"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "None",
    "plausibility": "outgoings against take-home (D05a) and the R05 savings rate; EMIs from D03 against 30 percent of take-home",
    "next": "D06b",
@@ -98,7 +98,7 @@
    "hint": "What already runs, not what you plan to start.",
    "input_label": "Rs ___ a month, exact",
    "readback": "twenty-two thousand a month, about Rs 2.6 L a year",
-   "ladder": [["aa", "Fetched from Account Aggregator: SIP debits detected to the RTAs", "connect now if not yet"], ["typed", "Your mutual fund app or bank mandates", "type the monthly total"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["aa", "Fetched from Account Aggregator: SIP debits detected to the RTAs", "connect now if not yet"], ["typed", "Your mutual fund app or bank mandates", "type the monthly total"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "Nothing on autopilot",
    "next": "D12d", "sharpen_in": ["G06"],
    "logic": ["SIP detection from AA debits to RTAs; the user confirms (spec v0.1 D06)."]
@@ -110,7 +110,7 @@
    "hint": "Savings and current balances plus fixed and recurring deposits, across every bank.",
    "input_label": "Rs ___, exact",
    "readback": "eight lakh twenty thousand",
-   "ladder": [["aa", "Fetched from Account Aggregator: balances and deposits", "connect now if not yet"], ["typed", "Your bank app balance, typed exact", "add the deposits"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["aa", "Fetched from Account Aggregator: balances and deposits", "connect now if not yet"], ["typed", "Your bank app balance, typed exact", "add the deposits"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "None",
    "plausibility": "the running total of D02 against the R04 corpus band",
    "next": "D02b", "sharpen_in": ["G04"]
@@ -122,7 +122,7 @@
    "hint": "Current value, not what you put in. A CAS upload gives me the exact holdings.",
    "input_label": "Rs ___, exact",
    "readback": "eleven lakh eighty thousand",
-   "ladder": [["aa", "Fetched from Account Aggregator: every folio", "connect now if not yet"], ["cas", "Upload your CAS (CAMS or KFintech)", "holdings become CAS-verified"], ["typed", "The total from your fund app", "type the total"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["aa", "Fetched from Account Aggregator: every folio", "connect now if not yet"], ["cas", "Upload your CAS (CAMS or KFintech)", "holdings become CAS-verified"], ["typed", "The total from your fund app", "type the total"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "No mutual funds",
    "next": "D02c", "sharpen_in": ["G11", "G12"],
    "logic": ["Typed totals get buy advice only; switch and sell advice needs AA-fed or CAS-verified holdings (G12a)."]
@@ -134,7 +134,7 @@
    "hint": "Current value across every broker.",
    "input_label": "Rs ___, exact",
    "readback": "three lakh forty thousand",
-   "ladder": [["aa", "Fetched from Account Aggregator: your depository account", "connect now if not yet"], ["cas", "Upload your NSDL or CDSL CAS", "holdings become CAS-verified"], ["typed", "The total from your broker app", "type the total"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["aa", "Fetched from Account Aggregator: your depository account", "connect now if not yet"], ["cas", "Upload your NSDL or CDSL CAS", "holdings become CAS-verified"], ["typed", "The total from your broker app", "type the total"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "No stocks or ETFs",
    "next": "D02d", "sharpen_in": ["G11", "G12"]
   },
@@ -145,7 +145,7 @@
    "hint": "Tier 1 and Tier 2 together. A band is fine.",
    "input_label": "Rs ___",
    "readback": "four lakh fifty thousand",
-   "ladder": [["aa", "Fetched from Account Aggregator where the CRA is live (to be verified: NPS on AA)", "connect now if not yet"], ["vault", "Drop your CRA statement in the Vault", "read when document extraction ships; until then the field stays not sure"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["aa", "Fetched from Account Aggregator where the CRA is live (to be verified: NPS on AA)", "connect now if not yet"], ["vault", "Drop your CRA statement in the Vault", "read when document extraction ships; until then the field stays not sure"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "No NPS",
    "next": "D02e", "sharpen_in": ["G03", "G09", "G11"],
    "dev": ["to be verified: V1 covers CAS only via A10; other document extraction is V1.5; until then the Vault stores the file and the field stays not sure."]
@@ -157,7 +157,7 @@
    "hint": "Employee plus employer share, plus interest.",
    "input_label": "Rs ___, exact",
    "readback": "six lakh ten thousand",
-   "ladder": [["lookup", "Guided lookup: the UMANG app passbook, or the EPFO balance SMS or missed-call service, message prefilled on Android", "to be verified: the current service numbers and that the deep link works on both platforms"], ["vault", "Drop your passbook PDF in the Vault", "read when document extraction ships; until then the field stays not sure"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["lookup", "Guided lookup: the UMANG app passbook, or the EPFO balance SMS or missed-call service, message prefilled on Android", "to be verified: the current service numbers and that the deep link works on both platforms"], ["vault", "Drop your passbook PDF in the Vault", "read when document extraction ships; until then the field stays not sure"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "No EPF",
    "next": "D02f", "sharpen_in": ["G03", "G09"],
    "dev": ["Guided lookup steps are content (gap G08); the deep link prefills the SMS on Android where it exists."]
@@ -169,7 +169,7 @@
    "hint": "PPF, NSC, Sukanya Samriddhi, post-office deposits.",
    "input_label": "Rs ___",
    "readback": "two lakh seventy thousand",
-   "ladder": [["typed", "Your passbook or net banking", "type the balance"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["typed", "Your passbook or net banking", "type the balance"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "None",
    "next": "D02g", "sharpen_in": ["G03", "G09"]
   },
@@ -180,7 +180,7 @@
    "hint": "Jewellery counts. Tell me grams and I will price it.",
    "input_label": "___ grams, or Rs ___",
    "readback": "two hundred grams, about Rs ___ at today's price",
-   "ladder": [["typed", "Grams from the bills, or a value", "the app prices grams from L07"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["typed", "Grams from the bills, or a value", "the app prices grams from L07"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "None",
    "next": "D02h", "sharpen_in": ["G03", "G11"],
    "logic": ["Grams are priced from the L07 market inputs; the price date is stored with the value."]
@@ -192,7 +192,7 @@
    "hint": "What it would sell for today, roughly. The home you live in counts for net worth, not for investing.",
    "input_label": "Rs ___ for the home you live in; Rs ___ for an investment property",
    "readback": "one crore ten lakh",
-   "ladder": [["typed", "What it would sell for, from a recent sale nearby", "a band is fine"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["typed", "What it would sell for, from a recent sale nearby", "a band is fine"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "No property",
    "next": "D02i", "sharpen_in": ["G03", "G09"],
    "logic": ["Self-occupied home is in net worth, excluded from investable corpus (M2 rules; spec v0.1 D02).", "Investment property: value band-first and rent exact; adding one opens D05c for the rent."],
@@ -205,7 +205,7 @@
    "hint": "The insurer app shows the surrender value. The premium is exact; the years decide the advice.",
    "input_label": "Rs ___ surrender value; Rs ___ premium; ___ years completed",
    "readback": "one lakh ten thousand surrender value",
-   "ladder": [["vault", "Drop the policy statement in the Vault", "read when document extraction ships; until then the field stays not sure"], ["typed", "Surrender value from the insurer app; premium from the bank debit", "type them"], ["band", "A band by your income tier for the surrender value", "midpoint fills the field, tagged approx"]],
+   "ladder": [["vault", "Drop the policy statement in the Vault", "read when document extraction ships; until then the field stays not sure"], ["typed", "Surrender value from the insurer app; premium from the bank debit", "type them"], ["band", "A band for this field (surrender value)", "midpoint fills the field, tagged approx"]],
    "none": "No such policy",
    "next": "D02j", "sharpen_in": ["G05", "G03"],
    "logic": ["ULIP years completed decides a verdict (surrender assessment; React life-insurance rules), so a not-sure here is also an action-queue item on H04 (rule 7).", "D04c links back here for policy detail."]
@@ -217,7 +217,7 @@
    "hint": "A rough value is fine; say what it is.",
    "input_label": "Rs ___, what it is",
    "readback": "one lakh fifty thousand",
-   "ladder": [["typed", "Typed, with a one-line label", "value and what it is"], ["band", "A band by your income tier", "midpoint fills the field, tagged approx"]],
+   "ladder": [["typed", "Typed, with a one-line label", "value and what it is"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
    "none": "Nothing else",
    "next": "D12e", "sharpen_in": ["G03", "G11"]
   }

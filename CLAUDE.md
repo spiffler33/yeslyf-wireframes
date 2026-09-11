@@ -67,3 +67,4 @@ repo, the data layer and the history. These rules override both where they confl
 - Do not name an adviser on any screen. Do not draw a DIFM card on the paywall or an in-app DIFM upsell.
 - Do not add a partner ask, a partner share, or a partner state anywhere.
 - Do not collapse repeated layouts into one representative screen; draw every instance and tag the template.
+- Do not write client-data fallback assumptions (band multipliers by tier, default asset mixes, persona cost estimates). Bands are fixed per field; a missing number is asked for, never assumed.

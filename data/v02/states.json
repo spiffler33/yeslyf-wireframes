@@ -276,7 +276,7 @@
    "cause": "Vatsal, 10 Sep 2026"
   },
   {
-   "id": "S18", "who": "Plan built on partial data", "lands_on": "H01j", "primary_action": "Sharpen the N numbers still missing", "deep_link": "H01j", "minutes": "about N minutes",
+   "id": "S18", "who": "Plan built on partial data", "lands_on": "H01j", "primary_action": "Sharpen the N numbers entered as bands", "deep_link": "H01j", "minutes": "about N minutes",
    "ladder": [
     {"day": "the chosen Sunday", "channel": "push", "slot": "N-S18-sunday", "link": "H01j", "tier": "all"},
     {"day": "day 7", "channel": "whatsapp", "slot": "N-S18-d7", "link": "H01j", "tier": "all"},
@@ -286,13 +286,13 @@
    "exit": "no sharpen items remain -> S8 or S9",
    "crm_task": {"created": false, "fields": []},
    "mock": "N23",
-   "push": {"slot": "N-S18-sunday", "text": "Sunday: the N numbers your plan is still missing, about N minutes."},
+   "push": {"slot": "N-S18-sunday", "text": "Sunday: the N exact numbers that sharpen your plan; you gave them as bands. About N minutes."},
    "whatsapp": {"slot": "N-S18-d7", "text": "Your plan is built on what we have. N numbers would sharpen it; Home shows each with a Sharpen this link. About N minutes, on the Sunday you picked."},
-   "email": {"slot": "N-S18-d21", "text": "Three weeks on: the numbers still assumed, and what each changes in the plan."},
-   "cause": "Vatsal, 10 Sep 2026"
+   "email": {"slot": "N-S18-d21", "text": "Three weeks on: the numbers still given as bands, and what each changes in the plan."},
+   "cause": "Vatsal, 10 Sep 2026; Vatsal, 11 Sep 2026 (bands, never a filled-in value)"
   },
   {
-   "id": "S19", "who": "Stalled below the gate at day 7", "lands_on": "O02", "primary_action": "Finish the N fields that build your plan", "deep_link": "O02", "minutes": "about N minutes",
+   "id": "S19", "who": "Stalled below the gate at day 7", "lands_on": "O02", "lands_on_alt": {"when": "the only missing items are ranges", "screen": "D13"}, "primary_action": "Finish the N fields that build your plan", "deep_link": "O02", "minutes": "about N minutes",
    "ladder": [
     {"day": "day 7", "channel": "push", "slot": "N-S19-d7", "link": "O02", "tier": "all"},
     {"day": "day 7", "channel": "human call", "slot": "N-S19-d7-call", "link": "O02", "tier": "DIWM"},
@@ -305,10 +305,10 @@
    "exit": "gate met -> S5",
    "crm_task": {"created": true, "fields": ["state_id", "missing_fields", "tier", "last_screen", "minutes_left"]},
    "mock": "N24",
-   "push": {"slot": "N-S19-d7", "text": "N fields build your plan. Your next steps shows them, about N minutes."},
-   "whatsapp": {"slot": "N-S19-d10", "text": "Your plan needs N more fields: <fields>. Your next steps lists them with the minutes each takes. Type what you know; skip the rest."},
+   "push": {"slot": "N-S19-d7", "text": "N quick ranges and your plan builds. About N minutes."},
+   "whatsapp": {"slot": "N-S19-d10", "text": "Your plan needs N more fields: <fields>. Your next steps lists them with the minutes each takes. Type what you know; a rough range does for the rest."},
    "email": {"slot": "N-S19-d14", "text": "What the plan can already say, and the N fields that finish it. Your next steps."},
-   "cause": "Vatsal, 10 Sep 2026; brief V2"
+   "cause": "Vatsal, 10 Sep 2026; brief V2; Vatsal, 11 Sep 2026 (lands on D13 when only ranges are missing)"
   },
   {
    "id": "S20", "who": "Call booked, no-show", "lands_on": "K01", "primary_action": "Rebook your call (K05)", "deep_link": "K01", "minutes": "about N minutes",
