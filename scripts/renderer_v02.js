@@ -4,13 +4,22 @@
 //   REASONS (compliance reason -> {review, check}).
 // Filters: tier, path, state, compliance, template. Comments save under localStorage key "yeslyf_wire_v02"
 // and post to the sheet endpoint (shared with the board pages under "yeslyf_board_v1") as v02_comments rows.
+// WIRE_OPTS (optional, set by the audience files of phase 9): identities (list), lock (one identity, fixed),
+// key (storage key), spec ("full" | "design" | "compliance"), compFilter (false hides the compliance walk),
+// exportTitle, exportFile. Absent: the full site behaviour.
 (function(){
+  var OPTS = (typeof WIRE_OPTS !== "undefined" && WIRE_OPTS) ? WIRE_OPTS : {};
   var TIERS = ["ALL","DIY","DIWM","DIFM"];
   var PATHS = ["both","aa","manual"];
-  var IDENTITIES = ["Bhuvanaa","Harish","Gaurav","Kajal","Somil","Vatsal","Spinach","Compliance"];
+  var IDENTITIES = OPTS.identities || ["Bhuvanaa","Harish","Gaurav","Kajal","Somil","Vatsal","Spinach","Compliance"];
+  var LOCK = OPTS.lock || "";
+  var SPEC = OPTS.spec || "full";
+  var COMP_FILTER = OPTS.compFilter !== false;
+  var EXPORT_TITLE = OPTS.exportTitle || "# yeslyf wireframes v0.2 - review comments";
+  var EXPORT_FILE = OPTS.exportFile || "yeslyf_wireframe_review_v02.md";
   var VERDICTS = ["Keep","Change","Drop","Question"];
   var BOARD_KEY = "yeslyf_board_v1";
-  var KEY = "yeslyf_wire_v02";
+  var KEY = OPTS.key || "yeslyf_wire_v02";
   var COLS = ["ts","who","screen","verdict","reason","text"];
   var state = { idx:0, tier:"ALL", path:"both", st:"", comp:"all", tpl:"all", map:false };
   var byId = {}; SCREENS.forEach(function(s,i){ byId[s.id]=i; });
@@ -28,6 +37,7 @@
   try { store = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e){ store = {}; }
   if(!store.notes) store.notes = {};
   if(!store.who) store.who = "";
+  if(LOCK) store.who = LOCK;
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
   function noteFor(id){ if(!store.notes[id]) store.notes[id] = {verdict:"", text:"", reason:"", who:""}; return store.notes[id]; }
   function board(){ try { return JSON.parse(localStorage.getItem(BOARD_KEY) || "{}") || {}; } catch(e){ return {}; } }
@@ -175,7 +185,7 @@
     var st = v.status;
     var label = st === "new" ? "New in v0.2" : (st === "changed" || st === "rebuilt") ? "Changed in v0.2" + (st === "rebuilt" ? " (rebuilt)" : "") : "Kept from v0.1";
     var cls = st === "new" ? " new" : (st === "changed" || st === "rebuilt") ? " changed" : "";
-    var causes = (v.causes && v.causes.length) ? '<div>Cause: '+v.causes.map(esc).join("; ")+'</div>' : '';
+    var causes = (SPEC === "full" && v.causes && v.causes.length) ? '<div>Cause: '+v.causes.map(esc).join("; ")+'</div>' : '';
     return '<div class="marker'+cls+'"><b>'+label+'</b>'+causes+'</div>';
   }
 
@@ -184,6 +194,16 @@
     var c = s.compliance || {review:false, reasons:[], checks:[]};
     var html = marker(s);
     html += '<div class="spec-purpose">'+esc(s.purpose)+'</div>';
+    if(SPEC === "compliance"){
+      html += '<div class="spec-block"><div class="spec-t">Compliance flag</div><div class="tiers">reasons: ' + esc((c.reasons || []).join(", ")) + (c.note ? '; ' + esc(c.note) : '') + '</div></div>';
+      if(c.checks && c.checks.length){
+        html += '<div class="chk"><b>Compliance checklist</b><ul>'+c.checks.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ul></div>';
+      }
+      html += '<div class="spec-block"><div class="spec-t">Where it sits</div><div class="tiers">'+esc(s.template)+'; path '+esc(s.path)+'; shown to '+esc(s.tier.join(", "))+'</div></div>';
+      document.getElementById("spec").innerHTML = html;
+      reviewControls(s, n);
+      return;
+    }
     html += '<div class="spec-block"><div class="spec-t">Template</div><div class="tiers">'+esc(s.template)+'</div></div>';
     html += '<div class="spec-block"><div class="spec-t">Path</div><div class="tiers">'+esc(s.path)+'</div></div>';
     html += '<div class="spec-block"><div class="spec-t">Shown to</div><div class="tiers">'+esc(s.tier.join(", "))+'</div></div>';
@@ -204,17 +224,20 @@
     html += list("States", s.spec.states);
     html += list("Dev notes", s.spec.dev);
     html += list("Events", s.events);
-    html += '<div class="spec-block"><div class="spec-t">Compliance flag</div><div class="tiers">' + (c.review ? 'review: yes' : 'review: no') + '; reasons: ' + esc((c.reasons || []).join(", ")) + (c.note ? '; ' + esc(c.note) : '') + '</div></div>';
-    if(c.checks && c.checks.length){
-      html += '<div class="chk"><b>Compliance checklist</b><ul>'+c.checks.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ul></div>';
+    if(SPEC === "full"){
+      html += '<div class="spec-block"><div class="spec-t">Compliance flag</div><div class="tiers">' + (c.review ? 'review: yes' : 'review: no') + '; reasons: ' + esc((c.reasons || []).join(", ")) + (c.note ? '; ' + esc(c.note) : '') + '</div></div>';
+      if(c.checks && c.checks.length){
+        html += '<div class="chk"><b>Compliance checklist</b><ul>'+c.checks.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ul></div>';
+      }
     }
     document.getElementById("spec").innerHTML = html;
-
-    // review controls
+    reviewControls(s, n);
+  }
+  function reviewControls(s, n){
     var v = document.getElementById("verdict");
-    Array.prototype.forEach.call(v.querySelectorAll("button"), function(b){ b.className = (b.getAttribute("data-v") === n.verdict) ? "on" : ""; });
+    if(v) Array.prototype.forEach.call(v.querySelectorAll("button"), function(b){ b.className = (b.getAttribute("data-v") === n.verdict) ? "on" : ""; });
     var rs = document.getElementById("reason"); if(rs) rs.value = n.reason || "";
-    var ta = document.getElementById("comment"); ta.value = n.text || ""; ta.placeholder = "Comment on "+s.id+": what to keep, change or drop, and why. Compliance: comment on language.";
+    var ta = document.getElementById("comment"); if(ta){ ta.value = n.text || ""; ta.placeholder = "Comment on "+s.id+": what to keep, change or drop, and why. Compliance: comment on language."; }
     var rv = document.getElementById("reviewer"); if(rv) rv.value = store.who || "";
     syncReason();
     flash("");
@@ -261,7 +284,7 @@
 
   // ---------- export ----------
   function exportText(){
-    var lines = ["# yeslyf wireframes v0.2 - review comments", "Exported " + new Date().toLocaleString() + (store.who ? " by " + store.who : ""),
+    var lines = [EXPORT_TITLE, "Exported " + new Date().toLocaleString() + (store.who ? " by " + store.who : ""),
                  "Sheet endpoint: " + (endpoint() ? "configured" : "not configured; this file is the record"), ""];
     var count = 0;
     SECTIONS.forEach(function(sec){
@@ -284,7 +307,7 @@
     try { navigator.clipboard && navigator.clipboard.writeText(md); } catch(e){}
     try {
       var blob = new Blob([md], {type:"text/markdown"});
-      var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "yeslyf_wireframe_review_v02.md";
+      var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = EXPORT_FILE;
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
     } catch(e){}
     flash("Comments exported and copied.");
@@ -324,46 +347,64 @@
   // ---------- wiring ----------
   function init(){
     captureEndpoint(); pill();
+    var ep = document.getElementById("endpoint");
+    if(ep){ ep.value = endpoint(); ep.addEventListener("input", function(){ var b = board(); b.endpoint = ep.value.trim(); try { localStorage.setItem(BOARD_KEY, JSON.stringify(b)); } catch(e){} pill(); }); }
     var tf = document.getElementById("tiers");
-    tf.innerHTML = TIERS.map(function(t){ return '<button data-t="'+t+'"'+(t === state.tier ? ' class="on"' : '')+'>'+t+'</button>'; }).join("");
-    tf.addEventListener("click", function(ev){ var b = ev.target.closest("button"); if(!b) return; setFilter("tier", b.getAttribute("data-t")); });
+    if(tf){
+      tf.innerHTML = TIERS.map(function(t){ return '<button data-t="'+t+'"'+(t === state.tier ? ' class="on"' : '')+'>'+t+'</button>'; }).join("");
+      tf.addEventListener("click", function(ev){ var b = ev.target.closest("button"); if(!b) return; setFilter("tier", b.getAttribute("data-t")); });
+    }
     var fp = document.getElementById("fpath");
-    fp.innerHTML = opt("both", "both paths", true) + opt("aa", "aa", false) + opt("manual", "manual", false);
-    fp.addEventListener("change", function(){ setFilter("path", fp.value); });
+    if(fp){
+      fp.innerHTML = opt("both", "both paths", true) + opt("aa", "aa", false) + opt("manual", "manual", false);
+      fp.addEventListener("change", function(){ setFilter("path", fp.value); });
+    }
     var fs = document.getElementById("fstate"); var fsw = document.getElementById("fstate-wrap");
-    if(states.length){
+    if(fs && states.length){
       fs.innerHTML = opt("", "no state", true) + states.map(function(st){ return opt(st.id, st.id + "  " + st.who, false); }).join("");
       fs.addEventListener("change", function(){ setFilter("state", fs.value); });
     } else if(fsw){ fsw.className = "off"; }
     var fc = document.getElementById("fcomp");
-    fc.innerHTML = opt("all", "all screens", true) + opt("flagged", "flagged only", false) + reasonNames.map(function(r){ return opt(r, r, false); }).join("");
-    fc.addEventListener("change", function(){ setFilter("comp", fc.value); });
+    if(fc){
+      fc.innerHTML = opt("all", "all screens", true) + opt("flagged", "flagged only", false) + reasonNames.map(function(r){ return opt(r, r, false); }).join("");
+      fc.addEventListener("change", function(){ setFilter("comp", fc.value); });
+    }
     var ft = document.getElementById("ftpl");
-    ft.innerHTML = opt("all", "all templates", true) + templates.map(function(t){ return opt(t, t, false); }).join("");
-    ft.addEventListener("change", function(){ setFilter("tpl", ft.value); });
+    if(ft){
+      ft.innerHTML = opt("all", "all templates", true) + templates.map(function(t){ return opt(t, t, false); }).join("");
+      ft.addEventListener("change", function(){ setFilter("tpl", ft.value); });
+    }
 
-    document.getElementById("prev").addEventListener("click", function(){ step(-1); });
-    document.getElementById("next").addEventListener("click", function(){ step(1); });
-    document.getElementById("mapbtn").addEventListener("click", function(){ toggleMap(); });
-    document.getElementById("export").addEventListener("click", exportNotes);
+    var prev = document.getElementById("prev"); if(prev) prev.addEventListener("click", function(){ step(-1); });
+    var next = document.getElementById("next"); if(next) next.addEventListener("click", function(){ step(1); });
+    var mb = document.getElementById("mapbtn"); if(mb) mb.addEventListener("click", function(){ toggleMap(); });
+    var ex = document.getElementById("export"); if(ex) ex.addEventListener("click", exportNotes);
 
     var rv = document.getElementById("reviewer");
-    rv.innerHTML = opt("", "reviewing as", !store.who) + IDENTITIES.map(function(n){ return opt(n, n, store.who === n); }).join("");
-    rv.addEventListener("change", function(){ store.who = IDENTITIES.indexOf(rv.value) >= 0 ? rv.value : ""; save(); syncReason(); flash(store.who ? "Reviewing as " + store.who : ""); });
+    if(rv && LOCK){
+      rv.innerHTML = opt(LOCK, LOCK, true); rv.disabled = true; store.who = LOCK; save();
+    } else if(rv){
+      rv.innerHTML = opt("", "reviewing as", !store.who) + IDENTITIES.map(function(n){ return opt(n, n, store.who === n); }).join("");
+      rv.addEventListener("change", function(){ store.who = IDENTITIES.indexOf(rv.value) >= 0 ? rv.value : ""; save(); syncReason(); flash(store.who ? "Reviewing as " + store.who : ""); });
+    }
     var rs = document.getElementById("reason");
-    rs.innerHTML = opt("", "reason category", true) + reasonNames.map(function(r){ return opt(r, r, false); }).join("");
-    rs.addEventListener("change", function(){ var n = noteFor(SCREENS[state.idx].id); n.reason = reasonNames.indexOf(rs.value) >= 0 ? rs.value : ""; n.who = store.who; save(); post(SCREENS[state.idx].id); flash("Saved in this browser"); });
+    if(rs){
+      rs.innerHTML = opt("", "reason category", true) + reasonNames.map(function(r){ return opt(r, r, false); }).join("");
+      rs.addEventListener("change", function(){ var n = noteFor(SCREENS[state.idx].id); n.reason = reasonNames.indexOf(rs.value) >= 0 ? rs.value : ""; n.who = store.who; save(); post(SCREENS[state.idx].id); flash("Saved in this browser"); });
+    }
 
     var v = document.getElementById("verdict");
-    v.innerHTML = VERDICTS.map(function(x){ return '<button data-v="'+x+'">'+x+'</button>'; }).join("");
-    v.addEventListener("click", function(ev){ var b = ev.target.closest("button"); if(!b) return;
-      var id = SCREENS[state.idx].id; var n = noteFor(id); n.verdict = (n.verdict === b.getAttribute("data-v")) ? "" : b.getAttribute("data-v"); n.who = store.who; save(); post(id); renderSpec(); renderNav(); flash("Saved in this browser"); });
+    if(v){
+      v.innerHTML = VERDICTS.map(function(x){ return '<button data-v="'+x+'">'+x+'</button>'; }).join("");
+      v.addEventListener("click", function(ev){ var b = ev.target.closest("button"); if(!b) return;
+        var id = SCREENS[state.idx].id; var n = noteFor(id); n.verdict = (n.verdict === b.getAttribute("data-v")) ? "" : b.getAttribute("data-v"); n.who = store.who; save(); post(id); renderSpec(); renderNav(); flash("Saved in this browser"); });
+    }
     var ta = document.getElementById("comment"); var timer;
-    ta.addEventListener("input", function(){ var id = SCREENS[state.idx].id; var n = noteFor(id); n.text = ta.value; n.who = store.who; save();
+    if(ta) ta.addEventListener("input", function(){ var id = SCREENS[state.idx].id; var n = noteFor(id); n.text = ta.value; n.who = store.who; save();
       flash("Saving..."); clearTimeout(timer); timer = setTimeout(function(){ post(id); flash("Saved in this browser"); renderNav(); }, 1500); });
 
     var sel = document.getElementById("jump");
-    sel.addEventListener("change", function(){ if(byId[sel.value] !== undefined) go(byId[sel.value]); });
+    if(sel) sel.addEventListener("change", function(){ if(byId[sel.value] !== undefined) go(byId[sel.value]); });
     window.addEventListener("hashchange", function(){ var id = location.hash.replace("#", ""); if(byId[id] !== undefined){ if(state.map) toggleMap(false); ensureScope(byId[id]); go(byId[id]); } else if(dropped.indexOf(id) >= 0){ flash(id + " was dropped in v0.2; see the Changelog tab"); } else if(split.indexOf(id) >= 0){ flash(id + " was split into its instances in v0.2; see the Changelog tab"); } });
     document.addEventListener("keydown", function(ev){ if(ev.target.tagName === "TEXTAREA" || ev.target.tagName === "INPUT" || ev.target.tagName === "SELECT") return; if(ev.key === "ArrowRight") step(1); if(ev.key === "ArrowLeft") step(-1); });
     syncFilters();
@@ -381,7 +422,7 @@
     walk: function(){ return walkList().map(function(i){ return SCREENS[i].id; }); },
     current: function(){ return SCREENS[state.idx].id; },
     exportText: exportText,
-    filters: function(){ return {tiers:TIERS, paths:PATHS, comps:["all","flagged"].concat(reasonNames), templates:templates, states:states.map(function(st){ return st.id; })}; },
+    filters: function(){ return {tiers:TIERS, paths:PATHS, comps:COMP_FILTER ? ["all","flagged"].concat(reasonNames) : [], templates:templates, states:states.map(function(st){ return st.id; })}; },
     landing: function(id){ return stateById[id] ? stateById[id].lands_on : ""; }
   };
 })();

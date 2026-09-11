@@ -169,7 +169,7 @@ def relief_screens(doc):
                                "The adviser-voice line (rule 10, V5 Stage 3) is a copy slot on the card, picked by the answers; explicit none and not sure pick different lines (rule 6); copy is content (gap G08)."],
                      "branches": [["Keep going", nxt], ["Remind me later", "O03"]],
                      "states": ["Section left incomplete: the card does not fire; it fires when the section completes later",
-                                "Remind me later: O03 opens over this card; Set it and exit lands on O02"],
+                                "Remind me later: O03 opens over this card; Set it and exit lands on O02", EXIT_RULE],
                      "dev": ["Slot id %s; variants keyed by the section's answers. Sections done counts completed sections, not screens." % sid]},
             "template": "T-card", "path": "both", "events": [],
             "compliance": {"review": True, "reasons": ["advice language"]},

@@ -3725,7 +3725,8 @@
     ],
     "states": [
      "Section left incomplete: the card does not fire; it fires when the section completes later",
-     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Slot id D12a; variants keyed by the section's answers. Sections done counts completed sections, not screens."
@@ -4637,7 +4638,8 @@
     ],
     "states": [
      "Section left incomplete: the card does not fire; it fires when the section completes later",
-     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Slot id D12b; variants keyed by the section's answers. Sections done counts completed sections, not screens."
@@ -5396,7 +5398,8 @@
     ],
     "states": [
      "Section left incomplete: the card does not fire; it fires when the section completes later",
-     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Slot id D12c; variants keyed by the section's answers. Sections done counts completed sections, not screens."
@@ -6076,7 +6079,8 @@
     ],
     "states": [
      "Section left incomplete: the card does not fire; it fires when the section completes later",
-     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Slot id D12d; variants keyed by the section's answers. Sections done counts completed sections, not screens."
@@ -8253,7 +8257,8 @@
     ],
     "states": [
      "Section left incomplete: the card does not fire; it fires when the section completes later",
-     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Slot id D12e; variants keyed by the section's answers. Sections done counts completed sections, not screens."
@@ -8655,7 +8660,8 @@
     ],
     "states": [
      "Section left incomplete: the card does not fire; it fires when the section completes later",
-     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Slot id D12f; variants keyed by the section's answers. Sections done counts completed sections, not screens."
@@ -9392,7 +9398,8 @@
     ],
     "states": [
      "Section left incomplete: the card does not fire; it fires when the section completes later",
-     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Slot id D12g; variants keyed by the section's answers. Sections done counts completed sections, not screens."
@@ -9862,7 +9869,8 @@
     ],
     "states": [
      "Section left incomplete: the card does not fire; it fires when the section completes later",
-     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Slot id D12h; variants keyed by the section's answers. Sections done counts completed sections, not screens."

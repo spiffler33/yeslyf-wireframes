@@ -4,7 +4,8 @@
 Pages: index.html (Meeting, frozen), gaps.html (frozen), inputs.html (frozen), wireframes.html (v0.1 as-is),
 admin.html (v0.1 as-is), wireframes_v02.html (generated from data/screens_v02.json with the v0.2 renderer in
 scripts/renderer_v02.js), admin_v02.html (data/admin_crm.json plus the v0.2 additions, the CRM backlog and the
-nudge matrix from data/v02/states.json), changelog.html (data/changelog.json), setup.html.
+nudge matrix from data/v02/states.json), changelog.html (data/changelog.json), setup.html, and the three
+self-contained audience files under docs/audiences/ (scripts/build_audiences.py; phase 9d).
 The two v0.1 files are copied byte-identical into docs/v01/ and served as-is.
 Style reuses the v0.1 tokens. Choices save in localStorage (try/catch), post to the sheet endpoint
 when one is configured, and export as a markdown build brief. Every page carries noindex.
@@ -397,7 +398,15 @@ def render_qa(row, decided=None):
     return "\n".join(h)
 
 
-def build_meeting(items, inputs, gaps, decisions=None):
+def audience_links(audiences):
+    """One chrome line on index.html pointing at the audience files (phase 9d); the frozen content is untouched."""
+    if not audiences:
+        return ""
+    return '<div class="frozen">Audience files, self-contained, open from disk with no network: %s. Sizes on the Changelog tab.</div>\n' % ", ".join(
+        '<a href="%s">%s</a>' % (esc(a["href"]), esc(a["for"])) for a in audiences)
+
+
+def build_meeting(items, inputs, gaps, decisions=None, audiences=None):
     dec_items = {d["item_id"]: d for d in (decisions or {}).get("items", [])}
     dec_qa = {str(q["n"]): q for q in (decisions or {}).get("quick_accepts", [])}
     frozen = decisions is not None
@@ -443,7 +452,7 @@ def build_meeting(items, inputs, gaps, decisions=None):
              '<div class="stat"><b>%d</b><span>quick-accepts to tick</span></div><div class="stat"><b>%d</b><span>gaps needing an owner</span></div>'
              '<div class="stat"><b>%d</b><span>review rows, all with a status</span></div></div></section>' % (len(items), team_items, n_qa, len(gaps), len(inputs)))
     reset = '<button id="reset" class="ghost"%s>Clear this browser</button>' % (" disabled" if frozen else "")
-    page = (head("yeslyf product board: meeting") + '<body>\n' + header("index.html", "product board, meeting " + MEETING_DATE) + (frozen_banner() if frozen else "") +
+    page = (head("yeslyf product board: meeting") + '<body>\n' + header("index.html", "product board, meeting " + MEETING_DATE) + (frozen_banner() if frozen else "") + audience_links(audiences) +
             '<div class="layout"><nav class="nav"><a href="#s-how">How to read this</a>' + "".join(nav) +
             '<a href="gaps.html" style="margin-top:10px;color:var(--mute)">Gaps (%d)</a><a href="inputs.html" style="color:var(--mute)">Inputs (%d)</a></nav>' % (len(gaps), len(inputs)) +
             '<main class="main">' + intro + "\n".join(body) +
@@ -548,6 +557,17 @@ def live_screens(v02):
     return [s for s in v02["screens"] if s["v02"]["status"] not in ("dropped", "split")]
 
 
+WIRE_LAYOUT = ('<div class="layout">\n<aside id="nav" class="nav"></aside>\n'
+               '<main id="main" class="main"><div class="mobile-jump"><select id="jump"></select></div>'
+               '<div id="ribbon" class="ribbon"></div><div class="crumb-row"><span id="crumb"></span><span id="counter"></span></div>'
+               '<div id="statestrip" class="strip off"></div>'
+               '<div class="stage"><button id="prev" class="arrow" title="Previous screen">&larr;</button><div id="frame" class="frame phone"></div>'
+               '<button id="next" class="arrow" title="Next screen">&rarr;</button></div></main>\n'
+               '<aside class="side"><div class="review"><div class="review-t">Your verdict on this screen</div>'
+               '<div id="verdict" class="verdict"></div><div id="reason-wrap" class="reason-wrap off"><select id="reason"></select></div>'
+               '<textarea id="comment"></textarea></div><div id="spec" class="spec"></div></aside>\n</div>\n<div id="map" class="map"></div>\n')
+
+
 def build_wire_v02(v02, states, reasons):
     live = live_screens(v02)
     dropped = [s["id"] for s in v02["screens"] if s["v02"]["status"] == "dropped"]
@@ -560,15 +580,7 @@ def build_wire_v02(v02, states, reasons):
            '<label>Template <select id="ftpl"></select></label>'
            '<div class="actions"><button id="mapbtn">Journey map</button></div></div>\n'
            '<div class="banner">All copy is placeholder pending compliance review; comment on language on any screen.</div>\n')
-    layout = ('<div class="layout">\n<aside id="nav" class="nav"></aside>\n'
-              '<main id="main" class="main"><div class="mobile-jump"><select id="jump"></select></div>'
-              '<div id="ribbon" class="ribbon"></div><div class="crumb-row"><span id="crumb"></span><span id="counter"></span></div>'
-              '<div id="statestrip" class="strip off"></div>'
-              '<div class="stage"><button id="prev" class="arrow" title="Previous screen">&larr;</button><div id="frame" class="frame phone"></div>'
-              '<button id="next" class="arrow" title="Next screen">&rarr;</button></div></main>\n'
-              '<aside class="side"><div class="review"><div class="review-t">Your verdict on this screen</div>'
-              '<div id="verdict" class="verdict"></div><div id="reason-wrap" class="reason-wrap off"><select id="reason"></select></div>'
-              '<textarea id="comment"></textarea></div><div id="spec" class="spec"></div></aside>\n</div>\n<div id="map" class="map"></div>\n')
+    layout = WIRE_LAYOUT
     data = ('<script>var SECTIONS=' + js_blob(v02["sections"]) + ';\nvar SCREENS=' + js_blob(live) + ';\nvar DROPPED=' + js_blob(dropped) +
             ';\nvar SPLIT=' + js_blob(split) + ';\nvar STATES=' + js_blob(states["states"] if states else []) + ';\nvar REASONS=' + js_blob(reasons) + ';</script>\n')
     page = (head("yeslyf wireframes v0.2", read_script("renderer_v02.css")) + '<body>\n' +
@@ -671,7 +683,8 @@ def nudge_matrix(states):
     return table_html(["State", "Day", "Channel", "Copy slot", "Deep link", "Tier rule", "CRM task"], rows)
 
 
-def build_admin_v02(admin, v02, states):
+def admin_parts(admin, v02, states):
+    """(nav links html, body html) of the Admin and CRM v0.2 page; shared with the team audience file."""
     live = live_screens(v02)
     body = ['<section><h1>Admin and CRM v0.2</h1><p class="lead">The v0.1 admin and CRM spec carried forward, then the v0.2 additions from plan_v2.md section 6: '
             'the platform is to be decided (one platform); the nudge matrix covers states S1 to S25; the CRM backlog holds what the team said to remember for the CRM planning session.</p>'
@@ -709,13 +722,20 @@ def build_admin_v02(admin, v02, states):
     backlog = admin.get("CRM_BACKLOG")
     body.append('<section id="a-backlog"><h2>CRM backlog</h2><p class="lead">Items the team said to remember for the CRM planning session.</p>%s</section>' % (
         generic(backlog) if backlog else '<p class="meta">arrives with phase 6 (CRM_BACKLOG in data/admin_crm.json)</p>'))
+    return "".join(nav), "\n".join(body)
+
+
+def build_admin_v02(admin, v02, states):
+    nav, body = admin_parts(admin, v02, states)
     page = (head("yeslyf admin and CRM v0.2") + '<body>\n' + header("admin_v02.html", "admin and CRM v0.2", show_export=False) +
-            '<div class="layout"><nav class="nav">' + "".join(nav) + '</nav><main class="main" style="max-width:none">' + "\n".join(body) +
+            '<div class="layout"><nav class="nav">' + nav + '</nav><main class="main" style="max-width:none">' + body +
             '</main></div>\n<script>' + JS_PILL + '</script>\n</body>\n</html>\n')
     return page
 
 
-def build_changelog(chg, v02):
+def changelog_parts(chg, v02, audiences=None):
+    """(nav links html, body html) of the Changelog page; audiences (name, for, href, bytes) adds the audience-file
+    section. Shared with the team audience file, which passes no audiences."""
     live_ids = {s["id"] for s in live_screens(v02)}
     c = chg["counts"]
     split = chg.get("split", [])
@@ -747,10 +767,21 @@ def build_changelog(chg, v02):
                     c["total"], c["unique_templates"], esc(", ".join("%s %d" % kv for kv in sorted(c["by_status"].items()))),
                     table_html(["Section", "Name", "Screens", "Templates", "Instances per template"], by_sec_rows),
                     table_html(["Template", "Screens"], [[esc(k), str(v)] for k, v in c["by_template"].items()])))
-    nav = "".join('<a href="#%s">%s</a>' % (a, b) for a, b in [("c-changed", "Changed"), ("c-added", "Added"), ("c-dropped", "Dropped"), ("c-split", "Split"), ("c-rerouted", "Rerouted branches"),
-                                                                ("c-superseded", "Superseded brief items"), ("c-tbv", "To be verified"), ("c-counts", "Counts for Spinach")])
+    entries = [("c-changed", "Changed"), ("c-added", "Added"), ("c-dropped", "Dropped"), ("c-split", "Split"), ("c-rerouted", "Rerouted branches"),
+               ("c-superseded", "Superseded brief items"), ("c-tbv", "To be verified"), ("c-counts", "Counts for Spinach")]
+    if audiences:
+        body.append('<section id="c-audiences"><h2>Audience files<small>self-contained; each opens from disk with no network</small></h2>'
+                    '<p class="meta">Generated by scripts/build_audiences.py from the same data. Comment controls and the markdown export work offline; the sheet endpoint field is blank.</p>%s</section>' % table_html(
+                        ["File", "For", "Size"], [['<a href="%s">%s</a>' % (esc(a["href"]), esc(a["name"])), esc(a["for"]), esc("%d KB (%d bytes)" % (round(a["bytes"] / 1024), a["bytes"]))] for a in audiences]))
+        entries.append(("c-audiences", "Audience files"))
+    nav = "".join('<a href="#%s">%s</a>' % (a, b) for a, b in entries)
+    return nav, "\n".join(body)
+
+
+def build_changelog(chg, v02, audiences=None):
+    nav, body = changelog_parts(chg, v02, audiences)
     page = (head("yeslyf changelog v0.1 to v0.2") + '<body>\n' + header("changelog.html", "changelog, v0.1 to v0.2", show_export=False) +
-            '<div class="layout"><nav class="nav">' + nav + '</nav><main class="main">' + "\n".join(body) + '</main></div>\n<script>' + JS_PILL + '</script>\n</body>\n</html>\n')
+            '<div class="layout"><nav class="nav">' + nav + '</nav><main class="main">' + body + '</main></div>\n<script>' + JS_PILL + '</script>\n</body>\n</html>\n')
     return page
 
 
@@ -829,15 +860,24 @@ def main():
     os.makedirs(os.path.join(DOCS, "v01"), exist_ok=True)
     for f in V01_FILES:
         shutil.copyfile(os.path.join(V01_IN, f), os.path.join(DOCS, "v01", f))
+    import build_audiences
+    aud_pages = build_audiences.build_all(v02, states, reasons, admin, changelog)
+    os.makedirs(os.path.join(DOCS, "audiences"), exist_ok=True)
+    audiences = []
+    for name, (text, who) in aud_pages.items():
+        check_ascii(name, text)
+        with open(os.path.join(DOCS, "audiences", name), "w") as fh:
+            fh.write(text)
+        audiences.append({"name": name, "for": who, "href": "audiences/" + name, "bytes": len(text)})
     pages = {
-        "index.html": build_meeting(items, inputs, gaps, decisions),
+        "index.html": build_meeting(items, inputs, gaps, decisions, audiences),
         "gaps.html": build_gaps(items, inputs, gaps, decisions),
         "inputs.html": build_inputs(items, inputs, gaps, ownership, frozen=True),
         "wireframes.html": build_frame_page("wireframes.html", "wireframes v0.1, served as-is", "yeslyf wireframes v0.1", WIRE, screens),
         "admin.html": build_frame_page("admin.html", "admin and CRM spec v0.1, served as-is", "yeslyf admin and CRM spec v0.1", ADMIN),
         "wireframes_v02.html": build_wire_v02(v02, states, reasons),
         "admin_v02.html": build_admin_v02(admin, v02, states),
-        "changelog.html": build_changelog(changelog, v02),
+        "changelog.html": build_changelog(changelog, v02, audiences),
         "setup.html": build_setup(),
         "sheet_template.csv": SHEET_TEMPLATE,
     }
@@ -860,8 +900,10 @@ def main():
     for name, text in pages.items():
         if name.endswith(".html") and 'name="robots" content="noindex' not in text:
             problems.append(name + " lacks noindex")
-    for name in V02_PAGES:
-        text = pages[name]
+    for name in V02_PAGES + list(aud_pages.keys()):
+        text = pages[name] if name in pages else aud_pages[name][0]
+        if name in aud_pages and 'name="robots" content="noindex' not in text:
+            problems.append("audiences/" + name + " lacks noindex")
         for word in FORBIDDEN:
             i = text.find(word)
             while i >= 0:
@@ -881,6 +923,8 @@ def main():
         sys.exit(1)
     for name, text in pages.items():
         print("wrote docs/%s (%d bytes)" % (name, len(text)))
+    for a in audiences:
+        print("wrote docs/%s (%d bytes, for %s)" % (a["href"], a["bytes"], a["for"]))
     print("copied %d v0.1 files into docs/v01/ unchanged" % len(V01_FILES))
     if states is None:
         print("note: data/v02/states.json absent; the state filter and the nudge matrix show the placeholder line")
