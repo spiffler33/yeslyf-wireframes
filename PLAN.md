@@ -315,6 +315,10 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   them chips); the prefilled state exists on the six number screens that can arrive prefilled and on Q05 only; the
   site's Wireframes v0.2 tab offers eight identities, the team file the seven asked for; the A screens that sit in
   the Data section (A05 to A10c) are not spine screens and carry no exit line.
-- Next: the second review round on the audience files (reviewers press Export comments; the markdown goes to
+- Review link (Vatsal, 11 Sep 2026): docs/review/ holds the same Wireframes v0.2 and Admin and CRM v0.2 pages
+  with only their two tabs and no setup link, at https://spiffler33.github.io/yeslyf-wireframes/review/. One
+  link for the team, Spinach and Compliance; everyone picks an identity, gives verdicts and presses Export
+  comments. The audience files stay as built and are not the review channel.
+- Next: the second review round on the review link (reviewers press Export comments; the markdown goes to
   spiff), then parse the comments into data with causes, rerun the scripts, commit per phase; then the CRM
   planning session off the CRM backlog.

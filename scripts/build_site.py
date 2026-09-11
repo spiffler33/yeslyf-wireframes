@@ -5,7 +5,9 @@ Pages: index.html (Meeting, frozen), gaps.html (frozen), inputs.html (frozen), w
 admin.html (v0.1 as-is), wireframes_v02.html (generated from data/screens_v02.json with the v0.2 renderer in
 scripts/renderer_v02.js), admin_v02.html (data/admin_crm.json plus the v0.2 additions, the CRM backlog and the
 nudge matrix from data/v02/states.json), changelog.html (data/changelog.json), setup.html, and the three
-self-contained audience files under docs/audiences/ (scripts/build_audiences.py; phase 9d).
+self-contained audience files under docs/audiences/ (scripts/build_audiences.py; phase 9d), and the review link
+under docs/review/ (index.html is Wireframes v0.2, admin_v02.html is Admin and CRM v0.2; the same pages with only
+their two tabs and no setup link; one link for the team, Spinach and Compliance; Vatsal, 11 Sep 2026).
 The two v0.1 files are copied byte-identical into docs/v01/ and served as-is.
 Style reuses the v0.1 tokens. Choices save in localStorage (try/catch), post to the sheet endpoint
 when one is configured, and export as a markdown build brief. Every page carries noindex.
@@ -30,7 +32,7 @@ FROZEN_BANNER = "Frozen on 9 Sep 2026; decisions recorded below; controls disabl
 PENDING = "arrives with phase 5 (data/v02/states.json)"
 # Strings that must not appear on a v0.2 page (plan_v2.md section 7, check 6). The frozen pages keep their v0.1 wording.
 FORBIDDEN = ["Priya", "founders", "Founders", "Yeslyf", "recommendation", "Recommendation"]
-V02_PAGES = ["wireframes_v02.html", "admin_v02.html", "changelog.html"]
+V02_PAGES = ["wireframes_v02.html", "admin_v02.html", "changelog.html", "review/index.html", "review/admin_v02.html"]
 
 
 def load(name):
@@ -180,6 +182,8 @@ TABS = [("index.html", "Meeting"), ("gaps.html", "Gaps"), ("inputs.html", "Input
         ("wireframes.html", "Wireframes v0.1"), ("admin.html", "Admin and CRM v0.1"),
         ("wireframes_v02.html", "Wireframes v0.2"), ("admin_v02.html", "Admin and CRM v0.2"),
         ("changelog.html", "Changelog"), ("setup.html", "Setup")]
+# The review link (docs/review/): the two v0.2 pages with only their two tabs (Vatsal, 11 Sep 2026).
+REVIEW_TABS = [("index.html", "Wireframes v0.2"), ("admin_v02.html", "Admin and CRM v0.2")]
 
 
 def head(title, css=None):
@@ -189,13 +193,14 @@ def head(title, css=None):
             '<title>' + esc(title) + '</title>\n<style>' + (CSS if css is None else css) + '</style>\n</head>\n')
 
 
-def header(current, subtitle, show_export=True, who_html=None, export_label="Export brief"):
+def header(current, subtitle, show_export=True, who_html=None, export_label="Export brief", tabs=None, setup_link=True):
     tabs = "".join('<a href="%s"%s>%s</a>' % (href, ' class="on"' if href == current else "", esc(label))
-                   for href, label in TABS)
+                   for href, label in (TABS if tabs is None else tabs))
     if who_html is None:
         who_html = '<div class="who">Decided by <input id="who" placeholder="your first name"></div>'
-    right = (who_html + '<div id="saved" class="saved"></div>'
-             '<a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a>')
+    pill = ('<a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a>' if setup_link
+            else '<span id="sheetpill" class="pill" title="Sheet write-back status">sheet: off</span>')
+    right = who_html + '<div id="saved" class="saved"></div>' + pill
     if show_export:
         right += '<button id="export" class="primary">%s</button>' % esc(export_label)
     return ('<header class="top"><div class="brand">yeslyf <span>' + esc(subtitle) + '</span></div>'
@@ -568,7 +573,8 @@ WIRE_LAYOUT = ('<div class="layout">\n<aside id="nav" class="nav"></aside>\n'
                '<textarea id="comment"></textarea></div><div id="spec" class="spec"></div></aside>\n</div>\n<div id="map" class="map"></div>\n')
 
 
-def build_wire_v02(v02, states, reasons):
+def build_wire_v02(v02, states, reasons, review=False):
+    """review=True renders the docs/review/ copy: the same page with only the two v0.2 tabs and no setup link."""
     live = live_screens(v02)
     dropped = [s["id"] for s in v02["screens"] if s["v02"]["status"] == "dropped"]
     split = [s["id"] for s in v02["screens"] if s["v02"]["status"] == "split"]
@@ -584,7 +590,8 @@ def build_wire_v02(v02, states, reasons):
     data = ('<script>var SECTIONS=' + js_blob(v02["sections"]) + ';\nvar SCREENS=' + js_blob(live) + ';\nvar DROPPED=' + js_blob(dropped) +
             ';\nvar SPLIT=' + js_blob(split) + ';\nvar STATES=' + js_blob(states["states"] if states else []) + ';\nvar REASONS=' + js_blob(reasons) + ';</script>\n')
     page = (head("yeslyf wireframes v0.2", read_script("renderer_v02.css")) + '<body>\n' +
-            header("wireframes_v02.html", "wireframes v0.2, " + str(len(live)) + " screens", who_html=who, export_label="Export comments") +
+            header("index.html" if review else "wireframes_v02.html", "wireframes v0.2, " + str(len(live)) + " screens", who_html=who,
+                   export_label="Export comments", tabs=REVIEW_TABS if review else None, setup_link=not review) +
             bar + layout + data + '<script>' + read_script("renderer_v02.js") + '</script>\n</body>\n</html>\n')
     return page
 
@@ -725,9 +732,13 @@ def admin_parts(admin, v02, states):
     return "".join(nav), "\n".join(body)
 
 
-def build_admin_v02(admin, v02, states):
+def build_admin_v02(admin, v02, states, review=False):
+    """review=True renders the docs/review/ copy; its screen links point at the review copy of Wireframes v0.2."""
     nav, body = admin_parts(admin, v02, states)
-    page = (head("yeslyf admin and CRM v0.2") + '<body>\n' + header("admin_v02.html", "admin and CRM v0.2", show_export=False) +
+    if review:
+        body = body.replace('href="wireframes_v02.html#', 'href="index.html#')
+    page = (head("yeslyf admin and CRM v0.2") + '<body>\n' +
+            header("admin_v02.html", "admin and CRM v0.2", show_export=False, tabs=REVIEW_TABS if review else None, setup_link=not review) +
             '<div class="layout"><nav class="nav">' + nav + '</nav><main class="main" style="max-width:none">' + body +
             '</main></div>\n<script>' + JS_PILL + '</script>\n</body>\n</html>\n')
     return page
@@ -880,7 +891,10 @@ def main():
         "changelog.html": build_changelog(changelog, v02, audiences),
         "setup.html": build_setup(),
         "sheet_template.csv": SHEET_TEMPLATE,
+        "review/index.html": build_wire_v02(v02, states, reasons, review=True),
+        "review/admin_v02.html": build_admin_v02(admin, v02, states, review=True),
     }
+    os.makedirs(os.path.join(DOCS, "review"), exist_ok=True)
     for name, text in pages.items():
         check_ascii(name, text)
         with open(os.path.join(DOCS, name), "w") as fh:
