@@ -290,3 +290,31 @@ The Meeting, Gaps and Inputs tabs are frozen with the decisions shown; docs/v01/
 - 11 Sep 2026 (spiff): no Apps Script redeploy. Reviewers comment on the Wireframes v0.2 tab and press Export
   comments; the markdown file goes to spiff. The sheet write path stays as deployed for the meeting tabs.
 - Next: the second review round through the v0.2 tabs, then the CRM planning session off the CRM backlog.
+
+## 14. Status, 11 Sep 2026 (phase 9 shipped)
+
+Phase 9 ran from a chat brief (Vatsal, 11 Sep 2026; recorded in plan_v2.md section 9) in four commits: 9a no
+client-data assumptions, 9b data-capture improvements, 9c split status, 9d audience files. Live at the Pages URL.
+- Closed: every number in a plan is the client's own, exact or a band they chose; bands are fixed per field (M2
+  tables 9.1 to 9.5 where a table exists, else "Rs ___" chips); a not-sure field blocks the build and D13 Quick
+  ranges collects a band for it; L02 keeps engine assumptions only; the word "assumed" survives on D07b alone
+  (default accepted). D02 and D04 are multi-selects; confirm or correct on every prefilled screen; Q06 and Q06a
+  (life events) reachable from H01, H07, H09, Q01 and N04; AA fetches in the background (A05, A06, then D01;
+  A07, A08, A09 are states); "Why this one matters" on every number and detail screen; section strip, relief cards
+  (D12a to D12h), section map on O02, silent autosave on exit, O03 as the reminder picker. D05, D06 and D08 carry
+  status "split"; dropped is R11, G02, G08. Three audience files under docs/audiences/ (team, Spinach,
+  compliance), self-contained, listed on the Changelog tab with sizes and linked from index.html.
+- Counts: 191 live screens (D13, Q06, Q06a added), 21 templates; changed 63, added 110, dropped 3, split 3,
+  rerouted 4, superseded 4, to be verified 23. Gaps: G14 done, G15 and G16 not needed, G17 new (which fields have
+  an M2 band table; M2 is not in inputs/).
+- Data layer additions: data/v02/phase9_edits.json (edit groups; groups with "stage": "after_generation" apply
+  after the spine and states are generated), spine.json "strip", "prefill" and "multi_parent" keys,
+  fp_react_inputs.json "fallback": "band required" on every field. Scripts: build_audiences.py, check_phase9.py
+  (checks 1 to 10, then 11 to 17), new ops in apply_decisions.py (table_remove_row, field_replace, status, split).
+- Known limitations: the relief cards draw Keep going as a button and Remind me later as a link (the spec calls
+  them chips); the prefilled state exists on the six number screens that can arrive prefilled and on Q05 only; the
+  site's Wireframes v0.2 tab offers eight identities, the team file the seven asked for; the A screens that sit in
+  the Data section (A05 to A10c) are not spine screens and carry no exit line.
+- Next: the second review round on the audience files (reviewers press Export comments; the markdown goes to
+  spiff), then parse the comments into data with causes, rerun the scripts, commit per phase; then the CRM
+  planning session off the CRM backlog.

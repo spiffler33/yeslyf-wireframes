@@ -15,7 +15,6 @@ markdown export work offline (comments live in the browser under a per-file key)
 the endpoint field in the header stays blank. noindex on each. Nothing here is hand-edited; data/*.json is the source.
 """
 import copy
-import json
 import os
 import sys
 

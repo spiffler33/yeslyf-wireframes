@@ -665,3 +665,35 @@ unlock actions), T-picker (slot calendar), T-msg (message and landing pair), T-t
 - execution: E03, E04, E07, E08, E09. Check: order and mandate language, direct plan, rail disclosures.
 Every screen carries a flag; screens with no user-facing copy (L, M, N desktop tables) carry review false with reason
 "internal".
+
+## 9. Phase 9 - 11 Sep 2026 (Vatsal): the reversal, the seven improvements, the relabel, the audience files
+
+Briefed in chat, not in this file; recorded here so the rules above read right. Cause on every change: "Vatsal,
+11 Sep 2026". Commits: 9a "no client-data assumptions", 9b "data-capture improvements", 9c "split status",
+9d "audience files". PLAN.md section 14 carries the status.
+
+Supersedes in 4.2 and 4.3:
+- 4.2 branch B resolution: a not-sure field is never filled from L02. The build gate is every field the React reads;
+  a not-sure field blocks the build and is asked for as a fixed band on D13 Quick ranges (fp_react_inputs.json:
+  "fallback": "band required" on every field). G01a "built on what we have" means built on bands.
+- Rule 3: fixed bands per field from the M2 tables 9.1 to 9.5 where a table exists, else "Rs ___" chips; dynamic
+  bands by income tier are shelved until the data flywheel exists; the L02 rows for tier boundaries, band tables
+  and the default asset mix are removed (gap G16 not needed; gap G17: which fields have an M2 table).
+- Rule 7: the plan builds when every field the React reads is a value (exact or band) or explicit none.
+- Rule 9: source is aa, cas or manual; "default accepted" only for the work-optional age 60 taken on D07b. The word
+  "assumed" appears on D07b alone. D07a "I am not sure yet" keeps the goal on the Yes list, out of the SIP maths,
+  with the verify action "price this goal to fund it" in G09 (gap G15 not needed).
+- Rule 10: D12a to D12h are relief cards (section done, N of eight, next section with minutes; Keep going or
+  Remind me later); the adviser-voice line is a copy slot on the card.
+- Rule 12: exit from any D screen is a silent autosave with a Saved toast; O03 is the reminder picker, opened only
+  from Remind me later on a relief card or on O02.
+- New rules 14 to 16 (on X00): the section strip on every spine screen; confirm or correct on every prefilled
+  screen (That's about right / Change it; derivation "from what you told me earlier"); multi-select lists on D02
+  and D04 (only ticked types open; unticked types are explicit none; AA-fed and CAS-verified types pre-ticked).
+
+Also: Q06 Something changed and Q06a What I will ask again (gap G14 done; on the S11 exit path; slot N-Q06 on
+N04); AA fetch in the background (A05 -> A06 -> D01; A07, A08 as a sheet, A09 as states; recovery on the D02
+rows); "Why this one matters" link on every T-num and T-detail screen (slot W-<id>; D11b reuses it); status
+"split" for D05, D06, D08 with their instances (dropped is R11, G02, G08); docs/audiences/ (team, Spinach,
+compliance) from scripts/build_audiences.py. Acceptance: checks 1 to 10 above plus 11 to 17, all in
+scripts/check_phase9.py. CLAUDE.md gained the line on client-data fallback assumptions.
