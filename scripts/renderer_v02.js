@@ -18,6 +18,7 @@
   var states = (typeof STATES !== "undefined" && STATES) ? STATES : [];
   var stateById = {}; states.forEach(function(st){ stateById[st.id]=st; });
   var dropped = (typeof DROPPED !== "undefined" && DROPPED) ? DROPPED : [];
+  var split = (typeof SPLIT !== "undefined" && SPLIT) ? SPLIT : [];
   var reasons = (typeof REASONS !== "undefined" && REASONS) ? REASONS : {};
   var reasonNames = Object.keys(reasons);
   var templates = []; SCREENS.forEach(function(s){ if(templates.indexOf(s.template)<0) templates.push(s.template); }); templates.sort();
@@ -363,12 +364,12 @@
 
     var sel = document.getElementById("jump");
     sel.addEventListener("change", function(){ if(byId[sel.value] !== undefined) go(byId[sel.value]); });
-    window.addEventListener("hashchange", function(){ var id = location.hash.replace("#", ""); if(byId[id] !== undefined){ if(state.map) toggleMap(false); ensureScope(byId[id]); go(byId[id]); } else if(dropped.indexOf(id) >= 0){ flash(id + " was dropped in v0.2; see the Changelog tab"); } });
+    window.addEventListener("hashchange", function(){ var id = location.hash.replace("#", ""); if(byId[id] !== undefined){ if(state.map) toggleMap(false); ensureScope(byId[id]); go(byId[id]); } else if(dropped.indexOf(id) >= 0){ flash(id + " was dropped in v0.2; see the Changelog tab"); } else if(split.indexOf(id) >= 0){ flash(id + " was split into its instances in v0.2; see the Changelog tab"); } });
     document.addEventListener("keydown", function(ev){ if(ev.target.tagName === "TEXTAREA" || ev.target.tagName === "INPUT" || ev.target.tagName === "SELECT") return; if(ev.key === "ArrowRight") step(1); if(ev.key === "ArrowLeft") step(-1); });
     syncFilters();
     var start = location.hash.replace("#", "");
     if(byId[start] !== undefined){ ensureScope(byId[start]); go(byId[start]); }
-    else { go(0); if(dropped.indexOf(start) >= 0) flash(start + " was dropped in v0.2; see the Changelog tab"); }
+    else { go(0); if(dropped.indexOf(start) >= 0) flash(start + " was dropped in v0.2; see the Changelog tab"); else if(split.indexOf(start) >= 0) flash(start + " was split into its instances in v0.2; see the Changelog tab"); }
   }
   document.addEventListener("DOMContentLoaded", init);
 

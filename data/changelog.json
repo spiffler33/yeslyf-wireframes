@@ -1562,30 +1562,6 @@
    ]
   },
   {
-   "id": "D05",
-   "title": "Income",
-   "pointer": "split into D05a to D05d (one question per screen, rule 2)",
-   "causes": [
-    "Vatsal, 10 Sep 2026"
-   ]
-  },
-  {
-   "id": "D06",
-   "title": "Expenses and existing investing",
-   "pointer": "split into D06a to D06d (one question per screen, rule 2)",
-   "causes": [
-    "Vatsal, 10 Sep 2026"
-   ]
-  },
-  {
-   "id": "D08",
-   "title": "Risk profile (8 questions)",
-   "pointer": "drawn as D08a to D08h, one HoA question per screen (brief H3)",
-   "causes": [
-    "brief H3"
-   ]
-  },
-  {
    "id": "G02",
    "title": "Clarity picture",
    "pointer": "G03 (realisable vs locked corpus, current allocation by class and current weighted return fold into G03 as ledger rows)",
@@ -1602,7 +1578,57 @@
    ]
   }
  ],
- "split": [],
+ "split": [
+  {
+   "id": "D05",
+   "title": "Income",
+   "instances": [
+    "D05a",
+    "D05b",
+    "D05c",
+    "D05d"
+   ],
+   "pointer": "split into D05a to D05d (one question per screen, rule 2)",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "Vatsal, 11 Sep 2026"
+   ]
+  },
+  {
+   "id": "D06",
+   "title": "Expenses and existing investing",
+   "instances": [
+    "D06a",
+    "D06b",
+    "D06c",
+    "D06d"
+   ],
+   "pointer": "split into D06a to D06d (one question per screen, rule 2)",
+   "causes": [
+    "Vatsal, 10 Sep 2026",
+    "Vatsal, 11 Sep 2026"
+   ]
+  },
+  {
+   "id": "D08",
+   "title": "Risk profile (8 questions)",
+   "instances": [
+    "D08a",
+    "D08b",
+    "D08c",
+    "D08d",
+    "D08e",
+    "D08f",
+    "D08g",
+    "D08h"
+   ],
+   "pointer": "drawn as D08a to D08h, one HoA question per screen (brief H3)",
+   "causes": [
+    "brief H3",
+    "Vatsal, 11 Sep 2026"
+   ]
+  }
+ ],
  "rerouted": [
   {
    "screen": "R10",
@@ -2008,7 +2034,8 @@
    "kept": 18,
    "changed": 48,
    "new": 110,
-   "dropped": 6
+   "dropped": 3,
+   "split": 3
   }
  }
 }

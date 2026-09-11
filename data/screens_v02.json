@@ -23424,11 +23424,18 @@
     "D05_exact_entered"
    ],
    "v02": {
-    "status": "dropped",
+    "status": "split",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ],
-    "pointer": "split into D05a to D05d (one question per screen, rule 2)"
+    "pointer": "split into D05a to D05d (one question per screen, rule 2)",
+    "instances": [
+     "D05a",
+     "D05b",
+     "D05c",
+     "D05d"
+    ]
    }
   },
   {
@@ -23539,11 +23546,18 @@
     "D06_exact_entered"
    ],
    "v02": {
-    "status": "dropped",
+    "status": "split",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ],
-    "pointer": "split into D06a to D06d (one question per screen, rule 2)"
+    "pointer": "split into D06a to D06d (one question per screen, rule 2)",
+    "instances": [
+     "D06a",
+     "D06b",
+     "D06c",
+     "D06d"
+    ]
    }
   },
   {
@@ -23615,11 +23629,22 @@
     "D08_view"
    ],
    "v02": {
-    "status": "dropped",
+    "status": "split",
     "causes": [
-     "brief H3"
+     "brief H3",
+     "Vatsal, 11 Sep 2026"
     ],
-    "pointer": "drawn as D08a to D08h, one HoA question per screen (brief H3)"
+    "pointer": "drawn as D08a to D08h, one HoA question per screen (brief H3)",
+    "instances": [
+     "D08a",
+     "D08b",
+     "D08c",
+     "D08d",
+     "D08e",
+     "D08f",
+     "D08g",
+     "D08h"
+    ]
    }
   },
   {

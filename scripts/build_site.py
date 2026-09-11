@@ -543,9 +543,15 @@ def sid_link(sid, live_ids):
     return '<span class="sid">%s</span>' % esc(sid)
 
 
+def live_screens(v02):
+    """Screens drawn on the v0.2 pages: not dropped, not split (a split screen is its instances)."""
+    return [s for s in v02["screens"] if s["v02"]["status"] not in ("dropped", "split")]
+
+
 def build_wire_v02(v02, states, reasons):
-    live = [s for s in v02["screens"] if s["v02"]["status"] != "dropped"]
+    live = live_screens(v02)
     dropped = [s["id"] for s in v02["screens"] if s["v02"]["status"] == "dropped"]
+    split = [s["id"] for s in v02["screens"] if s["v02"]["status"] == "split"]
     who = '<div class="who">Reviewing as <select id="reviewer"></select></div>'
     bar = ('<div class="bar"><div id="tiers" class="tiers"></div>'
            '<label>Path <select id="fpath"></select></label>'
@@ -564,7 +570,7 @@ def build_wire_v02(v02, states, reasons):
               '<div id="verdict" class="verdict"></div><div id="reason-wrap" class="reason-wrap off"><select id="reason"></select></div>'
               '<textarea id="comment"></textarea></div><div id="spec" class="spec"></div></aside>\n</div>\n<div id="map" class="map"></div>\n')
     data = ('<script>var SECTIONS=' + js_blob(v02["sections"]) + ';\nvar SCREENS=' + js_blob(live) + ';\nvar DROPPED=' + js_blob(dropped) +
-            ';\nvar STATES=' + js_blob(states["states"] if states else []) + ';\nvar REASONS=' + js_blob(reasons) + ';</script>\n')
+            ';\nvar SPLIT=' + js_blob(split) + ';\nvar STATES=' + js_blob(states["states"] if states else []) + ';\nvar REASONS=' + js_blob(reasons) + ';</script>\n')
     page = (head("yeslyf wireframes v0.2", read_script("renderer_v02.css")) + '<body>\n' +
             header("wireframes_v02.html", "wireframes v0.2, " + str(len(live)) + " screens", who_html=who, export_label="Export comments") +
             bar + layout + data + '<script>' + read_script("renderer_v02.js") + '</script>\n</body>\n</html>\n')
@@ -666,7 +672,7 @@ def nudge_matrix(states):
 
 
 def build_admin_v02(admin, v02, states):
-    live = [s for s in v02["screens"] if s["v02"]["status"] != "dropped"]
+    live = live_screens(v02)
     body = ['<section><h1>Admin and CRM v0.2</h1><p class="lead">The v0.1 admin and CRM spec carried forward, then the v0.2 additions from plan_v2.md section 6: '
             'the platform is to be decided (one platform); the nudge matrix covers states S1 to S25; the CRM backlog holds what the team said to remember for the CRM planning session.</p>'
             '<p class="meta">Source: data/admin_crm.json and data/v02/states.json. The v0.1 spec is also served as-is on the Admin and CRM v0.1 tab.</p></section>']
@@ -710,20 +716,23 @@ def build_admin_v02(admin, v02, states):
 
 
 def build_changelog(chg, v02):
-    live_ids = {s["id"] for s in v02["screens"] if s["v02"]["status"] != "dropped"}
+    live_ids = {s["id"] for s in live_screens(v02)}
     c = chg["counts"]
-    body = ['<section><h1>Changelog: v0.1 to v0.2</h1><p class="lead">Every touched screen with its cause: a brief item, a review row, or "Vatsal, 10 Sep 2026". '
-            'Dropped screens keep their ID and point to where their content went. Counts for Spinach are at the end.</p>'
+    split = chg.get("split", [])
+    body = ['<section><h1>Changelog: v0.1 to v0.2</h1><p class="lead">Every touched screen with its cause: a brief item, a review row, "Vatsal, 10 Sep 2026" or "Vatsal, 11 Sep 2026". '
+            'Dropped screens keep their ID and point to where their content went; split screens keep their ID and list their instances. Counts for Spinach are at the end.</p>'
             '<div class="stats"><div class="stat"><b>%d</b><span>screens in v0.2</span></div><div class="stat"><b>%d</b><span>changed</span></div>'
-            '<div class="stat"><b>%d</b><span>added</span></div><div class="stat"><b>%d</b><span>dropped</span></div><div class="stat"><b>%d</b><span>branches rerouted</span></div>'
+            '<div class="stat"><b>%d</b><span>added</span></div><div class="stat"><b>%d</b><span>dropped</span></div><div class="stat"><b>%d</b><span>split</span></div><div class="stat"><b>%d</b><span>branches rerouted</span></div>'
             '<div class="stat"><b>%d</b><span>brief items superseded</span></div><div class="stat"><b>%d</b><span>to be verified</span></div><div class="stat"><b>%d</b><span>templates</span></div></div></section>' % (
-                c["total"], len(chg["changed"]), len(chg["added"]), len(chg["dropped"]), len(chg["rerouted"]), len(chg["superseded"]), len(chg["to_be_verified"]), c["unique_templates"])]
+                c["total"], len(chg["changed"]), len(chg["added"]), len(chg["dropped"]), len(split), len(chg["rerouted"]), len(chg["superseded"]), len(chg["to_be_verified"]), c["unique_templates"])]
     body.append('<section id="c-changed"><h2>Changed<small>%d screens</small></h2>%s</section>' % (len(chg["changed"]), table_html(
         ["Screen", "Title", "Status", "Cause"], [[sid_link(x["id"], live_ids), esc(x["title"]), '<span class="tag changed">%s</span>' % esc(x["status"]), esc("; ".join(x["causes"]))] for x in chg["changed"]])))
     body.append('<section id="c-added"><h2>Added<small>%d screens</small></h2>%s</section>' % (len(chg["added"]), table_html(
         ["Screen", "Title", "Template", "Cause"], [[sid_link(x["id"], live_ids), esc(x["title"]), esc(x.get("template", "")), esc("; ".join(x["causes"]))] for x in chg["added"]])))
     body.append('<section id="c-dropped"><h2>Dropped<small>%d screens; IDs stay reserved</small></h2>%s</section>' % (len(chg["dropped"]), table_html(
         ["Screen", "Title", "Where the content went", "Cause"], [[esc(x["id"]), esc(x["title"]), esc(x["pointer"]), esc("; ".join(x["causes"]))] for x in chg["dropped"]])))
+    body.append('<section id="c-split"><h2>Split<small>%d screens; IDs stay reserved; each is drawn as its instances</small></h2>%s</section>' % (len(split), table_html(
+        ["Screen", "Title", "Instances", "Cause"], [[esc(x["id"]), esc(x["title"]), " ".join(sid_link(i, live_ids) for i in x["instances"]), esc("; ".join(x["causes"]))] for x in split])))
     body.append('<section id="c-rerouted"><h2>Rerouted branches<small>%d</small></h2>%s</section>' % (len(chg["rerouted"]), table_html(
         ["Screen", "Branch", "From", "To", "Cause"], [[sid_link(x["screen"], live_ids), esc(x["label"]), esc(x["from"]), sid_link(x["to"], live_ids), esc(x.get("cause", ""))] for x in chg["rerouted"]])))
     body.append('<section id="c-superseded"><h2>Superseded brief items<small>plan_v2.md section 0</small></h2>%s</section>' % table_html(
@@ -738,7 +747,7 @@ def build_changelog(chg, v02):
                     c["total"], c["unique_templates"], esc(", ".join("%s %d" % kv for kv in sorted(c["by_status"].items()))),
                     table_html(["Section", "Name", "Screens", "Templates", "Instances per template"], by_sec_rows),
                     table_html(["Template", "Screens"], [[esc(k), str(v)] for k, v in c["by_template"].items()])))
-    nav = "".join('<a href="#%s">%s</a>' % (a, b) for a, b in [("c-changed", "Changed"), ("c-added", "Added"), ("c-dropped", "Dropped"), ("c-rerouted", "Rerouted branches"),
+    nav = "".join('<a href="#%s">%s</a>' % (a, b) for a, b in [("c-changed", "Changed"), ("c-added", "Added"), ("c-dropped", "Dropped"), ("c-split", "Split"), ("c-rerouted", "Rerouted branches"),
                                                                 ("c-superseded", "Superseded brief items"), ("c-tbv", "To be verified"), ("c-counts", "Counts for Spinach")])
     page = (head("yeslyf changelog v0.1 to v0.2") + '<body>\n' + header("changelog.html", "changelog, v0.1 to v0.2", show_export=False) +
             '<div class="layout"><nav class="nav">' + nav + '</nav><main class="main">' + "\n".join(body) + '</main></div>\n<script>' + JS_PILL + '</script>\n</body>\n</html>\n')

@@ -2445,6 +2445,48 @@
      "value": "N-Q06 (Vatsal, 11 Sep 2026): the quarterly template's Something changed slot deep-links to Q06."
     }
    ]
+  },
+  {
+   "id": "p9c-split",
+   "kind": "override",
+   "cause": "Vatsal, 11 Sep 2026",
+   "stage": "after_generation",
+   "edits": [
+    {
+     "op": "split",
+     "screen": "D05",
+     "instances": [
+      "D05a",
+      "D05b",
+      "D05c",
+      "D05d"
+     ]
+    },
+    {
+     "op": "split",
+     "screen": "D06",
+     "instances": [
+      "D06a",
+      "D06b",
+      "D06c",
+      "D06d"
+     ]
+    },
+    {
+     "op": "split",
+     "screen": "D08",
+     "instances": [
+      "D08a",
+      "D08b",
+      "D08c",
+      "D08d",
+      "D08e",
+      "D08f",
+      "D08g",
+      "D08h"
+     ]
+    }
+   ]
   }
  ]
 }
