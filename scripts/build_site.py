@@ -754,7 +754,7 @@ def build_setup():
              '<li>Open the Google Sheet "yeslyf decisions" in Vatsal\'s Drive (created 9 Sep 2026; Vatsal shares the link). Extensions, Apps Script. Replace the code with the block below. Save.</li>'
              '<li>Deploy, New deployment, type Web app. Execute as: Me. Who has access: Anyone. Deploy, authorise, copy the web app URL.</li>'
              '<li>Paste the URL in the field above on each device that will take decisions, or share the link index.html?endpoint=THE_URL once; the page stores it and then removes it from the address bar.</li></ol>'
-             '<p class="rule">v0.2 review comments write to a fourth tab, v02_comments, which the script below creates on first use; redeploy the web app once with this version of the script (Deploy, Manage deployments, edit, new version) or the rows land on the "other" tab as JSON.</p>'
+             '<p class="rule">v0.2 review comments post to the tab v02_comments when the deployed script accepts a tab field; the script below does, but no redeploy is planned (spiff, 11 Sep 2026). Reviewers press Export comments on the Wireframes v0.2 tab and send the markdown file to spiff</p>'
              '<details open><summary>Apps Script (doPost appends a row to the right tab; creates the tabs on first use)</summary><pre id="script"></pre></details>'
              '<details><summary>Sheet columns (also in sheet_template.csv)</summary><pre>decisions:     ts, who, item_id, choice, choice_text, note\n'
              'gaps:          ts, who, gap_id, status, owner_date, note\nquick_accepts: ts, who, input_n, accept, note\nv02_comments:  ts, who, screen, verdict, reason, text</pre>'

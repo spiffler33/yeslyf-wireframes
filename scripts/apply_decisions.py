@@ -67,7 +67,6 @@ class Build:
             s["v02"] = {"status": "kept", "causes": []}
             self.add_screen(s)
         self.rerouted = []
-        self.dropped = []
 
     def add_screen(self, s, after=None, before=None):
         if s["id"] in self.byid:
@@ -202,7 +201,6 @@ class Build:
             self.reroute(s, e["from"], e["to"], cause)
         elif op == "drop":
             s["v02"] = {"status": "dropped", "causes": [cause], "pointer": e["pointer"]}
-            self.dropped.append(s["id"])
         elif op == "meta":
             for key in ("template", "path", "compliance", "frame"):
                 if key in e:
@@ -292,7 +290,6 @@ class Build:
                     status = v.get("status", "rebuilt")
                     if status == "dropped":
                         old["v02"] = {"status": "dropped", "causes": v["causes"], "pointer": v.get("pointer", "")}
-                        self.dropped.append(s["id"])
                         continue
                     s["v02"] = {"status": status, "causes": old["v02"]["causes"] + [c for c in v["causes"] if c not in old["v02"]["causes"]]}
                     self.screens[self.index(s["id"])] = s
