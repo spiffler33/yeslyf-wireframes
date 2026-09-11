@@ -258,15 +258,18 @@
        "2. One question per screen for numbers; taps may auto-advance; list items get a list screen plus a detail screen per item type; every instance is its own screen ID with a template tag",
        "3. Band rule: every band question shows a visible exact input; a tapped band prefills the exact field with the midpoint; exact removes the approx tag; fixed bands per field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; dynamic bands are shelved until the data flywheel exists; each field is exact-first or band-first",
        "4. Readback and units: every amount shows a readback in words, a per-month or per-year toggle where either applies, L and Cr multipliers and the numeric keypad; plausibility checks against the reveal prompt a check, never a block",
-       "5. Hesitation detection: at 45 seconds a warm line (D11a), at 90 seconds the why-this-matters line (D11b), at 120 seconds or on a second return the skip offer (D11c); copy slots only",
+       "5. Hesitation detection: at 45 seconds a warm line (D11a), at 90 seconds the why-this-matters sheet (D11b), which reuses the Why this one matters slot every number and detail screen carries as a collapsed link from the start, at 120 seconds or on a second return the skip offer (D11c); copy slots only",
        "6. Tri-state fields: value, explicit none, not sure; None chips set explicit none; Not sure yet, skip sets not sure; not sure is never stored as zero; blindspot and concern copy fires on explicit none only; not sure produces a verify action",
        "7. Gate and sharpen: the plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure field blocks the build and is asked for as a quick range on D13, never filled from an assumption; sharpen fields appear inside the plan section they improve as Sharpen this links that reopen the single screen and re-run",
        "8. Capture ladder: under the exact input and the bands, the lower-friction sources for that item, in order where they apply: AA, CAS upload, guided lookup, document to the Vault, then Not sure yet, skip; no partner ask anywhere",
        "9. Source and precision tags on every field: source aa, cas or manual, plus default accepted for the one default the user takes on screen (D07b work-optional age 60); precision exact, approx or unknown; D10 and every G screen show them; a manual override locks the field against AA refresh",
-       "10. Section micro-feedback: after the last screen of each spine section, one card in the adviser voice, chosen by the answers, no numbers (D12a to D12h); copy slots only",
+       "10. Section relief: after the last screen of each spine section, a relief card (D12a to D12h): section done, N of eight, the next section with its minutes, and two chips, Keep going or Remind me later; the adviser-voice line on the card is a copy slot, chosen by the answers, no numbers",
        "11. Endowed progress: the ring starts at 20 percent after the reveal, weighted gate fields first; minutes are about N minutes",
-       "12. Exit from any D screen: autosave, then O03 When will you finish; the chosen time replaces the first scheduled nudge and the standard ladder follows",
-       "13. Events and compliance flags on every screen (appendices D and G)"
+       "12. Exit from any D screen: silent autosave with a Saved toast; no sheet. O03 is the reminder picker, opened only from Remind me later on a relief card or on O02; a chosen time replaces the first scheduled nudge and the standard ladder follows",
+       "13. Events and compliance flags on every screen (appendices D and G)",
+       "14. Section strip on every spine screen: section name, step x of y, sections done of eight; the first screen of each section says Now: <section>, N quick questions; O02 shows the eight sections as a map with ticks and the current position",
+       "15. Confirm or correct: a prefilled value (AA-fed, CAS-verified, derived from the reveal, carried from last quarter) shows with its source tag; That's about right stores it, Change it reveals the input; the derivation reads from what you told me earlier, never as an estimate",
+       "16. Multi-select lists (D02, D04): tick what you have; only ticked types open, in spine order; unticked types are explicit none; AA-fed and CAS-verified types arrive pre-ticked and locked with their value shown"
       ]
      ]
     },
@@ -459,7 +462,7 @@
        "states": [
         "No not-sure field: this screen does not open; D10 goes straight to Build my plan",
         "S19 stalled below the gate at day 7, only ranges missing: lands here; nudge copy slot N-S19-d7 reads N quick ranges and your plan builds",
-        "Exit (rule 12): autosave, then O03"
+        "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
        ],
        "dev": [
         "Rows come from fp_react_inputs.json (fallback: band required on every field) crossed with the stored tri-state per field.",
@@ -711,6 +714,1735 @@
       "band",
       "A band for this field: fixed bands (M2 table where one exists, else Rs ___ placeholders); the midpoint fills the field, tagged approx"
      ]
+    }
+   ]
+  },
+  {
+   "id": "p9b-carried",
+   "kind": "override",
+   "cause": "Vatsal, 11 Sep 2026",
+   "edits": [
+    {
+     "op": "ui_insert",
+     "screen": "H01",
+     "after": [
+      "card",
+      "Coming up"
+     ],
+     "value": [
+      "link",
+      "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+      "Q06"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "H01",
+     "key": "branches",
+     "value": [
+      "Something changed",
+      "Q06"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "H01",
+     "key": "logic",
+     "value": "Something changed (Vatsal, 11 Sep 2026): the link opens Q06, which reopens only the spine screens the change touches; every H01 variant carries it."
+    },
+    {
+     "op": "ui_replace",
+     "screen": "H04",
+     "match": [
+      "rows",
+      null
+     ],
+     "value": [
+      "rows",
+      [
+       [
+        "Term cover",
+        "To do"
+       ],
+       [
+        "Health floater",
+        "To do"
+       ],
+       [
+        "XYZ Small Cap exit, tranche 2",
+        "Due 15 Apr"
+       ],
+       [
+        "Liquid fund lumpsum",
+        "Done"
+       ],
+       [
+        "Windfall: what to do with it",
+        "To do, from Q06"
+       ]
+      ]
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "H04",
+     "key": "logic",
+     "value": "Windfall or bonus reported on Q06 (Vatsal, 11 Sep 2026) adds the action what to do with it here, next to the D02a re-ask."
+    },
+    {
+     "op": "ui_insert",
+     "screen": "H07",
+     "after": [
+      "link",
+      "Your calls"
+     ],
+     "value": [
+      "link",
+      "Something changed in my life",
+      "Q06"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "H07",
+     "key": "branches",
+     "value": [
+      "Something changed",
+      "Q06"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "H07",
+     "key": "logic",
+     "value": "Something changed in my life opens Q06 (Vatsal, 11 Sep 2026); the chips there reopen only the screens the change touches."
+    },
+    {
+     "op": "ui_replace",
+     "screen": "H09",
+     "match": [
+      "rows",
+      null
+     ],
+     "value": [
+      "rows",
+      [
+       [
+        "Update my answers (rebuilds the plan)",
+        ""
+       ],
+       [
+        "Something changed: income, loan, family, expense, windfall, city",
+        "opens Q06"
+       ],
+       [
+        "Family circle",
+        ""
+       ],
+       [
+        "Account Aggregator: consents, refresh, revoke",
+        ""
+       ],
+       [
+        "Risk profile: retake",
+        ""
+       ],
+       [
+        "Subscription: plan, next billing, cancel",
+        ""
+       ],
+       [
+        "Notifications",
+        ""
+       ],
+       [
+        "Agreements and disclosures",
+        ""
+       ],
+       [
+        "Delete my account",
+        "DPDP flow; regulated records retained"
+       ]
+      ]
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "H09",
+     "key": "branches",
+     "value": [
+      "Something changed",
+      "Q06"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "H09",
+     "key": "logic",
+     "value": "Something changed opens Q06, which reopens only the screens the change touches (Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "ui_replace",
+     "screen": "Q01",
+     "match": [
+      "card",
+      "Anything else change?"
+     ],
+     "value": [
+      "card",
+      "Anything else change?",
+      [
+       "Income, a loan, family, a big expense, a windfall, a move: tell me and I reopen only those screens",
+       "Nothing else"
+      ]
+     ]
+    },
+    {
+     "op": "ui_insert",
+     "screen": "Q01",
+     "after": [
+      "card",
+      "Anything else change?"
+     ],
+     "value": [
+      "link",
+      "Something changed",
+      "Q06"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "Q01",
+     "key": "branches",
+     "value": [
+      "Something changed",
+      "Q06"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "Q01",
+     "key": "logic",
+     "value": "Anything else change? opens Q06 (Vatsal, 11 Sep 2026): the chips there map to the spine screens each change reopens; on completion the engine re-runs into this review's diff (H05)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "Q02",
+     "key": "logic",
+     "match": "gap, to be decided: the v0.1 life-events picker (Something changed in my life) has no screen of its own in v0.2; Q01 carries the Anything else change card.",
+     "value": "The life-events picker that sat here in v0.1 is Q06 Something changed (Vatsal, 11 Sep 2026; gap G14 done)."
+    },
+    {
+     "op": "set",
+     "screen": "Q02",
+     "key": "purpose",
+     "value": "Switch SKU or billing period from Settings. The life-events picker that sat here in v0.1 is Q06 Something changed."
+    },
+    {
+     "op": "reroute",
+     "screen": "A06",
+     "from": "A07",
+     "to": "D01"
+    },
+    {
+     "op": "reroute",
+     "screen": "A06",
+     "from": "A08",
+     "to": "D01"
+    },
+    {
+     "op": "spec_add",
+     "screen": "A06",
+     "key": "logic",
+     "value": "Consent done or abandoned lands on D01 (Vatsal, 11 Sep 2026): the fetch runs in the background while the user answers; a fetching your accounts pill in the section strip opens A07; A08 opens as a sheet the moment the fetch completes, or at D02 at the latest; whatever failed shows on the D02 rows with its recovery."
+    },
+    {
+     "op": "spec_add",
+     "screen": "A06",
+     "key": "states",
+     "value": "Abandoned: lands on D01 as a manual user with aa_status not_connected; the re-asks at G12a and Q01 apply"
+    },
+    {
+     "op": "set",
+     "screen": "A07",
+     "key": "purpose",
+     "value": "Fetch status, opened only by tapping the fetching your accounts pill in the section strip. The spine does not stop here; partial success is normal and is shown honestly."
+    },
+    {
+     "op": "ui",
+     "screen": "A07",
+     "value": [
+      [
+       "p",
+       "Opened from the fetching your accounts pill; you keep answering while this runs."
+      ],
+      [
+       "progress",
+       "Fetching your accounts",
+       70
+      ],
+      [
+       "rows",
+       [
+        [
+         "HDFC Bank",
+         "Done"
+        ],
+        [
+         "CAMS (mutual funds)",
+         "Done"
+        ],
+        [
+         "KFintech (mutual funds)",
+         "Fetching"
+        ],
+        [
+         "CDSL (stocks)",
+         "Failed, will retry"
+        ]
+       ]
+      ],
+      [
+       "btn",
+       "Back to where I was",
+       "D01"
+      ],
+      [
+       "link",
+       "See what came through",
+       "A08"
+      ],
+      [
+       "link",
+       "Nothing came through",
+       "A09"
+      ]
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "A07",
+     "key": "logic",
+     "value": [
+      "Opened only from the pill (Vatsal, 11 Sep 2026); Back returns to the screen the pill was tapped on (D01 drawn).",
+      "See what came through opens A08 as a sheet once at least one institution returns.",
+      "Nothing came through shows A09, the failed-fetch state."
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "A07",
+     "key": "branches",
+     "value": [
+      [
+       "Back",
+       "D01"
+      ],
+      [
+       "What came through",
+       "A08"
+      ],
+      [
+       "All failed",
+       "A09"
+      ]
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "A07",
+     "key": "states",
+     "value": [
+      "Fetch running: the pill in the section strip reads fetching your accounts; tapping it opens this screen",
+      "All failed: A09",
+      "Complete: A08 opens as a sheet over the current spine screen"
+     ]
+    },
+    {
+     "op": "status",
+     "screen": "A07",
+     "value": "changed"
+    },
+    {
+     "op": "meta",
+     "screen": "A08",
+     "template": "T-sheet"
+    },
+    {
+     "op": "set",
+     "screen": "A08",
+     "key": "title",
+     "value": "Here is what came through (sheet)"
+    },
+    {
+     "op": "set",
+     "screen": "A08",
+     "key": "purpose",
+     "value": "The diff-confirm sheet: the user confirms, edits or excludes what Account Aggregator returned. Shown the moment the fetch completes, over whichever spine screen is open, or at D02 entry at the latest."
+    },
+    {
+     "op": "ui_replace",
+     "screen": "A08",
+     "match": [
+      "btn",
+      "Continue"
+     ],
+     "value": [
+      "btn",
+      "That's about right",
+      "A08"
+     ]
+    },
+    {
+     "op": "ui_replace",
+     "screen": "A08",
+     "match": [
+      "link",
+      "Something is missing, add it manually"
+     ],
+     "value": [
+      "link",
+      "Something is missing, add it on the way",
+      "D02"
+     ]
+    },
+    {
+     "op": "spec_replace",
+     "screen": "A08",
+     "key": "logic",
+     "match": "Continue goes to D01 because no screen is bypassed on any path (rule 1); AA-fed fields arrive on the spine prefilled and tagged. Something is missing opens D02, the investments overview.",
+     "value": "Shown as a sheet (Vatsal, 11 Sep 2026): That's about right closes it in place and stores the fetched values with the AA-fed tag; the user carries on where they were. Something is missing opens D02, where the missing types are ticked and typed."
+    },
+    {
+     "op": "spec_set",
+     "screen": "A08",
+     "key": "branches",
+     "value": [
+      [
+       "Add manually",
+       "D02"
+      ]
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "A08",
+     "key": "states",
+     "value": "Shown the moment the fetch completes, over the current spine screen; at D02 entry at the latest; the prefilled screens then read That's about right (confirm or correct)"
+    },
+    {
+     "op": "status",
+     "screen": "A08",
+     "value": "changed"
+    }
+   ]
+  },
+  {
+   "id": "p9b-generated",
+   "kind": "override",
+   "cause": "Vatsal, 11 Sep 2026",
+   "stage": "after_generation",
+   "edits": [
+    {
+     "op": "set",
+     "screen": "A09",
+     "key": "purpose",
+     "value": "The failed-fetch state: retries run in the background; whatever failed shows on the D02 rows with its recovery (upload a statement or type it). Every exit lands on a real screen."
+    },
+    {
+     "op": "ui_remove",
+     "screen": "A09",
+     "match": [
+      "btn2",
+      "Upload a CAS statement"
+     ]
+    },
+    {
+     "op": "ui_remove",
+     "screen": "A09",
+     "match": [
+      "btn2",
+      "Enter these manually"
+     ]
+    },
+    {
+     "op": "ui_insert",
+     "screen": "A09",
+     "after": [
+      "rows",
+      null
+     ],
+     "value": [
+      "p",
+      "Each failed type shows on Which of these do you have? (D02) as: fetch failed, upload a statement or type it. I ask on the way."
+     ]
+    },
+    {
+     "op": "ui_replace",
+     "screen": "A09",
+     "match": [
+      "btn",
+      "Continue with what we have"
+     ],
+     "value": [
+      "btn",
+      "Carry on, I will ask on the way",
+      "D01"
+     ]
+    },
+    {
+     "op": "spec_replace",
+     "screen": "A09",
+     "key": "logic",
+     "match": "The v0.1 CAS button linked to itself and no upload screen existed (4.1 bug fix); it now opens A10.",
+     "value": "The recovery options (upload a CAS statement, type it) moved into the D02 rows for whatever failed (Vatsal, 11 Sep 2026); this state shows only the retry queue. The v0.1 self-link bug (4.1) stays fixed: CAS upload is A10, reached from the D02b and D02c ladders."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "A09",
+     "key": "logic",
+     "match": "Continue with what we have lands on D01 because no screen is bypassed on any path (rule 1); what came through is tagged AA-fed and the rest is typed on the spine.",
+     "value": "Carry on lands on D01 (rule 1): what came through is tagged AA-fed and the rest is typed on the spine, with the failed types flagged on their D02 rows (Vatsal, 11 Sep 2026)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "A09",
+     "key": "logic",
+     "match": "Enter these manually opens D02, the investments overview, where the missing types show as not fetched.",
+     "value": "On D02 the failed types are pre-ticked with the row fetch failed: upload a statement or type it; their screens open with the ladder (CAS on D02b and D02c)."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "A09",
+     "key": "states",
+     "match": "Everything failed: the rows list every FIP with Retry and the CAS button sits first",
+     "value": "Everything failed: the rows list every FIP with Retry; on D02 every fetchable type carries the recovery row"
+    },
+    {
+     "op": "spec_set",
+     "screen": "A09",
+     "key": "branches",
+     "value": [
+      [
+       "Carry on",
+       "D01"
+      ]
+     ]
+    },
+    {
+     "op": "status",
+     "screen": "A09",
+     "value": "changed"
+    },
+    {
+     "op": "ui_replace",
+     "screen": "X00",
+     "match": [
+      "card",
+      "Standing rules for every D screen"
+     ],
+     "value": [
+      "card",
+      "Standing rules for every D screen",
+      [
+       "1. One spine, both paths: AA users arrive prefilled and tagged AA-fed, CAS users with holdings tagged CAS-verified, manual users with empty fields; no screen is bypassed on any path; order D01, D08, D09, D05, D06, D02, D03, D04, D07, D10",
+       "2. One question per screen for numbers; taps may auto-advance; list items get a list screen plus a detail screen per item type; every instance is its own screen ID with a template tag",
+       "3. Band rule: every band question shows a visible exact input; a tapped band prefills the exact field with the midpoint; exact removes the approx tag; fixed bands per field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; dynamic bands are shelved until the data flywheel exists; each field is exact-first or band-first",
+       "4. Readback and units: every amount shows a readback in words, a per-month or per-year toggle where either applies, L and Cr multipliers and the numeric keypad; plausibility checks against the reveal prompt a check, never a block",
+       "5. Hesitation detection: at 45 seconds a warm line (D11a), at 90 seconds the why-this-matters sheet (D11b), which reuses the Why this one matters slot every number and detail screen carries as a collapsed link from the start, at 120 seconds or on a second return the skip offer (D11c); copy slots only",
+       "6. Tri-state fields: value, explicit none, not sure; None chips set explicit none; Not sure yet, skip sets not sure; not sure is never stored as zero; blindspot and concern copy fires on explicit none only; not sure produces a verify action",
+       "7. Gate and sharpen: the plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure field blocks the build and is asked for as a quick range on D13, never filled from an assumption; sharpen fields appear inside the plan section they improve as Sharpen this links that reopen the single screen and re-run",
+       "8. Capture ladder: under the exact input and the bands, the lower-friction sources for that item, in order where they apply: AA, CAS upload, guided lookup, document to the Vault, then Not sure yet, skip; no partner ask anywhere",
+       "9. Source and precision tags on every field: source aa, cas or manual, plus default accepted for the one default the user takes on screen (D07b work-optional age 60); precision exact, approx or unknown; D10 and every G screen show them; a manual override locks the field against AA refresh",
+       "10. Section relief: after the last screen of each spine section, a relief card (D12a to D12h): section done, N of eight, the next section with its minutes, and two chips, Keep going or Remind me later; the adviser-voice line on the card is a copy slot, chosen by the answers, no numbers",
+       "11. Endowed progress: the ring starts at 20 percent after the reveal, weighted gate fields first; minutes are about N minutes",
+       "12. Exit from any D screen: silent autosave with a Saved toast; no sheet. O03 is the reminder picker, opened only from Remind me later on a relief card or on O02; a chosen time replaces the first scheduled nudge and the standard ladder follows",
+       "13. Events and compliance flags on every screen (appendices D and G)",
+       "14. Section strip on every spine screen: section name, step x of y, sections done of eight; the first screen of each section says Now: <section>, N quick questions; O02 shows the eight sections as a map with ticks and the current position",
+       "15. Confirm or correct: a prefilled value (AA-fed, CAS-verified, derived from the reveal, carried from last quarter) shows with its source tag; That's about right stores it, Change it reveals the input; the derivation reads from what you told me earlier, never as an estimate",
+       "16. Multi-select lists (D02, D04): tick what you have; only ticked types open, in spine order; unticked types are explicit none; AA-fed and CAS-verified types arrive pre-ticked and locked with their value shown"
+      ]
+     ]
+    },
+    {
+     "op": "ui_replace",
+     "screen": "X00",
+     "match": [
+      "card",
+      "Changed on 11 Sep 2026"
+     ],
+     "value": [
+      "card",
+      "Changed on 11 Sep 2026",
+      [
+       "No client-data assumptions: every number in a plan is the client's own, exact or as a band they chose; fixed bands per field (M2); dynamic bands shelved until the data flywheel exists",
+       "A not-sure field blocks the build: D13 Quick ranges collects a band for each; G01a builds on bands, never on a value the user did not give",
+       "The only default the plan takes is the work-optional age 60 the user accepts on D07b, tagged default accepted",
+       "A goal with an unknown cost stays on the Yes list, out of the SIP maths, with the verify action price this goal to fund it (G09)",
+       "D02 and D04 are multi-selects: tick what you have; only those open; the rest are explicit none",
+       "Confirm or correct on every prefilled screen: That's about right, or Change it",
+       "Q06 Something changed: seven chips, each reopening only the spine screens it touches; Q06a lists them with minutes",
+       "Account Aggregator fetches in the background: A05, A06, then D01; A07, A08 and A09 are states, not stops",
+       "Why this one matters: a collapsed link under every number and detail question from the start; D11b reuses its slot",
+       "Section relief: a strip on every spine screen, relief cards after each section, a section map on O02, silent autosave on exit; O03 is the reminder picker",
+       "D05, D06 and D08 carry the status split (their instances are listed); dropped is R11, G02 and G08 only",
+       "Three audience files under audiences/: team, Spinach, compliance; each opens from disk with no network"
+      ]
+     ]
+    },
+    {
+     "op": "ui_insert",
+     "screen": "D01",
+     "after": "start",
+     "value": [
+      "link",
+      "Fetching your accounts: tap for status",
+      "A07"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "D01",
+     "key": "branches",
+     "value": [
+      "Fetch status",
+      "A07"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "D01",
+     "key": "states",
+     "value": "aa path: the section strip carries the fetching your accounts pill (opens A07) while the fetch runs; A08 opens as a sheet when it completes"
+    },
+    {
+     "op": "spec_add",
+     "screen": "D01",
+     "key": "logic",
+     "value": "Section strip (Vatsal, 11 Sep 2026): on the aa path it carries the fetching your accounts pill, which opens A07; the pill goes when the fetch completes and A08 opens as a sheet."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D01",
+     "key": "states",
+     "match": "Exit (rule 12): autosave, then O03",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "ui_insert",
+     "screen": "D01a",
+     "after": [
+      "h",
+      null
+     ],
+     "value": [
+      "link",
+      "Why this one matters",
+      "D01a"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "D01a",
+     "key": "logic",
+     "value": "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D01a (content is gap G08); D11b at 90 seconds reuses the same slot."
+    },
+    {
+     "op": "spec_add",
+     "screen": "D01a",
+     "key": "states",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D09",
+     "key": "states",
+     "match": "Exit (rule 12): autosave, then O03",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D06b",
+     "key": "states",
+     "match": "Exit (rule 12): autosave, then O03",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D06c",
+     "key": "states",
+     "match": "Exit (rule 12): autosave, then O03",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D03",
+     "key": "states",
+     "match": "Exit (rule 12): autosave, then O03",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D07",
+     "key": "states",
+     "match": "Exit (rule 12): autosave, then O03",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D07b",
+     "key": "states",
+     "match": "Exit (rule 12): autosave, then O03",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "ui_insert",
+     "screen": "D03a",
+     "after": [
+      "h",
+      null
+     ],
+     "value": [
+      "link",
+      "Why this one matters",
+      "D03a"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "D03a",
+     "key": "logic",
+     "value": "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D03a (content is gap G08); D11b at 90 seconds reuses the same slot."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D03a",
+     "key": "states",
+     "match": "Exit (rule 12): autosave, then O03",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "ui_insert",
+     "screen": "D04a",
+     "after": [
+      "h",
+      null
+     ],
+     "value": [
+      "link",
+      "Why this one matters",
+      "D04a"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "D04a",
+     "key": "logic",
+     "value": "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D04a (content is gap G08); D11b at 90 seconds reuses the same slot."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D04a",
+     "key": "states",
+     "match": "Exit (rule 12): autosave, then O03",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "ui_insert",
+     "screen": "D04b",
+     "after": [
+      "h",
+      null
+     ],
+     "value": [
+      "link",
+      "Why this one matters",
+      "D04b"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "D04b",
+     "key": "logic",
+     "value": "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D04b (content is gap G08); D11b at 90 seconds reuses the same slot."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D04b",
+     "key": "states",
+     "match": "Exit (rule 12): autosave, then O03",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "ui_insert",
+     "screen": "D04c",
+     "after": [
+      "h",
+      null
+     ],
+     "value": [
+      "link",
+      "Why this one matters",
+      "D04c"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "D04c",
+     "key": "logic",
+     "value": "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D04c (content is gap G08); D11b at 90 seconds reuses the same slot."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D04c",
+     "key": "states",
+     "match": "Exit (rule 12): autosave, then O03",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "ui_insert",
+     "screen": "D07a",
+     "after": [
+      "h",
+      null
+     ],
+     "value": [
+      "link",
+      "Why this one matters",
+      "D07a"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "D07a",
+     "key": "logic",
+     "value": "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D07a (content is gap G08); D11b at 90 seconds reuses the same slot."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "D07a",
+     "key": "states",
+     "match": "Exit (rule 12): autosave, then O03",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "spec_add",
+     "screen": "D10",
+     "key": "states",
+     "value": "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+    },
+    {
+     "op": "set",
+     "screen": "D02",
+     "key": "title",
+     "value": "Which of these do you have?"
+    },
+    {
+     "op": "set",
+     "screen": "D02",
+     "key": "purpose",
+     "value": "The multi-select for what you own: tick the types you have; only those open, one screen each, in spine order; every unticked type is stored as explicit none. AA-fed and CAS-verified types arrive pre-ticked and locked with their value shown."
+    },
+    {
+     "op": "ui",
+     "screen": "D02",
+     "value": [
+      [
+       "h",
+       "Which of these do you have?"
+      ],
+      [
+       "p",
+       "Tick what applies. I ask about each one, one at a time; approximate is fine, I mark it so."
+      ],
+      [
+       "chips",
+       [
+        "Bank balances and deposits",
+        "Mutual funds",
+        "Stocks and ETFs",
+        "NPS",
+        "EPF",
+        "PPF and post office",
+        "Gold and silver",
+        "Property",
+        "ULIP or endowment",
+        "Anything else",
+        "None of these"
+       ]
+      ],
+      [
+       "card",
+       "Already in from your accounts (pre-ticked, locked)",
+       [
+        "Bank balances and deposits: AA-fed Rs 8.2 L",
+        "Mutual funds: AA-fed Rs 11.8 L",
+        "For you the question reads: Anything else?"
+       ]
+      ],
+      [
+       "rows",
+       [
+        [
+         "Bank balances and deposits",
+         "AA-fed Rs 8.2 L, locked"
+        ],
+        [
+         "Mutual funds",
+         "AA-fed Rs 11.8 L, locked"
+        ],
+        [
+         "Stocks and ETFs",
+         "fetch failed: upload a statement or type it"
+        ],
+        [
+         "NPS",
+         "ticked: I ask next"
+        ],
+        [
+         "EPF",
+         "ticked"
+        ],
+        [
+         "PPF and post office",
+         "not ticked: none"
+        ],
+        [
+         "Gold and silver",
+         "not ticked: none"
+        ],
+        [
+         "Property",
+         "ticked"
+        ],
+        [
+         "ULIP or endowment",
+         "not ticked: none"
+        ],
+        [
+         "Anything else",
+         "not ticked: none"
+        ]
+       ]
+      ],
+      [
+       "note",
+       "Running total so far: Rs ___ against the Rs 15 L you guessed earlier (R04)"
+      ],
+      [
+       "link",
+       "See what came through",
+       "A08"
+      ],
+      [
+       "btn",
+       "Continue",
+       "D02a"
+      ]
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "D02",
+     "key": "logic",
+     "value": [
+      "Multi-select (Vatsal, 11 Sep 2026): one chip per asset type plus None of these; only the ticked types open, D02a to D02j in spine order, one screen each; every unticked type is stored as explicit none (rule 6) without opening its screen.",
+      "AA-fed and CAS-verified types arrive pre-ticked and locked with their value shown; for those users the question reads Anything else?",
+      "A fetch that failed (A09) shows on its row as fetch failed: upload a statement or type it; the type is pre-ticked and its screen opens with the ladder (CAS on D02b and D02c).",
+      "A08, the diff-confirm sheet, opens the moment the fetch completes, or at entry here at the latest; See what came through reopens it.",
+      "Continue opens the first ticked type; None of these sets all ten to explicit none and goes to D12e. A row opens its screen directly.",
+      "Plausibility (rule 4): the running total against the R04 corpus band; a mismatch prompts a check, never a block.",
+      "Gate fields in this section: bank_and_deposits, mutual_funds, stocks, epf (appendix B); the rest sharpen the plan.",
+      "No assumptions (Vatsal, 11 Sep 2026): an unknown type is never split from the R04 band; a ticked type that is not sure is asked for as a quick range on D13 before the build (rule 7)."
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "D02",
+     "key": "branches",
+     "value": [
+      [
+       "Continue",
+       "D02a"
+      ],
+      [
+       "None of these",
+       "D12e"
+      ],
+      [
+       "See what came through",
+       "A08"
+      ],
+      [
+       "Bank balances and deposits",
+       "D02a"
+      ],
+      [
+       "Mutual funds",
+       "D02b"
+      ],
+      [
+       "Stocks and ETFs",
+       "D02c"
+      ],
+      [
+       "NPS",
+       "D02d"
+      ],
+      [
+       "EPF",
+       "D02e"
+      ],
+      [
+       "PPF and post office",
+       "D02f"
+      ],
+      [
+       "Gold and silver",
+       "D02g"
+      ],
+      [
+       "Property",
+       "D02h"
+      ],
+      [
+       "ULIP or endowment",
+       "D02i"
+      ],
+      [
+       "Anything else",
+       "D02j"
+      ]
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "D02",
+     "key": "states",
+     "value": [
+      "AA path: bank, deposits, mutual funds and stocks pre-ticked and locked, tagged AA-fed; the question reads Anything else?",
+      "CAS path: mutual funds and stocks pre-ticked and locked, tagged CAS-verified",
+      "Manual path: nothing ticked; the user ticks what applies",
+      "Fetch failed for a type (A09): its row reads fetch failed: upload a statement or type it",
+      "A08 diff-confirm sheet: shown over this screen at entry if the fetch completed after D01 and was not yet confirmed",
+      "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "D02",
+     "key": "multi_select",
+     "value": {
+      "question": "Which of these do you have?",
+      "options": [
+       [
+        "Bank balances and deposits",
+        "D02a"
+       ],
+       [
+        "Mutual funds",
+        "D02b"
+       ],
+       [
+        "Stocks and ETFs",
+        "D02c"
+       ],
+       [
+        "NPS",
+        "D02d"
+       ],
+       [
+        "EPF",
+        "D02e"
+       ],
+       [
+        "PPF and post office",
+        "D02f"
+       ],
+       [
+        "Gold and silver",
+        "D02g"
+       ],
+       [
+        "Property",
+        "D02h"
+       ],
+       [
+        "ULIP or endowment",
+        "D02i"
+       ],
+       [
+        "Anything else",
+        "D02j"
+       ]
+      ],
+      "none": "None of these",
+      "unticked": "explicit none",
+      "after": "D12e",
+      "order": "spine order, D02a to D02j",
+      "prefilled": "AA-fed and CAS-verified types arrive pre-ticked and locked with their value shown; the question then reads Anything else?"
+     }
+    },
+    {
+     "op": "status",
+     "screen": "D02",
+     "value": "changed"
+    },
+    {
+     "op": "set",
+     "screen": "D04",
+     "key": "title",
+     "value": "Which covers do you have?"
+    },
+    {
+     "op": "set",
+     "screen": "D04",
+     "key": "purpose",
+     "value": "The multi-select for what is protected today: tick the covers you have; only those open (D04a term, D04b health, D04c other; ULIP or endowment lives on D02i); every unticked cover is stored as explicit none."
+    },
+    {
+     "op": "ui",
+     "screen": "D04",
+     "value": [
+      [
+       "h",
+       "Which covers do you have?"
+      ],
+      [
+       "p",
+       "Tick what applies. Insurance is where most families are over-covered on things that do not matter and under-covered on things that do."
+      ],
+      [
+       "chips",
+       [
+        "Term life",
+        "Health",
+        "ULIP or endowment",
+        "Other (accident, critical illness)",
+        "None of these"
+       ]
+      ],
+      [
+       "rows",
+       [
+        [
+         "Term life",
+         "ticked: I ask next"
+        ],
+        [
+         "Health",
+         "ticked"
+        ],
+        [
+         "ULIP or endowment",
+         "from D02i; tap to edit"
+        ],
+        [
+         "Other",
+         "not ticked: none"
+        ]
+       ]
+      ],
+      [
+       "btn",
+       "Continue",
+       "D04a"
+      ]
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "D04",
+     "key": "fields",
+     "value": [
+      {
+       "f": "term_status",
+       "gate": true,
+       "source": "manual",
+       "precision": "exact",
+       "note": "have (ticked) | none (unticked); the amount is tri-state on D04a"
+      },
+      {
+       "f": "health_status",
+       "gate": true,
+       "source": "manual",
+       "precision": "exact",
+       "note": "have (ticked) | none (unticked); the amount and the type are on D04b"
+      },
+      {
+       "f": "other_policies",
+       "gate": false,
+       "source": "manual",
+       "precision": "exact | approx | unknown",
+       "note": "D04c"
+      }
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "D04",
+     "key": "logic",
+     "value": [
+      "Multi-select (Vatsal, 11 Sep 2026): one chip per cover plus None of these; only the ticked covers open, D04a term, D04b health, D04c other, in that order; every unticked cover is stored as explicit none (rule 6) without opening its screen. ULIP or endowment opens D02i, where its detail already lives.",
+      "Have it but not sure of the amount lives on the detail screen: Not sure yet, skip keeps the amount not sure and offers the ladder (the policy schedule PDF to the Vault; the premium from the bank debit).",
+      "Blindspot and concern copy fires on explicit none only; not sure produces a verify action on G05 and H04 (rule 6).",
+      "Term cover need uses the React formula (spec v0.1). Employer-only health cover triggers the health advice per the React; thresholds from L02 (spec v0.1).",
+      "Continue opens the first ticked cover; after the last one, D12g. None of these sets every cover to explicit none and goes to D12g.",
+      "Additional screens per policy type (row 60): D04a term, D04b health, D04c other."
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "D04",
+     "key": "branches",
+     "value": [
+      [
+       "Continue",
+       "D04a"
+      ],
+      [
+       "None of these",
+       "D12g"
+      ],
+      [
+       "Done",
+       "D12g"
+      ],
+      [
+       "Term life",
+       "D04a"
+      ],
+      [
+       "Health",
+       "D04b"
+      ],
+      [
+       "ULIP or endowment",
+       "D02i"
+      ],
+      [
+       "Other (accident, critical illness)",
+       "D04c"
+      ]
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "D04",
+     "key": "states",
+     "value": [
+      "Insurance may partly arrive via AA later; a cover that does arrives pre-ticked and locked with its value shown, overridable with source lock (spec v0.1)",
+      "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "D04",
+     "key": "multi_select",
+     "value": {
+      "question": "Which covers do you have?",
+      "options": [
+       [
+        "Term life",
+        "D04a"
+       ],
+       [
+        "Health",
+        "D04b"
+       ],
+       [
+        "ULIP or endowment",
+        "D02i"
+       ],
+       [
+        "Other (accident, critical illness)",
+        "D04c"
+       ]
+      ],
+      "none": "None of these",
+      "unticked": "explicit none",
+      "after": "D12g",
+      "order": "D04a, D04b, D04c; ULIP or endowment on D02i",
+      "prefilled": "A cover that arrives via AA is pre-ticked and locked with its value shown"
+     }
+    },
+    {
+     "op": "status",
+     "screen": "D04",
+     "value": "changed"
+    },
+    {
+     "op": "ui_insert",
+     "screen": "O02",
+     "after": [
+      "card",
+      "1. Get your numbers in"
+     ],
+     "value": [
+      "rows",
+      [
+       [
+        "Family",
+        "done"
+       ],
+       [
+        "Risk profile",
+        "done"
+       ],
+       [
+        "Income",
+        "you are here"
+       ],
+       [
+        "Expenses",
+        "not started"
+       ],
+       [
+        "Investments",
+        "not started"
+       ],
+       [
+        "Loans",
+        "not started"
+       ],
+       [
+        "Insurance",
+        "not started"
+       ],
+       [
+        "Goals",
+        "not started"
+       ]
+      ]
+     ]
+    },
+    {
+     "op": "ui_insert",
+     "screen": "O02",
+     "after": [
+      "link",
+      "What to have ready"
+     ],
+     "value": [
+      "link",
+      "Remind me later",
+      "O03"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "O02",
+     "key": "logic",
+     "value": "Section map (Vatsal, 11 Sep 2026): the eight spine sections with a tick for each one done and the current position; a row opens the first incomplete screen of its section."
+    },
+    {
+     "op": "spec_add",
+     "screen": "O02",
+     "key": "logic",
+     "value": "Remind me later opens O03, the reminder picker; O03 never opens on exit (rule 12)."
+    },
+    {
+     "op": "spec_add",
+     "screen": "O02",
+     "key": "branches",
+     "value": [
+      "Remind me later",
+      "O03"
+     ]
+    },
+    {
+     "op": "set",
+     "screen": "O03",
+     "key": "title",
+     "value": "When should I remind you?"
+    },
+    {
+     "op": "set",
+     "screen": "O03",
+     "key": "purpose",
+     "value": "The reminder picker, opened only from Remind me later on a relief card (D12a to D12h) or on the hub (O02); never shown on exit. The chosen time replaces the first scheduled nudge."
+    },
+    {
+     "op": "ui",
+     "screen": "O03",
+     "value": [
+      [
+       "h",
+       "When should I remind you?"
+      ],
+      [
+       "chips",
+       [
+        "Tonight",
+        "Tomorrow morning",
+        "This weekend",
+        "No reminder"
+       ]
+      ],
+      [
+       "btn",
+       "Set it and exit",
+       "O02"
+      ]
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "O03",
+     "key": "logic",
+     "value": [
+      "Opened only from Remind me later on a relief card (D12a to D12h) or on O02 (Vatsal, 11 Sep 2026); exit from a D screen is a silent autosave with a Saved toast (rule 12), never this sheet.",
+      "The chosen time schedules the first push (WhatsApp if opted in) and replaces the first step of the S4 ladder, skipping the 24-hour default; the standard ladder (section 5) follows. No reminder keeps the standard ladder.",
+      "The push deep-links to the screen the user left, with its minutes."
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "O03",
+     "key": "branches",
+     "value": [
+      [
+       "Set it and exit",
+       "O02"
+      ]
+     ]
+    },
+    {
+     "op": "spec_set",
+     "screen": "O03",
+     "key": "states",
+     "value": [
+      "S4 data partial: the ladder starts from the chosen time; No reminder keeps the standard ladder",
+      "Opened from a relief card: Set it and exit lands on O02; the section just finished stays done"
+     ]
+    },
+    {
+     "op": "add",
+     "after": "Q05",
+     "value": {
+      "id": "Q06",
+      "sec": "Q",
+      "title": "Something changed",
+      "tier": [
+       "ALL"
+      ],
+      "frame": "phone",
+      "purpose": "The life-events picker: seven chips, each mapped to the spine screens it reopens, in order. Reachable from H01, H07, H09, the Q01 review card and the N04 quarterly template.",
+      "ui": [
+       [
+        "h",
+        "Something changed?"
+       ],
+       [
+        "p",
+        "Tell me what, and I reopen only the screens it touches. Everything else stays as it is."
+       ],
+       [
+        "chips",
+        [
+         "Income changed",
+         "New loan or loan closed",
+         "Family: baby, marriage, new dependant",
+         "Big expense coming",
+         "Windfall or bonus",
+         "Moved city",
+         "Something else"
+        ]
+       ],
+       [
+        "in",
+        "Something else: tell me in a line"
+       ],
+       [
+        "card",
+        "What each one reopens",
+        [
+         "Income changed: your take-home (D05a), your outgoings (D06a)",
+         "New loan or loan closed: your loans (D03) and the loan's detail (D03a)",
+         "Family: baby, marriage, new dependant: the member's detail (D01a), a suggested goal (D07), the health floater (D04b)",
+         "Big expense coming: a goal with its cost and year (D07a)",
+         "Windfall or bonus: your bank balances (D02a), plus the action what to do with it (H04)",
+         "Moved city: your outgoings (D06a)",
+         "Something else: a line in your words, then your next steps (O02)"
+        ]
+       ],
+       [
+        "btn",
+        "Next",
+        "Q06a"
+       ]
+      ],
+      "spec": {
+       "fields": [
+        {
+         "f": "life_events[]",
+         "gate": false,
+         "source": "manual",
+         "precision": "exact",
+         "note": "chip, free text for something else, reported_at"
+        }
+       ],
+       "logic": [
+        "Each chip maps to the spine screens it reopens, in order (Vatsal, 11 Sep 2026): income changed to D05a then D06a; new loan or loan closed to D03 then D03a; family to D01a, D07 (suggested goal) and D04b (floater); big expense coming to D07a; windfall or bonus to D02a plus an H04 action, what to do with it; moved city to D06a; something else to free text plus O02.",
+        "More than one chip: the reopened screens are merged in spine order, each once.",
+        "Next opens Q06a, which lists the mapped screens with their minutes before anything reopens.",
+        "Reopened screens carry their current value prefilled (confirm or correct): That's about right keeps it, Change it reveals the input."
+       ],
+       "branches": [
+        [
+         "Next",
+         "Q06a"
+        ],
+        [
+         "Income changed",
+         "D05a"
+        ],
+        [
+         "Income changed",
+         "D06a"
+        ],
+        [
+         "New loan or loan closed",
+         "D03"
+        ],
+        [
+         "New loan or loan closed",
+         "D03a"
+        ],
+        [
+         "Family: baby, marriage, new dependant",
+         "D01a"
+        ],
+        [
+         "Family: baby, marriage, new dependant",
+         "D07"
+        ],
+        [
+         "Family: baby, marriage, new dependant",
+         "D04b"
+        ],
+        [
+         "Big expense coming",
+         "D07a"
+        ],
+        [
+         "Windfall or bonus",
+         "D02a"
+        ],
+        [
+         "Windfall or bonus",
+         "H04"
+        ],
+        [
+         "Moved city",
+         "D06a"
+        ],
+        [
+         "Something else",
+         "O02"
+        ]
+       ],
+       "states": [
+        "From the Q01 review card: on completion the re-run lands in the review's diff (H05)",
+        "From H01, H07 or H09: on completion H05, then H01e (plan updated, S11)",
+        "From the N04 quarterly template (slot N-Q06): deep link lands here"
+       ],
+       "dev": [
+        "Store life_events[] with the chip, the free text and reported_at; event life_event_reported {chip}.",
+        "The mapping is config (chip to screens), not code."
+       ],
+       "chip_map": [
+        {
+         "chip": "Income changed",
+         "reopens": [
+          "D05a",
+          "D06a"
+         ]
+        },
+        {
+         "chip": "New loan or loan closed",
+         "reopens": [
+          "D03",
+          "D03a"
+         ]
+        },
+        {
+         "chip": "Family: baby, marriage, new dependant",
+         "reopens": [
+          "D01a",
+          "D07",
+          "D04b"
+         ]
+        },
+        {
+         "chip": "Big expense coming",
+         "reopens": [
+          "D07a"
+         ]
+        },
+        {
+         "chip": "Windfall or bonus",
+         "reopens": [
+          "D02a",
+          "H04"
+         ]
+        },
+        {
+         "chip": "Moved city",
+         "reopens": [
+          "D06a"
+         ]
+        },
+        {
+         "chip": "Something else",
+         "reopens": [
+          "O02"
+         ]
+        }
+       ]
+      },
+      "template": "T-list",
+      "path": "both",
+      "events": [
+       "life_event_reported"
+      ],
+      "compliance": {
+       "review": false,
+       "reasons": [
+        "plain copy"
+       ]
+      }
+     }
+    },
+    {
+     "op": "add",
+     "after": "Q06",
+     "value": {
+      "id": "Q06a",
+      "sec": "Q",
+      "title": "What I will ask again",
+      "tier": [
+       "ALL"
+      ],
+      "frame": "phone",
+      "purpose": "The list of screens a reported change reopens, with minutes, before anything reopens. Start walks them; on completion the engine re-runs and lands on H05, then H01e.",
+      "ui": [
+       [
+        "h",
+        "What I will ask again"
+       ],
+       [
+        "p",
+        "Only these; everything else stays as it is."
+       ],
+       [
+        "rows",
+        [
+         [
+          "Your monthly take-home (D05a)",
+          "about N minutes"
+         ],
+         [
+          "Total monthly outgoings (D06a)",
+          "about N minutes"
+         ]
+        ]
+       ],
+       [
+        "note",
+        "Drawn for income changed; the list follows the chips ticked on Q06, in spine order"
+       ],
+       [
+        "btn",
+        "Start",
+        "D05a"
+       ],
+       [
+        "link",
+        "Not now",
+        "H01"
+       ]
+      ],
+      "spec": {
+       "fields": [
+        {
+         "f": "reopen_queue[]",
+         "gate": false,
+         "source": "system",
+         "precision": "exact",
+         "note": "the mapped screens for the chips ticked, in spine order"
+        }
+       ],
+       "logic": [
+        "Start opens the first mapped screen; each mapped screen saves and advances to the next in the queue instead of its usual next (Vatsal, 11 Sep 2026).",
+        "On completion the engine re-runs and lands on H05 with the diff, then H01e (plan updated, S11); from the Q01 review the diff joins the review.",
+        "Not now keeps the report; H01 shows a card to finish it, and the N-Q06 slot may nudge once."
+       ],
+       "branches": [
+        [
+         "Start",
+         "D05a"
+        ],
+        [
+         "Not now",
+         "H01"
+        ],
+        [
+         "On completion",
+         "H05"
+        ],
+        [
+         "Then",
+         "H01e"
+        ]
+       ],
+       "states": [
+        "One screen in the queue: Start opens it and the re-run follows its save",
+        "Queue interrupted: the report stays open; the next open of H01 offers to finish it"
+       ],
+       "dev": [
+        "reopen_queue[] drives the next target of each reopened screen; event life_event_rerun {chips, screens} on completion."
+       ]
+      },
+      "template": "T-list",
+      "path": "both",
+      "events": [
+       "life_event_rerun"
+      ],
+      "compliance": {
+       "review": false,
+       "reasons": [
+        "plain copy"
+       ]
+      }
+     }
+    },
+    {
+     "op": "table_add_row",
+     "screen": "N04",
+     "index": 0,
+     "value": [
+      "N-Q06",
+      "push",
+      "any post-plan state",
+      "Q06",
+      "Something changed? Tell me in one tap and I update only what it touches. About N minutes."
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "N04",
+     "key": "branches",
+     "value": [
+      "Something changed",
+      "Q06"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "N04",
+     "key": "logic",
+     "value": "N-Q06 (Vatsal, 11 Sep 2026): the quarterly template's Something changed slot deep-links to Q06."
     }
    ]
   }

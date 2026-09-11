@@ -127,15 +127,18 @@
       "2. One question per screen for numbers; taps may auto-advance; list items get a list screen plus a detail screen per item type; every instance is its own screen ID with a template tag",
       "3. Band rule: every band question shows a visible exact input; a tapped band prefills the exact field with the midpoint; exact removes the approx tag; fixed bands per field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; dynamic bands are shelved until the data flywheel exists; each field is exact-first or band-first",
       "4. Readback and units: every amount shows a readback in words, a per-month or per-year toggle where either applies, L and Cr multipliers and the numeric keypad; plausibility checks against the reveal prompt a check, never a block",
-      "5. Hesitation detection: at 45 seconds a warm line (D11a), at 90 seconds the why-this-matters line (D11b), at 120 seconds or on a second return the skip offer (D11c); copy slots only",
+      "5. Hesitation detection: at 45 seconds a warm line (D11a), at 90 seconds the why-this-matters sheet (D11b), which reuses the Why this one matters slot every number and detail screen carries as a collapsed link from the start, at 120 seconds or on a second return the skip offer (D11c); copy slots only",
       "6. Tri-state fields: value, explicit none, not sure; None chips set explicit none; Not sure yet, skip sets not sure; not sure is never stored as zero; blindspot and concern copy fires on explicit none only; not sure produces a verify action",
       "7. Gate and sharpen: the plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure field blocks the build and is asked for as a quick range on D13, never filled from an assumption; sharpen fields appear inside the plan section they improve as Sharpen this links that reopen the single screen and re-run",
       "8. Capture ladder: under the exact input and the bands, the lower-friction sources for that item, in order where they apply: AA, CAS upload, guided lookup, document to the Vault, then Not sure yet, skip; no partner ask anywhere",
       "9. Source and precision tags on every field: source aa, cas or manual, plus default accepted for the one default the user takes on screen (D07b work-optional age 60); precision exact, approx or unknown; D10 and every G screen show them; a manual override locks the field against AA refresh",
-      "10. Section micro-feedback: after the last screen of each spine section, one card in the adviser voice, chosen by the answers, no numbers (D12a to D12h); copy slots only",
+      "10. Section relief: after the last screen of each spine section, a relief card (D12a to D12h): section done, N of eight, the next section with its minutes, and two chips, Keep going or Remind me later; the adviser-voice line on the card is a copy slot, chosen by the answers, no numbers",
       "11. Endowed progress: the ring starts at 20 percent after the reveal, weighted gate fields first; minutes are about N minutes",
-      "12. Exit from any D screen: autosave, then O03 When will you finish; the chosen time replaces the first scheduled nudge and the standard ladder follows",
-      "13. Events and compliance flags on every screen (appendices D and G)"
+      "12. Exit from any D screen: silent autosave with a Saved toast; no sheet. O03 is the reminder picker, opened only from Remind me later on a relief card or on O02; a chosen time replaces the first scheduled nudge and the standard ladder follows",
+      "13. Events and compliance flags on every screen (appendices D and G)",
+      "14. Section strip on every spine screen: section name, step x of y, sections done of eight; the first screen of each section says Now: <section>, N quick questions; O02 shows the eight sections as a map with ticks and the current position",
+      "15. Confirm or correct: a prefilled value (AA-fed, CAS-verified, derived from the reveal, carried from last quarter) shows with its source tag; That's about right stores it, Change it reveals the input; the derivation reads from what you told me earlier, never as an estimate",
+      "16. Multi-select lists (D02, D04): tick what you have; only ticked types open, in spine order; unticked types are explicit none; AA-fed and CAS-verified types arrive pre-ticked and locked with their value shown"
      ]
     ],
     [
@@ -145,7 +148,15 @@
       "No client-data assumptions: every number in a plan is the client's own, exact or as a band they chose; fixed bands per field (M2); dynamic bands shelved until the data flywheel exists",
       "A not-sure field blocks the build: D13 Quick ranges collects a band for each; G01a builds on bands, never on a value the user did not give",
       "The only default the plan takes is the work-optional age 60 the user accepts on D07b, tagged default accepted",
-      "A goal with an unknown cost stays on the Yes list, out of the SIP maths, with the verify action price this goal to fund it (G09)"
+      "A goal with an unknown cost stays on the Yes list, out of the SIP maths, with the verify action price this goal to fund it (G09)",
+      "D02 and D04 are multi-selects: tick what you have; only those open; the rest are explicit none",
+      "Confirm or correct on every prefilled screen: That's about right, or Change it",
+      "Q06 Something changed: seven chips, each reopening only the spine screens it touches; Q06a lists them with minutes",
+      "Account Aggregator fetches in the background: A05, A06, then D01; A07, A08 and A09 are states, not stops",
+      "Why this one matters: a collapsed link under every number and detail question from the start; D11b reuses its slot",
+      "Section relief: a strip on every spine screen, relief cards after each section, a section map on O02, silent autosave on exit; O03 is the reminder picker",
+      "D05, D06 and D08 carry the status split (their instances are listed); dropped is R11, G02 and G08 only",
+      "Three audience files under audiences/: team, Spinach, compliance; each opens from disk with no network"
      ]
     ],
     [
@@ -1956,6 +1967,43 @@
      ]
     ],
     [
+     "rows",
+     [
+      [
+       "Family",
+       "done"
+      ],
+      [
+       "Risk profile",
+       "done"
+      ],
+      [
+       "Income",
+       "you are here"
+      ],
+      [
+       "Expenses",
+       "not started"
+      ],
+      [
+       "Investments",
+       "not started"
+      ],
+      [
+       "Loans",
+       "not started"
+      ],
+      [
+       "Insurance",
+       "not started"
+      ],
+      [
+       "Goals",
+       "not started"
+      ]
+     ]
+    ],
+    [
      "card",
      "2. Review and build",
      [
@@ -1973,6 +2021,11 @@
      "link",
      "What to have ready",
      "D00"
+    ],
+    [
+     "link",
+     "Remind me later",
+     "O03"
     ],
     [
      "video",
@@ -2007,7 +2060,9 @@
      "Card 2 enables when the gate is met (rule 7) and opens D10.",
      "Card 3 for every tier (Vatsal, 10 Sep 2026): a call can be booked at any time.",
      "Continue: A05 on first entry; else the first incomplete screen in section D (spec v0.1).",
-     "Every data screen autosaves on every field change; this hub reads completion flags (spec v0.1)."
+     "Every data screen autosaves on every field change; this hub reads completion flags (spec v0.1).",
+     "Section map (Vatsal, 11 Sep 2026): the eight spine sections with a tick for each one done and the current position; a row opens the first incomplete screen of its section.",
+     "Remind me later opens O03, the reminder picker; O03 never opens on exit (rule 12)."
     ],
     "branches": [
      [
@@ -2033,6 +2088,10 @@
      [
       "Section",
       "D01"
+     ],
+     [
+      "Remind me later",
+      "O03"
      ]
     ],
     "states": [
@@ -2066,23 +2125,24 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
      "Vatsal, 10 Sep 2026",
-     "row 26 (declined, no change to the step wording)"
+     "row 26 (declined, no change to the step wording)",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
   {
    "id": "O03",
    "sec": "O",
-   "title": "When will you finish?",
+   "title": "When should I remind you?",
    "tier": [
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "The sheet over any D screen on exit: pick a time, and that time replaces the first scheduled nudge.",
+   "purpose": "The reminder picker, opened only from Remind me later on a relief card (D12a to D12h) or on the hub (O02); never shown on exit. The chosen time replaces the first scheduled nudge.",
    "ui": [
     [
      "h",
-     "When will you finish?"
+     "When should I remind you?"
     ],
     [
      "chips",
@@ -2090,12 +2150,12 @@
       "Tonight",
       "Tomorrow morning",
       "This weekend",
-      "I will come back on my own"
+      "No reminder"
      ]
     ],
     [
      "btn",
-     "Save and exit",
+     "Set it and exit",
      "O02"
     ]
    ],
@@ -2110,18 +2170,19 @@
      }
     ],
     "logic": [
-     "Sheet over any D screen on exit (rule 12): autosave first, then this.",
-     "The chosen time schedules the first push (WhatsApp if opted in) and skips the 24-hour default; the standard ladder (section 5) follows. I will come back on my own keeps the standard ladder.",
+     "Opened only from Remind me later on a relief card (D12a to D12h) or on O02 (Vatsal, 11 Sep 2026); exit from a D screen is a silent autosave with a Saved toast (rule 12), never this sheet.",
+     "The chosen time schedules the first push (WhatsApp if opted in) and replaces the first step of the S4 ladder, skipping the 24-hour default; the standard ladder (section 5) follows. No reminder keeps the standard ladder.",
      "The push deep-links to the screen the user left, with its minutes."
     ],
     "branches": [
      [
-      "Save and exit",
+      "Set it and exit",
       "O02"
      ]
     ],
     "states": [
-     "S4 data partial: the ladder starts from the chosen time"
+     "S4 data partial: the ladder starts from the chosen time; No reminder keeps the standard ladder",
+     "Opened from a relief card: Set it and exit lands on O02; the section just finished stays done"
     ],
     "dev": [
      "Event return_time_picked {slot}; the CRM schedules the first nudge from it."
@@ -2145,7 +2206,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -2445,7 +2507,7 @@
     [
      "btn",
      "Continue",
-     "A07"
+     "D01"
     ]
    ],
    "spec": {
@@ -2454,20 +2516,22 @@
     ],
     "logic": [
      "User can deselect accounts; we record which were excluded.",
-     "Consent period in plain words above the webview (Vatsal, 10 Sep 2026): 12 months, fetched every quarter, read-only; to be verified: maximum AA consent validity and fetch frequency under the wealth-management purpose."
+     "Consent period in plain words above the webview (Vatsal, 10 Sep 2026): 12 months, fetched every quarter, read-only; to be verified: maximum AA consent validity and fetch frequency under the wealth-management purpose.",
+     "Consent done or abandoned lands on D01 (Vatsal, 11 Sep 2026): the fetch runs in the background while the user answers; a fetching your accounts pill in the section strip opens A07; A08 opens as a sheet the moment the fetch completes, or at D02 at the latest; whatever failed shows on the D02 rows with its recovery."
     ],
     "branches": [
      [
       "Done",
-      "A07"
+      "D01"
      ],
      [
       "Abandoned",
-      "A08"
+      "D01"
      ]
     ],
     "states": [
-     "Discovery finds nothing on this number: offer another number or manual"
+     "Discovery finds nothing on this number: offer another number or manual",
+     "Abandoned: lands on D01 as a manual user with aa_status not_connected; the re-asks at G12a and Q01 apply"
     ],
     "dev": [
      "TSP options: Setu, Finvu, OneMoney. Corporate RIA FIU registration is in hand per spiff.",
@@ -2492,7 +2556,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -2503,8 +2568,12 @@
    "tier": [
     "ALL"
    ],
-   "purpose": "Institution-by-institution progress. Partial success is normal; show it honestly.",
+   "purpose": "Fetch status, opened only by tapping the fetching your accounts pill in the section strip. The spine does not stop here; partial success is normal and is shown honestly.",
    "ui": [
+    [
+     "p",
+     "Opened from the fetching your accounts pill; you keep answering while this runs."
+    ],
     [
      "progress",
      "Fetching your accounts",
@@ -2533,6 +2602,11 @@
     ],
     [
      "btn",
+     "Back to where I was",
+     "D01"
+    ],
+    [
+     "link",
      "See what came through",
      "A08"
     ],
@@ -2545,11 +2619,17 @@
    "spec": {
     "fields": [],
     "logic": [
-     "Continue is enabled once at least one institution returns."
+     "Opened only from the pill (Vatsal, 11 Sep 2026); Back returns to the screen the pill was tapped on (D01 drawn).",
+     "See what came through opens A08 as a sheet once at least one institution returns.",
+     "Nothing came through shows A09, the failed-fetch state."
     ],
     "branches": [
      [
-      "Continue",
+      "Back",
+      "D01"
+     ],
+     [
+      "What came through",
       "A08"
      ],
      [
@@ -2558,7 +2638,9 @@
      ]
     ],
     "states": [
-     "All failed: go to A09"
+     "Fetch running: the pill in the section strip reads fetching your accounts; tapping it opens this screen",
+     "All failed: A09",
+     "Complete: A08 opens as a sheet over the current spine screen"
     ],
     "dev": [
      "FIP timeouts are common; retry in background and merge later with a notification."
@@ -2582,18 +2664,19 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "4.1 bug fix"
+     "4.1 bug fix",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
   {
    "id": "A08",
    "sec": "D",
-   "title": "Here is what came through",
+   "title": "Here is what came through (sheet)",
    "tier": [
     "ALL"
    ],
-   "purpose": "The user confirms, edits or excludes what AA returned. This is the picture the plan is built from.",
+   "purpose": "The diff-confirm sheet: the user confirms, edits or excludes what Account Aggregator returned. Shown the moment the fetch completes, over whichever spine screen is open, or at D02 entry at the latest.",
    "ui": [
     [
      "h",
@@ -2640,13 +2723,13 @@
     ],
     [
      "link",
-     "Something is missing, add it manually",
+     "Something is missing, add it on the way",
      "D02"
     ],
     [
      "btn",
-     "Continue",
-     "D01"
+     "That's about right",
+     "A08"
     ]
    ],
    "spec": {
@@ -2656,27 +2739,24 @@
     "logic": [
      "Every field carries a source: AA-fed or manual. A manual override locks the field so a later AA refresh does not overwrite it unless the user unlocks it (spiff, Q10).",
      "On every later refresh: show the diff first, then ask, we updated N numbers, good to go? (Q01).",
-     "Continue goes to D01 because no screen is bypassed on any path (rule 1); AA-fed fields arrive on the spine prefilled and tagged. Something is missing opens D02, the investments overview."
+     "Shown as a sheet (Vatsal, 11 Sep 2026): That's about right closes it in place and stores the fetched values with the AA-fed tag; the user carries on where they were. Something is missing opens D02, where the missing types are ticked and typed."
     ],
     "branches": [
-     [
-      "Continue",
-      "D01"
-     ],
      [
       "Add manually",
       "D02"
      ]
     ],
     "states": [
-     "Nothing fetched: A09"
+     "Nothing fetched: A09",
+     "Shown the moment the fetch completes, over the current spine screen; at D02 entry at the latest; the prefilled screens then read That's about right (confirm or correct)"
     ],
     "dev": [
      "Holdings stored at ISIN level with units, value, SIP mandates. Needed for I02."
     ]
    },
    "frame": "phone",
-   "template": "T-review",
+   "template": "T-sheet",
    "path": "aa",
    "compliance": {
     "review": false,
@@ -2693,7 +2773,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "4.1 bug fix"
+     "4.1 bug fix",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -2705,7 +2786,7 @@
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "Recovery without dead ends: retry, upload a CAS statement, or type it in. Every exit lands on a real screen.",
+   "purpose": "The failed-fetch state: retries run in the background; whatever failed shows on the D02 rows with its recovery (upload a statement or type it). Every exit lands on a real screen.",
    "ui": [
     [
      "h",
@@ -2725,18 +2806,12 @@
      ]
     ],
     [
-     "btn2",
-     "Upload a CAS statement",
-     "A10"
-    ],
-    [
-     "btn2",
-     "Enter these manually",
-     "D02"
+     "p",
+     "Each failed type shows on Which of these do you have? (D02) as: fetch failed, upload a statement or type it. I ask on the way."
     ],
     [
      "btn",
-     "Continue with what we have",
+     "Carry on, I will ask on the way",
      "D01"
     ]
    ],
@@ -2751,27 +2826,19 @@
      }
     ],
     "logic": [
-     "The v0.1 CAS button linked to itself and no upload screen existed (4.1 bug fix); it now opens A10.",
-     "Continue with what we have lands on D01 because no screen is bypassed on any path (rule 1); what came through is tagged AA-fed and the rest is typed on the spine.",
-     "Enter these manually opens D02, the investments overview, where the missing types show as not fetched.",
+     "The recovery options (upload a CAS statement, type it) moved into the D02 rows for whatever failed (Vatsal, 11 Sep 2026); this state shows only the retry queue. The v0.1 self-link bug (4.1) stays fixed: CAS upload is A10, reached from the D02b and D02c ladders.",
+     "Carry on lands on D01 (rule 1): what came through is tagged AA-fed and the rest is typed on the spine, with the failed types flagged on their D02 rows (Vatsal, 11 Sep 2026).",
+     "On D02 the failed types are pre-ticked with the row fetch failed: upload a statement or type it; their screens open with the ladder (CAS on D02b and D02c).",
      "CAS upload parses holdings and marks them CAS-verified (counts as verified for sell and switch advice) (spec v0.1 A09)."
     ],
     "branches": [
      [
-      "CAS",
-      "A10"
-     ],
-     [
-      "Manual",
-      "D02"
-     ],
-     [
-      "Continue",
+      "Carry on",
       "D01"
      ]
     ],
     "states": [
-     "Everything failed: the rows list every FIP with Retry and the CAS button sits first",
+     "Everything failed: the rows list every FIP with Retry; on D02 every fetchable type carries the recovery row",
      "A retry succeeds later: A08 shows the merged picture with a notification"
     ],
     "dev": [
@@ -2794,11 +2861,12 @@
     ]
    },
    "v02": {
-    "status": "rebuilt",
+    "status": "changed",
     "causes": [
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
      "4.1 bug fix",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -3340,6 +3408,19 @@
    "purpose": "Who the plan is for. The entry screen for both paths; dependants drive protection, children's ages drive education goals.",
    "ui": [
     [
+     "strip",
+     "Family: step 1 of 1; 0 of 8 sections done"
+    ],
+    [
+     "p",
+     "Now: family, N quick questions."
+    ],
+    [
+     "link",
+     "Fetching your accounts: tap for status",
+     "A07"
+    ],
+    [
      "h",
      "Let's start with who is in your circle. The plan is built around your family, not around you alone."
     ],
@@ -3431,7 +3512,8 @@
      "Prefilled from R02 household type (spec v0.1).",
      "Each child suggests an education goal on D07; each dependant raises the term-cover need in G05 (spec v0.1).",
      "Just me sets members to you only and has_dependants to explicit none (rule 6).",
-     "Pets card (row 8 note): yes or no; feeds a recurring expense line inside Fixed on D06b."
+     "Pets card (row 8 note): yes or no; feeds a recurring expense line inside Fixed on D06b.",
+     "Section strip (Vatsal, 11 Sep 2026): on the aa path it carries the fetching your accounts pill, which opens A07; the pill goes when the fetch completes and A08 opens as a sheet."
     ],
     "branches": [
      [
@@ -3445,12 +3527,17 @@
      [
       "Continue",
       "D12a"
+     ],
+     [
+      "Fetch status",
+      "A07"
      ]
     ],
     "states": [
      "Just me: partner, kids and parent cards collapse",
      "Family is always typed; AA has nothing to prefill here",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)",
+     "aa path: the section strip carries the fetching your accounts pill (opens A07) while the fetch runs; A08 opens as a sheet when it completes"
     ],
     "dev": [
      "Bhuvanaa asked for a family-tree feel in v0.1; keep it a card list at wireframe level, Spinach decides the visual (spec v0.1)."
@@ -3475,7 +3562,8 @@
     "causes": [
      "Vatsal, 10 Sep 2026",
      "row 8",
-     "4.1 bug fix"
+     "4.1 bug fix",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -3490,8 +3578,17 @@
    "purpose": "One member at a time: partner, child or dependant parent.",
    "ui": [
     [
+     "strip",
+     "Family: step 1 of 1; 0 of 8 sections done (detail)"
+    ],
+    [
      "h",
      "Tell me about them"
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D01a"
     ],
     [
      "chips",
@@ -3541,7 +3638,8 @@
     ],
     "logic": [
      "Partner: name, age, earns yes or no (yes opens D05b in the income run). Child: name, age (suggests an education goal on D07). Dependant parent: age, lives with you.",
-     "The chips that do not apply to the chosen relation hide."
+     "The chips that do not apply to the chosen relation hide.",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D01a (content is gap G08); D11b at 90 seconds reuses the same slot."
     ],
     "branches": [
      [
@@ -3550,7 +3648,8 @@
      ]
     ],
     "states": [
-     "Editing an existing member: fields prefilled"
+     "Editing an existing member: fields prefilled",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Age drives the family ages on the G09 timeline."
@@ -3573,50 +3672,63 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
   {
    "id": "D12a",
    "sec": "D",
-   "title": "Section insight: family",
+   "title": "Relief card: family",
    "tier": [
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "One card in the adviser voice after the last family screen, chosen by the answers, no numbers. Copy slot only.",
+   "purpose": "The relief card after the last family screen: section done, N of eight, what comes next and how long; keep going or set a reminder. The adviser-voice line on the card is a copy slot (rule 10, gap G08).",
    "ui": [
     [
      "card",
-     "Copy slot D12a",
+     "Family done",
      [
-      "One line in the adviser voice about your family, chosen by the answers; no numbers (gap G08)"
+      "1 of eight sections.",
+      "Next: risk profile, about N minutes.",
+      "Copy slot D12a: one line in the adviser voice about your family, chosen by the answers; no numbers (gap G08)"
      ]
     ],
     [
      "btn",
-     "Continue",
+     "Keep going",
      "D08a"
+    ],
+    [
+     "link",
+     "Remind me later",
+     "O03"
     ]
    ],
    "spec": {
     "fields": [],
     "logic": [
-     "Section micro-feedback (rule 10, V5 Stage 3): fires once after the last screen of the family section; the line is picked by the answers; explicit none and not sure pick different lines (rule 6).",
-     "Copy is content (gap G08); this screen holds the slot."
+     "Relief card (section relief, Vatsal, 11 Sep 2026): fires once after the last family screen; it shows the section done, N of eight sections, and the next section with its minutes; two chips: Keep going opens the next section, Remind me later opens O03, the reminder picker.",
+     "The adviser-voice line (rule 10, V5 Stage 3) is a copy slot on the card, picked by the answers; explicit none and not sure pick different lines (rule 6); copy is content (gap G08)."
     ],
     "branches": [
      [
-      "Continue",
+      "Keep going",
       "D08a"
+     ],
+     [
+      "Remind me later",
+      "O03"
      ]
     ],
     "states": [
-     "Section left incomplete: the card does not fire; it fires when the section completes later"
+     "Section left incomplete: the card does not fire; it fires when the section completes later",
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
     ],
     "dev": [
-     "Slot id D12a; variants keyed by the section's answers."
+     "Slot id D12a; variants keyed by the section's answers. Sections done counts completed sections, not screens."
     ]
    },
    "template": "T-card",
@@ -3637,7 +3749,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "V5 Stage 3"
+     "V5 Stage 3",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -3651,6 +3764,14 @@
    "frame": "phone",
    "purpose": "Risk profile question 1 of 8: dependants.",
    "ui": [
+    [
+     "strip",
+     "Risk profile: step 1 of 9; 1 of 8 sections done"
+    ],
+    [
+     "p",
+     "Now: risk profile, N quick questions."
+    ],
     [
      "p",
      "Question 1 of 8. SEBI requires this, and it decides how much of your money goes into equity."
@@ -3696,7 +3817,7 @@
     ],
     "states": [
      "Retake from D09 or Settings: answers prefilled, any can change",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store the answer with the questionnaire version; to be verified: the RPQ scoring map (gap G06)."
@@ -3720,7 +3841,8 @@
     "status": "new",
     "causes": [
      "brief H3",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -3734,6 +3856,10 @@
    "frame": "phone",
    "purpose": "Risk profile question 2 of 8: income stability.",
    "ui": [
+    [
+     "strip",
+     "Risk profile: step 2 of 9; 1 of 8 sections done"
+    ],
     [
      "p",
      "Question 2 of 8. SEBI requires this, and it decides how much of your money goes into equity."
@@ -3779,7 +3905,7 @@
     ],
     "states": [
      "Retake from D09 or Settings: answers prefilled, any can change",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store the answer with the questionnaire version; to be verified: the RPQ scoring map (gap G06)."
@@ -3803,7 +3929,8 @@
     "status": "new",
     "causes": [
      "brief H3",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -3817,6 +3944,10 @@
    "frame": "phone",
    "purpose": "Risk profile question 3 of 8: investor knowledge.",
    "ui": [
+    [
+     "strip",
+     "Risk profile: step 3 of 9; 1 of 8 sections done"
+    ],
     [
      "p",
      "Question 3 of 8. SEBI requires this, and it decides how much of your money goes into equity."
@@ -3862,7 +3993,7 @@
     ],
     "states": [
      "Retake from D09 or Settings: answers prefilled, any can change",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store the answer with the questionnaire version; to be verified: the RPQ scoring map (gap G06)."
@@ -3886,7 +4017,8 @@
     "status": "new",
     "causes": [
      "brief H3",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -3900,6 +4032,10 @@
    "frame": "phone",
    "purpose": "Risk profile question 4 of 8: savings status.",
    "ui": [
+    [
+     "strip",
+     "Risk profile: step 4 of 9; 1 of 8 sections done"
+    ],
     [
      "p",
      "Question 4 of 8. SEBI requires this, and it decides how much of your money goes into equity."
@@ -3945,7 +4081,7 @@
     ],
     "states": [
      "Retake from D09 or Settings: answers prefilled, any can change",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store the answer with the questionnaire version; to be verified: the RPQ scoring map (gap G06)."
@@ -3969,7 +4105,8 @@
     "status": "new",
     "causes": [
      "brief H3",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -3983,6 +4120,10 @@
    "frame": "phone",
    "purpose": "Risk profile question 5 of 8: drawdown reaction.",
    "ui": [
+    [
+     "strip",
+     "Risk profile: step 5 of 9; 1 of 8 sections done"
+    ],
     [
      "p",
      "Question 5 of 8. SEBI requires this, and it decides how much of your money goes into equity."
@@ -4028,7 +4169,7 @@
     ],
     "states": [
      "Retake from D09 or Settings: answers prefilled, any can change",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store the answer with the questionnaire version; to be verified: the RPQ scoring map (gap G06)."
@@ -4052,7 +4193,8 @@
     "status": "new",
     "causes": [
      "brief H3",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -4066,6 +4208,10 @@
    "frame": "phone",
    "purpose": "Risk profile question 6 of 8: investment goal.",
    "ui": [
+    [
+     "strip",
+     "Risk profile: step 6 of 9; 1 of 8 sections done"
+    ],
     [
      "p",
      "Question 6 of 8. SEBI requires this, and it decides how much of your money goes into equity."
@@ -4111,7 +4257,7 @@
     ],
     "states": [
      "Retake from D09 or Settings: answers prefilled, any can change",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store the answer with the questionnaire version; to be verified: the RPQ scoring map (gap G06)."
@@ -4135,7 +4281,8 @@
     "status": "new",
     "causes": [
      "brief H3",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -4149,6 +4296,10 @@
    "frame": "phone",
    "purpose": "Risk profile question 7 of 8: gain-loss preference.",
    "ui": [
+    [
+     "strip",
+     "Risk profile: step 7 of 9; 1 of 8 sections done"
+    ],
     [
      "p",
      "Question 7 of 8. SEBI requires this, and it decides how much of your money goes into equity."
@@ -4221,7 +4372,7 @@
     ],
     "states": [
      "Retake from D09 or Settings: answers prefilled, any can change",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store the answer with the questionnaire version; to be verified: the RPQ scoring map (gap G06)."
@@ -4245,7 +4396,8 @@
     "status": "new",
     "causes": [
      "brief H3",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -4259,6 +4411,10 @@
    "frame": "phone",
    "purpose": "Risk profile question 8 of 8: borrowing to invest.",
    "ui": [
+    [
+     "strip",
+     "Risk profile: step 8 of 9; 1 of 8 sections done"
+    ],
     [
      "p",
      "Question 8 of 8. SEBI requires this, and it decides how much of your money goes into equity."
@@ -4305,7 +4461,7 @@
     ],
     "states": [
      "Retake from D09 or Settings: answers prefilled, any can change",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store the answer with the questionnaire version; to be verified: the RPQ scoring map (gap G06)."
@@ -4329,7 +4485,8 @@
     "status": "new",
     "causes": [
      "brief H3",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -4343,6 +4500,10 @@
    "frame": "phone",
    "purpose": "The band, what it changes, and a retake. The declaration moves to D10.",
    "ui": [
+    [
+     "strip",
+     "Risk profile: step 9 of 9; 1 of 8 sections done"
+    ],
     [
      "h",
      "Based on your answers, you are a Moderate investor"
@@ -4398,7 +4559,7 @@
     ],
     "states": [
      "Retake: D08a to D08h with answers prefilled",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Suitability record: store band plus the advice version it applied to (spec v0.1).",
@@ -4423,50 +4584,63 @@
     "status": "changed",
     "causes": [
      "brief H3",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
   {
    "id": "D12b",
    "sec": "D",
-   "title": "Section insight: risk profile",
+   "title": "Relief card: risk profile",
    "tier": [
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "One card in the adviser voice after the last risk profile screen, chosen by the answers, no numbers. Copy slot only.",
+   "purpose": "The relief card after the last risk profile screen: section done, N of eight, what comes next and how long; keep going or set a reminder. The adviser-voice line on the card is a copy slot (rule 10, gap G08).",
    "ui": [
     [
      "card",
-     "Copy slot D12b",
+     "Risk profile done",
      [
-      "One line in the adviser voice about your risk profile, chosen by the answers; no numbers (gap G08)"
+      "2 of eight sections.",
+      "Next: income, about N minutes.",
+      "Copy slot D12b: one line in the adviser voice about your risk profile, chosen by the answers; no numbers (gap G08)"
      ]
     ],
     [
      "btn",
-     "Continue",
+     "Keep going",
      "D05a"
+    ],
+    [
+     "link",
+     "Remind me later",
+     "O03"
     ]
    ],
    "spec": {
     "fields": [],
     "logic": [
-     "Section micro-feedback (rule 10, V5 Stage 3): fires once after the last screen of the risk profile section; the line is picked by the answers; explicit none and not sure pick different lines (rule 6).",
-     "Copy is content (gap G08); this screen holds the slot."
+     "Relief card (section relief, Vatsal, 11 Sep 2026): fires once after the last risk profile screen; it shows the section done, N of eight sections, and the next section with its minutes; two chips: Keep going opens the next section, Remind me later opens O03, the reminder picker.",
+     "The adviser-voice line (rule 10, V5 Stage 3) is a copy slot on the card, picked by the answers; explicit none and not sure pick different lines (rule 6); copy is content (gap G08)."
     ],
     "branches": [
      [
-      "Continue",
+      "Keep going",
       "D05a"
+     ],
+     [
+      "Remind me later",
+      "O03"
      ]
     ],
     "states": [
-     "Section left incomplete: the card does not fire; it fires when the section completes later"
+     "Section left incomplete: the card does not fire; it fires when the section completes later",
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
     ],
     "dev": [
-     "Slot id D12b; variants keyed by the section's answers."
+     "Slot id D12b; variants keyed by the section's answers. Sections done counts completed sections, not screens."
     ]
    },
    "template": "T-card",
@@ -4487,7 +4661,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "V5 Stage 3"
+     "V5 Stage 3",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -4502,6 +4677,14 @@
    "purpose": "The one income number the plan cannot do without. Exact first; AA salary detection prefills it when present.",
    "ui": [
     [
+     "strip",
+     "Income: step 1 of 4; 2 of 8 sections done"
+    ],
+    [
+     "p",
+     "Now: income, N quick questions."
+    ],
+    [
      "h",
      "What lands in your account every month, after tax?"
     ],
@@ -4510,8 +4693,27 @@
      "Take-home, not CTC. Bonuses go under other income."
     ],
     [
-     "note",
-     "You said about Rs 17.5 L a year earlier; roughly Rs 1.2 L a month after tax? (from R03; change it if that is off)"
+     "link",
+     "Why this one matters",
+     "D05a"
+    ],
+    [
+     "card",
+     "Prefilled from Account Aggregator (the salary credit detected), or from what you told me earlier (R03)",
+     [
+      "Rs ___, shown with its source tag",
+      "From what you told me earlier: about Rs 17.5 L a year, so roughly Rs 1.2 L a month after tax (R03)"
+     ]
+    ],
+    [
+     "btn",
+     "That's about right",
+     "D05b"
+    ],
+    [
+     "link",
+     "Change it",
+     "D05a"
     ],
     [
      "in",
@@ -4587,6 +4789,8 @@
      "Tri-state (rule 6): value, explicit none (the No regular income chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): gate field (appendix B). The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D05a (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Confirm or correct (Vatsal, 11 Sep 2026): when the value arrives prefilled, from Account Aggregator (the salary credit detected), or from what you told me earlier (R03), the primary button reads That's about right and stores the value with its source tag; Change it reveals the exact input in place; the derivation reads from what you told me earlier, never as an estimate.",
      "Plausibility (rule 4): take-home against the R03 household income band; a mismatch prompts a check, never a block.",
      "Salary detection from AA bank transactions: a recurring credit on a fixed day, shown as a suggestion the user confirms (spec v0.1 D05)."
     ],
@@ -4606,9 +4810,10 @@
     ],
     "states": [
      "AA-fed: value prefilled and tagged AA-fed; a manual override locks the field against refresh (spec v0.1 A08)",
+     "Prefilled: the value shows with its source tag; the primary button reads That's about right; Change it reveals the input",
      "Manual: field empty; the ladder and the bands do the work",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)",
      "AA-fed: the v0.1 rows (average monthly credits and debits over twelve months) sit above the question; manual: rows absent"
     ],
     "dev": [
@@ -4674,12 +4879,21 @@
    "purpose": "Household income when a partner earns. Band first; only shown when D01 says the partner earns.",
    "ui": [
     [
+     "strip",
+     "Income: step 2 of 4; 2 of 8 sections done"
+    ],
+    [
      "h",
      "And your partner's take-home, roughly?"
     ],
     [
      "p",
      "A band is fine here. Exact if you know it."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D05b"
     ],
     [
      "in",
@@ -4749,7 +4963,8 @@
      "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the Partner does not earn chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G06 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
-     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
+     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D05b (content is gap G08); D11b at 90 seconds reuses the same slot."
     ],
     "branches": [
      [
@@ -4764,7 +4979,7 @@
     "states": [
      "Manual: field empty; the ladder and the bands do the work",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)",
      "Skipped when D01 records no partner or a partner who does not earn"
     ],
     "dev": [
@@ -4824,12 +5039,21 @@
    "purpose": "Rent from an investment property. Exact first; opens from D02h when a property is added.",
    "ui": [
     [
+     "strip",
+     "Income: step 3 of 4; 2 of 8 sections done"
+    ],
+    [
      "h",
      "How much rent comes in each month?"
     ],
     [
      "p",
      "What lands in the account, after the society and the agent take their share."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D05c"
     ],
     [
      "in",
@@ -4899,7 +5123,8 @@
      "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the No rent chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G06 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
-     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
+     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D05c (content is gap G08); D11b at 90 seconds reuses the same slot."
     ],
     "branches": [
      [
@@ -4914,7 +5139,7 @@
     "states": [
      "Manual: field empty; the ladder and the bands do the work",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)",
      "Shown in the income run only when an investment property is already known (AA or an earlier answer); otherwise it opens from D02h when an investment property is added and returns there on save"
     ],
     "dev": [
@@ -4974,12 +5199,21 @@
    "purpose": "Business, freelance, bonus, anything else. Band first; regular or lumpy.",
    "ui": [
     [
+     "strip",
+     "Income: step 4 of 4; 2 of 8 sections done"
+    ],
+    [
      "h",
      "Anything else that comes in? Business, freelance, a bonus, family support."
     ],
     [
      "p",
      "Regular or lumpy, either is fine; say which."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D05d"
     ],
     [
      "in",
@@ -5050,6 +5284,7 @@
      "Tri-state (rule 6): value, explicit none (the Nothing else chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G06 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D05d (content is gap G08); D11b at 90 seconds reuses the same slot.",
      "Regular or lumpy: two chips under the amount set income_regularity (spec v0.1 D05); lumpy income is averaged over the year in the cashflow."
     ],
     "branches": [
@@ -5065,7 +5300,7 @@
     "states": [
      "Manual: field empty; the ladder and the bands do the work",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
@@ -5116,43 +5351,55 @@
   {
    "id": "D12c",
    "sec": "D",
-   "title": "Section insight: income",
+   "title": "Relief card: income",
    "tier": [
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "One card in the adviser voice after the last income screen, chosen by the answers, no numbers. Copy slot only.",
+   "purpose": "The relief card after the last income screen: section done, N of eight, what comes next and how long; keep going or set a reminder. The adviser-voice line on the card is a copy slot (rule 10, gap G08).",
    "ui": [
     [
      "card",
-     "Copy slot D12c",
+     "Income done",
      [
-      "One line in the adviser voice about your income, chosen by the answers; no numbers (gap G08)"
+      "3 of eight sections.",
+      "Next: expenses, about N minutes.",
+      "Copy slot D12c: one line in the adviser voice about your income, chosen by the answers; no numbers (gap G08)"
      ]
     ],
     [
      "btn",
-     "Continue",
+     "Keep going",
      "D06a"
+    ],
+    [
+     "link",
+     "Remind me later",
+     "O03"
     ]
    ],
    "spec": {
     "fields": [],
     "logic": [
-     "Section micro-feedback (rule 10, V5 Stage 3): fires once after the last screen of the income section; the line is picked by the answers; explicit none and not sure pick different lines (rule 6).",
-     "Copy is content (gap G08); this screen holds the slot."
+     "Relief card (section relief, Vatsal, 11 Sep 2026): fires once after the last income screen; it shows the section done, N of eight sections, and the next section with its minutes; two chips: Keep going opens the next section, Remind me later opens O03, the reminder picker.",
+     "The adviser-voice line (rule 10, V5 Stage 3) is a copy slot on the card, picked by the answers; explicit none and not sure pick different lines (rule 6); copy is content (gap G08)."
     ],
     "branches": [
      [
-      "Continue",
+      "Keep going",
       "D06a"
+     ],
+     [
+      "Remind me later",
+      "O03"
      ]
     ],
     "states": [
-     "Section left incomplete: the card does not fire; it fires when the section completes later"
+     "Section left incomplete: the card does not fire; it fires when the section completes later",
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
     ],
     "dev": [
-     "Slot id D12c; variants keyed by the section's answers."
+     "Slot id D12c; variants keyed by the section's answers. Sections done counts completed sections, not screens."
     ]
    },
    "template": "T-card",
@@ -5173,7 +5420,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "V5 Stage 3"
+     "V5 Stage 3",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -5188,6 +5436,14 @@
    "purpose": "Everything that goes out in a month, as one number first. The surplus updates live under it.",
    "ui": [
     [
+     "strip",
+     "Expenses: step 1 of 4; 3 of 8 sections done"
+    ],
+    [
+     "p",
+     "Now: expenses, N quick questions."
+    ],
+    [
      "h",
      "Roughly, how much goes out every month, everything included?"
     ],
@@ -5196,8 +5452,27 @@
      "Rent, EMIs, school, groceries, help, subscriptions, the lot. One number; the split comes next."
     ],
     [
-     "note",
-     "From what you told me about saving (R05), about Rs ___ a month goes out. Fix it if that is off."
+     "link",
+     "Why this one matters",
+     "D06a"
+    ],
+    [
+     "card",
+     "Prefilled from Account Aggregator (average monthly debits), or from what you told me earlier (R05)",
+     [
+      "Rs ___, shown with its source tag",
+      "From what you told me earlier about saving (R05): about Rs ___ a month goes out"
+     ]
+    ],
+    [
+     "btn",
+     "That's about right",
+     "D06b"
+    ],
+    [
+     "link",
+     "Change it",
+     "D06a"
     ],
     [
      "in",
@@ -5266,6 +5541,8 @@
      "Tri-state (rule 6): value, explicit none (the None chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): gate field (appendix B). The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D06a (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Confirm or correct (Vatsal, 11 Sep 2026): when the value arrives prefilled, from Account Aggregator (average monthly debits), or from what you told me earlier (R05), the primary button reads That's about right and stores the value with its source tag; Change it reveals the exact input in place; the derivation reads from what you told me earlier, never as an estimate.",
      "Plausibility (rule 4): outgoings against take-home (D05a) and the R05 savings rate; EMIs from D03 against 30 percent of take-home; a mismatch prompts a check, never a block.",
      "Live surplus line under the input: take-home minus outgoings, updating as the user types.",
      "EMIs from D03 show read-only inside the total once known; the surplus re-shows after D03 (spec v0.1 D06)."
@@ -5286,9 +5563,10 @@
     ],
     "states": [
      "AA-fed: value prefilled and tagged AA-fed; a manual override locks the field against refresh (spec v0.1 A08)",
+     "Prefilled: the value shows with its source tag; the primary button reads That's about right; Change it reveals the input",
      "Manual: field empty; the ladder and the bands do the work",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)",
      "Deficit: the surplus line turns into the deficit line, copy per the React: you are running a deficit budget, income or expenses need a re-look; the plan still builds"
     ],
     "dev": [
@@ -5353,6 +5631,10 @@
    "frame": "phone",
    "purpose": "Fixed, variable and guilt-free as a three-way split of the total from D06a. Sharpen field.",
    "ui": [
+    [
+     "strip",
+     "Expenses: step 2 of 4; 3 of 8 sections done"
+    ],
     [
      "h",
      "Roughly, how does it split?"
@@ -5440,7 +5722,7 @@
     "states": [
      "Manual: slider starts at an even split, tagged approx",
      "Hesitation (rule 5): D11a, D11b, D11c",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store three values with precision approx until typed (rule 9)."
@@ -5470,7 +5752,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -5484,6 +5767,10 @@
    "frame": "phone",
    "purpose": "The V5 end-of-month pattern, four options, one tap.",
    "ui": [
+    [
+     "strip",
+     "Expenses: step 3 of 4; 3 of 8 sections done"
+    ],
     [
      "h",
      "Honestly - how does the month typically end?"
@@ -5525,7 +5812,7 @@
      ]
     ],
     "states": [
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store the option key; the concern rule reads option D."
@@ -5549,7 +5836,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "V5 Q1.4"
+     "V5 Q1.4",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -5564,12 +5852,38 @@
    "purpose": "SIPs and recurring deposits already running. Exact first; AA debits to the RTAs prefill it.",
    "ui": [
     [
+     "strip",
+     "Expenses: step 4 of 4; 3 of 8 sections done"
+    ],
+    [
      "h",
      "What do you already put away every month, on autopilot? SIPs, recurring deposits."
     ],
     [
      "p",
      "What already runs, not what you plan to start."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D06d"
+    ],
+    [
+     "card",
+     "Prefilled from Account Aggregator (SIP debits detected)",
+     [
+      "Rs ___, shown with its source tag"
+     ]
+    ],
+    [
+     "btn",
+     "That's about right",
+     "D12d"
+    ],
+    [
+     "link",
+     "Change it",
+     "D06d"
     ],
     [
      "in",
@@ -5638,6 +5952,8 @@
      "Tri-state (rule 6): value, explicit none (the Nothing on autopilot chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G06 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D06d (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Confirm or correct (Vatsal, 11 Sep 2026): when the value arrives prefilled, from Account Aggregator (SIP debits detected), the primary button reads That's about right and stores the value with its source tag; Change it reveals the exact input in place; the derivation reads from what you told me earlier, never as an estimate.",
      "SIP detection from AA debits to RTAs; the user confirms (spec v0.1 D06)."
     ],
     "branches": [
@@ -5656,9 +5972,10 @@
     ],
     "states": [
      "AA-fed: value prefilled and tagged AA-fed; a manual override locks the field against refresh (spec v0.1 A08)",
+     "Prefilled: the value shows with its source tag; the primary button reads That's about right; Change it reveals the input",
      "Manual: field empty; the ladder and the bands do the work",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
@@ -5714,43 +6031,55 @@
   {
    "id": "D12d",
    "sec": "D",
-   "title": "Section insight: expenses",
+   "title": "Relief card: expenses",
    "tier": [
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "One card in the adviser voice after the last expenses screen, chosen by the answers, no numbers. Copy slot only.",
+   "purpose": "The relief card after the last expenses screen: section done, N of eight, what comes next and how long; keep going or set a reminder. The adviser-voice line on the card is a copy slot (rule 10, gap G08).",
    "ui": [
     [
      "card",
-     "Copy slot D12d",
+     "Expenses done",
      [
-      "One line in the adviser voice about your expenses, chosen by the answers; no numbers (gap G08)"
+      "4 of eight sections.",
+      "Next: investments, about N minutes.",
+      "Copy slot D12d: one line in the adviser voice about your expenses, chosen by the answers; no numbers (gap G08)"
      ]
     ],
     [
      "btn",
-     "Continue",
+     "Keep going",
      "D02"
+    ],
+    [
+     "link",
+     "Remind me later",
+     "O03"
     ]
    ],
    "spec": {
     "fields": [],
     "logic": [
-     "Section micro-feedback (rule 10, V5 Stage 3): fires once after the last screen of the expenses section; the line is picked by the answers; explicit none and not sure pick different lines (rule 6).",
-     "Copy is content (gap G08); this screen holds the slot."
+     "Relief card (section relief, Vatsal, 11 Sep 2026): fires once after the last expenses screen; it shows the section done, N of eight sections, and the next section with its minutes; two chips: Keep going opens the next section, Remind me later opens O03, the reminder picker.",
+     "The adviser-voice line (rule 10, V5 Stage 3) is a copy slot on the card, picked by the answers; explicit none and not sure pick different lines (rule 6); copy is content (gap G08)."
     ],
     "branches": [
      [
-      "Continue",
+      "Keep going",
       "D02"
+     ],
+     [
+      "Remind me later",
+      "O03"
      ]
     ],
     "states": [
-     "Section left incomplete: the card does not fire; it fires when the section completes later"
+     "Section left incomplete: the card does not fire; it fires when the section completes later",
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
     ],
     "dev": [
-     "Slot id D12d; variants keyed by the section's answers."
+     "Slot id D12d; variants keyed by the section's answers. Sections done counts completed sections, not screens."
     ]
    },
    "template": "T-card",
@@ -5771,72 +6100,115 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "V5 Stage 3"
+     "V5 Stage 3",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
   {
    "id": "D02",
    "sec": "D",
-   "title": "Your investments, by type",
+   "title": "Which of these do you have?",
    "tier": [
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "The overview list for what you own: one row per type with its status and source tag. Both paths pass through it.",
+   "purpose": "The multi-select for what you own: tick the types you have; only those open, one screen each, in spine order; every unticked type is stored as explicit none. AA-fed and CAS-verified types arrive pre-ticked and locked with their value shown.",
    "ui": [
     [
+     "strip",
+     "Investments: step 1 of 11; 4 of 8 sections done"
+    ],
+    [
+     "p",
+     "Now: investments, N quick questions."
+    ],
+    [
      "h",
-     "Now what you own. One type at a time; approximate is fine, I mark it so."
+     "Which of these do you have?"
+    ],
+    [
+     "p",
+     "Tick what applies. I ask about each one, one at a time; approximate is fine, I mark it so."
+    ],
+    [
+     "chips",
+     [
+      "Bank balances and deposits",
+      "Mutual funds",
+      "Stocks and ETFs",
+      "NPS",
+      "EPF",
+      "PPF and post office",
+      "Gold and silver",
+      "Property",
+      "ULIP or endowment",
+      "Anything else",
+      "None of these"
+     ]
+    ],
+    [
+     "card",
+     "Already in from your accounts (pre-ticked, locked)",
+     [
+      "Bank balances and deposits: AA-fed Rs 8.2 L",
+      "Mutual funds: AA-fed Rs 11.8 L",
+      "For you the question reads: Anything else?"
+     ]
     ],
     [
      "rows",
      [
       [
        "Bank balances and deposits",
-       "AA-fed Rs 8.2 L; edit or add"
+       "AA-fed Rs 8.2 L, locked"
       ],
       [
        "Mutual funds",
-       "AA-fed Rs 11.8 L; edit or add"
+       "AA-fed Rs 11.8 L, locked"
       ],
       [
        "Stocks and ETFs",
-       "not fetched; add"
+       "fetch failed: upload a statement or type it"
       ],
       [
        "NPS",
-       "not asked yet"
+       "ticked: I ask next"
       ],
       [
        "EPF",
-       "not asked yet"
+       "ticked"
       ],
       [
        "PPF and post office",
-       "not asked yet"
+       "not ticked: none"
       ],
       [
        "Gold and silver",
-       "not asked yet"
+       "not ticked: none"
       ],
       [
        "Property",
-       "not asked yet"
+       "ticked"
       ],
       [
        "ULIP or endowment",
-       "not asked yet"
+       "not ticked: none"
       ],
       [
        "Anything else",
-       "not asked yet"
+       "not ticked: none"
       ]
      ]
     ],
     [
      "note",
      "Running total so far: Rs ___ against the Rs 15 L you guessed earlier (R04)"
+    ],
+    [
+     "link",
+     "See what came through",
+     "A08"
     ],
     [
      "btn",
@@ -5925,16 +6297,27 @@
      }
     ],
     "logic": [
-     "Overview list (rule 2): one row per type with its status (value, none, not sure, not asked yet) and its source tag; AA-fed rows show the value and edit or add.",
-     "Continue walks the ten type screens in order; a row opens its screen directly.",
+     "Multi-select (Vatsal, 11 Sep 2026): one chip per asset type plus None of these; only the ticked types open, D02a to D02j in spine order, one screen each; every unticked type is stored as explicit none (rule 6) without opening its screen.",
+     "AA-fed and CAS-verified types arrive pre-ticked and locked with their value shown; for those users the question reads Anything else?",
+     "A fetch that failed (A09) shows on its row as fetch failed: upload a statement or type it; the type is pre-ticked and its screen opens with the ladder (CAS on D02b and D02c).",
+     "A08, the diff-confirm sheet, opens the moment the fetch completes, or at entry here at the latest; See what came through reopens it.",
+     "Continue opens the first ticked type; None of these sets all ten to explicit none and goes to D12e. A row opens its screen directly.",
      "Plausibility (rule 4): the running total against the R04 corpus band; a mismatch prompts a check, never a block.",
      "Gate fields in this section: bank_and_deposits, mutual_funds, stocks, epf (appendix B); the rest sharpen the plan.",
-     "No assumptions (Vatsal, 11 Sep 2026): an unknown type is never split from the R04 band; a type that is not sure is asked for as a quick range on D13 before the build (rule 7)."
+     "No assumptions (Vatsal, 11 Sep 2026): an unknown type is never split from the R04 band; a ticked type that is not sure is asked for as a quick range on D13 before the build (rule 7)."
     ],
     "branches": [
      [
       "Continue",
       "D02a"
+     ],
+     [
+      "None of these",
+      "D12e"
+     ],
+     [
+      "See what came through",
+      "A08"
      ],
      [
       "Bank balances and deposits",
@@ -5978,14 +6361,66 @@
      ]
     ],
     "states": [
-     "AA path: bank, deposits, mutual funds and stocks rows prefilled and tagged AA-fed",
-     "CAS path: mutual funds and stocks rows tagged CAS-verified",
-     "Manual path: every row not asked yet",
-     "Exit (rule 12): autosave, then O03"
+     "AA path: bank, deposits, mutual funds and stocks pre-ticked and locked, tagged AA-fed; the question reads Anything else?",
+     "CAS path: mutual funds and stocks pre-ticked and locked, tagged CAS-verified",
+     "Manual path: nothing ticked; the user ticks what applies",
+     "Fetch failed for a type (A09): its row reads fetch failed: upload a statement or type it",
+     "A08 diff-confirm sheet: shown over this screen at entry if the fetch completed after D01 and was not yet confirmed",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Holdings stored at ISIN level with units, value, SIP mandates when AA or CAS supplies them (spec v0.1 A08); typed totals stored as one value with the source tag."
-    ]
+    ],
+    "multi_select": {
+     "question": "Which of these do you have?",
+     "options": [
+      [
+       "Bank balances and deposits",
+       "D02a"
+      ],
+      [
+       "Mutual funds",
+       "D02b"
+      ],
+      [
+       "Stocks and ETFs",
+       "D02c"
+      ],
+      [
+       "NPS",
+       "D02d"
+      ],
+      [
+       "EPF",
+       "D02e"
+      ],
+      [
+       "PPF and post office",
+       "D02f"
+      ],
+      [
+       "Gold and silver",
+       "D02g"
+      ],
+      [
+       "Property",
+       "D02h"
+      ],
+      [
+       "ULIP or endowment",
+       "D02i"
+      ],
+      [
+       "Anything else",
+       "D02j"
+      ]
+     ],
+     "none": "None of these",
+     "unticked": "explicit none",
+     "after": "D12e",
+     "order": "spine order, D02a to D02j",
+     "prefilled": "AA-fed and CAS-verified types arrive pre-ticked and locked with their value shown; the question then reads Anything else?"
+    }
    },
    "template": "T-list",
    "path": "both",
@@ -6002,7 +6437,7 @@
     ]
    },
    "v02": {
-    "status": "rebuilt",
+    "status": "changed",
     "causes": [
      "Vatsal, 10 Sep 2026",
      "4.1 bug fix",
@@ -6021,12 +6456,38 @@
    "purpose": "Savings, current, fixed and recurring deposits across every bank. Gate field; AA fills it in a minute.",
    "ui": [
     [
+     "strip",
+     "Investments: step 2 of 11; 4 of 8 sections done"
+    ],
+    [
      "h",
      "How much sits in your bank accounts and deposits today?"
     ],
     [
      "p",
      "Savings and current balances plus fixed and recurring deposits, across every bank."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D02a"
+    ],
+    [
+     "card",
+     "Prefilled from Account Aggregator (balances and deposits)",
+     [
+      "Rs ___, shown with its source tag"
+     ]
+    ],
+    [
+     "btn",
+     "That's about right",
+     "D02b"
+    ],
+    [
+     "link",
+     "Change it",
+     "D02a"
     ],
     [
      "in",
@@ -6095,6 +6556,9 @@
      "Tri-state (rule 6): value, explicit none (the None chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): gate field (appendix B). The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D02a (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Confirm or correct (Vatsal, 11 Sep 2026): when the value arrives prefilled, from Account Aggregator (balances and deposits), the primary button reads That's about right and stores the value with its source tag; Change it reveals the exact input in place; the derivation reads from what you told me earlier, never as an estimate.",
+     "Opens only when its type is ticked on D02 (Vatsal, 11 Sep 2026); an unticked type is stored as explicit none without opening this screen; Continue goes to the next ticked type, and after the last one to D12e.",
      "Plausibility (rule 4): the running total of D02 against the R04 corpus band; a mismatch prompts a check, never a block."
     ],
     "branches": [
@@ -6113,9 +6577,12 @@
     ],
     "states": [
      "AA-fed: value prefilled and tagged AA-fed; a manual override locks the field against refresh (spec v0.1 A08)",
+     "Prefilled: the value shows with its source tag; the primary button reads That's about right; Change it reveals the input",
      "Manual: field empty; the ladder and the bands do the work",
+     "Type not ticked on D02: this screen does not open; the field is explicit none",
+     "Fetch failed for this type: the D02 row reads fetch failed, upload a statement or type it; this screen opens with the ladder",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
@@ -6179,12 +6646,38 @@
    "purpose": "Mutual fund holdings by value. Gate field; AA or a CAS upload makes them verified for switch advice.",
    "ui": [
     [
+     "strip",
+     "Investments: step 3 of 11; 4 of 8 sections done"
+    ],
+    [
      "h",
      "What are your mutual funds worth today, all of them together?"
     ],
     [
      "p",
      "Current value, not what you put in. A CAS upload gives me the exact holdings."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D02b"
+    ],
+    [
+     "card",
+     "Prefilled from Account Aggregator (every folio) or your CAS",
+     [
+      "Rs ___, shown with its source tag"
+     ]
+    ],
+    [
+     "btn",
+     "That's about right",
+     "D02c"
+    ],
+    [
+     "link",
+     "Change it",
+     "D02b"
     ],
     [
      "in",
@@ -6258,6 +6751,9 @@
      "Tri-state (rule 6): value, explicit none (the No mutual funds chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): gate field (appendix B). The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D02b (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Confirm or correct (Vatsal, 11 Sep 2026): when the value arrives prefilled, from Account Aggregator (every folio) or your CAS, the primary button reads That's about right and stores the value with its source tag; Change it reveals the exact input in place; the derivation reads from what you told me earlier, never as an estimate.",
+     "Opens only when its type is ticked on D02 (Vatsal, 11 Sep 2026); an unticked type is stored as explicit none without opening this screen; Continue goes to the next ticked type, and after the last one to D12e.",
      "Typed totals get buy advice only; switch and sell advice needs AA-fed or CAS-verified holdings (G12a)."
     ],
     "branches": [
@@ -6281,9 +6777,12 @@
     "states": [
      "AA-fed: value prefilled and tagged AA-fed; a manual override locks the field against refresh (spec v0.1 A08)",
      "CAS-verified: holdings parsed from the CAS (A10c) fill the value and tag it CAS-verified",
+     "Prefilled: the value shows with its source tag; the primary button reads That's about right; Change it reveals the input",
      "Manual: field empty; the ladder and the bands do the work",
+     "Type not ticked on D02: this screen does not open; the field is explicit none",
+     "Fetch failed for this type: the D02 row reads fetch failed, upload a statement or type it; this screen opens with the ladder",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
@@ -6352,12 +6851,38 @@
    "purpose": "Direct equity and ETFs by value. Gate field; AA or a depository CAS verifies them.",
    "ui": [
     [
+     "strip",
+     "Investments: step 4 of 11; 4 of 8 sections done"
+    ],
+    [
      "h",
      "And stocks or ETFs held in a demat account, worth how much today?"
     ],
     [
      "p",
      "Current value across every broker."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D02c"
+    ],
+    [
+     "card",
+     "Prefilled from Account Aggregator (your depository account) or your CAS",
+     [
+      "Rs ___, shown with its source tag"
+     ]
+    ],
+    [
+     "btn",
+     "That's about right",
+     "D02d"
+    ],
+    [
+     "link",
+     "Change it",
+     "D02c"
     ],
     [
      "in",
@@ -6430,7 +6955,10 @@
      "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the No stocks or ETFs chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): gate field (appendix B). The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
-     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
+     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D02c (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Confirm or correct (Vatsal, 11 Sep 2026): when the value arrives prefilled, from Account Aggregator (your depository account) or your CAS, the primary button reads That's about right and stores the value with its source tag; Change it reveals the exact input in place; the derivation reads from what you told me earlier, never as an estimate.",
+     "Opens only when its type is ticked on D02 (Vatsal, 11 Sep 2026); an unticked type is stored as explicit none without opening this screen; Continue goes to the next ticked type, and after the last one to D12e."
     ],
     "branches": [
      [
@@ -6453,9 +6981,12 @@
     "states": [
      "AA-fed: value prefilled and tagged AA-fed; a manual override locks the field against refresh (spec v0.1 A08)",
      "CAS-verified: holdings parsed from the CAS (A10c) fill the value and tag it CAS-verified",
+     "Prefilled: the value shows with its source tag; the primary button reads That's about right; Change it reveals the input",
      "Manual: field empty; the ladder and the bands do the work",
+     "Type not ticked on D02: this screen does not open; the field is explicit none",
+     "Fetch failed for this type: the D02 row reads fetch failed, upload a statement or type it; this screen opens with the ladder",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
@@ -6524,12 +7055,21 @@
    "purpose": "National Pension System balance. Sharpen field; AA where the CRA is live.",
    "ui": [
     [
+     "strip",
+     "Investments: step 5 of 11; 4 of 8 sections done"
+    ],
+    [
      "h",
      "Do you have an NPS account? What is in it, roughly?"
     ],
     [
      "p",
      "Tier 1 and Tier 2 together. A band is fine."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D02d"
     ],
     [
      "in",
@@ -6598,7 +7138,9 @@
      "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the No NPS chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G03, G09, G11 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
-     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
+     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D02d (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Opens only when its type is ticked on D02 (Vatsal, 11 Sep 2026); an unticked type is stored as explicit none without opening this screen; Continue goes to the next ticked type, and after the last one to D12e."
     ],
     "branches": [
      [
@@ -6620,8 +7162,9 @@
     ],
     "states": [
      "Manual: field empty; the ladder and the bands do the work",
+     "Type not ticked on D02: this screen does not open; the field is explicit none",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
@@ -6686,12 +7229,21 @@
    "purpose": "Provident fund balance. Gate field; a guided lookup gets the exact number in a minute.",
    "ui": [
     [
+     "strip",
+     "Investments: step 6 of 11; 4 of 8 sections done"
+    ],
+    [
      "h",
      "What is your EPF balance? Your passbook has it."
     ],
     [
      "p",
      "Employee plus employer share, plus interest."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D02e"
     ],
     [
      "in",
@@ -6759,7 +7311,9 @@
      "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the No EPF chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): gate field (appendix B). The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
-     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
+     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D02e (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Opens only when its type is ticked on D02 (Vatsal, 11 Sep 2026); an unticked type is stored as explicit none without opening this screen; Continue goes to the next ticked type, and after the last one to D12e."
     ],
     "branches": [
      [
@@ -6777,8 +7331,9 @@
     ],
     "states": [
      "Manual: field empty; the ladder and the bands do the work",
+     "Type not ticked on D02: this screen does not open; the field is explicit none",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
@@ -6843,12 +7398,21 @@
    "purpose": "PPF and post-office schemes. Sharpen field; band first.",
    "ui": [
     [
+     "strip",
+     "Investments: step 7 of 11; 4 of 8 sections done"
+    ],
+    [
      "h",
      "PPF, or any post-office scheme? Roughly how much is in them?"
     ],
     [
      "p",
      "PPF, NSC, Sukanya Samriddhi, post-office deposits."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D02f"
     ],
     [
      "in",
@@ -6911,7 +7475,9 @@
      "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the None chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G03, G09 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
-     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
+     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D02f (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Opens only when its type is ticked on D02 (Vatsal, 11 Sep 2026); an unticked type is stored as explicit none without opening this screen; Continue goes to the next ticked type, and after the last one to D12e."
     ],
     "branches": [
      [
@@ -6925,8 +7491,9 @@
     ],
     "states": [
      "Manual: field empty; the ladder and the bands do the work",
+     "Type not ticked on D02: this screen does not open; the field is explicit none",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
@@ -6985,12 +7552,21 @@
    "purpose": "Physical gold and silver, in grams or value. Sharpen field; the app prices grams from L07.",
    "ui": [
     [
+     "strip",
+     "Investments: step 8 of 11; 4 of 8 sections done"
+    ],
+    [
      "h",
      "Gold or silver at home or in a locker? Grams, or a value, roughly."
     ],
     [
      "p",
      "Jewellery counts. Tell me grams and I will price it."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D02g"
     ],
     [
      "in",
@@ -7054,6 +7630,8 @@
      "Tri-state (rule 6): value, explicit none (the None chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G03, G11 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D02g (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Opens only when its type is ticked on D02 (Vatsal, 11 Sep 2026); an unticked type is stored as explicit none without opening this screen; Continue goes to the next ticked type, and after the last one to D12e.",
      "Grams are priced from the L07 market inputs; the price date is stored with the value."
     ],
     "branches": [
@@ -7068,8 +7646,9 @@
     ],
     "states": [
      "Manual: field empty; the ladder and the bands do the work",
+     "Type not ticked on D02: this screen does not open; the field is explicit none",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
@@ -7128,12 +7707,21 @@
    "purpose": "The home you live in (excluded from investable) and any investment property with its rent. Band first for value; rent exact.",
    "ui": [
     [
+     "strip",
+     "Investments: step 9 of 11; 4 of 8 sections done"
+    ],
+    [
      "h",
      "Property: the home you live in, and anything else you own?"
     ],
     [
      "p",
      "What it would sell for today, roughly. The home you live in counts for net worth, not for investing."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D02h"
     ],
     [
      "in",
@@ -7211,6 +7799,8 @@
      "Tri-state (rule 6): value, explicit none (the No property chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G03, G09 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D02h (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Opens only when its type is ticked on D02 (Vatsal, 11 Sep 2026); an unticked type is stored as explicit none without opening this screen; Continue goes to the next ticked type, and after the last one to D12e.",
      "Self-occupied home is in net worth, excluded from investable corpus (M2 rules; spec v0.1 D02).",
      "Investment property: value band-first and rent exact; adding one opens D05c for the rent."
     ],
@@ -7226,8 +7816,9 @@
     ],
     "states": [
      "Manual: field empty; the ladder and the bands do the work",
+     "Type not ticked on D02: this screen does not open; the field is explicit none",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)",
      "Investment property added: opens D05c for the rent and returns here on save"
     ],
     "dev": [
@@ -7287,12 +7878,21 @@
    "purpose": "Investment-linked policies: surrender value, premium, years completed. Sharpen fields that decide a verdict, so they also queue on H04.",
    "ui": [
     [
+     "strip",
+     "Investments: step 10 of 11; 4 of 8 sections done"
+    ],
+    [
      "h",
      "Any ULIP or endowment policy? Surrender value, premium, and how many years you have paid."
     ],
     [
      "p",
      "The insurer app shows the surrender value. The premium is exact; the years decide the advice."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D02i"
     ],
     [
      "in",
@@ -7375,6 +7975,8 @@
      "Tri-state (rule 6): value, explicit none (the No such policy chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G05, G03 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D02i (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Opens only when its type is ticked on D02 (Vatsal, 11 Sep 2026); an unticked type is stored as explicit none without opening this screen; Continue goes to the next ticked type, and after the last one to D12e.",
      "ULIP years completed decides a verdict (surrender assessment; React life-insurance rules), so a not-sure here is also an action-queue item on H04 (rule 7).",
      "D04c links back here for policy detail."
     ],
@@ -7394,8 +7996,9 @@
     ],
     "states": [
      "Manual: field empty; the ladder and the bands do the work",
+     "Type not ticked on D02: this screen does not open; the field is explicit none",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
@@ -7459,12 +8062,21 @@
    "purpose": "Crypto, international holdings, a business stake, loans given to others. Sharpen field; typed or band.",
    "ui": [
     [
+     "strip",
+     "Investments: step 11 of 11; 4 of 8 sections done"
+    ],
+    [
      "h",
      "Anything else of value? Crypto, international holdings, a stake in a business, money you have lent."
     ],
     [
      "p",
      "A rough value is fine; say what it is."
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D02j"
     ],
     [
      "in",
@@ -7527,7 +8139,9 @@
      "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
      "Tri-state (rule 6): value, explicit none (the Nothing else chip) or not sure (skip). Not sure is never stored as zero.",
      "Gate (rule 7; Vatsal, 11 Sep 2026): sharpen field (appendix B); G03, G11 shows a Sharpen this link for it. The plan builds when every field the React reads is a value (exact or band) or explicit none; a not-sure here is asked for as a quick range on D13 before the build, never filled from L02.",
-     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C)."
+     "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D02j (content is gap G08); D11b at 90 seconds reuses the same slot.",
+     "Opens only when its type is ticked on D02 (Vatsal, 11 Sep 2026); an unticked type is stored as explicit none without opening this screen; Continue goes to the next ticked type, and after the last one to D12e."
     ],
     "branches": [
      [
@@ -7541,8 +8155,9 @@
     ],
     "states": [
      "Manual: field empty; the ladder and the bands do the work",
+     "Type not ticked on D02: this screen does not open; the field is explicit none",
      "Hesitation (rule 5): D11a at 45 seconds, D11b at 90 seconds, D11c at 120 seconds or on a second return",
-     "Exit (rule 12): autosave, then O03 asks when the user will finish"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Readback in words, per-month / per-year toggle where the field can be either, L and Cr quick multipliers, numeric keypad (rule 4).",
@@ -7593,43 +8208,55 @@
   {
    "id": "D12e",
    "sec": "D",
-   "title": "Section insight: investments",
+   "title": "Relief card: investments",
    "tier": [
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "One card in the adviser voice after the last investments screen, chosen by the answers, no numbers. Copy slot only.",
+   "purpose": "The relief card after the last investments screen: section done, N of eight, what comes next and how long; keep going or set a reminder. The adviser-voice line on the card is a copy slot (rule 10, gap G08).",
    "ui": [
     [
      "card",
-     "Copy slot D12e",
+     "Investments done",
      [
-      "One line in the adviser voice about your investments, chosen by the answers; no numbers (gap G08)"
+      "5 of eight sections.",
+      "Next: loans, about N minutes.",
+      "Copy slot D12e: one line in the adviser voice about your investments, chosen by the answers; no numbers (gap G08)"
      ]
     ],
     [
      "btn",
-     "Continue",
+     "Keep going",
      "D03"
+    ],
+    [
+     "link",
+     "Remind me later",
+     "O03"
     ]
    ],
    "spec": {
     "fields": [],
     "logic": [
-     "Section micro-feedback (rule 10, V5 Stage 3): fires once after the last screen of the investments section; the line is picked by the answers; explicit none and not sure pick different lines (rule 6).",
-     "Copy is content (gap G08); this screen holds the slot."
+     "Relief card (section relief, Vatsal, 11 Sep 2026): fires once after the last investments screen; it shows the section done, N of eight sections, and the next section with its minutes; two chips: Keep going opens the next section, Remind me later opens O03, the reminder picker.",
+     "The adviser-voice line (rule 10, V5 Stage 3) is a copy slot on the card, picked by the answers; explicit none and not sure pick different lines (rule 6); copy is content (gap G08)."
     ],
     "branches": [
      [
-      "Continue",
+      "Keep going",
       "D03"
+     ],
+     [
+      "Remind me later",
+      "O03"
      ]
     ],
     "states": [
-     "Section left incomplete: the card does not fire; it fires when the section completes later"
+     "Section left incomplete: the card does not fire; it fires when the section completes later",
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
     ],
     "dev": [
-     "Slot id D12e; variants keyed by the section's answers."
+     "Slot id D12e; variants keyed by the section's answers. Sections done counts completed sections, not screens."
     ]
    },
    "template": "T-card",
@@ -7650,7 +8277,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "V5 Stage 3"
+     "V5 Stage 3",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -7664,6 +8292,14 @@
    "frame": "phone",
    "purpose": "Every loan as a list; EMI exact, outstanding and years left as bands, rate derived. Feeds the EMI burden, the prepay verdict and term cover.",
    "ui": [
+    [
+     "strip",
+     "Loans: step 1 of 1; 5 of 8 sections done"
+    ],
+    [
+     "p",
+     "Now: loans, N quick questions."
+    ],
     [
      "h",
      "Is there anything you still owe?"
@@ -7782,7 +8418,7 @@
     "states": [
      "Loans are not reliably on AA yet; manual (spec v0.1)",
      "Not sure on outstanding, years left or rate: a verify action on G07 and H04 (rule 6)",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "The derived rate uses the standard EMI formula; store the derived flag so a typed rate overrides it."
@@ -7806,7 +8442,8 @@
     "status": "changed",
     "causes": [
      "row 59",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -7821,8 +8458,17 @@
    "purpose": "One loan: type, EMI, outstanding, years left, the derived rate, lender, tax flag, prepayment.",
    "ui": [
     [
+     "strip",
+     "Loans: step 1 of 1; 5 of 8 sections done (detail)"
+    ],
+    [
      "h",
      "About this loan"
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D03a"
     ],
     [
      "chips",
@@ -7913,7 +8559,8 @@
     "logic": [
      "EMI exact; outstanding and years left as bands; rate derived (appendix C). Fixed bands for these fields (M2 table where one exists, else Rs ___ placeholders).",
      "Not sure on outstanding, years left or rate keeps the field not sure; G07 shows a verify action (rule 6). The loan rate decides a verdict, so it also queues on H04 (rule 7).",
-     "Lender, tax-deductible flag and prepayment allowed (row 59): the flag sets the effective rate; prepayment allowed gates the prepay action on G14."
+     "Lender, tax-deductible flag and prepayment allowed (row 59): the flag sets the effective rate; prepayment allowed gates the prepay action on G14.",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D03a (content is gap G08); D11b at 90 seconds reuses the same slot."
     ],
     "branches": [
      [
@@ -7924,7 +8571,7 @@
     "states": [
      "Editing an existing loan: fields prefilled",
      "Hesitation (rule 5): D11a, D11b, D11c",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store emi, outstanding, years_left, rate (derived or typed), lender, tax_deductible, prepayment_allowed with source and precision per field (rule 9)."
@@ -7963,43 +8610,55 @@
   {
    "id": "D12f",
    "sec": "D",
-   "title": "Section insight: loans",
+   "title": "Relief card: loans",
    "tier": [
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "One card in the adviser voice after the last loans screen, chosen by the answers, no numbers. Copy slot only.",
+   "purpose": "The relief card after the last loans screen: section done, N of eight, what comes next and how long; keep going or set a reminder. The adviser-voice line on the card is a copy slot (rule 10, gap G08).",
    "ui": [
     [
      "card",
-     "Copy slot D12f",
+     "Loans done",
      [
-      "One line in the adviser voice about your loans, chosen by the answers; no numbers (gap G08)"
+      "6 of eight sections.",
+      "Next: insurance, about N minutes.",
+      "Copy slot D12f: one line in the adviser voice about your loans, chosen by the answers; no numbers (gap G08)"
      ]
     ],
     [
      "btn",
-     "Continue",
+     "Keep going",
      "D04"
+    ],
+    [
+     "link",
+     "Remind me later",
+     "O03"
     ]
    ],
    "spec": {
     "fields": [],
     "logic": [
-     "Section micro-feedback (rule 10, V5 Stage 3): fires once after the last screen of the loans section; the line is picked by the answers; explicit none and not sure pick different lines (rule 6).",
-     "Copy is content (gap G08); this screen holds the slot."
+     "Relief card (section relief, Vatsal, 11 Sep 2026): fires once after the last loans screen; it shows the section done, N of eight sections, and the next section with its minutes; two chips: Keep going opens the next section, Remind me later opens O03, the reminder picker.",
+     "The adviser-voice line (rule 10, V5 Stage 3) is a copy slot on the card, picked by the answers; explicit none and not sure pick different lines (rule 6); copy is content (gap G08)."
     ],
     "branches": [
      [
-      "Continue",
+      "Keep going",
       "D04"
+     ],
+     [
+      "Remind me later",
+      "O03"
      ]
     ],
     "states": [
-     "Section left incomplete: the card does not fire; it fires when the section completes later"
+     "Section left incomplete: the card does not fire; it fires when the section completes later",
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
     ],
     "dev": [
-     "Slot id D12f; variants keyed by the section's answers."
+     "Slot id D12f; variants keyed by the section's answers. Sections done counts completed sections, not screens."
     ]
    },
    "template": "T-card",
@@ -8020,60 +8679,72 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "V5 Stage 3"
+     "V5 Stage 3",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
   {
    "id": "D04",
    "sec": "D",
-   "title": "Insurance",
+   "title": "Which covers do you have?",
    "tier": [
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "What is protected today, as a list. Three answers per policy type; only the first opens an amount screen.",
+   "purpose": "The multi-select for what is protected today: tick the covers you have; only those open (D04a term, D04b health, D04c other; ULIP or endowment lives on D02i); every unticked cover is stored as explicit none.",
    "ui": [
     [
+     "strip",
+     "Insurance: step 1 of 1; 6 of 8 sections done"
+    ],
+    [
+     "p",
+     "Now: insurance, N quick questions."
+    ],
+    [
      "h",
-     "Insurance is where most families are over-covered on things that do not matter and under-covered on things that do. Let's see what you have."
+     "Which covers do you have?"
     ],
     [
-     "card",
-     "Term life cover",
+     "p",
+     "Tick what applies. Insurance is where most families are over-covered on things that do not matter and under-covered on things that do."
+    ],
+    [
+     "chips",
      [
-      "Have it and know the amount",
-      "Have it, not sure of the amount",
-      "Do not have it"
+      "Term life",
+      "Health",
+      "ULIP or endowment",
+      "Other (accident, critical illness)",
+      "None of these"
      ]
     ],
     [
-     "card",
-     "Health cover",
+     "rows",
      [
-      "Have it and know the amount",
-      "Have it, not sure of the amount",
-      "Do not have it"
-     ]
-    ],
-    [
-     "card",
-     "ULIP or endowment",
-     [
-      "Pulled from D02i; tap to edit"
-     ]
-    ],
-    [
-     "card",
-     "Other",
-     [
-      "Personal accident, critical illness"
+      [
+       "Term life",
+       "ticked: I ask next"
+      ],
+      [
+       "Health",
+       "ticked"
+      ],
+      [
+       "ULIP or endowment",
+       "from D02i; tap to edit"
+      ],
+      [
+       "Other",
+       "not ticked: none"
+      ]
      ]
     ],
     [
      "btn",
      "Continue",
-     "D12g"
+     "D04a"
     ]
    ],
    "spec": {
@@ -8083,14 +8754,14 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "have | not sure of the amount | none"
+      "note": "have (ticked) | none (unticked); the amount is tri-state on D04a"
      },
      {
       "f": "health_status",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "have | not sure of the amount | none"
+      "note": "have (ticked) | none (unticked); the amount and the type are on D04b"
      },
      {
       "f": "other_policies",
@@ -8101,40 +8772,76 @@
      }
     ],
     "logic": [
-     "Per policy type three chips (rule 6): Have it and know the amount opens the amount screen (D04a, D04b); Have it, not sure of the amount sets the amount to not sure and offers the ladder (the policy schedule PDF to the Vault; the premium from the bank debit); Do not have it sets explicit none.",
+     "Multi-select (Vatsal, 11 Sep 2026): one chip per cover plus None of these; only the ticked covers open, D04a term, D04b health, D04c other, in that order; every unticked cover is stored as explicit none (rule 6) without opening its screen. ULIP or endowment opens D02i, where its detail already lives.",
+     "Have it but not sure of the amount lives on the detail screen: Not sure yet, skip keeps the amount not sure and offers the ladder (the policy schedule PDF to the Vault; the premium from the bank debit).",
      "Blindspot and concern copy fires on explicit none only; not sure produces a verify action on G05 and H04 (rule 6).",
      "Term cover need uses the React formula (spec v0.1). Employer-only health cover triggers the health advice per the React; thresholds from L02 (spec v0.1).",
+     "Continue opens the first ticked cover; after the last one, D12g. None of these sets every cover to explicit none and goes to D12g.",
      "Additional screens per policy type (row 60): D04a term, D04b health, D04c other."
     ],
     "branches": [
      [
-      "Term cover",
+      "Continue",
       "D04a"
      ],
      [
-      "Health cover",
-      "D04b"
+      "None of these",
+      "D12g"
      ],
      [
-      "Other",
-      "D04c"
+      "Done",
+      "D12g"
+     ],
+     [
+      "Term life",
+      "D04a"
+     ],
+     [
+      "Health",
+      "D04b"
      ],
      [
       "ULIP or endowment",
       "D02i"
      ],
      [
-      "Continue",
-      "D12g"
+      "Other (accident, critical illness)",
+      "D04c"
      ]
     ],
     "states": [
-     "Insurance may partly arrive via AA later; fields stay overridable with source lock (spec v0.1)",
-     "Exit (rule 12): autosave, then O03"
+     "Insurance may partly arrive via AA later; a cover that does arrives pre-ticked and locked with its value shown, overridable with source lock (spec v0.1)",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store term_status and health_status as tri-state values separate from the amounts (rule 6)."
-    ]
+    ],
+    "multi_select": {
+     "question": "Which covers do you have?",
+     "options": [
+      [
+       "Term life",
+       "D04a"
+      ],
+      [
+       "Health",
+       "D04b"
+      ],
+      [
+       "ULIP or endowment",
+       "D02i"
+      ],
+      [
+       "Other (accident, critical illness)",
+       "D04c"
+      ]
+     ],
+     "none": "None of these",
+     "unticked": "explicit none",
+     "after": "D12g",
+     "order": "D04a, D04b, D04c; ULIP or endowment on D02i",
+     "prefilled": "A cover that arrives via AA is pre-ticked and locked with its value shown"
+    }
    },
    "template": "T-list",
    "path": "both",
@@ -8155,7 +8862,8 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
      "row 60",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -8170,8 +8878,17 @@
    "purpose": "Sum assured, premium, cover until age; the ladder for the schedule.",
    "ui": [
     [
+     "strip",
+     "Insurance: step 1 of 1; 6 of 8 sections done (detail)"
+    ],
+    [
      "h",
      "Your term cover"
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D04a"
     ],
     [
      "in",
@@ -8246,7 +8963,8 @@
     "logic": [
      "Sum assured band-first with the exact input visible (rule 3); premium exact-first.",
      "Ladder (appendix C): the policy schedule PDF from email to the Vault; the premium from the bank debit; band.",
-     "Not sure keeps the sum assured unknown; G05 shows a verify action, tell me your cover to check it (rule 6)."
+     "Not sure keeps the sum assured unknown; G05 shows a verify action, tell me your cover to check it (rule 6).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D04a (content is gap G08); D11b at 90 seconds reuses the same slot."
     ],
     "branches": [
      [
@@ -8260,7 +8978,7 @@
     ],
     "states": [
      "Hesitation (rule 5): D11a, D11b, D11c",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "to be verified: V1 covers CAS only via A10; other document extraction is V1.5; until then the Vault stores the file and the field stays not sure."
@@ -8322,8 +9040,17 @@
    "purpose": "Employer only, personal or both; sum insured band-first; floater; premium.",
    "ui": [
     [
+     "strip",
+     "Insurance: step 1 of 1; 6 of 8 sections done (detail)"
+    ],
+    [
      "h",
      "Your health cover"
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D04b"
     ],
     [
      "chips",
@@ -8416,7 +9143,8 @@
     "logic": [
      "Sum insured band-first (rule 3); fixed bands for this field (M2 table where one exists, else Rs ___ placeholders).",
      "Employer only triggers the health advice per the React (spec v0.1); the amount refines it.",
-     "Not sure keeps the sum insured unknown; G05 shows a verify action (rule 6)."
+     "Not sure keeps the sum insured unknown; G05 shows a verify action (rule 6).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D04b (content is gap G08); D11b at 90 seconds reuses the same slot."
     ],
     "branches": [
      [
@@ -8430,7 +9158,7 @@
     ],
     "states": [
      "Hesitation (rule 5): D11a, D11b, D11c",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "to be verified: V1 covers CAS only via A10; other document extraction is V1.5; until then the Vault stores the file and the field stays not sure."
@@ -8492,8 +9220,17 @@
    "purpose": "Personal accident, critical illness, anything else; ULIP or endowment links to D02i.",
    "ui": [
     [
+     "strip",
+     "Insurance: step 1 of 1; 6 of 8 sections done (detail)"
+    ],
+    [
      "h",
      "Another policy"
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D04c"
     ],
     [
      "chips",
@@ -8546,7 +9283,8 @@
     ],
     "logic": [
      "ULIP or endowment goes to D02i (surrender value, premium, years completed); the rest are recorded here.",
-     "Sharpen field: G05 lists policy detail (appendix B)."
+     "Sharpen field: G05 lists policy detail (appendix B).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D04c (content is gap G08); D11b at 90 seconds reuses the same slot."
     ],
     "branches": [
      [
@@ -8564,7 +9302,7 @@
     ],
     "states": [
      "Hesitation (rule 5): D11a, D11b, D11c",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "to be verified: V1 covers CAS only via A10; other document extraction is V1.5; until then the Vault stores the file and the field stays not sure."
@@ -8601,50 +9339,63 @@
     "status": "new",
     "causes": [
      "row 60",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
   {
    "id": "D12g",
    "sec": "D",
-   "title": "Section insight: insurance",
+   "title": "Relief card: insurance",
    "tier": [
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "One card in the adviser voice after the last insurance screen, chosen by the answers, no numbers. Copy slot only.",
+   "purpose": "The relief card after the last insurance screen: section done, N of eight, what comes next and how long; keep going or set a reminder. The adviser-voice line on the card is a copy slot (rule 10, gap G08).",
    "ui": [
     [
      "card",
-     "Copy slot D12g",
+     "Insurance done",
      [
-      "One line in the adviser voice about your insurance, chosen by the answers; no numbers (gap G08)"
+      "7 of eight sections.",
+      "Next: goals, about N minutes.",
+      "Copy slot D12g: one line in the adviser voice about your insurance, chosen by the answers; no numbers (gap G08)"
      ]
     ],
     [
      "btn",
-     "Continue",
+     "Keep going",
      "D07"
+    ],
+    [
+     "link",
+     "Remind me later",
+     "O03"
     ]
    ],
    "spec": {
     "fields": [],
     "logic": [
-     "Section micro-feedback (rule 10, V5 Stage 3): fires once after the last screen of the insurance section; the line is picked by the answers; explicit none and not sure pick different lines (rule 6).",
-     "Copy is content (gap G08); this screen holds the slot."
+     "Relief card (section relief, Vatsal, 11 Sep 2026): fires once after the last insurance screen; it shows the section done, N of eight sections, and the next section with its minutes; two chips: Keep going opens the next section, Remind me later opens O03, the reminder picker.",
+     "The adviser-voice line (rule 10, V5 Stage 3) is a copy slot on the card, picked by the answers; explicit none and not sure pick different lines (rule 6); copy is content (gap G08)."
     ],
     "branches": [
      [
-      "Continue",
+      "Keep going",
       "D07"
+     ],
+     [
+      "Remind me later",
+      "O03"
      ]
     ],
     "states": [
-     "Section left incomplete: the card does not fire; it fires when the section completes later"
+     "Section left incomplete: the card does not fire; it fires when the section completes later",
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
     ],
     "dev": [
-     "Slot id D12g; variants keyed by the section's answers."
+     "Slot id D12g; variants keyed by the section's answers. Sections done counts completed sections, not screens."
     ]
    },
    "template": "T-card",
@@ -8665,7 +9416,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "V5 Stage 3"
+     "V5 Stage 3",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -8679,6 +9431,14 @@
    "frame": "phone",
    "purpose": "Where we are heading and what is coming along the way. Suggested from the family circle; the user edits, adds, ranks.",
    "ui": [
+    [
+     "strip",
+     "Goals: step 1 of 2; 7 of 8 sections done"
+    ],
+    [
+     "p",
+     "Now: goals, N quick questions."
+    ],
     [
      "h",
      "Last one, and the most important. Everything so far tells me where you are. This tells me where we are heading."
@@ -8785,7 +9545,7 @@
     ],
     "states": [
      "No goals: the plan covers emergency fund, protection, cashflow, debt and the work-optional projection (spec v0.1)",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Timeline to years map from M2 6.1 (see D07a)."
@@ -8824,8 +9584,17 @@
    "purpose": "One goal: name, when, cost today (band-first; I am not sure yet keeps the goal on the Yes list until it is priced), priority.",
    "ui": [
     [
+     "strip",
+     "Goals: step 1 of 2; 7 of 8 sections done (detail)"
+    ],
+    [
      "h",
      "About this goal"
+    ],
+    [
+     "link",
+     "Why this one matters",
+     "D07a"
     ],
     [
      "in",
@@ -8904,7 +9673,8 @@
      "Cost today band-first (rule 3); fixed bands for this field (M2 table where one exists, else Rs ___ placeholders).",
      "I am not sure yet maps to no estimate (Vatsal, 11 Sep 2026): the goal is stored on the Yes list, excluded from the SIP maths (M2 6.1), with the verify action price this goal to fund it in G09 (rule 6).",
      "Timeline to years map (M2 6.1): 1-2 years = 2, 3-5 years = 4, 5-10 years = 7, 10-15 years = 12, 15+ years = 20; an exact year overrides.",
-     "Sharpen: goal cost and year inside G09 (appendix B)."
+     "Sharpen: goal cost and year inside G09 (appendix B).",
+     "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D07a (content is gap G08); D11b at 90 seconds reuses the same slot."
     ],
     "branches": [
      [
@@ -8915,7 +9685,7 @@
     "states": [
      "Editing an existing goal: fields prefilled",
      "Hesitation (rule 5): D11a, D11b, D11c",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Unpriced goals (cost_today not sure) are not passed to the React's life-events loop; they stay on the Yes list until priced (Vatsal, 11 Sep 2026)."
@@ -8961,6 +9731,10 @@
    "frame": "phone",
    "purpose": "The anchor assumption for the maths, on its own screen. Default 60.",
    "ui": [
+    [
+     "strip",
+     "Goals: step 2 of 2; 7 of 8 sections done"
+    ],
     [
      "h",
      "When would you like work to become optional?"
@@ -9012,7 +9786,7 @@
     ],
     "states": [
      "Below the current age: flagged, the slider snaps to current age plus one (M2 FI_AGE_INVALID)",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Store the value with source default accepted when the chip is used; the tag exists nowhere else."
@@ -9043,43 +9817,55 @@
   {
    "id": "D12h",
    "sec": "D",
-   "title": "Section insight: goals",
+   "title": "Relief card: goals",
    "tier": [
     "ALL"
    ],
    "frame": "phone",
-   "purpose": "One card in the adviser voice after the last goals screen, chosen by the answers, no numbers. Copy slot only.",
+   "purpose": "The relief card after the last goals screen: section done, N of eight, what comes next and how long; keep going or set a reminder. The adviser-voice line on the card is a copy slot (rule 10, gap G08).",
    "ui": [
     [
      "card",
-     "Copy slot D12h",
+     "Goals done",
      [
-      "One line in the adviser voice about your goals, chosen by the answers; no numbers (gap G08)"
+      "8 of eight sections.",
+      "Next: review and build, about N minutes.",
+      "Copy slot D12h: one line in the adviser voice about your goals, chosen by the answers; no numbers (gap G08)"
      ]
     ],
     [
      "btn",
-     "Continue",
+     "Keep going",
      "D10"
+    ],
+    [
+     "link",
+     "Remind me later",
+     "O03"
     ]
    ],
    "spec": {
     "fields": [],
     "logic": [
-     "Section micro-feedback (rule 10, V5 Stage 3): fires once after the last screen of the goals section; the line is picked by the answers; explicit none and not sure pick different lines (rule 6).",
-     "Copy is content (gap G08); this screen holds the slot."
+     "Relief card (section relief, Vatsal, 11 Sep 2026): fires once after the last goals screen; it shows the section done, N of eight sections, and the next section with its minutes; two chips: Keep going opens the next section, Remind me later opens O03, the reminder picker.",
+     "The adviser-voice line (rule 10, V5 Stage 3) is a copy slot on the card, picked by the answers; explicit none and not sure pick different lines (rule 6); copy is content (gap G08)."
     ],
     "branches": [
      [
-      "Continue",
+      "Keep going",
       "D10"
+     ],
+     [
+      "Remind me later",
+      "O03"
      ]
     ],
     "states": [
-     "Section left incomplete: the card does not fire; it fires when the section completes later"
+     "Section left incomplete: the card does not fire; it fires when the section completes later",
+     "Remind me later: O03 opens over this card; Set it and exit lands on O02"
     ],
     "dev": [
-     "Slot id D12h; variants keyed by the section's answers."
+     "Slot id D12h; variants keyed by the section's answers. Sections done counts completed sections, not screens."
     ]
    },
    "template": "T-card",
@@ -9100,7 +9886,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "V5 Stage 3"
+     "V5 Stage 3",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -9114,6 +9901,10 @@
    "frame": "phone",
    "purpose": "Everything collected with its source and precision tags, the gate, what would sharpen the plan, the two paths re-run, and the declaration.",
    "ui": [
+    [
+     "strip",
+     "Review and build: 8 of 8 sections done"
+    ],
     [
      "h",
      "Here is your picture. Anything to fix before I build?"
@@ -9287,7 +10078,8 @@
      "Gate not met: Build my plan disabled; the Ready to build card lists the missing fields with minutes (S5 lands here when the gate is met but the declaration is not confirmed)",
      "Declaration not confirmed: Build disabled",
      "Day-7 partial build (S18): Build goes to G01a instead",
-     "N numbers need at least a rough range: Build my plan disabled; the Ready to build card links to D13 Quick ranges (S19 lands there when ranges are the only missing items)"
+     "N numbers need at least a rough range: Build my plan disabled; the Ready to build card links to D13 Quick ranges (S19 lands there when ranges are the only missing items)",
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Snapshot of inputs as plan_input_version with source and precision per field (advice record).",
@@ -9330,6 +10122,10 @@
    "frame": "phone",
    "purpose": "One row per field the React reads that is still not sure: a set of fixed band chips each. A band is enough to build; exact is better and can be given later from the plan.",
    "ui": [
+    [
+     "strip",
+     "Review and build: 8 of 8 sections done"
+    ],
     [
      "h",
      "A rough range is enough for these"
@@ -9422,7 +10218,7 @@
     "states": [
      "No not-sure field: this screen does not open; D10 goes straight to Build my plan",
      "S19 stalled below the gate at day 7, only ranges missing: lands here; nudge copy slot N-S19-d7 reads N quick ranges and your plan builds",
-     "Exit (rule 12): autosave, then O03"
+     "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
     ],
     "dev": [
      "Rows come from fp_react_inputs.json (fallback: band required on every field) crossed with the stored tri-state per field.",
@@ -9534,7 +10330,7 @@
     ],
     [
      "note",
-     "Copy slot D11b: the why-this-matters line for the field under the sheet (gap G08)"
+     "Copy slot D11b: reuses the Why this one matters slot of the screen under the sheet (W-<screen>), the same line the link under the question shows from the start (gap G08)"
     ],
     [
      "btn",
@@ -9552,7 +10348,8 @@
     "logic": [
      "Hesitation detection (rule 5, V5 Stage 3): shown over the current number screen at 90 seconds.",
      "Keep going dismisses the sheet in place; the screen under it keeps its state.",
-     "Not sure yet, skip sets not sure on the field under the sheet in place and advances to that screen's Continue target."
+     "Not sure yet, skip sets not sure on the field under the sheet in place and advances to that screen's Continue target.",
+     "Reuses the screen's why-this-matters slot (Vatsal, 11 Sep 2026): one copy slot per screen serves the link under the question and this sheet."
     ],
     "branches": [],
     "states": [
@@ -9580,7 +10377,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "V5 Stage 3"
+     "V5 Stage 3",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -13365,6 +14163,11 @@
     ],
     [
      "link",
+     "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+     "Q06"
+    ],
+    [
+     "link",
      "Community: this week's session and who finished their plan",
      "H08"
     ],
@@ -13384,7 +14187,8 @@
     "logic": [
      "Home content is decided by state (section N). This base is state S8; every other state has its variant H01a to H01k (section 5.3).",
      "DIFM: no next action from the engine; card reads: your adviser manages this; shows next review date.",
-     "Community is a one-line strip on Home (brief V1); the community screen opens from the menu (H00)."
+     "Community is a one-line strip on Home (brief V1); the community screen opens from the menu (H00).",
+     "Something changed (Vatsal, 11 Sep 2026): the link opens Q06, which reopens only the spine screens the change touches; every H01 variant carries it."
     ],
     "branches": [
      [
@@ -13422,6 +14226,10 @@
      [
       "Call",
       "K02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ]
     ],
     "states": [
@@ -13460,7 +14268,8 @@
     "status": "changed",
     "causes": [
      "brief V1",
-     "Vatsal, 10 Sep 2026 (section 5)"
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -13528,6 +14337,11 @@
     ],
     [
      "link",
+     "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+     "Q06"
+    ],
+    [
+     "link",
      "Community: this week's session and who finished their plan",
      "H08"
     ],
@@ -13584,6 +14398,10 @@
      [
       "Call",
       "K02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ],
      [
       "Read",
@@ -13684,6 +14502,11 @@
     ],
     [
      "link",
+     "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+     "Q06"
+    ],
+    [
+     "link",
      "Community: this week's session and who finished their plan",
      "H08"
     ],
@@ -13740,6 +14563,10 @@
      [
       "Call",
       "K02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ]
     ],
     "states": [
@@ -13836,6 +14663,11 @@
     ],
     [
      "link",
+     "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+     "Q06"
+    ],
+    [
+     "link",
      "Community: this week's session and who finished their plan",
      "H08"
     ],
@@ -13892,6 +14724,10 @@
      [
       "Call",
       "K02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ]
     ],
     "states": [
@@ -13988,6 +14824,11 @@
     ],
     [
      "link",
+     "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+     "Q06"
+    ],
+    [
+     "link",
      "Community: this week's session and who finished their plan",
      "H08"
     ],
@@ -14044,6 +14885,10 @@
      [
       "Call",
       "K02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ],
      [
       "Progress",
@@ -14148,6 +14993,11 @@
     ],
     [
      "link",
+     "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+     "Q06"
+    ],
+    [
+     "link",
      "Community: this week's session and who finished their plan",
      "H08"
     ],
@@ -14204,6 +15054,10 @@
      [
       "Call",
       "K02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ],
      [
       "Update",
@@ -14305,6 +15159,11 @@
     ],
     [
      "link",
+     "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+     "Q06"
+    ],
+    [
+     "link",
      "Community: this week's session and who finished their plan",
      "H08"
     ],
@@ -14361,6 +15220,10 @@
      [
       "Call",
       "K02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ],
      [
       "Retry",
@@ -14462,6 +15325,11 @@
     ],
     [
      "link",
+     "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+     "Q06"
+    ],
+    [
+     "link",
      "Community: this week's session and who finished their plan",
      "H08"
     ],
@@ -14518,6 +15386,10 @@
      [
       "Call",
       "K02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ],
      [
       "Resubscribe",
@@ -14618,6 +15490,11 @@
     ],
     [
      "link",
+     "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+     "Q06"
+    ],
+    [
+     "link",
      "Community: this week's session and who finished their plan",
      "H08"
     ],
@@ -14675,6 +15552,10 @@
      [
       "Call",
       "K02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ],
      [
       "Update",
@@ -14780,6 +15661,11 @@
     ],
     [
      "link",
+     "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+     "Q06"
+    ],
+    [
+     "link",
      "Community: this week's session and who finished their plan",
      "H08"
     ],
@@ -14837,6 +15723,10 @@
      [
       "Call",
       "K02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ],
      [
       "Connect",
@@ -14961,6 +15851,11 @@
     ],
     [
      "link",
+     "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+     "Q06"
+    ],
+    [
+     "link",
      "Community: this week's session and who finished their plan",
      "H08"
     ],
@@ -15018,6 +15913,10 @@
      [
       "Call",
       "K02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ],
      [
       "Sharpen",
@@ -15124,6 +16023,11 @@
     ],
     [
      "link",
+     "Something changed? Income, a loan, family, a big expense, a windfall, a move",
+     "Q06"
+    ],
+    [
+     "link",
      "Community: this week's session and who finished their plan",
      "H08"
     ],
@@ -15180,6 +16084,10 @@
      [
       "Call",
       "K02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ],
      [
       "Review",
@@ -15440,6 +16348,10 @@
       [
        "Liquid fund lumpsum",
        "Done"
+      ],
+      [
+       "Windfall: what to do with it",
+       "To do, from Q06"
       ]
      ]
     ],
@@ -15465,7 +16377,8 @@
    "spec": {
     "fields": [],
     "logic": [
-     "Verify actions from not-sure fields (section 4.3 rule 6; section 5.3): a field left as not sure produces a verify action here, in G05 and G07; explicit none produces the concern copy instead."
+     "Verify actions from not-sure fields (section 4.3 rule 6; section 5.3): a field left as not sure produces a verify action here, in G05 and G07; explicit none produces the concern copy instead.",
+     "Windfall or bonus reported on Q06 (Vatsal, 11 Sep 2026) adds the action what to do with it here, next to the D02a re-ask."
     ],
     "branches": [
      [
@@ -15501,7 +16414,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "Vatsal, 10 Sep 2026 (section 5)"
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -15738,6 +16652,11 @@
      "K06"
     ],
     [
+     "link",
+     "Something changed in my life",
+     "Q06"
+    ],
+    [
      "btn2",
      "Back",
      "H01"
@@ -15747,7 +16666,8 @@
     "fields": [],
     "logic": [
      "One card renders, by tier.",
-     "Talk to an adviser goes to K01 for every tier (Vatsal, 10 Sep 2026)."
+     "Talk to an adviser goes to K01 for every tier (Vatsal, 10 Sep 2026).",
+     "Something changed in my life opens Q06 (Vatsal, 11 Sep 2026); the chips there reopen only the screens the change touches."
     ],
     "branches": [
      [
@@ -15761,6 +16681,10 @@
      [
       "Back",
       "H01"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ]
     ],
     "states": [],
@@ -15786,7 +16710,8 @@
    "v02": {
     "status": "rebuilt",
     "causes": [
-     "Vatsal, 10 Sep 2026 (supersedes brief S1)"
+     "Vatsal, 10 Sep 2026 (supersedes brief S1)",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -15888,6 +16813,10 @@
        ""
       ],
       [
+       "Something changed: income, loan, family, expense, windfall, city",
+       "opens Q06"
+      ],
+      [
        "Family circle",
        ""
       ],
@@ -15928,7 +16857,8 @@
     "logic": [
      "Update answers reopens the relevant D screens with current values; on save the plan re-runs and H05 shows the diff.",
      "Subscription goes to Q03; change plan goes to Q02.",
-     "Delete my account (S25): DPDP flow; regulated records retained; to be verified: DPDP notice, deletion and retention text."
+     "Delete my account (S25): DPDP flow; regulated records retained; to be verified: DPDP notice, deletion and retention text.",
+     "Something changed opens Q06, which reopens only the screens the change touches (Vatsal, 11 Sep 2026)."
     ],
     "branches": [
      [
@@ -15938,6 +16868,10 @@
      [
       "Change plan",
       "Q02"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ]
     ],
     "states": [
@@ -15968,7 +16902,8 @@
     "causes": [
      "gap G03 (agreed, date set)",
      "Vatsal, 10 Sep 2026 (supersedes brief T1)",
-     "Vatsal, 10 Sep 2026 (section 5)"
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -16191,12 +17126,14 @@
      "card",
      "Anything else change?",
      [
-      "Income",
-      "New loan",
-      "Family",
-      "Big expense coming",
-      "Nothing"
+      "Income, a loan, family, a big expense, a windfall, a move: tell me and I reopen only those screens",
+      "Nothing else"
      ]
+    ],
+    [
+     "link",
+     "Something changed",
+     "Q06"
     ],
     [
      "btn",
@@ -16219,7 +17156,8 @@
      "Locked manual fields are not overwritten; the diff shows both and asks (spiff, Q10).",
      "Runs on the plan anniversary quarter; user can trigger early.",
      "Also runs on a logic-panel publish if the user is affected.",
-     "DIWM sees a line to book a call to walk through this review (Vatsal, 10 Sep 2026); the call is booked on K01."
+     "DIWM sees a line to book a call to walk through this review (Vatsal, 10 Sep 2026); the call is booked on K01.",
+     "Anything else change? opens Q06 (Vatsal, 11 Sep 2026): the chips there map to the spine screens each change reopens; on completion the engine re-runs into this review's diff (H05)."
     ],
     "branches": [
      [
@@ -16233,6 +17171,10 @@
      [
       "Re-consent",
       "A06"
+     ],
+     [
+      "Something changed",
+      "Q06"
      ]
     ],
     "states": [
@@ -16263,7 +17205,8 @@
     "status": "changed",
     "causes": [
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
-     "Vatsal, 10 Sep 2026 (section 5)"
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -16275,7 +17218,7 @@
     "DIY",
     "DIWM"
    ],
-   "purpose": "Switch SKU or billing period from Settings. The v0.1 life-events picker that sat here is a gap, to be decided; the Anything else change card on Q01 covers self-reported changes for now.",
+   "purpose": "Switch SKU or billing period from Settings. The life-events picker that sat here in v0.1 is Q06 Something changed.",
    "ui": [
     [
      "h",
@@ -16325,7 +17268,7 @@
     "logic": [
      "Switch SKU and period (Vatsal, 10 Sep 2026); the new mandate goes through P04.",
      "Proration line: to be verified: proration and refund on a period switch.",
-     "gap, to be decided: the v0.1 life-events picker (Something changed in my life) has no screen of its own in v0.2; Q01 carries the Anything else change card."
+     "The life-events picker that sat here in v0.1 is Q06 Something changed (Vatsal, 11 Sep 2026; gap G14 done)."
     ],
     "branches": [
      [
@@ -16363,7 +17306,8 @@
    "v02": {
     "status": "rebuilt",
     "causes": [
-     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -16888,8 +17832,8 @@
     [
      "chips",
      [
-      "Keep my manual number",
-      "Update"
+      "That's about right",
+      "Change it"
      ]
     ],
     [
@@ -16967,7 +17911,8 @@
     ],
     "logic": [
      "Manual quarterly review for S16 users (Vatsal, 10 Sep 2026): the fields that move, with the capture ladder and A10 again.",
-     "Keep my manual number stays for mixed users: a locked manual field is not overwritten by a later Account Aggregator fetch (spec v0.1 A08, kept).",
+     "Confirm or correct (Vatsal, 11 Sep 2026): each row carries last quarter's value with its source tag; That's about right stores it again with the tag; Change it reveals the input for that row. The derivation reads carried from last quarter, never an estimate.",
+     "Mixed sources: a locked manual field is not overwritten by a later Account Aggregator fetch (spec v0.1 A08, kept); the row shows the manual lock.",
      "The Account Aggregator re-ask lives here and at G12a (section 5.2, S16).",
      "Rebuild my plan re-runs the engine; H05 shows the diff."
     ],
@@ -16999,6 +17944,7 @@
     ],
     "states": [
      "S16 AA not connected: this is the review",
+     "Prefilled: every row shows last quarter's value with its tag; the primary action per row is That's about right",
      "Mixed sources: AA-fed rows show the fetched value and the manual lock; only typed rows are asked"
     ],
     "dev": [
@@ -17024,7 +17970,321 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026 (section 5)"
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "Vatsal, 11 Sep 2026"
+    ]
+   }
+  },
+  {
+   "id": "Q06",
+   "sec": "Q",
+   "title": "Something changed",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "The life-events picker: seven chips, each mapped to the spine screens it reopens, in order. Reachable from H01, H07, H09, the Q01 review card and the N04 quarterly template.",
+   "ui": [
+    [
+     "h",
+     "Something changed?"
+    ],
+    [
+     "p",
+     "Tell me what, and I reopen only the screens it touches. Everything else stays as it is."
+    ],
+    [
+     "chips",
+     [
+      "Income changed",
+      "New loan or loan closed",
+      "Family: baby, marriage, new dependant",
+      "Big expense coming",
+      "Windfall or bonus",
+      "Moved city",
+      "Something else"
+     ]
+    ],
+    [
+     "in",
+     "Something else: tell me in a line"
+    ],
+    [
+     "card",
+     "What each one reopens",
+     [
+      "Income changed: your take-home (D05a), your outgoings (D06a)",
+      "New loan or loan closed: your loans (D03) and the loan's detail (D03a)",
+      "Family: baby, marriage, new dependant: the member's detail (D01a), a suggested goal (D07), the health floater (D04b)",
+      "Big expense coming: a goal with its cost and year (D07a)",
+      "Windfall or bonus: your bank balances (D02a), plus the action what to do with it (H04)",
+      "Moved city: your outgoings (D06a)",
+      "Something else: a line in your words, then your next steps (O02)"
+     ]
+    ],
+    [
+     "btn",
+     "Next",
+     "Q06a"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     {
+      "f": "life_events[]",
+      "gate": false,
+      "source": "manual",
+      "precision": "exact",
+      "note": "chip, free text for something else, reported_at"
+     }
+    ],
+    "logic": [
+     "Each chip maps to the spine screens it reopens, in order (Vatsal, 11 Sep 2026): income changed to D05a then D06a; new loan or loan closed to D03 then D03a; family to D01a, D07 (suggested goal) and D04b (floater); big expense coming to D07a; windfall or bonus to D02a plus an H04 action, what to do with it; moved city to D06a; something else to free text plus O02.",
+     "More than one chip: the reopened screens are merged in spine order, each once.",
+     "Next opens Q06a, which lists the mapped screens with their minutes before anything reopens.",
+     "Reopened screens carry their current value prefilled (confirm or correct): That's about right keeps it, Change it reveals the input."
+    ],
+    "branches": [
+     [
+      "Next",
+      "Q06a"
+     ],
+     [
+      "Income changed",
+      "D05a"
+     ],
+     [
+      "Income changed",
+      "D06a"
+     ],
+     [
+      "New loan or loan closed",
+      "D03"
+     ],
+     [
+      "New loan or loan closed",
+      "D03a"
+     ],
+     [
+      "Family: baby, marriage, new dependant",
+      "D01a"
+     ],
+     [
+      "Family: baby, marriage, new dependant",
+      "D07"
+     ],
+     [
+      "Family: baby, marriage, new dependant",
+      "D04b"
+     ],
+     [
+      "Big expense coming",
+      "D07a"
+     ],
+     [
+      "Windfall or bonus",
+      "D02a"
+     ],
+     [
+      "Windfall or bonus",
+      "H04"
+     ],
+     [
+      "Moved city",
+      "D06a"
+     ],
+     [
+      "Something else",
+      "O02"
+     ]
+    ],
+    "states": [
+     "From the Q01 review card: on completion the re-run lands in the review's diff (H05)",
+     "From H01, H07 or H09: on completion H05, then H01e (plan updated, S11)",
+     "From the N04 quarterly template (slot N-Q06): deep link lands here"
+    ],
+    "dev": [
+     "Store life_events[] with the chip, the free text and reported_at; event life_event_reported {chip}.",
+     "The mapping is config (chip to screens), not code."
+    ],
+    "chip_map": [
+     {
+      "chip": "Income changed",
+      "reopens": [
+       "D05a",
+       "D06a"
+      ]
+     },
+     {
+      "chip": "New loan or loan closed",
+      "reopens": [
+       "D03",
+       "D03a"
+      ]
+     },
+     {
+      "chip": "Family: baby, marriage, new dependant",
+      "reopens": [
+       "D01a",
+       "D07",
+       "D04b"
+      ]
+     },
+     {
+      "chip": "Big expense coming",
+      "reopens": [
+       "D07a"
+      ]
+     },
+     {
+      "chip": "Windfall or bonus",
+      "reopens": [
+       "D02a",
+       "H04"
+      ]
+     },
+     {
+      "chip": "Moved city",
+      "reopens": [
+       "D06a"
+      ]
+     },
+     {
+      "chip": "Something else",
+      "reopens": [
+       "O02"
+      ]
+     }
+    ]
+   },
+   "template": "T-list",
+   "path": "both",
+   "events": [
+    "Q06_view",
+    "life_event_reported"
+   ],
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 11 Sep 2026"
+    ]
+   }
+  },
+  {
+   "id": "Q06a",
+   "sec": "Q",
+   "title": "What I will ask again",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "The list of screens a reported change reopens, with minutes, before anything reopens. Start walks them; on completion the engine re-runs and lands on H05, then H01e.",
+   "ui": [
+    [
+     "h",
+     "What I will ask again"
+    ],
+    [
+     "p",
+     "Only these; everything else stays as it is."
+    ],
+    [
+     "rows",
+     [
+      [
+       "Your monthly take-home (D05a)",
+       "about N minutes"
+      ],
+      [
+       "Total monthly outgoings (D06a)",
+       "about N minutes"
+      ]
+     ]
+    ],
+    [
+     "note",
+     "Drawn for income changed; the list follows the chips ticked on Q06, in spine order"
+    ],
+    [
+     "btn",
+     "Start",
+     "D05a"
+    ],
+    [
+     "link",
+     "Not now",
+     "H01"
+    ]
+   ],
+   "spec": {
+    "fields": [
+     {
+      "f": "reopen_queue[]",
+      "gate": false,
+      "source": "system",
+      "precision": "exact",
+      "note": "the mapped screens for the chips ticked, in spine order"
+     }
+    ],
+    "logic": [
+     "Start opens the first mapped screen; each mapped screen saves and advances to the next in the queue instead of its usual next (Vatsal, 11 Sep 2026).",
+     "On completion the engine re-runs and lands on H05 with the diff, then H01e (plan updated, S11); from the Q01 review the diff joins the review.",
+     "Not now keeps the report; H01 shows a card to finish it, and the N-Q06 slot may nudge once."
+    ],
+    "branches": [
+     [
+      "Start",
+      "D05a"
+     ],
+     [
+      "Not now",
+      "H01"
+     ],
+     [
+      "On completion",
+      "H05"
+     ],
+     [
+      "Then",
+      "H01e"
+     ]
+    ],
+    "states": [
+     "One screen in the queue: Start opens it and the re-run follows its save",
+     "Queue interrupted: the report stays open; the next open of H01 offers to finish it"
+    ],
+    "dev": [
+     "reopen_queue[] drives the next target of each reopened screen; event life_event_rerun {chips, screens} on completion."
+    ]
+   },
+   "template": "T-list",
+   "path": "both",
+   "events": [
+    "Q06a_view",
+    "life_event_rerun"
+   ],
+   "compliance": {
+    "review": false,
+    "reasons": [
+     "plain copy"
+    ],
+    "checks": [
+     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },
@@ -17156,7 +18416,7 @@
        "Accept the update (H05)",
        "3d push",
        "DIWM: ladder only. DIY: ladder only. DIFM: not applicable.",
-       "update accepted (H05) -> the previous state (S8, S9 or S10)"
+       "update accepted (H05) -> the previous state (S8, S9 or S10); something changed (Q06) -> Q06a re-asks the mapped screens, the engine re-runs, H05 then H01e (S11 again)"
       ],
       [
        "S12",
@@ -18407,6 +19667,13 @@
        "S25",
        "H09",
        "Deletion request received; the DPDP flow, and the regulated records that are retained."
+      ],
+      [
+       "N-Q06",
+       "push",
+       "any post-plan state",
+       "Q06",
+       "Something changed? Tell me in one tap and I update only what it touches. About N minutes."
       ]
      ]
     ]
@@ -18416,9 +19683,15 @@
     "logic": [
      "Copy slots are IDs; the copy is content (gap G08) and lives in the CRM templates (Vatsal, 10 Sep 2026).",
      "Every nudge names the specific next screen and its minutes; never continue your journey (Vatsal, 10 Sep 2026).",
-     "WhatsApp templates need approval before launch; to be verified: WhatsApp template approval lead time."
+     "WhatsApp templates need approval before launch; to be verified: WhatsApp template approval lead time.",
+     "N-Q06 (Vatsal, 11 Sep 2026): the quarterly template's Something changed slot deep-links to Q06."
     ],
-    "branches": [],
+    "branches": [
+     [
+      "Something changed",
+      "Q06"
+     ]
+    ],
     "states": [],
     "dev": [
      "Human-call rows are CRM tasks, not messages; the caller reads the task fields."
@@ -19494,7 +20767,7 @@
      "State S11: Plan updated (publish), not accepted. Lands on H01e; the nudges deep-link to H05.",
      "Ladder: 3d push.",
      "Escalation: DIWM: ladder only. DIY: ladder only. DIFM: not applicable.",
-     "Exit: update accepted (H05) -> the previous state (S8, S9 or S10)."
+     "Exit: update accepted (H05) -> the previous state (S8, S9 or S10); something changed (Q06) -> Q06a re-asks the mapped screens, the engine re-runs, H05 then H01e (S11 again)."
     ],
     "branches": [
      [
@@ -19530,7 +20803,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026 (section 5)"
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "Vatsal, 11 Sep 2026"
     ]
    }
   },

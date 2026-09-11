@@ -24,11 +24,11 @@
  ],
  "num_screens": [
   {
-   "id": "D05a", "title": "Your monthly take-home", "fields": ["take_home"], "mode": "exact-first", "aa": true, "sources": "aa | manual",
+   "id": "D05a", "prefill": "Account Aggregator (the salary credit detected), or from what you told me earlier (R03)", "title": "Your monthly take-home", "fields": ["take_home"], "mode": "exact-first", "aa": true, "sources": "aa | manual",
    "purpose": "The one income number the plan cannot do without. Exact first; AA salary detection prefills it when present.",
    "question": "What lands in your account every month, after tax?",
    "hint": "Take-home, not CTC. Bonuses go under other income.",
-   "suggestion": "You said about Rs 17.5 L a year earlier; roughly Rs 1.2 L a month after tax? (from R03; change it if that is off)",
+   "suggestion": "From what you told me earlier: about Rs 17.5 L a year, so roughly Rs 1.2 L a month after tax (R03)",
    "input_label": "Rs ___ a month, exact", "period_toggle": true,
    "readback": "one lakh twenty thousand a month, about Rs 14.4 L a year",
    "ladder": [["aa", "Fetched from Account Aggregator: the salary credit detected on a fixed day", "connect now if not yet"], ["typed", "Your salary slip or your bank app", "type the credited amount"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
@@ -76,11 +76,11 @@
    "logic": ["Regular or lumpy: two chips under the amount set income_regularity (spec v0.1 D05); lumpy income is averaged over the year in the cashflow."]
   },
   {
-   "id": "D06a", "title": "Total monthly outgoings", "fields": ["total_outgoings"], "mode": "exact-first", "aa": true, "sources": "aa | manual",
+   "id": "D06a", "prefill": "Account Aggregator (average monthly debits), or from what you told me earlier (R05)", "title": "Total monthly outgoings", "fields": ["total_outgoings"], "mode": "exact-first", "aa": true, "sources": "aa | manual",
    "purpose": "Everything that goes out in a month, as one number first. The surplus updates live under it.",
    "question": "Roughly, how much goes out every month, everything included?",
    "hint": "Rent, EMIs, school, groceries, help, subscriptions, the lot. One number; the split comes next.",
-   "suggestion": "From what you told me about saving (R05), about Rs ___ a month goes out. Fix it if that is off.",
+   "suggestion": "From what you told me earlier about saving (R05): about Rs ___ a month goes out",
    "input_label": "Rs ___ a month, exact",
    "readback": "one lakh thirty thousand a month, about Rs 15.7 L a year",
    "ladder": [["aa", "Fetched from Account Aggregator: average monthly debits over twelve months", "connect now if not yet"], ["typed", "Your bank app: last month's debits", "type the total"], ["band", "A band for this field", "midpoint fills the field, tagged approx"]],
@@ -92,7 +92,7 @@
    "dev": ["The Pets card on D01 (row 8 note) adds a recurring expense line inside the fixed bucket on D06b."]
   },
   {
-   "id": "D06d", "title": "Already investing every month", "fields": ["current_sip"], "mode": "exact-first", "aa": true, "sources": "aa | manual",
+   "id": "D06d", "prefill": "Account Aggregator (SIP debits detected)", "title": "Already investing every month", "fields": ["current_sip"], "mode": "exact-first", "aa": true, "sources": "aa | manual",
    "purpose": "SIPs and recurring deposits already running. Exact first; AA debits to the RTAs prefill it.",
    "question": "What do you already put away every month, on autopilot? SIPs, recurring deposits.",
    "hint": "What already runs, not what you plan to start.",
@@ -104,7 +104,7 @@
    "logic": ["SIP detection from AA debits to RTAs; the user confirms (spec v0.1 D06)."]
   },
   {
-   "id": "D02a", "title": "Bank balances and deposits", "fields": ["bank_and_deposits"], "mode": "exact-first", "aa": true, "sources": "aa | manual",
+   "id": "D02a", "multi_parent": "D02", "prefill": "Account Aggregator (balances and deposits)", "title": "Bank balances and deposits", "fields": ["bank_and_deposits"], "mode": "exact-first", "aa": true, "sources": "aa | manual",
    "purpose": "Savings, current, fixed and recurring deposits across every bank. Gate field; AA fills it in a minute.",
    "question": "How much sits in your bank accounts and deposits today?",
    "hint": "Savings and current balances plus fixed and recurring deposits, across every bank.",
@@ -116,7 +116,7 @@
    "next": "D02b", "sharpen_in": ["G04"]
   },
   {
-   "id": "D02b", "title": "Mutual funds", "fields": ["mutual_funds"], "mode": "exact-first", "aa": true, "cas": true, "sources": "aa | cas | manual",
+   "id": "D02b", "multi_parent": "D02", "prefill": "Account Aggregator (every folio) or your CAS", "title": "Mutual funds", "fields": ["mutual_funds"], "mode": "exact-first", "aa": true, "cas": true, "sources": "aa | cas | manual",
    "purpose": "Mutual fund holdings by value. Gate field; AA or a CAS upload makes them verified for switch advice.",
    "question": "What are your mutual funds worth today, all of them together?",
    "hint": "Current value, not what you put in. A CAS upload gives me the exact holdings.",
@@ -128,7 +128,7 @@
    "logic": ["Typed totals get buy advice only; switch and sell advice needs AA-fed or CAS-verified holdings (G12a)."]
   },
   {
-   "id": "D02c", "title": "Stocks and ETFs", "fields": ["stocks"], "mode": "exact-first", "aa": true, "cas": true, "sources": "aa | cas | manual",
+   "id": "D02c", "multi_parent": "D02", "prefill": "Account Aggregator (your depository account) or your CAS", "title": "Stocks and ETFs", "fields": ["stocks"], "mode": "exact-first", "aa": true, "cas": true, "sources": "aa | cas | manual",
    "purpose": "Direct equity and ETFs by value. Gate field; AA or a depository CAS verifies them.",
    "question": "And stocks or ETFs held in a demat account, worth how much today?",
    "hint": "Current value across every broker.",
@@ -139,7 +139,7 @@
    "next": "D02d", "sharpen_in": ["G11", "G12"]
   },
   {
-   "id": "D02d", "title": "NPS", "fields": ["nps"], "mode": "band-first", "sources": "aa | manual",
+   "id": "D02d", "multi_parent": "D02", "title": "NPS", "fields": ["nps"], "mode": "band-first", "sources": "aa | manual",
    "purpose": "National Pension System balance. Sharpen field; AA where the CRA is live.",
    "question": "Do you have an NPS account? What is in it, roughly?",
    "hint": "Tier 1 and Tier 2 together. A band is fine.",
@@ -151,7 +151,7 @@
    "dev": ["to be verified: V1 covers CAS only via A10; other document extraction is V1.5; until then the Vault stores the file and the field stays not sure."]
   },
   {
-   "id": "D02e", "title": "EPF", "fields": ["epf"], "mode": "exact-first", "sources": "manual",
+   "id": "D02e", "multi_parent": "D02", "title": "EPF", "fields": ["epf"], "mode": "exact-first", "sources": "manual",
    "purpose": "Provident fund balance. Gate field; a guided lookup gets the exact number in a minute.",
    "question": "What is your EPF balance? Your passbook has it.",
    "hint": "Employee plus employer share, plus interest.",
@@ -163,7 +163,7 @@
    "dev": ["Guided lookup steps are content (gap G08); the deep link prefills the SMS on Android where it exists."]
   },
   {
-   "id": "D02f", "title": "PPF and post office", "fields": ["ppf"], "mode": "band-first", "sources": "manual",
+   "id": "D02f", "multi_parent": "D02", "title": "PPF and post office", "fields": ["ppf"], "mode": "band-first", "sources": "manual",
    "purpose": "PPF and post-office schemes. Sharpen field; band first.",
    "question": "PPF, or any post-office scheme? Roughly how much is in them?",
    "hint": "PPF, NSC, Sukanya Samriddhi, post-office deposits.",
@@ -174,7 +174,7 @@
    "next": "D02g", "sharpen_in": ["G03", "G09"]
   },
   {
-   "id": "D02g", "title": "Gold and silver", "fields": ["gold"], "mode": "band-first", "sources": "manual",
+   "id": "D02g", "multi_parent": "D02", "title": "Gold and silver", "fields": ["gold"], "mode": "band-first", "sources": "manual",
    "purpose": "Physical gold and silver, in grams or value. Sharpen field; the app prices grams from L07.",
    "question": "Gold or silver at home or in a locker? Grams, or a value, roughly.",
    "hint": "Jewellery counts. Tell me grams and I will price it.",
@@ -186,7 +186,7 @@
    "logic": ["Grams are priced from the L07 market inputs; the price date is stored with the value."]
   },
   {
-   "id": "D02h", "title": "Property", "fields": ["home_value", "investment_property_value", "investment_property_rent"], "mode": "band-first", "sources": "manual",
+   "id": "D02h", "multi_parent": "D02", "title": "Property", "fields": ["home_value", "investment_property_value", "investment_property_rent"], "mode": "band-first", "sources": "manual",
    "purpose": "The home you live in (excluded from investable) and any investment property with its rent. Band first for value; rent exact.",
    "question": "Property: the home you live in, and anything else you own?",
    "hint": "What it would sell for today, roughly. The home you live in counts for net worth, not for investing.",
@@ -199,7 +199,7 @@
    "states": ["Investment property added: opens D05c for the rent and returns here on save"]
   },
   {
-   "id": "D02i", "title": "ULIP or endowment", "fields": ["ulip_surrender_value", "ulip_premium", "ulip_years_completed"], "mode": "exact-first", "sources": "manual",
+   "id": "D02i", "multi_parent": "D02", "title": "ULIP or endowment", "fields": ["ulip_surrender_value", "ulip_premium", "ulip_years_completed"], "mode": "exact-first", "sources": "manual",
    "purpose": "Investment-linked policies: surrender value, premium, years completed. Sharpen fields that decide a verdict, so they also queue on H04.",
    "question": "Any ULIP or endowment policy? Surrender value, premium, and how many years you have paid.",
    "hint": "The insurer app shows the surrender value. The premium is exact; the years decide the advice.",
@@ -211,7 +211,7 @@
    "logic": ["ULIP years completed decides a verdict (surrender assessment; React life-insurance rules), so a not-sure here is also an action-queue item on H04 (rule 7).", "D04c links back here for policy detail."]
   },
   {
-   "id": "D02j", "title": "Anything else", "fields": ["other_assets"], "mode": "band-first", "sources": "manual",
+   "id": "D02j", "multi_parent": "D02", "title": "Anything else", "fields": ["other_assets"], "mode": "band-first", "sources": "manual",
    "purpose": "Crypto, international holdings, a business stake, loans given to others. Sharpen field; typed or band.",
    "question": "Anything else of value? Crypto, international holdings, a stake in a business, money you have lent.",
    "hint": "A rough value is fine; say what it is.",
@@ -234,5 +234,22 @@
    {"id": "D08g", "topic": "gain-loss preference", "text": "The table below shows the highest one-year gain & one-year loss on three different investment options. Given the potential gain or loss in any one year, where would you invest your money?", "table": [["Investment", "A", "B", "C", "D"], [["Max Gain", "4%", "8%", "14%", "30%"], ["Max Loss", "0", "-3%", "-8%", "-15%"]]], "options": ["Investment D", "Investment C", "Investment B", "Investment A"], "logic": ["The questionnaire text says three options and lists four; kept verbatim (brief H3); to be verified: the Q7 wording."]},
    {"id": "D08h", "topic": "borrowing to invest", "text": "Would you ever borrow to invest in financial markets?", "options": ["I frequently look for opprtunities to earn returns on borrowed money", "I do not mind using financial leverage products like derivatives to hedge or optimize my portfolio", "I have done it infrequently", "I will not prefer to do so"], "logic": ["Option wording kept verbatim from the questionnaire, spelling included (brief H3); to be verified: the Q8 wording."]}
   ]
+ },
+ "multi_after": {"D02": "D12e"},
+ "strip": {
+  "cause": "Vatsal, 11 Sep 2026",
+  "note": "Section relief (a) and (b): the section strip on every spine screen (section name, step x of y, sections done of eight) and the Now: <section>, N quick questions line on the first screen of each section. apply_decisions.py derives the text; detail screens carry their parent's step.",
+  "sections": [
+   {"label": "Family", "screens": ["D01"], "details": {"D01a": "D01"}},
+   {"label": "Risk profile", "screens": ["D08a", "D08b", "D08c", "D08d", "D08e", "D08f", "D08g", "D08h", "D09"]},
+   {"label": "Income", "screens": ["D05a", "D05b", "D05c", "D05d"]},
+   {"label": "Expenses", "screens": ["D06a", "D06b", "D06c", "D06d"]},
+   {"label": "Investments", "screens": ["D02", "D02a", "D02b", "D02c", "D02d", "D02e", "D02f", "D02g", "D02h", "D02i", "D02j"]},
+   {"label": "Loans", "screens": ["D03"], "details": {"D03a": "D03"}},
+   {"label": "Insurance", "screens": ["D04"], "details": {"D04a": "D04", "D04b": "D04", "D04c": "D04"}},
+   {"label": "Goals", "screens": ["D07", "D07b"], "details": {"D07a": "D07"}}
+  ],
+  "after": ["D10", "D13"],
+  "after_label": "Review and build"
  }
 }

@@ -77,6 +77,7 @@
       case "h": return '<div class="w-h">'+esc(e[1])+'</div>';
       case "p": return '<div class="w-p">'+esc(e[1])+'</div>';
       case "note": return '<div class="w-note">'+esc(e[1])+'</div>';
+      case "strip": return '<div class="w-strip">'+esc(e[1])+'</div>';
       case "in": return '<div class="w-in"><span>'+esc(e[1])+'</span></div>';
       case "chips": return '<div class="w-chips">'+e[1].map(function(c){return '<span class="w-chip">'+esc(c)+'</span>';}).join("")+'</div>';
       case "radio": return '<div class="w-radio">'+e[1].map(function(c){return '<div class="w-opt"><i></i><span>'+esc(c)+'</span></div>';}).join("")+'</div>';
@@ -188,6 +189,14 @@
     html += list("Fields captured", (s.spec.fields || []).map(fieldLine));
     if(s.spec.ladder && s.spec.ladder.length){
       html += '<div class="spec-block"><div class="spec-t">Capture ladder</div><ul>'+s.spec.ladder.map(function(x){ return '<li><b>'+esc(x[0])+'</b>: '+esc(x[1])+'</li>'; }).join("")+'</ul></div>';
+    }
+    if(s.spec.multi_select){
+      var ms = s.spec.multi_select;
+      html += '<div class="spec-block"><div class="spec-t">Multi-select</div><ul>'+(ms.options || []).map(function(o){ return '<li><span>'+esc(o[0])+'</span> opens <a href="#'+esc(o[1])+'" class="br">'+esc(o[1])+'</a></li>'; }).join("")+
+              '<li>'+esc(ms.none)+': every type is '+esc(ms.unticked)+'; then <a href="#'+esc(ms.after)+'" class="br">'+esc(ms.after)+'</a></li><li>Unticked types: '+esc(ms.unticked)+', never opened</li>'+(ms.prefilled ? '<li>'+esc(ms.prefilled)+'</li>' : '')+'</ul></div>';
+    }
+    if(s.spec.chip_map){
+      html += '<div class="spec-block"><div class="spec-t">Chips and what each reopens</div><ul>'+s.spec.chip_map.map(function(c){ return '<li><span>'+esc(c.chip)+'</span>: '+c.reopens.map(function(t){ return '<a href="#'+esc(t)+'" class="br">'+esc(t)+'</a>'; }).join(", ")+'</li>'; }).join("")+'</ul></div>';
     }
     html += list("Logic", s.spec.logic);
     html += list("Branches", s.spec.branches, true);

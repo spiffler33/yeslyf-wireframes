@@ -183,12 +183,12 @@
     {"day": "3d", "channel": "push", "slot": "N-S11-3d", "link": "H05", "tier": "all"}
    ],
    "escalation": {"diwm": "ladder only", "diy": "ladder only", "difm": "not applicable"},
-   "exit": "update accepted (H05) -> the previous state (S8, S9 or S10)",
+   "exit": "update accepted (H05) -> the previous state (S8, S9 or S10); something changed (Q06) -> Q06a re-asks the mapped screens, the engine re-runs, H05 then H01e (S11 again)",
    "crm_task": {"created": false, "fields": []},
    "mock": "N16",
    "push": {"slot": "N-S11-3d", "text": "Your plan changed. Your plan was updated: accept in about N minutes."},
    "whatsapp": {"slot": "N-S11-3d", "text": "House of Alpha reviewed the approved list; your plan has N changes, each with its reason. Your plan was updated shows them; accept to refresh your action plan. About N minutes."},
-   "cause": "spec v0.1, kept"
+   "cause": "spec v0.1, kept; Vatsal, 11 Sep 2026 (Q06 on the exit path)"
   },
   {
    "id": "S12", "who": "Payment failed", "lands_on": "H01f", "primary_action": "Retry payment (Q03b)", "deep_link": "Q03b", "minutes": "about N minutes",

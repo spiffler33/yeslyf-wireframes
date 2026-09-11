@@ -141,8 +141,9 @@
    "title": "The v0.1 life-events picker (Q02, Something changed in my life) has no screen of its own in v0.2",
    "screen": "Q02",
    "why": "plan_v2 3.1 repurposes Q02 as Change plan (SKU and period). Self-reported changes are covered for now by the Anything else change card on Q01.",
-   "status": "gap, to be decided",
-   "cause": "Vatsal, 10 Sep 2026"
+   "status": "done",
+   "cause": "Vatsal, 10 Sep 2026; closed: Vatsal, 11 Sep 2026",
+   "closed_note": "Q06 Something changed (chips mapped to the spine screens each change reopens) and Q06a What I will ask again; reachable from H01, H07, H09, the Q01 review card and the N04 quarterly template; on the S11 exit path."
   },
   {
    "id": "G15",
