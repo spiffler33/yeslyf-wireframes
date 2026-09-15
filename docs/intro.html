@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>yeslyf intro</title>
+<style>
+  :root{
+    --paper:#EEF0F3; --panel:#FFFFFF; --ink:#1B1F27; --mute:#5F6773; --line:#D3D7DE;
+    --wire:#E6E8EC; --wire2:#B8BEC7; --accent:#FFDA00; --accent-soft:#FFF4B8;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45}
+  a{color:inherit}
+  button,select,textarea{font-family:inherit;font-size:13px}
+  button{cursor:pointer}
+  ::selection{background:var(--accent)}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+  .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:8px 18px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .brand{font-weight:700;font-size:16px;letter-spacing:-.01em;white-space:nowrap}
+  .brand span{font-weight:400;color:var(--mute);margin-left:8px;font-size:13px}
+  .tabs{display:flex;gap:2px;flex-wrap:wrap}
+  .tabs a{text-decoration:none;font-size:13px;padding:6px 10px;border-radius:6px;border:1px solid transparent;color:var(--mute)}
+  .tabs a:hover{background:#F5F6F8}
+  .tabs a.on{color:var(--ink);font-weight:600;border-color:var(--line);background:#fff}
+  .who{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mute);margin-left:auto}
+  .who select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;max-width:170px}
+  .saved{font-size:12px;color:var(--mute);min-width:120px}
+  .pill{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--mute);text-decoration:none;white-space:nowrap}
+  .pill.on{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .top .primary{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600}
+
+  .bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:6px 18px;background:var(--panel);border-bottom:1px solid var(--line);font-size:12px;color:var(--mute)}
+  .bar label{display:flex;gap:5px;align-items:center;white-space:nowrap}
+  .bar select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff;max-width:230px}
+  .bar .off{display:none}
+  .tiers{display:flex;gap:4px}
+  .tiers button,.actions button{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:6px 12px;border-radius:6px}
+  .tiers button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .actions{display:flex;gap:6px;margin-left:auto}
+  .banner{padding:6px 18px;background:var(--accent-soft);border-bottom:1px solid #C9A800;font-size:12.5px}
+
+  .layout{display:grid;grid-template-columns:270px minmax(0,1fr) 400px;height:calc(100vh - 128px)}
+  .nav{overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:10px 0 40px}
+  .nav-sec{margin-bottom:6px}
+  .nav-sec-t{padding:10px 16px 4px;font-size:12px;font-weight:700;color:var(--mute);display:flex;justify-content:space-between}
+  .nav-sec-t em{font-style:normal;font-weight:400}
+  .nav-item{display:flex;gap:10px;align-items:baseline;padding:6px 16px 6px 13px;text-decoration:none;border-left:3px solid transparent;font-size:13px;position:relative}
+  .nav-item:hover{background:#F5F6F8}
+  .nav-item.on{border-left-color:var(--accent);background:var(--accent-soft)}
+  .nav-item.dim{opacity:.4}
+  .nav-id{font-variant-numeric:tabular-nums;color:var(--mute);width:38px;flex:none;font-size:12px}
+  .dot{position:absolute;right:12px;top:12px;width:7px;height:7px;border-radius:50%;background:var(--accent);border:1px solid #C9A800}
+  .mk{font-style:normal;font-size:10px;border:1px solid #C9A800;border-radius:4px;padding:0 4px;margin-left:6px;color:#7A6000;vertical-align:middle}
+  .mk.new{border-color:var(--ink);color:var(--ink)}
+
+  .main{overflow:auto;padding:14px 20px 40px}
+  .mobile-jump{display:none;margin-bottom:10px}
+  .mobile-jump select{width:100%;padding:10px;border:1px solid var(--line);border-radius:6px;font-size:14px;background:#fff}
+  .ribbon{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+  .rib{font-size:12px;color:var(--mute);text-decoration:none;padding:4px 8px;border-radius:4px;border-bottom:2px solid transparent}
+  .rib.on{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+  .crumb-row{display:flex;justify-content:space-between;color:var(--mute);font-size:12px;margin:4px 2px 12px;gap:12px;flex-wrap:wrap}
+  .strip{font-size:12px;padding:6px 10px;border:1px solid #C9A800;background:#FFFBEA;border-radius:6px;margin:0 0 10px}
+  .strip.off{display:none}
+  .stage{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;grid-template-areas:"prev frame next";gap:10px;align-items:start;justify-items:center}
+  #prev{grid-area:prev} #next{grid-area:next} #frame{grid-area:frame}
+  .arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel);position:sticky;top:45%;font-size:18px}
+  .arrow:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  .frame{background:var(--panel);border:2px solid var(--ink);box-shadow:0 12px 30px rgba(27,31,39,.12)}
+  .frame.phone{width:372px;min-height:700px;border-radius:30px;overflow:hidden}
+  .frame.desktop{width:100%;max-width:900px;min-height:520px;border-radius:10px}
+  .frame-top{display:flex;justify-content:space-between;gap:8px;padding:10px 18px;font-size:11px;color:var(--mute);border-bottom:1px dashed var(--line)}
+  .frame-top span:first-child{font-weight:700;color:var(--ink)}
+  .frame-body{padding:16px 18px 24px}
+  .w-hidden{background:#FFF1F1;border:1px solid #E7B4B4;color:#8A2E2E;padding:8px 10px;border-radius:6px;font-size:12px;margin-bottom:10px}
+
+  /* wireframe grammar */
+  .w-h{font-size:18px;font-weight:700;line-height:1.3;margin:6px 0 12px}
+  .w-p{font-size:13px;color:#3B4250;margin:0 0 12px}
+  .w-note{font-size:11.5px;color:var(--mute);margin:0 0 10px;padding:6px 8px;border-left:3px solid var(--line)}
+  .who input{font:inherit;font-size:12px;padding:3px 6px;border:1px solid var(--line);border-radius:6px;width:180px;background:#fff}
+  .views a{cursor:pointer}
+  .doc{padding:18px 24px;max-width:1200px;margin:0 auto;font-size:13px;line-height:1.5}
+  .doc h1{font-size:20px;margin:0 0 8px}.doc h2{font-size:16px;margin:22px 0 8px}.doc h2 small{font-weight:400;color:var(--mute);margin-left:8px;font-size:12px}.doc h3{font-size:14px;margin:16px 0 6px}
+  .doc .lead{color:var(--mute)}.doc .meta{color:var(--mute);font-size:12px}.doc .rule{background:var(--accent-soft);padding:6px 10px;border-radius:6px}
+  .doc .wrap{overflow-x:auto;margin:8px 0}.doc table{border-collapse:collapse;width:100%;font-size:12px}.doc th,.doc td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}.doc th{background:#F3F1EA}
+  .doc .stats{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.doc .stat{border:1px solid var(--line);border-radius:8px;padding:6px 10px}.doc .stat b{font-size:18px;display:block}
+  .doc .tag{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 5px}.doc .docnav{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 10px;font-size:12px}
+  .doc .sid{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.doc ul{padding-left:18px}
+  .w-strip{font-size:10.5px;color:var(--mute);padding:2px 0 5px;margin:0 0 8px;border-bottom:1px dashed var(--line);letter-spacing:.2px}
+  .w-in{border:1px solid var(--wire2);border-radius:6px;padding:11px 10px;margin:0 0 10px;color:var(--mute);font-size:13px;background:#FAFBFC}
+  .w-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+  .w-chip{border:1px solid var(--wire2);border-radius:999px;padding:6px 11px;font-size:12px;background:#fff}
+  .w-radio{margin:0 0 12px}
+  .w-opt{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border:1px solid var(--line);border-radius:8px;margin-bottom:6px;font-size:13px;background:#fff}
+  .w-opt i{flex:none;width:14px;height:14px;border:2px solid var(--wire2);border-radius:50%;margin-top:2px}
+  .w-btn{display:block;width:100%;border:0;background:var(--ink);color:#fff;padding:13px;border-radius:8px;font-weight:600;font-size:14px;margin:6px 0 10px;text-align:center}
+  .w-btn2{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+  .w-link{display:block;text-align:center;font-size:13px;text-decoration:underline;color:var(--mute);margin:2px 0 12px;cursor:pointer}
+  .w-card{border:1px solid var(--wire2);border-radius:8px;padding:10px 12px;margin:0 0 10px;background:#FAFBFC}
+  .w-card-t{font-weight:600;font-size:13px;margin-bottom:5px}
+  .w-card ul{margin:0;padding-left:16px;font-size:12.5px;color:#3B4250}
+  .w-card li{margin:2px 0}
+  .w-rows{margin:0 0 12px;border-top:1px solid var(--line)}
+  .w-row{display:flex;justify-content:space-between;gap:12px;padding:8px 2px;border-bottom:1px solid var(--line);font-size:12.5px}
+  .w-row b{font-weight:600;text-align:right}
+  .w-chart,.w-video{position:relative;min-height:120px;border:1px solid var(--wire2);border-radius:8px;margin:0 0 12px;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px 18px;font-size:12px;color:var(--mute);
+    background:repeating-linear-gradient(135deg,#F3F4F6 0 8px,#E9EBEF 8px 16px)}
+  .w-video i{position:absolute;left:12px;top:12px;width:0;height:0;border-left:16px solid var(--ink);border-top:10px solid transparent;border-bottom:10px solid transparent}
+  .w-num{font-size:26px;font-weight:700;letter-spacing:-.02em;margin:4px 0 10px}
+  .w-tabs{display:flex;gap:2px;overflow-x:auto;margin:0 0 12px;border-bottom:1px solid var(--line)}
+  .w-tabs span{flex:none;padding:6px 10px;font-size:12px;color:var(--mute);border-bottom:2px solid transparent}
+  .w-tabs span.on{color:var(--ink);font-weight:600;border-bottom-color:var(--ink)}
+  .w-badge{display:inline-block;font-size:10px;border:1px solid var(--wire2);border-radius:4px;padding:1px 5px;color:var(--mute)}
+  .w-prog{margin:0 0 12px;font-size:12px;color:var(--mute)}
+  .w-prog div{height:8px;background:var(--wire);border-radius:4px;margin-top:6px;overflow:hidden}
+  .w-prog i{display:block;height:100%;background:var(--ink)}
+  .w-table{width:100%;border-collapse:collapse;font-size:12px;margin:0 0 14px}
+  .w-table th{text-align:left;font-weight:600;border-bottom:2px solid var(--ink);padding:6px 6px;vertical-align:bottom}
+  .w-table td{border-bottom:1px solid var(--line);padding:6px 6px;vertical-align:top;color:#3B4250}
+  .frame.desktop .w-h{font-size:20px}
+
+  .side{overflow:auto;background:var(--panel);border-left:1px solid var(--line);padding:14px 18px 60px}
+  .review{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:16px;background:#FCFCFD}
+  .review-t{font-weight:700;font-size:13px;margin-bottom:8px}
+  .review select{width:100%;padding:6px;border:1px solid var(--line);border-radius:6px;background:#fff;margin-bottom:8px}
+  .reason-wrap.off{display:none}
+  .verdict{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+  .verdict button{flex:1;border:1px solid var(--line);background:#fff;padding:7px;border-radius:6px}
+  .verdict button.on{background:var(--accent);border-color:#C9A800;font-weight:700}
+  #comment{width:100%;min-height:120px;border:1px solid var(--line);border-radius:6px;padding:10px;font:inherit;font-size:13px;resize:vertical;background:#fff}
+  .review .saved{font-size:11px;color:var(--mute);min-height:14px;margin-top:4px}
+  .marker{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:0 0 12px;font-size:12px;background:#FCFCFD;color:#3B4250}
+  .marker.changed{border-color:#C9A800;background:#FFFBEA}
+  .marker.new{border-color:var(--ink);background:#fff}
+  .marker b{display:block;margin-bottom:3px;color:var(--ink)}
+  .chk{border:1px dashed var(--line);border-radius:8px;padding:8px 10px;margin:0 0 12px;font-size:12px;background:#fff}
+  .chk b{display:block;margin-bottom:4px}
+  .chk ul{margin:0;padding-left:16px;color:#3B4250}
+  .spec-purpose{font-size:14px;line-height:1.5;margin:0 0 14px;padding-left:10px;border-left:3px solid var(--accent)}
+  .spec-block{margin:0 0 12px}
+  .spec-t{font-size:12px;font-weight:700;margin-bottom:4px}
+  .spec-block ul{margin:0;padding-left:16px;font-size:12.5px;color:#3B4250}
+  .spec-block li{margin:3px 0}
+  .side .tiers{margin:0;display:block;font-size:12.5px}
+  .br{display:inline-block;font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;margin-left:4px}
+
+  .map{display:none;padding:16px 24px 60px;max-width:1300px;margin:0 auto}
+  body.map-on .layout{display:none}
+  body.map-on .map{display:block}
+  .map-sec h3{font-size:13px;margin:16px 0 6px;color:var(--mute)}
+  .map-row{display:flex;flex-wrap:wrap;gap:6px}
+  .map-chip{text-decoration:none;font-size:12px;border:1px solid var(--line);background:#fff;padding:5px 9px;border-radius:6px}
+  .map-chip b{margin-right:6px;color:var(--mute);font-weight:600}
+  .map-chip.dim{opacity:.4}
+
+  @media (max-width:1000px){
+    .layout{display:block;height:auto}
+    .nav{display:none}
+    .mobile-jump{display:block}
+    .stage{grid-template-columns:1fr 1fr;grid-template-areas:"frame frame" "prev next";justify-items:stretch}
+    .arrow{position:static;width:100%;height:44px;border-radius:8px;margin-top:6px}
+    .frame.phone{width:100%;max-width:420px;margin:0 auto}
+    .side{border-left:0;border-top:1px solid var(--line)}
+    .top{flex-wrap:wrap;gap:8px}
+    .who{margin-left:0}
+    .actions{margin-left:0}
+    .ribbon{display:none}
+  }
+  /* Intro deck (phase 10a, Vatsal, 15 Sep 2026); appended after renderer_v02.css, which carries the tokens and the
+     phone-frame grammar. One slide per viewport; the Say line is hidden until n is pressed and never prints. */
+  body{overflow:hidden}
+  .deck{height:100vh;height:100dvh}
+  .slide{display:none;flex-direction:column;justify-content:center;height:100vh;height:100dvh;padding:48px 8vw 64px;overflow:auto}
+  .slide.on{display:flex}
+  .slide h1{font-size:clamp(22px,3.4vw,40px);line-height:1.15;letter-spacing:-.01em;margin:0 0 .6em}
+  .line{font-size:clamp(16px,1.9vw,25px);line-height:1.4;margin:0 0 .55em;max-width:62ch}
+  .purpose{font-size:clamp(20px,2.6vw,34px);line-height:1.25;font-weight:600;max-width:36ch;border-left:4px solid var(--accent);padding-left:.6em;margin-bottom:.4em}
+  .tag{display:inline-block;font-size:12px;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:2px 9px;margin:0 0 1.4em}
+  .say{display:none;position:fixed;left:0;right:0;bottom:0;z-index:3;background:var(--ink);color:#fff;padding:12px 8vw;font-size:15px;line-height:1.4}
+  .say b{color:var(--accent);margin-right:8px}
+  body.notes .slide.on .say{display:block}
+  .counter{position:fixed;right:18px;bottom:14px;z-index:4;font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
+  body.notes .counter{bottom:auto;top:14px}
+
+  .slide.frames{justify-content:flex-start;padding-top:28px;padding-bottom:40px}
+  .slide.frames h1{margin-bottom:.4em}
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 24px;align-content:start}
+  .thumb{position:relative;display:flex;gap:12px;align-items:flex-start;margin:0}
+  .thumb figcaption{font-size:13px;line-height:1.35;color:var(--mute);min-width:0}
+  .thumb figcaption b{display:block;color:var(--ink)}
+  .thumb:hover figcaption b{text-decoration:underline}
+  .fit{overflow:hidden}
+  .fit .frame{transform-origin:0 0}
+  .fit .frame.phone{width:372px;height:700px;min-height:0;max-width:none;margin:0;box-shadow:none}  /* a phone viewport: what sits below the fold is cropped, as on the phone */
+  .fit *{pointer-events:none}
+  .hit{position:absolute;left:0;top:0;right:0;bottom:0}  /* the whole figure opens the screen; the label is on the anchor */
+  @media (max-width:899px){.grid{grid-template-columns:1fr}.thumb{flex-direction:column;gap:6px}}
+  @media print{.say{display:none !important}.slide{display:flex;height:auto;page-break-after:always}.counter{display:none}}
+</style>
+</head>
+<body>
+<main class="deck">
+<section class="slide on" id="s1"><h1>yeslyf in one sentence</h1><p class="line purpose">Show me the life I want and my money can afford, today and tomorrow, and get me there by the path of least resistance.</p><span class="tag">working line, team confirming</span><p class="line">For 23 to 38 year olds in Indian metros.</p><p class="line">Designed for the curious middle, not the eager, and never for us.</p><aside class="say"><b>Say</b>Working line. If you cannot repeat it back at the end, this meeting failed.</aside></section>
+<section class="slide" id="s2"><h1>Aarav, in four beats</h1><p class="line">Sees two versions of his future in four minutes, on his own numbers. Pays.</p><p class="line">Twenty-five minutes of numbers, most of them a tap.</p><p class="line">Reads his plan: what success looks like, what is in the way, in order.</p><p class="line">Does the first action in the app. Comes back next quarter; the plan has kept itself current.</p><aside class="say"><b>Say</b>This is the whole product. Everything else is a branch of this.</aside></section>
+<section class="slide" id="s3"><h1>Purpose, core actions, cycle</h1><p class="line">Core actions: build the plan once; do the next action; keep it current.</p><p class="line">Cycle: build in week one; two or three actions in month one; a quarterly heartbeat; an annual reconfirmation.</p><p class="line">It is fine to be ignored for six weeks. The quarterly return has to feel like an event.</p><aside class="say"><b>Say</b>We measure actions done and quarterly reviews opened. Not daily opens.</aside></section>
+<section class="slide" id="s4"><h1>Three moments; everything else is plumbing</h1><p class="line">Hero: R09 the reveal; G03 the first read of the plan; the first verified action done (E06 into H01c).</p><p class="line">Plumbing on purpose: OTP, eSign, pay, data entry, execution rails. Fast, quiet, never clever.</p><aside class="say"><b>Say</b>Design budget goes to three screens. The rest is speed.</aside></section>
+<section class="slide frames" id="s5"><h1>The golden path in nine frames</h1><div id="grid" class="grid"></div><aside class="say"><b>Say</b>This is the only path we walk today. The other 182 screens are branches of it.</aside></section>
+<section class="slide" id="s6"><h1>What does not move</h1><p class="line">Decided: two SKUs, one app. Calls are config; no adviser is named. DIFM is invisible. No assumptions in client data: a band or explicit none, never a default.</p><p class="line">Regulated: RIA agreement and eSign before advice. AA consent wording. Advertising code on projections. The declaration. DPDP notice before personal data.</p><aside class="say"><b>Say</b>Design freedom is everything outside these two lists.</aside></section>
+<section class="slide" id="s7"><h1>The design principle: path of least resistance</h1><p class="line">One question per screen. Bands before exact numbers. Quick ranges to clear the gate.</p><p class="line">AA is the default lane; manual is the main road and never penalised.</p><p class="line">Silent autosave, no exit modal, endowed progress.</p><p class="line">One next action on Home. Execution in the app where rails exist. The review runs itself.</p><aside class="say"><b>Say</b>Every screen you design gets one test: is this the least effort route to the next action?</aside></section>
+<section class="slide" id="s8"><h1>Scope lens</h1><p class="line">21 templates, 191 screens, three dropped.</p><p class="line">25 returning-user states are backend config, not screens. 11 home variants are one screen plus a hero card.</p><p class="line">Must, should, later tags follow this week.</p><aside class="say"><b>Say</b>Quote by template. Instances are cheap; templates are the cost.</aside></section>
+<section class="slide" id="s9"><h1>What we are asking of you</h1><p class="line">Visual design by template, hero templates first: T-chart for R09, T-card-stack for G03, T-hub for H01.</p><p class="line">A vertical slice before anything else: R01 to R09 to P01, and G03, on a phone, with real engine maths. Done means one person outside the team completes it.</p><p class="line">Analytics events are part of each screen&#x27;s definition of done.</p><p class="line">Quote the shell once. Alternative journeys and proposals are instances of existing templates, priced as variants.</p><p class="line">Comments on the pages, with your name. Not in email.</p><aside class="say"><b>Say</b>These five are the contract for how we work, before the quote.</aside></section>
+<section class="slide" id="s10"><h1>What is still moving, and dates</h1><p class="line">Nine proposals and two alternative pre-paywall journeys, under a five-user test this month, before visual design starts.</p><p class="line">Only the pre-paywall screens and a handful of plan and home screens move; the shell does not.</p><p class="line">Pilot January 2027. Launch 1 February 2027.</p><p class="line">What a user should say after onboarding: It shows me what my money can say yes to and tells me the next thing to do.</p><aside class="say"><b>Say</b>If you hear us say a different sentence next month, hold us to this one.</aside></section>
+</main>
+<div id="counter" class="counter">1 / 10</div>
+<script>var FRAMES=[{"id": "A01", "title": "First open", "template": "T-card", "frame": "phone", "ui": [["num", "yeslyf"], ["h", "Your money should let you live fully today and still build everything you need for tomorrow."], ["p", "In four minutes I will show you two versions of your future. One is where you are headed. The other is where you could be."], ["btn", "Start, it's free", "A02"], ["p", "From House of Alpha, SEBI Registered Investment Adviser INA000012838"]]}, {"id": "R09", "title": "The reveal", "template": "T-chart", "frame": "phone", "ui": [["h", "Two paths, Aarav"], ["tabs", ["At 50", "At 65"]], ["card", "Current path", ["Rs 2.1 Cr in built wealth", "What this means: work stays compulsory until 58"]], ["card", "yeslyf path", ["Rs 5.4 Cr in built wealth", "What this means: work becomes optional at 49"]], ["p", "Built from your five answers. An illustration, not a promise. Assumptions and the maths are one tap away."], ["btn", "How is this possible?", "R10"], ["link", "Save my reveal, I'll come back", "X01"]]}, {"id": "P01", "title": "Paywall", "template": "T-paywall", "frame": "phone", "ui": [["h", "Unlock my plan"], ["tabs", ["Monthly", "Quarterly"]], ["card", "yeslyf DIY, app only: Rs ___ / month or Rs ___ / quarter", ["Your full plan on your numbers", "Refreshed every quarter", "Your progress and next action always visible", "Investment plan with exact instruments", "A la carte calls whenever you want one", "Cancel any time"]], ["card", "yeslyf DIWM, app plus adviser calls: Rs ___ / month or Rs ___ / quarter", ["Everything in DIY", "N calls included this <period> with the yeslyf advisers to walk you through the plan, the app and the investments", "Extra calls a la carte"]], ["p", "Prices inclusive of GST."], ["p", "Not sure yet? Read the FAQs, check out the community, take a day. This page will still be here."], ["btn", "Continue", "P02"], ["link", "Save and decide later", "X01"]]}, {"id": "A05", "title": "How should I get your numbers?", "template": "T-source", "frame": "phone", "ui": [["h", "Two ways to do this. One takes a minute and then keeps itself current. The other takes about N minutes and you keep it current by hand."], ["card", "Connect via Account Aggregator", ["Banks, deposits, mutual funds and stocks fetched in about a minute", "Your net worth and your quarterly review update themselves", "Switch advice on what you already hold", "Read-only; you pick the accounts; revoke any time"]], ["card", "What it cannot see (I ask you either way)", ["EPF, PPF, property, gold, insurance details, loans"]], ["card", "Is +91 98xxx xxx21 the number your bank accounts know?", ["Yes", "Use another number"]], ["card", "Which bank is your salary account with?", ["Eight banks, then Other"]], ["chips", ["Bank 1", "Bank 2", "Bank 3", "Bank 4", "Bank 5", "Bank 6", "Bank 7", "Bank 8", "Other"]], ["btn", "Connect via Account Aggregator", "A06"], ["btn2", "Upload a CAS statement instead (holdings only)", "A10"], ["btn2", "Type it in (about N minutes)", "D01"], ["link", "Not now. I will type today and connect later", "D01"]]}, {"id": "D10", "title": "Review, build, and what would sharpen it", "template": "T-review", "frame": "phone", "ui": [["strip", "Review and build: 8 of 8 sections done"], ["h", "Here is your picture. Anything to fix before I build?"], ["rows", [["Family", "You, partner, 1 child; typed; exact"], ["Risk profile", "Moderate; typed; exact"], ["Income", "Rs 1,20,000 a month; AA-fed; exact"], ["Expenses", "Rs 1,31,000 a month; typed; approx"], ["Investments", "Rs 32.4 L; AA-fed and typed; approx"], ["Loans", "Rs 41.0 L; typed; approx"], ["Insurance", "Term Rs 50 L; health employer only; typed; exact"], ["Goals", "3 goals; work optional at 55; typed; approx"]]], ["card", "Ready to build", ["Every field the React reads is a value (exact or band) or explicit none", "Or: N fields missing, about N minutes", "Or: N numbers need at least a rough range"]], ["link", "Give quick ranges for the N numbers", "D13"], ["card", "These would sharpen it", ["Partner's take-home: cashflow (G06)", "Loan rate: debt (G07)", "Health sum insured: protection (G05)"]], ["card", "Your two paths, updated", ["Current path: Rs 2.1 Cr; yeslyf path: Rs 5.4 Cr, on what is now known", "The only place the numbers update during data entry; tone from R06"]], ["card", "Declaration", ["I hereby declare that the details furnished are true and correct to the best of my knowledge and belief and I undertake to inform you of any changes therein, immediately.", "to be verified: the declaration wording against HoA's current questionnaire"]], ["chips", ["I confirm"]], ["btn", "Build my plan", "G01"], ["link", "Edit a section", "O02"]]}, {"id": "G03", "title": "Plan: overview", "template": "T-card-stack", "frame": "phone", "ui": [["tabs", ["Overview", "Emergency", "Protection", "Cashflow", "Debt", "Life events", "Summary"]], ["card", "Your plan, built on what you told us", ["You told us you are established but wondering if you are on track, feeling mixed, and that what you want is freedom. This plan is built on that."]], ["rows", [["Monthly take-home", "Rs 1,82,000"], ["Fixed commitments", "Rs 84,000 (46%)"], ["Monthly surplus", "Rs 51,000"], ["What you own", "Rs 32.4 L"], ["What you owe", "Rs 41.0 L"], ["Life cover", "Rs 50 L"], ["Realisable now vs locked", "Rs 9.1 L realisable; Rs 12.3 L locked (EPF, NPS, ULIP)"], ["Current allocation by class", "liquid debt / debt / hybrid / commodities / equity / REITs and InvITs, as held today"], ["Current weighted return", "about 8.1% a year"]]], ["card", "What success looks like", ["Aryan's education 2039: Rs 82 L, not funded", "Home upgrade 2032: Rs 85 L, 40% funded", "Work optional at 55: Rs 1.6 Cr on current path"]], ["card", "What needs attention, in this order", ["Term cover gap", "No emergency fund", "Work-optional corpus short", "Education unfunded"]], ["link", "Sharpen this: the numbers this section could use", "G03"], ["btn", "Next: Emergency fund", "G04"], ["link", "Email me the PDF", "G03"]]}, {"id": "G14", "title": "Action plan", "template": "T-list", "frame": "phone", "ui": [["h", "Your action plan"], ["card", "Now", ["Move Rs 2.8 L to the liquid fund: do it in the app", "Apply for Rs 1.8 Cr term cover: guided, outside the app"]], ["card", "This month", ["Buy health floater plus top-up: guided, outside the app", "Exit XYZ Small Cap, tranche 1: do it in the app"]], ["card", "From month 8", ["Start 4 SIPs, Rs 29,000 total: do it in the app"]], ["card", "Ongoing", ["Quarterly review in the app", "Step up SIPs 10% every April"]], ["link", "Sharpen this: the numbers this section could use", "G14"], ["btn", "Start executing", "E01"], ["link", "Book a call to walk through this plan", "K01"]]}, {"id": "E01", "title": "Execution hub", "template": "T-hub", "frame": "phone", "ui": [["h", "Let's do it"], ["card", "Invest, in the app", ["Liquid fund lumpsum Rs 2.8 L: not started", "4 SIPs from month 8: scheduled", "Exit XYZ Small Cap tranche 1: not started"]], ["card", "Protect, guided outside the app", ["Term cover Rs 1.8 Cr: not started", "Health floater plus top-up: not started"]], ["card", "Housekeeping", ["Nominations on all accounts: not started"]], ["btn", "Set up investing (one time, 10 minutes)", "E02"]]}, {"id": "H01", "title": "Home base", "template": "T-hub", "frame": "phone", "ui": [["num", "Net worth Rs 19.2 L"], ["p", "Up Rs 0.6 L since your plan. Updated today via Account Aggregator."], ["link", "Net worth growth", "H02"], ["card", "Your next action", ["Apply for Rs 1.8 Cr term cover"]], ["card", "Progress", ["3 of 8 actions done", "Wheel of wealth: protection red, emergency amber, cashflow green", "Goals: 1 of 3 on track"]], ["link", "Wheel of wealth", "H03"], ["link", "Goals progress", "H10"], ["card", "Coming up", ["Quarterly review on 1 May", "Your call: <date, time>, if one is booked"]], ["link", "Something changed? Income, a loan, family, a big expense, a windfall, a move", "Q06"], ["link", "Community: this week's session and who finished their plan", "H08"], ["tabs", ["Home", "Plan", "Actions", "Vault", "Help"]]]}];
+var LINK="wireframes_v02.html#";</script>
+<script>// Intro deck for Spinach (phase 10a, Vatsal, 15 Sep 2026). Embedded by scripts/build_intro.py into docs/intro.html and
+// docs/audiences/yeslyf_intro_spinach.html after the data blobs: FRAMES (the nine golden-path screens from
+// data/screens_v02.json, five fields each, in slide order) and LINK (where a frame opens). No network, no libraries.
+// One slide per viewport; arrow keys, space and tap advance; n toggles the Say line; a slide counter.
+(function(){
+  // BEGIN copy esc (verbatim from scripts/renderer_v02.js; build_intro.py stops the build if it drifts)
+  function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
+  // END copy esc
+  // BEGIN copy el (verbatim from scripts/renderer_v02.js; the wireframe element grammar)
+  function el(e){
+    var t = e[0];
+    switch(t){
+      case "h": return '<div class="w-h">'+esc(e[1])+'</div>';
+      case "p": return '<div class="w-p">'+esc(e[1])+'</div>';
+      case "note": return '<div class="w-note">'+esc(e[1])+'</div>';
+      case "strip": return '<div class="w-strip">'+esc(e[1])+'</div>';
+      case "in": return '<div class="w-in"><span>'+esc(e[1])+'</span></div>';
+      case "chips": return '<div class="w-chips">'+e[1].map(function(c){return '<span class="w-chip">'+esc(c)+'</span>';}).join("")+'</div>';
+      case "radio": return '<div class="w-radio">'+e[1].map(function(c){return '<div class="w-opt"><i></i><span>'+esc(c)+'</span></div>';}).join("")+'</div>';
+      case "btn": return '<button class="w-btn" data-go="'+esc(e[2]||"")+'">'+esc(e[1])+'</button>';
+      case "btn2": return '<button class="w-btn w-btn2" data-go="'+esc(e[2]||"")+'">'+esc(e[1])+'</button>';
+      case "link": return '<a class="w-link" data-go="'+esc(e[2]||"")+'">'+esc(e[1])+'</a>';
+      case "card": return '<div class="w-card"><div class="w-card-t">'+esc(e[1])+'</div><ul>'+(e[2]||[]).map(function(r){return '<li>'+esc(r)+'</li>';}).join("")+'</ul></div>';
+      case "rows": return '<div class="w-rows">'+e[1].map(function(r){return '<div class="w-row"><span>'+esc(r[0])+'</span><b>'+esc(r[1])+'</b></div>';}).join("")+'</div>';
+      case "chart": return '<div class="w-chart"><span>'+esc(e[1])+'</span></div>';
+      case "video": return '<div class="w-video"><i></i><span>'+esc(e[1])+'</span></div>';
+      case "num": return '<div class="w-num">'+esc(e[1])+'</div>';
+      case "tabs": return '<div class="w-tabs">'+e[1].map(function(c,i){return '<span'+(i===0?' class="on"':'')+'>'+esc(c)+'</span>';}).join("")+'</div>';
+      case "badge": return '<span class="w-badge">'+esc(e[1])+'</span>';
+      case "progress": return '<div class="w-prog"><span>'+esc(e[1])+'</span><div><i style="width:'+(e[2]||50)+'%"></i></div></div>';
+      case "table": return '<table class="w-table"><thead><tr>'+e[1].map(function(c){return '<th>'+esc(c)+'</th>';}).join("")+'</tr></thead><tbody>'+e[2].map(function(r){return '<tr>'+r.map(function(c){return '<td>'+esc(c)+'</td>';}).join("")+'</tr>';}).join("")+'</tbody></table>';
+      default: return '';
+    }
+  }
+  // END copy el
+
+  function frameHtml(s){
+    return '<div class="frame ' + (s.frame === "desktop" ? "desktop" : "phone") + '"><div class="frame-top"><span>' + esc(s.id) + '</span><span>' + esc(s.title) + '</span><span>' + esc(s.template) + '</span></div><div class="frame-body">' + s.ui.map(el).join("") + '</div></div>';
+  }
+  function thumbHtml(s){
+    return '<figure class="thumb"><div class="fit" aria-hidden="true">' + frameHtml(s) + '</div><figcaption><b>' + esc(s.id) + '</b>' + esc(s.title) + '</figcaption>' +
+      '<a class="hit" href="' + esc(LINK + s.id) + '" aria-label="' + esc(s.id + " " + s.title + ", open in wireframes v0.2") + '"></a></figure>';
+  }
+
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var counter = document.getElementById("counter");
+  var grid = document.getElementById("grid");
+  var idx = 0;
+
+  // Slide 5: one uniform scale so three rows of three fit the viewport, caption beside each frame; one column at
+  // phone width, frame at natural size with the caption below, and the slide scrolls.
+  function fit(){
+    var slide = grid.closest(".slide");
+    var fits = Array.prototype.slice.call(grid.querySelectorAll(".fit"));
+    var maxW = 0, maxH = 0;
+    fits.forEach(function(f){ var fr = f.firstChild; if(fr.offsetWidth > maxW) maxW = fr.offsetWidth; if(fr.offsetHeight > maxH) maxH = fr.offsetHeight; });
+    var cols = window.innerWidth >= 900 ? 3 : 1, rows = Math.ceil(fits.length / cols), caption = cols > 1 ? 160 : 0;
+    var cs = getComputedStyle(grid), colGap = parseFloat(cs.columnGap) || 0, rowGap = parseFloat(cs.rowGap) || 0;
+    var cellW = (grid.clientWidth - colGap * (cols - 1)) / cols - caption;
+    var availH = slide.clientHeight - grid.getBoundingClientRect().top - parseFloat(getComputedStyle(slide).paddingBottom) - rowGap * (rows - 1);
+    var s = Math.min(1, cellW / maxW);
+    if(cols > 1) s = Math.min(s, availH / (rows * maxH));
+    fits.forEach(function(f){ var fr = f.firstChild; fr.style.transform = "scale(" + s + ")"; f.style.width = (fr.offsetWidth * s) + "px"; f.style.height = (fr.offsetHeight * s) + "px"; });
+  }
+
+  function show(i){
+    idx = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function(s, k){ s.classList.toggle("on", k === idx); });
+    counter.textContent = (idx + 1) + " / " + slides.length;
+    slides[idx].scrollTop = 0;
+    if(grid && slides[idx].contains(grid)) fit();
+  }
+
+  document.addEventListener("keydown", function(ev){
+    if(ev.altKey || ev.ctrlKey || ev.metaKey) return;
+    var k = ev.key;
+    if(k === "ArrowRight" || k === "ArrowDown" || k === " " || k === "PageDown"){ ev.preventDefault(); show(idx + 1); }
+    else if(k === "ArrowLeft" || k === "ArrowUp" || k === "PageUp"){ ev.preventDefault(); show(idx - 1); }
+    else if(k === "Home"){ ev.preventDefault(); show(0); }
+    else if(k === "End"){ ev.preventDefault(); show(slides.length - 1); }
+    else if(k === "n" || k === "N"){ document.body.classList.toggle("notes"); }
+  });
+  document.querySelector(".deck").addEventListener("click", function(ev){
+    if(ev.target.closest("a, button")) return;
+    if(window.getSelection && String(window.getSelection())) return;
+    show(idx + 1);
+  });
+  window.addEventListener("resize", function(){ if(grid && slides[idx].contains(grid)) fit(); });
+
+  if(grid) grid.innerHTML = FRAMES.map(thumbHtml).join("");
+  show(0);
+})();
+</script>
+</body>
+</html>

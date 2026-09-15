@@ -7,7 +7,10 @@ scripts/renderer_v02.js), admin_v02.html (data/admin_crm.json plus the v0.2 addi
 nudge matrix from data/v02/states.json), changelog.html (data/changelog.json), setup.html, and the three
 self-contained audience files under docs/audiences/ (scripts/build_audiences.py; phase 9d), and the review link
 under docs/review/ (index.html is Wireframes v0.2, admin_v02.html is Admin and CRM v0.2; the same pages with only
-their two tabs and no setup link; one link for the team, Spinach and Compliance; Vatsal, 11 Sep 2026).
+their two tabs and no setup link; one link for the team, Spinach and Compliance; Vatsal, 11 Sep 2026), and the intro
+deck (scripts/build_intro.py from data/story.json: intro.html and audiences/yeslyf_intro_spinach.html; phase 10a).
+Run with "--only <name> ..." (names as printed, e.g. index.html, audiences/yeslyf_intro_spinach.html) to build
+everything in memory, run every check, and write only those files.
 The two v0.1 files are copied byte-identical into docs/v01/ and served as-is.
 Style reuses the v0.1 tokens. Choices save in localStorage (try/catch), post to the sheet endpoint
 when one is configured, and export as a markdown build brief. Every page carries noindex.
@@ -32,7 +35,8 @@ FROZEN_BANNER = "Frozen on 9 Sep 2026; decisions recorded below; controls disabl
 PENDING = "arrives with phase 5 (data/v02/states.json)"
 # Strings that must not appear on a v0.2 page (plan_v2.md section 7, check 6). The frozen pages keep their v0.1 wording.
 FORBIDDEN = ["Priya", "founders", "Founders", "Yeslyf", "recommendation", "Recommendation"]
-V02_PAGES = ["wireframes_v02.html", "admin_v02.html", "changelog.html", "review/index.html", "review/admin_v02.html"]
+V02_PAGES = ["wireframes_v02.html", "admin_v02.html", "changelog.html", "review/index.html", "review/admin_v02.html",
+             "intro.html", "audiences/yeslyf_intro_spinach.html"]
 
 
 def load(name):
@@ -184,6 +188,11 @@ TABS = [("index.html", "Meeting"), ("gaps.html", "Gaps"), ("inputs.html", "Input
         ("changelog.html", "Changelog"), ("setup.html", "Setup")]
 # The review link (docs/review/): the two v0.2 pages with only their two tabs (Vatsal, 11 Sep 2026).
 REVIEW_TABS = [("index.html", "Wireframes v0.2"), ("admin_v02.html", "Admin and CRM v0.2")]
+# Phase 10a tabs (Vatsal, 15 Sep 2026), after Admin and CRM v0.2 on the Meeting page only, so no other page changes:
+# Intro links to the deck; Proposals and Journeys are marked coming and do not link yet.
+MEETING_EXTRA = ('<a href="intro.html">Intro</a>'
+                 '<a aria-disabled="true" title="coming" style="opacity:.55;cursor:default">Proposals <span class="pill">coming</span></a>'
+                 '<a aria-disabled="true" title="coming" style="opacity:.55;cursor:default">Journeys <span class="pill">coming</span></a>')
 
 
 def head(title, css=None):
@@ -194,7 +203,8 @@ def head(title, css=None):
 
 
 def header(current, subtitle, show_export=True, who_html=None, export_label="Export brief", tabs=None, setup_link=True):
-    tabs = "".join('<a href="%s"%s>%s</a>' % (href, ' class="on"' if href == current else "", esc(label))
+    extra = MEETING_EXTRA if (tabs is None and current == "index.html") else ""
+    tabs = "".join('<a href="%s"%s>%s</a>' % (href, ' class="on"' if href == current else "", esc(label)) + (extra if href == "admin_v02.html" else "")
                    for href, label in (TABS if tabs is None else tabs))
     if who_html is None:
         who_html = '<div class="who">Decided by <input id="who" placeholder="your first name"></div>'
@@ -855,7 +865,10 @@ def check_ascii(name, text):
             raise SystemExit("%s: non-ASCII character at %d: %r" % (name, i, text[max(0, i - 30):i + 10]))
 
 
-def main():
+def main(only=None):
+    """Builds every page in memory and runs the checks; writes all of docs/, or only the names in `only`."""
+    def wanted(name):
+        return only is None or name in only
     items = load("open_items.json")["items"]
     inputs = load("inputs.json")["rows"]
     gaps = load("gaps.json")["gaps"]
@@ -867,18 +880,24 @@ def main():
     reasons = load("compliance_reasons.json")["reasons"]
     admin = load("admin_crm.json")
     states = load_optional("v02", "states.json")
+    story = load("story.json")
 
     os.makedirs(os.path.join(DOCS, "v01"), exist_ok=True)
     for f in V01_FILES:
-        shutil.copyfile(os.path.join(V01_IN, f), os.path.join(DOCS, "v01", f))
+        if wanted("v01/" + f):
+            shutil.copyfile(os.path.join(V01_IN, f), os.path.join(DOCS, "v01", f))
     import build_audiences
+    import build_intro
     aud_pages = build_audiences.build_all(v02, states, reasons, admin, changelog)
     os.makedirs(os.path.join(DOCS, "audiences"), exist_ok=True)
     audiences = []
+    written = []
     for name, (text, who) in aud_pages.items():
         check_ascii(name, text)
-        with open(os.path.join(DOCS, "audiences", name), "w") as fh:
-            fh.write(text)
+        if wanted("audiences/" + name):
+            with open(os.path.join(DOCS, "audiences", name), "w") as fh:
+                fh.write(text)
+            written.append("audiences/" + name)
         audiences.append({"name": name, "for": who, "href": "audiences/" + name, "bytes": len(text)})
     pages = {
         "index.html": build_meeting(items, inputs, gaps, decisions, audiences),
@@ -894,15 +913,19 @@ def main():
         "review/index.html": build_wire_v02(v02, states, reasons, review=True),
         "review/admin_v02.html": build_admin_v02(admin, v02, states, review=True),
     }
+    pages.update(build_intro.build_all(v02, story))
     os.makedirs(os.path.join(DOCS, "review"), exist_ok=True)
     for name, text in pages.items():
         check_ascii(name, text)
-        with open(os.path.join(DOCS, name), "w") as fh:
-            fh.write(text)
-    with open(os.path.join(DOCS, ".nojekyll"), "w") as fh:
-        fh.write("")
-    with open(os.path.join(DATA, "sheet_template.csv"), "w") as fh:
-        fh.write(SHEET_TEMPLATE)
+        if wanted(name):
+            with open(os.path.join(DOCS, name), "w") as fh:
+                fh.write(text)
+            written.append(name)
+    if only is None:
+        with open(os.path.join(DOCS, ".nojekyll"), "w") as fh:
+            fh.write("")
+        with open(os.path.join(DATA, "sheet_template.csv"), "w") as fh:
+            fh.write(SHEET_TEMPLATE)
 
     # acceptance checks on the generated pages
     problems = []
@@ -936,13 +959,21 @@ def main():
             print("ERROR: ... %d more" % (len(problems) - 60))
         sys.exit(1)
     for name, text in pages.items():
-        print("wrote docs/%s (%d bytes)" % (name, len(text)))
+        if name in written:
+            print("wrote docs/%s (%d bytes)" % (name, len(text)))
     for a in audiences:
-        print("wrote docs/%s (%d bytes, for %s)" % (a["href"], a["bytes"], a["for"]))
-    print("copied %d v0.1 files into docs/v01/ unchanged" % len(V01_FILES))
+        if a["href"] in written:
+            print("wrote docs/%s (%d bytes, for %s)" % (a["href"], a["bytes"], a["for"]))
+    if only is None:
+        print("copied %d v0.1 files into docs/v01/ unchanged" % len(V01_FILES))
+    elif len(written) != len(only):
+        print("note: not built: %s" % ", ".join(sorted(set(only) - set(written))))
     if states is None:
         print("note: data/v02/states.json absent; the state filter and the nudge matrix show the placeholder line")
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 2 and sys.argv[1] == "--only":
+        main(only=set(sys.argv[2:]))
+    else:
+        main()
