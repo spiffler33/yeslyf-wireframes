@@ -7,8 +7,8 @@ Nothing on a slide is drawn by hand: the text comes from story.json, the frames 
 v0.2 element grammar (esc and el, copied verbatim from scripts/renderer_v02.js into scripts/intro.js; the build stops
 if the copy drifts). Slide 5 embeds five fields of each of the nine screens (id, title, template, frame, ui) and
 nothing else, so no spec, causes or compliance notes reach the file. Both files open with no network; noindex on each.
-The site copy links a frame to wireframes_v02.html#ID; the audience copy, which opens from disk, links to the review
-copy of the same page (docs/review/, the vendor link).
+Both copies open a frame in the review copy of Wireframes v0.2 (docs/review/, the one link for everyone; Vatsal,
+15 Sep 2026): the site copy by a relative link, the audience copy, which opens from disk, by the Pages URL.
 """
 import os
 import sys
@@ -18,7 +18,7 @@ sys.path.insert(0, SCRIPTS)
 import build_site as site  # noqa: E402
 
 FILE = "yeslyf_intro_spinach.html"
-SITE_LINK = "wireframes_v02.html#"
+SITE_LINK = "review/index.html#"
 REVIEW_LINK = "https://spiffler33.github.io/yeslyf-wireframes/review/index.html#"
 FRAME_FIELDS = ("id", "title", "template", "frame", "ui")
 COPY_MARKS = [("  // BEGIN copy esc", "  // END copy esc"), ("  // BEGIN copy el", "  // END copy el")]
