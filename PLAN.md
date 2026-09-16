@@ -322,6 +322,19 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
 - 16 Sep 2026 (cause Kajal, 16 Sep 2026; plan_v2.md section 10): E10 SIP mandate registration and E11 Set up monthly
   SIPs added to section E; E01, E02 and E03 wired to them (data/v02/sip_mandate_edits.json, flow.json). Counts: 193
   live screens, 21 templates; added 112, to be verified 26. Checks 1 to 17 pass. Pushed; confirmed on the review link (spiff, 16 Sep 2026).
+- 16 Sep 2026, phase 10b (Vatsal): the Integrations tab. data/integrations.json (22 rows I01 to I22 from Kajal's
+  integration list and admin/CRM v0.2; owner, status, the three dates, docs, cost, notes and a comment editable in
+  the page, saved per browser and posted to the v02_integrations sheet tab when the endpoint is set; screens, gates,
+  fallback and cause generated), scripts/build_integrations.py (called at the end of build_site.py; writes
+  docs/integrations.html and docs/review/integrations.html; cross-checks every vendor name against the live v0.2
+  screens and marks I01, I02 and I09 "to be verified: screens"), the tab on every page and on the three review pages.
+  Layout: one line per row, a click opens the panel (facts left, edits right); counts and the long pole as chips.
+  Owners (Vatsal, 16 Sep 2026): Kajal, Vatsal or Spinach; Gaurav on DevOps; Gaurav and Raafiya on the HoA Core
+  Platform; Compliance and Harish on the store declarations. One vendor per row; alternatives only on I13 (journey
+  tool, decision by 19 Sep 2026) and I15 (Directus). Google and Apple sign-in are later in the journey (P02, where
+  the email is asked), not later in dev; entry is always mobile OTP. Known limitations: the P02 sign-in step is not
+  drawn in v0.2; every status starts at "not started" until its owner sets it; edits live in each reviewer's
+  browser unless the endpoint is set (Export brief is the record). Commits f3896a2 and 99de140, pushed.
 - Next: the second review round on the review link (reviewers press Export comments; the markdown goes to
-  spiff), then parse the comments into data with causes, rerun the scripts, commit per phase; then the CRM
-  planning session off the CRM backlog.
+  spiff; owners set status and dates on the Integrations tab), then parse the comments into data with causes,
+  rerun the scripts, commit per phase; then the CRM planning session off the CRM backlog.
