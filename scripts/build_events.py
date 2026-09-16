@@ -12,7 +12,8 @@ source_choice, timestamp). The Properties column lists what an event adds beyond
 plan_v2.md appendix D (the named_properties map of data/events_extra.json, matched by the exact event name or by the
 part after the screen's own "<id>_" prefix for the number-screen set), for core actions from their own entry.
 The count line on the page is the check: rows = screens + named events + core actions.
-The table filters by section; Export downloads the whole schema as markdown. No comments and no sheet writes.
+The table filters by section; Export downloads the whole schema as markdown. No comments and no board writes (the
+shared layer only paints the top bar pill).
 Same tokens and top nav as the other board pages (scripts/build_site.py supplies head(), header() and the CSS).
 Called at the end of scripts/build_site.py after build_integrations (TABS and REVIEW_TABS carry the Events tab);
 also runs on its own. Writes docs/events.html and its review copy docs/review/events.html (the review tabs, no
@@ -140,7 +141,8 @@ JS = r"""
     flash("Markdown exported and copied"); }
   document.addEventListener("DOMContentLoaded",function(){
     var sel=document.getElementById("sec"); if(sel) sel.addEventListener("change",applyFilter); applyFilter();
-    var ex=document.getElementById("export"); if(ex) ex.addEventListener("click",exportMd); });
+    var ex=document.getElementById("export"); if(ex) ex.addEventListener("click",exportMd);
+    if(window.yeslyfBoard) yeslyfBoard.init({page:"events"}); });
   // test hook for the checks (and for the console)
   window.yeslyfEvents={ exportText: md, rows: function(){ return ROWS.length; }, counts: COUNTS, filter: function(v){ var s=document.getElementById("sec"); if(s) s.value=v; applyFilter(); } };
 })();
@@ -185,11 +187,11 @@ def build_page(rows, live, counts, v02, extra, review=False):
         table = table.replace('href="wireframes_v02.html#', 'href="index.html#')
     blob = ('<script>var ROWS=' + site.js_blob(rows) + ';\nvar COUNTS=' + site.js_blob(counts) + ';\nvar STANDARD=' +
             site.js_blob(extra["standard_properties"]) + ';</script>\n')
-    return (site.head("yeslyf event schema v0.2", site.CSS + EXTRA_CSS) + '<body>\n' +
+    return (site.head("yeslyf event schema v0.2", site.CSS + EXTRA_CSS, config="../config.js" if review else "config.js") + '<body>\n' +
             site.header(PAGE, "event schema, %d rows" % n, who_html=who, export_label="Export markdown",
                         tabs=site.REVIEW_TABS if review else None, setup_link=not review) +
             '<main class="main" style="max-width:none">' + intro + '<section>' + toolbar + table + '</section></main>\n' +
-            blob + '<script>' + JS + '</script>\n</body>\n</html>\n')
+            blob + site.store_script() + '<script>' + JS + '</script>\n</body>\n</html>\n')
 
 
 def main():

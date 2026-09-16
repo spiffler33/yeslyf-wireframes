@@ -6,9 +6,9 @@ launch or only the execution switch, the fallback if it slips, owner, status, da
 Same tokens and top nav as the other board pages (scripts/build_site.py supplies head(), header() and the CSS).
 The list is one compact line per integration (sortable, filterable); a click opens the row's panel with the facts
 on the left and the editable fields on the right. Owner, status, the three dates, docs_url, cost, notes and the
-per-row comment save in the browser as typed (localStorage key "yeslyf_integrations_v1") and post to the sheet tab
-v02_integrations through the endpoint the board pages share ("yeslyf_board_v1"), with the identity picked in the
-header and a timestamp, the same mechanism as the v0.2 comments. Screens, gates, fallback and cause are read-only.
+per-row comment save in the browser as typed (localStorage key "yeslyf_integrations_v1"); every change is one row in
+the board_entries table (page "integrations", item_id the row ID, field, value, the identity picked in the header;
+phase 11, Vatsal, 16 Sep 2026) through scripts/board_store.js. Screens, gates, fallback and cause are read-only.
 
 Cross-check (printed as the build log; the mark is written back into data/integrations.json as to_be_verified):
 for every row, the live v0.2 screens (data/screens_v02.json, not dropped or split) are searched for the vendor name
@@ -19,9 +19,8 @@ Rows whose vendor is internal or not decided, and rows whose screens are ["all"]
 Below the integrations table, "Owed to Spinach" (data/dependencies.json; phase 10b-2, Vatsal, 16 Sep 2026): one row per
 item the team owes the studio, in the order of the team message of 16 Sep 2026: item, owner, due date, status (not
 started | in progress | delivered), where it lands, notes, cause. Owner, due date, status, notes and the per-row
-comment are editable and save like the integrations rows: the same localStorage key and the same sheet tab
-v02_integrations; every posted row carries a type field ("integration" or "owed"; the vendor column holds the item
-for an owed row). The export brief carries both tables.
+comment are editable and save like the integrations rows: the same localStorage key and the same board_entries page,
+with the W id as item_id. The export brief carries both tables.
 
 Called at the end of scripts/build_site.py (whose TABS and REVIEW_TABS carry the Integrations tab); also runs on
 its own. Writes docs/integrations.html and its review copy docs/review/integrations.html (the three review tabs, no
@@ -222,27 +221,23 @@ EXTRA_CSS = """
 
 JS = r"""
 (function(){
-  var KEY="yeslyf_integrations_v1", BOARD_KEY="yeslyf_board_v1";
-  var COLS=["ts","who","id","vendor","field","value","type"];
+  var KEY="yeslyf_integrations_v1";
+  var EDITABLE=["owner","status","agreement_date","sandbox_date","production_date","docs_url","cost","notes","due_date","comment"];
   var RANK={}; STATUSES.forEach(function(s,i){ RANK[s]=i; });
   var byId={}; ROWS.concat(OWED).forEach(function(r){ byId[r.id]=r; });
   var S={};
   try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
   if(!S.rows) S.rows={}; if(!S.who) S.who="";
   function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
-  function board(){ try{ return JSON.parse(localStorage.getItem(BOARD_KEY)||"{}")||{}; }catch(e){ return {}; } }
-  function endpoint(){ return String(board().endpoint||"").trim(); }
-  function captureEndpoint(){ try{ var q=location.search||""; var qi=q.indexOf("endpoint="); if(qi<0) return; var qv=decodeURIComponent(q.slice(qi+9).split("&")[0]).trim();
-    if(qv){ var b=board(); b.endpoint=qv; try{ localStorage.setItem(BOARD_KEY, JSON.stringify(b)); }catch(e){} } if(history.replaceState) history.replaceState(null,"",location.pathname+location.hash); }catch(e){} }
-  function pill(){ var p=document.getElementById("sheetpill"); if(!p) return; var on=!!endpoint(); p.textContent=on?"sheet: on":"sheet: off"; p.className="pill"+(on?" on":""); }
   var ft; function flash(t){ var s=document.getElementById("saved"); if(!s) return; s.textContent=t||"Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1800); }
   function esc(s){ return String(s===undefined||s===null?"":s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
   function slug(s){ return String(s||"").split(" ").join("-"); }
   function edits(id){ if(!S.rows[id]) S.rows[id]={}; return S.rows[id]; }
   function val(id,f){ var e=S.rows[id]||{}; if(e[f]!==undefined) return e[f]; var r=byId[id]; return (r&&r[f]!==undefined)?r[f]:""; }
-  function post(id,field,value){ var ep=endpoint(); if(!ep) return false;
-    var r=byId[id]||{}; var row={kind:"v02_integrations",tab:"v02_integrations",cols:COLS,ts:new Date().toISOString(),who:S.who||"",id:id,vendor:r.type==="owed"?r.item:r.vendor,field:field,value:String(value===undefined||value===null?"":value),type:r.type||"integration"};
-    try{ fetch(ep,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(row)}); }catch(e){} return true; }
+  // every edit is one row in board_entries (page "integrations"); the comment is kind comment, everything else field_edit
+  function put(id,field,value){ if(window.yeslyfBoard) yeslyfBoard.write({item_id:id,field:field,value:value,who:S.who||"",kind:field==="comment"?"comment":"field_edit"}); }
+  function wb(){ return window.yeslyfBoard?yeslyfBoard.label():"offline; this file is the record"; }
+  function applyRemote(rows){ rows.forEach(function(r){ if(!byId[r.item_id]||EDITABLE.indexOf(r.field)<0) return; var ed=edits(r.item_id); ed[r.field]=r.value||""; if(r.field==="comment") ed.comment_who=r.who||""; }); save(); paintAll(); }
   function ownersOf(text){ var out=[]; String(text||"").split(",").forEach(function(p){ p=p.trim(); if(p&&out.indexOf(p)<0) out.push(p); }); return out; }
   function longPole(){ return ROWS.filter(function(r){ var st=val(r.id,"status"); return r.gates==="launch" && st!=="dropped" && (RANK[st]||0) < RANK["sandbox"]; }); }
   function filterStatus(){ var f=document.getElementById("filters"); return f?f.querySelector("[name=status]").value:"All"; }
@@ -266,7 +261,7 @@ JS = r"""
       var ok=(g==="All"||r.gates===g)&&(o==="All"||("|"+tb.getAttribute("data-owners")+"|").indexOf("|"+o+"|")>=0)&&(s==="All"||val(r.id,"status")===s);
       tb.classList.toggle("hidden",!ok); if(ok) shown++; });
     var c=document.getElementById("count"); if(c) c.textContent=shown+" of "+ROWS.length; paintCounts(); }
-  function paintAll(){ ROWS.concat(OWED).forEach(function(r){ paintRow(r.id); }); var rv=document.getElementById("reviewer"); if(rv&&rv.value!==(S.who||"")) rv.value=S.who||""; pill(); applyFilters(); }
+  function paintAll(){ ROWS.concat(OWED).forEach(function(r){ paintRow(r.id); }); var rv=document.getElementById("reviewer"); if(rv&&rv.value!==(S.who||"")) rv.value=S.who||""; applyFilters(); }
   var sort={key:"id",dir:1};
   function keyOf(r,k){ if(k==="vendor") return String(r.vendor).toLowerCase(); if(k==="gates") return String(GATES.indexOf(r.gates));
     if(k==="status"){ var n=RANK[val(r.id,"status")]; return String(n===undefined?9:n); } if(k==="owner") return String(val(r.id,"owner")).toLowerCase();
@@ -279,7 +274,7 @@ JS = r"""
   function openAll(on){ ROWS.concat(OWED).forEach(function(r){ var tb=document.getElementById("row-"+r.id); if(tb&&!tb.classList.contains("hidden")) tb.classList.toggle("open",on); }); }
   function cellmd(v){ return String(v===undefined||v===null?"":v).split("\n").join(" ").split("|").join("\\|"); }
   function md(){ var lp=longPole(); var counts=countBy(ROWS,STATUSES), ocounts=countBy(OWED,OWED_STATUSES);
-    var L=["# yeslyf integrations v0.2 - brief for Spinach","Exported "+new Date().toLocaleString()+(S.who?" by "+S.who:""),"Sheet endpoint: "+(endpoint()?"configured":"not configured; this file is the record"),"","## Integrations",
+    var L=["# yeslyf integrations v0.2 - brief for Spinach","Exported "+new Date().toLocaleString()+(S.who?" by "+S.who:""),"Write-back: "+wb(),"","## Integrations",
       "Rows: "+ROWS.length+"; by status: "+STATUSES.map(function(s){ return s+" "+counts[s]; }).join(", "),
       "Long pole (gates launch and below sandbox): "+(lp.length?lp.map(function(r){ return r.id+" "+r.vendor; }).join(", "):"none"),""];
     var cols=["ID","Category","Vendor","Alternatives","Role","Screens","Gates","Fallback","Owner","Status","Agreement","Sandbox","Production","Docs","Cost","Notes","Cause","Comment"];
@@ -301,7 +296,7 @@ JS = r"""
     var old=document.querySelectorAll(".hi"); for(var i=0;i<old.length;i++) old[i].classList.remove("hi"); el.classList.add("hi"); el.classList.add("open"); try{ el.scrollIntoView({block:"start",behavior:"instant"}); }catch(e){ el.scrollIntoView(true); } }
   var tmr={};
   document.addEventListener("DOMContentLoaded",function(){
-    captureEndpoint();
+    if(window.yeslyfBoard){ Array.prototype.forEach.call(document.querySelectorAll("textarea[data-f=comment]"),function(t){ var cw=t.parentNode?t.parentNode.querySelector("[data-cwho]"):null; yeslyfBoard.attach(cw||t,t.getAttribute("data-id")); }); yeslyfBoard.init({page:"integrations",apply:applyRemote}); }
     var f=document.getElementById("filters"); if(f){ var os=f.querySelector("[name=owner]"); if(os) os.innerHTML='<option>All</option>'+ownerOptions().map(function(n){ return '<option>'+esc(n)+'</option>'; }).join(""); f.addEventListener("change",applyFilters); }
     var rv=document.getElementById("reviewer"); if(rv){ rv.innerHTML='<option value="">editing as</option>'+IDENTITIES.map(function(n){ return '<option value="'+esc(n)+'">'+esc(n)+'</option>'; }).join(""); rv.value=S.who||"";
       rv.addEventListener("change",function(){ S.who=IDENTITIES.indexOf(rv.value)>=0?rv.value:""; save(); flash(S.who?"Editing as "+S.who:""); }); }
@@ -317,9 +312,9 @@ JS = r"""
     var tbl=document.getElementById("tbl"); if(tbl) tbl.addEventListener("click",rowClick); var ot=document.getElementById("owed"); if(ot) ot.addEventListener("click",rowClick);
     document.body.addEventListener("input",function(e){ var t=e.target; var id=t.getAttribute("data-id"), k=t.getAttribute("data-f"); if(!id||!k) return; if(t.tagName==="SELECT"||t.type==="date") return;
       var ed=edits(id); ed[k]=t.value; if(k==="comment") ed.comment_who=S.who||""; save(); paintRow(id); if(k==="owner") applyFilters(); flash("Saving...");
-      clearTimeout(tmr[id+k]); tmr[id+k]=setTimeout(function(){ post(id,k,val(id,k)); flash(); },1500); });
+      clearTimeout(tmr[id+k]); tmr[id+k]=setTimeout(function(){ put(id,k,val(id,k)); flash(); },1500); });
     document.body.addEventListener("change",function(e){ var t=e.target; var id=t.getAttribute("data-id"), k=t.getAttribute("data-f"); if(!id||!k) return; if(!(t.tagName==="SELECT"||t.type==="date")) return;
-      var ed=edits(id); ed[k]=t.value; save(); paintRow(id); applyFilters(); post(id,k,t.value); flash(); });
+      var ed=edits(id); ed[k]=t.value; save(); paintRow(id); applyFilters(); put(id,k,t.value); flash(); });
   });
   // test hook for the checks (and for the console)
   window.yeslyfIntegrations={ exportText: md, longPole: function(){ return longPole().map(function(r){ return r.id; }); }, sortBy: sortBy, value: val, open: openRow, rows: function(){ return ROWS.length; }, owed: function(){ return OWED.length; } };
@@ -428,11 +423,11 @@ def build_page(rows, checks, live_ids, owed, review=False):
     blob = ('<script>var ROWS=' + site.js_blob([dict(r, type="integration") for r in rows]) + ';\nvar OWED=' + site.js_blob([dict(r, type="owed") for r in owed]) +
             ';\nvar IDENTITIES=' + site.js_blob(IDENTITIES) + ';\nvar STATUSES=' + site.js_blob(STATUSES) + ';\nvar OWED_STATUSES=' + site.js_blob(OWED_STATUSES) +
             ';\nvar GATES=' + site.js_blob(GATES) + ';</script>\n')
-    return (site.head("yeslyf integrations v0.2", site.CSS + EXTRA_CSS) + '<body>\n' +
+    return (site.head("yeslyf integrations v0.2", site.CSS + EXTRA_CSS, config="../config.js" if review else "config.js") + '<body>\n' +
             site.header(PAGE, "integrations, %d rows; owed to Spinach, %d" % (n, len(owed)), who_html=who, export_label="Export brief",
                         tabs=site.REVIEW_TABS if review else None, setup_link=not review) +
             '<main class="main" style="max-width:none">' + intro + '<section>' + toolbar + table + '</section>' + owed_section(owed) + '</main>\n' +
-            blob + '<script>' + JS + '</script>\n</body>\n</html>\n')
+            blob + site.store_script() + '<script>' + JS + '</script>\n</body>\n</html>\n')
 
 
 def main():

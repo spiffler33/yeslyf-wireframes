@@ -11,8 +11,9 @@ scripts/build_site.py into docs/audiences/ (or run this file alone to rebuild ju
                               checklist card and user-facing copy; identity locked to Compliance; no dev notes.
 
 Self-contained: the screen data is embedded, the file opens from disk with no network, the comment controls and the
-markdown export work offline (comments live in the browser under a per-file key). No sheet endpoint string anywhere;
-the endpoint field in the header stays blank. noindex on each. Nothing here is hand-edited; data/*.json is the source.
+markdown export work offline (comments live in the browser under a per-file key). No Supabase URL or key anywhere (the
+files do not load docs/config.js, so the pill reads "offline, saved locally"). noindex on each. Nothing here is
+hand-edited; data/*.json is the source.
 """
 import copy
 import os
@@ -47,7 +48,6 @@ def header(subtitle, views, export_label):
     return ('<header class="top"><div class="brand">yeslyf <span>' + site.esc(subtitle) + '</span></div>'
             '<nav class="tabs views">' + tabs + '</nav>'
             '<div class="who">Reviewing as <select id="reviewer"></select></div>'
-            '<div class="who">Sheet endpoint <input id="endpoint" placeholder="blank: comments stay in this browser"></div>'
             '<div id="saved" class="saved"></div><span id="sheetpill" class="pill" title="Sheet write-back status">sheet: off</span>'
             '<button id="export" class="primary">' + site.esc(export_label) + '</button></header>\n')
 
@@ -115,9 +115,9 @@ def counts_doc(chg):
 
 
 def page(title, head_subtitle, views, export_label, bar_html, panes, data, opts_js=True):
-    return (site.head(title, site.read_script("renderer_v02.css")) + '<body>\n' + header(head_subtitle, views, export_label) +
+    return (site.head(title, site.read_script("renderer_v02.css"), config=None) + '<body>\n' + header(head_subtitle, views, export_label) +
             '<div data-viewpane="wire">' + bar_html + site.WIRE_LAYOUT + '</div>\n' + panes + data +
-            '<script>' + site.read_script("renderer_v02.js") + '</script>\n<script>' + VIEW_JS + '</script>\n</body>\n</html>\n')
+            site.store_script() + '<script>' + site.read_script("renderer_v02.js") + '</script>\n<script>' + VIEW_JS + '</script>\n</body>\n</html>\n')
 
 
 def build_all(v02, states, reasons, admin, changelog):

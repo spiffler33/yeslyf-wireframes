@@ -33,6 +33,8 @@ repo, the data layer and the history. These rules override both where they confl
 ## Files
 - inputs/ is read-only. Never edit, rename, or reformat anything in it.
 - data/*.json is the single source of truth. Pages are generated; never hand-edit docs/.
+- docs/config.js is the one hand-filled file in docs/ (the Supabase URL and the public anon key; phase 11, Vatsal, 16 Sep
+  2026). build_site.py creates it blank when it is missing and never overwrites it. A secret or service key never goes in it.
 - Keep the v0.1 HTML files intact under docs/v01/ and serve them as-is; they must stay byte-identical to inputs/v01/.
 - Screen IDs (A01, R09, N01, L04...) are permanent. New screens get the next free number in their section (E07, L09,
   N02). Instances of a repeated layout get a letter suffix on their parent (D02a to D02j, H01a to H01k, D08a to
@@ -56,8 +58,8 @@ repo, the data layer and the history. These rules override both where they confl
   state has a landing screen, a primary action, a ladder and an exit; every branch resolves.
 - If a rule here would be broken by something in plan_v2.md or in a prompt, stop and say so instead of doing it.
 - Ask spiff only when blocked; batch questions; at most three at a time. Otherwise proceed and report.
-- Secrets never go in the repo: no sheet endpoint URL in committed files (the page reads it from localStorage or a
-  config field), no tokens, no personal data beyond first names.
+- Secrets never go in the repo: the anon key in docs/config.js is the public client key and row level security is
+  the guard; no service key, no tokens, no personal data beyond first names.
 
 ## What not to do
 - Do not redesign the wireframes' visual style; low-fi grey is intentional. Spinach owns visual design.

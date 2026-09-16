@@ -172,7 +172,15 @@
     .actions{margin-left:0}
     .ribbon{display:none}
   }
+.histwrap{margin-top:6px}
+.hist-toggle{font-size:11px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:2px 8px;color:var(--mute);cursor:pointer}
+.histbox{margin-top:6px}
+.hist{list-style:none;margin:0;padding:0;font-size:12px;color:var(--ink)}
+.hist li{padding:3px 0;border-top:1px solid var(--line)}
+.hist .t{color:var(--mute);margin-right:6px}
+.hist-empty{font-size:12px;color:var(--mute)}
 </style>
+<script src="../config.js"></script>
 </head>
 <body>
 <header class="top"><div class="brand">yeslyf <span>wireframes v0.2, 193 screens</span></div><nav class="tabs"><a href="index.html" class="on">Wireframes v0.2</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a></nav><div class="who">Reviewing as <select id="reviewer"></select></div><div id="saved" class="saved"></div><span id="sheetpill" class="pill" title="Sheet write-back status">sheet: off</span><button id="export" class="primary">Export comments</button></header>
@@ -190,12 +198,162 @@ var DROPPED=["R11", "G02", "G08"];
 var SPLIT=["D05", "D06", "D08"];
 var STATES=[{"id": "S1", "who": "Signed up, no reveal", "lands_on": "R01", "primary_action": "Finish the reveal", "deep_link": "R01", "minutes": "about N minutes", "ladder": [{"day": "1h", "channel": "push", "slot": "N-S1-1h", "link": "R01", "tier": "all"}, {"day": "day 1", "channel": "whatsapp", "slot": "N-S1-d1", "link": "R01", "tier": "all"}], "escalation": {"diwm": "ladder only (not paid yet)", "diy": "ladder only (not paid yet)", "difm": "not applicable"}, "exit": "reveal seen (R09) -> S2; paid -> S2b or S3", "crm_task": {"created": false, "fields": []}, "mock": "N05", "push": {"slot": "N-S1-1h", "text": "Your two paths are about N minutes away. Pick up at your name and age."}, "whatsapp": {"slot": "N-S1-d1", "text": "Hi, it is yeslyf. You started your reveal and stopped at your name and age. About N minutes from here to your two paths. Pick up where you left off."}, "cause": "spec v0.1, kept"}, {"id": "S2", "who": "Reveal seen, not paid", "lands_on": "X01", "primary_action": "Unlock my plan", "deep_link": "P01", "minutes": "about N minutes", "ladder": [{"day": "day 1", "channel": "push", "slot": "N-S2-d1", "link": "P01", "tier": "all"}, {"day": "day 3", "channel": "whatsapp", "slot": "N-S2-d3", "link": "P01", "tier": "all"}, {"day": "day 7", "channel": "email", "slot": "N-S2-d7", "link": "P01", "tier": "all"}, {"day": "day 21", "channel": "email", "slot": "N-S2-d21", "link": "P01", "tier": "all"}, {"day": "day 82", "channel": "email", "slot": "N-S2-d82", "link": "P01", "tier": "all"}], "escalation": {"diwm": "ladder only, then stop", "diy": "ladder only, then stop", "difm": "not applicable"}, "exit": "paid -> S2b or S3; day 82 -> stop", "crm_task": {"created": false, "fields": []}, "mock": "N06", "push": {"slot": "N-S2-d1", "text": "Your reveal is saved. Unlock my plan is one screen: two cards, one choice, about N minutes."}, "whatsapp": {"slot": "N-S2-d3", "text": "One thing from your reveal: the gap between your two paths comes from what you save and how it is placed. Unlock my plan shows what the plan does about it. About N minutes."}, "email": {"slot": "N-S2-d7", "text": "What the plan includes, and what members say, with Unlock my plan one tap away. Placeholder; advertising code review."}, "cause": "spec v0.1, kept"}, {"id": "S2b", "who": "Paid, eSign incomplete", "lands_on": "P03", "primary_action": "Sign the agreement", "deep_link": "P03", "minutes": "about N minutes", "ladder": [{"day": "day 1", "channel": "push", "slot": "N-S2b-d1", "link": "P03", "tier": "all"}, {"day": "day 3", "channel": "whatsapp", "slot": "N-S2b-d3", "link": "P03", "tier": "all"}, {"day": "day 14", "channel": "email", "slot": "N-S2b-d14", "link": "Q03a", "tier": "all"}], "escalation": {"diwm": "day 14: refund path (brief H5: to be decided); CRM task", "diy": "day 14: refund path (brief H5: to be decided); CRM task", "difm": "not applicable"}, "exit": "eSign done (P03) -> S3; day 14 unsigned -> refund path (brief H5: to be decided)", "crm_task": {"created": true, "fields": ["state_id", "tier", "payment_reference", "days_unsigned"]}, "mock": "N07", "push": {"slot": "N-S2b-d1", "text": "One signature stands between you and your plan. Sign the agreement: about N minutes."}, "whatsapp": {"slot": "N-S2b-d3", "text": "Your payment went through and the agreement is unsigned. I cannot advise until you sign. Aadhaar OTP on Agreement and eSign, about N minutes."}, "email": {"slot": "N-S2b-d14", "text": "Fourteen days unsigned: the refund path opens (per the agreement; brief H5: to be decided)."}, "cause": "spec v0.1, kept; brief H5"}, {"id": "S3", "who": "Paid, nothing else", "lands_on": "O02", "primary_action": "Start with Before you start (D00)", "deep_link": "O02", "minutes": "about N minutes", "ladder": [{"day": "24h", "channel": "push", "slot": "N-S3-24h", "link": "O02", "tier": "all"}, {"day": "72h", "channel": "whatsapp", "slot": "N-S3-72h", "link": "O02", "tier": "all"}, {"day": "day 7", "channel": "push", "slot": "N-S3-d7", "link": "O02", "tier": "all"}], "escalation": {"diwm": "day 7 -> S19 (outbound call task)", "diy": "day 7 -> S19 (a la carte offer)", "difm": "adviser relationship"}, "exit": "any D screen saved -> S4; gate met -> S5; day 7 -> S19", "crm_task": {"created": false, "fields": []}, "mock": "N08", "push": {"slot": "N-S3-24h", "text": "Your plan starts with what to have ready. Before you start: about N minutes."}, "whatsapp": {"slot": "N-S3-72h", "text": "Paid, and nothing else yet. Start with Before you start: what to have open, and about N minutes to the first section. You can skip anything and come back."}, "cause": "spec v0.1, kept; Vatsal, 10 Sep 2026"}, {"id": "S4", "who": "Data partial", "lands_on": "O02", "primary_action": "Continue where you left off: <screen>", "deep_link": "O02", "minutes": "about N minutes", "ladder": [{"day": "O03 time, when set", "channel": "push", "slot": "N-S4-o03", "link": "O02", "tier": "all"}, {"day": "24h", "channel": "push", "slot": "N-S4-24h", "link": "O02", "tier": "all"}, {"day": "72h", "channel": "whatsapp", "slot": "N-S4-72h", "link": "O02", "tier": "all"}, {"day": "day 7", "channel": "push", "slot": "N-S4-d7", "link": "O02", "tier": "all"}], "escalation": {"diwm": "day 7 -> S19 (outbound call task)", "diy": "day 7 -> S19 (a la carte offer)", "difm": "adviser relationship"}, "exit": "gate met -> S5; day 7 below the gate -> S19", "crm_task": {"created": false, "fields": []}, "mock": "N09", "push": {"slot": "N-S4-24h", "text": "Continue where you left off: <section>, about N minutes."}, "whatsapp": {"slot": "N-S4-72h", "text": "You left off at <section>. About N minutes to finish it; everything so far is saved. Pick up at Your next steps."}, "cause": "spec v0.1, kept; Vatsal, 10 Sep 2026 (O03 time first)"}, {"id": "S5", "who": "Gate met, D10 not confirmed", "lands_on": "D10", "primary_action": "Build my plan", "deep_link": "D10", "minutes": "about N minutes", "ladder": [{"day": "24h", "channel": "push", "slot": "N-S5-24h", "link": "D10", "tier": "all"}, {"day": "day 7", "channel": "whatsapp", "slot": "N-S5-d7", "link": "G01a", "tier": "all"}], "escalation": {"diwm": "ladder only", "diy": "ladder only", "difm": "adviser relationship"}, "exit": "Build my plan (D10) -> S6; day 7 -> built on what we have (G01a) -> S18", "crm_task": {"created": false, "fields": []}, "mock": "N10", "push": {"slot": "N-S5-24h", "text": "Everything the plan needs is in. Review and build: about N minutes."}, "whatsapp": {"slot": "N-S5-d7", "text": "Your numbers are in and the gate is met. One screen left: Review, build, and what would sharpen it. About N minutes to a built plan; on day 7 I build it on what we have."}, "cause": "Vatsal, 10 Sep 2026 (S5 redefined: the risk profile sits early now)"}, {"id": "S6", "who": "Plan built, not read", "lands_on": "H01a", "primary_action": "Read your plan (G03)", "deep_link": "G03", "minutes": "about N minutes", "ladder": [{"day": "48h", "channel": "push", "slot": "N-S6-48h", "link": "G03", "tier": "all"}], "escalation": {"diwm": "ladder only; the H01a card offers a call", "diy": "ladder only", "difm": "not applicable (no engine plan)"}, "exit": "plan read (G03) -> S8; call booked -> S7", "crm_task": {"created": false, "fields": []}, "mock": "N11", "push": {"slot": "N-S6-48h", "text": "Your plan is ready. Plan overview: about N minutes to read."}, "whatsapp": {"slot": "N-S6-48h", "text": "Your plan is built on your numbers. Start with the Plan overview: what success looks like and what needs attention, in order. About N minutes."}, "email": {"slot": "N-S6-48h", "text": "Plan ready; the PDF is attached and filed in your Vault."}, "cause": "spec v0.1, kept"}, {"id": "S7", "who": "Call booked, any tier", "lands_on": "K02", "primary_action": "Prepare for your call: read your plan", "deep_link": "K02", "minutes": "", "ladder": [{"day": "24h before", "channel": "whatsapp", "slot": "N-S7-24h-before", "link": "K02", "tier": "all"}, {"day": "1h before", "channel": "push", "slot": "N-S7-1h-before", "link": "K02", "tier": "all"}], "escalation": {"diwm": "service reminders only", "diy": "service reminders only", "difm": "adviser relationship"}, "exit": "call done -> S21 (no action started) or the previous state; no-show -> S20", "crm_task": {"created": false, "fields": []}, "mock": "N12", "push": {"slot": "N-S7-1h-before", "text": "Your call is in an hour. Call confirmed has the join link; have your plan open."}, "whatsapp": {"slot": "N-S7-24h-before", "text": "Your call with a yeslyf adviser is tomorrow at <time>. Read your plan first if it is built; the call is for questions, not a first look. Call confirmed has the join link."}, "cause": "spec v0.1, kept; Vatsal, 10 Sep 2026 (any tier)"}, {"id": "S8", "who": "Plan read, no action done", "lands_on": "H01b", "primary_action": "Do the first action (E01)", "deep_link": "E01", "minutes": "about N minutes", "ladder": [{"day": "48h", "channel": "push", "slot": "N-S8-48h", "link": "E01", "tier": "all"}, {"day": "7d", "channel": "whatsapp", "slot": "N-S8-7d", "link": "E01", "tier": "all"}, {"day": "14d", "channel": "email", "slot": "N-S8-14d", "link": "E01", "tier": "all"}], "escalation": {"diwm": "ladder only; the H01b card offers a call", "diy": "ladder only", "difm": "not applicable"}, "exit": "first action started -> S9", "crm_task": {"created": false, "fields": []}, "mock": "N13", "push": {"slot": "N-S8-48h", "text": "First action: <action>. Execution hub, about N minutes."}, "whatsapp": {"slot": "N-S8-7d", "text": "You have read your plan. The first action is <action>; the Execution hub walks you through it in about N minutes. Which one feels hardest?"}, "email": {"slot": "N-S8-14d", "text": "Two weeks in: the first action, and what it changes. Execution hub."}, "cause": "spec v0.1, kept"}, {"id": "S9", "who": "Executing", "lands_on": "H01c", "primary_action": "Next action", "deep_link": "E01", "minutes": "about N minutes", "ladder": [{"day": "immediately, missed SIP detected", "channel": "whatsapp", "slot": "N-S9-missed-sip", "link": "E06", "tier": "all"}, {"day": "immediately, action verified done", "channel": "push", "slot": "N-S9-done", "link": "E01", "tier": "all"}], "escalation": {"diwm": "service nudges only", "diy": "service nudges only", "difm": "not applicable"}, "exit": "all actions done -> S10; plan updated -> S11", "crm_task": {"created": false, "fields": []}, "mock": "N14", "push": {"slot": "N-S9-done", "text": "One down. The next action is on the Execution hub, about N minutes."}, "whatsapp": {"slot": "N-S9-missed-sip", "text": "A SIP did not go through this month. Verification and progress shows which one and the fix. About N minutes."}, "cause": "spec v0.1, kept"}, {"id": "S10", "who": "All actions done", "lands_on": "H01d", "primary_action": "Your quarterly review date", "deep_link": "H01d", "minutes": "", "ladder": [{"day": "immediately", "channel": "push", "slot": "N-S10-now", "link": "H01d", "tier": "all"}, {"day": "anniversary", "channel": "whatsapp", "slot": "N-S10-anniv", "link": "Q04", "tier": "all"}], "escalation": {"diwm": "none", "diy": "none", "difm": "not applicable"}, "exit": "quarterly review generated -> Q01 (S22 if ignored); plan updated -> S11", "crm_task": {"created": false, "fields": []}, "mock": "N15", "push": {"slot": "N-S10-now", "text": "Every action is done. Your quarterly review is on <date>."}, "whatsapp": {"slot": "N-S10-anniv", "text": "A year with yeslyf. Nothing to do until the review; on the anniversary I ask you to confirm your risk profile and renew, about N minutes."}, "cause": "spec v0.1, kept"}, {"id": "S11", "who": "Plan updated (publish), not accepted", "lands_on": "H01e", "primary_action": "Accept the update (H05)", "deep_link": "H05", "minutes": "about N minutes", "ladder": [{"day": "3d", "channel": "push", "slot": "N-S11-3d", "link": "H05", "tier": "all"}], "escalation": {"diwm": "ladder only", "diy": "ladder only", "difm": "not applicable"}, "exit": "update accepted (H05) -> the previous state (S8, S9 or S10); something changed (Q06) -> Q06a re-asks the mapped screens, the engine re-runs, H05 then H01e (S11 again)", "crm_task": {"created": false, "fields": []}, "mock": "N16", "push": {"slot": "N-S11-3d", "text": "Your plan changed. Your plan was updated: accept in about N minutes."}, "whatsapp": {"slot": "N-S11-3d", "text": "House of Alpha reviewed the approved list; your plan has N changes, each with its reason. Your plan was updated shows them; accept to refresh your action plan. About N minutes."}, "cause": "spec v0.1, kept; Vatsal, 11 Sep 2026 (Q06 on the exit path)"}, {"id": "S12", "who": "Payment failed", "lands_on": "H01f", "primary_action": "Retry payment (Q03b)", "deep_link": "Q03b", "minutes": "about N minutes", "ladder": [{"day": "day 0", "channel": "whatsapp", "slot": "N-S12-d0", "link": "Q03b", "tier": "all"}, {"day": "day 3", "channel": "email", "slot": "N-S12-d3", "link": "Q03b", "tier": "all"}, {"day": "day 6", "channel": "push", "slot": "N-S12-d6", "link": "Q03b", "tier": "all"}], "escalation": {"diwm": "ladder only; grace 7 days", "diy": "ladder only; grace 7 days", "difm": "not applicable"}, "exit": "payment recovered -> the previous state; day 7 -> S13", "crm_task": {"created": false, "fields": []}, "mock": "N17", "push": {"slot": "N-S12-d6", "text": "Tomorrow the plan refresh pauses. Retry payment: about N minutes; nothing is lost."}, "whatsapp": {"slot": "N-S12-d0", "text": "Your payment did not go through. Payment failed shows the retry and the change-method option; you have 7 days before the plan refresh pauses. Nothing is lost."}, "email": {"slot": "N-S12-d3", "text": "Retry payment; what stops on day 7 and what does not."}, "cause": "spec v0.1, kept"}, {"id": "S13", "who": "Lapsed", "lands_on": "H01g", "primary_action": "Resubscribe (Q03c)", "deep_link": "Q03c", "minutes": "about N minutes", "ladder": [{"day": "30d", "channel": "email", "slot": "N-S13-30d", "link": "Q03c", "tier": "all"}, {"day": "90d", "channel": "whatsapp", "slot": "N-S13-90d", "link": "Q03c", "tier": "all"}], "escalation": {"diwm": "ladder only", "diy": "ladder only", "difm": "not applicable"}, "exit": "resubscribed (P01) -> S8 or S9; everything restored", "crm_task": {"created": false, "fields": []}, "mock": "N18", "push": {"slot": "N-S13-90d", "text": "Your plan is read-only since <date>. Resubscribe restores everything, about N minutes."}, "whatsapp": {"slot": "N-S13-90d", "text": "Three months since your membership lapsed. Lapsed shows what stopped; resubscribe restores the refresh and the review. About N minutes."}, "email": {"slot": "N-S13-30d", "text": "Resubscribe; what has changed in the markets since your plan was last refreshed. Placeholder; advertising code review."}, "cause": "spec v0.1, kept"}, {"id": "S14", "who": "DIFM client", "lands_on": "H01h", "primary_action": "Your adviser manages this; update your numbers before the review", "deep_link": "H09", "minutes": "about N minutes", "ladder": [{"day": "per adviser, before the review", "channel": "whatsapp", "slot": "N-S14-review", "link": "H09", "tier": "DIFM"}], "escalation": {"diwm": "not applicable", "diy": "not applicable", "difm": "adviser relationship; no ladder beyond the review reminder"}, "exit": "stays; the adviser relationship sets the review dates", "crm_task": {"created": false, "fields": []}, "mock": "N19", "push": {"slot": "N-S14-review", "text": "Your review is on <date>. Update your numbers from Settings before it: about N minutes."}, "whatsapp": {"slot": "N-S14-review", "text": "Your review with your adviser is on <date>. Update your numbers from Settings before it, about N minutes, so the review runs on fresh figures."}, "cause": "spec v0.1, kept; Vatsal, 10 Sep 2026 (DIFM: tracking only)"}, {"id": "S15", "who": "AA consent expired", "lands_on": "Q01", "primary_action": "Reconnect Account Aggregator first (A06)", "deep_link": "A06", "minutes": "about N minutes", "ladder": [{"day": "7d before expiry", "channel": "push", "slot": "N-S15-7d-before", "link": "A06", "tier": "all"}, {"day": "at review", "channel": "whatsapp", "slot": "N-S15-review", "link": "Q01", "tier": "all"}], "escalation": {"diwm": "ladder only", "diy": "ladder only", "difm": "adviser relationship"}, "exit": "consent renewed -> the previous state; declined -> S16 (manual)", "crm_task": {"created": false, "fields": []}, "mock": "N20", "push": {"slot": "N-S15-7d-before", "text": "Your Account Aggregator consent ends in 7 days. Reconnect: about N minutes."}, "whatsapp": {"slot": "N-S15-review", "text": "Your consent has ended and the quarterly review needs fresh numbers. Consent framing: reconnect in about N minutes; read-only, revoke any time."}, "cause": "spec v0.1, kept"}, {"id": "S16", "who": "AA not connected, manual in progress or done", "lands_on": "H01i", "primary_action": "Connect Account Aggregator to keep this live (A05)", "deep_link": "A05", "minutes": "about N minutes", "ladder": [{"day": "review quarter", "channel": "whatsapp", "slot": "N-S16-review", "link": "Q05", "tier": "all"}], "escalation": {"diwm": "ladder only; re-asks in-app at G12a and Q05", "diy": "ladder only; re-asks in-app at G12a and Q05", "difm": "adviser relationship"}, "exit": "AA connected (A06) -> the AA states; mid-way users are S4 on the spine", "crm_task": {"created": false, "fields": []}, "mock": "N21", "push": {"slot": "N-S16-review", "text": "Your numbers were last updated by you N days ago. Update your numbers: about N minutes."}, "whatsapp": {"slot": "N-S16-review", "text": "Your numbers were last updated by you N days ago. Update your numbers takes about N minutes; connecting Account Aggregator keeps them live from then on."}, "cause": "Vatsal, 10 Sep 2026"}, {"id": "S17", "who": "CAS requested, awaiting the email", "lands_on": "A10a", "primary_action": "Upload your CAS (A10b)", "deep_link": "A10a", "minutes": "about N minutes", "ladder": [{"day": "1h", "channel": "push", "slot": "N-S17-1h", "link": "A10a", "tier": "all"}, {"day": "24h", "channel": "whatsapp", "slot": "N-S17-24h", "link": "A10a", "tier": "all"}], "escalation": {"diwm": "ladder only", "diy": "ladder only", "difm": "adviser relationship"}, "exit": "upload (A10b) or type it instead (D02) -> S4 or S5", "crm_task": {"created": false, "fields": []}, "mock": "N22", "push": {"slot": "N-S17-1h", "text": "Your CAS should be in your inbox. Upload it: about N minutes."}, "whatsapp": {"slot": "N-S17-24h", "text": "Look for the email subject Consolidated Account Statement. Your CAS: waiting for the email has the upload; the password is the one you set when requesting, or your PAN. About N minutes. Or type it instead."}, "cause": "Vatsal, 10 Sep 2026"}, {"id": "S18", "who": "Plan built on partial data", "lands_on": "H01j", "primary_action": "Sharpen the N numbers entered as bands", "deep_link": "H01j", "minutes": "about N minutes", "ladder": [{"day": "the chosen Sunday", "channel": "push", "slot": "N-S18-sunday", "link": "H01j", "tier": "all"}, {"day": "day 7", "channel": "whatsapp", "slot": "N-S18-d7", "link": "H01j", "tier": "all"}, {"day": "day 21", "channel": "email", "slot": "N-S18-d21", "link": "H01j", "tier": "all"}], "escalation": {"diwm": "ladder only; the H01j card offers a call", "diy": "ladder only", "difm": "not applicable"}, "exit": "no sharpen items remain -> S8 or S9", "crm_task": {"created": false, "fields": []}, "mock": "N23", "push": {"slot": "N-S18-sunday", "text": "Sunday: the N exact numbers that sharpen your plan; you gave them as bands. About N minutes."}, "whatsapp": {"slot": "N-S18-d7", "text": "Your plan is built on what we have. N numbers would sharpen it; Home shows each with a Sharpen this link. About N minutes, on the Sunday you picked."}, "email": {"slot": "N-S18-d21", "text": "Three weeks on: the numbers still given as bands, and what each changes in the plan."}, "cause": "Vatsal, 10 Sep 2026; Vatsal, 11 Sep 2026 (bands, never a filled-in value)"}, {"id": "S19", "who": "Stalled below the gate at day 7", "lands_on": "O02", "lands_on_alt": {"when": "the only missing items are ranges", "screen": "D13"}, "primary_action": "Finish the N fields that build your plan", "deep_link": "O02", "minutes": "about N minutes", "ladder": [{"day": "day 7", "channel": "push", "slot": "N-S19-d7", "link": "O02", "tier": "all"}, {"day": "day 7", "channel": "human call", "slot": "N-S19-d7-call", "link": "O02", "tier": "DIWM"}, {"day": "day 7", "channel": "push", "slot": "N-S19-d7-alacarte", "link": "K04", "tier": "DIY"}, {"day": "day 10", "channel": "whatsapp", "slot": "N-S19-d10", "link": "O02", "tier": "all"}, {"day": "day 14", "channel": "email", "slot": "N-S19-d14", "link": "O02", "tier": "all"}, {"day": "monthly", "channel": "email", "slot": "N-S19-monthly", "link": "O02", "tier": "all"}], "escalation": {"diwm": "day 7: outbound call task from the call centre (does not consume included calls)", "diy": "day 7: a la carte offer (K04)", "difm": "adviser relationship"}, "exit": "gate met -> S5", "crm_task": {"created": true, "fields": ["state_id", "missing_fields", "tier", "last_screen", "minutes_left"]}, "mock": "N24", "push": {"slot": "N-S19-d7", "text": "N quick ranges and your plan builds. About N minutes."}, "whatsapp": {"slot": "N-S19-d10", "text": "Your plan needs N more fields: <fields>. Your next steps lists them with the minutes each takes. Type what you know; a rough range does for the rest."}, "email": {"slot": "N-S19-d14", "text": "What the plan can already say, and the N fields that finish it. Your next steps."}, "cause": "Vatsal, 10 Sep 2026; brief V2; Vatsal, 11 Sep 2026 (lands on D13 when only ranges are missing)"}, {"id": "S20", "who": "Call booked, no-show", "lands_on": "K01", "primary_action": "Rebook your call (K05)", "deep_link": "K01", "minutes": "about N minutes", "ladder": [{"day": "1h after", "channel": "push", "slot": "N-S20-1h", "link": "K01", "tier": "all"}, {"day": "24h", "channel": "whatsapp", "slot": "N-S20-24h", "link": "K01", "tier": "all"}, {"day": "second no-show", "channel": "human call", "slot": "N-S20-2nd-call", "link": "K01", "tier": "DIWM"}, {"day": "second no-show", "channel": "push", "slot": "N-S20-2nd-alacarte", "link": "K04", "tier": "DIY"}], "escalation": {"diwm": "second no-show: outbound call task", "diy": "second no-show: a la carte offer (K04)", "difm": "adviser relationship"}, "exit": "rebooked (K05) -> S7; second no-show -> CRM task", "crm_task": {"created": true, "fields": ["state_id", "tier", "call_topic", "no_show_count"]}, "mock": "N25", "push": {"slot": "N-S20-1h", "text": "We missed you. Rebook your call: same topic, new slot, about N minutes."}, "whatsapp": {"slot": "N-S20-24h", "text": "Your call did not happen. Talk to an adviser has a rebook card with the same topic; pick a new slot in about N minutes."}, "cause": "Vatsal, 10 Sep 2026; brief V2"}, {"id": "S21", "who": "Call done, no action started", "lands_on": "K03", "primary_action": "Do the first action from the call", "deep_link": "K03", "minutes": "about N minutes", "ladder": [{"day": "48h", "channel": "push", "slot": "N-S21-48h", "link": "K03", "tier": "all"}, {"day": "7d", "channel": "whatsapp", "slot": "N-S21-7d", "link": "E01", "tier": "all"}], "escalation": {"diwm": "ladder only", "diy": "ladder only", "difm": "adviser relationship"}, "exit": "first action started -> S9", "crm_task": {"created": false, "fields": []}, "mock": "N26", "push": {"slot": "N-S21-48h", "text": "From your call: <first action>. After the call shows it, about N minutes."}, "whatsapp": {"slot": "N-S21-7d", "text": "Notes from your call are in After the call, with the first action we agreed. The Execution hub walks you through it, about N minutes."}, "cause": "Vatsal, 10 Sep 2026"}, {"id": "S22", "who": "Quarterly review ignored: Q01 not opened 14 days after generation", "lands_on": "H01k", "primary_action": "Open your quarterly review (Q01)", "deep_link": "Q01", "minutes": "about N minutes", "ladder": [{"day": "7d", "channel": "push", "slot": "N-S22-7d", "link": "Q01", "tier": "all"}, {"day": "14d", "channel": "email", "slot": "N-S22-14d", "link": "Q01", "tier": "all"}], "escalation": {"diwm": "the review card carries a book-a-call line (K01)", "diy": "ladder only", "difm": "not applicable"}, "exit": "Q01 opened and rebuilt -> S8, S9 or S10", "crm_task": {"created": false, "fields": []}, "mock": "N27", "push": {"slot": "N-S22-7d", "text": "Your quarterly review is waiting. Quarterly review: about N minutes."}, "whatsapp": {"slot": "N-S22-7d", "text": "Your numbers were refreshed 14 days ago and the review is unopened. Quarterly review: confirm what changed and rebuild, about N minutes. DIWM: book a call to walk through it."}, "email": {"slot": "N-S22-14d", "text": "What moved this quarter, and the one screen that turns it into an updated plan."}, "cause": "Vatsal, 10 Sep 2026"}, {"id": "S23", "who": "Annual confirmation overdue (Q04)", "lands_on": "Q04", "primary_action": "Confirm your risk profile and renew the agreement", "deep_link": "Q04", "minutes": "about N minutes", "ladder": [{"day": "7 days before", "channel": "email", "slot": "N-S23-7d-before", "link": "Q04", "tier": "all"}, {"day": "day of", "channel": "push", "slot": "N-S23-d0", "link": "Q04", "tier": "all"}, {"day": "7 days after", "channel": "whatsapp", "slot": "N-S23-7d-after", "link": "Q04", "tier": "all"}], "escalation": {"diwm": "ladder only", "diy": "ladder only", "difm": "adviser relationship"}, "exit": "confirmed and renewed (Q04) -> the previous state; to be verified: what happens to advice if the annual confirmation is not given (brief compliance)", "crm_task": {"created": false, "fields": []}, "mock": "N28", "push": {"slot": "N-S23-d0", "text": "Your annual confirmation is due today. A year with yeslyf: about N minutes."}, "whatsapp": {"slot": "N-S23-7d-after", "text": "Once a year I ask you to confirm your risk profile and renew the agreement. A year with yeslyf: about N minutes, Aadhaar OTP."}, "email": {"slot": "N-S23-7d-before", "text": "Your annual confirmation is due on <date>: the risk profile and the agreement, about N minutes."}, "cause": "Vatsal, 10 Sep 2026"}, {"id": "S24", "who": "Refund requested", "lands_on": "Q03a", "primary_action": "Refund status", "deep_link": "Q03a", "minutes": "", "ladder": [{"day": "immediately", "channel": "email", "slot": "N-S24-received", "link": "Q03a", "tier": "all"}], "escalation": {"diwm": "CRM task for the refund; brief H5: to be decided", "diy": "CRM task for the refund; brief H5: to be decided", "difm": "adviser relationship"}, "exit": "refund processed -> S13 (lapsed) or account closed; brief H5: to be decided", "crm_task": {"created": true, "fields": ["state_id", "tier", "payment_reference", "cancel_reason", "period_unexpired"]}, "mock": "N29", "push": {"slot": "N-S24-received", "text": "Your refund request is received. Cancel shows the status."}, "whatsapp": {"slot": "N-S24-received", "text": "Your refund request is received. Cancel shows the status; the refund follows the agreement (brief H5: to be decided)."}, "email": {"slot": "N-S24-received", "text": "Refund request received; what the agreement says about the unexpired period (brief H5: to be decided)."}, "cause": "Vatsal, 10 Sep 2026; brief H5"}, {"id": "S25", "who": "Account deletion requested (H09)", "lands_on": "H09", "primary_action": "Confirm deletion", "deep_link": "H09", "minutes": "about N minutes", "ladder": [{"day": "immediately", "channel": "email", "slot": "N-S25-received", "link": "H09", "tier": "all"}], "escalation": {"diwm": "CRM task for the deletion; regulated records retained", "diy": "CRM task for the deletion; regulated records retained", "difm": "adviser relationship"}, "exit": "deletion done -> account closed; to be verified: DPDP notice, deletion and retention text", "crm_task": {"created": true, "fields": ["state_id", "tier", "records_retained", "requested_at"]}, "mock": "N30", "push": {"slot": "N-S25-received", "text": "Your deletion request is received. Settings shows what is deleted and what is retained."}, "whatsapp": {"slot": "N-S25-received", "text": "Your deletion request is received. Settings shows what is deleted and which regulated records are retained; to be verified: DPDP notice, deletion and retention text."}, "email": {"slot": "N-S25-received", "text": "Deletion request received; the DPDP flow, and the regulated records that are retained."}, "cause": "Vatsal, 10 Sep 2026"}];
 var REASONS={"advertising code": {"review": true, "check": "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."}, "advice language": {"review": true, "check": "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."}, "disclosures": {"review": true, "check": "The RIA registration line, the fee schedule, the complaints and grievance path, what the app is and is not, what a call is and is not."}, "fees and refunds": {"review": true, "check": "Inclusive of GST, the period, cancellation, refund, breakage."}, "consent": {"review": true, "check": "AA consent wording and period, the DPDP notice, CAS password handling, the declaration, deletion."}, "execution": {"review": true, "check": "Order and mandate language, direct plan, rail disclosures."}, "internal": {"review": false, "check": "No user-facing copy; nothing to review."}, "plain copy": {"review": false, "check": "No regulated content identified. Comment on language if anything reads as advice or a promise."}};</script>
-<script>// yeslyf wireframes v0.2 - renderer. Extends the v0.1 renderer (same element grammar, same layout).
+<script>// yeslyf board store: the shared save layer of every page (phase 11, Vatsal, 16 Sep 2026).
+// Every comment, verdict and field edit on every page is one row in the Supabase table board_entries
+// (page, item_id, field, value, who, kind, created_at); rows are never updated or deleted. docs/config.js, loaded
+// in the head before this script, sets SUPABASE_URL and SUPABASE_ANON_KEY; both blank keeps the page local only.
+// Each page keeps its own localStorage store as before (that is the offline cache). This layer adds one key,
+// "yeslyf_entries_v1", holding per page the rows last fetched, the outbox (inserts that failed) and the last write.
+// On load it sends the outbox, fetches the page's rows (1000 at a time), hands the latest value per item and
+// field to the page (the apply callback; a queued local edit for the same field wins), and writes
+// "live, last write <time>" or "offline, saved locally" into the top bar pill. The history toggle under a comment
+// box lists every row of that item, newest first, queued rows on top.
+// Requests carry the key in the apikey header only (the publishable key is not a JWT and is refused in
+// Authorization; the legacy anon key works the same way in apikey alone).
+(function(){
+  var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var FIELDS = "id,item_id,field,value,who,kind,created_at";
+  function cfg(name){ try { var v = window[name]; return typeof v === "string" ? v.trim() : ""; } catch(e){ return ""; } }
+  var url = cfg("SUPABASE_URL"); while(url.length && url.charAt(url.length - 1) === "/") url = url.slice(0, -1);
+  var key = cfg("SUPABASE_ANON_KEY");
+  var configured = !!(url && key);
+  var cache = {};
+  try { cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ cache = {}; }
+  function saveCache(){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e){} }
+  var page = "", applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
+  function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; return c; }
+  function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
+  function two(n){ return (n < 10 ? "0" : "") + n; }
+  function fmt(ts){
+    // created_at arrives as UTC from the database and as toISOString() from the outbox; the first 19 characters are
+    // the same shape in both, so the display never depends on how a browser parses fractional seconds or offsets.
+    var d = new Date(String(ts || "").slice(0, 19) + "Z");
+    if(isNaN(d.getTime())) return String(ts || "");
+    return d.getDate() + " " + MONTHS[d.getMonth()] + " " + two(d.getHours()) + ":" + two(d.getMinutes());
+  }
+  function pill(){
+    var p = document.getElementById("sheetpill"); if(!p) return;
+    var text, title, on = false;
+    if(!configured){ text = "offline, saved locally"; title = "docs/config.js has no Supabase URL and key: edits stay in this browser"; }
+    else if(!checked){ text = "connecting"; title = "reading board_entries"; }
+    else if(live){ text = "live" + (lastWrite ? ", last write " + fmt(lastWrite) : ""); title = "every edit is a row in board_entries; the time is the last write on this page by anyone"; on = true; }
+    else { text = "offline, saved locally"; title = "the last request to Supabase failed: edits stay in this browser and are sent on the next load"; }
+    p.textContent = text; p.title = title; p.className = "pill" + (on ? " on" : "");
+  }
+  function strip(r){ return {page: r.page, item_id: r.item_id, field: r.field, value: r.value, who: r.who, kind: r.kind}; }
+  function request(method, query, body, cb){
+    // cb(status, json) exactly once; status is "ok", "rejected" (the server answered with an error) or "net".
+    var done = false;
+    function finish(s, j){ if(done) return; done = true; try { cb(s, j); } catch(e){} }
+    var headers = {"apikey": key};
+    if(body !== undefined){ headers["Content-Type"] = "application/json"; headers["Prefer"] = "return=representation"; }
+    var p;
+    try { p = fetch(url + "/rest/v1/board_entries" + query, {method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body)}); }
+    catch(e){ finish("net"); return; }
+    Promise.resolve(p).then(function(res){
+      if(!res || typeof res.ok !== "boolean") throw new Error("no response");
+      if(!res.ok){ finish("rejected", res.status); return; }
+      return res.json().then(function(j){ finish("ok", j); });
+    }).catch(function(){ finish("net"); });
+  }
+  function remember(j){
+    var r = (j && typeof j.length === "number" && j.length) ? j[0] : null; if(!r || !r.created_at) return;
+    var c = pc(); c.rows.push(r); c.last_write = r.created_at; lastWrite = c.last_write;
+  }
+  function flush(cb){
+    // Send every queued row in order; a row that fails stays queued; the caller learns whether all went through.
+    var c = pc(); var queue = c.outbox.slice(); var i = 0; var failed = 0;
+    (function next(){
+      if(i >= queue.length){ saveCache(); cb(failed === 0); return; }
+      var row = queue[i++];
+      request("POST", "", strip(row), function(s, j){
+        if(s === "ok"){ var at = c.outbox.indexOf(row); if(at >= 0) c.outbox.splice(at, 1); remember(j); } else failed++;
+        next();
+      });
+    })();
+  }
+  function fetchAll(offset, acc, cb){
+    request("GET", "?select=" + FIELDS + "&page=eq." + encodeURIComponent(page) + "&order=id.asc&limit=" + PAGE_SIZE + "&offset=" + offset, undefined, function(s, rows){
+      if(s !== "ok" || !rows || typeof rows.length !== "number"){ cb(false); return; }
+      acc = acc.concat(rows);
+      if(rows.length < PAGE_SIZE) cb(true, acc); else fetchAll(offset + PAGE_SIZE, acc, cb);
+    });
+  }
+  function load(){
+    pill();
+    if(!configured || !page) return;
+    flush(function(sent){
+      fetchAll(0, [], function(ok, rows){
+        checked = true; var c = pc();
+        if(ok){
+          c.rows = rows; c.last_write = rows.length ? rows[rows.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
+          if(applyFn){
+            var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; });
+            var pending = {}; c.outbox.forEach(function(r){ pending[r.item_id + "|" + r.field] = 1; });
+            var out = []; for(var k in latest) if(!pending[k]) out.push(latest[k]);
+            try { applyFn(out); } catch(e){}
+          }
+        }
+        live = ok && sent && !c.outbox.length; pill(); refreshHistory();
+      });
+    });
+  }
+  function write(row){
+    // row: {item_id, field, value, who, kind}. Queued first, removed on success, so a tab closed mid-request
+    // sends the row on the next load (a duplicate row is harmless: same latest value).
+    if(!page) return;
+    var r = {page: page, item_id: String(row.item_id), field: String(row.field),
+             value: String(row.value === undefined || row.value === null ? "" : row.value),
+             who: String(row.who || ""), kind: String(row.kind || "field_edit"), created_at: new Date().toISOString(), queued: true};
+    if(!configured){ pill(); return; }
+    var c = pc(); c.outbox.push(r); saveCache();
+    request("POST", "", strip(r), function(s, j){
+      var at = c.outbox.indexOf(r);
+      if(s === "ok"){ if(at >= 0) c.outbox.splice(at, 1); remember(j); live = true; } else live = false;
+      checked = true; saveCache(); pill(); refreshHistory();
+    });
+  }
+  function history(item_id){
+    var c = pc(); item_id = String(item_id);
+    var queued = c.outbox.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    var rows = c.rows.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    return queued.concat(rows);
+  }
+  function historyHtml(item_id){
+    if(!configured) return '<div class="hist-empty">local only: docs/config.js has no Supabase URL and key</div>';
+    var rows = history(item_id);
+    if(!rows.length) return '<div class="hist-empty">' + (checked ? "no rows yet for " + esc(item_id) : "not loaded yet") + '</div>';
+    return '<ul class="hist">' + rows.map(function(r){
+      return '<li><span class="t">' + esc(fmt(r.created_at)) + '</span> <b>' + esc(r.who || "-") + '</b> ' + esc(r.field) + ': ' +
+             (r.value ? esc(r.value) : '<i>cleared</i>') + (r.queued ? ' <i>queued, not sent yet</i>' : '') + '</li>';
+    }).join("") + '</ul>';
+  }
+  function refreshHistory(){ boxes.forEach(function(b){ if(!b.box.hidden) b.box.innerHTML = historyHtml(b.id()); }); }
+  function attach(el, idFn){
+    // Adds a "History" toggle right after a control; idFn is the item id or a function returning it.
+    if(!el || !el.parentNode) return;
+    var id = typeof idFn === "function" ? idFn : function(){ return idFn; };
+    var wrap = document.createElement("div"); wrap.className = "histwrap"; wrap.style.gridColumn = "1 / -1";  // a full row inside a grid form
+    var b = document.createElement("button"); b.type = "button"; b.className = "hist-toggle"; b.textContent = "History";
+    var box = document.createElement("div"); box.className = "histbox"; box.hidden = true;
+    b.addEventListener("click", function(){ box.hidden = !box.hidden; if(!box.hidden) box.innerHTML = historyHtml(id()); });
+    wrap.appendChild(b); wrap.appendChild(box);
+    el.parentNode.insertBefore(wrap, el.nextSibling);
+    boxes.push({box: box, id: id});
+  }
+  function init(opts){ opts = opts || {}; page = String(opts.page || ""); applyFn = opts.apply || null; load(); }
+  function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0}; }
+  function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
+  window.yeslyfBoard = {init: init, write: write, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label};
+})();
+</script><script>// yeslyf wireframes v0.2 - renderer. Extends the v0.1 renderer (same element grammar, same layout).
 // Embedded by scripts/build_site.py into docs/wireframes_v02.html after the data blobs:
 //   SECTIONS, SCREENS (live screens in flow order), DROPPED (ids), STATES (section N contract, may be empty),
 //   REASONS (compliance reason -> {review, check}).
-// Filters: tier, path, state, compliance, template. Comments save under localStorage key "yeslyf_wire_v02"
-// and post to the sheet endpoint (shared with the board pages under "yeslyf_board_v1") as v02_comments rows.
+// Filters: tier, path, state, compliance, template. Comments save under localStorage key "yeslyf_wire_v02";
+// every verdict, reason and comment change is one row in board_entries (page "wireframes_v02") through the shared
+// layer scripts/board_store.js (window.yeslyfBoard), which also fills the top bar pill and the History toggle.
 // WIRE_OPTS (optional, set by the audience files of phase 9): identities (list), lock (one identity, fixed),
 // key (storage key), spec ("full" | "design" | "compliance"), compFilter (false hides the compliance walk),
 // exportTitle, exportFile. Absent: the full site behaviour.
@@ -210,9 +368,8 @@ var REASONS={"advertising code": {"review": true, "check": "Projections and the 
   var EXPORT_TITLE = OPTS.exportTitle || "# yeslyf wireframes v0.2 - review comments";
   var EXPORT_FILE = OPTS.exportFile || "yeslyf_wireframe_review_v02.md";
   var VERDICTS = ["Keep","Change","Drop","Question"];
-  var BOARD_KEY = "yeslyf_board_v1";
   var KEY = OPTS.key || "yeslyf_wire_v02";
-  var COLS = ["ts","who","screen","verdict","reason","text"];
+  var PAGE = OPTS.page || "wireframes_v02";
   var state = { idx:0, tier:"ALL", path:"both", st:"", comp:"all", tpl:"all", map:false };
   var byId = {}; SCREENS.forEach(function(s,i){ byId[s.id]=i; });
   var secName = {}; SECTIONS.forEach(function(s){ secName[s[0]]=s[1]; });
@@ -232,24 +389,15 @@ var REASONS={"advertising code": {"review": true, "check": "Projections and the 
   if(LOCK) store.who = LOCK;
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
   function noteFor(id){ if(!store.notes[id]) store.notes[id] = {verdict:"", text:"", reason:"", who:""}; return store.notes[id]; }
-  function board(){ try { return JSON.parse(localStorage.getItem(BOARD_KEY) || "{}") || {}; } catch(e){ return {}; } }
-  function endpoint(){ return String(board().endpoint || "").trim(); }
-  function captureEndpoint(){
-    try {
-      var q = location.search || ""; var qi = q.indexOf("endpoint=");
-      if(qi < 0) return;
-      var qv = decodeURIComponent(q.slice(qi+9).split("&")[0]).trim();
-      if(qv){ var b = board(); b.endpoint = qv; try { localStorage.setItem(BOARD_KEY, JSON.stringify(b)); } catch(e){} }
-      if(history.replaceState) history.replaceState(null, "", location.pathname + location.hash);
-    } catch(e){}
-  }
-  function pill(){ var p = document.getElementById("sheetpill"); if(!p) return; var on = !!endpoint(); p.textContent = on ? "sheet: on" : "sheet: off"; p.className = "pill" + (on ? " on" : ""); }
-  function post(id){
-    var ep = endpoint(); if(!ep) return false;
-    var n = noteFor(id);
-    var row = {kind:"v02_comments", tab:"v02_comments", cols:COLS, ts:new Date().toISOString(), who:store.who || "", screen:id, verdict:n.verdict || "", reason:n.reason || "", text:n.text || ""};
-    try { fetch(ep, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain"}, body:JSON.stringify(row)}); } catch(e){}
-    return true;
+  var BOARD = (typeof yeslyfBoard !== "undefined") ? yeslyfBoard : null;
+  function put(id, field, value, kind){ if(BOARD) BOARD.write({item_id:id, field:field, value:value, who:store.who || "", kind:kind}); }
+  function wb(){ return BOARD ? BOARD.label() : "offline; this file is the record"; }
+  function applyRemote(rows){
+    // the latest row per screen and field from board_entries; the same shape the controls write
+    rows.forEach(function(r){ if(byId[r.item_id] === undefined) return; var n = noteFor(r.item_id); var v = r.value || "";
+      if(r.field === "verdict") n.verdict = VERDICTS.indexOf(v) >= 0 ? v : ""; else if(r.field === "reason") n.reason = v; else if(r.field === "text") n.text = v; else return;
+      n.who = r.who || n.who; });
+    save(); renderSpec(); renderNav();
   }
 
   function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
@@ -432,6 +580,7 @@ var REASONS={"advertising code": {"review": true, "check": "Projections and the 
     var ta = document.getElementById("comment"); if(ta){ ta.value = n.text || ""; ta.placeholder = "Comment on "+s.id+": what to keep, change or drop, and why. Compliance: comment on language."; }
     var rv = document.getElementById("reviewer"); if(rv) rv.value = store.who || "";
     syncReason();
+    if(BOARD) BOARD.refreshHistory();
     flash("");
   }
   function syncReason(){
@@ -477,7 +626,7 @@ var REASONS={"advertising code": {"review": true, "check": "Projections and the 
   // ---------- export ----------
   function exportText(){
     var lines = [EXPORT_TITLE, "Exported " + new Date().toLocaleString() + (store.who ? " by " + store.who : ""),
-                 "Sheet endpoint: " + (endpoint() ? "configured" : "not configured; this file is the record"), ""];
+                 "Write-back: " + wb(), ""];
     var count = 0;
     SECTIONS.forEach(function(sec){
       var items = SCREENS.filter(function(s){ return s.sec === sec[0]; }).filter(function(s){ var n = store.notes[s.id]; return n && (n.text || n.verdict); });
@@ -538,9 +687,6 @@ var REASONS={"advertising code": {"review": true, "check": "Projections and the 
 
   // ---------- wiring ----------
   function init(){
-    captureEndpoint(); pill();
-    var ep = document.getElementById("endpoint");
-    if(ep){ ep.value = endpoint(); ep.addEventListener("input", function(){ var b = board(); b.endpoint = ep.value.trim(); try { localStorage.setItem(BOARD_KEY, JSON.stringify(b)); } catch(e){} pill(); }); }
     var tf = document.getElementById("tiers");
     if(tf){
       tf.innerHTML = TIERS.map(function(t){ return '<button data-t="'+t+'"'+(t === state.tier ? ' class="on"' : '')+'>'+t+'</button>'; }).join("");
@@ -582,18 +728,19 @@ var REASONS={"advertising code": {"review": true, "check": "Projections and the 
     var rs = document.getElementById("reason");
     if(rs){
       rs.innerHTML = opt("", "reason category", true) + reasonNames.map(function(r){ return opt(r, r, false); }).join("");
-      rs.addEventListener("change", function(){ var n = noteFor(SCREENS[state.idx].id); n.reason = reasonNames.indexOf(rs.value) >= 0 ? rs.value : ""; n.who = store.who; save(); post(SCREENS[state.idx].id); flash("Saved in this browser"); });
+      rs.addEventListener("change", function(){ var n = noteFor(SCREENS[state.idx].id); n.reason = reasonNames.indexOf(rs.value) >= 0 ? rs.value : ""; n.who = store.who; save(); put(SCREENS[state.idx].id, "reason", n.reason, "field_edit"); flash("Saved in this browser"); });
     }
 
     var v = document.getElementById("verdict");
     if(v){
       v.innerHTML = VERDICTS.map(function(x){ return '<button data-v="'+x+'">'+x+'</button>'; }).join("");
       v.addEventListener("click", function(ev){ var b = ev.target.closest("button"); if(!b) return;
-        var id = SCREENS[state.idx].id; var n = noteFor(id); n.verdict = (n.verdict === b.getAttribute("data-v")) ? "" : b.getAttribute("data-v"); n.who = store.who; save(); post(id); renderSpec(); renderNav(); flash("Saved in this browser"); });
+        var id = SCREENS[state.idx].id; var n = noteFor(id); n.verdict = (n.verdict === b.getAttribute("data-v")) ? "" : b.getAttribute("data-v"); n.who = store.who; save(); put(id, "verdict", n.verdict, "verdict"); renderSpec(); renderNav(); flash("Saved in this browser"); });
     }
     var ta = document.getElementById("comment"); var timer;
     if(ta) ta.addEventListener("input", function(){ var id = SCREENS[state.idx].id; var n = noteFor(id); n.text = ta.value; n.who = store.who; save();
-      flash("Saving..."); clearTimeout(timer); timer = setTimeout(function(){ post(id); flash("Saved in this browser"); renderNav(); }, 1500); });
+      flash("Saving..."); clearTimeout(timer); timer = setTimeout(function(){ put(id, "text", noteFor(id).text || "", "comment"); flash("Saved in this browser"); renderNav(); }, 1500); });
+    if(BOARD){ BOARD.attach(ta, function(){ return SCREENS[state.idx].id; }); BOARD.init({page: PAGE, apply: applyRemote}); }
 
     var sel = document.getElementById("jump");
     if(sel) sel.addEventListener("change", function(){ if(byId[sel.value] !== undefined) go(byId[sel.value]); });

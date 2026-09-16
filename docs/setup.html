@@ -114,91 +114,169 @@
   .wrap{overflow-x:auto}
   .sid{font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;background:#fff;white-space:nowrap}
   .cause{color:var(--mute);font-size:11.5px}
+  .histwrap{margin-top:6px}
+  .hist-toggle{font-size:11px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:2px 8px;color:var(--mute);cursor:pointer}
+  .histbox{margin-top:6px}
+  .hist{list-style:none;margin:0;padding:0;font-size:12px;color:var(--ink)}
+  .hist li{padding:3px 0;border-top:1px solid var(--line)}
+  .hist .t{color:var(--mute);margin-right:6px}
+  .hist-empty{font-size:12px;color:var(--mute)}
   @media (max-width:1000px){.layout{display:block}.nav{display:none}.main{padding:12px}.who{margin-left:0}.qa{grid-template-columns:1fr}.qa .c{justify-content:flex-start}}
 </style>
+<script src="config.js"></script>
 </head>
 <body>
 <header class="top"><div class="brand">yeslyf <span>product board, setup</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html">Wireframes v0.2</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="changelog.html">Changelog</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a><a href="setup.html" class="on">Setup</a></nav><div class="who">Decided by <input id="who" placeholder="your first name"></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a></header>
-<main class="main"><section class="setup"><h1>Setup: sheet write-back</h1><p class="lead">The site works without this: choices save per browser and Export brief produces the record. With an endpoint, every change is also appended to the Google Sheet "yeslyf decisions" as it happens, from every device, no login needed for anyone.</p><label>Endpoint URL (Apps Script web app)</label><input id="endpoint" placeholder="https://script.google.com/macros/s/.../exec"><p class="meta">Stored in this browser only. Each person pastes it once, or opens the site with ?endpoint=... (see below). <button id="testrow" class="ghost">Send a test row</button></p><h3>Three steps (about three minutes)</h3><ol><li>Open the Google Sheet "yeslyf decisions" in Vatsal's Drive (created 9 Sep 2026; Vatsal shares the link). Extensions, Apps Script. Replace the code with the block below. Save.</li><li>Deploy, New deployment, type Web app. Execute as: Me. Who has access: Anyone. Deploy, authorise, copy the web app URL.</li><li>Paste the URL in the field above on each device that will take decisions, or share the link index.html?endpoint=THE_URL once; the page stores it and then removes it from the address bar.</li></ol><p class="rule">v0.2 review comments post to the tab v02_comments when the deployed script accepts a tab field; the script below does, but no redeploy is planned (spiff, 11 Sep 2026). Reviewers press Export comments on the Wireframes v0.2 tab and send the markdown file to spiff</p><details open><summary>Apps Script (doPost appends a row to the right tab; creates the tabs on first use)</summary><pre id="script"></pre></details><details><summary>Sheet columns (also in sheet_template.csv)</summary><pre>decisions:     ts, who, item_id, choice, choice_text, note
-gaps:          ts, who, gap_id, status, owner_date, note
-quick_accepts: ts, who, input_n, accept, note
-v02_comments:  ts, who, screen, verdict, reason, text</pre><p class="meta"><a href="sheet_template.csv">Download sheet_template.csv</a> (one block per tab, to paste if you prefer to create the tabs by hand).</p></details><details><summary>Read path after the meeting</summary><p class="meta">File, Share, Publish to web, the whole document as CSV; give Vatsal the link. scripts/pull_sheet.py reads it; last write per item wins; every row is kept in data/decisions_raw.json.</p></details></section></main>
-<script>document.getElementById("script").textContent="function doPost(e) {\n  var ss = SpreadsheetApp.getActiveSpreadsheet();\n  var d = JSON.parse(e.postData.contents);\n  var tabs = {\n    decisions: [\"ts\", \"who\", \"item_id\", \"choice\", \"choice_text\", \"note\"],\n    gaps: [\"ts\", \"who\", \"gap_id\", \"status\", \"owner_date\", \"note\"],\n    quick_accepts: [\"ts\", \"who\", \"input_n\", \"accept\", \"note\"],\n    v02_comments: [\"ts\", \"who\", \"screen\", \"verdict\", \"reason\", \"text\"]\n  };\n  var name = (d.tab && String(d.tab).length) ? String(d.tab) : (tabs[d.kind] ? d.kind : \"other\");\n  var cols = tabs[name] || ((d.cols && d.cols.length) ? d.cols : [\"ts\", \"who\", \"kind\", \"payload\"]);\n  var sh = ss.getSheetByName(name);\n  if (!sh) { sh = ss.insertSheet(name); sh.appendRow(cols); }\n  var row = cols.map(function (c) { return c === \"payload\" ? JSON.stringify(d) : (d[c] === undefined ? \"\" : d[c]); });\n  sh.appendRow(row);\n  return ContentService.createTextOutput(\"ok\");\n}\n";</script>
-<script>
+<main class="main"><section class="setup"><h1>Setup: board write-back</h1><p class="lead">Every comment, verdict and field edit on every page is one row in the Supabase table board_entries: page, item, field, value, who, kind, time. Rows are only ever added; the latest row per item and field is the current value, and History under a comment box lists every row of that item. Nobody logs in. The pill in the top bar reads "live" with the time of the last write on the page, or "offline, saved locally" when a write fails; those edits stay in the browser and are sent on the next load.</p><h3>Once, about ten minutes</h3><ol><li>Supabase, New project on the free plan, a region near the team, any strong database password (the site never uses it).</li><li>SQL Editor, New query: paste supabase/migrations/20260916120000_board_entries.sql from the repo, Run. It creates the table, turns on row level security and lets the anon key insert and select only.</li><li>Project settings, API: copy the project URL and the publishable (anon) key into docs/config.js, commit, push. The key is the public client key; the table policies are the guard. No secret or service key goes anywhere in the repo.</li></ol><p class="rule">Read path: scripts/pull_board.py exports every row to data/board_entries.json (the latest value per page, item and field included); it runs before any v0.3 build. Export brief and Export comments still work offline and stay the record while the pill is not live.</p></section></main>
+<script>// yeslyf board store: the shared save layer of every page (phase 11, Vatsal, 16 Sep 2026).
+// Every comment, verdict and field edit on every page is one row in the Supabase table board_entries
+// (page, item_id, field, value, who, kind, created_at); rows are never updated or deleted. docs/config.js, loaded
+// in the head before this script, sets SUPABASE_URL and SUPABASE_ANON_KEY; both blank keeps the page local only.
+// Each page keeps its own localStorage store as before (that is the offline cache). This layer adds one key,
+// "yeslyf_entries_v1", holding per page the rows last fetched, the outbox (inserts that failed) and the last write.
+// On load it sends the outbox, fetches the page's rows (1000 at a time), hands the latest value per item and
+// field to the page (the apply callback; a queued local edit for the same field wins), and writes
+// "live, last write <time>" or "offline, saved locally" into the top bar pill. The history toggle under a comment
+// box lists every row of that item, newest first, queued rows on top.
+// Requests carry the key in the apikey header only (the publishable key is not a JWT and is refused in
+// Authorization; the legacy anon key works the same way in apikey alone).
 (function(){
-  var KEY="yeslyf_board_v1"; var S={};
-  try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
-  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
-  try{ var q=location.search||""; var qi=q.indexOf("endpoint="); if(qi>=0){ var qv=decodeURIComponent(q.slice(qi+9).split("&")[0]).trim(); if(qv){ S.endpoint=qv; save(); } if(history.replaceState) history.replaceState(null,"",location.pathname+location.hash); } }catch(e){}
-  function g(k){ if(!S[k]) S[k]={}; return S[k]; }
-  function who(){ return (S.who||"").trim(); }
-  var ft; function flash(t){ var s=document.getElementById("saved"); if(!s) return; s.textContent=t||"Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1800); }
-  function sink(kind,row){ var ep=(S.endpoint||"").trim(); if(!ep) return false; row.kind=kind; row.who=who(); row.ts=new Date().toISOString();
-    try{ fetch(ep,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(row)}); }catch(e){} return true; }
-  function pill(){ var p=document.getElementById("sheetpill"); if(!p) return; var on=!!(S.endpoint||"").trim(); p.textContent=on?"sheet: on":"sheet: off"; p.className="pill"+(on?" on":""); }
-  function choiceOf(id){ var r=S["item:"+id]; if(r&&r.choice!==undefined) return r.choice; var d=DATA.items[id]?DATA.items[id].dflt:null; return d?d:null; }
-  function choiceList(id){ var c=choiceOf(id); if(c===null||c===undefined) return []; return Array.isArray(c)?c:[c]; }
-  function optText(id,key){ var it=DATA.items[id]; for(var i=0;i<it.options.length;i++) if(it.options[i].key===key) return it.options[i].text; return key; }
-  function depOn(id,ifKey){ var list=choiceList(id); var r=S["item:"+id]||{}; if(ifKey.indexOf("not:")===0){ var k=ifKey.slice(4); return !!r.decided && list.length>0 && list.indexOf(k)<0; } return list.indexOf(ifKey)>=0; }
-  function paintItem(id){ var card=document.getElementById("item-"+id); if(!card) return; var r=S["item:"+id]||{}; var list=choiceList(id);
-    var inputs=card.querySelectorAll("input[data-item]"); for(var i=0;i<inputs.length;i++){ inputs[i].checked=list.indexOf(inputs[i].value)>=0; }
-    var dc=card.querySelector("input[data-decided]"); if(dc) dc.checked=!!r.decided;
-    var ta=card.querySelector("textarea[data-item]"); if(ta && ta.value!==(r.note||"")) ta.value=r.note||"";
-    card.className="item"+(r.decided?" done":"")+(card.className.indexOf(" hi")>=0?" hi":"");
-    var tag=card.querySelector(".tag.done"); if(tag) tag.style.display=r.decided?"":"none";
-    var deps=card.querySelectorAll(".dep"); for(var j=0;j<deps.length;j++){ deps[j].className="dep"+(depOn(id,deps[j].getAttribute("data-if"))?" on":""); } }
-  function paintAll(){ for(var id in DATA.items) paintItem(id);
-    for(var n in DATA.qa){ var r=S["qa:"+n]||{}; var row=document.getElementById("qa-"+n); if(!row) continue; var bs=row.querySelectorAll("button[data-v]"); for(var i=0;i<bs.length;i++){ bs[i].className=(bs[i].getAttribute("data-v")===r.v?"on":"")+(bs[i].getAttribute("data-v")==="decline"?" no":""); } var inp=row.querySelector("input[data-qan]"); if(inp&&inp.value!==(r.note||"")) inp.value=r.note||""; }
-    for(var gid in DATA.gaps){ var gr=S["gap:"+gid]||{}; var el=document.getElementById("gap-"+gid); if(!el) continue; var f=el.querySelectorAll("[data-f]"); for(var k=0;k<f.length;k++){ var key=f[k].getAttribute("data-f"); if(f[k].value!==(gr[key]||"")) f[k].value=gr[key]||""; } }
-    var w=document.getElementById("who"); if(w&&w.value!==(S.who||"")) w.value=S.who||""; pill(); }
-  function recordItem(id){ var r=g("item:"+id); r.decided=true; save(); var list=choiceList(id); var labels=list.map(function(k){ return k+" "+optText(id,k); });
-    sink("decisions",{item_id:id,choice:list.join(", "),choice_text:labels.join(" | "),note:r.note||""}); paintItem(id); flash(); }
-  function md(){ var L=["# yeslyf meeting brief","Exported "+new Date().toLocaleString()+(who()?" by "+who():""),"Sheet endpoint: "+((S.endpoint||"").trim()?"configured":"not configured; this file is the record"),""];
-    L.push("## Decisions");
-    DATA.order.forEach(function(id){ var it=DATA.items[id]; var r=S["item:"+id]||{}; var list=choiceList(id); var owner=it.owner;
-      var line="- "+id+" "+it.title+" ("+owner+"): ";
-      if(!list.length){ line+= (owner==="Team"?"no choice made":"no choice made; "+owner+" to decide"); }
-      else { line+=list.map(function(k){ return k+" "+optText(id,k); }).join("; "); if(it.dflt&&!r.decided){ line+=" (default, "+it.dflt_who+"'s position; not confirmed in the meeting)"; } else if(r.decided){ line+=" (decided in the meeting"+(who()?", "+who():"")+")"; } }
-      if(r.note) line+="\n  Note: "+String(r.note).split("\n").join(" ");
-      it.deps.forEach(function(d){ if(depOn(id,d.if_key)) line+="\n  Follows: "+d.then+" (Vatsal recommendation)"; });
-      L.push(line); });
-    L.push(""); L.push("## Quick-accepts");
-    DATA.qa_order.forEach(function(n){ var q=DATA.qa[n]; var r=S["qa:"+n]||{}; L.push("- row "+n+" "+q.screen+" ("+q.reviewer+", for "+q.owner+"): "+(r.v||"not ticked")+(r.note?" | "+r.note:"")); });
-    L.push(""); L.push("## Gaps");
-    DATA.gap_order.forEach(function(gid){ var x=DATA.gaps[gid]; var r=S["gap:"+gid]||{}; L.push("- "+gid+" "+x.title+": "+(r.status||"no status")+(r.owner?" | owner: "+r.owner:"")+(r.date?" | by: "+r.date:"")+(r.note?" | "+String(r.note).split("\n").join(" "):"")); });
-    return L.join("\n"); }
-  function exportBrief(){ var text=md(); try{ navigator.clipboard&&navigator.clipboard.writeText(text); }catch(e){}
-    var b=new Blob([text],{type:"text/markdown"}); var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="yeslyf_meeting_brief.md"; document.body.appendChild(a); a.click(); document.body.removeChild(a); flash("Brief exported and copied"); }
-  function deepLink(){ var h=location.hash||""; if(h.indexOf("#screen/")===0){ location.href="wireframes.html#"+h.slice(8); return; }
-    var id=null; if(h.indexOf("#item/")===0) id="item-"+h.slice(6); else if(h.indexOf("#gap/")===0) id="gap-"+h.slice(5); else if(h.indexOf("#row/")===0) id="row-"+h.slice(5);
-    if(!id) return; var el=document.getElementById(id); if(!el) return; var old=document.querySelectorAll(".hi"); for(var i=0;i<old.length;i++) old[i].classList.remove("hi"); el.classList.add("hi"); try{ el.scrollIntoView({block:"start",behavior:"instant"}); }catch(e){ el.scrollIntoView(true); } }
-  var tmr={};
-  document.addEventListener("DOMContentLoaded",function(){
-    paintAll(); deepLink(); window.addEventListener("load",function(){ setTimeout(deepLink,60); }); window.addEventListener("hashchange",deepLink);
-    var w=document.getElementById("who"); if(w) w.addEventListener("input",function(e){ S.who=e.target.value; save(); });
-    var ex=document.getElementById("export"); if(ex) ex.addEventListener("click",exportBrief);
-    var ep=document.getElementById("endpoint"); if(ep){ ep.value=S.endpoint||""; ep.addEventListener("input",function(e){ S.endpoint=e.target.value.trim(); save(); pill(); flash(S.endpoint?"Endpoint saved in this browser":"Endpoint cleared"); }); }
-    var test=document.getElementById("testrow"); if(test) test.addEventListener("click",function(){ var ok=sink("decisions",{item_id:"TEST",choice:"test",choice_text:"test row from setup page",note:""}); flash(ok?"Test row sent; check the decisions tab of the sheet":"No endpoint set"); });
-    document.body.addEventListener("change",function(e){ var t=e.target;
-      if(t.type==="radio"&&t.getAttribute("data-item")){ g("item:"+t.getAttribute("data-item")).choice=t.value; recordItem(t.getAttribute("data-item")); }
-      if(t.type==="checkbox"&&t.getAttribute("data-item")){ var id=t.getAttribute("data-item"); var r=g("item:"+id); var list=choiceList(id).slice(); var i=list.indexOf(t.value); if(t.checked&&i<0) list.push(t.value); if(!t.checked&&i>=0) list.splice(i,1); r.choice=list; recordItem(id); }
-      if(t.type==="checkbox"&&t.getAttribute("data-decided")){ var id2=t.getAttribute("data-decided"); var r2=g("item:"+id2); r2.decided=t.checked; if(t.checked&&r2.choice===undefined&&DATA.items[id2].dflt) r2.choice=DATA.items[id2].dflt; save(); if(t.checked) recordItem(id2); else { paintItem(id2); flash(); } }
-      if(t.tagName==="SELECT"&&t.getAttribute("data-gap")){ var gid=t.getAttribute("data-gap"); g("gap:"+gid)[t.getAttribute("data-f")]=t.value; save(); var gr=S["gap:"+gid]; sink("gaps",{gap_id:gid,status:gr.status||"",owner_date:((gr.owner||"")+" "+(gr.date||"")).trim(),note:gr.note||""}); flash(); }
-      if(t.type==="date"&&t.getAttribute("data-gap")){ var gid2=t.getAttribute("data-gap"); g("gap:"+gid2).date=t.value; save(); var gr2=S["gap:"+gid2]; sink("gaps",{gap_id:gid2,status:gr2.status||"",owner_date:((gr2.owner||"")+" "+(gr2.date||"")).trim(),note:gr2.note||""}); flash(); }
+  var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var FIELDS = "id,item_id,field,value,who,kind,created_at";
+  function cfg(name){ try { var v = window[name]; return typeof v === "string" ? v.trim() : ""; } catch(e){ return ""; } }
+  var url = cfg("SUPABASE_URL"); while(url.length && url.charAt(url.length - 1) === "/") url = url.slice(0, -1);
+  var key = cfg("SUPABASE_ANON_KEY");
+  var configured = !!(url && key);
+  var cache = {};
+  try { cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ cache = {}; }
+  function saveCache(){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e){} }
+  var page = "", applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
+  function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; return c; }
+  function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
+  function two(n){ return (n < 10 ? "0" : "") + n; }
+  function fmt(ts){
+    // created_at arrives as UTC from the database and as toISOString() from the outbox; the first 19 characters are
+    // the same shape in both, so the display never depends on how a browser parses fractional seconds or offsets.
+    var d = new Date(String(ts || "").slice(0, 19) + "Z");
+    if(isNaN(d.getTime())) return String(ts || "");
+    return d.getDate() + " " + MONTHS[d.getMonth()] + " " + two(d.getHours()) + ":" + two(d.getMinutes());
+  }
+  function pill(){
+    var p = document.getElementById("sheetpill"); if(!p) return;
+    var text, title, on = false;
+    if(!configured){ text = "offline, saved locally"; title = "docs/config.js has no Supabase URL and key: edits stay in this browser"; }
+    else if(!checked){ text = "connecting"; title = "reading board_entries"; }
+    else if(live){ text = "live" + (lastWrite ? ", last write " + fmt(lastWrite) : ""); title = "every edit is a row in board_entries; the time is the last write on this page by anyone"; on = true; }
+    else { text = "offline, saved locally"; title = "the last request to Supabase failed: edits stay in this browser and are sent on the next load"; }
+    p.textContent = text; p.title = title; p.className = "pill" + (on ? " on" : "");
+  }
+  function strip(r){ return {page: r.page, item_id: r.item_id, field: r.field, value: r.value, who: r.who, kind: r.kind}; }
+  function request(method, query, body, cb){
+    // cb(status, json) exactly once; status is "ok", "rejected" (the server answered with an error) or "net".
+    var done = false;
+    function finish(s, j){ if(done) return; done = true; try { cb(s, j); } catch(e){} }
+    var headers = {"apikey": key};
+    if(body !== undefined){ headers["Content-Type"] = "application/json"; headers["Prefer"] = "return=representation"; }
+    var p;
+    try { p = fetch(url + "/rest/v1/board_entries" + query, {method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body)}); }
+    catch(e){ finish("net"); return; }
+    Promise.resolve(p).then(function(res){
+      if(!res || typeof res.ok !== "boolean") throw new Error("no response");
+      if(!res.ok){ finish("rejected", res.status); return; }
+      return res.json().then(function(j){ finish("ok", j); });
+    }).catch(function(){ finish("net"); });
+  }
+  function remember(j){
+    var r = (j && typeof j.length === "number" && j.length) ? j[0] : null; if(!r || !r.created_at) return;
+    var c = pc(); c.rows.push(r); c.last_write = r.created_at; lastWrite = c.last_write;
+  }
+  function flush(cb){
+    // Send every queued row in order; a row that fails stays queued; the caller learns whether all went through.
+    var c = pc(); var queue = c.outbox.slice(); var i = 0; var failed = 0;
+    (function next(){
+      if(i >= queue.length){ saveCache(); cb(failed === 0); return; }
+      var row = queue[i++];
+      request("POST", "", strip(row), function(s, j){
+        if(s === "ok"){ var at = c.outbox.indexOf(row); if(at >= 0) c.outbox.splice(at, 1); remember(j); } else failed++;
+        next();
+      });
+    })();
+  }
+  function fetchAll(offset, acc, cb){
+    request("GET", "?select=" + FIELDS + "&page=eq." + encodeURIComponent(page) + "&order=id.asc&limit=" + PAGE_SIZE + "&offset=" + offset, undefined, function(s, rows){
+      if(s !== "ok" || !rows || typeof rows.length !== "number"){ cb(false); return; }
+      acc = acc.concat(rows);
+      if(rows.length < PAGE_SIZE) cb(true, acc); else fetchAll(offset + PAGE_SIZE, acc, cb);
     });
-    document.body.addEventListener("input",function(e){ var t=e.target;
-      var item=t.getAttribute("data-item"); if(item&&t.tagName==="TEXTAREA"){ g("item:"+item).note=t.value; save(); flash(); clearTimeout(tmr[item]); tmr[item]=setTimeout(function(){ var r=S["item:"+item]; if(r&&r.decided) sink("decisions",{item_id:item,choice:choiceList(item).join(", "),choice_text:choiceList(item).map(function(k){return k+" "+optText(item,k);}).join(" | "),note:r.note||""}); },1500); return; }
-      var qn=t.getAttribute("data-qan"); if(qn){ g("qa:"+qn).note=t.value; save(); flash(); clearTimeout(tmr["qa"+qn]); tmr["qa"+qn]=setTimeout(function(){ var r=S["qa:"+qn]; if(r&&r.v) sink("quick_accepts",{input_n:qn,accept:r.v,note:r.note||""}); },1500); return; }
-      var gid=t.getAttribute("data-gap"); if(gid&&t.getAttribute("data-f")!=="status"){ g("gap:"+gid)[t.getAttribute("data-f")]=t.value; save(); flash(); clearTimeout(tmr["gap"+gid]); tmr["gap"+gid]=setTimeout(function(){ var gr=S["gap:"+gid]; sink("gaps",{gap_id:gid,status:gr.status||"",owner_date:((gr.owner||"")+" "+(gr.date||"")).trim(),note:gr.note||""}); },1500); }
+  }
+  function load(){
+    pill();
+    if(!configured || !page) return;
+    flush(function(sent){
+      fetchAll(0, [], function(ok, rows){
+        checked = true; var c = pc();
+        if(ok){
+          c.rows = rows; c.last_write = rows.length ? rows[rows.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
+          if(applyFn){
+            var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; });
+            var pending = {}; c.outbox.forEach(function(r){ pending[r.item_id + "|" + r.field] = 1; });
+            var out = []; for(var k in latest) if(!pending[k]) out.push(latest[k]);
+            try { applyFn(out); } catch(e){}
+          }
+        }
+        live = ok && sent && !c.outbox.length; pill(); refreshHistory();
+      });
     });
-    document.body.addEventListener("click",function(e){ var t=e.target; if(t.tagName!=="BUTTON") return; var n=t.getAttribute("data-qa"); if(!n) return; var r=g("qa:"+n); r.v=(r.v===t.getAttribute("data-v"))?"":t.getAttribute("data-v"); save(); paintAll(); flash(); sink("quick_accepts",{input_n:n,accept:r.v||"cleared",note:r.note||""}); });
-    var reset=document.getElementById("reset"); if(reset) reset.addEventListener("click",function(){ if(!confirm("Clear every choice and note saved in this browser? The sheet keeps what was already sent.")) return; var keep={who:S.who,endpoint:S.endpoint}; S=keep; save(); paintAll(); flash("Cleared"); });
-    var f=document.getElementById("filters"); if(f){ f.addEventListener("change",applyFilters); applyFilters(); }
-  });
-  function applyFilters(){ var f=document.getElementById("filters"); if(!f) return; var rv=f.querySelector("[name=reviewer]").value, ws=f.querySelector("[name=workstream]").value, st=f.querySelector("[name=status]").value; var rows=document.querySelectorAll("tr[data-n]"); var shown=0;
-    for(var i=0;i<rows.length;i++){ var r=rows[i]; var ok=(rv==="All"||(" "+r.getAttribute("data-reviewers")+" ").indexOf(" "+rv+" ")>=0)&&(ws==="All"||r.getAttribute("data-ws")===ws)&&(st==="All"||r.getAttribute("data-status")===st); r.className=(ok?"":"hidden")+(r.className.indexOf("hi")>=0?" hi":""); if(ok) shown++; }
-    var c=document.getElementById("count"); if(c) c.textContent=shown+" of "+rows.length+" rows"; }
+  }
+  function write(row){
+    // row: {item_id, field, value, who, kind}. Queued first, removed on success, so a tab closed mid-request
+    // sends the row on the next load (a duplicate row is harmless: same latest value).
+    if(!page) return;
+    var r = {page: page, item_id: String(row.item_id), field: String(row.field),
+             value: String(row.value === undefined || row.value === null ? "" : row.value),
+             who: String(row.who || ""), kind: String(row.kind || "field_edit"), created_at: new Date().toISOString(), queued: true};
+    if(!configured){ pill(); return; }
+    var c = pc(); c.outbox.push(r); saveCache();
+    request("POST", "", strip(r), function(s, j){
+      var at = c.outbox.indexOf(r);
+      if(s === "ok"){ if(at >= 0) c.outbox.splice(at, 1); remember(j); live = true; } else live = false;
+      checked = true; saveCache(); pill(); refreshHistory();
+    });
+  }
+  function history(item_id){
+    var c = pc(); item_id = String(item_id);
+    var queued = c.outbox.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    var rows = c.rows.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    return queued.concat(rows);
+  }
+  function historyHtml(item_id){
+    if(!configured) return '<div class="hist-empty">local only: docs/config.js has no Supabase URL and key</div>';
+    var rows = history(item_id);
+    if(!rows.length) return '<div class="hist-empty">' + (checked ? "no rows yet for " + esc(item_id) : "not loaded yet") + '</div>';
+    return '<ul class="hist">' + rows.map(function(r){
+      return '<li><span class="t">' + esc(fmt(r.created_at)) + '</span> <b>' + esc(r.who || "-") + '</b> ' + esc(r.field) + ': ' +
+             (r.value ? esc(r.value) : '<i>cleared</i>') + (r.queued ? ' <i>queued, not sent yet</i>' : '') + '</li>';
+    }).join("") + '</ul>';
+  }
+  function refreshHistory(){ boxes.forEach(function(b){ if(!b.box.hidden) b.box.innerHTML = historyHtml(b.id()); }); }
+  function attach(el, idFn){
+    // Adds a "History" toggle right after a control; idFn is the item id or a function returning it.
+    if(!el || !el.parentNode) return;
+    var id = typeof idFn === "function" ? idFn : function(){ return idFn; };
+    var wrap = document.createElement("div"); wrap.className = "histwrap"; wrap.style.gridColumn = "1 / -1";  // a full row inside a grid form
+    var b = document.createElement("button"); b.type = "button"; b.className = "hist-toggle"; b.textContent = "History";
+    var box = document.createElement("div"); box.className = "histbox"; box.hidden = true;
+    b.addEventListener("click", function(){ box.hidden = !box.hidden; if(!box.hidden) box.innerHTML = historyHtml(id()); });
+    wrap.appendChild(b); wrap.appendChild(box);
+    el.parentNode.insertBefore(wrap, el.nextSibling);
+    boxes.push({box: box, id: id});
+  }
+  function init(opts){ opts = opts || {}; page = String(opts.page || ""); applyFn = opts.apply || null; load(); }
+  function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0}; }
+  function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
+  window.yeslyfBoard = {init: init, write: write, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label};
 })();
-</script>
+</script><script>(function(){ document.addEventListener("DOMContentLoaded",function(){ if(window.yeslyfBoard) yeslyfBoard.init({page:"setup"}); }); })();</script>
 </body>
 </html>

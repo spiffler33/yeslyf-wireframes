@@ -2,8 +2,9 @@
 // Embedded by scripts/build_site.py into docs/wireframes_v02.html after the data blobs:
 //   SECTIONS, SCREENS (live screens in flow order), DROPPED (ids), STATES (section N contract, may be empty),
 //   REASONS (compliance reason -> {review, check}).
-// Filters: tier, path, state, compliance, template. Comments save under localStorage key "yeslyf_wire_v02"
-// and post to the sheet endpoint (shared with the board pages under "yeslyf_board_v1") as v02_comments rows.
+// Filters: tier, path, state, compliance, template. Comments save under localStorage key "yeslyf_wire_v02";
+// every verdict, reason and comment change is one row in board_entries (page "wireframes_v02") through the shared
+// layer scripts/board_store.js (window.yeslyfBoard), which also fills the top bar pill and the History toggle.
 // WIRE_OPTS (optional, set by the audience files of phase 9): identities (list), lock (one identity, fixed),
 // key (storage key), spec ("full" | "design" | "compliance"), compFilter (false hides the compliance walk),
 // exportTitle, exportFile. Absent: the full site behaviour.
@@ -18,9 +19,8 @@
   var EXPORT_TITLE = OPTS.exportTitle || "# yeslyf wireframes v0.2 - review comments";
   var EXPORT_FILE = OPTS.exportFile || "yeslyf_wireframe_review_v02.md";
   var VERDICTS = ["Keep","Change","Drop","Question"];
-  var BOARD_KEY = "yeslyf_board_v1";
   var KEY = OPTS.key || "yeslyf_wire_v02";
-  var COLS = ["ts","who","screen","verdict","reason","text"];
+  var PAGE = OPTS.page || "wireframes_v02";
   var state = { idx:0, tier:"ALL", path:"both", st:"", comp:"all", tpl:"all", map:false };
   var byId = {}; SCREENS.forEach(function(s,i){ byId[s.id]=i; });
   var secName = {}; SECTIONS.forEach(function(s){ secName[s[0]]=s[1]; });
@@ -40,24 +40,15 @@
   if(LOCK) store.who = LOCK;
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
   function noteFor(id){ if(!store.notes[id]) store.notes[id] = {verdict:"", text:"", reason:"", who:""}; return store.notes[id]; }
-  function board(){ try { return JSON.parse(localStorage.getItem(BOARD_KEY) || "{}") || {}; } catch(e){ return {}; } }
-  function endpoint(){ return String(board().endpoint || "").trim(); }
-  function captureEndpoint(){
-    try {
-      var q = location.search || ""; var qi = q.indexOf("endpoint=");
-      if(qi < 0) return;
-      var qv = decodeURIComponent(q.slice(qi+9).split("&")[0]).trim();
-      if(qv){ var b = board(); b.endpoint = qv; try { localStorage.setItem(BOARD_KEY, JSON.stringify(b)); } catch(e){} }
-      if(history.replaceState) history.replaceState(null, "", location.pathname + location.hash);
-    } catch(e){}
-  }
-  function pill(){ var p = document.getElementById("sheetpill"); if(!p) return; var on = !!endpoint(); p.textContent = on ? "sheet: on" : "sheet: off"; p.className = "pill" + (on ? " on" : ""); }
-  function post(id){
-    var ep = endpoint(); if(!ep) return false;
-    var n = noteFor(id);
-    var row = {kind:"v02_comments", tab:"v02_comments", cols:COLS, ts:new Date().toISOString(), who:store.who || "", screen:id, verdict:n.verdict || "", reason:n.reason || "", text:n.text || ""};
-    try { fetch(ep, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain"}, body:JSON.stringify(row)}); } catch(e){}
-    return true;
+  var BOARD = (typeof yeslyfBoard !== "undefined") ? yeslyfBoard : null;
+  function put(id, field, value, kind){ if(BOARD) BOARD.write({item_id:id, field:field, value:value, who:store.who || "", kind:kind}); }
+  function wb(){ return BOARD ? BOARD.label() : "offline; this file is the record"; }
+  function applyRemote(rows){
+    // the latest row per screen and field from board_entries; the same shape the controls write
+    rows.forEach(function(r){ if(byId[r.item_id] === undefined) return; var n = noteFor(r.item_id); var v = r.value || "";
+      if(r.field === "verdict") n.verdict = VERDICTS.indexOf(v) >= 0 ? v : ""; else if(r.field === "reason") n.reason = v; else if(r.field === "text") n.text = v; else return;
+      n.who = r.who || n.who; });
+    save(); renderSpec(); renderNav();
   }
 
   function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
@@ -240,6 +231,7 @@
     var ta = document.getElementById("comment"); if(ta){ ta.value = n.text || ""; ta.placeholder = "Comment on "+s.id+": what to keep, change or drop, and why. Compliance: comment on language."; }
     var rv = document.getElementById("reviewer"); if(rv) rv.value = store.who || "";
     syncReason();
+    if(BOARD) BOARD.refreshHistory();
     flash("");
   }
   function syncReason(){
@@ -285,7 +277,7 @@
   // ---------- export ----------
   function exportText(){
     var lines = [EXPORT_TITLE, "Exported " + new Date().toLocaleString() + (store.who ? " by " + store.who : ""),
-                 "Sheet endpoint: " + (endpoint() ? "configured" : "not configured; this file is the record"), ""];
+                 "Write-back: " + wb(), ""];
     var count = 0;
     SECTIONS.forEach(function(sec){
       var items = SCREENS.filter(function(s){ return s.sec === sec[0]; }).filter(function(s){ var n = store.notes[s.id]; return n && (n.text || n.verdict); });
@@ -346,9 +338,6 @@
 
   // ---------- wiring ----------
   function init(){
-    captureEndpoint(); pill();
-    var ep = document.getElementById("endpoint");
-    if(ep){ ep.value = endpoint(); ep.addEventListener("input", function(){ var b = board(); b.endpoint = ep.value.trim(); try { localStorage.setItem(BOARD_KEY, JSON.stringify(b)); } catch(e){} pill(); }); }
     var tf = document.getElementById("tiers");
     if(tf){
       tf.innerHTML = TIERS.map(function(t){ return '<button data-t="'+t+'"'+(t === state.tier ? ' class="on"' : '')+'>'+t+'</button>'; }).join("");
@@ -390,18 +379,19 @@
     var rs = document.getElementById("reason");
     if(rs){
       rs.innerHTML = opt("", "reason category", true) + reasonNames.map(function(r){ return opt(r, r, false); }).join("");
-      rs.addEventListener("change", function(){ var n = noteFor(SCREENS[state.idx].id); n.reason = reasonNames.indexOf(rs.value) >= 0 ? rs.value : ""; n.who = store.who; save(); post(SCREENS[state.idx].id); flash("Saved in this browser"); });
+      rs.addEventListener("change", function(){ var n = noteFor(SCREENS[state.idx].id); n.reason = reasonNames.indexOf(rs.value) >= 0 ? rs.value : ""; n.who = store.who; save(); put(SCREENS[state.idx].id, "reason", n.reason, "field_edit"); flash("Saved in this browser"); });
     }
 
     var v = document.getElementById("verdict");
     if(v){
       v.innerHTML = VERDICTS.map(function(x){ return '<button data-v="'+x+'">'+x+'</button>'; }).join("");
       v.addEventListener("click", function(ev){ var b = ev.target.closest("button"); if(!b) return;
-        var id = SCREENS[state.idx].id; var n = noteFor(id); n.verdict = (n.verdict === b.getAttribute("data-v")) ? "" : b.getAttribute("data-v"); n.who = store.who; save(); post(id); renderSpec(); renderNav(); flash("Saved in this browser"); });
+        var id = SCREENS[state.idx].id; var n = noteFor(id); n.verdict = (n.verdict === b.getAttribute("data-v")) ? "" : b.getAttribute("data-v"); n.who = store.who; save(); put(id, "verdict", n.verdict, "verdict"); renderSpec(); renderNav(); flash("Saved in this browser"); });
     }
     var ta = document.getElementById("comment"); var timer;
     if(ta) ta.addEventListener("input", function(){ var id = SCREENS[state.idx].id; var n = noteFor(id); n.text = ta.value; n.who = store.who; save();
-      flash("Saving..."); clearTimeout(timer); timer = setTimeout(function(){ post(id); flash("Saved in this browser"); renderNav(); }, 1500); });
+      flash("Saving..."); clearTimeout(timer); timer = setTimeout(function(){ put(id, "text", noteFor(id).text || "", "comment"); flash("Saved in this browser"); renderNav(); }, 1500); });
+    if(BOARD){ BOARD.attach(ta, function(){ return SCREENS[state.idx].id; }); BOARD.init({page: PAGE, apply: applyRemote}); }
 
     var sel = document.getElementById("jump");
     if(sel) sel.addEventListener("change", function(){ if(byId[sel.value] !== undefined) go(byId[sel.value]); });

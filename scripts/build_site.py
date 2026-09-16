@@ -13,7 +13,7 @@ data/dependencies.json by scripts/build_integrations.py, called at the end of ma
 event schema (events.html plus review/events.html, from the screens data and data/events_extra.json by
 scripts/build_events.py, called after it; phase 10b-2, 16 Sep 2026).
 The two v0.1 files are copied byte-identical into docs/v01/ and served as-is.
-Style reuses the v0.1 tokens. Choices save in localStorage (try/catch), post to the sheet endpoint
+Style reuses the v0.1 tokens. Choices save in localStorage (try/catch), post to the board_entries table
 when one is configured, and export as a markdown build brief. Every page carries noindex.
 """
 import filecmp
@@ -179,6 +179,13 @@ CSS = """
   .wrap{overflow-x:auto}
   .sid{font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;background:#fff;white-space:nowrap}
   .cause{color:var(--mute);font-size:11.5px}
+  .histwrap{margin-top:6px}
+  .hist-toggle{font-size:11px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:2px 8px;color:var(--mute);cursor:pointer}
+  .histbox{margin-top:6px}
+  .hist{list-style:none;margin:0;padding:0;font-size:12px;color:var(--ink)}
+  .hist li{padding:3px 0;border-top:1px solid var(--line)}
+  .hist .t{color:var(--mute);margin-right:6px}
+  .hist-empty{font-size:12px;color:var(--mute)}
   @media (max-width:1000px){.layout{display:block}.nav{display:none}.main{padding:12px}.who{margin-left:0}.qa{grid-template-columns:1fr}.qa .c{justify-content:flex-start}}
 """
 
@@ -192,11 +199,12 @@ REVIEW_TABS = [("index.html", "Wireframes v0.2"), ("admin_v02.html", "Admin and 
                ("events.html", "Events")]
 
 
-def head(title, css=None):
+def head(title, css=None, config="config.js"):
     return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '<meta name="robots" content="noindex, nofollow">\n'
-            '<title>' + esc(title) + '</title>\n<style>' + (CSS if css is None else css) + '</style>\n</head>\n')
+            '<title>' + esc(title) + '</title>\n<style>' + (CSS if css is None else css) + '</style>\n' +
+            ('<script src="' + esc(config) + '"></script>\n' if config else '') + '</head>\n')
 
 
 def header(current, subtitle, show_export=True, who_html=None, export_label="Export brief", tabs=None, setup_link=True):
@@ -222,13 +230,18 @@ JS_COMMON = r"""
   var KEY="yeslyf_board_v1"; var S={};
   try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
   function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
-  try{ var q=location.search||""; var qi=q.indexOf("endpoint="); if(qi>=0){ var qv=decodeURIComponent(q.slice(qi+9).split("&")[0]).trim(); if(qv){ S.endpoint=qv; save(); } if(history.replaceState) history.replaceState(null,"",location.pathname+location.hash); } }catch(e){}
   function g(k){ if(!S[k]) S[k]={}; return S[k]; }
   function who(){ return (S.who||"").trim(); }
   var ft; function flash(t){ var s=document.getElementById("saved"); if(!s) return; s.textContent=t||"Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1800); }
-  function sink(kind,row){ var ep=(S.endpoint||"").trim(); if(!ep) return false; row.kind=kind; row.who=who(); row.ts=new Date().toISOString();
-    try{ fetch(ep,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(row)}); }catch(e){} return true; }
-  function pill(){ var p=document.getElementById("sheetpill"); if(!p) return; var on=!!(S.endpoint||"").trim(); p.textContent=on?"sheet: on":"sheet: off"; p.className="pill"+(on?" on":""); }
+  // Every human input is one row in board_entries (page "board", shared by the Meeting, Gaps and Inputs tabs); item ids mirror the storage keys: item:T1, qa:12, gap:G03.
+  function put(item,field,value,kind){ if(window.yeslyfBoard) yeslyfBoard.write({item_id:item,field:field,value:value,who:who(),kind:kind}); }
+  function wb(){ return window.yeslyfBoard?yeslyfBoard.label():"offline; this file is the record"; }
+  function choiceKeys(text){ var out=[]; String(text||"").split(",").forEach(function(k){ k=k.trim(); if(k) out.push(k); }); return out; }
+  function applyRemote(rows){ rows.forEach(function(r){ var i=r.item_id.indexOf(":"); if(i<0) return; var kind=r.item_id.slice(0,i), id=r.item_id.slice(i+1), v=r.value||"";
+      if(kind==="item"&&DATA.items[id]){ var it=g("item:"+id); if(r.field==="choice"){ it.choice=DATA.items[id].control==="single"?v:choiceKeys(v); it.decided=true; } else if(r.field==="decided") it.decided=(v==="yes"); else if(r.field==="note") it.note=v; }
+      else if(kind==="qa"&&DATA.qa[id]){ var q=g("qa:"+id); if(r.field==="accept") q.v=v; else if(r.field==="note") q.note=v; }
+      else if(kind==="gap"&&DATA.gaps[id]){ if(r.field==="status"||r.field==="owner"||r.field==="date") g("gap:"+id)[r.field]=v; } });
+    save(); paintAll(); }
   function choiceOf(id){ var r=S["item:"+id]; if(r&&r.choice!==undefined) return r.choice; var d=DATA.items[id]?DATA.items[id].dflt:null; return d?d:null; }
   function choiceList(id){ var c=choiceOf(id); if(c===null||c===undefined) return []; return Array.isArray(c)?c:[c]; }
   function optText(id,key){ var it=DATA.items[id]; for(var i=0;i<it.options.length;i++) if(it.options[i].key===key) return it.options[i].text; return key; }
@@ -243,10 +256,10 @@ JS_COMMON = r"""
   function paintAll(){ for(var id in DATA.items) paintItem(id);
     for(var n in DATA.qa){ var r=S["qa:"+n]||{}; var row=document.getElementById("qa-"+n); if(!row) continue; var bs=row.querySelectorAll("button[data-v]"); for(var i=0;i<bs.length;i++){ bs[i].className=(bs[i].getAttribute("data-v")===r.v?"on":"")+(bs[i].getAttribute("data-v")==="decline"?" no":""); } var inp=row.querySelector("input[data-qan]"); if(inp&&inp.value!==(r.note||"")) inp.value=r.note||""; }
     for(var gid in DATA.gaps){ var gr=S["gap:"+gid]||{}; var el=document.getElementById("gap-"+gid); if(!el) continue; var f=el.querySelectorAll("[data-f]"); for(var k=0;k<f.length;k++){ var key=f[k].getAttribute("data-f"); if(f[k].value!==(gr[key]||"")) f[k].value=gr[key]||""; } }
-    var w=document.getElementById("who"); if(w&&w.value!==(S.who||"")) w.value=S.who||""; pill(); }
-  function recordItem(id){ var r=g("item:"+id); r.decided=true; save(); var list=choiceList(id); var labels=list.map(function(k){ return k+" "+optText(id,k); });
-    sink("decisions",{item_id:id,choice:list.join(", "),choice_text:labels.join(" | "),note:r.note||""}); paintItem(id); flash(); }
-  function md(){ var L=["# yeslyf meeting brief","Exported "+new Date().toLocaleString()+(who()?" by "+who():""),"Sheet endpoint: "+((S.endpoint||"").trim()?"configured":"not configured; this file is the record"),""];
+    var w=document.getElementById("who"); if(w&&w.value!==(S.who||"")) w.value=S.who||""; }
+  function recordItem(id){ var r=g("item:"+id); r.decided=true; save(); var list=choiceList(id);
+    put("item:"+id,"choice",list.join(", "),"verdict"); paintItem(id); flash(); }
+  function md(){ var L=["# yeslyf meeting brief","Exported "+new Date().toLocaleString()+(who()?" by "+who():""),"Write-back: "+wb(),""];
     L.push("## Decisions");
     DATA.order.forEach(function(id){ var it=DATA.items[id]; var r=S["item:"+id]||{}; var list=choiceList(id); var owner=it.owner;
       var line="- "+id+" "+it.title+" ("+owner+"): ";
@@ -267,25 +280,29 @@ JS_COMMON = r"""
     if(!id) return; var el=document.getElementById(id); if(!el) return; var old=document.querySelectorAll(".hi"); for(var i=0;i<old.length;i++) old[i].classList.remove("hi"); el.classList.add("hi"); try{ el.scrollIntoView({block:"start",behavior:"instant"}); }catch(e){ el.scrollIntoView(true); } }
   var tmr={};
   document.addEventListener("DOMContentLoaded",function(){
+    if(typeof DATA==="undefined"){ if(window.yeslyfBoard) yeslyfBoard.init({page:"board"}); return; }
     paintAll(); deepLink(); window.addEventListener("load",function(){ setTimeout(deepLink,60); }); window.addEventListener("hashchange",deepLink);
     var w=document.getElementById("who"); if(w) w.addEventListener("input",function(e){ S.who=e.target.value; save(); });
     var ex=document.getElementById("export"); if(ex) ex.addEventListener("click",exportBrief);
-    var ep=document.getElementById("endpoint"); if(ep){ ep.value=S.endpoint||""; ep.addEventListener("input",function(e){ S.endpoint=e.target.value.trim(); save(); pill(); flash(S.endpoint?"Endpoint saved in this browser":"Endpoint cleared"); }); }
-    var test=document.getElementById("testrow"); if(test) test.addEventListener("click",function(){ var ok=sink("decisions",{item_id:"TEST",choice:"test",choice_text:"test row from setup page",note:""}); flash(ok?"Test row sent; check the decisions tab of the sheet":"No endpoint set"); });
+    if(window.yeslyfBoard){
+      Array.prototype.forEach.call(document.querySelectorAll("textarea[data-item]"),function(t){ yeslyfBoard.attach(t,"item:"+t.getAttribute("data-item")); });
+      Array.prototype.forEach.call(document.querySelectorAll("input[data-qan]"),function(t){ yeslyfBoard.attach(t,"qa:"+t.getAttribute("data-qan")); });
+      Array.prototype.forEach.call(document.querySelectorAll("input[type=date][data-gap]"),function(t){ var a=(t.parentNode&&t.parentNode.tagName==="LABEL")?t.parentNode:t; yeslyfBoard.attach(a,"gap:"+t.getAttribute("data-gap")); });
+      yeslyfBoard.init({page:"board",apply:applyRemote}); }
     document.body.addEventListener("change",function(e){ var t=e.target;
       if(t.type==="radio"&&t.getAttribute("data-item")){ g("item:"+t.getAttribute("data-item")).choice=t.value; recordItem(t.getAttribute("data-item")); }
       if(t.type==="checkbox"&&t.getAttribute("data-item")){ var id=t.getAttribute("data-item"); var r=g("item:"+id); var list=choiceList(id).slice(); var i=list.indexOf(t.value); if(t.checked&&i<0) list.push(t.value); if(!t.checked&&i>=0) list.splice(i,1); r.choice=list; recordItem(id); }
-      if(t.type==="checkbox"&&t.getAttribute("data-decided")){ var id2=t.getAttribute("data-decided"); var r2=g("item:"+id2); r2.decided=t.checked; if(t.checked&&r2.choice===undefined&&DATA.items[id2].dflt) r2.choice=DATA.items[id2].dflt; save(); if(t.checked) recordItem(id2); else { paintItem(id2); flash(); } }
-      if(t.tagName==="SELECT"&&t.getAttribute("data-gap")){ var gid=t.getAttribute("data-gap"); g("gap:"+gid)[t.getAttribute("data-f")]=t.value; save(); var gr=S["gap:"+gid]; sink("gaps",{gap_id:gid,status:gr.status||"",owner_date:((gr.owner||"")+" "+(gr.date||"")).trim(),note:gr.note||""}); flash(); }
-      if(t.type==="date"&&t.getAttribute("data-gap")){ var gid2=t.getAttribute("data-gap"); g("gap:"+gid2).date=t.value; save(); var gr2=S["gap:"+gid2]; sink("gaps",{gap_id:gid2,status:gr2.status||"",owner_date:((gr2.owner||"")+" "+(gr2.date||"")).trim(),note:gr2.note||""}); flash(); }
+      if(t.type==="checkbox"&&t.getAttribute("data-decided")){ var id2=t.getAttribute("data-decided"); var r2=g("item:"+id2); r2.decided=t.checked; if(t.checked&&r2.choice===undefined&&DATA.items[id2].dflt) r2.choice=DATA.items[id2].dflt; save(); put("item:"+id2,"decided",t.checked?"yes":"no","field_edit"); if(t.checked) recordItem(id2); else { paintItem(id2); flash(); } }
+      if(t.tagName==="SELECT"&&t.getAttribute("data-gap")){ var gid=t.getAttribute("data-gap"); g("gap:"+gid)[t.getAttribute("data-f")]=t.value; save(); put("gap:"+gid,t.getAttribute("data-f"),t.value,"field_edit"); flash(); }
+      if(t.type==="date"&&t.getAttribute("data-gap")){ var gid2=t.getAttribute("data-gap"); g("gap:"+gid2).date=t.value; save(); put("gap:"+gid2,"date",t.value,"field_edit"); flash(); }
     });
     document.body.addEventListener("input",function(e){ var t=e.target;
-      var item=t.getAttribute("data-item"); if(item&&t.tagName==="TEXTAREA"){ g("item:"+item).note=t.value; save(); flash(); clearTimeout(tmr[item]); tmr[item]=setTimeout(function(){ var r=S["item:"+item]; if(r&&r.decided) sink("decisions",{item_id:item,choice:choiceList(item).join(", "),choice_text:choiceList(item).map(function(k){return k+" "+optText(item,k);}).join(" | "),note:r.note||""}); },1500); return; }
-      var qn=t.getAttribute("data-qan"); if(qn){ g("qa:"+qn).note=t.value; save(); flash(); clearTimeout(tmr["qa"+qn]); tmr["qa"+qn]=setTimeout(function(){ var r=S["qa:"+qn]; if(r&&r.v) sink("quick_accepts",{input_n:qn,accept:r.v,note:r.note||""}); },1500); return; }
-      var gid=t.getAttribute("data-gap"); if(gid&&t.getAttribute("data-f")!=="status"){ g("gap:"+gid)[t.getAttribute("data-f")]=t.value; save(); flash(); clearTimeout(tmr["gap"+gid]); tmr["gap"+gid]=setTimeout(function(){ var gr=S["gap:"+gid]; sink("gaps",{gap_id:gid,status:gr.status||"",owner_date:((gr.owner||"")+" "+(gr.date||"")).trim(),note:gr.note||""}); },1500); }
+      var item=t.getAttribute("data-item"); if(item&&t.tagName==="TEXTAREA"){ g("item:"+item).note=t.value; save(); flash(); clearTimeout(tmr[item]); tmr[item]=setTimeout(function(){ put("item:"+item,"note",(S["item:"+item]||{}).note||"","comment"); },1500); return; }
+      var qn=t.getAttribute("data-qan"); if(qn){ g("qa:"+qn).note=t.value; save(); flash(); clearTimeout(tmr["qa"+qn]); tmr["qa"+qn]=setTimeout(function(){ put("qa:"+qn,"note",(S["qa:"+qn]||{}).note||"","comment"); },1500); return; }
+      var gid=t.getAttribute("data-gap"); if(gid&&t.getAttribute("data-f")!=="status"&&t.type!=="date"){ var f=t.getAttribute("data-f"); g("gap:"+gid)[f]=t.value; save(); flash(); clearTimeout(tmr["gap"+gid+f]); tmr["gap"+gid+f]=setTimeout(function(){ put("gap:"+gid,f,(S["gap:"+gid]||{})[f]||"","field_edit"); },1500); }
     });
-    document.body.addEventListener("click",function(e){ var t=e.target; if(t.tagName!=="BUTTON") return; var n=t.getAttribute("data-qa"); if(!n) return; var r=g("qa:"+n); r.v=(r.v===t.getAttribute("data-v"))?"":t.getAttribute("data-v"); save(); paintAll(); flash(); sink("quick_accepts",{input_n:n,accept:r.v||"cleared",note:r.note||""}); });
-    var reset=document.getElementById("reset"); if(reset) reset.addEventListener("click",function(){ if(!confirm("Clear every choice and note saved in this browser? The sheet keeps what was already sent.")) return; var keep={who:S.who,endpoint:S.endpoint}; S=keep; save(); paintAll(); flash("Cleared"); });
+    document.body.addEventListener("click",function(e){ var t=e.target; if(t.tagName!=="BUTTON") return; var n=t.getAttribute("data-qa"); if(!n) return; var r=g("qa:"+n); r.v=(r.v===t.getAttribute("data-v"))?"":t.getAttribute("data-v"); save(); paintAll(); flash(); put("qa:"+n,"accept",r.v||"","verdict"); });
+    var reset=document.getElementById("reset"); if(reset) reset.addEventListener("click",function(){ if(!confirm("Clear every choice and note saved in this browser? The board keeps every row already sent.")) return; var keep={who:S.who}; S=keep; save(); paintAll(); flash("Cleared"); });
     var f=document.getElementById("filters"); if(f){ f.addEventListener("change",applyFilters); applyFilters(); }
   });
   function applyFilters(){ var f=document.getElementById("filters"); if(!f) return; var rv=f.querySelector("[name=reviewer]").value, ws=f.querySelector("[name=workstream]").value, st=f.querySelector("[name=status]").value; var rows=document.querySelectorAll("tr[data-n]"); var shown=0;
@@ -294,14 +311,23 @@ JS_COMMON = r"""
 })();
 """
 
-# The v0.2 static pages (admin, changelog) carry only the endpoint capture and the sheet pill; no board controls.
-JS_PILL = r"""
-(function(){
-  var KEY="yeslyf_board_v1"; var S={};
-  try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
-  try{ var q=location.search||""; var qi=q.indexOf("endpoint="); if(qi>=0){ var qv=decodeURIComponent(q.slice(qi+9).split("&")[0]).trim(); if(qv){ S.endpoint=qv; try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} } if(history.replaceState) history.replaceState(null,"",location.pathname+location.hash); } }catch(e){}
-  document.addEventListener("DOMContentLoaded",function(){ var p=document.getElementById("sheetpill"); if(!p) return; var on=!!(S.endpoint||"").trim(); p.textContent=on?"sheet: on":"sheet: off"; p.className="pill"+(on?" on":""); });
-})();
+# The v0.2 static pages (admin, changelog, setup) carry no board controls; the shared layer paints the pill.
+def js_pill(page):
+    return '(function(){ document.addEventListener("DOMContentLoaded",function(){ if(window.yeslyfBoard) yeslyfBoard.init({page:%s}); }); })();' % json.dumps(page)
+
+
+def store_script():
+    # The shared save layer, inlined after the data blobs and before the page script (docs/config.js loads in the head).
+    return '<script>' + read_script("board_store.js") + '</script>'  # no newline: the body outside the script tags stays byte-identical
+
+
+CONFIG_TEMPLATE = """// yeslyf board write-back (phase 11, Vatsal, 16 Sep 2026). Fill both values from the Supabase dashboard
+// (Project settings, API): the project URL and the publishable (anon) key. Blank keeps every page local only
+// (the top bar pill reads "offline, saved locally"). This file is served with the site and read by every page;
+// the key is the public client key, not a secret; the board_entries policies allow insert and select only.
+// build_site.py creates this file once when it is missing and never overwrites it.
+var SUPABASE_URL = "";
+var SUPABASE_ANON_KEY = "";
 """
 
 
@@ -468,7 +494,7 @@ def build_meeting(items, inputs, gaps, decisions=None, audiences=None):
             '<a href="gaps.html" style="margin-top:10px;color:var(--mute)">Gaps (%d)</a><a href="inputs.html" style="color:var(--mute)">Inputs (%d)</a></nav>' % (len(gaps), len(inputs)) +
             '<main class="main">' + intro + "\n".join(body) +
             '<section><h2>Housekeeping</h2><p class="meta">Choices and notes save in this browser only, per device. ' + reset + '</p></section>' +
-            '</main></div>\n<script>var DATA=' + build_data_blob(items, inputs, gaps) + ';</script>\n<script>' + JS_COMMON + '</script>\n</body>\n</html>\n')
+            '</main></div>\n' + store_script() + '<script>var DATA=' + build_data_blob(items, inputs, gaps) + ';</script>\n<script>' + JS_COMMON + '</script>\n</body>\n</html>\n')
     return page
 
 
@@ -490,7 +516,7 @@ def build_gaps(items, inputs, gaps, decisions=None):
         body.append('<textarea class="note" data-gap="%s" data-f="note" placeholder="Note"%s></textarea></div>' % (esc(gp["id"]), dis))
     page = (head("yeslyf product board: gaps") + '<body>\n' + header("gaps.html", "product board, gaps") + (frozen_banner() if frozen else "") +
             '<div class="layout"><nav class="nav">' + "".join('<a class="sub" href="#gap/%s">%s %s</a>' % (esc(g["id"]), esc(g["id"]), esc(g["title"][:40])) for g in gaps) + '</nav>' +
-            '<main class="main">' + "\n".join(body) + '</main></div>\n<script>var DATA=' + build_data_blob(items, inputs, gaps) + ';</script>\n<script>' + JS_COMMON + '</script>\n</body>\n</html>\n')
+            '<main class="main">' + "\n".join(body) + '</main></div>\n' + store_script() + '<script>var DATA=' + build_data_blob(items, inputs, gaps) + ';</script>\n<script>' + JS_COMMON + '</script>\n</body>\n</html>\n')
     return page
 
 
@@ -533,7 +559,7 @@ def build_inputs(items, inputs, gaps, ownership, frozen=False):
     page = (head("yeslyf product board: inputs") + '<body>\n' + header("inputs.html", "product board, inputs", show_export=False) + (frozen_banner() if frozen else "") +
             '<main class="main" style="max-width:none">' + intro + '<section>' + filters +
             '<div style="overflow-x:auto"><table><thead><tr><th>#</th><th>Reviewer</th><th>Screen</th><th>Verdict</th><th>Comment (raw)</th><th>Workstream, owner</th><th>Status</th><th>Item</th></tr></thead><tbody>' +
-            "\n".join(rows) + '</tbody></table></div></section></main>\n<script>var DATA=' + build_data_blob(items, inputs, gaps) + ';</script>\n<script>' + JS_COMMON + '</script>\n</body>\n</html>\n')
+            "\n".join(rows) + '</tbody></table></div></section></main>\n' + store_script() + '<script>var DATA=' + build_data_blob(items, inputs, gaps) + ';</script>\n<script>' + JS_COMMON + '</script>\n</body>\n</html>\n')
     return page
 
 
@@ -551,7 +577,7 @@ def build_frame_page(current, subtitle, title, src, screens=None):
         bar = '<div class="frame-bar"><a href="%s" target="_blank">Open the v0.1 file in its own tab</a><span>Served as-is from docs/v01/; screen IDs inside it link to the wireframes.</span></div>' % esc(src)
         js = 'var fr=document.getElementById("fr");fr.src="%s"+(location.hash||"");' % esc(src)
     page = (head(title) + '<body>\n' + header(current, subtitle, show_export=False) + bar +
-            '<div class="frame-wrap with-bar"><iframe id="fr" title="%s"></iframe></div>\n<script>%s</script>\n<script>%s</script>\n</body>\n</html>\n' % (esc(title), js, JS_COMMON))
+            '<div class="frame-wrap with-bar"><iframe id="fr" title="%s"></iframe></div>\n<script>%s</script>\n%s<script>%s</script>\n</body>\n</html>\n' % (esc(title), js, store_script(), JS_COMMON))
     return page
 
 
@@ -595,10 +621,10 @@ def build_wire_v02(v02, states, reasons, review=False):
     layout = WIRE_LAYOUT
     data = ('<script>var SECTIONS=' + js_blob(v02["sections"]) + ';\nvar SCREENS=' + js_blob(live) + ';\nvar DROPPED=' + js_blob(dropped) +
             ';\nvar SPLIT=' + js_blob(split) + ';\nvar STATES=' + js_blob(states["states"] if states else []) + ';\nvar REASONS=' + js_blob(reasons) + ';</script>\n')
-    page = (head("yeslyf wireframes v0.2", read_script("renderer_v02.css")) + '<body>\n' +
+    page = (head("yeslyf wireframes v0.2", read_script("renderer_v02.css"), config="../config.js" if review else "config.js") + '<body>\n' +
             header("index.html" if review else "wireframes_v02.html", "wireframes v0.2, " + str(len(live)) + " screens", who_html=who,
                    export_label="Export comments", tabs=REVIEW_TABS if review else None, setup_link=not review) +
-            bar + layout + data + '<script>' + read_script("renderer_v02.js") + '</script>\n</body>\n</html>\n')
+            bar + layout + data + store_script() + '<script>' + read_script("renderer_v02.js") + '</script>\n</body>\n</html>\n')
     return page
 
 
@@ -743,10 +769,10 @@ def build_admin_v02(admin, v02, states, review=False):
     nav, body = admin_parts(admin, v02, states)
     if review:
         body = body.replace('href="wireframes_v02.html#', 'href="index.html#')
-    page = (head("yeslyf admin and CRM v0.2") + '<body>\n' +
+    page = (head("yeslyf admin and CRM v0.2", config="../config.js" if review else "config.js") + '<body>\n' +
             header("admin_v02.html", "admin and CRM v0.2", show_export=False, tabs=REVIEW_TABS if review else None, setup_link=not review) +
             '<div class="layout"><nav class="nav">' + nav + '</nav><main class="main" style="max-width:none">' + body +
-            '</main></div>\n<script>' + JS_PILL + '</script>\n</body>\n</html>\n')
+            '</main></div>\n' + store_script() + '<script>' + js_pill("admin_v02") + '</script>\n</body>\n</html>\n')
     return page
 
 
@@ -788,7 +814,7 @@ def changelog_parts(chg, v02, audiences=None):
                ("c-superseded", "Superseded brief items"), ("c-tbv", "To be verified"), ("c-counts", "Counts for Spinach")]
     if audiences:
         body.append('<section id="c-audiences"><h2>Audience files<small>self-contained; each opens from disk with no network</small></h2>'
-                    '<p class="meta">Generated by scripts/build_audiences.py from the same data. Comment controls and the markdown export work offline; the sheet endpoint field is blank.</p>%s</section>' % table_html(
+                    '<p class="meta">Generated by scripts/build_audiences.py from the same data. Comment controls and the markdown export work offline; no write-back.</p>%s</section>' % table_html(
                         ["File", "For", "Size"], [['<a href="%s">%s</a>' % (esc(a["href"]), esc(a["name"])), esc(a["for"]), esc("%d KB (%d bytes)" % (round(a["bytes"] / 1024), a["bytes"]))] for a in audiences]))
         entries.append(("c-audiences", "Audience files"))
     nav = "".join('<a href="#%s">%s</a>' % (a, b) for a, b in entries)
@@ -798,51 +824,26 @@ def changelog_parts(chg, v02, audiences=None):
 def build_changelog(chg, v02, audiences=None):
     nav, body = changelog_parts(chg, v02, audiences)
     page = (head("yeslyf changelog v0.1 to v0.2") + '<body>\n' + header("changelog.html", "changelog, v0.1 to v0.2", show_export=False) +
-            '<div class="layout"><nav class="nav">' + nav + '</nav><main class="main">' + body + '</main></div>\n<script>' + JS_PILL + '</script>\n</body>\n</html>\n')
+            '<div class="layout"><nav class="nav">' + nav + '</nav><main class="main">' + body + '</main></div>\n' + store_script() + '<script>' + js_pill("changelog") + '</script>\n</body>\n</html>\n')
     return page
 
 
 def build_setup():
-    steps = ('<section class="setup"><h1>Setup: sheet write-back</h1>'
-             '<p class="lead">The site works without this: choices save per browser and Export brief produces the record. With an endpoint, every change is also appended to the Google Sheet "yeslyf decisions" as it happens, from every device, no login needed for anyone.</p>'
-             '<label>Endpoint URL (Apps Script web app)</label><input id="endpoint" placeholder="https://script.google.com/macros/s/.../exec">'
-             '<p class="meta">Stored in this browser only. Each person pastes it once, or opens the site with ?endpoint=... (see below). <button id="testrow" class="ghost">Send a test row</button></p>'
-             '<h3>Three steps (about three minutes)</h3><ol>'
-             '<li>Open the Google Sheet "yeslyf decisions" in Vatsal\'s Drive (created 9 Sep 2026; Vatsal shares the link). Extensions, Apps Script. Replace the code with the block below. Save.</li>'
-             '<li>Deploy, New deployment, type Web app. Execute as: Me. Who has access: Anyone. Deploy, authorise, copy the web app URL.</li>'
-             '<li>Paste the URL in the field above on each device that will take decisions, or share the link index.html?endpoint=THE_URL once; the page stores it and then removes it from the address bar.</li></ol>'
-             '<p class="rule">v0.2 review comments post to the tab v02_comments when the deployed script accepts a tab field; the script below does, but no redeploy is planned (spiff, 11 Sep 2026). Reviewers press Export comments on the Wireframes v0.2 tab and send the markdown file to spiff</p>'
-             '<details open><summary>Apps Script (doPost appends a row to the right tab; creates the tabs on first use)</summary><pre id="script"></pre></details>'
-             '<details><summary>Sheet columns (also in sheet_template.csv)</summary><pre>decisions:     ts, who, item_id, choice, choice_text, note\n'
-             'gaps:          ts, who, gap_id, status, owner_date, note\nquick_accepts: ts, who, input_n, accept, note\nv02_comments:  ts, who, screen, verdict, reason, text</pre>'
-             '<p class="meta"><a href="sheet_template.csv">Download sheet_template.csv</a> (one block per tab, to paste if you prefer to create the tabs by hand).</p></details>'
-             '<details><summary>Read path after the meeting</summary><p class="meta">File, Share, Publish to web, the whole document as CSV; give Vatsal the link. scripts/pull_sheet.py reads it; last write per item wins; every row is kept in data/decisions_raw.json.</p></details>'
+    steps = ('<section class="setup"><h1>Setup: board write-back</h1>'
+             '<p class="lead">Every comment, verdict and field edit on every page is one row in the Supabase table board_entries: page, item, field, value, who, kind, time. '
+             'Rows are only ever added; the latest row per item and field is the current value, and History under a comment box lists every row of that item. Nobody logs in. '
+             'The pill in the top bar reads "live" with the time of the last write on the page, or "offline, saved locally" when a write fails; those edits stay in the browser and are sent on the next load.</p>'
+             '<h3>Once, about ten minutes</h3><ol>'
+             '<li>Supabase, New project on the free plan, a region near the team, any strong database password (the site never uses it).</li>'
+             '<li>SQL Editor, New query: paste supabase/migrations/20260916120000_board_entries.sql from the repo, Run. It creates the table, turns on row level security and lets the anon key insert and select only.</li>'
+             '<li>Project settings, API: copy the project URL and the publishable (anon) key into docs/config.js, commit, push. The key is the public client key; the table policies are the guard. No secret or service key goes anywhere in the repo.</li></ol>'
+             '<p class="rule">Read path: scripts/pull_board.py exports every row to data/board_entries.json (the latest value per page, item and field included); it runs before any v0.3 build. '
+             'Export brief and Export comments still work offline and stay the record while the pill is not live.</p>'
              '</section>')
-    js = ('document.getElementById("script").textContent=' + json.dumps(APPS_SCRIPT) + ';'
-          '')
     page = (head("yeslyf product board: setup") + '<body>\n' + header("setup.html", "product board, setup", show_export=False) +
-            '<main class="main">' + steps + '</main>\n<script>' + js + '</script>\n<script>' + JS_COMMON + '</script>\n</body>\n</html>\n')
+            '<main class="main">' + steps + '</main>\n' + store_script() + '<script>' + js_pill("setup") + '</script>\n</body>\n</html>\n')
     return page
 
-
-APPS_SCRIPT = """function doPost(e) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var d = JSON.parse(e.postData.contents);
-  var tabs = {
-    decisions: ["ts", "who", "item_id", "choice", "choice_text", "note"],
-    gaps: ["ts", "who", "gap_id", "status", "owner_date", "note"],
-    quick_accepts: ["ts", "who", "input_n", "accept", "note"],
-    v02_comments: ["ts", "who", "screen", "verdict", "reason", "text"]
-  };
-  var name = (d.tab && String(d.tab).length) ? String(d.tab) : (tabs[d.kind] ? d.kind : "other");
-  var cols = tabs[name] || ((d.cols && d.cols.length) ? d.cols : ["ts", "who", "kind", "payload"]);
-  var sh = ss.getSheetByName(name);
-  if (!sh) { sh = ss.insertSheet(name); sh.appendRow(cols); }
-  var row = cols.map(function (c) { return c === "payload" ? JSON.stringify(d) : (d[c] === undefined ? "" : d[c]); });
-  sh.appendRow(row);
-  return ContentService.createTextOutput("ok");
-}
-"""
 
 SHEET_TEMPLATE = """# tab: decisions
 ts,who,item_id,choice,choice_text,note
@@ -907,6 +908,11 @@ def main():
             fh.write(text)
     with open(os.path.join(DOCS, ".nojekyll"), "w") as fh:
         fh.write("")
+    config_path = os.path.join(DOCS, "config.js")
+    if not os.path.exists(config_path):  # the one hand-filled file in docs/: created blank once, never overwritten
+        with open(config_path, "w") as fh:
+            fh.write(CONFIG_TEMPLATE)
+        print("created docs/config.js with blank values; fill SUPABASE_URL and SUPABASE_ANON_KEY by hand")
     with open(os.path.join(DATA, "sheet_template.csv"), "w") as fh:
         fh.write(SHEET_TEMPLATE)
 

@@ -165,3 +165,10 @@
     .actions{margin-left:0}
     .ribbon{display:none}
   }
+.histwrap{margin-top:6px}
+.hist-toggle{font-size:11px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:2px 8px;color:var(--mute);cursor:pointer}
+.histbox{margin-top:6px}
+.hist{list-style:none;margin:0;padding:0;font-size:12px;color:var(--ink)}
+.hist li{padding:3px 0;border-top:1px solid var(--line)}
+.hist .t{color:var(--mute);margin-right:6px}
+.hist-empty{font-size:12px;color:var(--mute)}

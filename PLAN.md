@@ -124,6 +124,8 @@ Behaviour:
 
 ## 6. Sheet write-back (Phase 2)
 
+Superseded on 16 Sep 2026 by the Supabase write-back (phase 11, section 15); kept as the record of the v0.1 path.
+
 - Create one Google Sheet "yeslyf decisions" with tabs: decisions (ts, who, item_id, choice, note), gaps (ts, who, gap_id,
   status, owner_date, note), quick_accepts (ts, who, input_n, accept, note). Use the Google MCP if connected; otherwise
   create data/sheet_template.csv and ask spiff to create the sheet.
@@ -352,3 +354,54 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
 - Next: the second review round on the review link (reviewers press Export comments; the markdown goes to
   spiff; owners set status and dates on the Integrations tab and the Owed to Spinach rows), then parse the comments into data with causes,
   rerun the scripts, commit per phase; then the CRM planning session off the CRM backlog.
+
+## 15. Status, 16 Sep 2026 (phase 11: Supabase write-back, append-only, no login)
+
+- The Apps Script endpoint is gone. Every comment, verdict and field edit on every page inserts one row in the
+  Supabase table board_entries (id, page, item_id, field, value, who, kind, created_at); nothing is ever updated or
+  deleted. supabase/migrations/20260916120000_board_entries.sql creates it: RLS on, policies anon insert and anon
+  select, no update or delete policy, and the update, delete and truncate privileges revoked so a client attempt is
+  refused with 42501 instead of matching zero rows; the insert grant names the columns, so a client cannot set id or
+  created_at. Run once in the dashboard SQL editor (the steps are on docs/setup.html).
+- docs/config.js holds SUPABASE_URL and SUPABASE_ANON_KEY; every page loads it from the head (the review copies as
+  ../config.js; the audience files do not load it and stay local only). It is the one hand-filled file in docs/:
+  build_site.py creates it blank when it is missing and never overwrites it. The key is the public client key (RLS is
+  the guard); no secret or service key anywhere in the repo.
+- scripts/board_store.js is the shared save layer, inlined in every page as window.yeslyfBoard. init({page, apply})
+  sends the outbox, fetches the page's rows (1000 at a time, id order), hands the latest value per item and field to
+  the page and paints the top bar pill: "live, last write <time>" (the last write on that page by anyone) or
+  "offline, saved locally". write({item_id, field, value, who, kind}) inserts a row; when the insert fails the row
+  is queued in localStorage ("yeslyf_entries_v1") and sent on the next load. A History toggle under each comment box
+  lists every row of the item, newest first, queued rows on top. Requests carry the key in the apikey header only
+  (a publishable key is refused in Authorization; the legacy anon key works the same way).
+- Row conventions. page "board" (Meeting, Gaps and Inputs share it): item_id item:T1, qa:12 or gap:G03; choice and
+  accept are verdicts, note is a comment, decided, status, owner and date are field edits. page "wireframes_v02":
+  item_id the screen id; verdict (verdict), reason (field_edit), text (comment). page "integrations": item_id I01 or
+  W01; owner, status, the dates, docs_url, cost, notes, due_date (field_edit) and comment (comment). admin_v02,
+  changelog and events write nothing; the pill only. Every editable control on every page writes a row; filters,
+  sorting and the identity picker do not (the identity rides on every row as who).
+- Each page's localStorage store stays as the offline cache. On load a remote row wins over the local value unless a
+  queued (unsent) local row exists for the same field. Values saved in a browser before phase 11 are shown until a
+  remote row for that field exists; they are not uploaded by themselves (touch the field again to record it).
+- Read path: scripts/pull_board.py exports every row to data/board_entries.json (rows in id order plus the latest
+  row per page, item and field). It reads the config from docs/config.js through a Node vm, or from the environment
+  variables of the same names. Run it before any v0.3 build; data/board_entries.json is the input to the next edit
+  group, never docs/.
+- Verified 16 Sep 2026: the body of wireframes_v02.html, admin_v02.html, integrations.html and events.html (and of
+  the review copies, index, gaps, inputs and the two v0.1 frame pages) is byte-identical outside the script tags to
+  the build before phase 11; checks 1 to 17 pass. Against a local mock of the REST endpoint: a verdict and a comment
+  written in one browser appear in a second browser (fresh storage) after a reload, with the pill live and the last
+  write time; a comment written while the insert fails shows "offline, saved locally" and is sent on the next load;
+  PATCH and DELETE with the anon key are refused. The same checks run against the real project once docs/config.js
+  is filled (the curl lines are in the handoff).
+- Changed outside the script tags, on purpose: docs/setup.html (the Apps Script instructions replaced by the
+  Supabase steps), the three audience files (the Sheet endpoint field removed from the header) and the one sentence
+  on the Changelog tab that described that field. Not changed: the Integrations lead still says "reach the sheet
+  when the endpoint is set" (kept byte-identical; a one-line fix once Vatsal says so).
+- Known limitations: the outbox is sent on the next load only (no retry while the tab stays open); the latest value
+  per field follows insertion order (id), not the client clock; a row the server rejects (a wrong key, a missing
+  policy) stays queued and the pill stays offline until a later load succeeds; the Meeting page's frozen controls
+  (choices, quick-accepts, gap fields) are disabled, so only the item notes write rows there; docs/sheet_template.csv,
+  data/sheet_template.csv and scripts/pull_sheet.py stay as the record of the v0.1 sheet path.
+- Next: fill docs/config.js (three steps on docs/setup.html), commit, push, run the live checks; then the second
+  review round on the review link with the pill live.
