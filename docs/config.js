@@ -3,5 +3,5 @@
 // (the top bar pill reads "offline, saved locally"). This file is served with the site and read by every page;
 // the key is the public client key, not a secret; the board_entries policies allow insert and select only.
 // build_site.py creates this file once when it is missing and never overwrites it.
-var SUPABASE_URL = "";
-var SUPABASE_ANON_KEY = "";
+var SUPABASE_URL = "https://ltafulnzsetxtdpimihs.supabase.co";
+var SUPABASE_ANON_KEY = "sb_publishable_H6Fusu9B6VEqq_rLBKbYmA__i1c-Dby";
