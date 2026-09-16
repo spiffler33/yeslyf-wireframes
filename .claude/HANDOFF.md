@@ -1,9 +1,11 @@
 # Handoff - 16 Sep 2026 (phase closed: 11, Supabase write-back, append-only, no login)
 
-State: commit 0dd4af0 "Phase 11: Supabase write-back, append-only, no login" (not pushed; spiff decides, because the
-live review link would show "offline, saved locally" until docs/config.js is filled). The Apps Script endpoint is gone
-from every page. The table does not exist yet: spiff runs the migration and fills docs/config.js (three steps on
-docs/setup.html). Everything was verified against a local mock of the REST endpoint; the live checks below are pending.
+State: live. Commits 0dd4af0 (phase 11), 61a78f6 (handoff), cdfbce8 (docs/config.js filled, first pull) pushed;
+GitHub Pages serves the new pages. spiff created the Supabase project "yeslyf board" (free plan, HoA account), ran the
+migration and filled docs/config.js on 16 Sep 2026. Live checks passed the same day: insert 201, select, PATCH and
+DELETE refused with 42501, a bad kind refused with 23514, pull_board.py wrote 1 row; on the review link a verdict and
+a comment on A02 (Kajal) appeared in a second browser (storage wiped) after a reload, pill "live, last write 16 Sep
+12:55", History listing both rows. The table holds those test rows (page setup item TEST; page wireframes_v02 A02).
 
 ## Read first
 1. PLAN.md section 15 (what shipped, the row conventions, the known limitations, what changed outside the script tags).
@@ -17,7 +19,7 @@ docs/setup.html). Everything was verified against a local mock of the REST endpo
 - `python3 scripts/build_site.py` leaves docs/ and data/ unchanged and does not touch docs/config.js.
 - `python3 scripts/check_phase9.py` prints 17 PASS lines and no FAIL.
 
-## Live checks once docs/config.js is filled (read URL and KEY from it; the probe row stays in the table, page "setup")
+## Live checks (passed 16 Sep 2026; rerun after any policy change; read URL and KEY from docs/config.js)
     URL=...; KEY=...
     # insert: expect HTTP 201 and the row back with id and created_at
     curl -s -X POST "$URL/rest/v1/board_entries" -H "apikey: $KEY" -H "Content-Type: application/json" \
@@ -37,8 +39,10 @@ docs/setup.html). Everything was verified against a local mock of the REST endpo
   204, the revoke in the migration did not run.
 
 ## What to do next
-- After the live checks pass: push, then the second review round on the review link with the pill live. Reviewers no
-  longer need Export comments for spiff to see their rows, but the export stays the offline record.
+- The second review round on the review link with the pill live. Reviewers no longer need Export comments for spiff
+  to see their rows (python3 scripts/pull_board.py pulls them), but the export stays the offline record.
+- The test rows (setup TEST; wireframes_v02 A02 Keep by Kajal) stay in the table by design (append-only); the next
+  edit group skips item TEST and treats the A02 rows as a test unless Kajal confirms them.
 - Pending one-liner for spiff's yes: the Integrations lead still reads "Edits save in this browser and reach the sheet
   when the endpoint is set" (kept byte-identical on purpose); the fix is one sentence in scripts/build_integrations.py.
 - Before any v0.3 build: `python3 scripts/pull_board.py`, then the edit group from data/board_entries.json (latest per

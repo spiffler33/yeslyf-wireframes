@@ -403,5 +403,8 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   policy) stays queued and the pill stays offline until a later load succeeds; the Meeting page's frozen controls
   (choices, quick-accepts, gap fields) are disabled, so only the item notes write rows there; docs/sheet_template.csv,
   data/sheet_template.csv and scripts/pull_sheet.py stay as the record of the v0.1 sheet path.
-- Next: fill docs/config.js (three steps on docs/setup.html), commit, push, run the live checks; then the second
-  review round on the review link with the pill live.
+- 16 Sep 2026, later: project created, migration run, docs/config.js filled and pushed (cdfbce8). Live checks passed
+  against the real table (insert, select, update and delete refused with 42501, bad kind refused, pull_board.py) and
+  on the review link (a verdict and a comment on A02 seen from a second browser after a reload). Test rows stay in the
+  table: page setup item TEST, and A02 Keep by Kajal.
+- Next: the second review round on the review link with the pill live.
