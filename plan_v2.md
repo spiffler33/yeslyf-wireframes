@@ -557,7 +557,8 @@ Portfolio (accepted).
 Section E: E01 Execution hub (changed; brief H4); E02 One-time setup (kept); E03 Mutual fund order (kept); E04 ETF and
 stock via smallcase (kept); E05 Guided protect action (kept; no aggregator links); E06 Self-report and detection
 (kept); E07 BSE StAR MF onboarding (new; brief G1 default); E08 BSE StAR MF transactions (new); E09 BSE StAR MF
-reporting (new). Compliance: execution disclosures on E03, E04, E07, E08.
+reporting (new); E10 SIP mandate registration (new; Kajal, 16 Sep 2026); E11 Set up monthly SIPs (new; Kajal, 16 Sep
+2026). Compliance: execution disclosures on E03, E04, E07, E08, E10, E11.
 
 Section K: K01 Talk to an adviser (rebuilt); K02 Call confirmed (changed); K03 After the call (changed); K04 Buy an
 extra call (changed); K05 Pick a slot (new); K06 Your calls (new). Path both; tier all.
@@ -619,6 +620,7 @@ left, rate, loan detail (G07); sum assured, sum insured, floater, policy detail 
 - A05: source_choice {aa, cas, manual, later}; A10: cas_requested, cas_uploaded, cas_parsed; O03: return_time_picked
 - D10: gate_met, plan_built {assumed_count, unknown_count}; G screens: sharpen_opened {field}, sharpen_saved
 - K: call_booked {topic, tier}, call_purchased, call_no_show
+- E10: mandate_started, mandate_active, mandate_rejected; E11: sips_registered, sip_setup_blocked (Kajal, 16 Sep 2026)
 - N: state_enter_<S>, nudge_sent {slot, channel}, nudge_opened, crm_task_created {state}
 - Beta rule on X00 (Vatsal, 10 Sep 2026): if fewer than 70 percent of paid users in the January beta reach the gate
   within 7 days, the gate list is cut again before Spinach starts screens.
@@ -634,6 +636,9 @@ left, rate, loan detail (G07); sum assured, sum insured, floater, policy detail 
 - proration and refund on a period switch (Q02)
 - the GST split rule (P04)
 - direct plans and the RIA code on the BSE StAR rail (E07 to E09)
+- amount limits and maximum tenure for UPI autopay and e-NACH on BSE StAR MF; e-NACH approval time; whether a limit
+  change amends the mandate or registers a new one (E10)
+- the earliest SIP start date after mandate approval (E11)
 - call lengths in the recipe; recording consent and retention (K05, K06)
 - WhatsApp template approval lead time (N04)
 - what happens to advice if the annual confirmation is not given (Q04, S23)
@@ -662,7 +667,7 @@ unlock actions), T-picker (slot calendar), T-msg (message and landing pair), T-t
 - fees and refunds: P01, P04, Q02, Q03, Q03a, K04. Check: inclusive of GST, period, cancellation, refund, breakage.
 - consent: A04, A05, A06, A10, D10 declaration, H06, H09. Check: AA consent wording and period, DPDP notice, CAS
   password handling, the declaration, deletion.
-- execution: E03, E04, E07, E08, E09. Check: order and mandate language, direct plan, rail disclosures.
+- execution: E03, E04, E07, E08, E09, E10, E11. Check: order and mandate language, direct plan, rail disclosures.
 Every screen carries a flag; screens with no user-facing copy (L, M, N desktop tables) carry review false with reason
 "internal".
 
@@ -697,3 +702,18 @@ rows); "Why this one matters" link on every T-num and T-detail screen (slot W-<i
 "split" for D05, D06, D08 with their instances (dropped is R11, G02, G08); docs/audiences/ (team, Spinach,
 compliance) from scripts/build_audiences.py. Acceptance: checks 1 to 10 above plus 11 to 17, all in
 scripts/check_phase9.py. CLAUDE.md gained the line on client-data fallback assumptions.
+
+## 10. 16 Sep 2026 (Kajal): mandate registration and SIP setup on the execution screens
+
+Cause on every touched screen: "Kajal, 16 Sep 2026". Data: data/v02/sip_mandate_edits.json; order in data/v02/flow.json.
+- Gap: the SIP mandate was one row on E02 with no flow and no states, and E03 claimed to cover SIPs while drawing a
+  lumpsum. Two screens added, no new template.
+- E10 SIP mandate registration (T-card): bank account from setup, monthly limit above the planned SIPs on the rail,
+  UPI autopay or e-NACH, Approve the mandate as an in-place action; states not started, pending bank approval, active,
+  rejected or expired; status from the rail webhook, never from a tap. Separate from the subscription mandate on P04.
+- E11 Set up monthly SIPs (T-list): the plan's SIPs (G13) registered against the mandate in one confirmation; the date
+  and the yearly step-up are editable here, funds and amounts are not; disabled until the mandate is active; the gold
+  ETF SIP stays on the broker rail (E04). Confirm lands on E06; the calendar is on E08.
+- Wiring: E02 gains the mandate link (E10); E01 gains the SIPs link (E11); E03 is lumpsum and redemption only. Flow
+  order E01, E02, E07, E10, E03, E11, E08, E09, E04, E05, E06.
+- To be verified: the E10 and E11 items in appendix E. Counts after the rebuild: 193 live screens, 21 templates.

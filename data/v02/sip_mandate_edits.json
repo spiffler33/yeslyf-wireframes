@@ -1,0 +1,347 @@
+{
+ "source": "Kajal, 16 Sep 2026: the execution screens had no mandate registration flow and no SIP setup screen; E10 and E11 added, E01, E02 and E03 wired to them.",
+ "groups": [
+  {
+   "id": "sip-mandate",
+   "kind": "override",
+   "cause": "Kajal, 16 Sep 2026",
+   "edits": [
+    {
+     "op": "add",
+     "after": "E07",
+     "value": {
+      "id": "E10",
+      "sec": "E",
+      "title": "SIP mandate registration",
+      "tier": [
+       "DIY",
+       "DIWM"
+      ],
+      "frame": "phone",
+      "purpose": "The bank mandate the monthly SIPs debit against: type, limit, approval in the UPI app or at the bank, and its states. Once, before the first SIP. In v0.1 this was one row on E02.",
+      "ui": [
+       [
+        "h",
+        "Approve the SIP mandate, once"
+       ],
+       [
+        "p",
+        "Your monthly SIPs debit against this mandate. Nothing is debited until an SIP runs on its date."
+       ],
+       [
+        "rows",
+        [
+         [
+          "Bank account",
+          "The account verified on setup"
+         ],
+         [
+          "Monthly limit",
+          "Rs 50,000; your planned SIPs on this rail total Rs 26,000"
+         ],
+         [
+          "Debits",
+          "On each SIP date, from month 8"
+         ],
+         [
+          "Status",
+          "Not started"
+         ]
+        ]
+       ],
+       [
+        "radio",
+        [
+         "UPI autopay: approve in your UPI app now",
+         "e-NACH: approve with net banking or your debit card; the bank confirms later"
+        ]
+       ],
+       [
+        "btn",
+        "Approve the mandate",
+        "E10"
+       ],
+       [
+        "p",
+        "I will tell you the moment it turns active. The SIPs are set up right after."
+       ],
+       [
+        "link",
+        "Set up the SIPs (opens once the mandate is active)",
+        "E11"
+       ],
+       [
+        "link",
+        "Back to setup",
+        "E02"
+       ]
+      ],
+      "spec": {
+       "fields": [
+        "mandate_type",
+        "mandate_limit",
+        "mandate_id",
+        "mandate_status"
+       ],
+       "logic": [
+        "Mandate registration (Kajal, 16 Sep 2026): the SIP mandate was one row on E02 with no flow and no states; this screen is the registration itself, between the one-time setup (E02) and the SIPs (E11).",
+        "Approve the mandate is an in-place action: it opens the UPI app for UPI autopay or the bank's authorisation page for e-NACH; the Status row updates from the rail's mandate webhook, never from a tap.",
+        "The limit sits above the planned SIPs on this rail with headroom for step-ups (spec v0.1 E02); the gold ETF SIP runs on the broker rail (E04) and is not counted.",
+        "This mandate is separate from the subscription mandate on P04: two approvals, each named for what it pays.",
+        "to be verified: the amount limits and the maximum tenure for UPI autopay and e-NACH on BSE StAR MF.",
+        "to be verified: e-NACH approval time at the banks, and whether a limit change amends the mandate or registers a new one."
+       ],
+       "branches": [
+        [
+         "SIPs",
+         "E11"
+        ],
+        [
+         "Back",
+         "E02"
+        ]
+       ],
+       "states": [
+        "Not started: Approve the mandate is the only action; the SIPs link is disabled",
+        "Pending bank approval: setup completes on E02; the SIPs wait; the user is told when it turns active",
+        "Active: the SIPs link opens E11; E08 shows the mandate as active",
+        "Rejected or expired: the reason from the rail and Approve the mandate again"
+       ],
+       "dev": [
+        "Mandate registration and status through the same rail API layer as E02 (dev call); webhook per mandate event, reconciled nightly with E08."
+       ]
+      },
+      "template": "T-card",
+      "path": "both",
+      "events": [
+       "mandate_started",
+       "mandate_active",
+       "mandate_rejected"
+      ],
+      "compliance": {
+       "review": true,
+       "reasons": [
+        "execution"
+       ],
+       "note": "mandate language"
+      }
+     }
+    },
+    {
+     "op": "add",
+     "after": "E03",
+     "value": {
+      "id": "E11",
+      "sec": "E",
+      "title": "Set up monthly SIPs",
+      "tier": [
+       "DIY",
+       "DIWM"
+      ],
+      "frame": "phone",
+      "purpose": "The plan's SIPs registered on the rail against the mandate in one confirmation: fund, amount, date, start month, step-up. The gold ETF SIP goes through the broker on E04. In v0.1 this sat inside E03.",
+      "ui": [
+       [
+        "h",
+        "Your SIPs, from month 8"
+       ],
+       [
+        "p",
+        "Rs 26,000 a month across three funds, debited against your mandate on the 5th. Confirm once and I register them on BSE StAR MF."
+       ],
+       [
+        "rows",
+        [
+         [
+          "Nifty 50 Index Fund, Direct",
+          "Rs 14,000 from month 8"
+         ],
+         [
+          "Parag Parikh Flexi Cap, Direct",
+          "Rs 9,000 from month 8"
+         ],
+         [
+          "Short duration fund, Direct",
+          "Rs 3,000 from month 8"
+         ]
+        ]
+       ],
+       [
+        "rows",
+        [
+         [
+          "SIP date",
+          "The 5th of each month"
+         ],
+         [
+          "Yearly step-up",
+          "None yet; add one here"
+         ],
+         [
+          "Mandate",
+          "Active, Rs 50,000 a month"
+         ]
+        ]
+       ],
+       [
+        "note",
+        "Gold ETF SIP Rs 3,000 runs through your broker on smallcase, not this mandate"
+       ],
+       [
+        "link",
+        "Set up the gold ETF SIP via smallcase",
+        "E04"
+       ],
+       [
+        "btn",
+        "Confirm and register",
+        "E06"
+       ],
+       [
+        "link",
+        "See the SIP calendar",
+        "E08"
+       ],
+       [
+        "link",
+        "Mandate not active yet? Approve it first",
+        "E10"
+       ],
+       [
+        "p",
+        "Each SIP shows on the calendar once the rail confirms it. I mark it done when the first debit lands."
+       ]
+      ],
+      "spec": {
+       "fields": [
+        "sips[]: scheme, amount, sip_date, start_month, step_up",
+        "mandate_id"
+       ],
+       "logic": [
+        "SIP setup (Kajal, 16 Sep 2026): in v0.1 the SIPs were a case of the order screen (E03) drawn for a lumpsum; this screen registers every SIP from the action plan against the mandate (E10) in one confirmation.",
+        "Funds, amounts and the start month come from the action plan (G13) and are not edited here; the SIP date and the yearly step-up are.",
+        "Registration waits for an active mandate: until then Confirm and register is disabled and the mandate link opens E10.",
+        "Each SIP registers on BSE StAR MF against the mandate; the calendar on E08 fills from the rail's confirmation, never from the tap (spec v0.1 E06).",
+        "The gold ETF SIP is on the broker rail (E04) and does not use this mandate.",
+        "to be verified: the earliest SIP start date after mandate approval on BSE StAR MF."
+       ],
+       "branches": [
+        [
+         "Confirm",
+         "E06"
+        ],
+        [
+         "Calendar",
+         "E08"
+        ],
+        [
+         "Mandate",
+         "E10"
+        ],
+        [
+         "Gold ETF",
+         "E04"
+        ]
+       ],
+       "states": [
+        "Mandate not active: Confirm and register disabled; the mandate link opens E10",
+        "Registration rejected: the reason from the rail and retry per SIP",
+        "Start month already passed: the first debit moves to the next SIP date"
+       ],
+       "dev": [
+        "One registration call per SIP through the rail API layer (dev call); webhook per SIP event; E08 reconciles nightly."
+       ]
+      },
+      "template": "T-list",
+      "path": "both",
+      "events": [
+       "sips_registered",
+       "sip_setup_blocked"
+      ],
+      "compliance": {
+       "review": true,
+       "reasons": [
+        "execution"
+       ]
+      }
+     }
+    },
+    {
+     "op": "ui_insert",
+     "screen": "E02",
+     "after": [
+      "link",
+      "What happens on the BSE StAR MF side"
+     ],
+     "value": [
+      "link",
+      "Register the SIP mandate (UPI autopay or e-NACH)",
+      "E10"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "E02",
+     "key": "branches",
+     "value": [
+      "Mandate",
+      "E10"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "E02",
+     "key": "logic",
+     "value": "Mandate registration (Kajal, 16 Sep 2026): the SIP mandate row opens E10, which carries the registration and its states; Continue stays open while the mandate is pending because lumpsum orders on E03 pay at order time."
+    },
+    {
+     "op": "spec_add",
+     "screen": "E02",
+     "key": "states",
+     "value": "Mandate pending bank approval: setup completes; the SIPs (E11) wait for it to turn active"
+    },
+    {
+     "op": "ui_insert",
+     "screen": "E01",
+     "after": [
+      "card",
+      "Invest, in the app"
+     ],
+     "value": [
+      "link",
+      "Set up the 4 SIPs from month 8",
+      "E11"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "E01",
+     "key": "branches",
+     "value": [
+      "SIPs",
+      "E11"
+     ]
+    },
+    {
+     "op": "spec_add",
+     "screen": "E01",
+     "key": "logic",
+     "value": "SIP setup (Kajal, 16 Sep 2026): the SIP actions open E11, which registers them against the mandate; with no active mandate E11 sends the user to E10 first."
+    },
+    {
+     "op": "set",
+     "screen": "E03",
+     "key": "purpose",
+     "value": "Order summary from the action, authenticate, pay. Same screen for lumpsum and redemption; SIPs are set up on E11 against the mandate."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "E03",
+     "key": "logic",
+     "match": "SIP orders register against the mandate with start date from the action plan.",
+     "value": "SIPs are registered on E11 against the mandate (E10), with the start date from the action plan (Kajal, 16 Sep 2026)."
+    }
+   ]
+  }
+ ]
+}

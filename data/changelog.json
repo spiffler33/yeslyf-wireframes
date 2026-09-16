@@ -384,7 +384,8 @@
    "title": "Execution hub",
    "status": "changed",
    "causes": [
-    "brief H4"
+    "brief H4",
+    "Kajal, 16 Sep 2026"
    ]
   },
   {
@@ -392,7 +393,8 @@
    "title": "One-time investing setup",
    "status": "changed",
    "causes": [
-    "brief G1 (default, not confirmed in the meeting)"
+    "brief G1 (default, not confirmed in the meeting)",
+    "Kajal, 16 Sep 2026"
    ]
   },
   {
@@ -400,7 +402,8 @@
    "title": "Place a mutual fund order",
    "status": "changed",
    "causes": [
-    "brief G1 (default, not confirmed in the meeting)"
+    "brief G1 (default, not confirmed in the meeting)",
+    "Kajal, 16 Sep 2026"
    ]
   },
   {
@@ -1114,6 +1117,22 @@
    ]
   },
   {
+   "id": "E10",
+   "title": "SIP mandate registration",
+   "template": "T-card",
+   "causes": [
+    "Kajal, 16 Sep 2026"
+   ]
+  },
+  {
+   "id": "E11",
+   "title": "Set up monthly SIPs",
+   "template": "T-list",
+   "causes": [
+    "Kajal, 16 Sep 2026"
+   ]
+  },
+  {
    "id": "E08",
    "title": "BSE StAR MF transactions",
    "template": "T-list",
@@ -1751,6 +1770,12 @@
    ]
   },
   {
+   "item": "e-NACH approval time at the banks, and whether a limit change amends the mandate or registers a new one",
+   "screens": [
+    "E10"
+   ]
+  },
+  {
    "item": "mandate type and limits for monthly and quarterly recurring UPI",
    "screens": [
     "P04"
@@ -1814,6 +1839,12 @@
    ]
   },
   {
+   "item": "the amount limits and the maximum tenure for UPI autopay and e-NACH on BSE StAR MF",
+   "screens": [
+    "E10"
+   ]
+  },
+  {
    "item": "the current service numbers and that the deep link works on both platforms",
    "screens": [
     "D02e"
@@ -1823,6 +1854,12 @@
    "item": "the declaration wording against HoA's current questionnaire",
    "screens": [
     "D10"
+   ]
+  },
+  {
+   "item": "the earliest SIP start date after mandate approval on BSE StAR MF",
+   "screens": [
+    "E11"
    ]
   },
   {
@@ -1847,15 +1884,15 @@
   }
  ],
  "counts": {
-  "total": 191,
+  "total": 193,
   "unique_templates": 21,
   "by_template": {
-   "T-card": 24,
+   "T-card": 25,
    "T-card-stack": 20,
    "T-chart": 6,
    "T-detail": 6,
    "T-hub": 14,
-   "T-list": 17,
+   "T-list": 18,
    "T-locked": 1,
    "T-msg": 26,
    "T-num": 16,
@@ -1969,12 +2006,12 @@
    },
    "E": {
     "name": "Execution",
-    "screens": 9,
+    "screens": 11,
     "templates": 4,
     "by_template": {
-     "T-card": 3,
+     "T-card": 4,
      "T-hub": 1,
-     "T-list": 4,
+     "T-list": 5,
      "T-review": 1
     }
    },
@@ -2033,7 +2070,7 @@
    "rebuilt": 15,
    "kept": 18,
    "changed": 48,
-   "new": 110,
+   "new": 112,
    "dropped": 3,
    "split": 3
   }
