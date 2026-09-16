@@ -1,60 +1,45 @@
 # Handoff - 16 Sep 2026 (phase closed: 11, Supabase write-back, append-only, no login)
 
-State: live. Commits 0dd4af0 (phase 11), 61a78f6 (handoff), cdfbce8 (docs/config.js filled, first pull) pushed;
-GitHub Pages serves the new pages. spiff created the Supabase project "yeslyf board" (free plan, HoA account), ran the
-migration and filled docs/config.js on 16 Sep 2026. Live checks passed the same day: insert 201, select, PATCH and
-DELETE refused with 42501, a bad kind refused with 23514, pull_board.py wrote 1 row; on the review link a verdict and
-a comment on A02 (Kajal) appeared in a second browser (storage wiped) after a reload, pill "live, last write 16 Sep
-12:55", History listing both rows. The table holds those test rows (page setup item TEST; page wireframes_v02 A02).
+State: live. Every comment, verdict and field edit on every page is one row in the Supabase table board_entries;
+the review link (https://spiffler33.github.io/yeslyf-wireframes/review/) shows "live, last write <time>" and every
+device sees every row after a reload. Commits 0dd4af0 to the closure commit are pushed; GitHub Pages serves them.
+No build work is pending; the next unit is the second review round.
 
 ## Read first
-1. PLAN.md section 15 (what shipped, the row conventions, the known limitations, what changed outside the script tags).
-2. scripts/board_store.js (the shared layer; the header comment explains init, write, history, attach, the outbox and
-   the pill) and supabase/migrations/20260916120000_board_entries.sql (the table, the policies, the revokes).
-3. Memory project_state and review-transport-preferences (spiff chose Supabase on 16 Sep 2026; every human input on
-   every page is recorded; the anon key is public by design; no service key anywhere).
+1. PLAN.md section 15 (what shipped, the row conventions per page, the known limitations, the live checks).
+2. scripts/board_store.js (the shared layer; its header comment explains init, write, history, attach, the outbox
+   and the pill) and supabase/migrations/20260916120000_board_entries.sql (table, policies, revokes).
+3. Memory project_state, review-transport-preferences (why Supabase, what is recorded) and supabase-project (the
+   project and its database password; the site never uses the password).
 
 ## Verify before coding
-- `git status --short` is empty; HEAD is 0dd4af0 or the closure commit after it.
-- `python3 scripts/build_site.py` leaves docs/ and data/ unchanged and does not touch docs/config.js.
+- `git status --short` is empty; HEAD is the closure commit after 6e72ef3.
+- `python3 scripts/build_site.py` leaves docs/ and data/ unchanged and never touches docs/config.js.
 - `python3 scripts/check_phase9.py` prints 17 PASS lines and no FAIL.
-
-## Live checks (passed 16 Sep 2026; rerun after any policy change; read URL and KEY from docs/config.js)
-    URL=...; KEY=...
-    # insert: expect HTTP 201 and the row back with id and created_at
-    curl -s -X POST "$URL/rest/v1/board_entries" -H "apikey: $KEY" -H "Content-Type: application/json" \
-      -H "Prefer: return=representation" \
-      -d '{"page":"setup","item_id":"TEST","field":"probe","value":"hello","who":"Vatsal","kind":"comment"}' -w " %{http_code}\n"
-    # select: expect the row
-    curl -s "$URL/rest/v1/board_entries?page=eq.setup&order=id.asc" -H "apikey: $KEY" -w " %{http_code}\n"
-    # update and delete with the anon key: expect 401 or 403 with code 42501 (permission denied), never 204
-    curl -s -X PATCH "$URL/rest/v1/board_entries?item_id=eq.TEST" -H "apikey: $KEY" -H "Content-Type: application/json" \
-      -d '{"value":"x"}' -w " %{http_code}\n"
-    curl -s -X DELETE "$URL/rest/v1/board_entries?item_id=eq.TEST" -H "apikey: $KEY" -w " %{http_code}\n"
-    # then: python3 scripts/pull_board.py  (expect "wrote data/board_entries.json: 1 rows, 1 pages (setup)")
-- Cross-browser: open the review link in two browsers (or one plus a private window), pick an identity, give a verdict
-  and a comment on a screen in one; reload the other: the same verdict and comment show, the pill reads "live, last
-  write <time>", History under the comment box lists both rows.
-- If the insert returns 401 "No API key found" or 403, the key or the URL in docs/config.js is wrong; if PATCH returns
-  204, the revoke in the migration did not run.
+- `python3 scripts/pull_board.py` prints "wrote data/board_entries.json: N rows, ..." (N >= 3: the setup TEST probe
+  and the A02 test rows by Kajal are in the table by design; it is append-only).
 
 ## What to do next
-- The second review round on the review link with the pill live. Reviewers no longer need Export comments for spiff
-  to see their rows (python3 scripts/pull_board.py pulls them), but the export stays the offline record.
-- The test rows (setup TEST; wireframes_v02 A02 Keep by Kajal) stay in the table by design (append-only); the next
-  edit group skips item TEST and treats the A02 rows as a test unless Kajal confirms them.
-- Pending one-liner for spiff's yes: the Integrations lead still reads "Edits save in this browser and reach the sheet
-  when the endpoint is set" (kept byte-identical on purpose); the fix is one sentence in scripts/build_integrations.py.
-- Before any v0.3 build: `python3 scripts/pull_board.py`, then the edit group from data/board_entries.json (latest per
-  page, item and field), never from docs/.
+- Second review round: spiff shares the review link; reviewers pick an identity and comment; their rows land as they
+  type. Owners set status and dates on the Integrations tab and the Owed to Spinach rows (W07, W08, W03, W04 due
+  19 Sep 2026). Export comments and Export brief stay as the offline record only.
+- When the round is done: `python3 scripts/pull_board.py`, then parse data/board_entries.json (the "latest" block:
+  last row per page, item and field) into data (never docs/) with causes ("<first name>, <date>" or "row N"), a new
+  edit group under data/v02, then apply_decisions, build_site, check_phase9; commit per phase and push. Skip item
+  TEST; treat the A02 Keep by Kajal as a test unless Kajal confirms it.
+- Then the CRM planning session (Admin and CRM v0.2 tab, CRM backlog section).
 
 ## Constraints carried forward
 - inputs/ is read-only; docs/ is generated except docs/config.js (hand-filled, never overwritten); docs/v01/ stays
-  byte-identical to inputs/v01/.
+  byte-identical to inputs/v01/. build_site.py calls build_integrations.py, then build_events.py, at the end.
 - Every new editable control on any page calls yeslyfBoard.write (spiff, 16 Sep 2026: any manual input is recorded);
-  filters, sorting and the identity picker are not rows.
-- The layer sends the key in the apikey header only (a publishable key is refused in Authorization).
-- Rows are never updated or deleted from the site; corrections are new rows. pull_board.py needs no secret.
-- v0.2 rules unchanged: causes only, no adviser named, "yeslyf" lowercase, "Rs", no "recommendation" or "founders",
-  ASCII only, no em dashes. Subagents: Opus is the floor, never Sonnet. Page density: calm list first, editing behind
-  a click.
+  filters, sorting and the identity picker are not rows. Rows are never updated or deleted; a correction is a new row.
+- The layer sends the key in the apikey header only (a publishable key is refused in Authorization). The anon key in
+  docs/config.js is public by design; RLS is the guard. No service key, no database password in the repo.
+- Values saved in a browser before phase 11 show until a remote row exists for that field; they are not uploaded by
+  themselves. The outbox is sent on the next page load only.
+- v0.2 rules: causes only ("brief X", "row N", "<first name>, <date>"); no adviser named; "yeslyf" lowercase; "Rs";
+  no "recommendation" or "founders"; ASCII only; no em dashes. Owed rows W01.. never renumbered; statuses live in
+  the table, not in data. Vendor facts stay "to be verified: <item>"; every new number stays a placeholder.
+- Subagents: Opus is the floor, never Sonnet (spiff, 10 Sep 2026). Page density: a board page reads as a calm list
+  first, editing behind a click. Setup guidance for spiff: one small step at a time.

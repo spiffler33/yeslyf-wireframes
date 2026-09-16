@@ -396,8 +396,8 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   is filled (the curl lines are in the handoff).
 - Changed outside the script tags, on purpose: docs/setup.html (the Apps Script instructions replaced by the
   Supabase steps), the three audience files (the Sheet endpoint field removed from the header) and the one sentence
-  on the Changelog tab that described that field. Not changed: the Integrations lead still says "reach the sheet
-  when the endpoint is set" (kept byte-identical; a one-line fix once Vatsal says so).
+  on the Changelog tab that described that field, and (6e72ef3, Vatsal, 16 Sep 2026) the Integrations lead, now
+  "Every edit is recorded as it happens and shows on every device".
 - Known limitations: the outbox is sent on the next load only (no retry while the tab stays open); the latest value
   per field follows insertion order (id), not the client clock; a row the server rejects (a wrong key, a missing
   policy) stays queued and the pill stays offline until a later load succeeds; the Meeting page's frozen controls
@@ -407,4 +407,6 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   against the real table (insert, select, update and delete refused with 42501, bad kind refused, pull_board.py) and
   on the review link (a verdict and a comment on A02 seen from a second browser after a reload). Test rows stay in the
   table: page setup item TEST, and A02 Keep by Kajal.
-- Next: the second review round on the review link with the pill live.
+- Phase 11 closed 16 Sep 2026 (commits 0dd4af0 to 6e72ef3, pushed). Next: the second review round on the review
+  link with the pill live; reviewers' rows reach the table as they type; scripts/pull_board.py copies them into
+  data/board_entries.json when the next edit group is built.
