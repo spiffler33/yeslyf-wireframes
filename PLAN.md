@@ -321,7 +321,7 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   comments. The audience files stay as built and are not the review channel.
 - 16 Sep 2026 (cause Kajal, 16 Sep 2026; plan_v2.md section 10): E10 SIP mandate registration and E11 Set up monthly
   SIPs added to section E; E01, E02 and E03 wired to them (data/v02/sip_mandate_edits.json, flow.json). Counts: 193
-  live screens, 21 templates; added 112, to be verified 26. Checks 1 to 17 pass.
+  live screens, 21 templates; added 112, to be verified 26. Checks 1 to 17 pass. Pushed; confirmed on the review link (spiff, 16 Sep 2026).
 - Next: the second review round on the review link (reviewers press Export comments; the markdown goes to
   spiff), then parse the comments into data with causes, rerun the scripts, commit per phase; then the CRM
   planning session off the CRM backlog.
