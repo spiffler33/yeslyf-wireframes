@@ -1,0 +1,131 @@
+{
+ "source": "Vatsal, 16 Sep 2026: the execution rail is smallcase Gateway (broker execution for stocks, ETFs and REITs), not the smallcase platform (where a research analyst publishes a portfolio for investors to subscribe to); direct mutual funds go through BSE StAR MF. Every bare 'smallcase' on a v0.2 screen now reads 'smallcase Gateway'.",
+ "groups": [
+  {
+   "id": "smallcase-gateway",
+   "kind": "override",
+   "cause": "Vatsal, 16 Sep 2026",
+   "stage": "after_generation",
+   "edits": [
+    {
+     "op": "set",
+     "screen": "E04",
+     "key": "title",
+     "value": "ETFs and stocks via smallcase Gateway"
+    },
+    {
+     "op": "spec_add",
+     "screen": "E04",
+     "key": "logic",
+     "value": "Execution rails (Vatsal, 16 Sep 2026): stocks, ETFs and REITs execute through smallcase Gateway, the broker execution rail; direct mutual funds through BSE StAR MF (E02, E03). The smallcase platform, where a research analyst publishes a portfolio for investors to subscribe to, is not used. The external API integration sits with these two rails."
+    },
+    {
+     "op": "ui_replace",
+     "screen": "G13",
+     "match": [
+      "card",
+      "Long term: gold"
+     ],
+     "value": [
+      "card",
+      "Long term: gold",
+      [
+       "Gold ETF via smallcase Gateway: SIP Rs 3,000"
+      ]
+     ]
+    },
+    {
+     "op": "ui_replace",
+     "screen": "E11",
+     "match": [
+      "note",
+      "Gold ETF SIP Rs 3,000 runs through your broker on smallcase, not this mandate"
+     ],
+     "value": [
+      "note",
+      "Gold ETF SIP Rs 3,000 runs through your broker on smallcase Gateway, not this mandate"
+     ]
+    },
+    {
+     "op": "ui_replace",
+     "screen": "E11",
+     "match": [
+      "link",
+      "Set up the gold ETF SIP via smallcase"
+     ],
+     "value": [
+      "link",
+      "Set up the gold ETF SIP via smallcase Gateway",
+      "E04"
+     ]
+    },
+    {
+     "op": "table_replace",
+     "screen": "L04",
+     "index": 1,
+     "value": [
+      "table",
+      [
+       "Instrument",
+       "Fetched facts",
+       "Cells",
+       "Weight",
+       "Status"
+      ],
+      [
+       [
+        "Nifty 50 Index Fund, Direct",
+        "Equity, large cap, NAV, min SIP 500, no exit load",
+        "Long: Moderate, Aggressive",
+        "50%",
+        "Published"
+       ],
+       [
+        "Parag Parikh Flexi Cap, Direct",
+        "Equity, flexi cap, exit load 1 year",
+        "Long: Moderate, Aggressive",
+        "30%",
+        "Published"
+       ],
+       [
+        "Gold ETF",
+        "Commodity, ETF via smallcase Gateway",
+        "Long: all",
+        "100% of commodities",
+        "Staged"
+       ],
+       [
+        "Short Duration Fund, Direct",
+        "Debt, short duration",
+        "Medium: all",
+        "60%",
+        "Published"
+       ],
+       [
+        "Nippon India Liquid Fund, Direct",
+        "Cash, liquid",
+        "Short: all",
+        "100%",
+        "Published"
+       ],
+       [
+        "Unknown ISINs seen in user holdings (queue)",
+        "3 to classify",
+        "Assign or mark exit",
+        "",
+        ""
+       ]
+      ]
+     ]
+    },
+    {
+     "op": "spec_replace",
+     "screen": "L04",
+     "key": "logic",
+     "match": "Stocks and ETFs: exchange master; execution via smallcase.",
+     "value": "Stocks and ETFs: exchange master; execution via smallcase Gateway."
+    }
+   ]
+  }
+ ]
+}

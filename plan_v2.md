@@ -555,7 +555,7 @@ Community (kept; menu); H09 Settings and account (changed; S25 line; DPDP slot);
 Portfolio (accepted).
 
 Section E: E01 Execution hub (changed; brief H4); E02 One-time setup (kept); E03 Mutual fund order (kept); E04 ETF and
-stock via smallcase (kept); E05 Guided protect action (kept; no aggregator links); E06 Self-report and detection
+stock via smallcase Gateway (kept); E05 Guided protect action (kept; no aggregator links); E06 Self-report and detection
 (kept); E07 BSE StAR MF onboarding (new; brief G1 default); E08 BSE StAR MF transactions (new); E09 BSE StAR MF
 reporting (new); E10 SIP mandate registration (new; Kajal, 16 Sep 2026); E11 Set up monthly SIPs (new; Kajal, 16 Sep
 2026). Compliance: execution disclosures on E03, E04, E07, E08, E10, E11.

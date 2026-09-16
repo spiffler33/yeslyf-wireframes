@@ -12396,7 +12396,7 @@
      "card",
      "Long term: gold",
      [
-      "Gold ETF via smallcase: SIP Rs 3,000"
+      "Gold ETF via smallcase Gateway: SIP Rs 3,000"
      ]
     ],
     [
@@ -12511,7 +12511,8 @@
     "status": "changed",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 16 Sep 2026"
     ]
    }
   },
@@ -13806,11 +13807,11 @@
     ],
     [
      "note",
-     "Gold ETF SIP Rs 3,000 runs through your broker on smallcase, not this mandate"
+     "Gold ETF SIP Rs 3,000 runs through your broker on smallcase Gateway, not this mandate"
     ],
     [
      "link",
-     "Set up the gold ETF SIP via smallcase",
+     "Set up the gold ETF SIP via smallcase Gateway",
      "E04"
     ],
     [
@@ -13892,7 +13893,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Kajal, 16 Sep 2026"
+     "Kajal, 16 Sep 2026",
+     "Vatsal, 16 Sep 2026"
     ]
    }
   },
@@ -14079,7 +14081,7 @@
   {
    "id": "E04",
    "sec": "E",
-   "title": "ETFs and stocks via smallcase",
+   "title": "ETFs and stocks via smallcase Gateway",
    "tier": [
     "DIY",
     "DIWM"
@@ -14115,7 +14117,8 @@
      "gateway_txn"
     ],
     "logic": [
-     "No new demat needed; the user's existing broker executes."
+     "No new demat needed; the user's existing broker executes.",
+     "Execution rails (Vatsal, 16 Sep 2026): stocks, ETFs and REITs execute through smallcase Gateway, the broker execution rail; direct mutual funds through BSE StAR MF (E02, E03). The smallcase platform, where a research analyst publishes a portfolio for investors to subscribe to, is not used. The external API integration sits with these two rails."
     ],
     "branches": [
      [
@@ -14146,8 +14149,10 @@
     "E04_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 16 Sep 2026"
+    ]
    }
   },
   {
@@ -23017,7 +23022,7 @@
       ],
       [
        "Gold ETF",
-       "Commodity, ETF via smallcase",
+       "Commodity, ETF via smallcase Gateway",
        "Long: all",
        "100% of commodities",
        "Staged"
@@ -23063,7 +23068,7 @@
     "logic": [
      "Weights within a cell's asset class sum to 100.",
      "Unknown ISINs from user holdings queue here for classification; until classified users see hold for now (G12).",
-     "Stocks and ETFs: exchange master; execution via smallcase.",
+     "Stocks and ETFs: exchange master; execution via smallcase Gateway.",
      "Weights and categories must satisfy the constraints in L09 (brief H2).",
      "ISIN weights are a subset of the category weights in L03 (row 51, accepted)."
     ],
@@ -23100,7 +23105,8 @@
     "status": "changed",
     "causes": [
      "brief H2",
-     "row 51"
+     "row 51",
+     "Vatsal, 16 Sep 2026"
     ]
    }
   },

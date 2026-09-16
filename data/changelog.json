@@ -331,7 +331,8 @@
    "status": "changed",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 16 Sep 2026"
    ]
   },
   {
@@ -404,6 +405,14 @@
    "causes": [
     "brief G1 (default, not confirmed in the meeting)",
     "Kajal, 16 Sep 2026"
+   ]
+  },
+  {
+   "id": "E04",
+   "title": "ETFs and stocks via smallcase Gateway",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 16 Sep 2026"
    ]
   },
   {
@@ -567,7 +576,8 @@
    "status": "changed",
    "causes": [
     "brief H2",
-    "row 51"
+    "row 51",
+    "Vatsal, 16 Sep 2026"
    ]
   },
   {
@@ -1129,7 +1139,8 @@
    "title": "Set up monthly SIPs",
    "template": "T-list",
    "causes": [
-    "Kajal, 16 Sep 2026"
+    "Kajal, 16 Sep 2026",
+    "Vatsal, 16 Sep 2026"
    ]
   },
   {
@@ -2068,8 +2079,8 @@
   },
   "by_status": {
    "rebuilt": 15,
-   "kept": 18,
-   "changed": 48,
+   "kept": 17,
+   "changed": 49,
    "new": 112,
    "dropped": 3,
    "split": 3

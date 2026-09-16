@@ -61,10 +61,10 @@
     },
     {
       "id": "I03",
-      "category": "ETFs and stocks execution",
+      "category": "Stocks, ETFs and REITs execution",
       "vendor": "smallcase Gateway",
       "alternatives": "",
-      "role": "ETF and stock orders through the client's broker",
+      "role": "Stock, ETF and REIT orders through the client's own broker. smallcase Gateway is the broker execution rail; the smallcase platform, where a research analyst publishes a portfolio for investors to subscribe to, is not used.",
       "screens": [
         "E04"
       ],
@@ -77,9 +77,9 @@
       "production_date": "",
       "docs_url": "",
       "cost": "to be verified",
-      "notes": "Viability not confirmed (brief G1, 9 Sep 2026).",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
-      "to_be_verified": ""
+      "notes": "Rails confirmed (Vatsal, 16 Sep 2026): smallcase Gateway for stocks, ETFs and REITs; BSE StAR MF for direct mutual funds; the external API integration sits with these two. Gateway partnership terms and cost: to be verified.",
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Vatsal, 16 Sep 2026 (supersedes brief G1)",
+      "to_be_verified": "to be verified: screens"
     },
     {
       "id": "I04",
