@@ -1,0 +1,73 @@
+{
+  "source": "Vatsal, 16 Sep 2026 (phase 10b-2): the core-action events that no single screen carries, the standard properties every event carries, and the per-event properties of plan_v2.md appendix D",
+  "note": "standard_properties: on every event in docs/events.html. named_properties: what a named event of the screens data adds (plan_v2.md appendix D), keyed by the exact event name or, for the number-screen set, by the part after the screen's own '<id>_' prefix (set, skip, ...). events: one entry per core-action event with name, fires (when it fires), properties (what it adds beyond the standard ones; empty means standard only), section (the section letter it belongs to, empty when it is app-wide) and cause. scripts/build_events.py renders all of it.",
+  "standard_properties": ["user_id", "screen_id", "tier", "state", "sku", "source_choice", "timestamp"],
+  "named_properties_source": "plan_v2.md appendix D",
+  "named_properties": {
+    "set": "source, precision",
+    "source_choice": "source_choice = aa | cas | manual | later",
+    "plan_built": "assumed_count, unknown_count",
+    "sharpen_opened": "field",
+    "call_booked": "topic, tier",
+    "nudge_sent": "slot, channel",
+    "crm_task_created": "state"
+  },
+  "events": [
+    {
+      "name": "action_started",
+      "fires": "The client starts an action from the plan on the execution screens (section E).",
+      "properties": "",
+      "section": "E",
+      "cause": "Vatsal, 16 Sep 2026"
+    },
+    {
+      "name": "action_done",
+      "fires": "An action from the plan is complete. verification says how it was confirmed: aa_verified (seen in the AA fetch) or self_reported (the client marked it done).",
+      "properties": "verification = aa_verified | self_reported",
+      "section": "E",
+      "cause": "Vatsal, 16 Sep 2026"
+    },
+    {
+      "name": "review_opened",
+      "fires": "The client opens a review (section Q).",
+      "properties": "",
+      "section": "Q",
+      "cause": "Vatsal, 16 Sep 2026"
+    },
+    {
+      "name": "review_accepted",
+      "fires": "The client accepts what the review proposes (section Q).",
+      "properties": "",
+      "section": "Q",
+      "cause": "Vatsal, 16 Sep 2026"
+    },
+    {
+      "name": "life_event_reported",
+      "fires": "The client reports a life event on Q06 (also named on Q06 above).",
+      "properties": "",
+      "section": "Q",
+      "cause": "Vatsal, 16 Sep 2026"
+    },
+    {
+      "name": "nudge_sent",
+      "fires": "A nudge on a state's ladder goes out (also named on the N screens above).",
+      "properties": "slot, channel",
+      "section": "N",
+      "cause": "Vatsal, 16 Sep 2026"
+    },
+    {
+      "name": "nudge_opened",
+      "fires": "The client opens a nudge (also named on the N screens above).",
+      "properties": "",
+      "section": "N",
+      "cause": "Vatsal, 16 Sep 2026"
+    },
+    {
+      "name": "open_organic",
+      "fires": "An app open with no nudge_opened in the prior 24 hours.",
+      "properties": "",
+      "section": "",
+      "cause": "Vatsal, 16 Sep 2026"
+    }
+  ]
+}

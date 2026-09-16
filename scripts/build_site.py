@@ -8,8 +8,10 @@ nudge matrix from data/v02/states.json), changelog.html (data/changelog.json), s
 self-contained audience files under docs/audiences/ (scripts/build_audiences.py; phase 9d), and the review link
 under docs/review/ (index.html is Wireframes v0.2, admin_v02.html is Admin and CRM v0.2; the same pages with only
 their two tabs and no setup link; one link for the team, Spinach and Compliance; Vatsal, 11 Sep 2026), and the
-integrations page (integrations.html plus its review copy review/integrations.html, from data/integrations.json by
-scripts/build_integrations.py, called at the end of main; phase 10b, 16 Sep 2026).
+integrations page (integrations.html plus its review copy review/integrations.html, from data/integrations.json and
+data/dependencies.json by scripts/build_integrations.py, called at the end of main; phase 10b, 16 Sep 2026), and the
+event schema (events.html plus review/events.html, from the screens data and data/events_extra.json by
+scripts/build_events.py, called after it; phase 10b-2, 16 Sep 2026).
 The two v0.1 files are copied byte-identical into docs/v01/ and served as-is.
 Style reuses the v0.1 tokens. Choices save in localStorage (try/catch), post to the sheet endpoint
 when one is configured, and export as a markdown build brief. Every page carries noindex.
@@ -183,9 +185,11 @@ CSS = """
 TABS = [("index.html", "Meeting"), ("gaps.html", "Gaps"), ("inputs.html", "Inputs"),
         ("wireframes.html", "Wireframes v0.1"), ("admin.html", "Admin and CRM v0.1"),
         ("wireframes_v02.html", "Wireframes v0.2"), ("admin_v02.html", "Admin and CRM v0.2"),
-        ("changelog.html", "Changelog"), ("integrations.html", "Integrations"), ("setup.html", "Setup")]
-# The review link (docs/review/): the v0.2 pages with only their tabs (Vatsal, 11 Sep 2026); Integrations added 16 Sep 2026.
-REVIEW_TABS = [("index.html", "Wireframes v0.2"), ("admin_v02.html", "Admin and CRM v0.2"), ("integrations.html", "Integrations")]
+        ("changelog.html", "Changelog"), ("integrations.html", "Integrations"), ("events.html", "Events"), ("setup.html", "Setup")]
+# The review link (docs/review/): the v0.2 pages with only their tabs (Vatsal, 11 Sep 2026); Integrations added 16 Sep 2026;
+# Events added 16 Sep 2026 (phase 10b-2).
+REVIEW_TABS = [("index.html", "Wireframes v0.2"), ("admin_v02.html", "Admin and CRM v0.2"), ("integrations.html", "Integrations"),
+               ("events.html", "Events")]
 
 
 def head(title, css=None):
@@ -946,6 +950,8 @@ def main():
         print("note: data/v02/states.json absent; the state filter and the nudge matrix show the placeholder line")
     import build_integrations  # docs/integrations.html and docs/review/integrations.html from data/integrations.json (phase 10b)
     build_integrations.main()
+    import build_events  # docs/events.html and docs/review/events.html from the screens data and data/events_extra.json (phase 10b-2)
+    build_events.main()
 
 
 if __name__ == "__main__":

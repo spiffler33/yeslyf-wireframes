@@ -16,6 +16,13 @@ as a whole-word phrase, case-insensitive, over every string the screen carries. 
 is not in the row's list, or a listed screen ID that is not live in v0.2, marks the row "to be verified: screens".
 Rows whose vendor is internal or not decided, and rows whose screens are ["all"], skip the vendor search.
 
+Below the integrations table, "Owed to Spinach" (data/dependencies.json; phase 10b-2, Vatsal, 16 Sep 2026): one row per
+item the team owes the studio, in the order of the team message of 16 Sep 2026: item, owner, due date, status (not
+started | in progress | delivered), where it lands, notes, cause. Owner, due date, status, notes and the per-row
+comment are editable and save like the integrations rows: the same localStorage key and the same sheet tab
+v02_integrations; every posted row carries a type field ("integration" or "owed"; the vendor column holds the item
+for an owed row). The export brief carries both tables.
+
 Called at the end of scripts/build_site.py (whose TABS and REVIEW_TABS carry the Integrations tab); also runs on
 its own. Writes docs/integrations.html and its review copy docs/review/integrations.html (the three review tabs, no
 setup link, screen links into the review copy of Wireframes v0.2; Vatsal, 16 Sep 2026).
@@ -39,6 +46,9 @@ GATES = ["launch", "execution switch", "later"]
 FIELDS = ["id", "category", "vendor", "alternatives", "role", "screens", "gates", "fallback", "owner", "status",
           "agreement_date", "sandbox_date", "production_date", "docs_url", "cost", "notes", "cause"]
 MARK = "to be verified: screens"
+DEPS_FILE = os.path.join(DATA, "dependencies.json")
+OWED_STATUSES = ["not started", "in progress", "delivered"]
+OWED_FIELDS = ["id", "item", "owner", "due_date", "status", "lands_at", "notes", "cause"]
 
 esc = site.esc
 
@@ -136,6 +146,30 @@ def validate(rows):
     return problems
 
 
+def validate_owed(rows):
+    problems = []
+    seen = set()
+    for i, row in enumerate(rows):
+        rid = row.get("id", "")
+        for f in OWED_FIELDS:
+            if f not in row:
+                problems.append("%s: missing field %s" % (rid or ("row %d" % i), f))
+        if not (len(rid) == 3 and rid[0] == "W" and rid[1:].isdigit()):
+            problems.append("row %d: id %r is not W plus two digits" % (i, rid))
+        if rid in seen:
+            problems.append("%s: duplicate id" % rid)
+        seen.add(rid)
+        if row.get("status") not in OWED_STATUSES:
+            problems.append("%s: status %r is not one of %s" % (rid, row.get("status"), ", ".join(OWED_STATUSES)))
+        for f in ("item", "owner", "lands_at", "cause"):
+            if not str(row.get(f, "")).strip():
+                problems.append("%s: %s is empty" % (rid, f))
+        d = str(row.get("due_date", ""))
+        if d and not (len(d) == 10 and d[4] == "-" and d[7] == "-" and d.replace("-", "").isdigit()):
+            problems.append("%s: due_date %r is not yyyy-mm-dd" % (rid, d))
+    return problems
+
+
 # ---- page ----------------------------------------------------------------------------------------------------------
 
 EXTRA_CSS = """
@@ -176,15 +210,22 @@ EXTRA_CSS = """
   .tag.st-sandbox{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
   .tag.st-production{background:var(--ink);color:#fff;border-color:var(--ink)}
   .tag.st-dropped{text-decoration:line-through}
-  @media (max-width:760px){ th.c-gates,td.c-gates,th.c-date,td.c-date{display:none} .panel{grid-template-columns:1fr} tr.r2 td{padding-left:8px} }
+  .owed h2{margin:0 0 2px} .owed .lead{margin-bottom:6px}
+  th.c-due{width:110px} th.c-land{width:26%}
+  td.it b{font-size:13px}
+  td.c-land{font-size:12px;color:var(--mute)}
+  td.empty-row{color:var(--mute)}
+  .tag.st-in-progress{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .tag.st-delivered{background:var(--ink);color:#fff;border-color:var(--ink)}
+  @media (max-width:760px){ th.c-gates,td.c-gates,th.c-date,td.c-date,th.c-land,td.c-land{display:none} .panel{grid-template-columns:1fr} tr.r2 td{padding-left:8px} }
 """
 
 JS = r"""
 (function(){
   var KEY="yeslyf_integrations_v1", BOARD_KEY="yeslyf_board_v1";
-  var COLS=["ts","who","id","vendor","field","value"];
+  var COLS=["ts","who","id","vendor","field","value","type"];
   var RANK={}; STATUSES.forEach(function(s,i){ RANK[s]=i; });
-  var byId={}; ROWS.forEach(function(r){ byId[r.id]=r; });
+  var byId={}; ROWS.concat(OWED).forEach(function(r){ byId[r.id]=r; });
   var S={};
   try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
   if(!S.rows) S.rows={}; if(!S.who) S.who="";
@@ -200,16 +241,18 @@ JS = r"""
   function edits(id){ if(!S.rows[id]) S.rows[id]={}; return S.rows[id]; }
   function val(id,f){ var e=S.rows[id]||{}; if(e[f]!==undefined) return e[f]; var r=byId[id]; return (r&&r[f]!==undefined)?r[f]:""; }
   function post(id,field,value){ var ep=endpoint(); if(!ep) return false;
-    var row={kind:"v02_integrations",tab:"v02_integrations",cols:COLS,ts:new Date().toISOString(),who:S.who||"",id:id,vendor:byId[id].vendor,field:field,value:String(value===undefined||value===null?"":value)};
+    var r=byId[id]||{}; var row={kind:"v02_integrations",tab:"v02_integrations",cols:COLS,ts:new Date().toISOString(),who:S.who||"",id:id,vendor:r.type==="owed"?r.item:r.vendor,field:field,value:String(value===undefined||value===null?"":value),type:r.type||"integration"};
     try{ fetch(ep,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(row)}); }catch(e){} return true; }
   function ownersOf(text){ var out=[]; String(text||"").split(",").forEach(function(p){ p=p.trim(); if(p&&out.indexOf(p)<0) out.push(p); }); return out; }
   function longPole(){ return ROWS.filter(function(r){ var st=val(r.id,"status"); return r.gates==="launch" && st!=="dropped" && (RANK[st]||0) < RANK["sandbox"]; }); }
   function filterStatus(){ var f=document.getElementById("filters"); return f?f.querySelector("[name=status]").value:"All"; }
-  function paintCounts(){ var counts={}; STATUSES.forEach(function(s){ counts[s]=0; }); ROWS.forEach(function(r){ var st=val(r.id,"status"); counts[st]=(counts[st]||0)+1; });
+  function countBy(list,statuses){ var c={}; statuses.forEach(function(s){ c[s]=0; }); list.forEach(function(r){ var st=val(r.id,"status"); c[st]=(c[st]||0)+1; }); return c; }
+  function paintCounts(){ var counts=countBy(ROWS,STATUSES);
     var cur=filterStatus(); var c=document.getElementById("counts");
     if(c) c.innerHTML='<span class="k">'+ROWS.length+' integrations</span>'+STATUSES.map(function(s){ return '<button class="chip'+(cur===s?' on':'')+'" data-status="'+esc(s)+'"><b>'+counts[s]+'</b> '+esc(s)+'</button>'; }).join("");
     var lp=longPole(); var p=document.getElementById("pole");
-    if(p) p.innerHTML='<span class="k"><b>Long pole</b> '+lp.length+' of '+ROWS.length+', gates launch and below sandbox</span>'+(lp.length?lp.map(function(r){ return '<a class="chip" href="#row/'+esc(r.id)+'">'+esc(r.id)+' '+esc(r.vendor)+'</a>'; }).join(""):'<span class="k">none</span>'); }
+    if(p) p.innerHTML='<span class="k"><b>Long pole</b> '+lp.length+' of '+ROWS.length+', gates launch and below sandbox</span>'+(lp.length?lp.map(function(r){ return '<a class="chip" href="#row/'+esc(r.id)+'">'+esc(r.id)+' '+esc(r.vendor)+'</a>'; }).join(""):'<span class="k">none</span>');
+    var oc=document.getElementById("owedcounts"); if(oc){ var ocounts=countBy(OWED,OWED_STATUSES); oc.innerHTML='<span class="k">'+OWED.length+' items</span>'+OWED_STATUSES.map(function(s){ return '<span class="chip"><b>'+ocounts[s]+'</b> '+esc(s)+'</span>'; }).join(""); } }
   function paintRow(id){ var tb=document.getElementById("row-"+id); if(!tb) return;
     var f=tb.querySelectorAll("[data-f]"); for(var i=0;i<f.length;i++){ var k=f[i].getAttribute("data-f"); var v=val(id,k); if(f[i].value!==v) f[i].value=v; }
     var sh=tb.querySelectorAll("[data-show]"); for(var j=0;j<sh.length;j++){ var key=sh[j].getAttribute("data-show"); var t=String(val(id,key)||""); sh[j].textContent=t||"-";
@@ -223,7 +266,7 @@ JS = r"""
       var ok=(g==="All"||r.gates===g)&&(o==="All"||("|"+tb.getAttribute("data-owners")+"|").indexOf("|"+o+"|")>=0)&&(s==="All"||val(r.id,"status")===s);
       tb.classList.toggle("hidden",!ok); if(ok) shown++; });
     var c=document.getElementById("count"); if(c) c.textContent=shown+" of "+ROWS.length; paintCounts(); }
-  function paintAll(){ ROWS.forEach(function(r){ paintRow(r.id); }); var rv=document.getElementById("reviewer"); if(rv&&rv.value!==(S.who||"")) rv.value=S.who||""; pill(); applyFilters(); }
+  function paintAll(){ ROWS.concat(OWED).forEach(function(r){ paintRow(r.id); }); var rv=document.getElementById("reviewer"); if(rv&&rv.value!==(S.who||"")) rv.value=S.who||""; pill(); applyFilters(); }
   var sort={key:"id",dir:1};
   function keyOf(r,k){ if(k==="vendor") return String(r.vendor).toLowerCase(); if(k==="gates") return String(GATES.indexOf(r.gates));
     if(k==="status"){ var n=RANK[val(r.id,"status")]; return String(n===undefined?9:n); } if(k==="owner") return String(val(r.id,"owner")).toLowerCase();
@@ -233,10 +276,10 @@ JS = r"""
     list.forEach(function(r){ var tb=document.getElementById("row-"+r.id); if(tb) tbl.appendChild(tb); });
     var ths=tbl.querySelectorAll("th[data-sort]"); for(var i=0;i<ths.length;i++){ var d=ths[i].querySelector(".dir"); if(d) d.textContent=ths[i].getAttribute("data-sort")===sort.key?(sort.dir>0?" \u25B2":" \u25BC"):""; } }
   function openRow(id,on){ var tb=document.getElementById("row-"+id); if(tb) tb.classList.toggle("open",on); }
-  function openAll(on){ ROWS.forEach(function(r){ var tb=document.getElementById("row-"+r.id); if(tb&&!tb.classList.contains("hidden")) tb.classList.toggle("open",on); }); }
+  function openAll(on){ ROWS.concat(OWED).forEach(function(r){ var tb=document.getElementById("row-"+r.id); if(tb&&!tb.classList.contains("hidden")) tb.classList.toggle("open",on); }); }
   function cellmd(v){ return String(v===undefined||v===null?"":v).split("\n").join(" ").split("|").join("\\|"); }
-  function md(){ var lp=longPole(); var counts={}; STATUSES.forEach(function(s){ counts[s]=0; }); ROWS.forEach(function(r){ var st=val(r.id,"status"); counts[st]=(counts[st]||0)+1; });
-    var L=["# yeslyf integrations v0.2 - brief for Spinach","Exported "+new Date().toLocaleString()+(S.who?" by "+S.who:""),"Sheet endpoint: "+(endpoint()?"configured":"not configured; this file is the record"),
+  function md(){ var lp=longPole(); var counts=countBy(ROWS,STATUSES), ocounts=countBy(OWED,OWED_STATUSES);
+    var L=["# yeslyf integrations v0.2 - brief for Spinach","Exported "+new Date().toLocaleString()+(S.who?" by "+S.who:""),"Sheet endpoint: "+(endpoint()?"configured":"not configured; this file is the record"),"","## Integrations",
       "Rows: "+ROWS.length+"; by status: "+STATUSES.map(function(s){ return s+" "+counts[s]; }).join(", "),
       "Long pole (gates launch and below sandbox): "+(lp.length?lp.map(function(r){ return r.id+" "+r.vendor; }).join(", "):"none"),""];
     var cols=["ID","Category","Vendor","Alternatives","Role","Screens","Gates","Fallback","Owner","Status","Agreement","Sandbox","Production","Docs","Cost","Notes","Cause","Comment"];
@@ -245,6 +288,10 @@ JS = r"""
       var cells=[r.id,r.category,r.vendor,r.alternatives||"-",r.role,scr+(r.to_be_verified?" ("+r.to_be_verified+")":""),r.gates||"-",r.fallback||"-",val(r.id,"owner"),val(r.id,"status"),
         val(r.id,"agreement_date")||"-",val(r.id,"sandbox_date")||"-",val(r.id,"production_date")||"-",val(r.id,"docs_url")||"-",val(r.id,"cost")||"-",val(r.id,"notes")||"-",r.cause,cm||"-"];
       L.push("| "+cells.map(cellmd).join(" | ")+" |"); });
+    L.push(""); L.push("## Owed to Spinach"); L.push("Rows: "+OWED.length+"; by status: "+OWED_STATUSES.map(function(s){ return s+" "+ocounts[s]; }).join(", ")); L.push("");
+    var ocols=["ID","Item","Owner","Due","Status","Lands at","Notes","Cause","Comment"]; L.push("| "+ocols.join(" | ")+" |"); L.push("|"+ocols.map(function(){ return " --- |"; }).join(""));
+    OWED.forEach(function(r){ var e=S.rows[r.id]||{}; var cm=val(r.id,"comment"); if(cm&&e.comment_who) cm+=" ("+e.comment_who+")";
+      L.push("| "+[r.id,r.item,val(r.id,"owner"),val(r.id,"due_date")||"-",val(r.id,"status"),r.lands_at,val(r.id,"notes")||"-",r.cause,cm||"-"].map(cellmd).join(" | ")+" |"); });
     return L.join("\n"); }
   function exportBrief(){ var text=md(); try{ navigator.clipboard&&navigator.clipboard.writeText(text); }catch(e){}
     try{ var b=new Blob([text],{type:"text/markdown"}); var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="yeslyf_integrations_v02.md"; document.body.appendChild(a); a.click(); document.body.removeChild(a); }catch(e){}
@@ -263,10 +310,11 @@ JS = r"""
     var oa=document.getElementById("openall"); if(oa) oa.addEventListener("click",function(){ openAll(true); });
     var ca=document.getElementById("closeall"); if(ca) ca.addEventListener("click",function(){ openAll(false); });
     var cn=document.getElementById("counts"); if(cn) cn.addEventListener("click",function(e){ var b=e.target.closest?e.target.closest("button[data-status]"):null; if(!b||!f) return; var sel=f.querySelector("[name=status]"); sel.value=(sel.value===b.getAttribute("data-status"))?"All":b.getAttribute("data-status"); applyFilters(); });
-    var tbl=document.getElementById("tbl"); if(tbl) tbl.addEventListener("click",function(e){ var t=e.target; if(!t.closest) return;
+    function rowClick(e){ var t=e.target; if(!t.closest) return;
       var th=t.closest("th[data-sort]"); if(th){ sortBy(th.getAttribute("data-sort")); return; }
       if(t.closest("a,input,select,textarea,button,label")) return;
-      var r1=t.closest("tr.r1"); if(r1){ var tb=r1.parentNode; tb.classList.toggle("open"); } });
+      var r1=t.closest("tr.r1"); if(r1){ var tb=r1.parentNode; tb.classList.toggle("open"); } }
+    var tbl=document.getElementById("tbl"); if(tbl) tbl.addEventListener("click",rowClick); var ot=document.getElementById("owed"); if(ot) ot.addEventListener("click",rowClick);
     document.body.addEventListener("input",function(e){ var t=e.target; var id=t.getAttribute("data-id"), k=t.getAttribute("data-f"); if(!id||!k) return; if(t.tagName==="SELECT"||t.type==="date") return;
       var ed=edits(id); ed[k]=t.value; if(k==="comment") ed.comment_who=S.who||""; save(); paintRow(id); if(k==="owner") applyFilters(); flash("Saving...");
       clearTimeout(tmr[id+k]); tmr[id+k]=setTimeout(function(){ post(id,k,val(id,k)); flash(); },1500); });
@@ -274,17 +322,17 @@ JS = r"""
       var ed=edits(id); ed[k]=t.value; save(); paintRow(id); applyFilters(); post(id,k,t.value); flash(); });
   });
   // test hook for the checks (and for the console)
-  window.yeslyfIntegrations={ exportText: md, longPole: function(){ return longPole().map(function(r){ return r.id; }); }, sortBy: sortBy, value: val, open: openRow, rows: function(){ return ROWS.length; } };
+  window.yeslyfIntegrations={ exportText: md, longPole: function(){ return longPole().map(function(r){ return r.id; }); }, sortBy: sortBy, value: val, open: openRow, rows: function(){ return ROWS.length; }, owed: function(){ return OWED.length; } };
 })();
 """
 
 
-def control(row, field, kind):
+def control(row, field, kind, options=STATUSES):
     rid = esc(row["id"])
     v = esc(row.get(field, ""))
     if kind == "select":
         return '<select data-id="%s" data-f="%s">%s</select>' % (rid, field, "".join(
-            '<option value="%s"%s>%s</option>' % (esc(s), " selected" if s == row.get(field) else "", esc(s)) for s in STATUSES))
+            '<option value="%s"%s>%s</option>' % (esc(s), " selected" if s == row.get(field) else "", esc(s)) for s in options))
     if kind == "date":
         return '<input type="date" data-id="%s" data-f="%s" value="%s">' % (rid, field, v)
     if kind == "textarea":
@@ -333,7 +381,30 @@ def render_row(row, check, live_ids):
     return '<tbody id="row-%s" data-id="%s">%s%s</tbody>' % (rid, rid, line, panel)
 
 
-def build_page(rows, checks, live_ids, review=False):
+def render_owed_row(row):
+    rid = esc(row["id"])
+    line = ('<tr class="r1"><td class="n">%s</td><td class="it"><b>%s</b></td><td><span data-show="owner"></span></td>'
+            '<td class="c-due"><span class="dt" data-show="due_date"></span></td><td><span class="tag" data-show="status"></span></td>'
+            '<td class="c-land">%s</td><td class="tg" title="open"></td></tr>' % (rid, esc(row["item"]), esc(row["lands_at"])))
+    facts = [fact("Lands at", esc(row["lands_at"])), fact("Cause", '<span class="cause">%s</span>' % esc(row["cause"]))]
+    form = ('<label>Owner</label>%s<label>Due</label>%s<label>Status</label>%s<label>Notes</label>%s<label>Comment</label>%s<span class="cw" data-cwho></span>' % (
+        control(row, "owner", "first names"), control(row, "due_date", "date"), control(row, "status", "select", OWED_STATUSES),
+        control(row, "notes", "textarea"), control(row, "comment", "textarea")))
+    panel = '<tr class="r2"><td colspan="7"><div class="panel"><div>%s</div><div class="form">%s</div></div></td></tr>' % ("".join(facts), form)
+    return '<tbody id="row-%s" data-id="%s">%s%s</tbody>' % (rid, rid, line, panel)
+
+
+def owed_section(owed):
+    thead = ('<thead><tr><th class="c-id">ID</th><th>Item</th><th>Owner</th><th class="c-due">Due</th><th>Status</th>'
+             '<th class="c-land">Lands at</th><th class="c-tg"></th></tr></thead>')
+    body = "\n".join(render_owed_row(r) for r in owed) if owed else '<tbody><tr><td colspan="7" class="empty-row">No rows yet.</td></tr></tbody>'
+    return ('<section class="owed"><h2>Owed to Spinach</h2>'
+            '<p class="meta lead">The items the team owes the studio, in the order of the team message of 16 Sep 2026. '
+            'Open a row to edit owner, due date, status and notes, or to comment; edits save like the integrations rows.</p>'
+            '<div class="counts" id="owedcounts"></div><div class="wrap"><table id="owed">' + thead + body + '</table></div></section>')
+
+
+def build_page(rows, checks, live_ids, owed, review=False):
     """review=True renders the docs/review/ copy: the review tabs only, no setup link, screen links into the review
     copy of Wireframes v0.2 (review/index.html)."""
     n = len(rows)
@@ -354,12 +425,13 @@ def build_page(rows, checks, live_ids, review=False):
     table = '<div class="wrap"><table id="tbl">' + thead + "\n".join(render_row(r, checks[r["id"]], live_ids) for r in rows) + '</table></div>'
     if review:
         table = table.replace('href="wireframes_v02.html#', 'href="index.html#')
-    blob = ('<script>var ROWS=' + site.js_blob(rows) + ';\nvar IDENTITIES=' + site.js_blob(IDENTITIES) + ';\nvar STATUSES=' + site.js_blob(STATUSES) +
+    blob = ('<script>var ROWS=' + site.js_blob([dict(r, type="integration") for r in rows]) + ';\nvar OWED=' + site.js_blob([dict(r, type="owed") for r in owed]) +
+            ';\nvar IDENTITIES=' + site.js_blob(IDENTITIES) + ';\nvar STATUSES=' + site.js_blob(STATUSES) + ';\nvar OWED_STATUSES=' + site.js_blob(OWED_STATUSES) +
             ';\nvar GATES=' + site.js_blob(GATES) + ';</script>\n')
     return (site.head("yeslyf integrations v0.2", site.CSS + EXTRA_CSS) + '<body>\n' +
-            site.header(PAGE, "integrations, %d rows" % n, who_html=who, export_label="Export brief",
+            site.header(PAGE, "integrations, %d rows; owed to Spinach, %d" % (n, len(owed)), who_html=who, export_label="Export brief",
                         tabs=site.REVIEW_TABS if review else None, setup_link=not review) +
-            '<main class="main" style="max-width:none">' + intro + '<section>' + toolbar + table + '</section></main>\n' +
+            '<main class="main" style="max-width:none">' + intro + '<section>' + toolbar + table + '</section>' + owed_section(owed) + '</main>\n' +
             blob + '<script>' + JS + '</script>\n</body>\n</html>\n')
 
 
@@ -369,7 +441,11 @@ def main():
     site.check_ascii("data/integrations.json", raw)
     data = json.loads(raw)
     rows = data["rows"]
-    problems = validate(rows)
+    with open(DEPS_FILE) as fh:
+        raw_deps = fh.read()
+    site.check_ascii("data/dependencies.json", raw_deps)
+    owed = json.loads(raw_deps)["rows"]
+    problems = validate(rows) + validate_owed(owed)
     if problems:
         for p in problems:
             print("ERROR: " + p)
@@ -397,7 +473,7 @@ def main():
             fh.write("\n")
         print("wrote data/integrations.json (to_be_verified marks updated)")
 
-    pages = {PAGE: build_page(rows, checks, live_ids), "review/" + PAGE: build_page(rows, checks, live_ids, review=True)}
+    pages = {PAGE: build_page(rows, checks, live_ids, owed), "review/" + PAGE: build_page(rows, checks, live_ids, owed, review=True)}
     errors = []
     for name, page in pages.items():
         site.check_ascii(name, page)
@@ -416,7 +492,7 @@ def main():
     for name, page in pages.items():
         with open(os.path.join(DOCS, name), "w") as fh:
             fh.write(page)
-        print("wrote docs/%s (%d bytes, %d rows)" % (name, len(page), len(rows)))
+        print("wrote docs/%s (%d bytes, %d rows, %d owed to Spinach)" % (name, len(page), len(rows), len(owed)))
 
 
 if __name__ == "__main__":
