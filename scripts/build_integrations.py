@@ -406,7 +406,7 @@ def build_page(rows, checks, live_ids, owed, review=False):
     who = '<div class="who">Editing as <select id="reviewer"></select></div>'
     intro = ('<section><h1>Integrations</h1>'
              '<p class="lead">One row per integration: what it does, the v0.2 screens that need it, what it gates, and the fallback if it slips. '
-             'Open a row to edit owner, status, dates, docs, cost and notes, or to comment. Edits save in this browser and reach the sheet when the endpoint is set.</p>'
+             'Open a row to edit owner, status, dates, docs, cost and notes, or to comment. Every edit is recorded as it happens and shows on every device.</p>'
              '<div class="counts" id="counts"></div><div class="pole" id="pole"></div></section>')
     toolbar = ('<div class="toolbar" id="filters"><label>Gates <select name="gates"><option>All</option>%s</select></label>'
                '<label>Owner <select name="owner"><option>All</option></select></label>'
