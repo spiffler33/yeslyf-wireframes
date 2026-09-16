@@ -83,7 +83,7 @@ def build_rows(v02, extra):
     named_props = extra["named_properties"]
     rows = []
     for s in live:
-        base = {"screen": s["id"], "title": s["title"], "sec": s["sec"], "section": sections.get(s["sec"], s["sec"]),
+        base = {"screen": s["id"], "sec": s["sec"], "section": sections.get(s["sec"], s["sec"]),
                 "tier": ", ".join(s["tier"]), "path": s["path"], "fires": "", "cause": ""}
         rows.append(dict(base, event="screen_view", kind=KINDS[0], props=""))
         for e in s["events"]:
@@ -92,7 +92,7 @@ def build_rows(v02, extra):
             rows.append(dict(base, event=e, kind=KINDS[1], props=props_for(e, s["id"], named_props)))
     for e in extra["events"]:
         sec = e["section"] or CORE
-        rows.append({"event": e["name"], "kind": KINDS[2], "screen": "", "title": "", "sec": sec,
+        rows.append({"event": e["name"], "kind": KINDS[2], "screen": "", "sec": sec,
                      "section": "app-wide" if sec == CORE else sections.get(sec, sec), "tier": "ALL", "path": "both",
                      "props": e["properties"], "fires": e["fires"], "cause": e["cause"]})
     counts = {"screens": len(live), "named": sum(len(s["events"]) - 1 for s in live), "core": len(extra["events"]),
@@ -133,7 +133,7 @@ JS = r"""
       "Rows: "+ROWS.length+" = "+COUNTS.screens+" screen views + "+COUNTS.named+" named events + "+COUNTS.core+" core actions; "+COUNTS.unique+" unique named events",
       "Standard properties on every event: "+STANDARD.join(", "),"Properties lists what an event adds beyond the standard ones (plan_v2.md appendix D for named events).",""];
     var cols=["Event","Kind","Screen","Section","Tier","Path","Properties","Fires when"]; L.push("| "+cols.join(" | ")+" |"); L.push("|"+cols.map(function(){ return " --- |"; }).join(""));
-    ROWS.forEach(function(r){ L.push("| "+[r.event,r.kind,r.screen||"-",sectionOf(r),r.tier,r.path,r.props||"standard only",r.fires||"-"].map(cellmd).join(" | ")+" |"); });
+    ROWS.forEach(function(r){ L.push("| "+[r.event,r.kind,r.screen||"-",sectionOf(r),r.tier,r.path,r.props||"standard only",r.fires?(r.fires+" ("+r.cause+")"):"-"].map(cellmd).join(" | ")+" |"); });
     return L.join("\n"); }
   function exportMd(){ var text=md(); try{ navigator.clipboard&&navigator.clipboard.writeText(text); }catch(e){}
     try{ var b=new Blob([text],{type:"text/markdown"}); var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="yeslyf_events_v02.md"; document.body.appendChild(a); a.click(); document.body.removeChild(a); }catch(e){}
@@ -151,7 +151,7 @@ def render_row(r, live_ids):
     core = r["kind"] == KINDS[2]
     ev = ('<b>%s</b>' % esc(r["event"])) if core else esc(r["event"])
     if r["fires"]:
-        ev += '<div class="meta">%s</div>' % esc(r["fires"])
+        ev += '<div class="meta">%s <span class="cause">%s</span></div>' % (esc(r["fires"]), esc(r["cause"]))
     screen = site.sid_link(r["screen"], live_ids) if r["screen"] else "-"
     section = "-" if r["sec"] == CORE else "%s %s" % (esc(r["sec"]), esc(r["section"]))
     props = ('<code>%s</code>' % esc(r["props"])) if r["props"] else "standard only"

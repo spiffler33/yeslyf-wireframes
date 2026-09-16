@@ -335,6 +335,20 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   the email is asked), not later in dev; entry is always mobile OTP. Known limitations: the P02 sign-in step is not
   drawn in v0.2; every status starts at "not started" until its owner sets it; edits live in each reviewer's
   browser unless the endpoint is set (Export brief is the record). Commits f3896a2 and 99de140, pushed.
+- 16 Sep 2026, phase 10b-2 (Vatsal): "Owed to Spinach" under the integrations table, and the Events tab.
+  data/dependencies.json (W01 to W09, the nine items of the team message of 16 Sep 2026, in message order; cause on every
+  row "Vatsal, 16 Sep 2026, Spinach agenda item 7"; owner, due date, status (not started | in progress | delivered), notes
+  and a comment editable in the page, saved like the integrations rows; posted sheet rows carry a trailing type column,
+  integration or owed, with the item in the vendor column for owed rows). docs/events.html and docs/review/events.html
+  (scripts/build_events.py, called after build_integrations): 540 rows = 193 screen_view (one per live screen) + 339 named
+  events (one row per event per screen, the screen's own _view excluded; 246 unique names) + 8 core actions from
+  data/events_extra.json (action_started, action_done with verification aa_verified or self_reported, review_opened,
+  review_accepted, life_event_reported, nudge_sent, nudge_opened, open_organic); the standard properties user_id,
+  screen_id, tier, state, sku, source_choice, timestamp on every event; the appendix D properties per named event; a
+  section filter; markdown export; no comment control. "Events" tab on every page and on the four review pages. Known
+  limitations: nudge_sent, nudge_opened and life_event_reported appear both as named rows and as core actions by design;
+  W03 and W04 carry two dates each, the earlier in due_date and both in notes; the header nav (11 tabs) wraps to two lines
+  at 1280. Commit a3d902e, pushed; both pages checked at 1280 and phone width.
 - Next: the second review round on the review link (reviewers press Export comments; the markdown goes to
-  spiff; owners set status and dates on the Integrations tab), then parse the comments into data with causes,
+  spiff; owners set status and dates on the Integrations tab and the Owed to Spinach rows), then parse the comments into data with causes,
   rerun the scripts, commit per phase; then the CRM planning session off the CRM backlog.
