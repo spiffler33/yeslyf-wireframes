@@ -410,3 +410,25 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
 - Phase 11 closed 16 Sep 2026 (commits 0dd4af0 to 6e72ef3, pushed). Next: the second review round on the review
   link with the pill live; reviewers' rows reach the table as they type; scripts/pull_board.py copies them into
   data/board_entries.json when the next edit group is built.
+
+## 16. Status, 17 Sep 2026 (mandatory and optional inputs)
+
+- The developers asked which inputs stop the user from moving forward. Cause on every touched screen: "Vatsal,
+  17 Sep 2026" (commit 628b6d3, pushed; the rule set is plan_v2.md section 11 and the X00 card "Mandatory and optional
+  inputs").
+- Every screen that draws an input carries spec.forward, the "Moving forward" block in the spec panel (what the
+  primary button needs, then Required, Optional, Default and System lines), and every captured field a tag: required,
+  optional, default or system. 79 screens, 158 fields (42 required, 72 optional, 20 default, 24 system).
+- The test: required only when the next screen cannot exist without it. Identity, consent and money required; the
+  reveal one tap per screen (R06 skippable); the spine never blocks on a number and blocks only on the risk questions
+  and D10; a list item saves on its identity alone; after the plan nothing is required that only helps us.
+- Mechanics: op "forward" in scripts/apply_decisions.py (refuses an untagged field); data/v02/required_optional_edits.json
+  (after_generation; must sort after phase9_edits.json, which replaces fields on D02, D04, D07, D07a, D07b);
+  scripts/gen_spine.py tags the T-num and risk screens; scripts/renderer_v02.js prints the block and the tag;
+  scripts/validate_v02.py fails the build when an input screen lacks the block or a field its tag. check_phase9
+  check 12 bans the word "assumed" outside D07b, which also applies to forward lines.
+- Same day, earlier (4a8d53e): every bare "smallcase" on a v0.2 page reads "smallcase Gateway"; I03 records the split
+  (Gateway is the broker execution rail for stocks, ETFs and REITs; BSE StAR MF for direct MFs; the smallcase
+  platform is not used). Frozen tabs and v0.1 records keep the original wording.
+- Next: the second review round on the review link (the developers were sent the note on 17 Sep 2026); then
+  pull_board.py, the next edit group, the CRM planning session.
