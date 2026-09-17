@@ -234,7 +234,8 @@ JS_COMMON = r"""
   function who(){ return (S.who||"").trim(); }
   var ft; function flash(t){ var s=document.getElementById("saved"); if(!s) return; s.textContent=t||"Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1800); }
   // Every human input is one row in board_entries (page "board", shared by the Meeting, Gaps and Inputs tabs); item ids mirror the storage keys: item:T1, qa:12, gap:G03.
-  function put(item,field,value,kind){ if(window.yeslyfBoard) yeslyfBoard.write({item_id:item,field:field,value:value,who:who(),kind:kind}); }
+  // A row needs a name (phase 12): a refused write says so after the page's own flash.
+  function put(item,field,value,kind){ if(!window.yeslyfBoard) return true; var ok=yeslyfBoard.write({item_id:item,field:field,value:value,who:who(),kind:kind}); if(!ok) setTimeout(function(){ flash(yeslyfBoard.noIdentity); },0); return ok; }
   function wb(){ return window.yeslyfBoard?yeslyfBoard.label():"offline; this file is the record"; }
   function choiceKeys(text){ var out=[]; String(text||"").split(",").forEach(function(k){ k=k.trim(); if(k) out.push(k); }); return out; }
   function applyRemote(rows){ rows.forEach(function(r){ var i=r.item_id.indexOf(":"); if(i<0) return; var kind=r.item_id.slice(0,i), id=r.item_id.slice(i+1), v=r.value||"";
@@ -317,8 +318,10 @@ def js_pill(page):
 
 
 def store_script():
-    # The shared save layer, inlined after the data blobs and before the page script (docs/config.js loads in the head).
-    return '<script>' + read_script("board_store.js") + '</script>'  # no newline: the body outside the script tags stays byte-identical
+    # The shared save layer, inlined after the data blobs and before the page script (docs/config.js loads in the head),
+    # with the test rows every page drops (data/board_ignore.json; phase 12, Vatsal, 17 Sep 2026).
+    ignore = [{"page": r["page"], "item_id": r["item_id"], "minute": r["minute"]} for r in load("board_ignore.json")["rows"]]
+    return '<script>var BOARD_IGNORE=' + js_blob(ignore) + ';' + read_script("board_store.js") + '</script>'
 
 
 CONFIG_TEMPLATE = """// yeslyf board write-back (phase 11, Vatsal, 16 Sep 2026). Fill both values from the Supabase dashboard
@@ -726,7 +729,7 @@ def admin_parts(admin, v02, states):
     """(nav links html, body html) of the Admin and CRM v0.2 page; shared with the team audience file."""
     live = live_screens(v02)
     body = ['<section><h1>Admin and CRM v0.2</h1><p class="lead">The v0.1 admin and CRM spec carried forward, then the v0.2 additions from plan_v2.md section 6: '
-            'the platform is to be decided (one platform); the nudge matrix covers states S1 to S25; the CRM backlog holds what the team said to remember for the CRM planning session.</p>'
+            'the platform is Zoho One (I14); the nudge matrix covers states S1 to S25 (S2b and S2c included); the CRM backlog holds what the team said to remember for the CRM planning session.</p>'
             '<p class="meta">Source: data/admin_crm.json and data/v02/states.json. The v0.1 spec is also served as-is on the Admin and CRM v0.1 tab.</p></section>']
     nav = []
     for key, title, headers in V01_ADMIN_SECTIONS:

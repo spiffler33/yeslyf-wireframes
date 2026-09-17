@@ -3,7 +3,7 @@
 
 generate(states_doc, byid) -> list of screen objects in the v0.2 schema:
   N01 master state table (rebuilt), N02 onboarding ladder, N03 post-plan ladder, N04 message templates,
-  N05 to N30 one message-and-landing mock per state S1 to S25, H01a to H01k the home variants by state,
+  N05 to N31 one message-and-landing mock per state S1 to S25 (S2b and S2c included), H01a to H01k the home variants by state,
   and Q05 Update your numbers (the manual quarterly review for S16 users).
 byid is the dict of screens built so far; the H01 base is copied from it. Copy slots are IDs; the message
 text is placeholder copy (gap G08). Called by scripts/apply_decisions.py after the overlays.
@@ -14,7 +14,7 @@ CAUSE = "Vatsal, 10 Sep 2026 (section 5)"
 CAUSE_V2 = "brief V2"
 CAUSE_P9 = "Vatsal, 11 Sep 2026"  # phase 9: no client-data assumptions; confirm or correct on Q05
 VARIANT_CAUSES = {"j": [CAUSE_P9]}
-ONBOARDING = ["S2b", "S3", "S4", "S5", "S16", "S17", "S19"]
+ONBOARDING = ["S2b", "S2c", "S3", "S4", "S5", "S16", "S17", "S19"]
 POST_PLAN = ["S6", "S7", "S8", "S9", "S10", "S11", "S12", "S13", "S15", "S18", "S20", "S21", "S22", "S23", "S24", "S25"]
 CHANNEL_LABEL = {"push": "push", "whatsapp": "WhatsApp", "email": "email", "human call": "human call"}
 LADDER_COLS = ["State", "Day", "Channel", "Copy slot", "Deep link", "Tier rule", "CRM task"]
@@ -85,6 +85,8 @@ def lands_text(st):
     alt = st.get("lands_on_alt")
     if alt:
         return "%s (%s when %s)" % (st["lands_on"], alt["screen"], alt["when"])
+    if st.get("lands_rule"):
+        return "%s (%s)" % (st["lands_on"], st["lands_rule"])
     return st["lands_on"]
 
 
@@ -139,7 +141,7 @@ def generate(states_doc, byid):
     out.append(n01)
 
     out.append(desk("N02", "Onboarding ladder (paid, before the plan)",
-                    "States S2b, S3, S4, S5, S16, S17 and S19 day by day: one row per ladder step with its channel, copy slot, deep link, tier rule and whether the CRM creates a task.",
+                    "States S2b, S2c, S3, S4, S5, S16, S17 and S19 day by day: one row per ladder step with its channel, copy slot, deep link, tier rule and whether the CRM creates a task.",
                     [["table", LADDER_COLS, ladder_rows(states, ONBOARDING)]],
                     ["Before day 14 after payment the onboarding states may nudge at 24 hours, 72 hours and day 7 (spec v0.1, kept).", "O03's chosen time replaces the first scheduled nudge when it exists (Vatsal, 10 Sep 2026).", "Day 7 below the gate is S19: DIWM gets the outbound call task, DIY the a la carte offer (Vatsal, 10 Sep 2026; brief V2)."],
                     ["The CRM task fields are the columns the call centre sees: state ID, missing fields, tier, last screen, minutes left."],
@@ -181,6 +183,10 @@ def generate(states_doc, byid):
         alt = st.get("lands_on_alt")
         if alt:
             lines.append("When %s: lands on %s instead" % (alt["when"], alt["screen"]))
+        if st.get("lands_rule"):
+            lines.append("Lands on %s" % st["lands_rule"])
+        if st.get("rule"):
+            lines.append(st["rule"])
         ui.append(["card", "Lands on %s %s" % (st["lands_on"], land_title), lines])
         ui.append(["btn", "Open %s" % st["lands_on"], st["lands_on"]])
         if alt:
@@ -194,6 +200,8 @@ def generate(states_doc, byid):
             "Escalation: %s" % escalation_summary(st),
             "Exit: %s." % st["exit"],
         ]
+        if st.get("rule"):
+            logic.append("Rule: %s" % st["rule"])
         if st["crm_task"]["created"]:
             logic.append("CRM task: %s (brief V2)." % ", ".join(st["crm_task"]["fields"]))
         screen = {

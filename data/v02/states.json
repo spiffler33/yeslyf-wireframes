@@ -9,22 +9,23 @@
   "Escalation by tier: DIWM gets the outbound call at day 7 of a data stall and on a second no-show; DIY gets the a la carte offer (K04) at the same points; DIFM is handled by the adviser relationship, not the ladder. Vatsal, 10 Sep 2026.",
   "Nudge copy slots are IDs (N-S4-72h); copy is content (gap G08) and lives in the CRM templates. The message text in this file is placeholder copy. Vatsal, 10 Sep 2026.",
   "State is computed on every open from stored flags; deep links land on the primary action (spec v0.1, kept).",
-  "States run S1 to S25. The next number is not used, and there is no state for anyone but the user. Vatsal, 10 Sep 2026."
+  "States run S1 to S25. The next number is not used, and there is no state for anyone but the user. Vatsal, 10 Sep 2026.",
+  "The checkout has two stop points: S2b (checkout started, eSign incomplete, not paid) lands on P03 and S2c (eSign done, payment not completed) lands on P04; a signed agreement is not asked again while its version is current. Vatsal, 17 Sep 2026."
  ],
  "states": [
   {
-   "id": "S1", "who": "Signed up, no reveal", "lands_on": "R01", "primary_action": "Finish the reveal", "deep_link": "R01", "minutes": "about N minutes",
+   "id": "S1", "who": "Signed up, no reveal", "lands_on": "R01", "lands_rule": "the first unanswered reveal screen, R01 to R07; R01 is drawn as the example", "primary_action": "Finish the reveal", "deep_link": "R01", "minutes": "about N minutes",
    "ladder": [
     {"day": "1h", "channel": "push", "slot": "N-S1-1h", "link": "R01", "tier": "all"},
     {"day": "day 1", "channel": "whatsapp", "slot": "N-S1-d1", "link": "R01", "tier": "all"}
    ],
    "escalation": {"diwm": "ladder only (not paid yet)", "diy": "ladder only (not paid yet)", "difm": "not applicable"},
-   "exit": "reveal seen (R09) -> S2; paid -> S2b or S3",
+   "exit": "reveal seen (R09) -> S2",
    "crm_task": {"created": false, "fields": []},
    "mock": "N05",
-   "push": {"slot": "N-S1-1h", "text": "Your two paths are about N minutes away. Pick up at your name and age."},
-   "whatsapp": {"slot": "N-S1-d1", "text": "Hi, it is yeslyf. You started your reveal and stopped at your name and age. About N minutes from here to your two paths. Pick up where you left off."},
-   "cause": "spec v0.1, kept"
+   "push": {"slot": "N-S1-1h", "text": "Your two paths are about N minutes away. Pick up at <screen title>."},
+   "whatsapp": {"slot": "N-S1-d1", "text": "Hi, it is yeslyf. You started your reveal and stopped at <screen title>. About N minutes from here to your two paths. Pick up where you left off."},
+   "cause": "spec v0.1, kept; minutes 16 Sep 2026, item 4 (lands on the first unanswered reveal screen); Vatsal, 17 Sep 2026 (exit: paid is S2's exit)"
   },
   {
    "id": "S2", "who": "Reveal seen, not paid", "lands_on": "X01", "primary_action": "Unlock my plan", "deep_link": "P01", "minutes": "about N minutes",
@@ -36,29 +37,42 @@
     {"day": "day 82", "channel": "email", "slot": "N-S2-d82", "link": "P01", "tier": "all"}
    ],
    "escalation": {"diwm": "ladder only, then stop", "diy": "ladder only, then stop", "difm": "not applicable"},
-   "exit": "paid -> S2b or S3; day 82 -> stop",
+   "exit": "P02 started -> S2b; eSign done -> S2c; paid -> S3; day 82 -> stop",
    "crm_task": {"created": false, "fields": []},
    "mock": "N06",
    "push": {"slot": "N-S2-d1", "text": "Your reveal is saved. Unlock my plan is one screen: two cards, one choice, about N minutes."},
    "whatsapp": {"slot": "N-S2-d3", "text": "One thing from your reveal: the gap between your two paths comes from what you save and how it is placed. Unlock my plan shows what the plan does about it. About N minutes."},
    "email": {"slot": "N-S2-d7", "text": "What the plan includes, and what members say, with Unlock my plan one tap away. Placeholder; advertising code review."},
-   "cause": "spec v0.1, kept"
+   "cause": "spec v0.1, kept; Vatsal, 17 Sep 2026 (exit: P02 started, eSign done and paid are three exits)"
   },
   {
-   "id": "S2b", "who": "Paid, eSign incomplete", "lands_on": "P03", "primary_action": "Sign the agreement", "deep_link": "P03", "minutes": "about N minutes",
+   "id": "S2b", "who": "Checkout started, eSign incomplete (not paid)", "lands_on": "P03", "primary_action": "Sign the agreement", "deep_link": "P03", "minutes": "about N minutes",
    "ladder": [
     {"day": "day 1", "channel": "push", "slot": "N-S2b-d1", "link": "P03", "tier": "all"},
-    {"day": "day 3", "channel": "whatsapp", "slot": "N-S2b-d3", "link": "P03", "tier": "all"},
-    {"day": "day 14", "channel": "email", "slot": "N-S2b-d14", "link": "Q03a", "tier": "all"}
+    {"day": "day 3", "channel": "whatsapp", "slot": "N-S2b-d3", "link": "P03", "tier": "all"}
    ],
-   "escalation": {"diwm": "day 14: refund path (brief H5: to be decided); CRM task", "diy": "day 14: refund path (brief H5: to be decided); CRM task", "difm": "not applicable"},
-   "exit": "eSign done (P03) -> S3; day 14 unsigned -> refund path (brief H5: to be decided)",
-   "crm_task": {"created": true, "fields": ["state_id", "tier", "payment_reference", "days_unsigned"]},
+   "escalation": {"diwm": "ladder only", "diy": "ladder only", "difm": "not applicable"},
+   "exit": "eSign done (P03) -> S2c. No progress after day 3: the S2 ladder carries on from its current day; day 82 -> stop",
+   "crm_task": {"created": true, "fields": ["state_id", "tier", "days_unsigned"]},
    "mock": "N07",
-   "push": {"slot": "N-S2b-d1", "text": "One signature stands between you and your plan. Sign the agreement: about N minutes."},
-   "whatsapp": {"slot": "N-S2b-d3", "text": "Your payment went through and the agreement is unsigned. I cannot advise until you sign. Aadhaar OTP on Agreement and eSign, about N minutes."},
-   "email": {"slot": "N-S2b-d14", "text": "Fourteen days unsigned: the refund path opens (per the agreement; brief H5: to be decided)."},
-   "cause": "spec v0.1, kept; brief H5"
+   "push": {"slot": "N-S2b-d1", "text": "Your agreement is ready to sign. Agreement and eSign: about N minutes."},
+   "whatsapp": {"slot": "N-S2b-d3", "text": "Your agreement is waiting for your signature, and I cannot advise until you sign. Aadhaar OTP on Agreement and eSign, about N minutes."},
+   "cause": "spec v0.1, kept; Vatsal, 17 Sep 2026 (not paid: P03 comes before P04, so no payment claim and no refund step)"
+  },
+  {
+   "id": "S2c", "who": "eSign done, payment not completed", "lands_on": "P04", "primary_action": "Complete the payment", "deep_link": "P04", "minutes": "about N minutes",
+   "rule": "The signed agreement is not asked again while its version is current.",
+   "ladder": [
+    {"day": "day 1", "channel": "push", "slot": "N-S2c-d1", "link": "P04", "tier": "all"},
+    {"day": "day 3", "channel": "whatsapp", "slot": "N-S2c-d3", "link": "P04", "tier": "all"}
+   ],
+   "escalation": {"diwm": "ladder only", "diy": "ladder only", "difm": "not applicable"},
+   "exit": "paid (P05) -> S3. No progress after day 3: the S2 ladder carries on from its current day; day 82 -> stop",
+   "crm_task": {"created": false, "fields": []},
+   "mock": "N31",
+   "push": {"slot": "N-S2c-d1", "text": "Your agreement is signed. One step left: the payment, about N minutes."},
+   "whatsapp": {"slot": "N-S2c-d3", "text": "Your agreement is signed and saved; it is not asked again. The payment is the last step, about N minutes, and your plan starts right after."},
+   "cause": "Vatsal, 17 Sep 2026"
   },
   {
    "id": "S3", "who": "Paid, nothing else", "lands_on": "O02", "primary_action": "Start with Before you start (D00)", "deep_link": "O02", "minutes": "about N minutes",

@@ -1,7 +1,28 @@
 {
   "source": "Kajal's integration list (16 Sep 2026) and admin/CRM v0.2; one row per integration the yeslyf app depends on (phase 10b, Vatsal, 16 Sep 2026)",
-  "note": "Fields: id (I01..), category, vendor (chosen; 'internal' rows and 'not decided' are skipped by the vendor cross-check), alternatives (only where the choice is still open), role, screens (v0.2 screen IDs; ['all'] means every live screen), gates (launch | execution switch | later), fallback (screen ID plus what happens if the vendor slips), owner (comma-separated first names; Kajal, Vatsal or Spinach, Gaurav and Raafiya on the HoA Core Platform since they give the API details, Gaurav on DevOps, Compliance and Harish on the store declarations; Vatsal is the PM for yeslyf, not a vendor owner; Vatsal, 16 Sep 2026), status (not started | in talks | agreement signed | sandbox | production | dropped; every row starts at not started until its owner sets it), agreement_date, sandbox_date, production_date, docs_url, cost, notes, cause. to_be_verified is written by scripts/build_integrations.py: 'to be verified: screens' when the v0.2 screens data names the vendor on a screen the row does not list, or the row lists a screen that is not live in v0.2.",
+  "note": "Fields: id (I01..), category, vendor (chosen; 'internal' rows and 'not decided' are skipped by the vendor cross-check), alternatives (only where the choice is still open), role, screens (v0.2 screen IDs; ['all'] means every live screen), gates (launch | execution switch | later), fallback (screen ID plus what happens if the vendor slips), owner (comma-separated first names; Kajal, Vatsal or Spinach, Gaurav and Raafiya on the HoA Core Platform since they give the API details, Gaurav on DevOps, Compliance and Harish on the store declarations; Vatsal is the PM for yeslyf, not a vendor owner; Vatsal, 16 Sep 2026), status (not started | in talks | agreement signed | sandbox | production | dropped; every row starts at not started until its owner sets it), agreement_date, sandbox_date, production_date, docs_url, cost (kept off the board: the board is public, so the field stays empty), notes, cause. mentions: screens that only name the vendor without using it (the cross-check does not flag them). I00 sorts first: the corporate RIA registration the contracts and sandboxes wait for. to_be_verified is written by scripts/build_integrations.py: 'to be verified: screens' when the v0.2 screens data names the vendor on a screen the row does not list, or the row lists a screen that is not live in v0.2.",
   "rows": [
+    {
+      "id": "I00",
+      "category": "Regulatory",
+      "vendor": "SEBI",
+      "alternatives": "",
+      "role": "The corporate RIA registration that vendor contracts, sandbox requests and the store listings are made under.",
+      "screens": [],
+      "gates": "launch",
+      "fallback": "none",
+      "owner": "Harish",
+      "status": "not started",
+      "agreement_date": "",
+      "sandbox_date": "",
+      "production_date": "",
+      "docs_url": "",
+      "cost": "",
+      "notes": "About a week away as of 16 Sep 2026. Public documentation does not wait for it; contracts and most sandboxes do. to be verified: which rows need the registration document before a sandbox. SEBI is named on the screens as the regulator (the registration line, the risk questions), never as an integration, so the vendor cross-check skips this row.",
+      "cause": "minutes 16 Sep 2026, items 11 and 14",
+      "to_be_verified": "",
+      "cross_check": false
+    },
     {
       "id": "I01",
       "category": "Account Aggregator (AA)",
@@ -27,11 +48,14 @@
       "agreement_date": "",
       "sandbox_date": "",
       "production_date": "",
-      "docs_url": "",
-      "cost": "to be verified",
-      "notes": "FIU registration in hand (Vatsal, 16 Sep 2026). To be verified: the consent template; FIP coverage for the eight bank chips; the sandbox date.",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
-      "to_be_verified": "to be verified: screens"
+      "docs_url": "https://finvu.github.io/sandbox/",
+      "cost": "",
+      "notes": "FIU onboarding follows the corporate RIA registration (I00). To be verified: the consent template; FIP coverage for the eight bank chips; the sandbox date.",
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; minutes 16 Sep 2026, item 14; Vatsal, 17 Sep 2026",
+      "to_be_verified": "",
+      "mentions": [
+        "M01"
+      ]
     },
     {
       "id": "I02",
@@ -44,7 +68,9 @@
         "E03",
         "E07",
         "E08",
-        "E09"
+        "E09",
+        "E10",
+        "E11"
       ],
       "gates": "execution switch",
       "fallback": "E05 guided action plus E06 self-report: the client executes outside the app and reports it back",
@@ -53,11 +79,15 @@
       "agreement_date": "",
       "sandbox_date": "",
       "production_date": "",
-      "docs_url": "",
-      "cost": "to be verified",
-      "notes": "To be verified: HoA RIA membership status with BSE StAR MF. UCC, mandate and payment flows each need UAT.",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
-      "to_be_verified": "to be verified: screens"
+      "docs_url": "https://www.bsestarmf.in/APIFileStructure.pdf",
+      "cost": "",
+      "notes": "To be verified: HoA RIA membership status with BSE StAR MF. UCC, mandate and payment flows each need UAT. The documentation link is the web services structure document, version 3.5, August 2023. to be verified: that this document covers the newer JSON interface HoA will use. It says a member gets the API documents and test market credentials by mailing BSE.",
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Vatsal, 17 Sep 2026",
+      "to_be_verified": "",
+      "mentions": [
+        "E04",
+        "H06"
+      ]
     },
     {
       "id": "I03",
@@ -75,11 +105,16 @@
       "agreement_date": "",
       "sandbox_date": "",
       "production_date": "",
-      "docs_url": "",
-      "cost": "to be verified",
+      "docs_url": "https://developers.gateway.smallcase.com/",
+      "cost": "",
       "notes": "Rails confirmed (Vatsal, 16 Sep 2026): smallcase Gateway for stocks, ETFs and REITs; BSE StAR MF for direct mutual funds; the external API integration sits with these two. Gateway partnership terms and cost: to be verified.",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Vatsal, 16 Sep 2026 (supersedes brief G1)",
-      "to_be_verified": "to be verified: screens"
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Vatsal, 16 Sep 2026 (supersedes brief G1); Vatsal, 17 Sep 2026",
+      "to_be_verified": "",
+      "mentions": [
+        "E11",
+        "G13",
+        "L04"
+      ]
     },
     {
       "id": "I04",
@@ -122,7 +157,7 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "internal",
+      "cost": "",
       "notes": "Deliverables: the input contract fp_react_inputs.json, the plan JSON output contract, and version fields.",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
       "to_be_verified": ""
@@ -149,7 +184,7 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
+      "cost": "",
       "notes": "",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
       "to_be_verified": ""
@@ -172,10 +207,13 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
+      "cost": "",
       "notes": "",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
-      "to_be_verified": ""
+      "to_be_verified": "",
+      "mentions": [
+        "M01"
+      ]
     },
     {
       "id": "I07",
@@ -195,10 +233,13 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
+      "cost": "",
       "notes": "",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
-      "to_be_verified": ""
+      "to_be_verified": "",
+      "mentions": [
+        "M01"
+      ]
     },
     {
       "id": "I08",
@@ -218,9 +259,9 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
-      "notes": "Entry is always mobile OTP; Google and Apple sign-in come later in the journey, at P02 (I22).",
-      "cause": "Vatsal, 16 Sep 2026 (entry is always mobile OTP)",
+      "cost": "",
+      "notes": "Entry is always mobile plus OTP. A person is registered the moment the OTP is right; email is never the login.",
+      "cause": "Vatsal, 16 Sep 2026 (entry is always mobile OTP); minutes 16 Sep 2026, items 1 and 2",
       "to_be_verified": ""
     },
     {
@@ -233,7 +274,10 @@
         "P04",
         "Q02",
         "Q03",
-        "Q03b"
+        "Q03b",
+        "Q03a",
+        "Q03c",
+        "K04"
       ],
       "gates": "launch",
       "fallback": "",
@@ -243,15 +287,18 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
+      "cost": "",
       "notes": "To be verified: subscriptions and e-mandate enablement. Refund rule from compliance (brief H5).",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
-      "to_be_verified": "to be verified: screens"
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Vatsal, 17 Sep 2026",
+      "to_be_verified": "",
+      "mentions": [
+        "M01"
+      ]
     },
     {
       "id": "I10",
       "category": "Email",
-      "vendor": "SendGrid",
+      "vendor": "Amazon SES",
       "alternatives": "",
       "role": "Transactional and nudge email, and the plan PDF by email",
       "screens": [
@@ -269,10 +316,13 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
+      "cost": "",
       "notes": "",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
-      "to_be_verified": ""
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Vatsal, 17 Sep 2026",
+      "to_be_verified": "",
+      "mentions": [
+        "X00"
+      ]
     },
     {
       "id": "I11",
@@ -293,7 +343,7 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
+      "cost": "",
       "notes": "Meta business verification and template approvals have lead time.",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
       "to_be_verified": ""
@@ -316,10 +366,13 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "free",
+      "cost": "",
       "notes": "",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
-      "to_be_verified": ""
+      "to_be_verified": "",
+      "mentions": [
+        "M01"
+      ]
     },
     {
       "id": "I13",
@@ -357,7 +410,8 @@
         "N27",
         "N28",
         "N29",
-        "N30"
+        "N30",
+        "N31"
       ],
       "gates": "launch",
       "fallback": "N01: Zoho Campaigns plus FCM carry the ladders",
@@ -367,7 +421,7 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
+      "cost": "",
       "notes": "Decision by 19 Sep 2026.",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
       "to_be_verified": ""
@@ -377,12 +431,16 @@
       "category": "CRM and support",
       "vendor": "Zoho One",
       "alternatives": "",
-      "role": "CRM and Desk for the relationship, tickets and the grievance register; Campaigns and Analytics optional",
+      "role": "CRM and Desk for the relationship, tickets and the grievance register; Campaigns and Analytics optional Bookings for adviser slots; Creator; Campaigns; Flow; connected to Slack.",
       "screens": [
         "M01",
         "H07",
         "N02",
-        "N03"
+        "N03",
+        "K01",
+        "K05",
+        "K02",
+        "K06"
       ],
       "gates": "launch",
       "fallback": "",
@@ -392,9 +450,9 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
+      "cost": "",
       "notes": "The CRM tasks in N02 and N03 are created here.",
-      "cause": "Vatsal, 16 Sep 2026 (Zoho One decided)",
+      "cause": "Vatsal, 16 Sep 2026 (Zoho One decided); minutes 16 Sep 2026, section 1",
       "to_be_verified": ""
     },
     {
@@ -430,7 +488,7 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
+      "cost": "",
       "notes": "Choice open. Question for Spinach on 16 Sep 2026: where the app reads runtime config and who edits it without a release. A05: the bank chips.",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
       "to_be_verified": ""
@@ -452,7 +510,7 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
+      "cost": "",
       "notes": "MeitY requester registration lead time.",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
       "to_be_verified": ""
@@ -460,7 +518,7 @@
     {
       "id": "I17",
       "category": "Cloud and document storage",
-      "vendor": "Azure",
+      "vendor": "AWS",
       "alternatives": "",
       "role": "Hosting and document storage for the app",
       "screens": [
@@ -474,9 +532,9 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
-      "notes": "Indian region.",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
+      "cost": "",
+      "notes": "AWS, Indian region. PostgreSQL holds the app data, every step saved as it is written. Vault files sit in S3 behind an encrypted link; the link is held in the database.",
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Gaurav, 16 Sep 2026 (minutes item 5)",
       "to_be_verified": ""
     },
     {
@@ -494,7 +552,7 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
+      "cost": "",
       "notes": "",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
       "to_be_verified": ""
@@ -519,7 +577,7 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "internal",
+      "cost": "",
       "notes": "Record formats from brief H6 (Compliance and Harish).",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
       "to_be_verified": ""
@@ -539,7 +597,7 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "internal",
+      "cost": "",
       "notes": "",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
       "to_be_verified": ""
@@ -559,7 +617,7 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
+      "cost": "",
       "notes": "Review lead time.",
       "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
       "to_be_verified": ""
@@ -573,7 +631,7 @@
       "screens": [
         "P02"
       ],
-      "gates": "launch",
+      "gates": "later",
       "fallback": "P02: the email is typed",
       "owner": "Spinach",
       "status": "not started",
@@ -581,9 +639,55 @@
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
-      "cost": "to be verified",
-      "notes": "Entry is always mobile OTP (I08). The sign-in step at P02 is not drawn in v0.2 yet.",
-      "cause": "Vatsal, 16 Sep 2026 (entry is always mobile OTP; Google and Apple sign-in later in the journey, where the email is asked)",
+      "cost": "",
+      "notes": "Not a login and not V1. An optional way to fill the email at P02; P02 is unchanged and the email is typed.",
+      "cause": "Vatsal, 16 Sep 2026 (entry is always mobile OTP; Google and Apple sign-in later in the journey, where the email is asked); Vatsal, 17 Sep 2026",
+      "to_be_verified": ""
+    },
+    {
+      "id": "I23",
+      "category": "CAS parsing",
+      "vendor": "not decided",
+      "alternatives": "the open-source casparser library run on the server; a parsing vendor; smallcase Gateway's fund holdings import on MF Central rails in place of parsing",
+      "role": "Reads the uploaded CAS PDF into holdings and their values; no transactions.",
+      "screens": [
+        "A10b",
+        "A10c"
+      ],
+      "gates": "launch",
+      "fallback": "D02b and D02c: the holdings are typed",
+      "owner": "Vatsal",
+      "status": "not started",
+      "agreement_date": "",
+      "sandbox_date": "",
+      "production_date": "",
+      "docs_url": "",
+      "cost": "",
+      "notes": "",
+      "cause": "minutes 16 Sep 2026, item 6",
+      "to_be_verified": ""
+    },
+    {
+      "id": "I24",
+      "category": "Calls: video and recording",
+      "vendor": "not decided",
+      "alternatives": "a meeting tool inside Zoho One (to be verified); Google Meet; Zoom",
+      "role": "The join link on K02 and the recordings listed on K06.",
+      "screens": [
+        "K02",
+        "K06"
+      ],
+      "gates": "launch",
+      "fallback": "K02 gives a phone call in place of a join link; K06 lists calls without recordings",
+      "owner": "",
+      "status": "not started",
+      "agreement_date": "",
+      "sandbox_date": "",
+      "production_date": "",
+      "docs_url": "",
+      "cost": "",
+      "notes": "to be verified: recording consent and retention (K06).",
+      "cause": "Vatsal, 17 Sep 2026",
       "to_be_verified": ""
     }
   ]

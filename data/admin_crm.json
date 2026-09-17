@@ -10,7 +10,7 @@
    "does": "The relationship: one Contact per phone number, journey stage mirrored from the app, adviser owner, deals and subscriptions, event timeline.",
    "login": "Principal officer, advisers, community managers",
    "notes": "India datacentre (zoho.in). Minimum fields: no PAN, no financial numbers beyond bands.",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "id": "zoho-desk",
@@ -20,7 +20,7 @@
    "does": "Tickets: adviser messages from H07, support, complaints tagged as grievances (the grievance register).",
    "login": "Advisers, support",
    "notes": "One-business-day SLA configured here. Grievance category exports for SEBI records.",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "id": "zoho-camp",
@@ -30,7 +30,7 @@
    "does": "Email, WhatsApp and SMS journeys keyed on journey stage. The nudge matrix in this document is its content.",
    "login": "Bhuvanaa, community managers",
    "notes": "WhatsApp templates need Meta approval; opt-in captured at A02. One nudge per week cap enforced here.",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "id": "zoho-book",
@@ -40,7 +40,7 @@
    "does": "Adviser slot booking behind K01 and K04.",
    "login": "Advisers",
    "notes": "Cal.com is the alternative if Zoho One is not bought.",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "id": "zoho-flow",
@@ -50,7 +50,7 @@
    "does": "Maps app events to CRM fields and timeline notes. Field mapping stays configuration, not code.",
    "login": "Whoever configures Zoho",
    "notes": "Make or Zapier if Flow falls short.",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "id": "directus",
@@ -215,7 +215,7 @@
    "def": "Two numbers: open tickets in Desk; open items in the ops queue: unknown ISINs to classify (L04), data-quality flags, AA failures needing follow-up, refund requests, adviser reassignments.",
    "wire": "H07",
    "note": "One queue table in the database, surfaced in Directus; Desk for anything the user sees.",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "Dashboard KPIs",
@@ -423,7 +423,7 @@
    "def": "Templates built from the nudge matrix in this document. WhatsApp templates submitted to Meta.",
    "wire": "N01",
    "note": "",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "Notifications",
@@ -451,7 +451,7 @@
    "def": "The rules are the state table: state changes fire the journey; offsets inside a state are the schedule. No rule engine is built.",
    "wire": "N01",
    "note": "State is computed in the app and mirrored; Zoho never computes state.",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "CMS",
@@ -506,7 +506,7 @@
    "def": "Three systems, three role sets, one principle: advisers see their own clients; ops sees records; the principal officer sees everything; the principal officer publishes.",
    "wire": "L01",
    "note": "Not one login. Accept it.",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "Admin and settings",
@@ -516,7 +516,7 @@
    "def": "Who changed what, when, on regulated records. Exportable.",
    "wire": "L08",
    "note": "",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "Admin and settings",
@@ -544,7 +544,7 @@
    "def": "Created at signed_up; updated by events.",
    "wire": "A03",
    "note": "",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "User details (CRM)",
@@ -554,7 +554,7 @@
    "def": "Written by events; read-only in Zoho.",
    "wire": "N01",
    "note": "",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "User details (CRM)",
@@ -564,7 +564,7 @@
    "def": "Truth in the database; mirror in Zoho so the adviser sees it on the Contact without opening Directus.",
    "wire": "O02",
    "note": "",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
    "sec": "User details (CRM)",
@@ -574,7 +574,7 @@
    "def": "Owner set by round robin or manually; owner_changed webhook updates the app so O01 and K01 know the adviser.",
    "wire": "O01",
    "note": "RM is not a role in this model; the adviser is the owner.",
-   "note_v02": "(platform to be decided; the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   }
  ],
  "CONTACT_FIELDS": [
@@ -1217,7 +1217,7 @@
    "cause": "brief H6"
   }
  ],
- "PLACEMENT_NOTE": "The CRM platform is to be decided (one platform). Where the v0.1 spec or brief V2 says Zoho the text stays; the object model and the matrix are platform-neutral.",
+ "PLACEMENT_NOTE": "The CRM platform is Zoho One (I14). Where the v0.1 spec or brief V2 says Zoho the text stays; the object model and the matrix are platform-neutral.",
  "DEAL_FIELDS_V02": [
   [
    "sku",
@@ -1370,7 +1370,11 @@
   {
    "what": "The v0.1 note field, the v0.1 NUDGES matrix and NUDGE_EXAMPLES are not rendered on the v0.2 page: they carry v0.1 wording (a drawn minute count, the word the reviewers must not see). The v0.2 nudge matrix comes from data/v02/states.json.",
    "cause": "CLAUDE.md v2; Vatsal, 10 Sep 2026 (section 6)"
+  },
+  {
+   "what": "The platform reads Zoho One (I14) wherever the page read to be decided (one platform): the five bought-tool stack notes, the nine placement notes, the placement note, the intro line and the note on v0.2. Nothing else changes before the admin session (Phase 13).",
+   "cause": "minutes 16 Sep 2026, item 20"
   }
  ],
- "note_v02": "v0.2 additions sit beside the v0.1 keys, which are unchanged because the v0.1 admin page is frozen and served from docs/v01/. The v0.2 NUDGES matrix is rendered by the site from data/v02/states.json (one row per state per ladder step: state, day, channel, copy slot, deep link, tier rule, CRM task); v0.2 EVENTS are rendered from data/screens_v02.json (every screen's events plus state_enter events). The CRM platform is to be decided (one platform)."
+ "note_v02": "v0.2 additions sit beside the v0.1 keys, which are unchanged because the v0.1 admin page is frozen and served from docs/v01/. The v0.2 NUDGES matrix is rendered by the site from data/v02/states.json (one row per state per ladder step: state, day, channel, copy slot, deep link, tier rule, CRM task); v0.2 EVENTS are rendered from data/screens_v02.json (every screen's events plus state_enter events). The CRM platform is Zoho One (I14)."
 }

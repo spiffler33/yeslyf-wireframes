@@ -1,20 +1,99 @@
 {
- "pulled_at": "2026-09-16T04:53:26+00:00",
+ "pulled_at": "2026-09-17T03:43:40+00:00",
  "source": "docs/config.js, https://ltafulnzsetxtdpimihs.supabase.co/rest/v1/board_entries",
- "note": "Every row of board_entries, unchanged, in id order. latest holds the last row per page, item_id and field; that is the current value. Written by scripts/pull_board.py; run it before any v0.3 build.",
- "count": 1,
+ "note": "Every row of board_entries, unchanged, in id order. latest holds the last row per page, item_id and field; that is the current value. Written by scripts/pull_board.py; run it before any v0.3 build. Rows carrying ignored true are the test rows of data/board_ignore.json; they are kept here and left out of latest.",
+ "count": 12,
+ "ignored": 4,
  "latest": {
-  "setup": {
-   "TEST": {
-    "probe": {
-     "id": 1,
-     "page": "setup",
-     "item_id": "TEST",
-     "field": "probe",
-     "value": "hello",
-     "who": "Vatsal",
-     "kind": "comment",
-     "created_at": "2026-09-16T04:53:23.954038+00:00"
+  "integrations": {
+   "W02": {
+    "status": {
+     "id": 5,
+     "page": "integrations",
+     "item_id": "W02",
+     "field": "status",
+     "value": "delivered",
+     "who": "",
+     "kind": "field_edit",
+     "created_at": "2026-09-16T05:26:57.356412+00:00"
+    },
+    "notes": {
+     "id": 6,
+     "page": "integrations",
+     "item_id": "W02",
+     "field": "notes",
+     "value": "AWS and SES",
+     "who": "",
+     "kind": "field_edit",
+     "created_at": "2026-09-16T05:27:05.708444+00:00"
+    }
+   },
+   "W08": {
+    "status": {
+     "id": 7,
+     "page": "integrations",
+     "item_id": "W08",
+     "field": "status",
+     "value": "delivered",
+     "who": "",
+     "kind": "field_edit",
+     "created_at": "2026-09-16T05:27:16.820232+00:00"
+    },
+    "notes": {
+     "id": 8,
+     "page": "integrations",
+     "item_id": "W08",
+     "field": "notes",
+     "value": "https://spiffler33.github.io/yeslyf-wireframes/review/events.html",
+     "who": "",
+     "kind": "field_edit",
+     "created_at": "2026-09-16T05:27:27.831541+00:00"
+    },
+    "owner": {
+     "id": 12,
+     "page": "integrations",
+     "item_id": "W08",
+     "field": "owner",
+     "value": "Vatsal",
+     "who": "",
+     "kind": "field_edit",
+     "created_at": "2026-09-16T05:28:47.083957+00:00"
+    }
+   },
+   "W04": {
+    "status": {
+     "id": 9,
+     "page": "integrations",
+     "item_id": "W04",
+     "field": "status",
+     "value": "in progress",
+     "who": "",
+     "kind": "field_edit",
+     "created_at": "2026-09-16T05:28:22.528716+00:00"
+    }
+   },
+   "W06": {
+    "owner": {
+     "id": 10,
+     "page": "integrations",
+     "item_id": "W06",
+     "field": "owner",
+     "value": "Compliance, Kajal",
+     "who": "",
+     "kind": "field_edit",
+     "created_at": "2026-09-16T05:28:33.993683+00:00"
+    }
+   },
+   "W05": {
+    "owner": {
+     "id": 11,
+     "page": "integrations",
+     "item_id": "W05",
+     "field": "owner",
+     "value": "Compliance,  Kajal",
+     "who": "",
+     "kind": "field_edit",
+     "created_at": "2026-09-16T05:28:38.4621+00:00"
     }
    }
   }
@@ -28,7 +107,121 @@
    "value": "hello",
    "who": "Vatsal",
    "kind": "comment",
-   "created_at": "2026-09-16T04:53:23.954038+00:00"
+   "created_at": "2026-09-16T04:53:23.954038+00:00",
+   "ignored": true
+  },
+  {
+   "id": 3,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Kajal",
+   "kind": "verdict",
+   "created_at": "2026-09-16T04:55:04.389836+00:00",
+   "ignored": true
+  },
+  {
+   "id": 4,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "text",
+   "value": "live check from the review link",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-16T04:55:05.811269+00:00",
+   "ignored": true
+  },
+  {
+   "id": 5,
+   "page": "integrations",
+   "item_id": "W02",
+   "field": "status",
+   "value": "delivered",
+   "who": "",
+   "kind": "field_edit",
+   "created_at": "2026-09-16T05:26:57.356412+00:00"
+  },
+  {
+   "id": 6,
+   "page": "integrations",
+   "item_id": "W02",
+   "field": "notes",
+   "value": "AWS and SES",
+   "who": "",
+   "kind": "field_edit",
+   "created_at": "2026-09-16T05:27:05.708444+00:00"
+  },
+  {
+   "id": 7,
+   "page": "integrations",
+   "item_id": "W08",
+   "field": "status",
+   "value": "delivered",
+   "who": "",
+   "kind": "field_edit",
+   "created_at": "2026-09-16T05:27:16.820232+00:00"
+  },
+  {
+   "id": 8,
+   "page": "integrations",
+   "item_id": "W08",
+   "field": "notes",
+   "value": "https://spiffler33.github.io/yeslyf-wireframes/review/events.html",
+   "who": "",
+   "kind": "field_edit",
+   "created_at": "2026-09-16T05:27:27.831541+00:00"
+  },
+  {
+   "id": 9,
+   "page": "integrations",
+   "item_id": "W04",
+   "field": "status",
+   "value": "in progress",
+   "who": "",
+   "kind": "field_edit",
+   "created_at": "2026-09-16T05:28:22.528716+00:00"
+  },
+  {
+   "id": 10,
+   "page": "integrations",
+   "item_id": "W06",
+   "field": "owner",
+   "value": "Compliance, Kajal",
+   "who": "",
+   "kind": "field_edit",
+   "created_at": "2026-09-16T05:28:33.993683+00:00"
+  },
+  {
+   "id": 11,
+   "page": "integrations",
+   "item_id": "W05",
+   "field": "owner",
+   "value": "Compliance,  Kajal",
+   "who": "",
+   "kind": "field_edit",
+   "created_at": "2026-09-16T05:28:38.4621+00:00"
+  },
+  {
+   "id": 12,
+   "page": "integrations",
+   "item_id": "W08",
+   "field": "owner",
+   "value": "Vatsal",
+   "who": "",
+   "kind": "field_edit",
+   "created_at": "2026-09-16T05:28:47.083957+00:00"
+  },
+  {
+   "id": 13,
+   "page": "wireframes_v02",
+   "item_id": "O01",
+   "field": "text",
+   "value": "somil:example",
+   "who": "",
+   "kind": "comment",
+   "created_at": "2026-09-16T06:23:46.14186+00:00",
+   "ignored": true
   }
  ]
 }

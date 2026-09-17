@@ -41,7 +41,9 @@
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
   function noteFor(id){ if(!store.notes[id]) store.notes[id] = {verdict:"", text:"", reason:"", who:""}; return store.notes[id]; }
   var BOARD = (typeof yeslyfBoard !== "undefined") ? yeslyfBoard : null;
-  function put(id, field, value, kind){ if(BOARD) BOARD.write({item_id:id, field:field, value:value, who:store.who || "", kind:kind}); }
+  var NO_ID = BOARD ? BOARD.noIdentity : "Pick who you are at the top first; nothing is recorded without a name.";
+  function put(id, field, value, kind){ if(!BOARD) return true; return BOARD.write({item_id:id, field:field, value:value, who:store.who || "", kind:kind}); }
+  function saved(ok){ flash(ok ? "Saved in this browser" : NO_ID); }
   function wb(){ return BOARD ? BOARD.label() : "offline; this file is the record"; }
   function applyRemote(rows){
     // the latest row per screen and field from board_entries; the same shape the controls write
@@ -172,6 +174,12 @@
     if(f.precision) bits.push("precision " + (Array.isArray(f.precision) ? f.precision.join(", ") : f.precision));
     return (f.f || f.name || "") + (bits.length ? " (" + bits.join("; ") + ")" : "") + (f.note ? ": " + f.note : "");
   }
+  function fieldsTitle(s){
+    // "Fields captured" when any entry is required, optional or default; otherwise the screen only shows or holds
+    // values captured elsewhere: "Fields read" (phase 12, Vatsal, 17 Sep 2026).
+    var captured = (s.spec.fields || []).some(function(f){ return f && (f.forward === "required" || f.forward === "optional" || f.forward === "default"); });
+    return captured ? "Fields captured" : "Fields read";
+  }
   function marker(s){
     var v = s.v02 || {status:"kept", causes:[]};
     var st = v.status;
@@ -199,7 +207,7 @@
     html += '<div class="spec-block"><div class="spec-t">Template</div><div class="tiers">'+esc(s.template)+'</div></div>';
     html += '<div class="spec-block"><div class="spec-t">Path</div><div class="tiers">'+esc(s.path)+'</div></div>';
     html += '<div class="spec-block"><div class="spec-t">Shown to</div><div class="tiers">'+esc(s.tier.join(", "))+'</div></div>';
-    html += list("Fields captured", (s.spec.fields || []).map(fieldLine));
+    html += list(fieldsTitle(s), (s.spec.fields || []).map(fieldLine));
     html += list("Moving forward", s.spec.forward);
     if(s.spec.ladder && s.spec.ladder.length){
       html += '<div class="spec-block"><div class="spec-t">Capture ladder</div><ul>'+s.spec.ladder.map(function(x){ return '<li><b>'+esc(x[0])+'</b>: '+esc(x[1])+'</li>'; }).join("")+'</ul></div>';
@@ -381,18 +389,18 @@
     var rs = document.getElementById("reason");
     if(rs){
       rs.innerHTML = opt("", "reason category", true) + reasonNames.map(function(r){ return opt(r, r, false); }).join("");
-      rs.addEventListener("change", function(){ var n = noteFor(SCREENS[state.idx].id); n.reason = reasonNames.indexOf(rs.value) >= 0 ? rs.value : ""; n.who = store.who; save(); put(SCREENS[state.idx].id, "reason", n.reason, "field_edit"); flash("Saved in this browser"); });
+      rs.addEventListener("change", function(){ var n = noteFor(SCREENS[state.idx].id); n.reason = reasonNames.indexOf(rs.value) >= 0 ? rs.value : ""; n.who = store.who; save(); saved(put(SCREENS[state.idx].id, "reason", n.reason, "field_edit")); });
     }
 
     var v = document.getElementById("verdict");
     if(v){
       v.innerHTML = VERDICTS.map(function(x){ return '<button data-v="'+x+'">'+x+'</button>'; }).join("");
       v.addEventListener("click", function(ev){ var b = ev.target.closest("button"); if(!b) return;
-        var id = SCREENS[state.idx].id; var n = noteFor(id); n.verdict = (n.verdict === b.getAttribute("data-v")) ? "" : b.getAttribute("data-v"); n.who = store.who; save(); put(id, "verdict", n.verdict, "verdict"); renderSpec(); renderNav(); flash("Saved in this browser"); });
+        var id = SCREENS[state.idx].id; var n = noteFor(id); n.verdict = (n.verdict === b.getAttribute("data-v")) ? "" : b.getAttribute("data-v"); n.who = store.who; save(); var ok = put(id, "verdict", n.verdict, "verdict"); renderSpec(); renderNav(); saved(ok); });
     }
     var ta = document.getElementById("comment"); var timer;
     if(ta) ta.addEventListener("input", function(){ var id = SCREENS[state.idx].id; var n = noteFor(id); n.text = ta.value; n.who = store.who; save();
-      flash("Saving..."); clearTimeout(timer); timer = setTimeout(function(){ put(id, "text", noteFor(id).text || "", "comment"); flash("Saved in this browser"); renderNav(); }, 1500); });
+      flash("Saving..."); clearTimeout(timer); timer = setTimeout(function(){ saved(put(id, "text", noteFor(id).text || "", "comment")); renderNav(); }, 1500); });
     if(BOARD){ BOARD.attach(ta, function(){ return SCREENS[state.idx].id; }); BOARD.init({page: PAGE, apply: applyRemote}); }
 
     var sel = document.getElementById("jump");

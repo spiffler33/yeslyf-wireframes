@@ -64,9 +64,23 @@ def fetch_rows(url, key):
         offset += PAGE_SIZE
 
 
+def load_ignore():
+    """The test rows (data/board_ignore.json): page, item_id and the minute of created_at in UTC."""
+    path = os.path.join(ROOT, "data", "board_ignore.json")
+    with open(path) as fh:
+        return json.load(fh)["rows"]
+
+
+def is_ignored(row, ignore):
+    minute = str(row.get("created_at", ""))[:16]
+    return any(g["page"] == row["page"] and g["item_id"] == row["item_id"] and g["minute"] == minute for g in ignore)
+
+
 def latest_of(rows):
     latest = {}
     for row in rows:  # rows arrive in id order, so the last write per page, item and field wins
+        if row.get("ignored"):
+            continue
         latest.setdefault(row["page"], {}).setdefault(row["item_id"], {})[row["field"]] = row
     return latest
 
@@ -84,15 +98,22 @@ def main():
     except (urllib.error.URLError, OSError) as e:
         print("request failed: %s" % e)
         return 1
+    ignore = load_ignore()
+    ignored = 0
+    for row in rows:
+        if is_ignored(row, ignore):
+            row["ignored"] = True
+            ignored += 1
     out = {"pulled_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
            "source": "%s, %s/rest/v1/board_entries" % (source, url),
            "note": "Every row of board_entries, unchanged, in id order. latest holds the last row per page, item_id and field; "
-                   "that is the current value. Written by scripts/pull_board.py; run it before any v0.3 build.",
-           "count": len(rows), "latest": latest_of(rows), "rows": rows}
+                   "that is the current value. Written by scripts/pull_board.py; run it before any v0.3 build. "
+                   "Rows carrying ignored true are the test rows of data/board_ignore.json; they are kept here and left out of latest.",
+           "count": len(rows), "ignored": ignored, "latest": latest_of(rows), "rows": rows}
     with open(OUT, "w") as fh:
         fh.write(json.dumps(out, indent=1, ensure_ascii=True) + "\n")
     pages = sorted(out["latest"].keys())
-    print("wrote data/board_entries.json: %d rows, %d pages%s" % (len(rows), len(pages), (" (" + ", ".join(pages) + ")") if pages else ""))
+    print("wrote data/board_entries.json: %d rows (%d test rows ignored), %d pages%s" % (len(rows), ignored, len(pages), (" (" + ", ".join(pages) + ")") if pages else ""))
     return 0
 
 

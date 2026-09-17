@@ -25,11 +25,15 @@ FORBIDDEN = ["founders", "Founders", "recommendation", "Recommendation", "Priya"
              "three calls", "four calls", "1 call", "2 calls", "3 calls", "4 calls", "60-day", "60 day", "S26"]
 # First names that must not appear in drawn ui text (callouts name the item, never a person).
 NAMES_UI = ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Vatsal", "spiff", "Priya"]
+# Phase 12 (Vatsal, 17 Sep 2026): a screen cites an integrations row by its I-number; the vendor name is rendered
+# from data/integrations.json. These names must not appear anywhere on a live screen.
+VENDOR_NAMES = ["Digio", "Setu", "OneMoney", "Cybrilla", "SendGrid", "Azure", "HubSpot", "OneSignal", "Calendly", "Appsmith", "Retool"]
+TAGS = ("required", "optional", "default", "system", "read")
 # Appendix B gate fields, by spine section.
 GATE_FIELDS = ["members", "has_dependants", "rpq_answers", "risk_band", "take_home", "total_outgoings",
                "bank_and_deposits", "mutual_funds", "stocks", "epf", "has_loans", "total_emi", "term_status",
                "health_status", "goals", "work_optional_age"]
-STATES = ["S1", "S2", "S2b", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11", "S12", "S13", "S14", "S15",
+STATES = ["S1", "S2", "S2b", "S2c", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11", "S12", "S13", "S14", "S15",
           "S16", "S17", "S18", "S19", "S20", "S21", "S22", "S23", "S24", "S25"]
 
 
@@ -102,10 +106,12 @@ def structural(screens):
         has_input = any(r[0] in ("in", "radio") for r in ui) or (any(r[0] == "chips" for r in ui) and bool(s["spec"].get("fields")))
         if has_input and not s["spec"].get("forward"):
             p.append("%s: inputs drawn but no Moving forward block (spec.forward)" % sid)
-        if s["spec"].get("forward"):
-            for f in s["spec"].get("fields", []):
-                if isinstance(f, str) or f.get("forward") not in ("required", "optional", "default", "system"):
-                    p.append("%s: field %r lacks its required, optional, default or system tag" % (sid, f if isinstance(f, str) else f.get("f")))
+        # Phase 12 (Vatsal, 17 Sep 2026): every field entry on every live screen carries one of the five tags; a
+        # screen that draws no input tags its entries read (shown from another screen) or system (written by the app
+        # or a vendor). Plain strings are not entries.
+        for f in s["spec"].get("fields", []):
+            if isinstance(f, str) or f.get("forward") not in TAGS:
+                p.append("%s: field %r lacks its required, optional, default, system or read tag" % (sid, f if isinstance(f, str) else f.get("f")))
         if s.get("template") not in TEMPLATES:
             p.append("%s: template %r not in appendix F" % (sid, s.get("template")))
         if s.get("path") not in PATHS:
@@ -128,6 +134,18 @@ def structural(screens):
                 if ord(ch) > 126:
                     p.append("%s: non-ASCII %r" % (sid, txt[:60]))
                     break
+    p += check_vendors(screens)
+    return p
+
+
+def check_vendors(screens):
+    """No vendor name from VENDOR_NAMES anywhere on a live screen (ui, spec, purpose, compliance)."""
+    p = []
+    for s in live(screens):
+        for txt in texts(s):
+            for w in VENDOR_NAMES:
+                if word_hit(txt, w):
+                    p.append("%s: vendor name %s on the screen: %r (cite the I-number instead)" % (s["id"], w, txt[:70]))
     return p
 
 
@@ -276,7 +294,7 @@ def full(screens, states=None):
     results.append(("1 branches resolve, no dropped targets, no orphans", structural(screens) + check_orphans(screens)))
     results.append(("2 self-links carry a logic line", check_self_links(screens)))
     results.append(("3 manual path reaches every gate field; aa path reaches every D screen; both reach D01, D10, G01", check_paths(screens)))
-    results.append(("4 every state S1 to S25 has a landing, a primary action, a ladder, an exit and a mock", check_states(screens, states)))
+    results.append(("4 every state S1 to S25 (S2b and S2c included) has a landing, a primary action, a ladder, an exit and a mock", check_states(screens, states)))
     results.append(("5 every screen has a template, a path, an event and a compliance flag", [x for x in structural(screens) if "template" in x or "path" in x or "events" in x or "compliance" in x]))
     results.append(("6 causes shown; no names on callouts, no founders or recommendation, no Priya, no drawn call count or length, no capital Yeslyf", check_words(screens) + ["%s: %s without a cause" % (s["id"], s["v02"]["status"]) for s in screens if s["v02"]["status"] != "kept" and not s["v02"].get("causes")]))
     results.append(("7 P01 two cards and a period toggle; no one-time card; no 60-day line; no S26", check_p01(screens) + [x for x in check_words(screens) if "60" in x or "S26" in x]))

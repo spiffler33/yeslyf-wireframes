@@ -28,7 +28,9 @@ import validate_v02  # noqa: E402
 
 NUM_EVENTS = ["set", "skip", "hesitation_45", "hesitation_90", "hesitation_120", "band_tapped", "exact_entered"]
 TBV = "to be verified:"
-FORWARD_TAGS = ("required", "optional", "default", "system")  # mandatory and optional inputs (Vatsal, 17 Sep 2026)
+TBD = "to be decided:"  # an open product decision, written on the screen it touches (phase 12, Vatsal, 17 Sep 2026)
+# Mandatory and optional inputs (Vatsal, 17 Sep 2026); "read" (phase 12): the screen shows a value captured elsewhere.
+FORWARD_TAGS = ("required", "optional", "default", "system", "read")
 
 
 def load(name):
@@ -214,6 +216,45 @@ class Build:
             if tags:
                 raise SystemExit("%s: forward tags name unknown fields %s" % (s["id"], sorted(tags)))
             self.touch(s, cause)
+        elif op == "tags":
+            # Phase 12 (Vatsal, 17 Sep 2026): a tag per field on a screen that draws no input (read or system), with no
+            # Moving forward block. e["fields"] maps an entry (its f, or the plain string itself) to a tag or to the
+            # full replacement entry; e["rest"] tags every entry not named. Nothing may stay untagged.
+            named = dict(e.get("fields", {}))
+            rest = e.get("rest")
+            fields = s["spec"]["fields"]
+            for i, f in enumerate(fields):
+                key = f if isinstance(f, str) else f.get("f")
+                if key in named:
+                    spec = named.pop(key)
+                else:
+                    if rest is None:
+                        raise SystemExit("%s: tags op leaves %r untagged" % (s["id"], key))
+                    spec = rest
+                if isinstance(spec, dict):
+                    if spec.get("forward") not in FORWARD_TAGS or not spec.get("f"):
+                        raise SystemExit("%s: tags op entry for %r needs f and a tag in %s" % (s["id"], key, FORWARD_TAGS))
+                    fields[i] = spec
+                else:
+                    if spec not in FORWARD_TAGS:
+                        raise SystemExit("%s: tag %r on %r not in %s" % (s["id"], spec, key, FORWARD_TAGS))
+                    if isinstance(f, str):
+                        fields[i] = {"f": f, "forward": spec}
+                    else:
+                        f["forward"] = spec
+            if named:
+                raise SystemExit("%s: tags op names unknown fields %s" % (s["id"], sorted(named)))
+            self.touch(s, cause)
+        elif op == "card_add":
+            # Append lines to a drawn card, matched by its title; the card keeps its place and its other lines.
+            row = s["ui"][self.find_row(s, e["match"])]
+            if row[0] != "card":
+                raise SystemExit("%s: card_add match is not a card" % s["id"])
+            row[2].extend(e["value"])
+            self.touch(s, cause)
+        elif op == "cause":
+            # A cause with no edit: the record that a decision confirmed the screen as drawn (appended, never inserted).
+            self.touch(s, cause)
         elif op == "status":
             if e["value"] not in ("changed", "rebuilt", "new"):
                 raise SystemExit("%s: status op cannot set %r" % (s["id"], e["value"]))
@@ -397,6 +438,23 @@ class Build:
                     self.add_screen(s, after=after, before=before)
 
     # ---- finish -------------------------------------------------------------------------------------------
+    def resolve_tools(self, integrations):
+        """A table cell given as a list of I-numbers reads 'I09 Razorpay; I14 Zoho One' (phase 12, Vatsal, 17 Sep
+        2026): the vendor name is rendered from data/integrations.json, so a screen never carries a vendor name of
+        its own and a vendor change is made in one place."""
+        by = {r["id"]: r for r in integrations["rows"]}
+        for s in self.screens:
+            for row in s["ui"]:
+                if row[0] != "table":
+                    continue
+                for r in row[2]:
+                    for i, c in enumerate(r):
+                        if isinstance(c, list):
+                            for iid in c:
+                                if iid not in by:
+                                    raise SystemExit("%s: table cell names %s, not an integrations row" % (s["id"], iid))
+                            r[i] = "; ".join("%s %s" % (iid, by[iid]["vendor"]) for iid in c)
+
     def finish(self, reasons):
         for s in self.screens:
             ev = ["%s_view" % s["id"]]
@@ -414,15 +472,16 @@ class Build:
             s["compliance"]["checks"] = [reasons[r]["check"] for r in s["compliance"]["reasons"]]
 
 
-def tbv_items(screens):
-    """Every 'to be verified: <item>' marker on a live screen, grouped by item text."""
+def marker_items(screens, marker):
+    """Every '<marker> <item>' on a live screen, grouped by item text; the item runs to the first ), ;, '. ' or
+    line break. marker is TBV ('to be verified:') or TBD ('to be decided:')."""
     found = {}
 
     def walk(o, sid):
         if isinstance(o, str):
-            i = o.find(TBV)
+            i = o.find(marker)
             while i >= 0:
-                rest = o[i + len(TBV):].strip()
+                rest = o[i + len(marker):].strip()
                 cut = len(rest)
                 for stop in (")", ";", ". ", "\n"):
                     j = rest.find(stop)
@@ -432,7 +491,7 @@ def tbv_items(screens):
                 found.setdefault(item, [])
                 if sid not in found[item]:
                     found[item].append(sid)
-                i = o.find(TBV, i + 1)
+                i = o.find(marker, i + 1)
         elif isinstance(o, list):
             for x in o:
                 walk(x, sid)
@@ -442,8 +501,16 @@ def tbv_items(screens):
 
     for s in screens:
         if s["v02"]["status"] not in ("dropped", "split"):
-            walk({k: v for k, v in s.items() if k != "v02"}, s["id"])
+            walk({k: v for k, v in s.items() if k not in ("v02", "freeze")}, s["id"])
     return [{"item": k, "screens": v} for k, v in sorted(found.items())]
+
+
+def tbv_items(screens):
+    return marker_items(screens, TBV)
+
+
+def tbd_items(screens):
+    return marker_items(screens, TBD)
 
 
 def counts(screens, sections):
@@ -472,6 +539,7 @@ def main():
         for e in g["edits"]:
             b.apply(e, g["cause"])
     b.overlay()
+    b.resolve_tools(load("integrations.json"))
     reasons = load("compliance_reasons.json")["reasons"]
     b.finish(reasons)
 
@@ -495,15 +563,16 @@ def main():
         "rerouted": b.rerouted,
         "superseded": effects["superseded"],
         "to_be_verified": tbv_items(b.screens),
+        "to_be_decided": tbd_items(b.screens),
         "counts": counts(b.screens, b.sections),
     }
     dump("screens_v02.json", {"source": changelog["source"], "sections": b.sections, "screens": b.screens})
     dump("changelog.json", changelog)
     c = changelog["counts"]
-    print("screens: %d live (%s); templates: %d; changed %d, added %d, dropped %d, split %d, rerouted %d, to be verified %d" % (
+    print("screens: %d live (%s); templates: %d; changed %d, added %d, dropped %d, split %d, rerouted %d, to be verified %d, to be decided %d" % (
         c["total"], ", ".join("%s %d" % kv for kv in sorted(c["by_status"].items())), c["unique_templates"],
         len(changelog["changed"]), len(changelog["added"]), len(changelog["dropped"]), len(changelog["split"]),
-        len(changelog["rerouted"]), len(changelog["to_be_verified"])))
+        len(changelog["rerouted"]), len(changelog["to_be_verified"]), len(changelog["to_be_decided"])))
     return 0
 
 

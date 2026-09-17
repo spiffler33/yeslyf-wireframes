@@ -1,0 +1,9 @@
+{
+  "source": "minutes 16 Sep 2026, section 1; the brief of 17 Sep 2026 (1.16)",
+  "note": "Test rows in the board table. They cannot be deleted (the table is append-only), so every page drops them from its fetch (scripts/board_store.js, BOARD_IGNORE) and scripts/pull_board.py marks them ignored in data/board_entries.json; counts, exports, history, the question list and the daily update never see them. Keyed by page, item_id and the minute of created_at in UTC (the first 16 characters of the timestamp); 10:25 IST is 04:55 UTC, 11:53 IST is 06:23 UTC.",
+  "rows": [
+    {"page": "setup", "item_id": "TEST", "minute": "2026-09-16T04:53", "what": "the setup probe (Vatsal, 16 Sep 2026)"},
+    {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-16T04:55", "what": "the A02 Keep and comment of the live check, 10:25 IST (Kajal, 16 Sep 2026)"},
+    {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-16T06:23", "what": "the somil:example comment written on the call, 11:53 IST (minutes 16 Sep 2026, section 1)"}
+  ]
+}

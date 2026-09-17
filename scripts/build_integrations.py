@@ -44,6 +44,11 @@ STATUSES = ["not started", "in talks", "agreement signed", "sandbox", "productio
 GATES = ["launch", "execution switch", "later"]
 FIELDS = ["id", "category", "vendor", "alternatives", "role", "screens", "gates", "fallback", "owner", "status",
           "agreement_date", "sandbox_date", "production_date", "docs_url", "cost", "notes", "cause"]
+# Phase 12 (Vatsal, 17 Sep 2026): a row may list "mentions", screens that only name the vendor without using it;
+# the cross-check does not flag those; a row with cross_check false is never searched (I00, the regulator, is named in
+# copy). An owner may be empty while the vendor is not decided. Costs are kept off the board (the page is public):
+# the field stays, its hint says so, and the seeds are empty.
+COST_HINT = "kept off the board"
 MARK = "to be verified: screens"
 DEPS_FILE = os.path.join(DATA, "dependencies.json")
 OWED_STATUSES = ["not started", "in progress", "delivered"]
@@ -105,11 +110,12 @@ def cross_check(rows, v02):
     for row in rows:
         listed = row["screens"]
         every = listed == ["all"]
-        missing = [sid for sid in listed if sid != "all" and sid not in live_ids]
+        acknowledged = listed + list(row.get("mentions", []))
+        missing = [sid for sid in acknowledged if sid != "all" and sid not in live_ids]
         unlisted = []
-        if not every and vendor_searchable(row["vendor"]):
+        if not every and row.get("cross_check", True) and vendor_searchable(row["vendor"]):
             phrase = tokens(row["vendor"])
-            unlisted = [sid for sid, w in words if has_phrase(w, phrase) and sid not in listed]
+            unlisted = [sid for sid, w in words if has_phrase(w, phrase) and sid not in acknowledged]
         result[row["id"]] = {"unlisted": unlisted, "missing": missing}
     return result, live_ids
 
@@ -133,11 +139,16 @@ def validate(rows):
             problems.append("%s: status %r is not one of %s" % (rid, row.get("status"), ", ".join(STATUSES)))
         if row.get("gates") not in GATES and not (row.get("gates") == "" and row.get("status") == "dropped"):
             problems.append("%s: gates %r is not one of %s" % (rid, row.get("gates"), ", ".join(GATES)))
-        if not isinstance(row.get("screens"), list) or not all(isinstance(s, str) for s in row.get("screens", [])):
-            problems.append("%s: screens must be a list of screen IDs" % rid)
-        for f in ("vendor", "role", "owner", "cause", "category"):
+        for key in ("screens", "mentions"):
+            if key in row and (not isinstance(row.get(key), list) or not all(isinstance(s, str) for s in row.get(key, []))):
+                problems.append("%s: %s must be a list of screen IDs" % (rid, key))
+        for f in ("vendor", "role", "cause", "category"):
             if not str(row.get(f, "")).strip():
                 problems.append("%s: %s is empty" % (rid, f))
+        if not str(row.get("owner", "")).strip() and row.get("vendor") != "not decided":
+            problems.append("%s: owner is empty (allowed only while the vendor is not decided)" % rid)
+        if str(row.get("cost", "")).strip():
+            problems.append("%s: cost %r is on the board; costs are kept off it" % (rid, row.get("cost")))
         for f in ("agreement_date", "sandbox_date", "production_date"):
             d = str(row.get(f, ""))
             if d and not (len(d) == 10 and d[4] == "-" and d[7] == "-" and d.replace("-", "").isdigit()):
@@ -235,7 +246,7 @@ JS = r"""
   function edits(id){ if(!S.rows[id]) S.rows[id]={}; return S.rows[id]; }
   function val(id,f){ var e=S.rows[id]||{}; if(e[f]!==undefined) return e[f]; var r=byId[id]; return (r&&r[f]!==undefined)?r[f]:""; }
   // every edit is one row in board_entries (page "integrations"); the comment is kind comment, everything else field_edit
-  function put(id,field,value){ if(window.yeslyfBoard) yeslyfBoard.write({item_id:id,field:field,value:value,who:S.who||"",kind:field==="comment"?"comment":"field_edit"}); }
+  function put(id,field,value){ if(!window.yeslyfBoard) return true; var ok=yeslyfBoard.write({item_id:id,field:field,value:value,who:S.who||"",kind:field==="comment"?"comment":"field_edit"}); if(!ok) setTimeout(function(){ flash(yeslyfBoard.noIdentity); },0); return ok; }
   function wb(){ return window.yeslyfBoard?yeslyfBoard.label():"offline; this file is the record"; }
   function applyRemote(rows){ rows.forEach(function(r){ if(!byId[r.item_id]||EDITABLE.indexOf(r.field)<0) return; var ed=edits(r.item_id); ed[r.field]=r.value||""; if(r.field==="comment") ed.comment_who=r.who||""; }); save(); paintAll(); }
   function ownersOf(text){ var out=[]; String(text||"").split(",").forEach(function(p){ p=p.trim(); if(p&&out.indexOf(p)<0) out.push(p); }); return out; }
@@ -277,11 +288,11 @@ JS = r"""
     var L=["# yeslyf integrations v0.2 - brief for Spinach","Exported "+new Date().toLocaleString()+(S.who?" by "+S.who:""),"Write-back: "+wb(),"","## Integrations",
       "Rows: "+ROWS.length+"; by status: "+STATUSES.map(function(s){ return s+" "+counts[s]; }).join(", "),
       "Long pole (gates launch and below sandbox): "+(lp.length?lp.map(function(r){ return r.id+" "+r.vendor; }).join(", "):"none"),""];
-    var cols=["ID","Category","Vendor","Alternatives","Role","Screens","Gates","Fallback","Owner","Status","Agreement","Sandbox","Production","Docs","Cost","Notes","Cause","Comment"];
+    var cols=["ID","Category","Vendor","Alternatives","Role","Screens","Gates","Fallback","Owner","Status","Agreement","Sandbox","Production","Docs","Notes","Cause","Comment"];
     L.push("| "+cols.join(" | ")+" |"); L.push("|"+cols.map(function(){ return " --- |"; }).join(""));
     ROWS.forEach(function(r){ var e=S.rows[r.id]||{}; var scr=r.screens.length?(r.screens[0]==="all"?"all screens":r.screens.join(" ")):"-"; var cm=val(r.id,"comment"); if(cm&&e.comment_who) cm+=" ("+e.comment_who+")";
       var cells=[r.id,r.category,r.vendor,r.alternatives||"-",r.role,scr+(r.to_be_verified?" ("+r.to_be_verified+")":""),r.gates||"-",r.fallback||"-",val(r.id,"owner"),val(r.id,"status"),
-        val(r.id,"agreement_date")||"-",val(r.id,"sandbox_date")||"-",val(r.id,"production_date")||"-",val(r.id,"docs_url")||"-",val(r.id,"cost")||"-",val(r.id,"notes")||"-",r.cause,cm||"-"];
+        val(r.id,"agreement_date")||"-",val(r.id,"sandbox_date")||"-",val(r.id,"production_date")||"-",val(r.id,"docs_url")||"-",val(r.id,"notes")||"-",r.cause,cm||"-"];
       L.push("| "+cells.map(cellmd).join(" | ")+" |"); });
     L.push(""); L.push("## Owed to Spinach"); L.push("Rows: "+OWED.length+"; by status: "+OWED_STATUSES.map(function(s){ return s+" "+ocounts[s]; }).join(", ")); L.push("");
     var ocols=["ID","Item","Owner","Due","Status","Lands at","Notes","Cause","Comment"]; L.push("| "+ocols.join(" | ")+" |"); L.push("|"+ocols.map(function(){ return " --- |"; }).join(""));
@@ -371,7 +382,7 @@ def render_row(row, check, live_ids):
             '<label>Cost</label>%s<label>Notes</label>%s<label>Comment</label>%s<span class="cw" data-cwho></span>' % (
                 control(row, "owner", "first names"), control(row, "status", "select"), control(row, "agreement_date", "date"),
                 control(row, "sandbox_date", "date"), control(row, "production_date", "date"), control(row, "docs_url", "https://..."),
-                control(row, "cost", "free, or paid with the model"), control(row, "notes", "textarea"), control(row, "comment", "textarea")))
+                control(row, "cost", COST_HINT), control(row, "notes", "textarea"), control(row, "comment", "textarea")))
     panel = '<tr class="r2"><td colspan="8"><div class="panel"><div>%s</div><div class="form">%s</div></div></td></tr>' % ("".join(facts), form)
     return '<tbody id="row-%s" data-id="%s">%s%s</tbody>' % (rid, rid, line, panel)
 
@@ -456,7 +467,8 @@ def main():
         if c["unlisted"]:
             print("cross-check: %s %s names the vendor on screens the row does not list: %s" % (row["id"], row["vendor"], ", ".join(c["unlisted"])))
         if c["missing"]:
-            print("cross-check: %s %s lists screens that are not live in v0.2: %s" % (row["id"], row["vendor"], ", ".join(c["missing"])))
+            print("ERROR: cross-check: %s %s lists screens that are not live in v0.2: %s" % (row["id"], row["vendor"], ", ".join(c["missing"])))
+            sys.exit(1)
         if row.get("to_be_verified", "") != mark:
             row["to_be_verified"] = mark
             changed = True

@@ -75,7 +75,7 @@
     ],
     [
      "p",
-     "Left: the journey, section by section. Middle: the screen. Right: what the screen does, its fields with gate, source, precision and the required, optional, default or system tag, its Moving forward block (what the primary button needs), its logic, branches, states, dev notes, events and compliance flag, plus your verdict and comments."
+     "Left: the journey, section by section. Middle: the screen. Right: what the screen does, its fields with gate, source, precision and the required, optional, default, system or read tag, its Moving forward block (what the primary button needs), its logic, branches, states, dev notes, events, integrations and compliance flag, plus your verdict and comments."
     ],
     [
      "p",
@@ -87,7 +87,7 @@
     ],
     [
      "p",
-     "Comments save in this browser as you type and write to the v02_comments sheet tab when the endpoint is set. Pick your name, or Spinach or Compliance, before commenting. Export downloads a markdown build brief."
+     "Comments save in this browser as you type and are written to the shared board table as rows; the pill in the top bar reads live or offline. Pick your name, or Spinach or Compliance, before commenting: nothing is recorded without a name. Export downloads a markdown build brief."
     ],
     [
      "card",
@@ -108,7 +108,9 @@
       "No named adviser on any screen; a config flag, adviser continuity (off by default), lets the same adviser be offered again",
       "DIFM: not a shown SKU, no in-app upsell; DIFM clients exist in the app for tracking only; prospects are flagged in the CRM and called by the call centre",
       "Holdings that are not AA-fed or CAS-verified: G11 renders, G12 is a locked card with two unlock actions, G13 gives buy advice for new money only",
-      "Brand: yeslyf, lowercase, everywhere"
+      "Brand: yeslyf, lowercase, everywhere",
+      "Entry is mobile plus OTP; a person is registered the moment the OTP is right; email is never the login",
+      "Cloud AWS; email Amazon SES"
      ]
     ],
     [
@@ -170,7 +172,18 @@
       "The data spine never blocks on a number: Continue is always enabled; a field is a value, explicit none or not sure; a gate field left not sure is asked again before the build (D10 lists it, D13 takes a range). The spine blocks in two places only: the risk questions and D10.",
       "A list item saves with its identity alone (a member's relation, a loan's type, a policy's type, a goal's name); every amount on a detail screen is optional and becomes a Sharpen this link in the plan.",
       "After the plan, nothing that helps us but not the user is required: call topics, cancel reasons, review confirmations and reminders are optional; a slot is required to book a call; at least one change is required to reopen the spine from Q06.",
-      "Admin: a record saves with its key (an ISIN, a publish reason); validation blocks publish, never typing."
+      "Admin: a record saves with its key (an ISIN, a publish reason); validation blocks publish, never typing.",
+      "A fifth tag, read: the screen shows a value captured on another screen (the plan and the review screens). System covers what the app or a vendor writes: source, ids, links, timestamps, queues, records. Every field entry carries one of the five."
+     ]
+    ],
+    [
+     "card",
+     "Saving and coming back",
+     [
+      "1. Every step is saved on the server as it is written. A half-typed number is a draft: it is never read by the engine and never shown as an answer. A value counts once the person moves forward, taps That's about right, or taps a chip.",
+      "2. Reopening the app after a kill, a restart or a session timeout returns to the exact screen that was left, with its draft.",
+      "3. A state landing (section N) applies when the state has changed since the last visit or when the person arrives from a nudge link. Otherwise rule 2 wins.",
+      "4. to be decided: client-side storage and the session timeout rule, by Spinach's data lifecycle map (W21)."
      ]
     ],
     [
@@ -231,7 +244,9 @@
     "causes": [
      "Vatsal, 10 Sep 2026",
      "Vatsal, 11 Sep 2026",
-     "Vatsal, 17 Sep 2026"
+     "Vatsal, 17 Sep 2026",
+     "minutes 16 Sep 2026, items 1 and 2; Gaurav, 16 Sep 2026; Vatsal, 17 Sep 2026",
+     "minutes 16 Sep 2026, item 4; Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -373,12 +388,13 @@
    "template": "T-tap",
    "path": "both",
    "compliance": {
-    "review": false,
+    "review": true,
     "reasons": [
-     "plain copy"
+     "consent"
     ],
+    "note": "to be verified: whether a number that failed the OTP may be stored or contacted; ownership and consent are not proven.",
     "checks": [
-     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+     "AA consent wording and period, the DPDP notice, CAS password handling, the declaration, deletion."
     ]
    },
    "events": [
@@ -433,7 +449,8 @@
     ],
     "logic": [
      "New user: A04.",
-     "Returning user: offer biometric enrolment, then route by state (section N)."
+     "Returning user: offer biometric enrolment, then route by state (section N).",
+     "to be decided: the new-user branch follows A04's placement."
     ],
     "branches": [
      [
@@ -463,12 +480,13 @@
    "template": "T-tap",
    "path": "both",
    "compliance": {
-    "review": false,
+    "review": true,
     "reasons": [
-     "plain copy"
+     "consent"
     ],
+    "note": "to be verified: whether a number that failed the OTP may be stored or contacted; ownership and consent are not proven.",
     "checks": [
-     "No regulated content identified. Comment on language if anything reads as advice or a promise."
+     "AA consent wording and period, the DPDP notice, CAS password handling, the declaration, deletion."
     ]
    },
    "events": [
@@ -477,7 +495,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "Vatsal, 17 Sep 2026"
+     "Vatsal, 17 Sep 2026",
+     "minutes 16 Sep 2026, item 10"
     ]
    }
   },
@@ -515,7 +534,8 @@
    "spec": {
     "fields": [],
     "logic": [
-     "Skip allowed after 5 seconds. Captions on by default; most first opens are on mute."
+     "Skip allowed after 5 seconds. Captions on by default; most first opens are on mute.",
+     "to be decided: placement, right after the OTP or after the first reveal questions."
     ],
     "branches": [
      [
@@ -551,7 +571,8 @@
     "status": "changed",
     "causes": [
      "gap G03 (agreed, date set)",
-     "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)"
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
+     "minutes 16 Sep 2026, item 10"
     ]
    }
   },
@@ -1739,7 +1760,7 @@
      "PAN mismatch with name: inline error"
     ],
     "dev": [
-     "Vendor: Digio for KRA/CKYC fetch and eSign, unless HoA already has one.",
+     "KYC fetch: see I06. eSign on P03: see I07.",
      "Full KYC for execution (bank, nominee, FATCA) is deferred to E02; do not front-load it here."
     ],
     "forward": [
@@ -1944,7 +1965,8 @@
     "states": [
      "Payment failed: retry with another method; nothing is lost",
      "Mandate pending bank approval: allow entry, mark billing as pending",
-     "A la carte call purchase (K04): single charge; after payment K05 opens"
+     "A la carte call purchase (K04): single charge; after payment K05 opens",
+     "Payment abandoned after the eSign: state S2c; the return lands here and the agreement is not signed again while its version is current"
     ],
     "dev": [
      "Razorpay recurring UPI and netbanking. Webhook updates tier and billing state.",
@@ -2223,14 +2245,16 @@
       "gate": false,
       "source": "system",
       "precision": "exact",
-      "note": "connected | cas | manual | not_connected"
+      "note": "connected | cas | manual | not_connected",
+      "forward": "system"
      },
      {
       "f": "progress_pct",
       "gate": false,
       "source": "system",
       "precision": "exact",
-      "note": "endowed 20 percent"
+      "note": "endowed 20 percent",
+      "forward": "system"
      }
     ],
     "logic": [
@@ -2282,7 +2306,8 @@
      "S19: stalled below the gate at day 7; card 1 lists the missing fields with minutes; DIWM outbound call task, DIY a la carte offer (section 5)"
     ],
     "dev": [
-     "Progress = weighted completion across the gate fields (rule 11); reads completion flags."
+     "Progress = weighted completion across the gate fields (rule 11); reads completion flags.",
+     "progress_pct is the display ring only (endowed, rule 11). The CRM's profile fulfilment percentage (minutes item 1) is a separate, unendowed number defined in the admin spec (W26). Never one stored number for both."
     ]
    },
    "template": "T-hub",
@@ -2305,7 +2330,8 @@
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
      "Vatsal, 10 Sep 2026",
      "row 26 (declined, no change to the step wording)",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -2621,7 +2647,8 @@
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": "later when the user takes the reminder"
+      "note": "later when the user takes the reminder",
+      "forward": "system"
      }
     ],
     "logic": [
@@ -2672,7 +2699,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -2733,7 +2761,7 @@
      "Abandoned: lands on D01 as a manual user with aa_status not_connected; the re-asks at G12a and Q01 apply"
     ],
     "dev": [
-     "TSP options: Setu, Finvu, OneMoney. Corporate RIA FIU registration is in hand per spiff.",
+     "AA vendor: see I01. FIU onboarding follows the corporate RIA registration (I00).",
      "Consent template: periodic consent, fetch now plus quarterly for the review; store consent_status, consent_valid_till, fetch_frequency, last_fetch_at per FIP (as on A05)."
     ],
     "forward": [
@@ -2762,7 +2790,8 @@
     "causes": [
      "Vatsal, 10 Sep 2026",
      "Vatsal, 11 Sep 2026",
-     "Vatsal, 17 Sep 2026"
+     "Vatsal, 17 Sep 2026",
+     "minutes 16 Sep 2026, item 14"
     ]
    }
   },
@@ -3036,7 +3065,8 @@
       "gate": false,
       "source": "aa",
       "precision": "exact",
-      "note": "FIPs to retry in the background"
+      "note": "FIPs to retry in the background",
+      "forward": "system"
      }
     ],
     "logic": [
@@ -3080,7 +3110,8 @@
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
      "4.1 bug fix",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -3141,21 +3172,24 @@
       "gate": false,
       "source": "cas",
       "precision": "exact",
-      "note": "starts the reminder clock"
+      "note": "starts the reminder clock",
+      "forward": "system"
      },
      {
       "f": "cas_source",
       "gate": false,
       "source": "cas",
       "precision": "exact",
-      "note": "cams_kfintech or nsdl_cdsl"
+      "note": "cams_kfintech or nsdl_cdsl",
+      "forward": "system"
      }
     ],
     "logic": [
      "Four instances (Vatsal, 10 Sep 2026): A10 request it, A10a waiting for the email, A10b upload and password, A10c what I read.",
      "Reminder at one hour and at 24 hours; state S17 while the email is awaited.",
      "Type it instead opens D02; the CAS can still be uploaded later from D02b, D02c or H06.",
-     "In V1 (Vatsal, 10 Sep 2026); to be verified: CAS parsing effort in V1."
+     "In V1 (Vatsal, 10 Sep 2026); to be verified: CAS parsing effort in V1.",
+     "to be decided: CAS source for V1. Position: registrar CAS first, depository CAS next (Vatsal, 17 Sep 2026); to be verified: parsing effort."
     ],
     "branches": [
      [
@@ -3198,7 +3232,9 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "4.1 bug fix"
+     "4.1 bug fix",
+     "minutes 16 Sep 2026, item 6",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -3243,13 +3279,15 @@
       "gate": false,
       "source": "cas",
       "precision": "exact",
-      "note": "one hour, then 24 hours"
+      "note": "one hour, then 24 hours",
+      "forward": "system"
      }
     ],
     "logic": [
      "Remind me again in an hour is an in-place action: it schedules one more push and keeps this screen.",
      "Exit S17 on upload (A10b) or on Type it instead (D02).",
-     "Opened from a nudge deep link or from O02 while S17 holds."
+     "Opened from a nudge deep link or from O02 while S17 holds.",
+     "This screen waits and reminds. Nothing reads the email or the inbox."
     ],
     "branches": [
      [
@@ -3286,7 +3324,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -3364,8 +3403,9 @@
      "File is not a CAS: plain message, try another file"
     ],
     "dev": [
-     "Parsing via the open-source casparser library or a vendor (spec v0.1 A09).",
-     "Password handling for the compliance reviewers: entered on the device, used once to open the PDF, not stored; where parsing runs (device or server) is a dev call; the PDF itself is retained in H06."
+     "CAS parsing: see I23.",
+     "Password handling for the compliance reviewers: entered on the device, used once to open the PDF, not stored; where parsing runs (device or server) is a dev call; the PDF itself is retained in H06.",
+     "The registrar CAS opens with the password the investor chose when requesting it; the depository CAS opens with the PAN in capitals. The field accepts either."
     ],
     "forward": [
      "Read it is enabled when a PDF is attached and the password field is filled.",
@@ -3482,7 +3522,9 @@
     "logic": [
      "Parsed holdings are CAS-verified and count as verified for G12 (spec v0.1 A09 rule).",
      "Continue goes to the screen that sent the user here (D02b, D02c, G12a or Q05), else D01.",
-     "Something is off opens the row for an edit; an edited row becomes manual and loses the CAS-verified tag."
+     "Something is off opens the row for an edit; an edited row becomes manual and loses the CAS-verified tag.",
+     "to be decided: CAS source for V1. Position: registrar CAS first, depository CAS next (Vatsal, 17 Sep 2026); to be verified: parsing effort.",
+     "With holdings and values only (minutes item 6), SIPs are not read from the CAS; D06d asks."
     ],
     "branches": [
      [
@@ -3523,7 +3565,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 17 Sep 2026"
+     "Vatsal, 17 Sep 2026",
+     "minutes 16 Sep 2026, item 6"
     ]
    }
   },
@@ -4845,7 +4888,8 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "from the RPQ score; no fallback"
+      "note": "from the RPQ score; no fallback",
+      "forward": "system"
      }
     ],
     "logic": [
@@ -4892,7 +4936,8 @@
     "causes": [
      "brief H3",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -7363,7 +7408,8 @@
      "Capture ladder (rule 8): the sources drawn under the input, in the order they apply to this item (appendix C).",
      "Why this one matters (Vatsal, 11 Sep 2026): a collapsed in-place link under the question; copy slot W-D02c (content is gap G08); D11b at 90 seconds reuses the same slot.",
      "Confirm or correct (Vatsal, 11 Sep 2026): when the value arrives prefilled, from Account Aggregator (your depository account) or your CAS, the primary button reads That's about right and stores the value with its source tag; Change it reveals the exact input in place; the derivation reads from what you told me earlier, never as an estimate.",
-     "Opens only when its type is ticked on D02 (Vatsal, 11 Sep 2026); an unticked type is stored as explicit none without opening this screen; Continue goes to the next ticked type, and after the last one to D12e."
+     "Opens only when its type is ticked on D02 (Vatsal, 11 Sep 2026); an unticked type is stored as explicit none without opening this screen; Continue goes to the next ticked type, and after the last one to D12e.",
+     "to be decided: CAS source for V1. Position: registrar CAS first, depository CAS next (Vatsal, 17 Sep 2026); to be verified: parsing effort."
     ],
     "branches": [
      [
@@ -7446,7 +7492,8 @@
     "causes": [
      "Vatsal, 10 Sep 2026",
      "Vatsal, 11 Sep 2026",
-     "Vatsal, 17 Sep 2026"
+     "Vatsal, 17 Sep 2026",
+     "minutes 16 Sep 2026, item 6"
     ]
    }
   },
@@ -11109,7 +11156,8 @@
       "gate": false,
       "source": "manual",
       "precision": "approx",
-      "note": "fields entered as a band (on D13 or a number screen) rather than an exact figure"
+      "note": "fields entered as a band (on D13 or a number screen) rather than an exact figure",
+      "forward": "system"
      }
     ],
     "logic": [
@@ -11151,7 +11199,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -11266,126 +11315,144 @@
       "gate": true,
       "source": "aa or manual",
       "precision": "exact or approx",
-      "note": "monthly take-home row"
+      "note": "monthly take-home row",
+      "forward": "read"
      },
      {
       "f": "total_outgoings",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "fixed commitments and surplus rows"
+      "note": "fixed commitments and surplus rows",
+      "forward": "read"
      },
      {
       "f": "bank_and_deposits",
       "gate": true,
       "source": "aa or manual",
       "precision": "exact or approx",
-      "note": "what you own"
+      "note": "what you own",
+      "forward": "read"
      },
      {
       "f": "mutual_funds",
       "gate": true,
       "source": "aa, cas or manual",
       "precision": "exact or approx",
-      "note": "what you own; allocation by class"
+      "note": "what you own; allocation by class",
+      "forward": "read"
      },
      {
       "f": "stocks",
       "gate": true,
       "source": "aa, cas or manual",
       "precision": "exact or approx",
-      "note": "what you own; allocation by class"
+      "note": "what you own; allocation by class",
+      "forward": "read"
      },
      {
       "f": "epf",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "what you own; locked corpus"
+      "note": "what you own; locked corpus",
+      "forward": "read"
      },
      {
       "f": "has_loans",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "what you owe"
+      "note": "what you owe",
+      "forward": "read"
      },
      {
       "f": "total_emi",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "fixed commitments"
+      "note": "fixed commitments",
+      "forward": "read"
      },
      {
       "f": "goals",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "what success looks like"
+      "note": "what success looks like",
+      "forward": "read"
      },
      {
       "f": "work_optional_age",
       "gate": true,
       "source": "manual or default accepted (D07b)",
       "precision": "exact",
-      "note": "what success looks like"
+      "note": "what success looks like",
+      "forward": "read"
      },
      {
       "f": "term_sum_assured",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "life cover row; sharpen"
+      "note": "life cover row; sharpen",
+      "forward": "read"
      },
      {
       "f": "nps",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "locked corpus; sharpen"
+      "note": "locked corpus; sharpen",
+      "forward": "read"
      },
      {
       "f": "ppf",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "locked corpus; sharpen"
+      "note": "locked corpus; sharpen",
+      "forward": "read"
      },
      {
       "f": "gold",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "allocation by class; sharpen"
+      "note": "allocation by class; sharpen",
+      "forward": "read"
      },
      {
       "f": "home_value",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "net worth, excluded from investable; sharpen"
+      "note": "net worth, excluded from investable; sharpen",
+      "forward": "read"
      },
      {
       "f": "investment_property_value",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "what you own; sharpen"
+      "note": "what you own; sharpen",
+      "forward": "read"
      },
      {
       "f": "ulip_surrender_value",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "locked corpus; sharpen"
+      "note": "locked corpus; sharpen",
+      "forward": "read"
      },
      {
       "f": "other_assets",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "what you own; sharpen"
+      "note": "what you own; sharpen",
+      "forward": "read"
      }
     ],
     "logic": [
@@ -11432,7 +11499,8 @@
      "brief B4",
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -11507,21 +11575,24 @@
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "monthly expenses; the target is months of these"
+      "note": "monthly expenses; the target is months of these",
+      "forward": "read"
      },
      {
       "f": "bank_and_deposits",
       "gate": true,
       "source": "aa or manual",
       "precision": "exact or approx",
-      "note": "available: savings and FDs"
+      "note": "available: savings and FDs",
+      "forward": "read"
      },
      {
       "f": "mutual_funds",
       "gate": true,
       "source": "aa, cas or manual",
       "precision": "exact or approx",
-      "note": "available: the debt-fund line"
+      "note": "available: the debt-fund line",
+      "forward": "read"
      }
     ],
     "logic": [
@@ -11560,7 +11631,8 @@
     "status": "changed",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -11639,91 +11711,104 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "future family expenses"
+      "note": "future family expenses",
+      "forward": "read"
      },
      {
       "f": "has_dependants",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "whether a life cover need exists"
+      "note": "whether a life cover need exists",
+      "forward": "read"
      },
      {
       "f": "has_loans",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "liabilities"
+      "note": "liabilities",
+      "forward": "read"
      },
      {
       "f": "total_emi",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "liabilities"
+      "note": "liabilities",
+      "forward": "read"
      },
      {
       "f": "take_home",
       "gate": true,
       "source": "aa or manual",
       "precision": "exact or approx",
-      "note": "health thresholds from L02"
+      "note": "health thresholds from L02",
+      "forward": "read"
      },
      {
       "f": "term_status",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "have, not sure, or none"
+      "note": "have, not sure, or none",
+      "forward": "read"
      },
      {
       "f": "health_status",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "employer only, personal, both, or none"
+      "note": "employer only, personal, both, or none",
+      "forward": "read"
      },
      {
       "f": "term_sum_assured",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "current cover; sharpen"
+      "note": "current cover; sharpen",
+      "forward": "read"
      },
      {
       "f": "health_sum_insured",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "sharpen"
+      "note": "sharpen",
+      "forward": "read"
      },
      {
       "f": "health_floater",
       "gate": false,
       "source": "manual",
       "precision": "unknown",
-      "note": "sharpen"
+      "note": "sharpen",
+      "forward": "read"
      },
      {
       "f": "other_policies",
       "gate": false,
       "source": "manual",
       "precision": "unknown",
-      "note": "policy review; sharpen"
+      "note": "policy review; sharpen",
+      "forward": "read"
      },
      {
       "f": "ulip_years_completed",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "policy review verdict; also an action-queue item on H04"
+      "note": "policy review verdict; also an action-queue item on H04",
+      "forward": "read"
      },
      {
       "f": "home_value",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "assets excluding your home; sharpen"
+      "note": "assets excluding your home; sharpen",
+      "forward": "read"
      }
     ],
     "logic": [
@@ -11765,7 +11850,8 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -11822,84 +11908,96 @@
       "gate": true,
       "source": "aa or manual",
       "precision": "exact or approx",
-      "note": "income line"
+      "note": "income line",
+      "forward": "read"
      },
      {
       "f": "total_outgoings",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "expenses line; surplus"
+      "note": "expenses line; surplus",
+      "forward": "read"
      },
      {
       "f": "goals",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "life events stacked on the chart"
+      "note": "life events stacked on the chart",
+      "forward": "read"
      },
      {
       "f": "work_optional_age",
       "gate": true,
       "source": "manual or default accepted (D07b)",
       "precision": "exact",
-      "note": "where active income ends on the chart"
+      "note": "where active income ends on the chart",
+      "forward": "read"
      },
      {
       "f": "partner_take_home",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "household income; sharpen"
+      "note": "household income; sharpen",
+      "forward": "read"
      },
      {
       "f": "rental_income",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "sharpen"
+      "note": "sharpen",
+      "forward": "read"
      },
      {
       "f": "other_income",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "sharpen"
+      "note": "sharpen",
+      "forward": "read"
      },
      {
       "f": "bucket_fixed",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "the three buckets; sharpen"
+      "note": "the three buckets; sharpen",
+      "forward": "read"
      },
      {
       "f": "bucket_variable",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "the three buckets; sharpen"
+      "note": "the three buckets; sharpen",
+      "forward": "read"
      },
      {
       "f": "bucket_guilt_free",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "the three buckets; sharpen"
+      "note": "the three buckets; sharpen",
+      "forward": "read"
      },
      {
       "f": "month_end_pattern",
       "gate": false,
       "source": "manual",
       "precision": "unknown",
-      "note": "narrative tone; sharpen"
+      "note": "narrative tone; sharpen",
+      "forward": "read"
      },
      {
       "f": "current_sip",
       "gate": false,
       "source": "aa, cas or manual",
       "precision": "approx or unknown",
-      "note": "already investing; sharpen"
+      "note": "already investing; sharpen",
+      "forward": "read"
      }
     ],
     "logic": [
@@ -11940,7 +12038,8 @@
     "status": "changed",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -12021,35 +12120,40 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "no loans shows the one-line all-clear"
+      "note": "no loans shows the one-line all-clear",
+      "forward": "read"
      },
      {
       "f": "total_emi",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "EMI burden against take-home"
+      "note": "EMI burden against take-home",
+      "forward": "read"
      },
      {
       "f": "take_home",
       "gate": true,
       "source": "aa or manual",
       "precision": "exact or approx",
-      "note": "EMI ceiling from L02"
+      "note": "EMI ceiling from L02",
+      "forward": "read"
      },
      {
       "f": "loans",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "per loan: outstanding, years left, rate; the prepay verdict; sharpen; rate is also an action-queue item on H04"
+      "note": "per loan: outstanding, years left, rate; the prepay verdict; sharpen; rate is also an action-queue item on H04",
+      "forward": "read"
      },
      {
       "f": "credit_card_balance",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "sharpen"
+      "note": "sharpen",
+      "forward": "read"
      }
     ],
     "logic": [
@@ -12090,7 +12194,8 @@
     "causes": [
      "brief B4",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -12158,84 +12263,96 @@
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "events on the timeline; met or not"
+      "note": "events on the timeline; met or not",
+      "forward": "read"
      },
      {
       "f": "work_optional_age",
       "gate": true,
       "source": "manual or default accepted (D07b)",
       "precision": "exact",
-      "note": "the anchor event"
+      "note": "the anchor event",
+      "forward": "read"
      },
      {
       "f": "members",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "family ages on the axis"
+      "note": "family ages on the axis",
+      "forward": "read"
      },
      {
       "f": "bank_and_deposits",
       "gate": true,
       "source": "aa or manual",
       "precision": "exact or approx",
-      "note": "liquid assets that year"
+      "note": "liquid assets that year",
+      "forward": "read"
      },
      {
       "f": "mutual_funds",
       "gate": true,
       "source": "aa, cas or manual",
       "precision": "exact or approx",
-      "note": "liquid assets that year"
+      "note": "liquid assets that year",
+      "forward": "read"
      },
      {
       "f": "stocks",
       "gate": true,
       "source": "aa, cas or manual",
       "precision": "exact or approx",
-      "note": "liquid assets that year"
+      "note": "liquid assets that year",
+      "forward": "read"
      },
      {
       "f": "epf",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "locked until the anchor"
+      "note": "locked until the anchor",
+      "forward": "read"
      },
      {
       "f": "nps",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "sharpen"
+      "note": "sharpen",
+      "forward": "read"
      },
      {
       "f": "ppf",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "sharpen"
+      "note": "sharpen",
+      "forward": "read"
      },
      {
       "f": "gold",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "sharpen"
+      "note": "sharpen",
+      "forward": "read"
      },
      {
       "f": "investment_property_value",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "sharpen"
+      "note": "sharpen",
+      "forward": "read"
      },
      {
       "f": "other_assets",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "sharpen"
+      "note": "sharpen",
+      "forward": "read"
      }
     ],
     "logic": [
@@ -12282,7 +12399,8 @@
      "brief B3",
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -12338,98 +12456,112 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "every field the seven sections read; listed on each section"
+      "note": "every field the seven sections read; listed on each section",
+      "forward": "read"
      },
      {
       "f": "has_dependants",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": ""
+      "note": "",
+      "forward": "read"
      },
      {
       "f": "take_home",
       "gate": true,
       "source": "aa or manual",
       "precision": "exact or approx",
-      "note": ""
+      "note": "",
+      "forward": "read"
      },
      {
       "f": "total_outgoings",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": ""
+      "note": "",
+      "forward": "read"
      },
      {
       "f": "bank_and_deposits",
       "gate": true,
       "source": "aa or manual",
       "precision": "exact or approx",
-      "note": ""
+      "note": "",
+      "forward": "read"
      },
      {
       "f": "mutual_funds",
       "gate": true,
       "source": "aa, cas or manual",
       "precision": "exact or approx",
-      "note": ""
+      "note": "",
+      "forward": "read"
      },
      {
       "f": "stocks",
       "gate": true,
       "source": "aa, cas or manual",
       "precision": "exact or approx",
-      "note": ""
+      "note": "",
+      "forward": "read"
      },
      {
       "f": "epf",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": ""
+      "note": "",
+      "forward": "read"
      },
      {
       "f": "has_loans",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": ""
+      "note": "",
+      "forward": "read"
      },
      {
       "f": "total_emi",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": ""
+      "note": "",
+      "forward": "read"
      },
      {
       "f": "term_status",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": ""
+      "note": "",
+      "forward": "read"
      },
      {
       "f": "health_status",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": ""
+      "note": "",
+      "forward": "read"
      },
      {
       "f": "goals",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": ""
+      "note": "",
+      "forward": "read"
      },
      {
       "f": "work_optional_age",
       "gate": true,
       "source": "manual or default accepted (D07b)",
       "precision": "exact",
-      "note": ""
+      "note": "",
+      "forward": "read"
      }
     ],
     "logic": [
@@ -12473,7 +12605,8 @@
      "brief B3",
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -12541,70 +12674,80 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "the grid row; no fallback"
+      "note": "the grid row; no fallback",
+      "forward": "read"
      },
      {
       "f": "goals",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "bucket per goal by horizon"
+      "note": "bucket per goal by horizon",
+      "forward": "read"
      },
      {
       "f": "work_optional_age",
       "gate": true,
       "source": "manual or default accepted (D07b)",
       "precision": "exact",
-      "note": "the long-term anchor"
+      "note": "the long-term anchor",
+      "forward": "read"
      },
      {
       "f": "bank_and_deposits",
       "gate": true,
       "source": "aa or manual",
       "precision": "exact or approx",
-      "note": "today's mix"
+      "note": "today's mix",
+      "forward": "read"
      },
      {
       "f": "mutual_funds",
       "gate": true,
       "source": "aa, cas or manual",
       "precision": "exact or approx",
-      "note": "today's mix"
+      "note": "today's mix",
+      "forward": "read"
      },
      {
       "f": "stocks",
       "gate": true,
       "source": "aa, cas or manual",
       "precision": "exact or approx",
-      "note": "today's mix"
+      "note": "today's mix",
+      "forward": "read"
      },
      {
       "f": "epf",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "today's mix"
+      "note": "today's mix",
+      "forward": "read"
      },
      {
       "f": "nps",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "today's mix; sharpen"
+      "note": "today's mix; sharpen",
+      "forward": "read"
      },
      {
       "f": "ppf",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "today's mix; sharpen"
+      "note": "today's mix; sharpen",
+      "forward": "read"
      },
      {
       "f": "gold",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "commodities today; sharpen"
+      "note": "commodities today; sharpen",
+      "forward": "read"
      }
     ],
     "logic": [
@@ -12646,7 +12789,8 @@
     "causes": [
      "brief H1",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -12715,35 +12859,40 @@
       "gate": true,
       "source": "aa or cas",
       "precision": "exact",
-      "note": "holdings at ISIN level; manual holdings go to G12a"
+      "note": "holdings at ISIN level; manual holdings go to G12a",
+      "forward": "read"
      },
      {
       "f": "stocks",
       "gate": true,
       "source": "aa or cas",
       "precision": "exact",
-      "note": "holdings at ISIN level; manual holdings go to G12a"
+      "note": "holdings at ISIN level; manual holdings go to G12a",
+      "forward": "read"
      },
      {
       "f": "risk_band",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "which bucket a holding fits"
+      "note": "which bucket a holding fits",
+      "forward": "read"
      },
      {
       "f": "ulip_surrender_value",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "the endowment card; sharpen"
+      "note": "the endowment card; sharpen",
+      "forward": "read"
      },
      {
       "f": "ulip_years_completed",
       "gate": false,
       "source": "manual",
       "precision": "approx or unknown",
-      "note": "surrender verdict; sharpen"
+      "note": "surrender verdict; sharpen",
+      "forward": "read"
      }
     ],
     "logic": [
@@ -12791,7 +12940,8 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -12841,27 +12991,31 @@
       "gate": true,
       "source": "manual",
       "precision": "approx",
-      "note": "typed on D02b; not verified"
+      "note": "typed on D02b; not verified",
+      "forward": "read"
      },
      {
       "f": "stocks",
       "gate": true,
       "source": "manual",
       "precision": "approx",
-      "note": "typed on D02c; not verified"
+      "note": "typed on D02c; not verified",
+      "forward": "read"
      },
      {
       "f": "aa_status",
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": "not_connected or later"
+      "note": "not_connected or later",
+      "forward": "system"
      }
     ],
     "logic": [
      "Section 0 (Vatsal, 10 Sep 2026): for holdings that are not AA-fed or CAS-verified, G11 renders; G12 renders as this locked card with two unlock actions (connect AA, upload CAS); G13 renders buy advice for new money with one line saying existing holdings were not assessed.",
      "This is the first of the two re-asks for a user who chose Not now on A05; the second is Q01.",
-     "Compliance flag on the wording: the locked card must not read as a diagnosis of the typed holdings."
+     "Compliance flag on the wording: the locked card must not read as a diagnosis of the typed holdings.",
+     "to be decided: CAS source for V1. Position: registrar CAS first, depository CAS next (Vatsal, 17 Sep 2026); to be verified: parsing effort."
     ],
     "branches": [
      [
@@ -12905,7 +13059,9 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "minutes 16 Sep 2026, item 6",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -12979,42 +13135,48 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "instruments per grid cell"
+      "note": "instruments per grid cell",
+      "forward": "read"
      },
      {
       "f": "goals",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "amount per goal bucket"
+      "note": "amount per goal bucket",
+      "forward": "read"
      },
      {
       "f": "total_outgoings",
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "the emergency lumpsum"
+      "note": "the emergency lumpsum",
+      "forward": "read"
      },
      {
       "f": "mutual_funds",
       "gate": true,
       "source": "aa, cas or manual",
       "precision": "exact or approx",
-      "note": "what is already held; unverified holdings are not assessed"
+      "note": "what is already held; unverified holdings are not assessed",
+      "forward": "read"
      },
      {
       "f": "stocks",
       "gate": true,
       "source": "aa, cas or manual",
       "precision": "exact or approx",
-      "note": "what is already held; unverified holdings are not assessed"
+      "note": "what is already held; unverified holdings are not assessed",
+      "forward": "read"
      },
      {
       "f": "current_sip",
       "gate": false,
       "source": "aa, cas or manual",
       "precision": "approx or unknown",
-      "note": "existing SIPs netted off; sharpen"
+      "note": "existing SIPs netted off; sharpen",
+      "forward": "read"
      }
     ],
     "logic": [
@@ -13059,7 +13221,8 @@
     "causes": [
      "Vatsal, 10 Sep 2026",
      "Vatsal, 11 Sep 2026",
-     "Vatsal, 16 Sep 2026"
+     "Vatsal, 16 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -13131,21 +13294,24 @@
       "gate": false,
       "source": "system",
       "precision": "exact",
-      "note": "actions[]: type, amount, due, channel (in-app or external), status; produced by G04 to G13"
+      "note": "actions[]: type, amount, due, channel (in-app or external), status; produced by G04 to G13",
+      "forward": "system"
      },
      {
       "f": "current_sip",
       "gate": false,
       "source": "aa, cas or manual",
       "precision": "approx or unknown",
-      "note": "SIP step-up and netting; sharpen"
+      "note": "SIP step-up and netting; sharpen",
+      "forward": "read"
      },
      {
       "f": "has_loans",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "prepay actions"
+      "note": "prepay actions",
+      "forward": "read"
      }
     ],
     "logic": [
@@ -13192,7 +13358,8 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -13480,8 +13647,14 @@
    ],
    "spec": {
     "fields": [
-     "call_id",
-     "join_link"
+     {
+      "f": "call_id",
+      "forward": "system"
+     },
+     {
+      "f": "join_link",
+      "forward": "system"
+     }
     ],
     "logic": [
      "Add to calendar is an in-place action: it writes a calendar event with the join link and the topic.",
@@ -13521,7 +13694,8 @@
    "v02": {
     "status": "rebuilt",
     "causes": [
-     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -13570,8 +13744,14 @@
    ],
    "spec": {
     "fields": [
-     "call_notes",
-     "input_changes[]"
+     {
+      "f": "call_notes",
+      "forward": "system"
+     },
+     {
+      "f": "input_changes[]",
+      "forward": "system"
+     }
     ],
     "logic": [
      "The adviser enters inputs during the call; the engine re-runs; the user sees a diff (H05). Nobody edits outputs by hand (spec v0.1, kept).",
@@ -13616,7 +13796,8 @@
     "status": "rebuilt",
     "causes": [
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
-     "Vatsal, 10 Sep 2026 (section 5)"
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -13659,7 +13840,10 @@
    ],
    "spec": {
     "fields": [
-     "a_la_carte_purchase_id"
+     {
+      "f": "a_la_carte_purchase_id",
+      "forward": "system"
+     }
     ],
     "logic": [
      "A la carte calls can be bought by anyone on any SKU (Vatsal, 10 Sep 2026).",
@@ -13700,7 +13884,8 @@
    "v02": {
     "status": "rebuilt",
     "causes": [
-     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -13751,7 +13936,11 @@
    ],
    "spec": {
     "fields": [
-     "calls[]: date, topic, notes, recording"
+     {
+      "f": "calls[]",
+      "forward": "system",
+      "note": "date, topic, notes, recording"
+     }
     ],
     "logic": [
      "History, calls left this period, and recordings or notes if the CRM keeps them.",
@@ -13792,7 +13981,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -14001,7 +14191,7 @@
      "Mandate pending bank approval: setup completes; the SIPs (E11) wait for it to turn active"
     ],
     "dev": [
-     "Direct BSE StAR MF APIs or an API layer such as Cybrilla Fintech Primitives; dev call.",
+     "Direct BSE StAR MF APIs (see I02), the newer JSON interface. to be verified: which BSE StAR MF services exist in the JSON interface (client registration, mandate, order, SIP, payment, reports).",
      "Mandate limit set above total planned SIPs with headroom for step-ups."
     ],
     "forward": [
@@ -14031,7 +14221,9 @@
     "causes": [
      "brief G1 (default, not confirmed in the meeting)",
      "Kajal, 16 Sep 2026",
-     "Vatsal, 17 Sep 2026"
+     "Vatsal, 17 Sep 2026",
+     "Gaurav, 16 Sep 2026 (minutes item 13)",
+     "minutes 16 Sep 2026, item 12 (rails final)"
     ]
    }
   },
@@ -14113,7 +14305,7 @@
      "UCC creation pending: setup continues; orders wait"
     ],
     "dev": [
-     "Direct BSE StAR MF APIs or an API layer; dev call (spec v0.1 E02)."
+     "Direct BSE StAR MF APIs (see I02), the newer JSON interface. to be verified: which BSE StAR MF services exist in the JSON interface (client registration, mandate, order, SIP, payment, reports)."
     ],
     "forward": [
      "Back to setup is always enabled; nothing is typed here; the rows show the rail's statuses.",
@@ -14140,7 +14332,9 @@
     "status": "new",
     "causes": [
      "brief G1 (default, not confirmed in the meeting)",
-     "Vatsal, 17 Sep 2026"
+     "Vatsal, 17 Sep 2026",
+     "Gaurav, 16 Sep 2026 (minutes item 13)",
+     "minutes 16 Sep 2026, item 12 (rails final)"
     ]
    }
   },
@@ -14390,7 +14584,8 @@
     "causes": [
      "brief G1 (default, not confirmed in the meeting)",
      "Kajal, 16 Sep 2026",
-     "Vatsal, 17 Sep 2026"
+     "Vatsal, 17 Sep 2026",
+     "minutes 16 Sep 2026, item 12 (rails final)"
     ]
    }
   },
@@ -14597,9 +14792,19 @@
    ],
    "spec": {
     "fields": [
-     "orders[]: id, status, nav_date",
-     "mandate_status",
-     "sip_calendar[]"
+     {
+      "f": "orders[]",
+      "forward": "system",
+      "note": "id, status, nav_date"
+     },
+     {
+      "f": "mandate_status",
+      "forward": "system"
+     },
+     {
+      "f": "sip_calendar[]",
+      "forward": "system"
+     }
     ],
     "logic": [
      "brief G1: default, not confirmed in the meeting.",
@@ -14641,7 +14846,9 @@
    "v02": {
     "status": "new",
     "causes": [
-     "brief G1 (default, not confirmed in the meeting)"
+     "brief G1 (default, not confirmed in the meeting)",
+     "minutes 16 Sep 2026, item 12 (rails final)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -14689,7 +14896,11 @@
    ],
    "spec": {
     "fields": [
-     "statements[]: type, period, file"
+     {
+      "f": "statements[]",
+      "forward": "system",
+      "note": "type, period, file"
+     }
     ],
     "logic": [
      "brief G1: default, not confirmed in the meeting.",
@@ -14729,7 +14940,9 @@
    "v02": {
     "status": "new",
     "causes": [
-     "brief G1 (default, not confirmed in the meeting)"
+     "brief G1 (default, not confirmed in the meeting)",
+     "minutes 16 Sep 2026, item 12 (rails final)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -14996,7 +15209,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "brief G1 (default, not confirmed in the meeting)"
+     "brief G1 (default, not confirmed in the meeting)",
+     "minutes 16 Sep 2026, item 12 (rails final)"
     ]
    }
   },
@@ -17453,9 +17667,18 @@
    ],
    "spec": {
     "fields": [
-     "plan_version_from",
-     "plan_version_to",
-     "accepted_at"
+     {
+      "f": "plan_version_from",
+      "forward": "system"
+     },
+     {
+      "f": "plan_version_to",
+      "forward": "system"
+     },
+     {
+      "f": "accepted_at",
+      "forward": "system"
+     }
     ],
     "logic": [
      "Every change carries a reason. Nothing executes without the user accepting.",
@@ -17491,8 +17714,10 @@
     "H05_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 17 Sep 2026"
+    ]
    }
   },
   {
@@ -17555,7 +17780,8 @@
    "spec": {
     "fields": [],
     "logic": [
-     "Drop it here and it gets read (Vatsal, 10 Sep 2026): a dropped document is filed and, where extraction exists, its numbers are offered to the field with the document as evidence; until then the field stays not sure."
+     "Drop it here and it gets read (Vatsal, 10 Sep 2026): a dropped document is filed and, where extraction exists, its numbers are offered to the field with the document as evidence; until then the field stays not sure.",
+     "to be decided: storage mechanics: upload, tags, expiry dates, versions, and which files a person may delete; files in S3 behind an encrypted link, the link in the database."
     ],
     "branches": [
      [
@@ -17592,7 +17818,9 @@
     "status": "changed",
     "causes": [
      "brief G1 (default, not confirmed in the meeting)",
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "minutes 16 Sep 2026, item 5",
+     "minutes 16 Sep 2026, item 12 (rails final)"
     ]
    }
   },
@@ -17684,7 +17912,7 @@
     ],
     "states": [],
     "dev": [
-     "Chat routed to the CRM desk (platform to be decided; section 6). No advice via chat beyond what the plan already says; anything new goes to a call or a plan re-run."
+     "Chat routed to Zoho Desk (see I14). No advice via chat beyond what the plan already says; anything new goes to a call or a plan re-run."
     ]
    },
    "frame": "phone",
@@ -17706,7 +17934,8 @@
     "status": "rebuilt",
     "causes": [
      "Vatsal, 10 Sep 2026 (supersedes brief S1)",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "minutes 16 Sep 2026, item 20"
     ]
    }
   },
@@ -18398,10 +18627,22 @@
    ],
    "spec": {
     "fields": [
-     "sku",
-     "period",
-     "next_billing",
-     "calls_left"
+     {
+      "f": "sku",
+      "forward": "read"
+     },
+     {
+      "f": "period",
+      "forward": "read"
+     },
+     {
+      "f": "next_billing",
+      "forward": "system"
+     },
+     {
+      "f": "calls_left",
+      "forward": "system"
+     }
     ],
     "logic": [
      "Three instances (Vatsal, 10 Sep 2026): Q03a cancel, Q03b payment failed, Q03c lapsed.",
@@ -18456,7 +18697,8 @@
     "status": "rebuilt",
     "causes": [
      "brief H5",
-     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -18713,7 +18955,10 @@
    ],
    "spec": {
     "fields": [
-     "lapsed_at"
+     {
+      "f": "lapsed_at",
+      "forward": "system"
+     }
     ],
     "logic": [
      "Plan read-only, dated; AA refresh stopped; resubscribe restores everything (spec v0.1).",
@@ -18754,7 +18999,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -19301,7 +19547,8 @@
       "gate": false,
       "source": "system",
       "precision": "exact",
-      "note": "the mapped screens for the chips ticked, in spine order"
+      "note": "the mapped screens for the chips ticked, in spine order",
+      "forward": "system"
      }
     ],
     "logic": [
@@ -19353,7 +19600,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -19382,11 +19630,11 @@
       [
        "S1",
        "Signed up, no reveal",
-       "R01",
+       "R01 (the first unanswered reveal screen, R01 to R07; R01 is drawn as the example)",
        "Finish the reveal",
        "1h push; day 1 WhatsApp",
        "DIWM: ladder only (not paid yet). DIY: ladder only (not paid yet). DIFM: not applicable.",
-       "reveal seen (R09) -> S2; paid -> S2b or S3"
+       "reveal seen (R09) -> S2"
       ],
       [
        "S2",
@@ -19395,16 +19643,25 @@
        "Unlock my plan",
        "day 1 push; day 3 WhatsApp; day 7 email; day 21 email; day 82 email",
        "DIWM: ladder only, then stop. DIY: ladder only, then stop. DIFM: not applicable.",
-       "paid -> S2b or S3; day 82 -> stop"
+       "P02 started -> S2b; eSign done -> S2c; paid -> S3; day 82 -> stop"
       ],
       [
        "S2b",
-       "Paid, eSign incomplete",
+       "Checkout started, eSign incomplete (not paid)",
        "P03",
        "Sign the agreement",
-       "day 1 push; day 3 WhatsApp; day 14 email",
-       "DIWM: day 14: refund path (brief H5: to be decided); CRM task. DIY: day 14: refund path (brief H5: to be decided); CRM task. DIFM: not applicable.",
-       "eSign done (P03) -> S3; day 14 unsigned -> refund path (brief H5: to be decided)"
+       "day 1 push; day 3 WhatsApp",
+       "DIWM: ladder only. DIY: ladder only. DIFM: not applicable.",
+       "eSign done (P03) -> S2c. No progress after day 3: the S2 ladder carries on from its current day; day 82 -> stop"
+      ],
+      [
+       "S2c",
+       "eSign done, payment not completed",
+       "P04",
+       "Complete the payment",
+       "day 1 push; day 3 WhatsApp",
+       "DIWM: ladder only. DIY: ladder only. DIFM: not applicable.",
+       "paid (P05) -> S3. No progress after day 3: the S2 ladder carries on from its current day; day 82 -> stop"
       ],
       [
        "S3",
@@ -19627,6 +19884,7 @@
      "Nudge copy slots are IDs (N-S4-72h); copy is content (gap G08) and lives in the CRM templates. The message text in this file is placeholder copy. Vatsal, 10 Sep 2026.",
      "State is computed on every open from stored flags; deep links land on the primary action (spec v0.1, kept).",
      "States run S1 to S25. The next number is not used, and there is no state for anyone but the user. Vatsal, 10 Sep 2026.",
+     "The checkout has two stop points: S2b (checkout started, eSign incomplete, not paid) lands on P03 and S2c (eSign done, payment not completed) lands on P04; a signed agreement is not asked again while its version is current. Vatsal, 17 Sep 2026.",
      "States run S1 to S25; the next number is not used (Vatsal, 10 Sep 2026).",
      "H01 states land on their variant H01a to H01k (section 5.3)."
     ],
@@ -19669,7 +19927,7 @@
     "ALL"
    ],
    "frame": "desktop",
-   "purpose": "States S2b, S3, S4, S5, S16, S17 and S19 day by day: one row per ladder step with its channel, copy slot, deep link, tier rule and whether the CRM creates a task.",
+   "purpose": "States S2b, S2c, S3, S4, S5, S16, S17 and S19 day by day: one row per ladder step with its channel, copy slot, deep link, tier rule and whether the CRM creates a task.",
    "ui": [
     [
      "table",
@@ -19699,16 +19957,25 @@
        "N-S2b-d3",
        "P03",
        "all",
+       "yes: state_id, tier, days_unsigned"
+      ],
+      [
+       "S2c",
+       "day 1",
+       "push",
+       "N-S2c-d1",
+       "P04",
+       "all",
        "no"
       ],
       [
-       "S2b",
-       "day 14",
-       "email",
-       "N-S2b-d14",
-       "Q03a",
+       "S2c",
+       "day 3",
+       "WhatsApp",
+       "N-S2c-d3",
+       "P04",
        "all",
-       "yes: state_id, tier, payment_reference, days_unsigned"
+       "no"
       ],
       [
        "S3",
@@ -20301,14 +20568,14 @@
        "push",
        "S1",
        "R01",
-       "Your two paths are about N minutes away. Pick up at your name and age."
+       "Your two paths are about N minutes away. Pick up at <screen title>."
       ],
       [
        "N-S1-d1",
        "WhatsApp",
        "S1",
        "R01",
-       "Hi, it is yeslyf. You started your reveal and stopped at your name and age. About N minutes from here to your two paths. Pick up where you left off."
+       "Hi, it is yeslyf. You started your reveal and stopped at <screen title>. About N minutes from here to your two paths. Pick up where you left off."
       ],
       [
        "N-S2-d1",
@@ -20350,21 +20617,28 @@
        "push",
        "S2b",
        "P03",
-       "One signature stands between you and your plan. Sign the agreement: about N minutes."
+       "Your agreement is ready to sign. Agreement and eSign: about N minutes."
       ],
       [
        "N-S2b-d3",
        "WhatsApp",
        "S2b",
        "P03",
-       "Your payment went through and the agreement is unsigned. I cannot advise until you sign. Aadhaar OTP on Agreement and eSign, about N minutes."
+       "Your agreement is waiting for your signature, and I cannot advise until you sign. Aadhaar OTP on Agreement and eSign, about N minutes."
       ],
       [
-       "N-S2b-d14",
-       "email",
-       "S2b",
-       "Q03a",
-       "Fourteen days unsigned: the refund path opens (per the agreement; brief H5: to be decided)."
+       "N-S2c-d1",
+       "push",
+       "S2c",
+       "P04",
+       "Your agreement is signed. One step left: the payment, about N minutes."
+      ],
+      [
+       "N-S2c-d3",
+       "WhatsApp",
+       "S2c",
+       "P04",
+       "Your agreement is signed and saved; it is not asked again. The payment is the last step, about N minutes, and your plan starts right after."
       ],
       [
        "N-S3-24h",
@@ -20809,14 +21083,14 @@
      "card",
      "Push (N-S1-1h)",
      [
-      "Your two paths are about N minutes away. Pick up at your name and age."
+      "Your two paths are about N minutes away. Pick up at <screen title>."
      ]
     ],
     [
      "card",
      "WhatsApp (N-S1-d1)",
      [
-      "Hi, it is yeslyf. You started your reveal and stopped at your name and age. About N minutes from here to your two paths. Pick up where you left off."
+      "Hi, it is yeslyf. You started your reveal and stopped at <screen title>. About N minutes from here to your two paths. Pick up where you left off."
      ]
     ],
     [
@@ -20824,7 +21098,8 @@
      "Lands on R01 Name and age",
      [
       "Primary action: Finish the reveal",
-      "about N minutes"
+      "about N minutes",
+      "Lands on the first unanswered reveal screen, R01 to R07; R01 is drawn as the example"
      ]
     ],
     [
@@ -20836,10 +21111,10 @@
    "spec": {
     "fields": [],
     "logic": [
-     "State S1: Signed up, no reveal. Lands on R01; the nudges deep-link to R01.",
+     "State S1: Signed up, no reveal. Lands on R01 (the first unanswered reveal screen, R01 to R07; R01 is drawn as the example); the nudges deep-link to R01.",
      "Ladder: 1h push; day 1 WhatsApp.",
      "Escalation: DIWM: ladder only (not paid yet). DIY: ladder only (not paid yet). DIFM: not applicable.",
-     "Exit: reveal seen (R09) -> S2; paid -> S2b or S3."
+     "Exit: reveal seen (R09) -> S2."
     ],
     "branches": [
      [
@@ -20934,7 +21209,7 @@
      "State S2: Reveal seen, not paid. Lands on X01; the nudges deep-link to P01.",
      "Ladder: day 1 push; day 3 WhatsApp; day 7 email; day 21 email; day 82 email.",
      "Escalation: DIWM: ladder only, then stop. DIY: ladder only, then stop. DIFM: not applicable.",
-     "Exit: paid -> S2b or S3; day 82 -> stop."
+     "Exit: P02 started -> S2b; eSign done -> S2c; paid -> S3; day 82 -> stop."
     ],
     "branches": [
      [
@@ -20977,7 +21252,7 @@
   {
    "id": "N07",
    "sec": "N",
-   "title": "State S2b: Paid, eSign incomplete",
+   "title": "State S2b: Checkout started, eSign incomplete (not paid)",
    "tier": [
     "ALL"
    ],
@@ -20986,27 +21261,20 @@
    "ui": [
     [
      "h",
-     "S2b Paid, eSign incomplete"
+     "S2b Checkout started, eSign incomplete (not paid)"
     ],
     [
      "card",
      "Push (N-S2b-d1)",
      [
-      "One signature stands between you and your plan. Sign the agreement: about N minutes."
+      "Your agreement is ready to sign. Agreement and eSign: about N minutes."
      ]
     ],
     [
      "card",
      "WhatsApp (N-S2b-d3)",
      [
-      "Your payment went through and the agreement is unsigned. I cannot advise until you sign. Aadhaar OTP on Agreement and eSign, about N minutes."
-     ]
-    ],
-    [
-     "card",
-     "Email (N-S2b-d14)",
-     [
-      "Fourteen days unsigned: the refund path opens (per the agreement; brief H5: to be decided)."
+      "Your agreement is waiting for your signature, and I cannot advise until you sign. Aadhaar OTP on Agreement and eSign, about N minutes."
      ]
     ],
     [
@@ -21026,11 +21294,11 @@
    "spec": {
     "fields": [],
     "logic": [
-     "State S2b: Paid, eSign incomplete. Lands on P03; the nudges deep-link to P03.",
-     "Ladder: day 1 push; day 3 WhatsApp; day 14 email.",
-     "Escalation: DIWM: day 14: refund path (brief H5: to be decided); CRM task. DIY: day 14: refund path (brief H5: to be decided); CRM task. DIFM: not applicable.",
-     "Exit: eSign done (P03) -> S3; day 14 unsigned -> refund path (brief H5: to be decided).",
-     "CRM task: state_id, tier, payment_reference, days_unsigned (brief V2)."
+     "State S2b: Checkout started, eSign incomplete (not paid). Lands on P03; the nudges deep-link to P03.",
+     "Ladder: day 1 push; day 3 WhatsApp.",
+     "Escalation: DIWM: ladder only. DIY: ladder only. DIFM: not applicable.",
+     "Exit: eSign done (P03) -> S2c. No progress after day 3: the S2 ladder carries on from its current day; day 82 -> stop.",
+     "CRM task: state_id, tier, days_unsigned (brief V2)."
     ],
     "branches": [
      [
@@ -21067,8 +21335,97 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026 (section 5)",
-     "brief H5"
+     "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   }
+  },
+  {
+   "id": "N31",
+   "sec": "N",
+   "title": "State S2c: eSign done, payment not completed",
+   "tier": [
+    "ALL"
+   ],
+   "frame": "phone",
+   "purpose": "Message-and-landing mock for state S2c: the push and WhatsApp message on the left, the landing screen on the right.",
+   "ui": [
+    [
+     "h",
+     "S2c eSign done, payment not completed"
+    ],
+    [
+     "card",
+     "Push (N-S2c-d1)",
+     [
+      "Your agreement is signed. One step left: the payment, about N minutes."
+     ]
+    ],
+    [
+     "card",
+     "WhatsApp (N-S2c-d3)",
+     [
+      "Your agreement is signed and saved; it is not asked again. The payment is the last step, about N minutes, and your plan starts right after."
+     ]
+    ],
+    [
+     "card",
+     "Lands on P04 Pay",
+     [
+      "Primary action: Complete the payment",
+      "about N minutes",
+      "The signed agreement is not asked again while its version is current."
+     ]
+    ],
+    [
+     "btn",
+     "Open P04",
+     "P04"
+    ]
+   ],
+   "spec": {
+    "fields": [],
+    "logic": [
+     "State S2c: eSign done, payment not completed. Lands on P04; the nudges deep-link to P04.",
+     "Ladder: day 1 push; day 3 WhatsApp.",
+     "Escalation: DIWM: ladder only. DIY: ladder only. DIFM: not applicable.",
+     "Exit: paid (P05) -> S3. No progress after day 3: the S2 ladder carries on from its current day; day 82 -> stop.",
+     "Rule: The signed agreement is not asked again while its version is current."
+    ],
+    "branches": [
+     [
+      "Open",
+      "P04"
+     ]
+    ],
+    "states": [
+     "S2c"
+    ],
+    "dev": [
+     "Copy slots are IDs; the text is placeholder copy (gap G08).",
+     "state_enter_S2c fires on open; nudge_sent and nudge_opened carry the slot and channel."
+    ]
+   },
+   "template": "T-msg",
+   "path": "both",
+   "events": [
+    "N31_view",
+    "state_enter_S2c",
+    "nudge_sent",
+    "nudge_opened"
+   ],
+   "compliance": {
+    "review": true,
+    "reasons": [
+     "advertising code"
+    ],
+    "checks": [
+     "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+    ]
+   },
+   "v02": {
+    "status": "new",
+    "causes": [
+     "Vatsal, 10 Sep 2026 (section 5)"
     ]
    }
   },
@@ -23207,47 +23564,47 @@
      [
       [
        "Users, journey state, data-quality flags, plan versions, AA consent status, adviser pre-call view (G03 plus the plan)",
-       "Appsmith (self-hosted, free) or Retool over the app database",
+       "to be decided: the tool over the app database (admin brief, W12)",
        "Read-mostly; a few write actions: reassign adviser, edit inputs on the user's behalf, force re-run, refund flag"
       ],
       [
        "Assisted onboarding at corporate sessions",
-       "Same tool: create user, enter data on their behalf",
+       "to be decided: the tool over the app database (admin brief, W12)",
        "User later claims the account via OTP"
       ],
       [
        "Payments, mandates, refunds, invoices",
-       "Razorpay dashboard",
+       "I09 Razorpay",
        "Webhooks update tier and billing state"
       ],
       [
        "CRM, nudges, WhatsApp, email, support tickets",
-       "Zoho CRM + Zoho Desk (recommended); HubSpot free as the alternative",
+       "I14 Zoho One",
        "App sends events: signed_up, reveal_seen, paid, data_complete, plan_built, call_booked, action_done, payment_failed, cancelled"
       ],
       [
        "Push notifications",
-       "Firebase or OneSignal",
+       "I12 FCM",
        "Templates mirror the CRM journeys"
       ],
       [
        "eSign, KYC fetch",
-       "Digio console",
+       "I06 CAMS KRA; I07 Protean",
        "Signed PDFs land in the vault"
       ],
       [
        "Account Aggregator",
-       "TSP console (Setu / Finvu / OneMoney)",
+       "I01 Finvu",
        "Consent templates, FIP health"
       ],
       [
        "Adviser calendar and video",
-       "Cal.com or Calendly; Zoom or Meet",
-       "Slots per adviser; capacity cap"
+       "I14 Zoho One; I24 not decided",
+       "Calendar on Zoho Bookings (I14): slots per adviser; capacity cap. Video and recording: I24"
       ],
       [
        "Analytics",
-       "Mixpanel",
+       "I13 not decided",
        "Funnel: reveal, paywall, paid, data done, plan read, first action"
       ]
      ]
@@ -23265,7 +23622,7 @@
     ],
     [
      "note",
-     "Platform to be decided (one platform); the object model and the matrix are platform-neutral. The Admin and CRM v0.2 tab carries the v0.2 fields, the nudge matrix and the CRM backlog."
+     "The object model and the matrix are platform-neutral. The Admin and CRM v0.2 tab carries the v0.2 fields, the nudge matrix and the CRM backlog."
     ]
    ],
    "spec": {
@@ -23273,7 +23630,8 @@
     "logic": [
      "Zoho question (spiff, Q23): yes for CRM, nudges and support. Journey-state operations still need a low-code tool over the database; Zoho only sees events we send it.",
      "brief G2: no choice made; the Spinach front-end question goes to the CRM backlog too.",
-     "CRM platform: to be decided (one platform). Where this screen says Zoho the text stays; the object model and the matrix are platform-neutral."
+     "CRM platform: Zoho One (I14).",
+     "External as far as possible, with a possible consolidation layer; what Spinach builds and what is bought is the admin brief (W12)."
     ],
     "branches": [],
     "states": [],
@@ -23299,7 +23657,10 @@
     "status": "changed",
     "causes": [
      "brief G2",
-     "Vatsal, 10 Sep 2026 (section 6)"
+     "Vatsal, 10 Sep 2026 (section 6)",
+     "minutes 16 Sep 2026, item 20",
+     "Vatsal, 17 Sep 2026",
+     "Vatsal, 16 Sep 2026 (Zoho One decided)"
     ]
    }
   },
@@ -23847,7 +24208,7 @@
     ],
     "states": [],
     "dev": [
-     "ISIN facts via an external API (spiff, Q19): AMFI or MF data API for funds; exchange master for listed instruments. Refresh NAVs nightly."
+     "Instrument master, prices and NAVs: see I05. Refresh NAVs nightly."
     ],
     "forward": [
      "Add instrument needs an ISIN; a row saves as Staged with the ISIN alone; Market inputs is always enabled.",

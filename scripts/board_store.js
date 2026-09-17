@@ -10,10 +10,16 @@
 // box lists every row of that item, newest first, queued rows on top.
 // Requests carry the key in the apikey header only (the publishable key is not a JWT and is refused in
 // Authorization; the legacy anon key works the same way in apikey alone).
+// Phase 12 (Vatsal, 17 Sep 2026): write() refuses a row with no identity and returns false (the page says so in
+// plain words; nothing is queued); rows in BOARD_IGNORE (data/board_ignore.json: page, item_id and the minute of
+// created_at) are test rows and are dropped from every fetch, so counts, exports and history never see them;
+// read({page, apply}) fetches another page's rows read-only (page "" is every page) for the pages that need them
+// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update).
 (function(){
   var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  var FIELDS = "id,item_id,field,value,who,kind,created_at";
+  var FIELDS = "id,page,item_id,field,value,who,kind,created_at";
+  var IGNORE = (typeof BOARD_IGNORE !== "undefined" && BOARD_IGNORE) ? BOARD_IGNORE : [];
   function cfg(name){ try { var v = window[name]; return typeof v === "string" ? v.trim() : ""; } catch(e){ return ""; } }
   var url = cfg("SUPABASE_URL"); while(url.length && url.charAt(url.length - 1) === "/") url = url.slice(0, -1);
   var key = cfg("SUPABASE_ANON_KEY");
@@ -32,6 +38,13 @@
     if(isNaN(d.getTime())) return String(ts || "");
     return d.getDate() + " " + MONTHS[d.getMonth()] + " " + two(d.getHours()) + ":" + two(d.getMinutes());
   }
+  function ignored(r){
+    // a test row: same page and item, written in the minute the ignore list names (data/board_ignore.json)
+    var minute = String(r.created_at || "").slice(0, 16);
+    for(var i = 0; i < IGNORE.length; i++){ var g = IGNORE[i]; if(g.page === r.page && g.item_id === r.item_id && g.minute === minute) return true; }
+    return false;
+  }
+  function keep(rows){ var out = []; for(var i = 0; i < rows.length; i++) if(!ignored(rows[i])) out.push(rows[i]); return out; }
   function pill(){
     var p = document.getElementById("sheetpill"); if(!p) return;
     var text, title, on = false;
@@ -73,25 +86,27 @@
       });
     })();
   }
-  function fetchAll(offset, acc, cb){
-    request("GET", "?select=" + FIELDS + "&page=eq." + encodeURIComponent(page) + "&order=id.asc&limit=" + PAGE_SIZE + "&offset=" + offset, undefined, function(s, rows){
+  function fetchRows(pageName, offset, acc, cb){
+    // every row of one page (or of every page when pageName is ""), 1000 at a time, in id order; test rows dropped
+    var filter = pageName ? "&page=eq." + encodeURIComponent(pageName) : "";
+    request("GET", "?select=" + FIELDS + filter + "&order=id.asc&limit=" + PAGE_SIZE + "&offset=" + offset, undefined, function(s, rows){
       if(s !== "ok" || !rows || typeof rows.length !== "number"){ cb(false); return; }
-      acc = acc.concat(rows);
-      if(rows.length < PAGE_SIZE) cb(true, acc); else fetchAll(offset + PAGE_SIZE, acc, cb);
+      acc = acc.concat(keep(rows));
+      if(rows.length < PAGE_SIZE) cb(true, acc); else fetchRows(pageName, offset + PAGE_SIZE, acc, cb);
     });
   }
+  function latestOf(rows){ var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; }); var out = []; for(var k in latest) out.push(latest[k]); return out; }
   function load(){
     pill();
     if(!configured || !page) return;
     flush(function(sent){
-      fetchAll(0, [], function(ok, rows){
+      fetchRows(page, 0, [], function(ok, rows){
         checked = true; var c = pc();
         if(ok){
           c.rows = rows; c.last_write = rows.length ? rows[rows.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
           if(applyFn){
-            var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; });
             var pending = {}; c.outbox.forEach(function(r){ pending[r.item_id + "|" + r.field] = 1; });
-            var out = []; for(var k in latest) if(!pending[k]) out.push(latest[k]);
+            var out = latestOf(rows).filter(function(r){ return !pending[r.item_id + "|" + r.field]; });
             try { applyFn(out); } catch(e){}
           }
         }
@@ -99,20 +114,33 @@
       });
     });
   }
+  function read(opts){
+    // Read-only: the rows of another page (or of every page when opts.page is ""); apply(latest, rows) once they arrive.
+    opts = opts || {};
+    if(!configured){ try { opts.apply([], [], false); } catch(e){} return; }
+    fetchRows(String(opts.page || ""), 0, [], function(ok, rows){
+      rows = ok ? rows : [];
+      try { opts.apply(latestOf(rows), rows, ok); } catch(e){}
+    });
+  }
   function write(row){
-    // row: {item_id, field, value, who, kind}. Queued first, removed on success, so a tab closed mid-request
+    // row: {item_id, field, value, who, kind}. Refused (false, nothing queued) without an identity: every row names
+    // who wrote it (Vatsal, 17 Sep 2026). Otherwise queued first, removed on success, so a tab closed mid-request
     // sends the row on the next load (a duplicate row is harmless: same latest value).
-    if(!page) return;
+    if(!page) return false;
+    var who = String(row.who || "").trim();
+    if(!who) return false;
     var r = {page: page, item_id: String(row.item_id), field: String(row.field),
              value: String(row.value === undefined || row.value === null ? "" : row.value),
-             who: String(row.who || ""), kind: String(row.kind || "field_edit"), created_at: new Date().toISOString(), queued: true};
-    if(!configured){ pill(); return; }
+             who: who, kind: String(row.kind || "field_edit"), created_at: new Date().toISOString(), queued: true};
+    if(!configured){ pill(); return true; }
     var c = pc(); c.outbox.push(r); saveCache();
     request("POST", "", strip(r), function(s, j){
       var at = c.outbox.indexOf(r);
       if(s === "ok"){ if(at >= 0) c.outbox.splice(at, 1); remember(j); live = true; } else live = false;
       checked = true; saveCache(); pill(); refreshHistory();
     });
+    return true;
   }
   function history(item_id){
     var c = pc(); item_id = String(item_id);
@@ -125,7 +153,7 @@
     var rows = history(item_id);
     if(!rows.length) return '<div class="hist-empty">' + (checked ? "no rows yet for " + esc(item_id) : "not loaded yet") + '</div>';
     return '<ul class="hist">' + rows.map(function(r){
-      return '<li><span class="t">' + esc(fmt(r.created_at)) + '</span> <b>' + esc(r.who || "-") + '</b> ' + esc(r.field) + ': ' +
+      return '<li><span class="t">' + esc(fmt(r.created_at)) + '</span> <b>' + esc(r.who || "(no identity)") + '</b> ' + esc(r.field) + ': ' +
              (r.value ? esc(r.value) : '<i>cleared</i>') + (r.queued ? ' <i>queued, not sent yet</i>' : '') + '</li>';
     }).join("") + '</ul>';
   }
@@ -145,5 +173,6 @@
   function init(opts){ opts = opts || {}; page = String(opts.page || ""); applyFn = opts.apply || null; load(); }
   function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0}; }
   function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
-  window.yeslyfBoard = {init: init, write: write, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label};
+  window.yeslyfBoard = {init: init, write: write, read: read, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label, fmt: fmt,
+                        noIdentity: "Pick who you are at the top first; nothing is recorded without a name."};
 })();

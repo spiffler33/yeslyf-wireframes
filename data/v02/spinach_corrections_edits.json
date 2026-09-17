@@ -1,0 +1,631 @@
+{
+ "source": "Phase 12, pass 1 (the brief of 17 Sep 2026): corrections after the Spinach walkthrough of 16 Sep 2026. Sorts after smallcase_gateway_edits.json and applies after generation, so it can touch generated screens. Dev notes cite I-numbers from now on; the vendor name and its marker are rendered from the integrations row (data/integrations.json), never typed on a screen. A table cell given as a list of I-numbers is rendered as 'I09 Razorpay' at build time (scripts/apply_decisions.py), so the M01 Tool column cannot drift again.",
+ "groups": [
+  {
+   "id": "phase12-vendor-notes",
+   "kind": "override",
+   "cause": "Vatsal, 17 Sep 2026",
+   "stage": "after_generation",
+   "edits": [
+    {
+     "op": "spec_replace",
+     "screen": "A06",
+     "key": "dev",
+     "match": "TSP options: Setu, Finvu, OneMoney. Corporate RIA FIU registration is in hand per spiff.",
+     "value": "AA vendor: see I01. FIU onboarding follows the corporate RIA registration (I00).",
+     "cause": "minutes 16 Sep 2026, item 14"
+    },
+    {
+     "op": "spec_replace",
+     "screen": "P02",
+     "key": "dev",
+     "match": "Vendor: Digio for KRA/CKYC fetch and eSign, unless HoA already has one.",
+     "value": "KYC fetch: see I06. eSign on P03: see I07."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "H07",
+     "key": "dev",
+     "match": "Chat routed to the CRM desk (platform to be decided; section 6). No advice via chat beyond what the plan already says; anything new goes to a call or a plan re-run.",
+     "value": "Chat routed to Zoho Desk (see I14). No advice via chat beyond what the plan already says; anything new goes to a call or a plan re-run.",
+     "cause": "minutes 16 Sep 2026, item 20"
+    },
+    {
+     "op": "spec_replace",
+     "screen": "E02",
+     "key": "dev",
+     "match": "Direct BSE StAR MF APIs or an API layer such as Cybrilla Fintech Primitives; dev call.",
+     "value": "Direct BSE StAR MF APIs (see I02), the newer JSON interface. to be verified: which BSE StAR MF services exist in the JSON interface (client registration, mandate, order, SIP, payment, reports).",
+     "cause": "Gaurav, 16 Sep 2026 (minutes item 13)"
+    },
+    {
+     "op": "spec_replace",
+     "screen": "E07",
+     "key": "dev",
+     "match": "Direct BSE StAR MF APIs or an API layer; dev call (spec v0.1 E02).",
+     "value": "Direct BSE StAR MF APIs (see I02), the newer JSON interface. to be verified: which BSE StAR MF services exist in the JSON interface (client registration, mandate, order, SIP, payment, reports).",
+     "cause": "Gaurav, 16 Sep 2026 (minutes item 13)"
+    },
+    {
+     "op": "spec_replace",
+     "screen": "L04",
+     "key": "dev",
+     "match": "ISIN facts via an external API (spiff, Q19): AMFI or MF data API for funds; exchange master for listed instruments. Refresh NAVs nightly.",
+     "value": "Instrument master, prices and NAVs: see I05. Refresh NAVs nightly."
+    },
+    {
+     "op": "spec_replace",
+     "screen": "A10b",
+     "key": "dev",
+     "match": "Parsing via the open-source casparser library or a vendor (spec v0.1 A09).",
+     "value": "CAS parsing: see I23."
+    },
+    {
+     "op": "spec_add",
+     "screen": "A10b",
+     "key": "dev",
+     "value": "The registrar CAS opens with the password the investor chose when requesting it; the depository CAS opens with the PAN in capitals. The field accepts either."
+    },
+    {
+     "op": "table_row",
+     "screen": "M01",
+     "index": 0,
+     "row": "Users, journey state, data-quality flags, plan versions, AA consent status, adviser pre-call view (G03 plus the plan)",
+     "value": [
+      "Users, journey state, data-quality flags, plan versions, AA consent status, adviser pre-call view (G03 plus the plan)",
+      "to be decided: the tool over the app database (admin brief, W12)",
+      "Read-mostly; a few write actions: reassign adviser, edit inputs on the user's behalf, force re-run, refund flag"
+     ],
+     "cause": "minutes 16 Sep 2026, item 20"
+    },
+    {
+     "op": "table_row",
+     "screen": "M01",
+     "index": 0,
+     "row": "Assisted onboarding at corporate sessions",
+     "value": [
+      "Assisted onboarding at corporate sessions",
+      "to be decided: the tool over the app database (admin brief, W12)",
+      "User later claims the account via OTP"
+     ],
+     "cause": "minutes 16 Sep 2026, item 20"
+    },
+    {
+     "op": "table_row",
+     "screen": "M01",
+     "index": 0,
+     "row": "Payments, mandates, refunds, invoices",
+     "value": [
+      "Payments, mandates, refunds, invoices",
+      [
+       "I09"
+      ],
+      "Webhooks update tier and billing state"
+     ]
+    },
+    {
+     "op": "table_row",
+     "screen": "M01",
+     "index": 0,
+     "row": "CRM, nudges, WhatsApp, email, support tickets",
+     "value": [
+      "CRM, nudges, WhatsApp, email, support tickets",
+      [
+       "I14"
+      ],
+      "App sends events: signed_up, reveal_seen, paid, data_complete, plan_built, call_booked, action_done, payment_failed, cancelled"
+     ],
+     "cause": "Vatsal, 16 Sep 2026 (Zoho One decided)"
+    },
+    {
+     "op": "table_row",
+     "screen": "M01",
+     "index": 0,
+     "row": "Push notifications",
+     "value": [
+      "Push notifications",
+      [
+       "I12"
+      ],
+      "Templates mirror the CRM journeys"
+     ]
+    },
+    {
+     "op": "table_row",
+     "screen": "M01",
+     "index": 0,
+     "row": "eSign, KYC fetch",
+     "value": [
+      "eSign, KYC fetch",
+      [
+       "I06",
+       "I07"
+      ],
+      "Signed PDFs land in the vault"
+     ]
+    },
+    {
+     "op": "table_row",
+     "screen": "M01",
+     "index": 0,
+     "row": "Account Aggregator",
+     "value": [
+      "Account Aggregator",
+      [
+       "I01"
+      ],
+      "Consent templates, FIP health"
+     ]
+    },
+    {
+     "op": "table_row",
+     "screen": "M01",
+     "index": 0,
+     "row": "Adviser calendar and video",
+     "value": [
+      "Adviser calendar and video",
+      [
+       "I14",
+       "I24"
+      ],
+      "Calendar on Zoho Bookings (I14): slots per adviser; capacity cap. Video and recording: I24"
+     ]
+    },
+    {
+     "op": "table_row",
+     "screen": "M01",
+     "index": 0,
+     "row": "Analytics",
+     "value": [
+      "Analytics",
+      [
+       "I13"
+      ],
+      "Funnel: reveal, paywall, paid, data done, plan read, first action"
+     ]
+    },
+    {
+     "op": "spec_replace",
+     "screen": "M01",
+     "key": "logic",
+     "match": "CRM platform: to be decided (one platform). Where this screen says Zoho the text stays; the object model and the matrix are platform-neutral.",
+     "value": "CRM platform: Zoho One (I14).",
+     "cause": "Vatsal, 16 Sep 2026 (Zoho One decided)"
+    },
+    {
+     "op": "spec_add",
+     "screen": "M01",
+     "key": "logic",
+     "value": "External as far as possible, with a possible consolidation layer; what Spinach builds and what is bought is the admin brief (W12).",
+     "cause": "minutes 16 Sep 2026, item 20"
+    },
+    {
+     "op": "ui_replace",
+     "screen": "M01",
+     "match": [
+      "note",
+      "Platform to be decided (one platform); the object model and the matrix are platform-neutral. The Admin and CRM v0.2 tab carries the v0.2 fields, the nudge matrix and the CRM backlog."
+     ],
+     "value": [
+      "note",
+      "The object model and the matrix are platform-neutral. The Admin and CRM v0.2 tab carries the v0.2 fields, the nudge matrix and the CRM backlog."
+     ],
+     "cause": "minutes 16 Sep 2026, item 20"
+    }
+   ]
+  },
+  {
+   "id": "phase12-x00",
+   "kind": "override",
+   "cause": "Vatsal, 17 Sep 2026",
+   "stage": "after_generation",
+   "edits": [
+    {
+     "op": "ui_replace",
+     "screen": "X00",
+     "match": [
+      "p",
+      "Comments save in this browser as you type and write to the v02_comments sheet tab when the endpoint is set. Pick your name, or Spinach or Compliance, before commenting. Export downloads a markdown build brief."
+     ],
+     "value": [
+      "p",
+      "Comments save in this browser as you type and are written to the shared board table as rows; the pill in the top bar reads live or offline. Pick your name, or Spinach or Compliance, before commenting: nothing is recorded without a name. Export downloads a markdown build brief."
+     ]
+    },
+    {
+     "op": "ui_replace",
+     "screen": "X00",
+     "match": [
+      "p",
+      "Left: the journey, section by section. Middle: the screen. Right: what the screen does, its fields with gate, source, precision and the required, optional, default or system tag, its Moving forward block (what the primary button needs), its logic, branches, states, dev notes, events and compliance flag, plus your verdict and comments."
+     ],
+     "value": [
+      "p",
+      "Left: the journey, section by section. Middle: the screen. Right: what the screen does, its fields with gate, source, precision and the required, optional, default, system or read tag, its Moving forward block (what the primary button needs), its logic, branches, states, dev notes, events, integrations and compliance flag, plus your verdict and comments."
+     ]
+    },
+    {
+     "op": "card_add",
+     "screen": "X00",
+     "match": [
+      "card",
+      "Mandatory and optional inputs (17 Sep 2026)"
+     ],
+     "value": [
+      "A fifth tag, read: the screen shows a value captured on another screen (the plan and the review screens). System covers what the app or a vendor writes: source, ids, links, timestamps, queues, records. Every field entry carries one of the five."
+     ]
+    },
+    {
+     "op": "card_add",
+     "screen": "X00",
+     "match": [
+      "card",
+      "Decisions baked into v0.2"
+     ],
+     "value": [
+      "Entry is mobile plus OTP; a person is registered the moment the OTP is right; email is never the login",
+      "Cloud AWS; email Amazon SES"
+     ],
+     "cause": "minutes 16 Sep 2026, items 1 and 2; Gaurav, 16 Sep 2026; Vatsal, 17 Sep 2026"
+    },
+    {
+     "op": "ui_insert",
+     "screen": "X00",
+     "after": [
+      "card",
+      "Mandatory and optional inputs (17 Sep 2026)"
+     ],
+     "value": [
+      "card",
+      "Saving and coming back",
+      [
+       "1. Every step is saved on the server as it is written. A half-typed number is a draft: it is never read by the engine and never shown as an answer. A value counts once the person moves forward, taps That's about right, or taps a chip.",
+       "2. Reopening the app after a kill, a restart or a session timeout returns to the exact screen that was left, with its draft.",
+       "3. A state landing (section N) applies when the state has changed since the last visit or when the person arrives from a nudge link. Otherwise rule 2 wins.",
+       "4. to be decided: client-side storage and the session timeout rule, by Spinach's data lifecycle map (W21)."
+      ]
+     ],
+     "cause": "minutes 16 Sep 2026, item 4; Vatsal, 17 Sep 2026"
+    }
+   ]
+  },
+  {
+   "id": "phase12-to-be-decided",
+   "kind": "override",
+   "cause": "Vatsal, 17 Sep 2026",
+   "stage": "after_generation",
+   "edits": [
+    {
+     "op": "spec_add",
+     "screen": "A04",
+     "key": "logic",
+     "value": "to be decided: placement, right after the OTP or after the first reveal questions.",
+     "cause": "minutes 16 Sep 2026, item 10"
+    },
+    {
+     "op": "spec_add",
+     "screen": "A03",
+     "key": "logic",
+     "value": "to be decided: the new-user branch follows A04's placement.",
+     "cause": "minutes 16 Sep 2026, item 10"
+    },
+    {
+     "op": "spec_add",
+     "screen": "H06",
+     "key": "logic",
+     "value": "to be decided: storage mechanics: upload, tags, expiry dates, versions, and which files a person may delete; files in S3 behind an encrypted link, the link in the database.",
+     "cause": "minutes 16 Sep 2026, item 5"
+    },
+    {
+     "op": "spec_add",
+     "screen": "A10",
+     "key": "logic",
+     "value": "to be decided: CAS source for V1. Position: registrar CAS first, depository CAS next (Vatsal, 17 Sep 2026); to be verified: parsing effort.",
+     "cause": "minutes 16 Sep 2026, item 6"
+    },
+    {
+     "op": "spec_add",
+     "screen": "A10c",
+     "key": "logic",
+     "value": "to be decided: CAS source for V1. Position: registrar CAS first, depository CAS next (Vatsal, 17 Sep 2026); to be verified: parsing effort.",
+     "cause": "minutes 16 Sep 2026, item 6"
+    },
+    {
+     "op": "spec_add",
+     "screen": "A10c",
+     "key": "logic",
+     "value": "With holdings and values only (minutes item 6), SIPs are not read from the CAS; D06d asks.",
+     "cause": "minutes 16 Sep 2026, item 6"
+    },
+    {
+     "op": "spec_add",
+     "screen": "D02c",
+     "key": "logic",
+     "value": "to be decided: CAS source for V1. Position: registrar CAS first, depository CAS next (Vatsal, 17 Sep 2026); to be verified: parsing effort.",
+     "cause": "minutes 16 Sep 2026, item 6"
+    },
+    {
+     "op": "spec_add",
+     "screen": "G12a",
+     "key": "logic",
+     "value": "to be decided: CAS source for V1. Position: registrar CAS first, depository CAS next (Vatsal, 17 Sep 2026); to be verified: parsing effort.",
+     "cause": "minutes 16 Sep 2026, item 6"
+    },
+    {
+     "op": "spec_add",
+     "screen": "A10a",
+     "key": "logic",
+     "value": "This screen waits and reminds. Nothing reads the email or the inbox."
+    },
+    {
+     "op": "meta",
+     "screen": "A02",
+     "compliance": {
+      "review": true,
+      "reasons": [
+       "consent"
+      ],
+      "note": "to be verified: whether a number that failed the OTP may be stored or contacted; ownership and consent are not proven."
+     }
+    },
+    {
+     "op": "meta",
+     "screen": "A03",
+     "compliance": {
+      "review": true,
+      "reasons": [
+       "consent"
+      ],
+      "note": "to be verified: whether a number that failed the OTP may be stored or contacted; ownership and consent are not proven."
+     }
+    },
+    {
+     "op": "spec_add",
+     "screen": "O02",
+     "key": "dev",
+     "value": "progress_pct is the display ring only (endowed, rule 11). The CRM's profile fulfilment percentage (minutes item 1) is a separate, unendowed number defined in the admin spec (W26). Never one stored number for both."
+    },
+    {
+     "op": "spec_add",
+     "screen": "P04",
+     "key": "states",
+     "value": "Payment abandoned after the eSign: state S2c; the return lands here and the agreement is not signed again while its version is current"
+    }
+   ]
+  },
+  {
+   "id": "phase12-rails-final",
+   "kind": "override",
+   "cause": "minutes 16 Sep 2026, item 12 (rails final)",
+   "stage": "after_generation",
+   "edits": [
+    {
+     "op": "cause",
+     "screen": "E02"
+    },
+    {
+     "op": "cause",
+     "screen": "E03"
+    },
+    {
+     "op": "cause",
+     "screen": "E06"
+    },
+    {
+     "op": "cause",
+     "screen": "E07"
+    },
+    {
+     "op": "cause",
+     "screen": "E08"
+    },
+    {
+     "op": "cause",
+     "screen": "E09"
+    },
+    {
+     "op": "cause",
+     "screen": "H06"
+    }
+   ]
+  },
+  {
+   "id": "phase12-field-tags",
+   "kind": "override",
+   "cause": "Vatsal, 17 Sep 2026",
+   "stage": "after_generation",
+   "edits": [
+    {
+     "op": "tags",
+     "screen": "O02",
+     "rest": "system"
+    },
+    {
+     "op": "tags",
+     "screen": "A05a",
+     "rest": "system"
+    },
+    {
+     "op": "tags",
+     "screen": "A09",
+     "rest": "system"
+    },
+    {
+     "op": "tags",
+     "screen": "A10",
+     "rest": "system"
+    },
+    {
+     "op": "tags",
+     "screen": "A10a",
+     "rest": "system"
+    },
+    {
+     "op": "tags",
+     "screen": "D09",
+     "rest": "system"
+    },
+    {
+     "op": "tags",
+     "screen": "G01a",
+     "rest": "system"
+    },
+    {
+     "op": "tags",
+     "screen": "G03",
+     "rest": "read"
+    },
+    {
+     "op": "tags",
+     "screen": "G04",
+     "rest": "read"
+    },
+    {
+     "op": "tags",
+     "screen": "G05",
+     "rest": "read"
+    },
+    {
+     "op": "tags",
+     "screen": "G06",
+     "rest": "read"
+    },
+    {
+     "op": "tags",
+     "screen": "G07",
+     "rest": "read"
+    },
+    {
+     "op": "tags",
+     "screen": "G09",
+     "rest": "read"
+    },
+    {
+     "op": "tags",
+     "screen": "G10",
+     "rest": "read"
+    },
+    {
+     "op": "tags",
+     "screen": "G11",
+     "rest": "read"
+    },
+    {
+     "op": "tags",
+     "screen": "G12",
+     "rest": "read"
+    },
+    {
+     "op": "tags",
+     "screen": "G12a",
+     "rest": "read",
+     "fields": {
+      "aa_status": "system"
+     }
+    },
+    {
+     "op": "tags",
+     "screen": "G13",
+     "rest": "read"
+    },
+    {
+     "op": "tags",
+     "screen": "G14",
+     "rest": "read",
+     "fields": {
+      "actions": "system"
+     }
+    },
+    {
+     "op": "tags",
+     "screen": "K02",
+     "fields": {
+      "call_id": "system",
+      "join_link": "system"
+     }
+    },
+    {
+     "op": "tags",
+     "screen": "K03",
+     "fields": {
+      "call_notes": "system",
+      "input_changes[]": "system"
+     }
+    },
+    {
+     "op": "tags",
+     "screen": "K04",
+     "fields": {
+      "a_la_carte_purchase_id": "system"
+     }
+    },
+    {
+     "op": "tags",
+     "screen": "K06",
+     "fields": {
+      "calls[]: date, topic, notes, recording": {
+       "f": "calls[]",
+       "forward": "system",
+       "note": "date, topic, notes, recording"
+      }
+     }
+    },
+    {
+     "op": "tags",
+     "screen": "E08",
+     "fields": {
+      "orders[]: id, status, nav_date": {
+       "f": "orders[]",
+       "forward": "system",
+       "note": "id, status, nav_date"
+      },
+      "mandate_status": "system",
+      "sip_calendar[]": "system"
+     }
+    },
+    {
+     "op": "tags",
+     "screen": "E09",
+     "fields": {
+      "statements[]: type, period, file": {
+       "f": "statements[]",
+       "forward": "system",
+       "note": "type, period, file"
+      }
+     }
+    },
+    {
+     "op": "tags",
+     "screen": "H05",
+     "fields": {
+      "plan_version_from": "system",
+      "plan_version_to": "system",
+      "accepted_at": "system"
+     }
+    },
+    {
+     "op": "tags",
+     "screen": "Q03",
+     "fields": {
+      "sku": "read",
+      "period": "read",
+      "next_billing": "system",
+      "calls_left": "system"
+     }
+    },
+    {
+     "op": "tags",
+     "screen": "Q03c",
+     "fields": {
+      "lapsed_at": "system"
+     }
+    },
+    {
+     "op": "tags",
+     "screen": "Q06a",
+     "rest": "system"
+    }
+   ]
+  }
+ ]
+}
