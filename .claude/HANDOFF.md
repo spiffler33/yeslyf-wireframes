@@ -52,8 +52,10 @@ session (about 30 Sep 2026, Phase 13).
 - "to be decided: <item>" is the grammar for an open product decision on a screen; the item runs to the first ), ;
   or full stop outside its own brackets. A screen with such a line is open unless freeze.json lists the line under
   tbd_owed (X00's session rule, W21).
-- No write to the board table without an identity (board_store.write returns false; the page says so). Test rows
-  are keyed in data/board_ignore.json and dropped from every fetch, export and count.
+- No write to the board table without an identity. A write without a name is held in the browser (board_store.write
+  returns false; the pill reads "N edits waiting for a name") and sent, stamped, once a name is picked (named(who);
+  init({who, local}) also sends what the page shows and the table lacks; 17 Sep 2026). Test rows are keyed in
+  data/board_ignore.json and dropped from every fetch, export and count.
 - Costs stay off the board (the Integrations page is public); the field's hint says so and a value in the data is an
   error.
 - Causes only ("brief X", "row N", "minutes 16 Sep 2026, item N", "<first name>, <date>"); no adviser named;

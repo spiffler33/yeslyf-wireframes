@@ -447,7 +447,8 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   gains "Saving and coming back"; every field entry carries a tag (290 of 290; the new tag read; op "tags"); the
   rails-final cause on the E screens (op "cause"). States: S2b is "checkout started, eSign incomplete (not paid)",
   S2c "eSign done, payment not completed" added (N31 drawn), S1 lands on the first unanswered reveal screen; 27
-  states, 194 screens. Board: test rows ignored everywhere (data/board_ignore.json); no write without an identity.
+  states, 194 screens. Board: test rows ignored everywhere (data/board_ignore.json); no write without an identity
+  (a nameless edit is held in the browser and sent once a name is picked; Vatsal, 17 Sep 2026).
 - Pass 2, markers: data/v02/freeze.json is the freeze register; apply_decisions.py writes screen.freeze (frozen or
   open, since, cause, reason, owed) and fails the build on an open screen without a reason or a frozen screen with a
   blocking item. 160 frozen, 34 open (the L group freezes with W04), 21 templates frozen since 17 Sep 2026, an

@@ -788,7 +788,8 @@ Rules that hold from here on:
 - The Tracker (data/tracker.json, W series, never renumbered): direction, owner, due, status (not started, in
   progress, delivered, blocked), blocked by, source, lands at, notes; the daily update and Spinach's questions
   (comments under the identity Spinach; an answer is a row with field "answer" on the same item).
-- No write to the board table without an identity; test rows are keyed in data/board_ignore.json.
+- No write to the board table without an identity; a write without a name is held in the browser and sent once a
+  name is picked (Vatsal, 17 Sep 2026); test rows are keyed in data/board_ignore.json.
 - States: S2b is "checkout started, eSign incomplete (not paid)" and S2c "eSign done, payment not completed" (P04;
   the signed agreement is not asked again while its version is current). S1 lands on the first unanswered reveal
   screen, R01 to R07. States S1 to S25 plus S2b and S2c; S26 is not used.
