@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>yeslyf tracker</title>
+<style>
+  :root{--paper:#EEF0F3;--panel:#fff;--ink:#1B1F27;--mute:#5F6773;--line:#D3D7DE;--accent:#FFDA00;--accent-soft:#FFF4B8;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45;scroll-behavior:smooth}
+  button,select,input,textarea{font-family:inherit;font-size:13px}
+  a{color:inherit}
+  ::selection{background:var(--accent)}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:8px 18px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .brand{font-weight:700;font-size:16px;white-space:nowrap}
+  .brand span{font-weight:400;color:var(--mute);margin-left:8px;font-size:13px}
+  .tabs{display:flex;gap:2px;flex-wrap:wrap}
+  .tabs a{text-decoration:none;font-size:13px;padding:6px 10px;border-radius:6px;border:1px solid transparent;color:var(--mute)}
+  .tabs a:hover{background:#F5F6F8}
+  .tabs a.on{color:var(--ink);font-weight:600;border-color:var(--line);background:#fff}
+  .who{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mute);margin-left:auto}
+  .who input{padding:6px 8px;border:1px solid var(--line);border-radius:6px;width:170px}
+  .saved{font-size:12px;color:var(--mute);min-width:120px}
+  .pill{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--mute);text-decoration:none;white-space:nowrap}
+  .pill.on{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .top .primary{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
+  .top .ghost{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:6px;cursor:pointer}
+  .frozen{padding:6px 18px;background:#F1F2F4;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--mute)}
+  .decided-line{font-size:12.5px;margin:0 0 8px;padding:5px 10px;border-radius:6px;background:var(--accent-soft);border:1px solid #C9A800}
+  .layout{display:grid;grid-template-columns:240px minmax(0,1fr)}
+  .nav{position:sticky;top:49px;height:calc(100vh - 49px);overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:10px 0}
+  .nav a{display:block;padding:6px 14px 6px 11px;text-decoration:none;font-size:13px;border-left:3px solid transparent}
+  .nav a:hover{background:#F5F6F8}
+  .nav .sub{padding-left:24px;font-size:12px;color:var(--mute)}
+  .main{padding:18px 26px 120px;max-width:1150px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px;scroll-margin-top:60px}
+  h1{font-size:22px;margin:0 0 6px}
+  h2{font-size:17px;margin:0 0 4px}
+  h2 small{font-weight:400;color:var(--mute);font-size:13px;margin-left:8px}
+  h3{font-size:14px;margin:14px 0 4px}
+  .lead{color:var(--mute);margin:0 0 12px;max-width:860px}
+  .rule{padding-left:10px;border-left:3px solid var(--accent);margin:8px 0 12px;max-width:900px}
+  ul{margin:6px 0;padding-left:18px} li{margin:3px 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:8px 0 4px}
+  .stat{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#FCFCFD}
+  .stat b{display:block;font-size:22px} .stat span{font-size:12px;color:var(--mute)}
+  .item{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 12px;background:#FCFCFD;scroll-margin-top:60px}
+  .item.hi{border-color:#C9A800;box-shadow:0 0 0 3px var(--accent-soft)}
+  .item.done{border-color:#7A8797}
+  .item-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+  .item-h b{font-size:15px}
+  .tag{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;background:#fff;color:var(--mute);white-space:nowrap}
+  .tag.hi{border-color:#B2434F;color:#B2434F;font-weight:600}
+  .tag.team{border-color:var(--ink);color:var(--ink);font-weight:600}
+  .tag.done{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .tag.new{border-color:var(--ink);color:var(--ink)}
+  .tag.changed{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .screens a{font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;margin-right:3px;background:#fff}
+  .ctx{font-size:13px;margin:0 0 8px;color:#3B4250}
+  .pos{margin:0 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+  .pos li{font-size:12.5px} .pos b{font-weight:600}
+  .pos .ref{color:var(--mute);font-size:11.5px}
+  .cond{font-size:12.5px;margin:0 0 8px} .cond li{list-style:none;margin-left:-18px}
+  .dflt-line{font-size:12.5px;margin:6px 0 4px;color:#3B4250}
+  .opt{display:flex;gap:10px;align-items:flex-start;padding:7px 10px;border:1px solid var(--line);border-radius:8px;margin:5px 0;background:#fff;cursor:pointer}
+  .opt input{margin-top:3px}
+  .opt.dflt{border-color:#C9A800;background:#FFFDF2}
+  .opt .held{display:block;font-size:11.5px;color:var(--mute);margin-top:2px}
+  .dpill{display:inline-block;font-size:10.5px;font-weight:700;background:var(--accent);border-radius:4px;padding:1px 6px;margin-left:6px;white-space:nowrap}
+  .ppill{display:inline-block;font-size:10.5px;border:1px dashed var(--mute);border-radius:4px;padding:1px 6px;margin-left:6px;color:var(--mute);white-space:nowrap}
+  .dep{font-size:12.5px;color:#3B4250;margin:8px 0 0;padding:6px 10px;border:1px dashed var(--line);border-radius:6px;background:#fff}
+  .dep.on{border-style:solid;border-color:#C9A800;background:#FFFBEA}
+  .dep b{font-weight:600}
+  .meta{font-size:11.5px;color:var(--mute)}
+  .note{width:100%;min-height:40px;border:1px solid var(--line);border-radius:6px;padding:6px;resize:vertical;background:#fff;margin-top:6px}
+  .decided{display:flex;gap:8px;align-items:center;font-size:12.5px;margin-top:8px}
+  .qa{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:start;padding:7px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+  .qa:last-child{border-bottom:0}
+  .qa .t{white-space:pre-wrap} .qa .t b{white-space:nowrap}
+  .qa .c{display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  .qa button{border:1px solid var(--line);background:#fff;padding:4px 9px;border-radius:5px;cursor:pointer}
+  .qa button.on{background:var(--accent);border-color:#C9A800;font-weight:600}
+  .qa button.on.no{background:#F1F2F4;border-color:var(--ink)}
+  .qa input{padding:4px 6px;border:1px solid var(--line);border-radius:5px;width:180px}
+  .qa .decided-line{grid-column:1 / -1;margin:0}
+  .gap{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 8px;background:#FCFCFD;scroll-margin-top:60px}
+  .gap-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+  .gap .why{font-size:12.5px;color:#3B4250;margin:6px 0}
+  .gap .rec{font-size:12.5px;margin:6px 0;padding-left:10px;border-left:3px solid var(--accent)}
+  .gap-c{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:12px}
+  .gap-c select,.gap-c input{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  table{width:100%;border-collapse:collapse;font-size:12.5px} th{text-align:left;border-bottom:2px solid var(--ink);padding:6px 8px;font-size:12px;vertical-align:bottom} td{border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
+  td.n{font-variant-numeric:tabular-nums;color:var(--mute);white-space:nowrap}
+  td .raw{white-space:pre-wrap}
+  td .ans{margin-top:4px;padding-left:8px;border-left:3px solid var(--accent);font-size:12px}
+  td .basis{color:var(--mute);font-size:11.5px;margin-top:3px}
+  .status{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;white-space:nowrap;background:#fff}
+  .status.open{border-color:#C9A800;background:var(--accent-soft)}
+  .status.quick-accept{border-color:#7A8797}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:12px;align-items:center}
+  .filters select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  tr.hidden{display:none}
+  tr.hi td{background:var(--accent-soft)}
+  details{margin:8px 0} summary{cursor:pointer;font-weight:600;font-size:13px}
+  pre{background:#F5F6F8;border:1px solid var(--line);border-radius:6px;padding:10px;font-size:11.5px;overflow:auto;white-space:pre-wrap}
+  .setup input{width:100%;padding:7px;border:1px solid var(--line);border-radius:6px;margin:4px 0}
+  .frame-wrap{height:calc(100vh - 49px)} .frame-wrap iframe{width:100%;height:100%;border:0;background:#fff}
+  .frame-bar{display:flex;gap:10px;align-items:center;padding:6px 18px;background:var(--panel);border-bottom:1px solid var(--line);font-size:12px;color:var(--mute);flex-wrap:wrap}
+  .frame-bar select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff;max-width:360px}
+  .frame-wrap.with-bar{height:calc(100vh - 88px)}
+  .wrap{overflow-x:auto}
+  .sid{font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;background:#fff;white-space:nowrap}
+  .cause{color:var(--mute);font-size:11.5px}
+  .histwrap{margin-top:6px}
+  .hist-toggle{font-size:11px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:2px 8px;color:var(--mute);cursor:pointer}
+  .histbox{margin-top:6px}
+  .hist{list-style:none;margin:0;padding:0;font-size:12px;color:var(--ink)}
+  .hist li{padding:3px 0;border-top:1px solid var(--line)}
+  .hist .t{color:var(--mute);margin-right:6px}
+  .hist-empty{font-size:12px;color:var(--mute)}
+  @media (max-width:1000px){.layout{display:block}.nav{display:none}.main{padding:12px}.who{margin-left:0}.qa{grid-template-columns:1fr}.qa .c{justify-content:flex-start}}
+
+  .who select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;max-width:170px}
+  .lead{margin-bottom:8px}
+  .counts,.pole{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center;font-size:12px;margin:8px 0 0}
+  .counts .k,.pole .k{color:var(--mute);margin-right:4px}
+  .pole .k b{color:var(--ink)}
+  .chip{display:inline-block;border:1px solid var(--line);border-radius:4px;padding:1px 7px;background:#fff;color:var(--ink);white-space:nowrap;font:inherit;font-size:12px;text-decoration:none;cursor:pointer;font-variant-numeric:tabular-nums}
+  .chip b{font-weight:600}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .toolbar{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:center;margin:0 0 10px;font-size:12px}
+  .toolbar label{display:flex;gap:5px;align-items:center;white-space:nowrap}
+  .toolbar select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  .toolbar .sp{flex:1}
+  .toolbar button{border:0;background:none;color:var(--mute);text-decoration:underline;cursor:pointer;padding:0;font-size:12px}
+  th[data-sort]{cursor:pointer;white-space:nowrap;user-select:none} th .dir{color:var(--mute);font-weight:400;font-size:10px}
+  th.c-id{width:44px} th.c-tg{width:22px}
+  tr.r1 td{font-variant-numeric:tabular-nums;padding:7px 8px}
+  tr.r1{cursor:pointer} tr.r1:hover td{background:#F5F6F8}
+  td.v b{font-size:13px} td.v .meta{font-size:11.5px;margin-top:1px} td.v .ch{font-size:12px;color:var(--mute)}
+  .finalby{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0 0;font-size:12.5px} .finalby input{padding:4px 6px;border:1px solid var(--line);border-radius:5px;background:#fff;margin-left:6px}
+  td.tg{color:var(--mute);text-align:center;font-size:11px} td.tg:before{content:"\25B8"} tbody.open td.tg:before{content:"\25BE"}
+  td.dt{white-space:nowrap} td.dt.empty{color:var(--mute)}
+  tbody.hidden{display:none} tbody.hi tr.r1 td{background:var(--accent-soft)}
+  tr.r2{display:none} tbody.open tr.r2{display:table-row} tbody.open tr.r1 td{border-bottom:0}
+  tr.r2 td{padding:2px 8px 14px 52px;background:#FCFCFD}
+  .panel{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:4px 32px;font-size:12.5px;line-height:1.5}
+  .panel .f{margin:0 0 8px;max-width:640px} .panel .f b{display:block;font-size:11px;color:var(--mute);font-weight:600;margin-bottom:2px}
+  .panel .chips{display:flex;flex-wrap:wrap;gap:3px} .panel .chips .sid{font-size:11px}
+  .panel .verify{margin-top:4px}
+  .form{display:grid;grid-template-columns:88px minmax(0,1fr);gap:6px 8px;align-items:center}
+  .form label{font-size:11px;color:var(--mute)}
+  .form input,.form select,.form textarea{width:100%;padding:4px 6px;border:1px solid var(--line);border-radius:5px;background:#fff;font-size:12px}
+  .form textarea{min-height:38px;resize:vertical}
+  .form .docs{display:flex;gap:6px;align-items:center} .form .docs a{font-size:11px;white-space:nowrap}
+  .form .cw{grid-column:2;font-size:11px;color:var(--mute);min-height:12px}
+  .tag.tbv{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .tag.st-sandbox{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .tag.st-production{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .tag.st-dropped{text-decoration:line-through}
+  .owed h2{margin:0 0 2px} .owed .lead{margin-bottom:6px}
+  th.c-due{width:110px} th.c-land{width:26%}
+  td.it b{font-size:13px}
+  td.c-land{font-size:12px;color:var(--mute)}
+  td.empty-row{color:var(--mute)}
+  .tag.st-in-progress{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .tag.st-delivered{background:var(--ink);color:#fff;border-color:var(--ink)}
+  @media (max-width:760px){ th.c-gates,td.c-gates,th.c-date,td.c-date,th.c-land,td.c-land{display:none} .panel{grid-template-columns:1fr} tr.r2 td{padding-left:8px} }
+
+  .strip{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
+  .ms{border:1px solid var(--line);border-radius:6px;padding:5px 9px;background:#fff;font-size:12px;font-variant-numeric:tabular-nums}
+  .ms b{font-weight:600;margin-right:6px} .ms.past{color:var(--mute)} .ms.next{border-color:var(--ink)}
+  th.c-dir{width:120px} td.dir{color:var(--mute);white-space:nowrap}
+  td.due .late{display:block;font-size:11px;color:#8A2E2E}
+  td.due .about{color:var(--mute);font-size:11px;margin-left:4px}
+  .tag.st-blocked{border-color:#8A2E2E;color:#8A2E2E}
+  .qs{margin:8px 0 0} .q{padding:8px 0;border-top:1px solid var(--line);font-size:12.5px} .q:first-child{border-top:0}
+  .q .h{display:flex;gap:10px;flex-wrap:wrap;align-items:baseline;color:var(--mute);font-size:12px;margin-bottom:3px}
+  .q .h b{color:var(--ink);font-size:12.5px} .q .t{white-space:pre-wrap} .q .a{margin-top:5px;padding-left:10px;border-left:3px solid var(--accent);white-space:pre-wrap}
+  .q .a .w{color:var(--mute);font-size:11.5px;margin-right:6px}
+  .upd{margin-top:8px;display:none} .upd.on{display:block}
+  .upd pre{margin:6px 0 0;font-size:12.5px;line-height:1.5;background:#fff;border:1px solid var(--line);border-radius:6px;padding:10px 12px;white-space:pre-wrap;max-width:720px}
+  .updrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}
+  .updrow button{border:1px solid var(--ink);background:#fff;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:600}
+  .updrow .meta{font-size:12px}
+  .empty{font-size:12.5px;color:var(--mute)}
+</style>
+<script src="../config.js"></script>
+</head>
+<body>
+<header class="top"><div class="brand">yeslyf <span>tracker, 29 items</span></div><nav class="tabs"><a href="index.html">Wireframes v0.2</a><a href="tracker.html" class="on">Tracker</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a></nav><div class="who">Editing as <select id="reviewer"></select></div><div id="saved" class="saved"></div><span id="sheetpill" class="pill" title="Sheet write-back status">sheet: off</span></header>
+<main class="main" style="max-width:none"><section><h1>Tracker</h1><p class="lead">What HoA owes Spinach, what Spinach owes HoA, and what HoA settles inside. One row per item, the W series; open a row to set owner, due date, status, blocked by and notes. Every edit is recorded as it happens and shows on every device; overdue rows say so in words. Copy today's update composes the WhatsApp text from the last 24 hours of the board.</p><div class="strip" id="strip"></div><div class="counts" id="counts"></div><div class="updrow"><button id="update" type="button">Copy today's update</button><span class="meta">plain text, about 15 lines, first names, no costs; anyone can press it</span></div><div class="upd" id="upd"><pre></pre></div></section><section><div class="toolbar" id="filters"><label>Direction <select name="direction"><option>All</option><option>HoA to Spinach</option><option>Spinach to HoA</option><option>HoA internal</option></select></label><label>Owner <select name="owner"><option>All</option></select></label><label>Status <select name="status"><option>All</option><option>not started</option><option>in progress</option><option>delivered</option><option>blocked</option><option value="overdue">overdue</option></select></label><span id="count" class="meta"></span><span class="sp"></span><button id="openall" type="button">Open all</button><button id="closeall" type="button">Close all</button></div><div class="wrap"><table id="tbl"><thead><tr><th class="c-id">ID</th><th>Item</th><th class="c-dir">Direction</th><th>Owner</th><th class="c-due">Due</th><th>Status</th><th class="c-tg"></th></tr></thead><tbody id="row-W01" data-id="W01"><tr class="r1"><td class="n">W01</td><td class="it"><b>Vendor table with agreement, sandbox and production dates per integration</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">Vatsal, 16 Sep 2026, Spinach agenda item 7; minutes 16 Sep 2026, item 12</span></div><div class="f"><b>Lands at</b>Integrations</div></div><div class="form"><label>Owner</label><input data-id="W01" data-f="owner" value="Kajal, Raafiya" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W01" data-f="due_date" value=""><label>Status</label><select data-id="W01" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W01" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W01" data-f="notes">Final or open and the dates per row (item 12).</textarea></div></div></td></tr></tbody>
+<tbody id="row-W02" data-id="W02"><tr class="r1"><td class="n">W02</td><td class="it"><b>Cloud and email decision: Azure or AWS, SendGrid or SES</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">Vatsal, 16 Sep 2026, Spinach agenda item 7</span></div><div class="f"><b>Lands at</b>Integrations, rows I17 (cloud) and I10 (email)</div></div><div class="form"><label>Owner</label><input data-id="W02" data-f="owner" value="Gaurav, Raafiya" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W02" data-f="due_date" value=""><label>Status</label><select data-id="W02" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W02" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W02" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W03" data-id="W03"><tr class="r1"><td class="n">W03</td><td class="it"><b>Engine API: repo access and fp_react_inputs.json this week; plan JSON output contract and version fields, date to be given</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">Vatsal, 16 Sep 2026, Spinach agenda item 7</span></div><div class="f"><b>Lands at</b>Integrations, row I04 (engine)</div></div><div class="form"><label>Owner</label><input data-id="W03" data-f="owner" value="Gaurav, Somil, Raafiya" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W03" data-f="due_date" value="2026-09-19"><label>Status</label><select data-id="W03" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W03" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W03" data-f="notes">Due 19 Sep 2026: the repo access and the inputs file. The output contract and version fields: date to be given.</textarea></div></div></td></tr></tbody>
+<tbody id="row-W04" data-id="W04"><tr class="r1"><td class="n">W04</td><td class="it"><b>Logic panel: table shapes this week (Vatsal); L02&#x27;s three assumptions this week (Harish); ISINs, cohorts and constraints</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">Vatsal, 16 Sep 2026, Spinach agenda item 7</span></div><div class="f"><b>Lands at</b>Wireframes v0.2, L01 to L09</div></div><div class="form"><label>Owner</label><input data-id="W04" data-f="owner" value="Harish, Somil, Vatsal" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W04" data-f="due_date" value="2026-09-19"><label>Status</label><select data-id="W04" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W04" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W04" data-f="notes">Due 19 Sep 2026: the table shapes and L02&#x27;s three assumptions. Due 15 Nov 2026: the values (ISINs, cohorts, constraints).</textarea></div></div></td></tr></tbody>
+<tbody id="row-W05" data-id="W05"><tr class="r1"><td class="n">W05</td><td class="it"><b>Compliance first pass on every flagged screen: advertising code on the reveal, sample plan and nudges; DPDP notice; refund rule; record formats</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">Vatsal, 16 Sep 2026, Spinach agenda item 7</span></div><div class="f"><b>Lands at</b>docs/audiences/yeslyf_v02_compliance.html</div></div><div class="form"><label>Owner</label><input data-id="W05" data-f="owner" value="Compliance" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W05" data-f="due_date" value=""><label>Status</label><select data-id="W05" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W05" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W05" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W06" data-id="W06"><tr class="r1"><td class="n">W06</td><td class="it"><b>App store financial-app declarations and listing text with the RIA registration; developer accounts in HoA&#x27;s legal name</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">Vatsal, 16 Sep 2026, Spinach agenda item 7; minutes 16 Sep 2026, items 11, 14</span></div><div class="f"><b>Lands at</b>Gaps, G09</div></div><div class="form"><label>Owner</label><input data-id="W06" data-f="owner" value="Compliance, Gaurav" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W06" data-f="due_date" value=""><label>Status</label><select data-id="W06" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W06" data-f="blocked_by" value="W19" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W06" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W07" data-id="W07"><tr class="r1"><td class="n">W07</td><td class="it"><b>Journey and analytics tool decision</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">Vatsal, 16 Sep 2026, Spinach agenda item 7</span></div><div class="f"><b>Lands at</b>Integrations, row I13</div></div><div class="form"><label>Owner</label><input data-id="W07" data-f="owner" value="Vatsal" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W07" data-f="due_date" value="2026-09-19"><label>Status</label><select data-id="W07" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W07" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W07" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W08" data-id="W08"><tr class="r1"><td class="n">W08</td><td class="it"><b>Event schema</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">Vatsal, 16 Sep 2026, Spinach agenda item 7</span></div><div class="f"><b>Lands at</b>Events</div></div><div class="form"><label>Owner</label><input data-id="W08" data-f="owner" value="Vatsal, Gaurav" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W08" data-f="due_date" value="2026-09-19"><label>Status</label><select data-id="W08" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W08" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W08" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W09" data-id="W09"><tr class="r1"><td class="n">W09</td><td class="it"><b>Acceptance criteria format, per screen ID with template, states, events and compliance flag</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">Vatsal, 16 Sep 2026, Spinach agenda item 7</span></div><div class="f"><b>Lands at</b>Wireframes v0.2, the comments by Spinach</div></div><div class="form"><label>Owner</label><input data-id="W09" data-f="owner" value="Vatsal, Spinach" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W09" data-f="due_date" value="2026-09-16"><label>Status</label><select data-id="W09" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W09" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W09" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W10" data-id="W10"><tr class="r1"><td class="n">W10</td><td class="it"><b>Frozen marker per screen; final or open per integrations row; the date every row is final</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, items 12, 19</span></div><div class="f"><b>Lands at</b>Wireframes v0.2 and Integrations</div></div><div class="form"><label>Owner</label><input data-id="W10" data-f="owner" value="Vatsal" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W10" data-f="due_date" value=""><label>Status</label><select data-id="W10" data-f="status"><option value="not started">not started</option><option value="in progress" selected>in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W10" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W10" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W11" data-id="W11"><tr class="r1"><td class="n">W11</td><td class="it"><b>Close the CAS source with Gaurav; share a sample CAS file with Spinach</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 6</span></div><div class="f"><b>Lands at</b>A10, I23</div></div><div class="form"><label>Owner</label><input data-id="W11" data-f="owner" value="Vatsal" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W11" data-f="due_date" value=""><label>Status</label><select data-id="W11" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W11" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W11" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W12" data-id="W12"><tr class="r1"><td class="n">W12</td><td class="it"><b>Admin panel brief: what Spinach builds, what is bought, what the app must expose; includes the tool over the app database</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 20</span></div><div class="f"><b>Lands at</b>-</div></div><div class="form"><label>Owner</label><input data-id="W12" data-f="owner" value="Vatsal, Kajal" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W12" data-f="due_date" value="2026-09-30"><label>Status</label><select data-id="W12" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W12" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W12" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W13" data-id="W13"><tr class="r1"><td class="n">W13</td><td class="it"><b>CRM plan</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, items 20, 21</span></div><div class="f"><b>Lands at</b>-</div></div><div class="form"><label>Owner</label><input data-id="W13" data-f="owner" value="Vatsal, Kajal" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W13" data-f="due_date" value="2026-09-30"><label>Status</label><select data-id="W13" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W13" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W13" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W14" data-id="W14"><tr class="r1"><td class="n">W14</td><td class="it"><b>Website brief</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, items 20, 21</span></div><div class="f"><b>Lands at</b>-</div></div><div class="form"><label>Owner</label><input data-id="W14" data-f="owner" value="Vatsal" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W14" data-f="due_date" value="2026-09-30"><label>Status</label><select data-id="W14" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W14" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W14" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W15" data-id="W15"><tr class="r1"><td class="n">W15</td><td class="it"><b>Name the project manager who posts the daily update</b></td><td class="dir c-dir">HoA internal</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 21; Vatsal, 17 Sep 2026</span></div><div class="f"><b>Lands at</b>Tracker</div></div><div class="form"><label>Owner</label><input data-id="W15" data-f="owner" value="Vatsal" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W15" data-f="due_date" value=""><label>Status</label><select data-id="W15" data-f="status"><option value="not started">not started</option><option value="in progress">in progress</option><option value="delivered" selected>delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W15" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W15" data-f="notes">Vatsal; the deputy on the daily update is to be confirmed with Kajal.</textarea></div></div></td></tr></tbody>
+<tbody id="row-W16" data-id="W16"><tr class="r1"><td class="n">W16</td><td class="it"><b>Public documentation from every final vendor now; a sandbox ask before the contract; Spinach on the vendor threads</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 14</span></div><div class="f"><b>Lands at</b>the docs field on Integrations</div></div><div class="form"><label>Owner</label><input data-id="W16" data-f="owner" value="Kajal, Raafiya" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W16" data-f="due_date" value=""><label>Status</label><select data-id="W16" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W16" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W16" data-f="notes">Spinach called this their most important item.</textarea></div></div></td></tr></tbody>
+<tbody id="row-W17" data-id="W17"><tr class="r1"><td class="n">W17</td><td class="it"><b>The date for handing the maths and logic to Spinach through I04</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 17</span></div><div class="f"><b>Lands at</b>-</div></div><div class="form"><label>Owner</label><input data-id="W17" data-f="owner" value="Harish, Somil" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W17" data-f="due_date" value=""><label>Status</label><select data-id="W17" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W17" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W17" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W18" data-id="W18"><tr class="r1"><td class="n">W18</td><td class="it"><b>HoA Core Platform API details, including the data-in APIs, with bands or midpoints as the input shape</b></td><td class="dir c-dir">HoA to Spinach</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 17</span></div><div class="f"><b>Lands at</b>I04</div></div><div class="form"><label>Owner</label><input data-id="W18" data-f="owner" value="Gaurav, Raafiya" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W18" data-f="due_date" value=""><label>Status</label><select data-id="W18" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W18" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W18" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W19" data-id="W19"><tr class="r1"><td class="n">W19</td><td class="it"><b>The corporate RIA registration, then the vendor contracts</b></td><td class="dir c-dir">HoA internal</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, items 11, 14</span></div><div class="f"><b>Lands at</b>I00</div></div><div class="form"><label>Owner</label><input data-id="W19" data-f="owner" value="Harish" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W19" data-f="due_date" value="2026-09-23"><label>Status</label><select data-id="W19" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W19" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W19" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W20" data-id="W20"><tr class="r1"><td class="n">W20</td><td class="it"><b>Project plan of Spinach&#x27;s next steps</b></td><td class="dir c-dir">Spinach to HoA</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 21</span></div><div class="f"><b>Lands at</b>-</div></div><div class="form"><label>Owner</label><input data-id="W20" data-f="owner" value="Eshani" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W20" data-f="due_date" value=""><label>Status</label><select data-id="W20" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W20" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W20" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W21" data-id="W21"><tr class="r1"><td class="n">W21</td><td class="it"><b>Data lifecycle map: what is saved when, session and storage rules, shared onto the board</b></td><td class="dir c-dir">Spinach to HoA</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 4</span></div><div class="f"><b>Lands at</b>X00 (a link)</div></div><div class="form"><label>Owner</label><input data-id="W21" data-f="owner" value="Spinach" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W21" data-f="due_date" value=""><label>Status</label><select data-id="W21" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W21" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W21" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W22" data-id="W22"><tr class="r1"><td class="n">W22</td><td class="it"><b>Technical writing and user stories from the wireframes as they stand</b></td><td class="dir c-dir">Spinach to HoA</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 21</span></div><div class="f"><b>Lands at</b>-</div></div><div class="form"><label>Owner</label><input data-id="W22" data-f="owner" value="Spinach" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W22" data-f="due_date" value=""><label>Status</label><select data-id="W22" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W22" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W22" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W23" data-id="W23"><tr class="r1"><td class="n">W23</td><td class="it"><b>The two rounds of admin panel sketches consolidated with Kajal&#x27;s feedback, for the admin session</b></td><td class="dir c-dir">Spinach to HoA</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 20</span></div><div class="f"><b>Lands at</b>-</div></div><div class="form"><label>Owner</label><input data-id="W23" data-f="owner" value="Spinach" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W23" data-f="due_date" value=""><label>Status</label><select data-id="W23" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W23" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W23" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W24" data-id="W24"><tr class="r1"><td class="n">W24</td><td class="it"><b>Questions for 21 Sep 2026; Ankur&#x27;s field-level Excel; Saquib&#x27;s further questions</b></td><td class="dir c-dir">Spinach to HoA</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, items 19, 21</span></div><div class="f"><b>Lands at</b>the screens&#x27; comment boxes</div></div><div class="form"><label>Owner</label><input data-id="W24" data-f="owner" value="Spinach" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W24" data-f="due_date" value="2026-09-21"><label>Status</label><select data-id="W24" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W24" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W24" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W25" data-id="W25"><tr class="r1"><td class="n">W25</td><td class="it"><b>V1 without in-app execution is E05 and E06; closes gap G10 of 9 Sep 2026</b></td><td class="dir c-dir">HoA internal</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 11</span></div><div class="f"><b>Lands at</b>E05, E06</div></div><div class="form"><label>Owner</label><input data-id="W25" data-f="owner" value="Vatsal" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W25" data-f="due_date" value=""><label>Status</label><select data-id="W25" data-f="status"><option value="not started">not started</option><option value="in progress">in progress</option><option value="delivered" selected>delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W25" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W25" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W26" data-id="W26"><tr class="r1"><td class="n">W26</td><td class="it"><b>Lead stages (lead, verified lead) and the profile fulfilment percentage as contact fields</b></td><td class="dir c-dir">HoA internal</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 1</span></div><div class="f"><b>Lands at</b>the admin spec (Phase 13)</div></div><div class="form"><label>Owner</label><input data-id="W26" data-f="owner" value="Vatsal, Kajal" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W26" data-f="due_date" value=""><label>Status</label><select data-id="W26" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W26" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W26" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W27" data-id="W27"><tr class="r1"><td class="n">W27</td><td class="it"><b>Welcome video placement (A04)</b></td><td class="dir c-dir">HoA internal</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 10</span></div><div class="f"><b>Lands at</b>A04</div></div><div class="form"><label>Owner</label><input data-id="W27" data-f="owner" value="" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W27" data-f="due_date" value=""><label>Status</label><select data-id="W27" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W27" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W27" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W28" data-id="W28"><tr class="r1"><td class="n">W28</td><td class="it"><b>Vault storage mechanics (H06)</b></td><td class="dir c-dir">HoA internal</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">minutes 16 Sep 2026, item 5</span></div><div class="f"><b>Lands at</b>H06</div></div><div class="form"><label>Owner</label><input data-id="W28" data-f="owner" value="" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W28" data-f="due_date" value=""><label>Status</label><select data-id="W28" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W28" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W28" data-f="notes"></textarea></div></div></td></tr></tbody>
+<tbody id="row-W29" data-id="W29"><tr class="r1"><td class="n">W29</td><td class="it"><b>Whether a number that failed the OTP may be stored or contacted</b></td><td class="dir c-dir">HoA internal</td><td><span data-show="owner"></span></td><td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr><tr class="r2"><td colspan="7"><div class="panel"><div><div class="f"><b>Source</b><span class="cause">Vatsal, 17 Sep 2026</span></div><div class="f"><b>Lands at</b>A02</div></div><div class="form"><label>Owner</label><input data-id="W29" data-f="owner" value="Compliance" placeholder="first names, or Spinach"><label>Due</label><input type="date" data-id="W29" data-f="due_date" value=""><label>Status</label><select data-id="W29" data-f="status"><option value="not started" selected>not started</option><option value="in progress">in progress</option><option value="delivered">delivered</option><option value="blocked">blocked</option></select><label>Blocked by</label><input data-id="W29" data-f="blocked_by" value="" placeholder="a row ID, W19"><label>Notes</label><textarea data-id="W29" data-f="notes"></textarea></div></div></td></tr></tbody></table></div></section><section><h2>Spinach's questions</h2><p class="meta lead">Every comment written under the identity Spinach, on any page, newest first: where, how old, open or answered. An answer is written under the question on the screen (the Answer box on the Wireframes v0.2 tab) and shows here.</p><div class="counts"><span class="k" id="qcount">reading the board</span></div><div class="qs" id="qs"></div></section></main>
+<script>var ROWS=[{"id": "W01", "item": "Vendor table with agreement, sandbox and production dates per integration", "direction": "HoA to Spinach", "owner": "Kajal, Raafiya", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7; minutes 16 Sep 2026, item 12", "lands_at": "Integrations", "notes": "Final or open and the dates per row (item 12)."}, {"id": "W02", "item": "Cloud and email decision: Azure or AWS, SendGrid or SES", "direction": "HoA to Spinach", "owner": "Gaurav, Raafiya", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7", "lands_at": "Integrations, rows I17 (cloud) and I10 (email)", "notes": ""}, {"id": "W03", "item": "Engine API: repo access and fp_react_inputs.json this week; plan JSON output contract and version fields, date to be given", "direction": "HoA to Spinach", "owner": "Gaurav, Somil, Raafiya", "due_date": "2026-09-19", "due_about": false, "status": "not started", "blocked_by": "", "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7", "lands_at": "Integrations, row I04 (engine)", "notes": "Due 19 Sep 2026: the repo access and the inputs file. The output contract and version fields: date to be given."}, {"id": "W04", "item": "Logic panel: table shapes this week (Vatsal); L02's three assumptions this week (Harish); ISINs, cohorts and constraints", "direction": "HoA to Spinach", "owner": "Harish, Somil, Vatsal", "due_date": "2026-09-19", "due_about": false, "status": "not started", "blocked_by": "", "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7", "lands_at": "Wireframes v0.2, L01 to L09", "notes": "Due 19 Sep 2026: the table shapes and L02's three assumptions. Due 15 Nov 2026: the values (ISINs, cohorts, constraints)."}, {"id": "W05", "item": "Compliance first pass on every flagged screen: advertising code on the reveal, sample plan and nudges; DPDP notice; refund rule; record formats", "direction": "HoA to Spinach", "owner": "Compliance", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7", "lands_at": "docs/audiences/yeslyf_v02_compliance.html", "notes": ""}, {"id": "W06", "item": "App store financial-app declarations and listing text with the RIA registration; developer accounts in HoA's legal name", "direction": "HoA to Spinach", "owner": "Compliance, Gaurav", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "W19", "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7; minutes 16 Sep 2026, items 11, 14", "lands_at": "Gaps, G09", "notes": ""}, {"id": "W07", "item": "Journey and analytics tool decision", "direction": "HoA to Spinach", "owner": "Vatsal", "due_date": "2026-09-19", "due_about": false, "status": "not started", "blocked_by": "", "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7", "lands_at": "Integrations, row I13", "notes": ""}, {"id": "W08", "item": "Event schema", "direction": "HoA to Spinach", "owner": "Vatsal, Gaurav", "due_date": "2026-09-19", "due_about": false, "status": "not started", "blocked_by": "", "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7", "lands_at": "Events", "notes": ""}, {"id": "W09", "item": "Acceptance criteria format, per screen ID with template, states, events and compliance flag", "direction": "HoA to Spinach", "owner": "Vatsal, Spinach", "due_date": "2026-09-16", "due_about": false, "status": "not started", "blocked_by": "", "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7", "lands_at": "Wireframes v0.2, the comments by Spinach", "notes": ""}, {"id": "W10", "item": "Frozen marker per screen; final or open per integrations row; the date every row is final", "direction": "HoA to Spinach", "owner": "Vatsal", "due_date": "", "due_about": false, "status": "in progress", "blocked_by": "", "source": "minutes 16 Sep 2026, items 12, 19", "lands_at": "Wireframes v0.2 and Integrations", "notes": ""}, {"id": "W11", "item": "Close the CAS source with Gaurav; share a sample CAS file with Spinach", "direction": "HoA to Spinach", "owner": "Vatsal", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, item 6", "lands_at": "A10, I23", "notes": ""}, {"id": "W12", "item": "Admin panel brief: what Spinach builds, what is bought, what the app must expose; includes the tool over the app database", "direction": "HoA to Spinach", "owner": "Vatsal, Kajal", "due_date": "2026-09-30", "due_about": true, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, item 20", "lands_at": "", "notes": ""}, {"id": "W13", "item": "CRM plan", "direction": "HoA to Spinach", "owner": "Vatsal, Kajal", "due_date": "2026-09-30", "due_about": true, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, items 20, 21", "lands_at": "", "notes": ""}, {"id": "W14", "item": "Website brief", "direction": "HoA to Spinach", "owner": "Vatsal", "due_date": "2026-09-30", "due_about": true, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, items 20, 21", "lands_at": "", "notes": ""}, {"id": "W15", "item": "Name the project manager who posts the daily update", "direction": "HoA internal", "owner": "Vatsal", "due_date": "", "due_about": false, "status": "delivered", "blocked_by": "", "source": "minutes 16 Sep 2026, item 21; Vatsal, 17 Sep 2026", "lands_at": "Tracker", "notes": "Vatsal; the deputy on the daily update is to be confirmed with Kajal."}, {"id": "W16", "item": "Public documentation from every final vendor now; a sandbox ask before the contract; Spinach on the vendor threads", "direction": "HoA to Spinach", "owner": "Kajal, Raafiya", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, item 14", "lands_at": "the docs field on Integrations", "notes": "Spinach called this their most important item."}, {"id": "W17", "item": "The date for handing the maths and logic to Spinach through I04", "direction": "HoA to Spinach", "owner": "Harish, Somil", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, item 17", "lands_at": "", "notes": ""}, {"id": "W18", "item": "HoA Core Platform API details, including the data-in APIs, with bands or midpoints as the input shape", "direction": "HoA to Spinach", "owner": "Gaurav, Raafiya", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, item 17", "lands_at": "I04", "notes": ""}, {"id": "W19", "item": "The corporate RIA registration, then the vendor contracts", "direction": "HoA internal", "owner": "Harish", "due_date": "2026-09-23", "due_about": true, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, items 11, 14", "lands_at": "I00", "notes": ""}, {"id": "W20", "item": "Project plan of Spinach's next steps", "direction": "Spinach to HoA", "owner": "Eshani", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, item 21", "lands_at": "", "notes": ""}, {"id": "W21", "item": "Data lifecycle map: what is saved when, session and storage rules, shared onto the board", "direction": "Spinach to HoA", "owner": "Spinach", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, item 4", "lands_at": "X00 (a link)", "notes": ""}, {"id": "W22", "item": "Technical writing and user stories from the wireframes as they stand", "direction": "Spinach to HoA", "owner": "Spinach", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, item 21", "lands_at": "", "notes": ""}, {"id": "W23", "item": "The two rounds of admin panel sketches consolidated with Kajal's feedback, for the admin session", "direction": "Spinach to HoA", "owner": "Spinach", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, item 20", "lands_at": "", "notes": ""}, {"id": "W24", "item": "Questions for 21 Sep 2026; Ankur's field-level Excel; Saquib's further questions", "direction": "Spinach to HoA", "owner": "Spinach", "due_date": "2026-09-21", "due_about": false, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, items 19, 21", "lands_at": "the screens' comment boxes", "notes": ""}, {"id": "W25", "item": "V1 without in-app execution is E05 and E06; closes gap G10 of 9 Sep 2026", "direction": "HoA internal", "owner": "Vatsal", "due_date": "", "due_about": false, "status": "delivered", "blocked_by": "", "source": "minutes 16 Sep 2026, item 11", "lands_at": "E05, E06", "notes": ""}, {"id": "W26", "item": "Lead stages (lead, verified lead) and the profile fulfilment percentage as contact fields", "direction": "HoA internal", "owner": "Vatsal, Kajal", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, item 1", "lands_at": "the admin spec (Phase 13)", "notes": ""}, {"id": "W27", "item": "Welcome video placement (A04)", "direction": "HoA internal", "owner": "", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, item 10", "lands_at": "A04", "notes": ""}, {"id": "W28", "item": "Vault storage mechanics (H06)", "direction": "HoA internal", "owner": "", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "minutes 16 Sep 2026, item 5", "lands_at": "H06", "notes": ""}, {"id": "W29", "item": "Whether a number that failed the OTP may be stored or contacted", "direction": "HoA internal", "owner": "Compliance", "due_date": "", "due_about": false, "status": "not started", "blocked_by": "", "source": "Vatsal, 17 Sep 2026", "lands_at": "A02", "notes": ""}];
+var MILESTONES=[{"date": "2026-09-19", "label": "W03 and W04 due", "rows": ["W03", "W04"]}, {"date": "2026-09-21", "label": "Spinach's questions session", "rows": ["W24"]}, {"date": "2026-09-23", "about": true, "label": "corporate RIA registration (I00)", "rows": ["W19"]}, {"date": "2026-09-30", "about": true, "label": "admin panel, CRM and website session", "rows": ["W12", "W13", "W14"]}, {"final_by": true, "label": "every integrations row final"}];
+var BOARD_LINK="https://spiffler33.github.io/yeslyf-wireframes/review/";
+var COUNTS={"screens": 194, "frozen": 160, "open": 34, "templates": 21, "since": "17 Sep 2026", "unfreeze_log": []};
+var INTEG=[{"id": "I00", "vendor": "SEBI", "choice": "open", "final_since": ""}, {"id": "I01", "vendor": "Finvu", "choice": "final", "final_since": "2026-09-16"}, {"id": "I02", "vendor": "BSE StAR MF", "choice": "final", "final_since": "2026-09-16"}, {"id": "I03", "vendor": "smallcase Gateway", "choice": "final", "final_since": "2026-09-16"}, {"id": "I04", "vendor": "HoA Core Platform", "choice": "final", "final_since": "2026-09-16"}, {"id": "I05", "vendor": "Accord", "choice": "open", "final_since": ""}, {"id": "I06", "vendor": "CAMS KRA", "choice": "open", "final_since": ""}, {"id": "I07", "vendor": "Protean", "choice": "open", "final_since": ""}, {"id": "I08", "vendor": "Gupshup", "choice": "final", "final_since": "2026-09-16"}, {"id": "I09", "vendor": "Razorpay", "choice": "open", "final_since": ""}, {"id": "I10", "vendor": "Amazon SES", "choice": "final", "final_since": "2026-09-17"}, {"id": "I11", "vendor": "Gupshup", "choice": "open", "final_since": ""}, {"id": "I12", "vendor": "FCM", "choice": "open", "final_since": ""}, {"id": "I13", "vendor": "not decided", "choice": "open", "final_since": ""}, {"id": "I14", "vendor": "Zoho One", "choice": "final", "final_since": "2026-09-16"}, {"id": "I15", "vendor": "Directus", "choice": "open", "final_since": ""}, {"id": "I16", "vendor": "DigiLocker", "choice": "open", "final_since": ""}, {"id": "I17", "vendor": "AWS", "choice": "final", "final_since": "2026-09-16"}, {"id": "I18", "vendor": "Google Analytics", "choice": "open", "final_since": ""}, {"id": "I19", "vendor": "internal (Spinach)", "choice": "open", "final_since": ""}, {"id": "I20", "vendor": "internal", "choice": "open", "final_since": ""}, {"id": "I21", "vendor": "Apple App Store and Google Play", "choice": "open", "final_since": ""}, {"id": "I22", "vendor": "Google OAuth and Apple Sign In", "choice": "open", "final_since": ""}, {"id": "I23", "vendor": "not decided", "choice": "open", "final_since": ""}, {"id": "I24", "vendor": "not decided", "choice": "open", "final_since": ""}];
+var INTEG_ITEM="integrations";
+var IDENTITIES=["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Vatsal", "Spinach", "Compliance"];
+var STATUSES=["not started", "in progress", "delivered", "blocked"];
+var REVIEW=true;</script>
+<script>var BOARD_IGNORE=[{"page": "setup", "item_id": "TEST", "minute": "2026-09-16T04:53"}, {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-16T04:55"}, {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-16T06:23"}];// yeslyf board store: the shared save layer of every page (phase 11, Vatsal, 16 Sep 2026).
+// Every comment, verdict and field edit on every page is one row in the Supabase table board_entries
+// (page, item_id, field, value, who, kind, created_at); rows are never updated or deleted. docs/config.js, loaded
+// in the head before this script, sets SUPABASE_URL and SUPABASE_ANON_KEY; both blank keeps the page local only.
+// Each page keeps its own localStorage store as before (that is the offline cache). This layer adds one key,
+// "yeslyf_entries_v1", holding per page the rows last fetched, the outbox (inserts that failed) and the last write.
+// On load it sends the outbox, fetches the page's rows (1000 at a time), hands the latest value per item and
+// field to the page (the apply callback; a queued local edit for the same field wins), and writes
+// "live, last write <time>" or "offline, saved locally" into the top bar pill. The history toggle under a comment
+// box lists every row of that item, newest first, queued rows on top.
+// Requests carry the key in the apikey header only (the publishable key is not a JWT and is refused in
+// Authorization; the legacy anon key works the same way in apikey alone).
+// Phase 12 (Vatsal, 17 Sep 2026): write() refuses a row with no identity and returns false (the page says so in
+// plain words; nothing is queued); rows in BOARD_IGNORE (data/board_ignore.json: page, item_id and the minute of
+// created_at) are test rows and are dropped from every fetch, so counts, exports and history never see them;
+// read({page, apply}) fetches another page's rows read-only (page "" is every page) for the pages that need them
+// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update); init({also})
+// names pages whose rows are read into this page's cache as well (the Tracker reads the W rows written under
+// page integrations before the move), so the latest value and the history are whole; writes stay on the page.
+(function(){
+  var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var FIELDS = "id,page,item_id,field,value,who,kind,created_at";
+  var IGNORE = (typeof BOARD_IGNORE !== "undefined" && BOARD_IGNORE) ? BOARD_IGNORE : [];
+  function cfg(name){ try { var v = window[name]; return typeof v === "string" ? v.trim() : ""; } catch(e){ return ""; } }
+  var url = cfg("SUPABASE_URL"); while(url.length && url.charAt(url.length - 1) === "/") url = url.slice(0, -1);
+  var key = cfg("SUPABASE_ANON_KEY");
+  var configured = !!(url && key);
+  var cache = {};
+  try { cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ cache = {}; }
+  function saveCache(){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e){} }
+  var page = "", also = [], applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
+  function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; return c; }
+  function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
+  function two(n){ return (n < 10 ? "0" : "") + n; }
+  function fmt(ts){
+    // created_at arrives as UTC from the database and as toISOString() from the outbox; the first 19 characters are
+    // the same shape in both, so the display never depends on how a browser parses fractional seconds or offsets.
+    var d = new Date(String(ts || "").slice(0, 19) + "Z");
+    if(isNaN(d.getTime())) return String(ts || "");
+    return d.getDate() + " " + MONTHS[d.getMonth()] + " " + two(d.getHours()) + ":" + two(d.getMinutes());
+  }
+  function ignored(r){
+    // a test row: same page and item, written in the minute the ignore list names (data/board_ignore.json)
+    var minute = String(r.created_at || "").slice(0, 16);
+    for(var i = 0; i < IGNORE.length; i++){ var g = IGNORE[i]; if(g.page === r.page && g.item_id === r.item_id && g.minute === minute) return true; }
+    return false;
+  }
+  function keep(rows){ var out = []; for(var i = 0; i < rows.length; i++) if(!ignored(rows[i])) out.push(rows[i]); return out; }
+  function pill(){
+    var p = document.getElementById("sheetpill"); if(!p) return;
+    var text, title, on = false;
+    if(!configured){ text = "offline, saved locally"; title = "docs/config.js has no Supabase URL and key: edits stay in this browser"; }
+    else if(!checked){ text = "connecting"; title = "reading board_entries"; }
+    else if(live){ text = "live" + (lastWrite ? ", last write " + fmt(lastWrite) : ""); title = "every edit is a row in board_entries; the time is the last write on this page by anyone"; on = true; }
+    else { text = "offline, saved locally"; title = "the last request to Supabase failed: edits stay in this browser and are sent on the next load"; }
+    p.textContent = text; p.title = title; p.className = "pill" + (on ? " on" : "");
+  }
+  function strip(r){ return {page: r.page, item_id: r.item_id, field: r.field, value: r.value, who: r.who, kind: r.kind}; }
+  function request(method, query, body, cb){
+    // cb(status, json) exactly once; status is "ok", "rejected" (the server answered with an error) or "net".
+    var done = false;
+    function finish(s, j){ if(done) return; done = true; try { cb(s, j); } catch(e){} }
+    var headers = {"apikey": key};
+    if(body !== undefined){ headers["Content-Type"] = "application/json"; headers["Prefer"] = "return=representation"; }
+    var p;
+    try { p = fetch(url + "/rest/v1/board_entries" + query, {method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body)}); }
+    catch(e){ finish("net"); return; }
+    Promise.resolve(p).then(function(res){
+      if(!res || typeof res.ok !== "boolean") throw new Error("no response");
+      if(!res.ok){ finish("rejected", res.status); return; }
+      return res.json().then(function(j){ finish("ok", j); });
+    }).catch(function(){ finish("net"); });
+  }
+  function remember(j){
+    var r = (j && typeof j.length === "number" && j.length) ? j[0] : null; if(!r || !r.created_at) return;
+    var c = pc(); c.rows.push(r); c.last_write = r.created_at; lastWrite = c.last_write;
+  }
+  function flush(cb){
+    // Send every queued row in order; a row that fails stays queued; the caller learns whether all went through.
+    var c = pc(); var queue = c.outbox.slice(); var i = 0; var failed = 0;
+    (function next(){
+      if(i >= queue.length){ saveCache(); cb(failed === 0); return; }
+      var row = queue[i++];
+      request("POST", "", strip(row), function(s, j){
+        if(s === "ok"){ var at = c.outbox.indexOf(row); if(at >= 0) c.outbox.splice(at, 1); remember(j); } else failed++;
+        next();
+      });
+    })();
+  }
+  function fetchRows(pageName, offset, acc, cb){
+    // every row of one page (or of every page when pageName is ""), 1000 at a time, in id order; test rows dropped
+    var filter = pageName ? "&page=eq." + encodeURIComponent(pageName) : "";
+    request("GET", "?select=" + FIELDS + filter + "&order=id.asc&limit=" + PAGE_SIZE + "&offset=" + offset, undefined, function(s, rows){
+      if(s !== "ok" || !rows || typeof rows.length !== "number"){ cb(false); return; }
+      acc = acc.concat(keep(rows));
+      if(rows.length < PAGE_SIZE) cb(true, acc); else fetchRows(pageName, offset + PAGE_SIZE, acc, cb);
+    });
+  }
+  function latestOf(rows){ var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; }); var out = []; for(var k in latest) out.push(latest[k]); return out; }
+  function fetchPages(names, acc, cb){
+    // the rows of several pages, merged in id order (ids grow with time, so the latest row per field is the last one)
+    if(!names.length){ acc.sort(function(a, b){ return a.id - b.id; }); cb(true, acc); return; }
+    fetchRows(names[0], 0, [], function(ok, rows){ if(!ok){ cb(false); return; } fetchPages(names.slice(1), acc.concat(rows), cb); });
+  }
+  function load(){
+    pill();
+    if(!configured || !page) return;
+    flush(function(sent){
+      fetchPages([page].concat(also), [], function(ok, rows){
+        checked = true; var c = pc();
+        if(ok){
+          var own = rows.filter(function(r){ return r.page === page; });
+          c.rows = rows; c.last_write = own.length ? own[own.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
+          if(applyFn){
+            var pending = {}; c.outbox.forEach(function(r){ pending[r.item_id + "|" + r.field] = 1; });
+            var out = latestOf(rows).filter(function(r){ return !pending[r.item_id + "|" + r.field]; });
+            try { applyFn(out); } catch(e){}
+          }
+        }
+        live = ok && sent && !c.outbox.length; pill(); refreshHistory();
+      });
+    });
+  }
+  function read(opts){
+    // Read-only: the rows of another page (or of every page when opts.page is ""); apply(latest, rows) once they arrive.
+    opts = opts || {};
+    if(!configured){ try { opts.apply([], [], false); } catch(e){} return; }
+    fetchRows(String(opts.page || ""), 0, [], function(ok, rows){
+      rows = ok ? rows : [];
+      try { opts.apply(latestOf(rows), rows, ok); } catch(e){}
+    });
+  }
+  function write(row){
+    // row: {item_id, field, value, who, kind}. Refused (false, nothing queued) without an identity: every row names
+    // who wrote it (Vatsal, 17 Sep 2026). Otherwise queued first, removed on success, so a tab closed mid-request
+    // sends the row on the next load (a duplicate row is harmless: same latest value).
+    if(!page) return false;
+    var who = String(row.who || "").trim();
+    if(!who) return false;
+    var r = {page: page, item_id: String(row.item_id), field: String(row.field),
+             value: String(row.value === undefined || row.value === null ? "" : row.value),
+             who: who, kind: String(row.kind || "field_edit"), created_at: new Date().toISOString(), queued: true};
+    if(!configured){ pill(); return true; }
+    var c = pc(); c.outbox.push(r); saveCache();
+    request("POST", "", strip(r), function(s, j){
+      var at = c.outbox.indexOf(r);
+      if(s === "ok"){ if(at >= 0) c.outbox.splice(at, 1); remember(j); live = true; } else live = false;
+      checked = true; saveCache(); pill(); refreshHistory();
+    });
+    return true;
+  }
+  function history(item_id){
+    var c = pc(); item_id = String(item_id);
+    var queued = c.outbox.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    var rows = c.rows.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    return queued.concat(rows);
+  }
+  function historyHtml(item_id){
+    if(!configured) return '<div class="hist-empty">local only: docs/config.js has no Supabase URL and key</div>';
+    var rows = history(item_id);
+    if(!rows.length) return '<div class="hist-empty">' + (checked ? "no rows yet for " + esc(item_id) : "not loaded yet") + '</div>';
+    return '<ul class="hist">' + rows.map(function(r){
+      return '<li><span class="t">' + esc(fmt(r.created_at)) + '</span> <b>' + esc(r.who || "(no identity)") + '</b> ' + esc(r.field) + ': ' +
+             (r.value ? esc(r.value) : '<i>cleared</i>') + (r.queued ? ' <i>queued, not sent yet</i>' : '') + '</li>';
+    }).join("") + '</ul>';
+  }
+  function refreshHistory(){ boxes.forEach(function(b){ if(!b.box.hidden) b.box.innerHTML = historyHtml(b.id()); }); }
+  function attach(el, idFn){
+    // Adds a "History" toggle right after a control; idFn is the item id or a function returning it.
+    if(!el || !el.parentNode) return;
+    var id = typeof idFn === "function" ? idFn : function(){ return idFn; };
+    var wrap = document.createElement("div"); wrap.className = "histwrap"; wrap.style.gridColumn = "1 / -1";  // a full row inside a grid form
+    var b = document.createElement("button"); b.type = "button"; b.className = "hist-toggle"; b.textContent = "History";
+    var box = document.createElement("div"); box.className = "histbox"; box.hidden = true;
+    b.addEventListener("click", function(){ box.hidden = !box.hidden; if(!box.hidden) box.innerHTML = historyHtml(id()); });
+    wrap.appendChild(b); wrap.appendChild(box);
+    el.parentNode.insertBefore(wrap, el.nextSibling);
+    boxes.push({box: box, id: id});
+  }
+  function init(opts){ opts = opts || {}; page = String(opts.page || ""); also = (opts.also || []).map(String).filter(function(p){ return p && p !== page; }); applyFn = opts.apply || null; load(); }
+  function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0}; }
+  function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
+  window.yeslyfBoard = {init: init, write: write, read: read, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label, fmt: fmt,
+                        noIdentity: "Pick who you are at the top first; nothing is recorded without a name."};
+})();
+</script><script>
+(function(){
+  var KEY="yeslyf_tracker_v1";
+  var EDITABLE=["owner","due_date","status","blocked_by","notes"];
+  var byId={}; ROWS.forEach(function(r){ byId[r.id]=r; });
+  var S={}; try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
+  if(!S.rows) S.rows={}; if(!S.who) S.who="";
+  var ALL=null;       // every row of the board table, once read (questions, the daily update)
+  var FINAL_BY="";    // the date every integrations row is final (Integrations tab, board row integrations / final_by)
+  var CHOICES={};     // the latest final or open row per integrations row
+  var MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  var ft; function flash(t){ var s=document.getElementById("saved"); if(!s) return; s.textContent=t||"Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1800); }
+  function esc(s){ return String(s===undefined||s===null?"":s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
+  function slug(s){ return String(s||"").split(" ").join("-"); }
+  function edits(id){ if(!S.rows[id]) S.rows[id]={}; return S.rows[id]; }
+  function val(id,f){ var e=S.rows[id]||{}; if(e[f]!==undefined) return e[f]; var r=byId[id]; return (r&&r[f]!==undefined)?r[f]:""; }
+  function put(id,field,value){ if(!window.yeslyfBoard) return true; var ok=yeslyfBoard.write({item_id:id,field:field,value:value,who:S.who||"",kind:"field_edit"}); if(!ok) setTimeout(function(){ flash(yeslyfBoard.noIdentity); },0); return ok; }
+  function wb(){ return window.yeslyfBoard?yeslyfBoard.label():"offline; this file is the record"; }
+  function today(){ var d=new Date(); return d.getFullYear()+"-"+two(d.getMonth()+1)+"-"+two(d.getDate()); }
+  function two(n){ return (n<10?"0":"")+n; }
+  function dmy(iso){ if(!iso||iso.length<10) return ""; return parseInt(iso.slice(8,10),10)+" "+MONTHS[parseInt(iso.slice(5,7),10)-1]+" "+iso.slice(0,4); }
+  function daysBetween(a,b){ return Math.round((new Date(b.slice(0,10)+"T00:00:00Z")-new Date(a.slice(0,10)+"T00:00:00Z"))/86400000); }
+  function ago(ts){ var ms=Date.now()-new Date(String(ts||"").slice(0,19)+"Z").getTime(); if(isNaN(ms)) return ""; var h=Math.floor(ms/3600000); if(h<1) return "just now"; if(h<24) return h+"h ago"; var d=Math.floor(h/24); return d+(d===1?" day ago":" days ago"); }
+  function isSpinach(who){ var w=String(who||""); return w==="Spinach"||w.indexOf("Spinach (")===0; }
+  function applyRemote(rows){ rows.forEach(function(r){
+      if(r.item_id===INTEG_ITEM&&r.field==="final_by"){ FINAL_BY=r.value||""; return; }
+      if(r.field==="choice"&&(r.value==="final"||r.value==="open")){ CHOICES[r.item_id]=r; return; }
+      if(!byId[r.item_id]||EDITABLE.indexOf(r.field)<0) return; var ed=edits(r.item_id); ed[r.field]=r.value||""; }); save(); paintAll(); }
+  function overdue(r){ var d=val(r.id,"due_date"), st=val(r.id,"status"); if(!d||st==="delivered") return 0; var n=daysBetween(d,today()); return n>0?n:0; }
+  function paintRow(id){ var tb=document.getElementById("row-"+id); if(!tb) return;
+    var f=tb.querySelectorAll("[data-f]"); for(var i=0;i<f.length;i++){ var k=f[i].getAttribute("data-f"); var v=val(id,k); if(f[i].value!==v) f[i].value=v; }
+    var sh=tb.querySelectorAll("[data-show]"); for(var j=0;j<sh.length;j++){ var key=sh[j].getAttribute("data-show"); var t=String(val(id,key)||""); sh[j].textContent=t||"-"; if(key==="status") sh[j].className="tag st-"+slug(t); }
+    var due=tb.querySelector("[data-due]"); if(due){ var d=val(id,"due_date"); var n=overdue(byId[id]); var about=byId[id].due_about?'<span class="about">about</span>':'';
+      due.innerHTML=d?(esc(dmy(d))+about+(n?'<span class="late">overdue by '+n+(n===1?' day':' days')+'</span>':(daysBetween(today(),d)===0&&val(id,"status")!=="delivered"?'<span class="late">due today</span>':''))):'<span class="meta">-</span>'; }
+    tb.setAttribute("data-status", val(id,"status")); tb.setAttribute("data-owners", String(val(id,"owner")||"").split(",").map(function(p){ return p.trim(); }).filter(Boolean).join("|")); }
+  function paintCounts(){ var c={}; STATUSES.forEach(function(s){ c[s]=0; }); ROWS.forEach(function(r){ c[val(r.id,"status")]=(c[val(r.id,"status")]||0)+1; });
+    var late=ROWS.filter(function(r){ return overdue(r)>0; });
+    var el=document.getElementById("counts"); if(el) el.innerHTML='<span class="k">'+ROWS.length+' items</span>'+STATUSES.map(function(s){ return '<span class="chip"><b>'+c[s]+'</b> '+esc(s)+'</span>'; }).join("")+'<span class="chip"><b>'+late.length+'</b> overdue</span>'; }
+  function paintMilestones(){ var el=document.getElementById("strip"); if(!el) return; var t=today(); var nextSeen=false;
+    el.innerHTML=MILESTONES.map(function(m){ var date=m.final_by?FINAL_BY:m.date; var past=!!date&&date<t; var cls="ms"+(past?" past":"");
+      if(!past&&date&&!nextSeen&&!m.final_by){ cls+=" next"; nextSeen=true; }
+      var label=m.final_by?"every integrations row final":m.label; var when=date?((m.about?"about ":"")+dmy(date)):"date not set";
+      return '<span class="'+cls+'"><b>'+esc(when)+'</b>'+esc(label)+(past?" (passed)":"")+'</span>'; }).join(""); }
+  function ownerOptions(){ var seen=[]; ROWS.forEach(function(r){ String(val(r.id,"owner")||"").split(",").forEach(function(p){ p=p.trim(); if(p&&seen.indexOf(p)<0) seen.push(p); }); }); return seen.sort(); }
+  function applyFilters(){ var f=document.getElementById("filters"); if(!f) return; var d=f.querySelector("[name=direction]").value, o=f.querySelector("[name=owner]").value, s=f.querySelector("[name=status]").value; var shown=0;
+    ROWS.forEach(function(r){ var tb=document.getElementById("row-"+r.id); if(!tb) return;
+      var ok=(d==="All"||r.direction===d)&&(o==="All"||("|"+tb.getAttribute("data-owners")+"|").indexOf("|"+o+"|")>=0)&&(s==="All"||val(r.id,"status")===s||(s==="overdue"&&overdue(r)>0));
+      tb.classList.toggle("hidden",!ok); if(ok) shown++; });
+    var c=document.getElementById("count"); if(c) c.textContent=shown+" of "+ROWS.length; paintCounts(); }
+  function paintAll(){ ROWS.forEach(function(r){ paintRow(r.id); }); var rv=document.getElementById("reviewer"); if(rv&&rv.value!==(S.who||"")) rv.value=S.who||""; paintMilestones(); applyFilters(); }
+  // ---- Spinach's questions: every comment under the identity Spinach on any page; answered when an answer row follows
+  function questions(){ if(!ALL) return []; var qs=[]; var answers={};
+    ALL.forEach(function(r){ if(r.field==="answer"&&r.kind==="comment"&&String(r.value||"").trim()){ (answers[r.page+"|"+r.item_id]=answers[r.page+"|"+r.item_id]||[]).push(r); } });
+    ALL.forEach(function(r){ if(r.kind!=="comment"||!isSpinach(r.who)||!String(r.value||"").trim()) return; if(r.field!=="text"&&r.field!=="question"&&r.field!=="comment"&&r.field!=="note") return;
+      var after=(answers[r.page+"|"+r.item_id]||[]).filter(function(a){ return a.id>r.id; });
+      qs.push({row:r, answers:after, answered:after.length>0}); });
+    qs.sort(function(a,b){ return b.row.id-a.row.id; }); return qs; }
+  function pageLink(r){ var p=r.page; var id=r.item_id;
+    if(p==="wireframes_v02") return REVIEW?'index.html#'+encodeURIComponent(id):'wireframes_v02.html#'+encodeURIComponent(id);
+    if(p==="integrations") return 'integrations.html#row/'+encodeURIComponent(id);
+    if(p==="tracker") return '#row/'+encodeURIComponent(id); return ''; }
+  function paintQuestions(){ var el=document.getElementById("qs"); if(!el) return; var qs=questions();
+    var c=document.getElementById("qcount"); var open=qs.filter(function(q){ return !q.answered; }).length;
+    if(c) c.textContent=ALL?(qs.length+" questions, "+open+" open, "+(qs.length-open)+" answered"):"reading the board";
+    if(!qs.length){ el.innerHTML='<p class="empty">'+(ALL?"No question from Spinach yet. A comment under the identity Spinach on any screen or row lands here.":"")+'</p>'; return; }
+    el.innerHTML=qs.map(function(q){ var r=q.row; var link=pageLink(r);
+      return '<div class="q"><div class="h">'+(link?'<a class="sid" href="'+esc(link)+'">'+esc(r.item_id)+'</a>':'<span class="sid">'+esc(r.item_id)+'</span>')+'<b>'+esc(r.who)+'</b><span>'+esc(ago(r.created_at))+'</span><span>'+(q.answered?"answered":"open")+'</span></div>'+
+        '<div class="t">'+esc(r.value)+'</div>'+q.answers.map(function(a){ return '<div class="a"><span class="w">'+esc(a.who||"(no identity)")+', '+esc(ago(a.created_at))+'</span>'+esc(a.value)+'</div>'; }).join("")+'</div>'; }).join(""); }
+  // ---- the daily update: plain text for WhatsApp from the last 24 hours of the table plus the build data
+  function headline(item){ var i=item.indexOf(":"); var j=item.indexOf(";"); var cut=item.length; if(i>0&&i<cut) cut=i; if(j>0&&j<cut) cut=j; return item.slice(0,cut); }
+  function update(){ var t=today(); var since=Date.now()-86400000; var L=["yeslyf board, "+dmy(t)];
+    var rows=ALL||[]; function recent(r){ return new Date(String(r.created_at||"").slice(0,19)+"Z").getTime()>=since; }
+    var delivered=[]; ROWS.forEach(function(r){ var last=null; rows.forEach(function(x){ if(x.item_id===r.id&&x.field==="status"&&(x.page==="tracker"||x.page==="integrations")) last=x; }); if(last&&last.value==="delivered"&&recent(last)) delivered.push(r.id+" "+headline(r.item)); });
+    if(delivered.length) L.push("Delivered: "+delivered.join("; "));
+    var nowFinal=[]; INTEG.forEach(function(r){ var row=CHOICES[r.id]; if(row&&row.value==="final"&&recent(row)) nowFinal.push(r.id+" "+r.vendor); else if(!row&&r.choice==="final"&&r.final_since&&daysBetween(r.final_since,t)<=1&&daysBetween(r.final_since,t)>=0) nowFinal.push(r.id+" "+r.vendor); });
+    if(nowFinal.length) L.push("Now final: "+nowFinal.join("; "));
+    var unfrozen=COUNTS.unfreeze_log.filter(function(x){ return x.date&&daysBetween(x.date,t)<=1&&daysBetween(x.date,t)>=0; }).map(function(x){ return x.screen; });
+    L.push("Frozen: "+COUNTS.frozen+" screens, "+COUNTS.templates+" templates. Open: "+COUNTS.open+", reasons on the Changelog"+(unfrozen.length?". Unfrozen: "+unfrozen.join(", "):""));
+    var qs=questions(); var newQ=qs.filter(function(q){ return recent(q.row); }); var ans=qs.filter(function(q){ return q.answers.some(recent); });
+    if(newQ.length||ans.length) L.push("Spinach questions: "+newQ.length+" new"+(newQ.length?" ("+newQ.map(function(q){ return q.row.item_id; }).join(", ")+")":"")+"; "+ans.length+" answered"+(ans.length?" ("+ans.map(function(q){ return q.row.item_id; }).join(", ")+")":""));
+    var late=ROWS.filter(function(r){ return overdue(r)>0; }).map(function(r){ var n=overdue(r); return r.id+" ("+(val(r.id,"owner")||"no owner")+", "+n+(n===1?" day":" days")+")"; });
+    L.push("Overdue: "+(late.length?late.join("; "):"none"));
+    var next=null; MILESTONES.forEach(function(m){ var d=m.final_by?FINAL_BY:m.date; if(d&&d>=t&&(!next||d<next.d)) next={d:d, label:m.final_by?"every integrations row final":m.label, about:!!m.about}; });
+    if(next) L.push("Next: "+(next.about?"about ":"")+dmy(next.d)+", "+next.label);
+    L.push(BOARD_LINK); return L.join("\n"); }
+  function copyUpdate(){ var text=update(); var box=document.getElementById("upd"); if(box){ box.className="upd on"; box.querySelector("pre").textContent=text; }
+    var done=false; try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(function(){ flash("Copied"); }, function(){ flash("Shown below; copy it by hand"); }); done=true; } }catch(e){}
+    if(!done) flash("Shown below; copy it by hand"); }
+  function deepLink(){ var h=location.hash||""; if(h.indexOf("#row/")!==0) return; var id=h.slice(5); var el=document.getElementById("row-"+id); if(!el) return;
+    if(el.classList.contains("hidden")){ var f=document.getElementById("filters"); if(f){ var sels=f.querySelectorAll("select"); for(var k=0;k<sels.length;k++) sels[k].value="All"; } applyFilters(); }
+    var old=document.querySelectorAll(".hi"); for(var i=0;i<old.length;i++) old[i].classList.remove("hi"); el.classList.add("hi"); el.classList.add("open"); try{ el.scrollIntoView({block:"start",behavior:"instant"}); }catch(e){ el.scrollIntoView(true); } }
+  var tmr={};
+  document.addEventListener("DOMContentLoaded",function(){
+    if(window.yeslyfBoard){ Array.prototype.forEach.call(document.querySelectorAll("textarea[data-f=notes]"),function(t){ yeslyfBoard.attach(t,t.getAttribute("data-id")); });
+      yeslyfBoard.init({page:"tracker",also:["integrations"],apply:applyRemote});
+      yeslyfBoard.read({page:"",apply:function(latest,rows,ok){ ALL=ok?rows:[]; paintQuestions(); }}); }
+    else { ALL=[]; paintQuestions(); }
+    var f=document.getElementById("filters"); if(f){ var os=f.querySelector("[name=owner]"); if(os) os.innerHTML='<option>All</option>'+ownerOptions().map(function(n){ return '<option>'+esc(n)+'</option>'; }).join(""); f.addEventListener("change",applyFilters); }
+    var rv=document.getElementById("reviewer"); if(rv){ rv.innerHTML='<option value="">editing as</option>'+IDENTITIES.map(function(n){ return '<option value="'+esc(n)+'">'+esc(n)+'</option>'; }).join(""); rv.value=S.who||"";
+      rv.addEventListener("change",function(){ S.who=IDENTITIES.indexOf(rv.value)>=0?rv.value:""; save(); flash(S.who?"Editing as "+S.who:""); }); }
+    paintAll(); paintQuestions(); deepLink(); window.addEventListener("hashchange",deepLink);
+    var up=document.getElementById("update"); if(up) up.addEventListener("click",copyUpdate);
+    var oa=document.getElementById("openall"); if(oa) oa.addEventListener("click",function(){ ROWS.forEach(function(r){ var tb=document.getElementById("row-"+r.id); if(tb&&!tb.classList.contains("hidden")) tb.classList.add("open"); }); });
+    var ca=document.getElementById("closeall"); if(ca) ca.addEventListener("click",function(){ ROWS.forEach(function(r){ var tb=document.getElementById("row-"+r.id); if(tb) tb.classList.remove("open"); }); });
+    var tbl=document.getElementById("tbl"); if(tbl) tbl.addEventListener("click",function(e){ var t=e.target; if(!t.closest) return; if(t.closest("a,input,select,textarea,button,label")) return; var r1=t.closest("tr.r1"); if(r1) r1.parentNode.classList.toggle("open"); });
+    document.body.addEventListener("input",function(e){ var t=e.target; var id=t.getAttribute("data-id"), k=t.getAttribute("data-f"); if(!id||!k||!byId[id]) return; if(t.tagName==="SELECT"||t.type==="date") return;
+      var ed=edits(id); ed[k]=t.value; save(); paintRow(id); if(k==="owner") applyFilters(); flash("Saving...");
+      clearTimeout(tmr[id+k]); tmr[id+k]=setTimeout(function(){ if(put(id,k,val(id,k))) flash(); },1500); });
+    document.body.addEventListener("change",function(e){ var t=e.target; var id=t.getAttribute("data-id"), k=t.getAttribute("data-f"); if(!id||!k||!byId[id]) return; if(!(t.tagName==="SELECT"||t.type==="date")) return;
+      var ed=edits(id); ed[k]=t.value; save(); paintRow(id); applyFilters(); if(put(id,k,t.value)) flash(); });
+  });
+  // test hook for the checks (and for the console)
+  window.yeslyfTracker={ update: update, questions: questions, rows: function(){ return ROWS.length; }, value: val, setRows: function(rows){ ALL=rows; paintQuestions(); } };
+})();
+</script>
+</body>
+</html>

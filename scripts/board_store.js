@@ -14,7 +14,9 @@
 // plain words; nothing is queued); rows in BOARD_IGNORE (data/board_ignore.json: page, item_id and the minute of
 // created_at) are test rows and are dropped from every fetch, so counts, exports and history never see them;
 // read({page, apply}) fetches another page's rows read-only (page "" is every page) for the pages that need them
-// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update).
+// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update); init({also})
+// names pages whose rows are read into this page's cache as well (the Tracker reads the W rows written under
+// page integrations before the move), so the latest value and the history are whole; writes stay on the page.
 (function(){
   var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -27,7 +29,7 @@
   var cache = {};
   try { cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ cache = {}; }
   function saveCache(){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e){} }
-  var page = "", applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
+  var page = "", also = [], applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
   function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; return c; }
   function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
   function two(n){ return (n < 10 ? "0" : "") + n; }
@@ -96,14 +98,20 @@
     });
   }
   function latestOf(rows){ var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; }); var out = []; for(var k in latest) out.push(latest[k]); return out; }
+  function fetchPages(names, acc, cb){
+    // the rows of several pages, merged in id order (ids grow with time, so the latest row per field is the last one)
+    if(!names.length){ acc.sort(function(a, b){ return a.id - b.id; }); cb(true, acc); return; }
+    fetchRows(names[0], 0, [], function(ok, rows){ if(!ok){ cb(false); return; } fetchPages(names.slice(1), acc.concat(rows), cb); });
+  }
   function load(){
     pill();
     if(!configured || !page) return;
     flush(function(sent){
-      fetchRows(page, 0, [], function(ok, rows){
+      fetchPages([page].concat(also), [], function(ok, rows){
         checked = true; var c = pc();
         if(ok){
-          c.rows = rows; c.last_write = rows.length ? rows[rows.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
+          var own = rows.filter(function(r){ return r.page === page; });
+          c.rows = rows; c.last_write = own.length ? own[own.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
           if(applyFn){
             var pending = {}; c.outbox.forEach(function(r){ pending[r.item_id + "|" + r.field] = 1; });
             var out = latestOf(rows).filter(function(r){ return !pending[r.item_id + "|" + r.field]; });
@@ -170,7 +178,7 @@
     el.parentNode.insertBefore(wrap, el.nextSibling);
     boxes.push({box: box, id: id});
   }
-  function init(opts){ opts = opts || {}; page = String(opts.page || ""); applyFn = opts.apply || null; load(); }
+  function init(opts){ opts = opts || {}; page = String(opts.page || ""); also = (opts.also || []).map(String).filter(function(p){ return p && p !== page; }); applyFn = opts.apply || null; load(); }
   function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0}; }
   function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
   window.yeslyfBoard = {init: init, write: write, read: read, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label, fmt: fmt,

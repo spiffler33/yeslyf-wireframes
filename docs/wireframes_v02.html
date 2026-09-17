@@ -142,6 +142,13 @@
   .verdict button.on{background:var(--accent);border-color:#C9A800;font-weight:700}
   #comment{width:100%;min-height:120px;border:1px solid var(--line);border-radius:6px;padding:10px;font:inherit;font-size:13px;resize:vertical;background:#fff}
   .review .saved{font-size:11px;color:var(--mute);min-height:14px;margin-top:4px}
+  .questions .q-t{font-weight:700;font-size:12px;margin:10px 0 2px}
+  .questions .q{padding:6px 0;border-top:1px solid var(--line);font-size:12.5px}
+  .questions .q .h{color:var(--mute);font-size:11.5px;margin-bottom:2px} .questions .q .h b{color:var(--ink)} .questions .q .h span{margin-left:6px}
+  .questions .q .t{white-space:pre-wrap} .questions .q .a{margin-top:4px;padding-left:8px;border-left:3px solid var(--accent);white-space:pre-wrap}
+  .questions .q .a .w{color:var(--mute);font-size:11.5px;margin-right:6px}
+  .questions textarea{width:100%;min-height:56px;border:1px solid var(--line);border-radius:6px;padding:8px;font:inherit;font-size:13px;resize:vertical;background:#fff;margin-top:8px}
+  .questions button{margin-top:6px;border:1px solid var(--ink);background:#fff;padding:6px 12px;border-radius:6px;font-weight:600}
   .marker{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:0 0 12px;font-size:12px;background:#FCFCFD;color:#3B4250}
   .marker.changed{border-color:#C9A800;background:#FFFBEA}
   .marker.new{border-color:var(--ink);background:#fff}
@@ -190,13 +197,13 @@
 <script src="config.js"></script>
 </head>
 <body>
-<header class="top"><div class="brand">yeslyf <span>wireframes v0.2, 194 screens</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html" class="on">Wireframes v0.2</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="changelog.html">Changelog</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a><a href="setup.html">Setup</a></nav><div class="who">Reviewing as <select id="reviewer"></select></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a><button id="export" class="primary">Export comments</button></header>
+<header class="top"><div class="brand">yeslyf <span>wireframes v0.2, 194 screens</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html" class="on">Wireframes v0.2</a><a href="tracker.html">Tracker</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="changelog.html">Changelog</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a><a href="setup.html">Setup</a></nav><div class="who">Reviewing as <select id="reviewer"></select></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a><button id="export" class="primary">Export comments</button></header>
 <div class="bar"><div id="tiers" class="tiers"></div><label>Path <select id="fpath"></select></label><label id="fstate-wrap">State <select id="fstate"></select></label><label>Compliance <select id="fcomp"></select></label><label>Template <select id="ftpl"></select></label><label>Frozen <select id="ffreeze"></select></label><div class="actions"><button id="mapbtn">Journey map</button></div></div>
 <div class="banner">All copy is placeholder pending compliance review; comment on language on any screen.</div>
 <div class="layout">
 <aside id="nav" class="nav"></aside>
 <main id="main" class="main"><div class="mobile-jump"><select id="jump"></select></div><div id="ribbon" class="ribbon"></div><div class="crumb-row"><span id="crumb"></span><span id="counter"></span></div><div id="statestrip" class="strip off"></div><div class="stage"><button id="prev" class="arrow" title="Previous screen">&larr;</button><div id="frame" class="frame phone"></div><button id="next" class="arrow" title="Next screen">&rarr;</button></div></main>
-<aside class="side"><div class="review"><div class="review-t">Your verdict on this screen</div><div id="verdict" class="verdict"></div><div id="reason-wrap" class="reason-wrap off"><select id="reason"></select></div><textarea id="comment"></textarea></div><div id="spec" class="spec"></div></aside>
+<aside class="side"><div class="review"><div class="review-t">Your verdict on this screen</div><div id="verdict" class="verdict"></div><div id="reason-wrap" class="reason-wrap off"><select id="reason"></select></div><textarea id="comment"></textarea><div id="questions" class="questions"></div></div><div id="spec" class="spec"></div></aside>
 </div>
 <div id="map" class="map"></div>
 <script>var SECTIONS=[["X", "Read me first"], ["A", "Entry and identity"], ["R", "Quick reveal (pre-paywall)"], ["P", "Paywall and checkout"], ["O", "Onboarding hub"], ["D", "Data collection"], ["G", "Outputs: plan and investment plan"], ["K", "Adviser calls"], ["E", "Execution"], ["H", "Living dashboard"], ["Q", "Lifecycle and reviews"], ["N", "Returning-user states"], ["M", "Admin (bought tools)"], ["L", "Logic panel (built by devs)"]];
@@ -223,7 +230,9 @@ var FREEZE={"status": "frozen", "since": "17 Sep 2026", "cause": "minutes 16 Sep
 // plain words; nothing is queued); rows in BOARD_IGNORE (data/board_ignore.json: page, item_id and the minute of
 // created_at) are test rows and are dropped from every fetch, so counts, exports and history never see them;
 // read({page, apply}) fetches another page's rows read-only (page "" is every page) for the pages that need them
-// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update).
+// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update); init({also})
+// names pages whose rows are read into this page's cache as well (the Tracker reads the W rows written under
+// page integrations before the move), so the latest value and the history are whole; writes stay on the page.
 (function(){
   var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -236,7 +245,7 @@ var FREEZE={"status": "frozen", "since": "17 Sep 2026", "cause": "minutes 16 Sep
   var cache = {};
   try { cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ cache = {}; }
   function saveCache(){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e){} }
-  var page = "", applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
+  var page = "", also = [], applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
   function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; return c; }
   function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
   function two(n){ return (n < 10 ? "0" : "") + n; }
@@ -305,14 +314,20 @@ var FREEZE={"status": "frozen", "since": "17 Sep 2026", "cause": "minutes 16 Sep
     });
   }
   function latestOf(rows){ var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; }); var out = []; for(var k in latest) out.push(latest[k]); return out; }
+  function fetchPages(names, acc, cb){
+    // the rows of several pages, merged in id order (ids grow with time, so the latest row per field is the last one)
+    if(!names.length){ acc.sort(function(a, b){ return a.id - b.id; }); cb(true, acc); return; }
+    fetchRows(names[0], 0, [], function(ok, rows){ if(!ok){ cb(false); return; } fetchPages(names.slice(1), acc.concat(rows), cb); });
+  }
   function load(){
     pill();
     if(!configured || !page) return;
     flush(function(sent){
-      fetchRows(page, 0, [], function(ok, rows){
+      fetchPages([page].concat(also), [], function(ok, rows){
         checked = true; var c = pc();
         if(ok){
-          c.rows = rows; c.last_write = rows.length ? rows[rows.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
+          var own = rows.filter(function(r){ return r.page === page; });
+          c.rows = rows; c.last_write = own.length ? own[own.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
           if(applyFn){
             var pending = {}; c.outbox.forEach(function(r){ pending[r.item_id + "|" + r.field] = 1; });
             var out = latestOf(rows).filter(function(r){ return !pending[r.item_id + "|" + r.field]; });
@@ -379,7 +394,7 @@ var FREEZE={"status": "frozen", "since": "17 Sep 2026", "cause": "minutes 16 Sep
     el.parentNode.insertBefore(wrap, el.nextSibling);
     boxes.push({box: box, id: id});
   }
-  function init(opts){ opts = opts || {}; page = String(opts.page || ""); applyFn = opts.apply || null; load(); }
+  function init(opts){ opts = opts || {}; page = String(opts.page || ""); also = (opts.also || []).map(String).filter(function(p){ return p && p !== page; }); applyFn = opts.apply || null; load(); }
   function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0}; }
   function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
   window.yeslyfBoard = {init: init, write: write, read: read, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label, fmt: fmt,
@@ -652,6 +667,29 @@ var FREEZE={"status": "frozen", "since": "17 Sep 2026", "cause": "minutes 16 Sep
     document.getElementById("spec").innerHTML = html;
     reviewControls(s, n);
   }
+  function isSpinach(who){ var w = String(who || ""); return w === "Spinach" || w.indexOf("Spinach (") === 0; }
+  function renderQuestions(){
+    // Spinach's questions on this screen (comments under the identity Spinach, or imported questions), each with the
+    // answers written after it; an Answer box for everyone else. An answer is a row on the same screen, field
+    // "answer" (phase 12, Vatsal, 17 Sep 2026). Nothing is drawn when there is no question.
+    var box = document.getElementById("questions"); if(!box) return;
+    if(!BOARD){ box.innerHTML = ""; return; }
+    var id = SCREENS[state.idx].id;
+    var rows = BOARD.history(id).slice().reverse();
+    var qs = [], answers = [];
+    rows.forEach(function(r){ if(r.kind !== "comment" || !String(r.value || "").trim()) return;
+      if(r.field === "answer") answers.push(r); else if(isSpinach(r.who) && (r.field === "text" || r.field === "question")) qs.push(r); });
+    if(!qs.length){ box.innerHTML = ""; return; }
+    var html = '<div class="q-t">Questions from Spinach</div>' + qs.map(function(q){
+      var after = answers.filter(function(a){ return (a.id || Infinity) > (q.id || 0); });
+      return '<div class="q"><div class="h"><b>' + esc(q.who) + '</b> <span>' + esc(BOARD.fmt(q.created_at)) + '</span> <span>' + (after.length ? "answered" : "open") + '</span></div><div class="t">' + esc(q.value) + '</div>' +
+        after.map(function(a){ return '<div class="a"><span class="w">' + esc(a.who || "(no identity)") + ', ' + esc(BOARD.fmt(a.created_at)) + '</span>' + esc(a.value) + '</div>'; }).join("") + '</div>'; }).join("");
+    if(!isSpinach(store.who)) html += '<textarea id="answer" placeholder="Answer' + (store.who ? " as " + esc(store.who) : "") + '"></textarea><button id="answerbtn" type="button">Send answer</button>';
+    box.innerHTML = html;
+    var b = document.getElementById("answerbtn");
+    if(b) b.addEventListener("click", function(){ var ta = document.getElementById("answer"); var v = (ta.value || "").trim(); if(!v) return;
+      if(put(id, "answer", v, "comment")){ ta.value = ""; flash("Answer recorded"); setTimeout(renderQuestions, 1500); } else flash(NO_ID); });
+  }
   function reviewControls(s, n){
     var v = document.getElementById("verdict");
     if(v) Array.prototype.forEach.call(v.querySelectorAll("button"), function(b){ b.className = (b.getAttribute("data-v") === n.verdict) ? "on" : ""; });
@@ -660,6 +698,7 @@ var FREEZE={"status": "frozen", "since": "17 Sep 2026", "cause": "minutes 16 Sep
     var rv = document.getElementById("reviewer"); if(rv) rv.value = store.who || "";
     syncReason();
     if(BOARD) BOARD.refreshHistory();
+    renderQuestions();
     flash("");
   }
   function syncReason(){

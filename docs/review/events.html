@@ -144,7 +144,7 @@
 <script src="../config.js"></script>
 </head>
 <body>
-<header class="top"><div class="brand">yeslyf <span>event schema, 544 rows</span></div><nav class="tabs"><a href="index.html">Wireframes v0.2</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="integrations.html">Integrations</a><a href="events.html" class="on">Events</a></nav><span class="who"></span><div id="saved" class="saved"></div><span id="sheetpill" class="pill" title="Sheet write-back status">sheet: off</span><button id="export" class="primary">Export markdown</button></header>
+<header class="top"><div class="brand">yeslyf <span>event schema, 544 rows</span></div><nav class="tabs"><a href="index.html">Wireframes v0.2</a><a href="tracker.html">Tracker</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="integrations.html">Integrations</a><a href="events.html" class="on">Events</a></nav><span class="who"></span><div id="saved" class="saved"></div><span id="sheetpill" class="pill" title="Sheet write-back status">sheet: off</span><button id="export" class="primary">Export markdown</button></header>
 <main class="main" style="max-width:none"><section><h1>Event schema</h1><p class="lead">One row per event per screen. Every live v0.2 screen fires screen_view with its ID as screen_id; the named events are the ones the screens carry; the core actions are app-level and belong to no single screen. Properties lists what an event adds beyond the standard set.</p><div class="counts"><span class="k">544 rows</span><span class="chip"><b>194</b> screen views</span><span class="chip"><b>342</b> named events</span><span class="chip"><b>8</b> core actions</span><span class="k">247 unique named events</span></div><p class="std">Standard properties on every event: <code>user_id</code>, <code>screen_id</code>, <code>tier</code>, <code>state</code>, <code>sku</code>, <code>source_choice</code>, <code>timestamp</code>.</p></section><section><div class="toolbar"><label>Section <select id="sec"><option value="All">All</option><option value="X">X Read me first</option><option value="A">A Entry and identity</option><option value="R">R Quick reveal (pre-paywall)</option><option value="P">P Paywall and checkout</option><option value="O">O Onboarding hub</option><option value="D">D Data collection</option><option value="G">G Outputs: plan and investment plan</option><option value="K">K Adviser calls</option><option value="E">E Execution</option><option value="H">H Living dashboard</option><option value="Q">Q Lifecycle and reviews</option><option value="N">N Returning-user states</option><option value="M">M Admin (bought tools)</option><option value="L">L Logic panel (built by devs)</option><option value="core">Core actions</option></select></label><span id="count" class="meta"></span></div><div class="wrap"><table id="etbl"><thead><tr><th>Event</th><th class="c-kind">Kind</th><th class="c-screen">Screen</th><th>Section</th><th class="c-tier">Tier</th><th class="c-path">Path</th><th>Properties</th></tr></thead><tbody><tr data-sec="X" data-kind="screen view"><td class="ev">screen_view</td><td class="kd">screen view</td><td><a class="sid" href="index.html#X00">X00</a></td><td>X Read me first</td><td class="tr c-tier">ALL</td><td class="pa c-path">both</td><td class="pr">standard only</td></tr>
 <tr data-sec="A" data-kind="screen view"><td class="ev">screen_view</td><td class="kd">screen view</td><td><a class="sid" href="index.html#A01">A01</a></td><td>A Entry and identity</td><td class="tr c-tier">ALL</td><td class="pa c-path">both</td><td class="pr">standard only</td></tr>
 <tr data-sec="A" data-kind="screen view"><td class="ev">screen_view</td><td class="kd">screen view</td><td><a class="sid" href="index.html#A02">A02</a></td><td>A Entry and identity</td><td class="tr c-tier">ALL</td><td class="pa c-path">both</td><td class="pr">standard only</td></tr>
@@ -708,7 +708,9 @@ var STANDARD=["user_id", "screen_id", "tier", "state", "sku", "source_choice", "
 // plain words; nothing is queued); rows in BOARD_IGNORE (data/board_ignore.json: page, item_id and the minute of
 // created_at) are test rows and are dropped from every fetch, so counts, exports and history never see them;
 // read({page, apply}) fetches another page's rows read-only (page "" is every page) for the pages that need them
-// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update).
+// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update); init({also})
+// names pages whose rows are read into this page's cache as well (the Tracker reads the W rows written under
+// page integrations before the move), so the latest value and the history are whole; writes stay on the page.
 (function(){
   var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -721,7 +723,7 @@ var STANDARD=["user_id", "screen_id", "tier", "state", "sku", "source_choice", "
   var cache = {};
   try { cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ cache = {}; }
   function saveCache(){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e){} }
-  var page = "", applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
+  var page = "", also = [], applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
   function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; return c; }
   function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
   function two(n){ return (n < 10 ? "0" : "") + n; }
@@ -790,14 +792,20 @@ var STANDARD=["user_id", "screen_id", "tier", "state", "sku", "source_choice", "
     });
   }
   function latestOf(rows){ var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; }); var out = []; for(var k in latest) out.push(latest[k]); return out; }
+  function fetchPages(names, acc, cb){
+    // the rows of several pages, merged in id order (ids grow with time, so the latest row per field is the last one)
+    if(!names.length){ acc.sort(function(a, b){ return a.id - b.id; }); cb(true, acc); return; }
+    fetchRows(names[0], 0, [], function(ok, rows){ if(!ok){ cb(false); return; } fetchPages(names.slice(1), acc.concat(rows), cb); });
+  }
   function load(){
     pill();
     if(!configured || !page) return;
     flush(function(sent){
-      fetchRows(page, 0, [], function(ok, rows){
+      fetchPages([page].concat(also), [], function(ok, rows){
         checked = true; var c = pc();
         if(ok){
-          c.rows = rows; c.last_write = rows.length ? rows[rows.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
+          var own = rows.filter(function(r){ return r.page === page; });
+          c.rows = rows; c.last_write = own.length ? own[own.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
           if(applyFn){
             var pending = {}; c.outbox.forEach(function(r){ pending[r.item_id + "|" + r.field] = 1; });
             var out = latestOf(rows).filter(function(r){ return !pending[r.item_id + "|" + r.field]; });
@@ -864,7 +872,7 @@ var STANDARD=["user_id", "screen_id", "tier", "state", "sku", "source_choice", "
     el.parentNode.insertBefore(wrap, el.nextSibling);
     boxes.push({box: box, id: id});
   }
-  function init(opts){ opts = opts || {}; page = String(opts.page || ""); applyFn = opts.apply || null; load(); }
+  function init(opts){ opts = opts || {}; page = String(opts.page || ""); also = (opts.also || []).map(String).filter(function(p){ return p && p !== page; }); applyFn = opts.apply || null; load(); }
   function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0}; }
   function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
   window.yeslyfBoard = {init: init, write: write, read: read, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label, fmt: fmt,

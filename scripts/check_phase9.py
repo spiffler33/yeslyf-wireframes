@@ -16,6 +16,9 @@ failure. Needs Python 3 and Node only.
 18. Phase 12 (Vatsal, 17 Sep 2026): every field entry carries one of the five tags; no vendor name on a screen; the
     freeze register adds up (frozen plus open equals live, every open screen has a reason, no frozen screen carries
     a blocking item, the templates count matches); the wireframes, integrations and changelog pages carry the marks.
+19. Phase 12, pass 3: the Tracker tab (data/tracker.json; W01 onwards in order; blocked_by resolves) renders on the site
+    and the review link after Wireframes v0.2, the daily update composes from the build data, the wireframes page
+    carries the questions box, and the owed table is gone from the Integrations tab.
 """
 import json
 import os
@@ -328,6 +331,70 @@ def check18(screens, byid):
         sum(tags.values()), ", ".join("%s %d" % (k, v) for k, v in sorted(tags.items(), key=lambda kv: str(kv[0]))), n_frozen, n_open, fz["templates"]["count"], fz["templates"]["status"])
 
 
+TRACKER_TAIL = r"""
+const _fake = fakeEl; fakeEl = function(id){ const e = _fake(id); e.querySelector = () => fakeEl(); e.querySelectorAll = () => []; return e; };
+document.querySelector = () => fakeEl();
+(listeners.DOMContentLoaded || []).forEach(f => f());
+const T = ctx.yeslyfTracker; T.setRows([]);
+const text = T.update();
+console.log(JSON.stringify({ rows: T.rows(), text, questions: T.questions().length }));
+"""
+
+
+def check19():
+    """Phase 12, pass 3: the Tracker tab (data/tracker.json valid, W01 onwards in order, blocked_by resolves), the page
+    and its review copy render, the daily update composes from the build data, the tab sits after Wireframes v0.2 on
+    both navs, the owed table is gone from the Integrations tab."""
+    import build_tracker
+    p = []
+    doc = load("tracker.json")
+    p += ["tracker.json: " + x for x in build_tracker.validate(doc)]
+    n = len(doc["rows"])
+    for name in ("tracker.html", "review/tracker.html"):
+        path = os.path.join(DOCS, name)
+        if not os.path.exists(path):
+            p.append("%s missing" % name)
+            continue
+        with open(path) as fh:
+            html = fh.read()
+        for needle in ('id="update"', 'id="qs"', 'id="strip"', 'href="tracker.html"'):
+            if needle not in html:
+                p.append("%s lacks %s" % (name, needle))
+        if html.count('class="r1"') != n:
+            p.append("%s draws %d rows, expected %d" % (name, html.count('class="r1"'), n))
+    with open(os.path.join(DOCS, "wireframes_v02.html")) as fh:
+        wire = fh.read()
+    if '<a href="wireframes_v02.html" class="on">Wireframes v0.2</a><a href="tracker.html">Tracker</a>' not in wire:
+        p.append("the Tracker tab does not follow Wireframes v0.2 on the site nav")
+    with open(os.path.join(DOCS, "review", "index.html")) as fh:
+        rev = fh.read()
+    if '<a href="index.html" class="on">Wireframes v0.2</a><a href="tracker.html">Tracker</a>' not in rev:
+        p.append("the Tracker tab does not follow Wireframes v0.2 on the review nav")
+    if 'id="questions"' not in wire:
+        p.append("wireframes_v02.html has no questions box")
+    with open(os.path.join(DOCS, "integrations.html")) as fh:
+        ihtml = fh.read()
+    if 'id="owed"' in ihtml or 'href="tracker.html">Tracker tab' not in ihtml:
+        p.append("integrations.html still draws the owed table, or lacks the Tracker link")
+    prelude = check_site.HARNESS[:check_site.HARNESS.index("(listeners.DOMContentLoaded")]
+    env = dict(os.environ)
+    env["WIRE_HTML"] = os.path.join(DOCS, "tracker.html")
+    proc = subprocess.run(["node", "-"], input=prelude + TRACKER_TAIL, capture_output=True, text=True, env=env)
+    if proc.returncode != 0:
+        p.append("tracker harness failed: " + proc.stderr[-400:])
+        return p, ""
+    out = json.loads(proc.stdout.strip().splitlines()[-1])
+    text = out["text"]
+    for needle in ("yeslyf board, ", "Frozen: ", " screens, ", " templates. Open: ", "Overdue: ", doc["board_link"]):
+        if needle not in text:
+            p.append("the daily update lacks %r" % needle)
+    if len(text.splitlines()) > 15:
+        p.append("the daily update runs to %d lines" % len(text.splitlines()))
+    if out["rows"] != n:
+        p.append("the page holds %d rows, expected %d" % (out["rows"], n))
+    return p, "%d rows W01 to %s; the update reads %d lines from the build data" % (n, doc["rows"][-1]["id"], len(text.splitlines()))
+
+
 def main():
     failures = 0
     for script in ("validate_v02.py", "check_site.py"):
@@ -346,6 +413,7 @@ def main():
         ("16 audience files open from disk, render their screen set, carry no endpoint URL; compliance and Spinach subsets hold", lambda: check16(screens)),
         ("17 changelog shows D05, D06, D08 under split; dropped count is 3", check17),
         ("18 phase 12: every field entry tagged, no vendor names on screens, the freeze register adds up and the pages carry the marks", lambda: check18(screens, byid)),
+        ("19 phase 12: the Tracker tab renders on the site and the review link, its rows and milestones validate, the daily update composes", check19),
     ]
     for name, fn in checks:
         problems, note = fn()

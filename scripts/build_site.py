@@ -191,11 +191,12 @@ CSS = """
 
 TABS = [("index.html", "Meeting"), ("gaps.html", "Gaps"), ("inputs.html", "Inputs"),
         ("wireframes.html", "Wireframes v0.1"), ("admin.html", "Admin and CRM v0.1"),
-        ("wireframes_v02.html", "Wireframes v0.2"), ("admin_v02.html", "Admin and CRM v0.2"),
+        ("wireframes_v02.html", "Wireframes v0.2"), ("tracker.html", "Tracker"), ("admin_v02.html", "Admin and CRM v0.2"),
         ("changelog.html", "Changelog"), ("integrations.html", "Integrations"), ("events.html", "Events"), ("setup.html", "Setup")]
 # The review link (docs/review/): the v0.2 pages with only their tabs (Vatsal, 11 Sep 2026); Integrations added 16 Sep 2026;
 # Events added 16 Sep 2026 (phase 10b-2).
-REVIEW_TABS = [("index.html", "Wireframes v0.2"), ("admin_v02.html", "Admin and CRM v0.2"), ("integrations.html", "Integrations"),
+# Tracker added 17 Sep 2026 (phase 12, pass 3): the daily update and Spinach's questions live there.
+REVIEW_TABS = [("index.html", "Wireframes v0.2"), ("tracker.html", "Tracker"), ("admin_v02.html", "Admin and CRM v0.2"), ("integrations.html", "Integrations"),
                ("events.html", "Events")]
 
 
@@ -605,7 +606,7 @@ WIRE_LAYOUT = ('<div class="layout">\n<aside id="nav" class="nav"></aside>\n'
                '<button id="next" class="arrow" title="Next screen">&rarr;</button></div></main>\n'
                '<aside class="side"><div class="review"><div class="review-t">Your verdict on this screen</div>'
                '<div id="verdict" class="verdict"></div><div id="reason-wrap" class="reason-wrap off"><select id="reason"></select></div>'
-               '<textarea id="comment"></textarea></div><div id="spec" class="spec"></div></aside>\n</div>\n<div id="map" class="map"></div>\n')
+               '<textarea id="comment"></textarea><div id="questions" class="questions"></div></div><div id="spec" class="spec"></div></aside>\n</div>\n<div id="map" class="map"></div>\n')
 
 
 def integrations_blob():
@@ -1013,6 +1014,8 @@ def main():
     build_integrations.main()
     import build_events  # docs/events.html and docs/review/events.html from the screens data and data/events_extra.json (phase 10b-2)
     build_events.main()
+    import build_tracker  # docs/tracker.html and docs/review/tracker.html from data/tracker.json (phase 12, pass 3)
+    build_tracker.main()
 
 
 if __name__ == "__main__":

@@ -1,52 +1,62 @@
-# Handoff - 17 Sep 2026 (light close: mandatory and optional inputs; phase 11 Supabase write-back before it)
+# Handoff - 17 Sep 2026 (phase 12: corrections, frozen and final markers, tracker)
 
-State: live. Every comment, verdict and field edit on every page is one row in the Supabase table board_entries;
-the review link (https://spiffler33.github.io/yeslyf-wireframes/review/) shows "live, last write <time>" and every
-device sees every row after a reload. Commits 0dd4af0 to the closure commit are pushed; GitHub Pages serves them.
-No build work is pending; the next unit is the second review round.
+State: live. Three commits (pass 1 corrections, pass 2 markers, pass 3 tracker) on main; GitHub Pages serves them
+once pushed. The review link (https://spiffler33.github.io/yeslyf-wireframes/review/) carries the Tracker tab, the
+frozen marker on every screen, final or open on every integrations row, and Spinach's questions with answers.
+19 checks pass. No build work is pending; the next unit is Spinach's questions session (21 Sep 2026) and the admin
+session (about 30 Sep 2026, Phase 13).
 
 ## Read first
-1. PLAN.md section 15 (what shipped, the row conventions per page, the known limitations, the live checks).
-2. scripts/board_store.js (the shared layer; its header comment explains init, write, history, attach, the outbox
-   and the pill) and supabase/migrations/20260916120000_board_entries.sql (table, policies, revokes).
-3. Memory project_state, review-transport-preferences (why Supabase, what is recorded) and supabase-project (the
-   project and its database password; the site never uses the password).
+1. PLAN.md section 17 and reports/phase12_pass1.md, pass2.md, pass3.md (what shipped, the contradictions found in
+   the brief and what was done about each, the judgment calls).
+2. data/v02/freeze.json (the freeze register: open screens with causes, the blocking items, the unfreeze log) and
+   data/tracker.json (the W rows, the milestones, the board link).
+3. scripts/board_store.js header (identity rule, the ignore list, read() and init({also})).
+4. Memory: project_state, review-transport-preferences, supabase-project.
 
 ## Verify before coding
-- `git status --short` is empty; HEAD is 628b6d3 or later (mandatory and optional inputs; PLAN.md section 16).
-- `python3 scripts/apply_decisions.py` rebuilds data/screens_v02.json unchanged: 193 live, 79 screens with spec.forward.
-- `python3 scripts/build_site.py` leaves docs/ and data/ unchanged and never touches docs/config.js.
-- `python3 scripts/check_phase9.py` prints 17 PASS lines and no FAIL.
-- `python3 scripts/pull_board.py` prints "wrote data/board_entries.json: N rows, ..." (N >= 3: the setup TEST probe
-  and the A02 test rows by Kajal are in the table by design; it is append-only).
+- `git status --short` shows only the two untracked files in inputs/meeting/ (the docx and the Zoom transcript,
+  left untracked on purpose).
+- `python3 scripts/apply_decisions.py`: 194 live, 27 states, to be verified 30, to be decided 6; freeze register
+  160 frozen, 34 open, 21 templates.
+- `python3 scripts/build_site.py`: cross-check 25 rows clean; docs/ unchanged on a rebuild; docs/config.js untouched.
+- `python3 scripts/check_phase9.py`: 19 PASS, no FAIL.
+- `python3 scripts/pull_board.py`: 12 rows (4 test rows ignored) until the second round writes more.
+
+## Waiting on spiff (one question each, from the reports)
+- Pass 0: append section 7 to inputs/meeting/yeslyf_minutes_2026-09-16_spinach_walkthrough.md? inputs/ is read-only
+  by CLAUDE.md; the text is ready in reports/phase12_pass1.md.
+- L00 to L09: if the drawn table shapes are the W04 delivery, drop the ten L entries from data/v02/freeze.json open
+  and rebuild (24 open, 170 frozen); log it as a cause, not as an unfreeze (they were never frozen).
+- Owners not named by the brief: I24 (video vendor), W27, W28 are empty; I00 Harish and I23 Vatsal were taken from
+  W19 and W11.
 
 ## What to do next
-- 17 Sep 2026: every input screen carries a "Moving forward" block and field tags (required, optional, default,
-  system); rule set in plan_v2.md section 11. The developers have the note. Any new input screen needs both or
-  validate_v02.py fails the build; a new number screen gets them from gen_spine.py, anything else via op "forward"
-  in an after_generation edit group that sorts after phase9_edits.json.
-- Second review round: spiff shares the review link; reviewers pick an identity and comment; their rows land as they
-  type. Owners set status and dates on the Integrations tab and the Owed to Spinach rows (W07, W08, W03, W04 due
-  19 Sep 2026). Export comments and Export brief stay as the offline record only.
-- When the round is done: `python3 scripts/pull_board.py`, then parse data/board_entries.json (the "latest" block:
-  last row per page, item and field) into data (never docs/) with causes ("<first name>, <date>" or "row N"), a new
-  edit group under data/v02, then apply_decisions, build_site, check_phase9; commit per phase and push. Skip item
-  TEST; treat the A02 Keep by Kajal as a test unless Kajal confirms it.
-- Then the CRM planning session (Admin and CRM v0.2 tab, CRM backlog section).
+- Spinach's questions: when Ankur's Excel arrives, `python3 scripts/import_questions.py <file.xlsx>` (dry run),
+  then `--send`; then `python3 scripts/pull_board.py`. Answers are typed in the Answer box on the screen (any
+  identity but Spinach) and show on the Tracker.
+- The daily update: open the Tracker, pick an identity, press "Copy today's update", paste into WhatsApp. Anyone
+  can press it; the text is also shown on the page.
+- A freeze status changes only by a commit: edit data/v02/freeze.json (move a screen between open and frozen, add
+  an unfreeze_log entry with date, screen, cause, what changed), then apply_decisions, build_site, check_phase9.
+- Phase 13 after the admin session: the Admin and CRM v0.2 page rebuilt against Zoho One (I14), the tool over the
+  app database, lead stages and the fulfilment percentage (W26), the website brief. The CAS decision (W11) applied
+  to A10, A10c, D02c, G12a when it closes.
 
 ## Constraints carried forward
-- The word "assumed" is banned outside D07b (check 12) and the execution vendor is always "smallcase Gateway",
-  never bare "smallcase" (Vatsal, 16 Sep 2026); frozen tabs and v0.1 records keep their original wording.
-- inputs/ is read-only; docs/ is generated except docs/config.js (hand-filled, never overwritten); docs/v01/ stays
-  byte-identical to inputs/v01/. build_site.py calls build_integrations.py, then build_events.py, at the end.
-- Every new editable control on any page calls yeslyfBoard.write (spiff, 16 Sep 2026: any manual input is recorded);
-  filters, sorting and the identity picker are not rows. Rows are never updated or deleted; a correction is a new row.
-- The layer sends the key in the apikey header only (a publishable key is refused in Authorization). The anon key in
-  docs/config.js is public by design; RLS is the guard. No service key, no database password in the repo.
-- Values saved in a browser before phase 11 show until a remote row exists for that field; they are not uploaded by
-  themselves. The outbox is sent on the next page load only.
-- v0.2 rules: causes only ("brief X", "row N", "<first name>, <date>"); no adviser named; "yeslyf" lowercase; "Rs";
-  no "recommendation" or "founders"; ASCII only; no em dashes. Owed rows W01.. never renumbered; statuses live in
-  the table, not in data. Vendor facts stay "to be verified: <item>"; every new number stays a placeholder.
-- Subagents: Opus is the floor, never Sonnet (spiff, 10 Sep 2026). Page density: a board page reads as a calm list
-  first, editing behind a click. Setup guidance for spiff: one small step at a time.
+- Every screen cites integrations by I-number; a vendor name on a screen fails the build (validate_v02.VENDOR_NAMES).
+  The M01 Tool column and the spec panel's Integrations line are rendered from data/integrations.json.
+- Every field entry carries a tag (required, optional, default, system, read); validate_v02 fails the build otherwise.
+  Op "tags" for screens without inputs; op "forward" for screens with a Moving forward block.
+- "to be decided: <item>" is the grammar for an open product decision on a screen; the item runs to the first ), ;
+  or full stop outside its own brackets. A screen with such a line is open unless freeze.json lists the line under
+  tbd_owed (X00's session rule, W21).
+- No write to the board table without an identity (board_store.write returns false; the page says so). Test rows
+  are keyed in data/board_ignore.json and dropped from every fetch, export and count.
+- Costs stay off the board (the Integrations page is public); the field's hint says so and a value in the data is an
+  error.
+- Causes only ("brief X", "row N", "minutes 16 Sep 2026, item N", "<first name>, <date>"); no adviser named;
+  "yeslyf" lowercase; "Rs"; no "recommendation" or "founders"; ASCII only; no em dashes. Owed rows W01.. never
+  renumbered; statuses live in the table. Vendor facts stay "to be verified: <item>". Subagents: Opus is the floor.
+- The wireframes page keeps its layout: the marks are words (open in the list, frozen or open in the header, the
+  line in the marker box, a Frozen filter); reviewers have adjusted to the page (spiff, 17 Sep 2026).

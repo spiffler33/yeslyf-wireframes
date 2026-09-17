@@ -265,6 +265,29 @@
     document.getElementById("spec").innerHTML = html;
     reviewControls(s, n);
   }
+  function isSpinach(who){ var w = String(who || ""); return w === "Spinach" || w.indexOf("Spinach (") === 0; }
+  function renderQuestions(){
+    // Spinach's questions on this screen (comments under the identity Spinach, or imported questions), each with the
+    // answers written after it; an Answer box for everyone else. An answer is a row on the same screen, field
+    // "answer" (phase 12, Vatsal, 17 Sep 2026). Nothing is drawn when there is no question.
+    var box = document.getElementById("questions"); if(!box) return;
+    if(!BOARD){ box.innerHTML = ""; return; }
+    var id = SCREENS[state.idx].id;
+    var rows = BOARD.history(id).slice().reverse();
+    var qs = [], answers = [];
+    rows.forEach(function(r){ if(r.kind !== "comment" || !String(r.value || "").trim()) return;
+      if(r.field === "answer") answers.push(r); else if(isSpinach(r.who) && (r.field === "text" || r.field === "question")) qs.push(r); });
+    if(!qs.length){ box.innerHTML = ""; return; }
+    var html = '<div class="q-t">Questions from Spinach</div>' + qs.map(function(q){
+      var after = answers.filter(function(a){ return (a.id || Infinity) > (q.id || 0); });
+      return '<div class="q"><div class="h"><b>' + esc(q.who) + '</b> <span>' + esc(BOARD.fmt(q.created_at)) + '</span> <span>' + (after.length ? "answered" : "open") + '</span></div><div class="t">' + esc(q.value) + '</div>' +
+        after.map(function(a){ return '<div class="a"><span class="w">' + esc(a.who || "(no identity)") + ', ' + esc(BOARD.fmt(a.created_at)) + '</span>' + esc(a.value) + '</div>'; }).join("") + '</div>'; }).join("");
+    if(!isSpinach(store.who)) html += '<textarea id="answer" placeholder="Answer' + (store.who ? " as " + esc(store.who) : "") + '"></textarea><button id="answerbtn" type="button">Send answer</button>';
+    box.innerHTML = html;
+    var b = document.getElementById("answerbtn");
+    if(b) b.addEventListener("click", function(){ var ta = document.getElementById("answer"); var v = (ta.value || "").trim(); if(!v) return;
+      if(put(id, "answer", v, "comment")){ ta.value = ""; flash("Answer recorded"); setTimeout(renderQuestions, 1500); } else flash(NO_ID); });
+  }
   function reviewControls(s, n){
     var v = document.getElementById("verdict");
     if(v) Array.prototype.forEach.call(v.querySelectorAll("button"), function(b){ b.className = (b.getAttribute("data-v") === n.verdict) ? "on" : ""; });
@@ -273,6 +296,7 @@
     var rv = document.getElementById("reviewer"); if(rv) rv.value = store.who || "";
     syncReason();
     if(BOARD) BOARD.refreshHistory();
+    renderQuestions();
     flash("");
   }
   function syncReason(){

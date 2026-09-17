@@ -135,6 +135,13 @@
   .verdict button.on{background:var(--accent);border-color:#C9A800;font-weight:700}
   #comment{width:100%;min-height:120px;border:1px solid var(--line);border-radius:6px;padding:10px;font:inherit;font-size:13px;resize:vertical;background:#fff}
   .review .saved{font-size:11px;color:var(--mute);min-height:14px;margin-top:4px}
+  .questions .q-t{font-weight:700;font-size:12px;margin:10px 0 2px}
+  .questions .q{padding:6px 0;border-top:1px solid var(--line);font-size:12.5px}
+  .questions .q .h{color:var(--mute);font-size:11.5px;margin-bottom:2px} .questions .q .h b{color:var(--ink)} .questions .q .h span{margin-left:6px}
+  .questions .q .t{white-space:pre-wrap} .questions .q .a{margin-top:4px;padding-left:8px;border-left:3px solid var(--accent);white-space:pre-wrap}
+  .questions .q .a .w{color:var(--mute);font-size:11.5px;margin-right:6px}
+  .questions textarea{width:100%;min-height:56px;border:1px solid var(--line);border-radius:6px;padding:8px;font:inherit;font-size:13px;resize:vertical;background:#fff;margin-top:8px}
+  .questions button{margin-top:6px;border:1px solid var(--ink);background:#fff;padding:6px 12px;border-radius:6px;font-weight:600}
   .marker{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:0 0 12px;font-size:12px;background:#FCFCFD;color:#3B4250}
   .marker.changed{border-color:#C9A800;background:#FFFBEA}
   .marker.new{border-color:var(--ink);background:#fff}

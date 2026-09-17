@@ -126,7 +126,7 @@
 <script src="config.js"></script>
 </head>
 <body>
-<header class="top"><div class="brand">yeslyf <span>product board, setup</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html">Wireframes v0.2</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="changelog.html">Changelog</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a><a href="setup.html" class="on">Setup</a></nav><div class="who">Decided by <input id="who" placeholder="your first name"></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a></header>
+<header class="top"><div class="brand">yeslyf <span>product board, setup</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html">Wireframes v0.2</a><a href="tracker.html">Tracker</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="changelog.html">Changelog</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a><a href="setup.html" class="on">Setup</a></nav><div class="who">Decided by <input id="who" placeholder="your first name"></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a></header>
 <main class="main"><section class="setup"><h1>Setup: board write-back</h1><p class="lead">Every comment, verdict and field edit on every page is one row in the Supabase table board_entries: page, item, field, value, who, kind, time. Rows are only ever added; the latest row per item and field is the current value, and History under a comment box lists every row of that item. Nobody logs in. The pill in the top bar reads "live" with the time of the last write on the page, or "offline, saved locally" when a write fails; those edits stay in the browser and are sent on the next load.</p><h3>Once, about ten minutes</h3><ol><li>Supabase, New project on the free plan, a region near the team, any strong database password (the site never uses it).</li><li>SQL Editor, New query: paste supabase/migrations/20260916120000_board_entries.sql from the repo, Run. It creates the table, turns on row level security and lets the anon key insert and select only.</li><li>Project settings, API: copy the project URL and the publishable (anon) key into docs/config.js, commit, push. The key is the public client key; the table policies are the guard. No secret or service key goes anywhere in the repo.</li></ol><p class="rule">Read path: scripts/pull_board.py exports every row to data/board_entries.json (the latest value per page, item and field included); it runs before any v0.3 build. Export brief and Export comments still work offline and stay the record while the pill is not live.</p></section></main>
 <script>var BOARD_IGNORE=[{"page": "setup", "item_id": "TEST", "minute": "2026-09-16T04:53"}, {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-16T04:55"}, {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-16T06:23"}];// yeslyf board store: the shared save layer of every page (phase 11, Vatsal, 16 Sep 2026).
 // Every comment, verdict and field edit on every page is one row in the Supabase table board_entries
@@ -144,7 +144,9 @@
 // plain words; nothing is queued); rows in BOARD_IGNORE (data/board_ignore.json: page, item_id and the minute of
 // created_at) are test rows and are dropped from every fetch, so counts, exports and history never see them;
 // read({page, apply}) fetches another page's rows read-only (page "" is every page) for the pages that need them
-// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update).
+// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update); init({also})
+// names pages whose rows are read into this page's cache as well (the Tracker reads the W rows written under
+// page integrations before the move), so the latest value and the history are whole; writes stay on the page.
 (function(){
   var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -157,7 +159,7 @@
   var cache = {};
   try { cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ cache = {}; }
   function saveCache(){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e){} }
-  var page = "", applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
+  var page = "", also = [], applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
   function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; return c; }
   function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
   function two(n){ return (n < 10 ? "0" : "") + n; }
@@ -226,14 +228,20 @@
     });
   }
   function latestOf(rows){ var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; }); var out = []; for(var k in latest) out.push(latest[k]); return out; }
+  function fetchPages(names, acc, cb){
+    // the rows of several pages, merged in id order (ids grow with time, so the latest row per field is the last one)
+    if(!names.length){ acc.sort(function(a, b){ return a.id - b.id; }); cb(true, acc); return; }
+    fetchRows(names[0], 0, [], function(ok, rows){ if(!ok){ cb(false); return; } fetchPages(names.slice(1), acc.concat(rows), cb); });
+  }
   function load(){
     pill();
     if(!configured || !page) return;
     flush(function(sent){
-      fetchRows(page, 0, [], function(ok, rows){
+      fetchPages([page].concat(also), [], function(ok, rows){
         checked = true; var c = pc();
         if(ok){
-          c.rows = rows; c.last_write = rows.length ? rows[rows.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
+          var own = rows.filter(function(r){ return r.page === page; });
+          c.rows = rows; c.last_write = own.length ? own[own.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
           if(applyFn){
             var pending = {}; c.outbox.forEach(function(r){ pending[r.item_id + "|" + r.field] = 1; });
             var out = latestOf(rows).filter(function(r){ return !pending[r.item_id + "|" + r.field]; });
@@ -300,7 +308,7 @@
     el.parentNode.insertBefore(wrap, el.nextSibling);
     boxes.push({box: box, id: id});
   }
-  function init(opts){ opts = opts || {}; page = String(opts.page || ""); applyFn = opts.apply || null; load(); }
+  function init(opts){ opts = opts || {}; page = String(opts.page || ""); also = (opts.also || []).map(String).filter(function(p){ return p && p !== page; }); applyFn = opts.apply || null; load(); }
   function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0}; }
   function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
   window.yeslyfBoard = {init: init, write: write, read: read, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label, fmt: fmt,

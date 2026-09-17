@@ -432,3 +432,36 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   platform is not used). Frozen tabs and v0.1 records keep the original wording.
 - Next: the second review round on the review link (the developers were sent the note on 17 Sep 2026); then
   pull_board.py, the next edit group, the CRM planning session.
+
+## 17. Status, 17 Sep 2026 (phase 12: corrections, frozen and final markers, tracker)
+
+- Source: yeslyf_phase12_brief.md (three passes, three commits) after the Spinach walkthrough of 16 Sep 2026
+  (inputs/meeting/yeslyf_minutes_2026-09-16_spinach_walkthrough.md). Reports per pass in reports/phase12_pass1.md,
+  pass2.md, pass3.md, with the contradictions found and what was done about each.
+- Pass 1, corrections: integrations rows I17 AWS, I10 Amazon SES, I08 and I22 reworded, I00 SEBI first, I23 CAS
+  parsing and I24 video added (25 rows, I00 to I24), screens lists completed with mention-only screens acknowledged
+  (per-row "mentions"), docs links on I01, I02, I03, costs kept off the board. Screens: dev notes cite I-numbers and
+  scripts/validate_v02.py refuses a vendor name on a screen; M01's Tool column is rendered from the integrations rows
+  (a list cell of I-numbers resolves at build); Zoho One (I14) on the admin page; "to be decided:" lines (the same
+  grammar as "to be verified:", aggregated on the Changelog) on A03, A04, H06, A10, A10c, D02c, G12a, X00, M01; X00
+  gains "Saving and coming back"; every field entry carries a tag (290 of 290; the new tag read; op "tags"); the
+  rails-final cause on the E screens (op "cause"). States: S2b is "checkout started, eSign incomplete (not paid)",
+  S2c "eSign done, payment not completed" added (N31 drawn), S1 lands on the first unanswered reveal screen; 27
+  states, 194 screens. Board: test rows ignored everywhere (data/board_ignore.json); no write without an identity.
+- Pass 2, markers: data/v02/freeze.json is the freeze register; apply_decisions.py writes screen.freeze (frozen or
+  open, since, cause, reason, owed) and fails the build on an open screen without a reason or a frozen screen with a
+  blocking item. 160 frozen, 34 open (the L group freezes with W04), 21 templates frozen since 17 Sep 2026, an
+  empty unfreeze log. Shown as text in the list, the header, the spec panel and a Frozen filter; the Changelog gains
+  To be decided, Freeze register and Unfreeze log; counts carry frozen and open. Integrations rows carry final or
+  open (8 final) with a filter, and the page carries the date every row is final (board row integrations /
+  final_by). Every screen's spec panel lists its integrations with the live choice (the audience files show the
+  build's value with its date). X00: "What frozen means", "How Spinach works from this board".
+- Pass 3, tracker: docs/tracker.html and its review copy (scripts/build_tracker.py, data/tracker.json): W01 to W29
+  (W01 to W09 moved from the Integrations tab with their saved rows; data/dependencies.json removed), milestone
+  strip, overdue in words, Spinach's questions with answers (the Answer box on the wireframes page writes field
+  "answer"), "Copy today's update" (plain text from the last 24 hours of the board plus the build data),
+  scripts/import_questions.py for Ankur's Excel (dry run, then --send). Checks 18 and 19 added: 19 PASS.
+- Not applied: the minutes append (Pass 0) waits on the inputs/ read-only rule; the section text is in
+  reports/phase12_pass1.md. Next: Phase 13 after the admin session (the Admin and CRM page against Zoho One, the tool
+  over the app database, lead stages and the fulfilment percentage, the website brief); the CAS decision applied to
+  A10, A10c, D02c and G12a when W11 closes; docs links and sandbox dates beyond the three seeds (W16).

@@ -126,7 +126,7 @@
 <script src="config.js"></script>
 </head>
 <body>
-<header class="top"><div class="brand">yeslyf <span>product board, meeting 09 Sep 2026</span></div><nav class="tabs"><a href="index.html" class="on">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html">Wireframes v0.2</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="changelog.html">Changelog</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a><a href="setup.html">Setup</a></nav><div class="who">Decided by <input id="who" placeholder="your first name"></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a><button id="export" class="primary">Export brief</button></header>
+<header class="top"><div class="brand">yeslyf <span>product board, meeting 09 Sep 2026</span></div><nav class="tabs"><a href="index.html" class="on">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html">Wireframes v0.2</a><a href="tracker.html">Tracker</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="changelog.html">Changelog</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a><a href="setup.html">Setup</a></nav><div class="who">Decided by <input id="who" placeholder="your first name"></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a><button id="export" class="primary">Export brief</button></header>
 <div class="frozen">Frozen on 9 Sep 2026; decisions recorded below; controls disabled</div>
 <div class="frozen">Audience files, self-contained, open from disk with no network: <a href="audiences/yeslyf_v02_team.html">team</a>, <a href="audiences/yeslyf_v02_spinach.html">Spinach</a>, <a href="audiences/yeslyf_v02_compliance.html">compliance</a>. Sizes on the Changelog tab.</div>
 <div class="layout"><nav class="nav"><a href="#s-how">How to read this</a><a href="#sec-team">Team <em style="color:var(--mute);font-style:normal">(2)</em></a><a class="sub" href="#item/T1">T1 SKU set at launch</a><a class="sub" href="#item/T2">T2 Calls model per tier</a><a href="#sec-bhuvanaa-and-harish">Bhuvanaa and Harish <em style="color:var(--mute);font-style:normal">(1)</em></a><a class="sub" href="#item/S1">S1 Who takes the DIWM plan call, certification, capacity</a><a href="#sec-bhuvanaa">Bhuvanaa <em style="color:var(--mute);font-style:normal">(4 + 12 quick)</em></a><a class="sub" href="#item/B1">B1 Pre-paywall sequence</a><a class="sub" href="#item/B2">B2 Clarity picture (G02)</a><a class="sub" href="#item/B3">B3 Retirement model</a><a class="sub" href="#item/B4">B4 Tax section (G08)</a><a href="#sec-harish">Harish <em style="color:var(--mute);font-style:normal">(6 + 1 quick)</em></a><a class="sub" href="#item/H1">H1 Asset classes in the allocation grid</a><a class="sub" href="#item/H2">H2 Where portfolio constraints live (L04)</a><a class="sub" href="#item/H3">H3 Risk profiling method</a><a class="sub" href="#item/H4">H4 Insurance aggregator links (E01)</a><a class="sub" href="#item/H5">H5 Refund policy (Q03)</a><a class="sub" href="#item/H6">H6 Records for audit (L08)</a><a href="#sec-gaurav">Gaurav <em style="color:var(--mute);font-style:normal">(2)</em></a><a class="sub" href="#item/G1">G1 Execution rails</a><a class="sub" href="#item/G2">G2 Admin tool over the database</a><a href="#sec-vatsal">Vatsal <em style="color:var(--mute);font-style:normal">(1)</em></a><a class="sub" href="#item/V1">V1 Community placement (H08)</a><a href="#sec-vatsal-and-kajal">Vatsal and Kajal <em style="color:var(--mute);font-style:normal">(1)</em></a><a class="sub" href="#item/V2">V2 Human call as a nudge channel (N01)</a><a href="#sec-kajal">Kajal <em style="color:var(--mute);font-style:normal">(1 + 1 quick)</em></a><a class="sub" href="#item/K1">K1 Payment methods and GST (P04)</a><a href="gaps.html" style="margin-top:10px;color:var(--mute)">Gaps (13)</a><a href="inputs.html" style="color:var(--mute)">Inputs (73)</a></nav><main class="main"><section id="s-how"><h1>Meeting: open items, by owner</h1><p class="lead">Every position carries the first name of the person who said it and where. The owner of a workstream holds the default: if the owner has stated a position it is preselected, otherwise the item reads "&lt;owner&gt; to decide". Team items have nothing preselected. Accepted items are not on this page; they are on the Inputs tab with their status.</p><div class="rule">In the meeting: type your name at the top, change only what the meeting decides, tick "Decided in the meeting", add a note where a condition or date was agreed. Export brief at the end; if the sheet is on, every change is also written there as it happens.</div><div class="stats"><div class="stat"><b>18</b><span>open items</span></div><div class="stat"><b>2</b><span>Team items, no default</span></div><div class="stat"><b>14</b><span>quick-accepts to tick</span></div><div class="stat"><b>13</b><span>gaps needing an owner</span></div><div class="stat"><b>73</b><span>review rows, all with a status</span></div></div></section><section id="sec-team"><h2>Team<small>decides in the meeting; nothing preselected</small></h2>
@@ -620,7 +620,9 @@ This is coming up in A05 as well. are we repeating this screen</div>
 // plain words; nothing is queued); rows in BOARD_IGNORE (data/board_ignore.json: page, item_id and the minute of
 // created_at) are test rows and are dropped from every fetch, so counts, exports and history never see them;
 // read({page, apply}) fetches another page's rows read-only (page "" is every page) for the pages that need them
-// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update).
+// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update); init({also})
+// names pages whose rows are read into this page's cache as well (the Tracker reads the W rows written under
+// page integrations before the move), so the latest value and the history are whole; writes stay on the page.
 (function(){
   var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -633,7 +635,7 @@ This is coming up in A05 as well. are we repeating this screen</div>
   var cache = {};
   try { cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ cache = {}; }
   function saveCache(){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e){} }
-  var page = "", applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
+  var page = "", also = [], applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
   function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; return c; }
   function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
   function two(n){ return (n < 10 ? "0" : "") + n; }
@@ -702,14 +704,20 @@ This is coming up in A05 as well. are we repeating this screen</div>
     });
   }
   function latestOf(rows){ var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; }); var out = []; for(var k in latest) out.push(latest[k]); return out; }
+  function fetchPages(names, acc, cb){
+    // the rows of several pages, merged in id order (ids grow with time, so the latest row per field is the last one)
+    if(!names.length){ acc.sort(function(a, b){ return a.id - b.id; }); cb(true, acc); return; }
+    fetchRows(names[0], 0, [], function(ok, rows){ if(!ok){ cb(false); return; } fetchPages(names.slice(1), acc.concat(rows), cb); });
+  }
   function load(){
     pill();
     if(!configured || !page) return;
     flush(function(sent){
-      fetchRows(page, 0, [], function(ok, rows){
+      fetchPages([page].concat(also), [], function(ok, rows){
         checked = true; var c = pc();
         if(ok){
-          c.rows = rows; c.last_write = rows.length ? rows[rows.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
+          var own = rows.filter(function(r){ return r.page === page; });
+          c.rows = rows; c.last_write = own.length ? own[own.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
           if(applyFn){
             var pending = {}; c.outbox.forEach(function(r){ pending[r.item_id + "|" + r.field] = 1; });
             var out = latestOf(rows).filter(function(r){ return !pending[r.item_id + "|" + r.field]; });
@@ -776,7 +784,7 @@ This is coming up in A05 as well. are we repeating this screen</div>
     el.parentNode.insertBefore(wrap, el.nextSibling);
     boxes.push({box: box, id: id});
   }
-  function init(opts){ opts = opts || {}; page = String(opts.page || ""); applyFn = opts.apply || null; load(); }
+  function init(opts){ opts = opts || {}; page = String(opts.page || ""); also = (opts.also || []).map(String).filter(function(p){ return p && p !== page; }); applyFn = opts.apply || null; load(); }
   function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0}; }
   function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
   window.yeslyfBoard = {init: init, write: write, read: read, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label, fmt: fmt,
