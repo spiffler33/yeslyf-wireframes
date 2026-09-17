@@ -26,6 +26,7 @@
   .saved{font-size:12px;color:var(--mute);min-width:120px}
   .pill{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--mute);text-decoration:none;white-space:nowrap}
   .pill.on{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .pill.held{border-color:var(--ink);color:var(--ink)}
   .top .primary{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
   .top .ghost{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:6px;cursor:pointer}
   .frozen{padding:6px 18px;background:#F1F2F4;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--mute)}
@@ -148,8 +149,14 @@
 // (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update); init({also})
 // names pages whose rows are read into this page's cache as well (the Tracker reads the W rows written under
 // page integrations before the move), so the latest value and the history are whole; writes stay on the page.
+// Held edits (Vatsal, 17 Sep 2026): a write without a name is not refused into thin air. The row waits in this
+// browser (the latest value per item and field), the pill says how many are waiting, and the moment the page picks
+// a name (named(who)) they go out stamped with it. init({who, local}) does the same on load: local() returns the
+// values the page shows ({item_id, field, value, kind}); any the table does not hold are sent too, so an edit typed
+// before the name was picked, or before this rule existed, is recorded once there is a name.
 (function(){
   var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
+  var NAME_TEXT = "Pick who you are at the top; your edits are held until then and recorded once you do.";
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var FIELDS = "id,page,item_id,field,value,who,kind,created_at";
   var IGNORE = (typeof BOARD_IGNORE !== "undefined" && BOARD_IGNORE) ? BOARD_IGNORE : [];
@@ -160,8 +167,8 @@
   var cache = {};
   try { cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ cache = {}; }
   function saveCache(){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e){} }
-  var page = "", also = [], applyFn = null, live = false, checked = false, lastWrite = "", boxes = [];
-  function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; return c; }
+  var page = "", also = [], applyFn = null, localFn = null, WHO = "", live = false, checked = false, lastWrite = "", boxes = [];
+  function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; if(!c.held) c.held = []; return c; }
   function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
   function two(n){ return (n < 10 ? "0" : "") + n; }
   function fmt(ts){
@@ -180,12 +187,13 @@
   function keep(rows){ var out = []; for(var i = 0; i < rows.length; i++) if(!ignored(rows[i])) out.push(rows[i]); return out; }
   function pill(){
     var p = document.getElementById("sheetpill"); if(!p) return;
-    var text, title, on = false;
-    if(!configured){ text = "offline, saved locally"; title = "docs/config.js has no Supabase URL and key: edits stay in this browser"; }
+    var text, title, on = false, held = page ? pc().held.length : 0;
+    if(held){ text = held + (held === 1 ? " edit" : " edits") + " waiting for a name"; title = NAME_TEXT; }
+    else if(!configured){ text = "offline, saved locally"; title = "docs/config.js has no Supabase URL and key: edits stay in this browser"; }
     else if(!checked){ text = "connecting"; title = "reading board_entries"; }
     else if(live){ text = "live" + (lastWrite ? ", last write " + fmt(lastWrite) : ""); title = "every edit is a row in board_entries; the time is the last write on this page by anyone"; on = true; }
     else { text = "offline, saved locally"; title = "the last request to Supabase failed: edits stay in this browser and are sent on the next load"; }
-    p.textContent = text; p.title = title; p.className = "pill" + (on ? " on" : "");
+    p.textContent = text; p.title = title; p.className = "pill" + (on ? " on" : "") + (held ? " held" : "");
   }
   function strip(r){ return {page: r.page, item_id: r.item_id, field: r.field, value: r.value, who: r.who, kind: r.kind}; }
   function request(method, query, body, cb){
@@ -250,6 +258,7 @@
           }
         }
         live = ok && sent && !c.outbox.length; pill(); refreshHistory();
+        if(ok && WHO) sync(WHO);
       });
     });
   }
@@ -263,15 +272,16 @@
     });
   }
   function write(row){
-    // row: {item_id, field, value, who, kind}. Refused (false, nothing queued) without an identity: every row names
-    // who wrote it (Vatsal, 17 Sep 2026). Otherwise queued first, removed on success, so a tab closed mid-request
-    // sends the row on the next load (a duplicate row is harmless: same latest value).
+    // row: {item_id, field, value, who, kind}. Without a name the row is held (false: not recorded yet); every row
+    // names who wrote it (Vatsal, 17 Sep 2026) and the held rows go out through named(). With a name it is queued
+    // first, removed on success, so a tab closed mid-request sends the row on the next load (a duplicate row is
+    // harmless: same latest value).
     if(!page) return false;
     var who = String(row.who || "").trim();
-    if(!who) return false;
     var r = {page: page, item_id: String(row.item_id), field: String(row.field),
              value: String(row.value === undefined || row.value === null ? "" : row.value),
              who: who, kind: String(row.kind || "field_edit"), created_at: new Date().toISOString(), queued: true};
+    if(!who){ hold(r); return false; }
     if(!configured){ pill(); return true; }
     var c = pc(); c.outbox.push(r); saveCache();
     request("POST", "", strip(r), function(s, j){
@@ -281,19 +291,53 @@
     });
     return true;
   }
+  function hold(r){
+    // the latest value per item and field waits here, in first-edit order, until the page picks a name
+    var c = pc(); r.held = true;
+    for(var i = 0; i < c.held.length; i++){ if(c.held[i].item_id === r.item_id && c.held[i].field === r.field){ c.held[i] = r; saveCache(); pill(); refreshHistory(); return; } }
+    c.held.push(r); saveCache(); pill(); refreshHistory();
+  }
+  function latestValue(c, item_id, field){
+    // the table's latest value for one field of this page (rows arrive in id order), or null when it has none
+    var v = null; c.rows.forEach(function(r){ if(r.page === page && r.item_id === item_id && r.field === field) v = String(r.value || ""); }); return v;
+  }
+  function sync(who){
+    // The page has a name: the held rows are stamped with it and sent, then every value the page shows that the
+    // table does not hold (local() minus the latest row per field) goes out as well. Returns how many were sent.
+    who = String(who || "").trim(); if(!page || !who) return 0;
+    var c = pc(), now = new Date().toISOString(), out = [], seen = {};
+    c.held.forEach(function(r){ r.who = who; r.created_at = now; delete r.held; out.push(r); seen[r.item_id + "|" + r.field] = 1; });
+    c.held = [];
+    c.outbox.forEach(function(r){ seen[r.item_id + "|" + r.field] = 1; });
+    var local = []; try { local = localFn ? (localFn() || []) : []; } catch(e){ local = []; }
+    local.forEach(function(e){
+      var item = String(e.item_id), field = String(e.field), value = String(e.value === undefined || e.value === null ? "" : e.value);
+      if(seen[item + "|" + field]) return;
+      var remote = latestValue(c, item, field);
+      if(remote === null ? value === "" : remote === value) return;
+      out.push({page: page, item_id: item, field: field, value: value, who: who, kind: String(e.kind || "field_edit"), created_at: now, queued: true});
+    });
+    if(!out.length){ saveCache(); pill(); return 0; }
+    if(!configured){ saveCache(); pill(); return out.length; }
+    out.forEach(function(r){ c.outbox.push(r); }); saveCache(); pill();
+    flush(function(sent){ checked = true; live = sent; pill(); refreshHistory(); });
+    return out.length;
+  }
+  function named(who){ WHO = String(who || "").trim(); return sync(WHO); }
   function history(item_id){
     var c = pc(); item_id = String(item_id);
+    var held = c.held.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
     var queued = c.outbox.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
     var rows = c.rows.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
-    return queued.concat(rows);
+    return held.concat(queued, rows);
   }
   function historyHtml(item_id){
     if(!configured) return '<div class="hist-empty">local only: docs/config.js has no Supabase URL and key</div>';
     var rows = history(item_id);
     if(!rows.length) return '<div class="hist-empty">' + (checked ? "no rows yet for " + esc(item_id) : "not loaded yet") + '</div>';
     return '<ul class="hist">' + rows.map(function(r){
-      return '<li><span class="t">' + esc(fmt(r.created_at)) + '</span> <b>' + esc(r.who || "(no identity)") + '</b> ' + esc(r.field) + ': ' +
-             (r.value ? esc(r.value) : '<i>cleared</i>') + (r.queued ? ' <i>queued, not sent yet</i>' : '') + '</li>';
+      return '<li><span class="t">' + esc(fmt(r.created_at)) + '</span> <b>' + esc(r.who || (r.held ? "(no name yet)" : "(no identity)")) + '</b> ' + esc(r.field) + ': ' +
+             (r.value ? esc(r.value) : '<i>cleared</i>') + (r.held ? ' <i>waiting for a name</i>' : r.queued ? ' <i>queued, not sent yet</i>' : '') + '</li>';
     }).join("") + '</ul>';
   }
   function refreshHistory(){ boxes.forEach(function(b){ if(!b.box.hidden) b.box.innerHTML = historyHtml(b.id()); }); }
@@ -309,11 +353,11 @@
     el.parentNode.insertBefore(wrap, el.nextSibling);
     boxes.push({box: box, id: id});
   }
-  function init(opts){ opts = opts || {}; page = String(opts.page || ""); also = (opts.also || []).map(String).filter(function(p){ return p && p !== page; }); applyFn = opts.apply || null; load(); }
-  function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0}; }
+  function init(opts){ opts = opts || {}; page = String(opts.page || ""); also = (opts.also || []).map(String).filter(function(p){ return p && p !== page; }); applyFn = opts.apply || null; localFn = opts.local || null; WHO = String(opts.who || "").trim(); load(); }
+  function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0, held: page ? pc().held.length : 0}; }
   function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
-  window.yeslyfBoard = {init: init, write: write, read: read, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label, fmt: fmt,
-                        noIdentity: "Pick who you are at the top first; nothing is recorded without a name."};
+  window.yeslyfBoard = {init: init, write: write, named: named, read: read, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label, fmt: fmt,
+                        noIdentity: NAME_TEXT};
 })();
 </script><script>
 (function(){
@@ -373,13 +417,13 @@
   document.addEventListener("DOMContentLoaded",function(){
     if(typeof DATA==="undefined"){ if(window.yeslyfBoard) yeslyfBoard.init({page:"board"}); return; }
     paintAll(); deepLink(); window.addEventListener("load",function(){ setTimeout(deepLink,60); }); window.addEventListener("hashchange",deepLink);
-    var w=document.getElementById("who"); if(w) w.addEventListener("input",function(e){ S.who=e.target.value; save(); });
+    var w=document.getElementById("who"); if(w){ w.addEventListener("input",function(e){ S.who=e.target.value; save(); }); w.addEventListener("change",function(){ if(window.yeslyfBoard) yeslyfBoard.named(who()); }); }
     var ex=document.getElementById("export"); if(ex) ex.addEventListener("click",exportBrief);
     if(window.yeslyfBoard){
       Array.prototype.forEach.call(document.querySelectorAll("textarea[data-item]"),function(t){ yeslyfBoard.attach(t,"item:"+t.getAttribute("data-item")); });
       Array.prototype.forEach.call(document.querySelectorAll("input[data-qan]"),function(t){ yeslyfBoard.attach(t,"qa:"+t.getAttribute("data-qan")); });
       Array.prototype.forEach.call(document.querySelectorAll("input[type=date][data-gap]"),function(t){ var a=(t.parentNode&&t.parentNode.tagName==="LABEL")?t.parentNode:t; yeslyfBoard.attach(a,"gap:"+t.getAttribute("data-gap")); });
-      yeslyfBoard.init({page:"board",apply:applyRemote}); }
+      yeslyfBoard.init({page:"board",apply:applyRemote,who:who()}); }
     document.body.addEventListener("change",function(e){ var t=e.target;
       if(t.type==="radio"&&t.getAttribute("data-item")){ g("item:"+t.getAttribute("data-item")).choice=t.value; recordItem(t.getAttribute("data-item")); }
       if(t.type==="checkbox"&&t.getAttribute("data-item")){ var id=t.getAttribute("data-item"); var r=g("item:"+id); var list=choiceList(id).slice(); var i=list.indexOf(t.value); if(t.checked&&i<0) list.push(t.value); if(!t.checked&&i>=0) list.splice(i,1); r.choice=list; recordItem(id); }

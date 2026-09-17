@@ -124,6 +124,7 @@ JS = r"""
   function slug(s){ return String(s||"").split(" ").join("-"); }
   function edits(id){ if(!S.rows[id]) S.rows[id]={}; return S.rows[id]; }
   function val(id,f){ var e=S.rows[id]||{}; if(e[f]!==undefined) return e[f]; var r=byId[id]; return (r&&r[f]!==undefined)?r[f]:""; }
+  function localRows(){ var out=[]; for(var id in S.rows){ if(!byId[id]) continue; var e=S.rows[id]; EDITABLE.forEach(function(k){ if(e[k]===undefined) return; out.push({item_id:id,field:k,value:e[k]||"",kind:"field_edit"}); }); } return out; }
   function put(id,field,value){ if(!window.yeslyfBoard) return true; var ok=yeslyfBoard.write({item_id:id,field:field,value:value,who:S.who||"",kind:"field_edit"}); if(!ok) setTimeout(function(){ flash(yeslyfBoard.noIdentity); },0); return ok; }
   function today(){ var d=new Date(); return d.getFullYear()+"-"+two(d.getMonth()+1)+"-"+two(d.getDate()); }
   function two(n){ return (n<10?"0":"")+n; }
@@ -201,12 +202,13 @@ JS = r"""
   var tmr={};
   document.addEventListener("DOMContentLoaded",function(){
     if(window.yeslyfBoard){ Array.prototype.forEach.call(document.querySelectorAll("textarea[data-f=notes]"),function(t){ yeslyfBoard.attach(t,t.getAttribute("data-id")); });
-      yeslyfBoard.init({page:"tracker",also:["integrations"],apply:applyRemote});
+      yeslyfBoard.init({page:"tracker",also:["integrations"],apply:applyRemote,who:S.who||"",local:localRows});
       yeslyfBoard.read({page:"",apply:function(latest,rows,ok){ ALL=ok?rows:[]; paintQuestions(); }}); }
     else { ALL=[]; paintQuestions(); }
     var f=document.getElementById("filters"); if(f){ var os=f.querySelector("[name=owner]"); if(os) os.innerHTML='<option>All</option>'+ownerOptions().map(function(n){ return '<option>'+esc(n)+'</option>'; }).join(""); f.addEventListener("change",applyFilters); }
     var rv=document.getElementById("reviewer"); if(rv){ rv.innerHTML='<option value="">editing as</option>'+IDENTITIES.map(function(n){ return '<option value="'+esc(n)+'">'+esc(n)+'</option>'; }).join(""); rv.value=S.who||"";
-      rv.addEventListener("change",function(){ S.who=IDENTITIES.indexOf(rv.value)>=0?rv.value:""; save(); flash(S.who?"Editing as "+S.who:""); }); }
+      rv.addEventListener("change",function(){ S.who=IDENTITIES.indexOf(rv.value)>=0?rv.value:""; save(); var n=(window.yeslyfBoard&&S.who)?yeslyfBoard.named(S.who):0;
+        flash(S.who?"Editing as "+S.who+(n?"; "+n+(n===1?" edit":" edits")+" recorded":""):""); }); }
     paintAll(); paintQuestions(); deepLink(); window.addEventListener("hashchange",deepLink);
     var up=document.getElementById("update"); if(up) up.addEventListener("click",copyUpdate);
     var oa=document.getElementById("openall"); if(oa) oa.addEventListener("click",function(){ ROWS.forEach(function(r){ var tb=document.getElementById("row-"+r.id); if(tb&&!tb.classList.contains("hidden")) tb.classList.add("open"); }); });

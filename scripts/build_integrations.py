@@ -225,6 +225,7 @@ JS = r"""
   function slug(s){ return String(s||"").split(" ").join("-"); }
   function edits(id){ if(!S.rows[id]) S.rows[id]={}; return S.rows[id]; }
   function val(id,f){ var e=S.rows[id]||{}; if(e[f]!==undefined) return e[f]; var r=byId[id]; return (r&&r[f]!==undefined)?r[f]:""; }
+  function localRows(){ var out=[]; for(var id in S.rows){ if(!byId[id]) continue; var e=S.rows[id]; EDITABLE.forEach(function(k){ if(e[k]===undefined) return; out.push({item_id:id,field:k,value:e[k]||"",kind:k==="comment"?"comment":"field_edit"}); }); } return out; }
   // every edit is one row in board_entries (page "integrations"); the comment is kind comment, everything else field_edit
   function put(id,field,value){ if(!window.yeslyfBoard) return true; var ok=yeslyfBoard.write({item_id:id,field:field,value:value,who:S.who||"",kind:field==="comment"?"comment":"field_edit"}); if(!ok) setTimeout(function(){ flash(yeslyfBoard.noIdentity); },0); return ok; }
   function wb(){ return window.yeslyfBoard?yeslyfBoard.label():"offline; this file is the record"; }
@@ -287,10 +288,11 @@ JS = r"""
   var tmr={};
   document.addEventListener("DOMContentLoaded",function(){
     if(window.yeslyfBoard){ Array.prototype.forEach.call(document.querySelectorAll("textarea[data-f=comment]"),function(t){ var cw=t.parentNode?t.parentNode.querySelector("[data-cwho]"):null; yeslyfBoard.attach(cw||t,t.getAttribute("data-id")); });
-      var fbl=document.getElementById("finalby-wrap"); if(fbl) yeslyfBoard.attach(fbl,PAGE_ITEM); yeslyfBoard.init({page:"integrations",apply:applyRemote}); }
+      var fbl=document.getElementById("finalby-wrap"); if(fbl) yeslyfBoard.attach(fbl,PAGE_ITEM); yeslyfBoard.init({page:"integrations",apply:applyRemote,who:S.who||"",local:localRows}); }
     var f=document.getElementById("filters"); if(f){ var os=f.querySelector("[name=owner]"); if(os) os.innerHTML='<option>All</option>'+ownerOptions().map(function(n){ return '<option>'+esc(n)+'</option>'; }).join(""); f.addEventListener("change",applyFilters); }
     var rv=document.getElementById("reviewer"); if(rv){ rv.innerHTML='<option value="">editing as</option>'+IDENTITIES.map(function(n){ return '<option value="'+esc(n)+'">'+esc(n)+'</option>'; }).join(""); rv.value=S.who||"";
-      rv.addEventListener("change",function(){ S.who=IDENTITIES.indexOf(rv.value)>=0?rv.value:""; save(); flash(S.who?"Editing as "+S.who:""); }); }
+      rv.addEventListener("change",function(){ S.who=IDENTITIES.indexOf(rv.value)>=0?rv.value:""; save(); var n=(window.yeslyfBoard&&S.who)?yeslyfBoard.named(S.who):0;
+        flash(S.who?"Editing as "+S.who+(n?"; "+n+(n===1?" edit":" edits")+" recorded":""):""); }); }
     paintAll(); deepLink(); window.addEventListener("hashchange",deepLink);
     var ex=document.getElementById("export"); if(ex) ex.addEventListener("click",exportBrief);
     var oa=document.getElementById("openall"); if(oa) oa.addEventListener("click",function(){ openAll(true); });

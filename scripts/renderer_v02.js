@@ -49,6 +49,11 @@
   var BOARD = (typeof yeslyfBoard !== "undefined") ? yeslyfBoard : null;
   var NO_ID = BOARD ? BOARD.noIdentity : "Pick who you are at the top first; nothing is recorded without a name.";
   function put(id, field, value, kind){ if(!BOARD) return true; return BOARD.write({item_id:id, field:field, value:value, who:store.who || "", kind:kind}); }
+  function localRows(){
+    // what this browser shows per screen, for the store's sync once a name is picked (empty values count as clears)
+    var out = []; for(var id in store.notes){ if(byId[id] === undefined) continue; var n = store.notes[id];
+      out.push({item_id:id, field:"verdict", value:n.verdict || "", kind:"verdict"}); out.push({item_id:id, field:"reason", value:n.reason || "", kind:"field_edit"}); out.push({item_id:id, field:"text", value:n.text || "", kind:"comment"}); }
+    return out; }
   function saved(ok){ flash(ok ? "Saved in this browser" : NO_ID); }
   function wb(){ return BOARD ? BOARD.label() : "offline; this file is the record"; }
   function applyRemote(rows){
@@ -275,7 +280,7 @@
     var id = SCREENS[state.idx].id;
     var rows = BOARD.history(id).slice().reverse();
     var qs = [], answers = [];
-    rows.forEach(function(r){ if(r.kind !== "comment" || !String(r.value || "").trim()) return;
+    rows.forEach(function(r){ if(r.held || r.kind !== "comment" || !String(r.value || "").trim()) return;
       if(r.field === "answer") answers.push(r); else if(isSpinach(r.who) && (r.field === "text" || r.field === "question")) qs.push(r); });
     if(!qs.length){ box.innerHTML = ""; return; }
     var html = '<div class="q-t">Questions from Spinach</div>' + qs.map(function(q){
@@ -286,7 +291,7 @@
     box.innerHTML = html;
     var b = document.getElementById("answerbtn");
     if(b) b.addEventListener("click", function(){ var ta = document.getElementById("answer"); var v = (ta.value || "").trim(); if(!v) return;
-      if(put(id, "answer", v, "comment")){ ta.value = ""; flash("Answer recorded"); setTimeout(renderQuestions, 1500); } else flash(NO_ID); });
+      var ok = put(id, "answer", v, "comment"); ta.value = ""; if(ok){ flash("Answer recorded"); setTimeout(renderQuestions, 1500); } else flash(NO_ID); });
   }
   function reviewControls(s, n){
     var v = document.getElementById("verdict");
@@ -446,7 +451,9 @@
       rv.innerHTML = opt(LOCK, LOCK, true); rv.disabled = true; store.who = LOCK; save();
     } else if(rv){
       rv.innerHTML = opt("", "reviewing as", !store.who) + IDENTITIES.map(function(n){ return opt(n, n, store.who === n); }).join("");
-      rv.addEventListener("change", function(){ store.who = IDENTITIES.indexOf(rv.value) >= 0 ? rv.value : ""; save(); syncReason(); flash(store.who ? "Reviewing as " + store.who : ""); });
+      rv.addEventListener("change", function(){ store.who = IDENTITIES.indexOf(rv.value) >= 0 ? rv.value : ""; save(); syncReason();
+        var n = (BOARD && store.who) ? BOARD.named(store.who) : 0;
+        flash(store.who ? "Reviewing as " + store.who + (n ? "; " + n + (n === 1 ? " edit" : " edits") + " recorded" : "") : ""); renderQuestions(); });
     }
     var rs = document.getElementById("reason");
     if(rs){
@@ -463,7 +470,7 @@
     var ta = document.getElementById("comment"); var timer;
     if(ta) ta.addEventListener("input", function(){ var id = SCREENS[state.idx].id; var n = noteFor(id); n.text = ta.value; n.who = store.who; save();
       flash("Saving..."); clearTimeout(timer); timer = setTimeout(function(){ saved(put(id, "text", noteFor(id).text || "", "comment")); renderNav(); }, 1500); });
-    if(BOARD){ BOARD.attach(ta, function(){ return SCREENS[state.idx].id; }); BOARD.init({page: PAGE, apply: applyRemote});
+    if(BOARD){ BOARD.attach(ta, function(){ return SCREENS[state.idx].id; }); BOARD.init({page: PAGE, apply: applyRemote, who: store.who || "", local: localRows});
       if(INTEG.rows.length) BOARD.read({page: "integrations", apply: function(latest, rows, ok){ if(!ok) return; liveChoices = {};
         latest.forEach(function(r){ if(r.field === "choice" && (r.value === "final" || r.value === "open")) liveChoices[r.item_id] = r.value; }); renderSpec(); }}); }
 
