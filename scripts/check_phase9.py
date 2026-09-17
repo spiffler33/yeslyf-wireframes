@@ -13,6 +13,9 @@ failure. Needs Python 3 and Node only.
     review-true screens and no dev notes; the Spinach file has no compliance checklist and no CRM backlog; no file
     carries an endpoint URL.
 17. The Changelog shows D05, D06 and D08 under split; the dropped count is 3.
+18. Phase 12 (Vatsal, 17 Sep 2026): every field entry carries one of the five tags; no vendor name on a screen; the
+    freeze register adds up (frozen plus open equals live, every open screen has a reason, no frozen screen carries
+    a blocking item, the templates count matches); the wireframes, integrations and changelog pages carry the marks.
 """
 import json
 import os
@@ -271,6 +274,60 @@ def check17():
     return p, "split D05, D06, D08; dropped %d" % len(chg["dropped"])
 
 
+def check18(screens, byid):
+    """Phase 12 (Vatsal, 17 Sep 2026): every field entry tagged; no vendor names on screens; the freeze register
+    adds up, every open screen has a reason, no frozen screen carries a blocking item; the pages carry the marks."""
+    p = []
+    live = validate_v02.live(screens)
+    tags = {}
+    for s in live:
+        for f in s["spec"].get("fields", []):
+            tag = f.get("forward") if isinstance(f, dict) else None
+            tags[tag] = tags.get(tag, 0) + 1
+            if tag not in validate_v02.TAGS:
+                p.append("%s: field %r untagged" % (s["id"], f))
+    p += validate_v02.check_vendors(screens)
+    chg = load("changelog.json")
+    fz = chg.get("freeze") or {}
+    if not fz:
+        p.append("changelog.json has no freeze register")
+        return p, ""
+    n_open = sum(1 for s in live if s.get("freeze", {}).get("status") == "open")
+    n_frozen = sum(1 for s in live if s.get("freeze", {}).get("status") == "frozen")
+    if n_open + n_frozen != len(live) or fz["open"] != n_open or fz["frozen"] != n_frozen:
+        p.append("freeze counts do not add up: %d frozen + %d open vs %d live; register says %d and %d" % (n_frozen, n_open, len(live), fz["frozen"], fz["open"]))
+    blocking = {}
+    freeze = load("v02/freeze.json")
+    for b in freeze["blocks"]:
+        for sid in b["screens"]:
+            blocking.setdefault(sid, []).append(b["item"])
+    for s in live:
+        f = s.get("freeze", {})
+        if f.get("status") == "open" and not f.get("reason"):
+            p.append("%s: open without a reason" % s["id"])
+        if f.get("status") == "frozen" and any(("to be verified: " + i) in f.get("owed", []) for i in blocking.get(s["id"], [])):
+            p.append("%s: frozen but a blocking item is listed as owed" % s["id"])
+    if fz["templates"]["count"] != chg["counts"]["unique_templates"]:
+        p.append("templates: register says %d, counts say %d" % (fz["templates"]["count"], chg["counts"]["unique_templates"]))
+    with open(os.path.join(DOCS, "wireframes_v02.html")) as fh:
+        html = fh.read()
+    for needle in ('id="ffreeze"', "var INTEGRATIONS=", "var FREEZE=", "Open because"):
+        if needle not in html:
+            p.append("wireframes_v02.html lacks %s" % needle)
+    with open(os.path.join(DOCS, "integrations.html")) as fh:
+        ihtml = fh.read()
+    for needle in ('data-f="choice"', 'data-f="final_by"', 'name="choice"'):
+        if needle not in ihtml:
+            p.append("integrations.html lacks %s" % needle)
+    with open(os.path.join(DOCS, "changelog.html")) as fh:
+        chtml = fh.read()
+    for needle in ('id="c-freeze"', 'id="c-unfreeze"', 'id="c-tbd"'):
+        if needle not in chtml:
+            p.append("changelog.html lacks %s" % needle)
+    return p, "%d field entries tagged (%s); %d frozen, %d open, %d templates %s" % (
+        sum(tags.values()), ", ".join("%s %d" % (k, v) for k, v in sorted(tags.items(), key=lambda kv: str(kv[0]))), n_frozen, n_open, fz["templates"]["count"], fz["templates"]["status"])
+
+
 def main():
     failures = 0
     for script in ("validate_v02.py", "check_site.py"):
@@ -288,6 +345,7 @@ def main():
         ("15 Q06 and Q06a exist; every chip maps to live screens; H01, H07, H09, Q01 link to Q06", lambda: check15(screens, byid)),
         ("16 audience files open from disk, render their screen set, carry no endpoint URL; compliance and Spinach subsets hold", lambda: check16(screens)),
         ("17 changelog shows D05, D06, D08 under split; dropped count is 3", check17),
+        ("18 phase 12: every field entry tagged, no vendor names on screens, the freeze register adds up and the pages carry the marks", lambda: check18(screens, byid)),
     ]
     for name, fn in checks:
         problems, note = fn()

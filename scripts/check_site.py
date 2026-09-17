@@ -54,6 +54,7 @@ for(const t of F.tiers){ W.setFilter("tier", t); walkCheck("tier " + t); } W.set
 for(const p of F.paths){ W.setFilter("path", p); walkCheck("path " + p); } W.setFilter("path", "both");
 for(const c of F.comps){ W.setFilter("comp", c); walkCheck("compliance " + c); } W.setFilter("comp", "all");
 for(const t of F.templates){ W.setFilter("tpl", t); walkCheck("template " + t); } W.setFilter("tpl", "all");
+for(const z of (F.freeze || [])){ W.setFilter("freeze", z); walkCheck("frozen " + z); } W.setFilter("freeze", "all");
 for(const s of F.states){ W.setFilter("state", s); const land = W.landing(s); const ok = !!land && W.current() === land; results.push({ check: "state " + s, ok, why: ok ? "" : ("landed on " + W.current() + ", expected " + land) }); }
 let exportOk = true, exportWhy = "";
 try { const md = W.exportText(); exportOk = typeof md === "string" && md.indexOf("# yeslyf") === 0; if(!exportOk) exportWhy = "unexpected export text"; } catch(e){ exportOk = false; exportWhy = String(e); }

@@ -49,6 +49,11 @@ FIELDS = ["id", "category", "vendor", "alternatives", "role", "screens", "gates"
 # copy). An owner may be empty while the vendor is not decided. Costs are kept off the board (the page is public):
 # the field stays, its hint says so, and the seeds are empty.
 COST_HINT = "kept off the board"
+# Final or open per row (minutes 16 Sep 2026, item 12): final means Spinach can read the endpoints now; open means
+# the row may still change. Seeded in the data, edited on the page like owner and status. "Every row final by" is
+# one date for the page (board row integrations / final_by).
+CHOICES = ["final", "open"]
+PAGE_ITEM = "integrations"
 MARK = "to be verified: screens"
 DEPS_FILE = os.path.join(DATA, "dependencies.json")
 OWED_STATUSES = ["not started", "in progress", "delivered"]
@@ -137,6 +142,11 @@ def validate(rows):
         seen.add(rid)
         if row.get("status") not in STATUSES:
             problems.append("%s: status %r is not one of %s" % (rid, row.get("status"), ", ".join(STATUSES)))
+        if row.get("choice") not in CHOICES:
+            problems.append("%s: choice %r is not final or open" % (rid, row.get("choice")))
+        fs = str(row.get("final_since", ""))
+        if fs and not (len(fs) == 10 and fs[4] == "-" and fs[7] == "-" and fs.replace("-", "").isdigit()):
+            problems.append("%s: final_since %r is not yyyy-mm-dd" % (rid, fs))
         if row.get("gates") not in GATES and not (row.get("gates") == "" and row.get("status") == "dropped"):
             problems.append("%s: gates %r is not one of %s" % (rid, row.get("gates"), ", ".join(GATES)))
         for key in ("screens", "mentions"):
@@ -200,7 +210,8 @@ EXTRA_CSS = """
   th.c-id{width:44px} th.c-tg{width:22px}
   tr.r1 td{font-variant-numeric:tabular-nums;padding:7px 8px}
   tr.r1{cursor:pointer} tr.r1:hover td{background:#F5F6F8}
-  td.v b{font-size:13px} td.v .meta{font-size:11.5px;margin-top:1px}
+  td.v b{font-size:13px} td.v .meta{font-size:11.5px;margin-top:1px} td.v .ch{font-size:12px;color:var(--mute)}
+  .finalby{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0 0;font-size:12.5px} .finalby input{padding:4px 6px;border:1px solid var(--line);border-radius:5px;background:#fff;margin-left:6px}
   td.tg{color:var(--mute);text-align:center;font-size:11px} td.tg:before{content:"\\25B8"} tbody.open td.tg:before{content:"\\25BE"}
   td.dt{white-space:nowrap} td.dt.empty{color:var(--mute)}
   tbody.hidden{display:none} tbody.hi tr.r1 td{background:var(--accent-soft)}
@@ -233,9 +244,9 @@ EXTRA_CSS = """
 JS = r"""
 (function(){
   var KEY="yeslyf_integrations_v1";
-  var EDITABLE=["owner","status","agreement_date","sandbox_date","production_date","docs_url","cost","notes","due_date","comment"];
+  var EDITABLE=["owner","status","agreement_date","sandbox_date","production_date","docs_url","cost","notes","due_date","comment","choice","final_by"];
   var RANK={}; STATUSES.forEach(function(s,i){ RANK[s]=i; });
-  var byId={}; ROWS.concat(OWED).forEach(function(r){ byId[r.id]=r; });
+  var byId={}; ROWS.concat(OWED).forEach(function(r){ byId[r.id]=r; }); byId[PAGE_ITEM]={id:PAGE_ITEM,final_by:""};
   var S={};
   try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
   if(!S.rows) S.rows={}; if(!S.who) S.who="";
@@ -253,9 +264,10 @@ JS = r"""
   function longPole(){ return ROWS.filter(function(r){ var st=val(r.id,"status"); return r.gates==="launch" && st!=="dropped" && (RANK[st]||0) < RANK["sandbox"]; }); }
   function filterStatus(){ var f=document.getElementById("filters"); return f?f.querySelector("[name=status]").value:"All"; }
   function countBy(list,statuses){ var c={}; statuses.forEach(function(s){ c[s]=0; }); list.forEach(function(r){ var st=val(r.id,"status"); c[st]=(c[st]||0)+1; }); return c; }
+  function nFinal(){ return ROWS.filter(function(r){ return val(r.id,"choice")==="final"; }).length; }
   function paintCounts(){ var counts=countBy(ROWS,STATUSES);
     var cur=filterStatus(); var c=document.getElementById("counts");
-    if(c) c.innerHTML='<span class="k">'+ROWS.length+' integrations</span>'+STATUSES.map(function(s){ return '<button class="chip'+(cur===s?' on':'')+'" data-status="'+esc(s)+'"><b>'+counts[s]+'</b> '+esc(s)+'</button>'; }).join("");
+    if(c) c.innerHTML='<span class="k">'+ROWS.length+' integrations</span><span class="chip"><b>'+nFinal()+'</b> final</span><span class="chip"><b>'+(ROWS.length-nFinal())+'</b> open</span><span class="k">status:</span>'+STATUSES.map(function(s){ return '<button class="chip'+(cur===s?' on':'')+'" data-status="'+esc(s)+'"><b>'+counts[s]+'</b> '+esc(s)+'</button>'; }).join("");
     var lp=longPole(); var p=document.getElementById("pole");
     if(p) p.innerHTML='<span class="k"><b>Long pole</b> '+lp.length+' of '+ROWS.length+', gates launch and below sandbox</span>'+(lp.length?lp.map(function(r){ return '<a class="chip" href="#row/'+esc(r.id)+'">'+esc(r.id)+' '+esc(r.vendor)+'</a>'; }).join(""):'<span class="k">none</span>');
     var oc=document.getElementById("owedcounts"); if(oc){ var ocounts=countBy(OWED,OWED_STATUSES); oc.innerHTML='<span class="k">'+OWED.length+' items</span>'+OWED_STATUSES.map(function(s){ return '<span class="chip"><b>'+ocounts[s]+'</b> '+esc(s)+'</span>'; }).join(""); } }
@@ -267,12 +279,13 @@ JS = r"""
     var w=tb.querySelector("[data-cwho]"); if(w){ var cw=(S.rows[id]||{}).comment_who||""; w.textContent=cw?("by "+cw):""; }
     tb.setAttribute("data-owners", ownersOf(val(id,"owner")).join("|")); tb.setAttribute("data-status", val(id,"status")); }
   function ownerOptions(){ var seen=[]; ROWS.forEach(function(r){ ownersOf(val(r.id,"owner")).forEach(function(n){ if(seen.indexOf(n)<0) seen.push(n); }); }); return seen.sort(); }
-  function applyFilters(){ var f=document.getElementById("filters"); if(!f) return; var g=f.querySelector("[name=gates]").value, o=f.querySelector("[name=owner]").value, s=f.querySelector("[name=status]").value; var shown=0;
+  function applyFilters(){ var f=document.getElementById("filters"); if(!f) return; var g=f.querySelector("[name=gates]").value, o=f.querySelector("[name=owner]").value, s=f.querySelector("[name=status]").value, ch=f.querySelector("[name=choice]").value; var shown=0;
     ROWS.forEach(function(r){ var tb=document.getElementById("row-"+r.id); if(!tb) return;
-      var ok=(g==="All"||r.gates===g)&&(o==="All"||("|"+tb.getAttribute("data-owners")+"|").indexOf("|"+o+"|")>=0)&&(s==="All"||val(r.id,"status")===s);
+      var ok=(g==="All"||r.gates===g)&&(o==="All"||("|"+tb.getAttribute("data-owners")+"|").indexOf("|"+o+"|")>=0)&&(s==="All"||val(r.id,"status")===s)&&(ch==="All"||val(r.id,"choice")===ch);
       tb.classList.toggle("hidden",!ok); if(ok) shown++; });
     var c=document.getElementById("count"); if(c) c.textContent=shown+" of "+ROWS.length; paintCounts(); }
-  function paintAll(){ ROWS.concat(OWED).forEach(function(r){ paintRow(r.id); }); var rv=document.getElementById("reviewer"); if(rv&&rv.value!==(S.who||"")) rv.value=S.who||""; applyFilters(); }
+  function paintAll(){ ROWS.concat(OWED).forEach(function(r){ paintRow(r.id); }); var fb=document.getElementById("finalby"); if(fb&&fb.value!==val(PAGE_ITEM,"final_by")) fb.value=val(PAGE_ITEM,"final_by");
+    var rv=document.getElementById("reviewer"); if(rv&&rv.value!==(S.who||"")) rv.value=S.who||""; applyFilters(); }
   var sort={key:"id",dir:1};
   function keyOf(r,k){ if(k==="vendor") return String(r.vendor).toLowerCase(); if(k==="gates") return String(GATES.indexOf(r.gates));
     if(k==="status"){ var n=RANK[val(r.id,"status")]; return String(n===undefined?9:n); } if(k==="owner") return String(val(r.id,"owner")).toLowerCase();
@@ -286,12 +299,13 @@ JS = r"""
   function cellmd(v){ return String(v===undefined||v===null?"":v).split("\n").join(" ").split("|").join("\\|"); }
   function md(){ var lp=longPole(); var counts=countBy(ROWS,STATUSES), ocounts=countBy(OWED,OWED_STATUSES);
     var L=["# yeslyf integrations v0.2 - brief for Spinach","Exported "+new Date().toLocaleString()+(S.who?" by "+S.who:""),"Write-back: "+wb(),"","## Integrations",
-      "Rows: "+ROWS.length+"; by status: "+STATUSES.map(function(s){ return s+" "+counts[s]; }).join(", "),
+      "Rows: "+ROWS.length+"; final "+nFinal()+", open "+(ROWS.length-nFinal())+"; every row final by: "+(val(PAGE_ITEM,"final_by")||"not set"),
+      "By status: "+STATUSES.map(function(s){ return s+" "+counts[s]; }).join(", "),
       "Long pole (gates launch and below sandbox): "+(lp.length?lp.map(function(r){ return r.id+" "+r.vendor; }).join(", "):"none"),""];
-    var cols=["ID","Category","Vendor","Alternatives","Role","Screens","Gates","Fallback","Owner","Status","Agreement","Sandbox","Production","Docs","Notes","Cause","Comment"];
+    var cols=["ID","Category","Vendor","Final or open","Alternatives","Role","Screens","Gates","Fallback","Owner","Status","Agreement","Sandbox","Production","Docs","Notes","Cause","Comment"];
     L.push("| "+cols.join(" | ")+" |"); L.push("|"+cols.map(function(){ return " --- |"; }).join(""));
     ROWS.forEach(function(r){ var e=S.rows[r.id]||{}; var scr=r.screens.length?(r.screens[0]==="all"?"all screens":r.screens.join(" ")):"-"; var cm=val(r.id,"comment"); if(cm&&e.comment_who) cm+=" ("+e.comment_who+")";
-      var cells=[r.id,r.category,r.vendor,r.alternatives||"-",r.role,scr+(r.to_be_verified?" ("+r.to_be_verified+")":""),r.gates||"-",r.fallback||"-",val(r.id,"owner"),val(r.id,"status"),
+      var cells=[r.id,r.category,r.vendor,val(r.id,"choice"),r.alternatives||"-",r.role,scr+(r.to_be_verified?" ("+r.to_be_verified+")":""),r.gates||"-",r.fallback||"-",val(r.id,"owner"),val(r.id,"status"),
         val(r.id,"agreement_date")||"-",val(r.id,"sandbox_date")||"-",val(r.id,"production_date")||"-",val(r.id,"docs_url")||"-",val(r.id,"notes")||"-",r.cause,cm||"-"];
       L.push("| "+cells.map(cellmd).join(" | ")+" |"); });
     L.push(""); L.push("## Owed to Spinach"); L.push("Rows: "+OWED.length+"; by status: "+OWED_STATUSES.map(function(s){ return s+" "+ocounts[s]; }).join(", ")); L.push("");
@@ -307,7 +321,8 @@ JS = r"""
     var old=document.querySelectorAll(".hi"); for(var i=0;i<old.length;i++) old[i].classList.remove("hi"); el.classList.add("hi"); el.classList.add("open"); try{ el.scrollIntoView({block:"start",behavior:"instant"}); }catch(e){ el.scrollIntoView(true); } }
   var tmr={};
   document.addEventListener("DOMContentLoaded",function(){
-    if(window.yeslyfBoard){ Array.prototype.forEach.call(document.querySelectorAll("textarea[data-f=comment]"),function(t){ var cw=t.parentNode?t.parentNode.querySelector("[data-cwho]"):null; yeslyfBoard.attach(cw||t,t.getAttribute("data-id")); }); yeslyfBoard.init({page:"integrations",apply:applyRemote}); }
+    if(window.yeslyfBoard){ Array.prototype.forEach.call(document.querySelectorAll("textarea[data-f=comment]"),function(t){ var cw=t.parentNode?t.parentNode.querySelector("[data-cwho]"):null; yeslyfBoard.attach(cw||t,t.getAttribute("data-id")); });
+      var fbl=document.getElementById("finalby-wrap"); if(fbl) yeslyfBoard.attach(fbl,PAGE_ITEM); yeslyfBoard.init({page:"integrations",apply:applyRemote}); }
     var f=document.getElementById("filters"); if(f){ var os=f.querySelector("[name=owner]"); if(os) os.innerHTML='<option>All</option>'+ownerOptions().map(function(n){ return '<option>'+esc(n)+'</option>'; }).join(""); f.addEventListener("change",applyFilters); }
     var rv=document.getElementById("reviewer"); if(rv){ rv.innerHTML='<option value="">editing as</option>'+IDENTITIES.map(function(n){ return '<option value="'+esc(n)+'">'+esc(n)+'</option>'; }).join(""); rv.value=S.who||"";
       rv.addEventListener("change",function(){ S.who=IDENTITIES.indexOf(rv.value)>=0?rv.value:""; save(); flash(S.who?"Editing as "+S.who:""); }); }
@@ -369,7 +384,7 @@ def screens_fact(row, check, live_ids):
 def render_row(row, check, live_ids):
     rid = esc(row["id"])
     mark = ' <span class="tag tbv" title="%s">to be verified</span>' % esc(MARK) if row.get("to_be_verified") else ""
-    line = ('<tr class="r1"><td class="n">%s</td><td class="v"><b>%s</b>%s<div class="meta">%s</div></td><td class="c-gates">%s</td>'
+    line = ('<tr class="r1"><td class="n">%s</td><td class="v"><b>%s</b> <span class="ch" data-show="choice"></span>%s<div class="meta">%s</div></td><td class="c-gates">%s</td>'
             '<td><span data-show="owner"></span></td><td><span class="tag" data-show="status"></span></td>'
             '<td class="c-date"><span class="dt" data-show="sandbox_date"></span></td><td class="c-date"><span class="dt" data-show="production_date"></span></td>'
             '<td class="tg" title="open"></td></tr>' % (rid, esc(row["vendor"]), mark, esc(row["category"]), esc(row["gates"] or "-")))
@@ -377,10 +392,10 @@ def render_row(row, check, live_ids):
     if row["alternatives"]:
         facts.append(fact("Alternatives", esc(row["alternatives"])))
     facts.append(fact("Cause", '<span class="cause">%s</span>' % esc(row["cause"])))
-    form = ('<label>Owner</label>%s<label>Status</label>%s<label>Agreement</label>%s<label>Sandbox</label>%s<label>Production</label>%s'
+    form = ('<label>Final or open</label>%s<label>Owner</label>%s<label>Status</label>%s<label>Agreement</label>%s<label>Sandbox</label>%s<label>Production</label>%s'
             '<label>Docs</label><div class="docs">%s<a data-docs target="_blank" rel="noopener" style="display:none">open</a></div>'
             '<label>Cost</label>%s<label>Notes</label>%s<label>Comment</label>%s<span class="cw" data-cwho></span>' % (
-                control(row, "owner", "first names"), control(row, "status", "select"), control(row, "agreement_date", "date"),
+                control(row, "choice", "select", CHOICES), control(row, "owner", "first names"), control(row, "status", "select"), control(row, "agreement_date", "date"),
                 control(row, "sandbox_date", "date"), control(row, "production_date", "date"), control(row, "docs_url", "https://..."),
                 control(row, "cost", COST_HINT), control(row, "notes", "textarea"), control(row, "comment", "textarea")))
     panel = '<tr class="r2"><td colspan="8"><div class="panel"><div>%s</div><div class="form">%s</div></div></td></tr>' % ("".join(facts), form)
@@ -417,13 +432,17 @@ def build_page(rows, checks, live_ids, owed, review=False):
     who = '<div class="who">Editing as <select id="reviewer"></select></div>'
     intro = ('<section><h1>Integrations</h1>'
              '<p class="lead">One row per integration: what it does, the v0.2 screens that need it, what it gates, and the fallback if it slips. '
-             'Open a row to edit owner, status, dates, docs, cost and notes, or to comment. Every edit is recorded as it happens and shows on every device.</p>'
-             '<div class="counts" id="counts"></div><div class="pole" id="pole"></div></section>')
-    toolbar = ('<div class="toolbar" id="filters"><label>Gates <select name="gates"><option>All</option>%s</select></label>'
+             'Next to the vendor: final (the vendor is settled; read its public documentation now) or open (the row may still change). '
+             'Open a row to set final or open, owner, status, dates, docs and notes, or to comment. Every edit is recorded as it happens and shows on every device.</p>'
+             '<div class="counts" id="counts"></div><div class="pole" id="pole"></div>'
+             '<div class="finalby" id="finalby-wrap"><label>Every row final by <input type="date" id="finalby" data-id="%s" data-f="final_by"></label>'
+             '<span class="meta">the date Spinach can read every endpoint; empty until it is set</span></div></section>' % PAGE_ITEM)
+    toolbar = ('<div class="toolbar" id="filters"><label>Final or open <select name="choice"><option>All</option>%s</select></label>'
+               '<label>Gates <select name="gates"><option>All</option>%s</select></label>'
                '<label>Owner <select name="owner"><option>All</option></select></label>'
                '<label>Status <select name="status"><option>All</option>%s</select></label>'
                '<span id="count" class="meta"></span><span class="sp"></span><button id="openall" type="button">Open all</button><button id="closeall" type="button">Close all</button></div>' % (
-                   "".join("<option>%s</option>" % esc(g) for g in GATES), "".join("<option>%s</option>" % esc(s) for s in STATUSES)))
+                   "".join("<option>%s</option>" % esc(c) for c in CHOICES), "".join("<option>%s</option>" % esc(g) for g in GATES), "".join("<option>%s</option>" % esc(s) for s in STATUSES)))
     thead = ('<thead><tr><th class="c-id" data-sort="id">ID<span class="dir"></span></th><th data-sort="vendor">Vendor<span class="dir"></span></th>'
              '<th class="c-gates" data-sort="gates">Gates<span class="dir"></span></th><th data-sort="owner">Owner<span class="dir"></span></th>'
              '<th data-sort="status">Status<span class="dir"></span></th><th class="c-date" data-sort="sandbox_date">Sandbox<span class="dir"></span></th>'
@@ -433,7 +452,7 @@ def build_page(rows, checks, live_ids, owed, review=False):
         table = table.replace('href="wireframes_v02.html#', 'href="index.html#')
     blob = ('<script>var ROWS=' + site.js_blob([dict(r, type="integration") for r in rows]) + ';\nvar OWED=' + site.js_blob([dict(r, type="owed") for r in owed]) +
             ';\nvar IDENTITIES=' + site.js_blob(IDENTITIES) + ';\nvar STATUSES=' + site.js_blob(STATUSES) + ';\nvar OWED_STATUSES=' + site.js_blob(OWED_STATUSES) +
-            ';\nvar GATES=' + site.js_blob(GATES) + ';</script>\n')
+            ';\nvar GATES=' + site.js_blob(GATES) + ';\nvar CHOICES=' + site.js_blob(CHOICES) + ';\nvar PAGE_ITEM=' + site.js_blob(PAGE_ITEM) + ';</script>\n')
     return (site.head("yeslyf integrations v0.2", site.CSS + EXTRA_CSS, config="../config.js" if review else "config.js") + '<body>\n' +
             site.header(PAGE, "integrations, %d rows; owed to Spinach, %d" % (n, len(owed)), who_html=who, export_label="Export brief",
                         tabs=site.REVIEW_TABS if review else None, setup_link=not review) +

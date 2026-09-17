@@ -608,6 +608,32 @@ WIRE_LAYOUT = ('<div class="layout">\n<aside id="nav" class="nav"></aside>\n'
                '<textarea id="comment"></textarea></div><div id="spec" class="spec"></div></aside>\n</div>\n<div id="map" class="map"></div>\n')
 
 
+def integrations_blob():
+    """The rows that serve each screen, with final or open as of the last board pull (phase 12, Vatsal, 17 Sep 2026):
+    the seed in data/integrations.json, overridden by a later choice row in data/board_entries.json. The live page
+    replaces the choice with the current row from the table; the audience files show this value with its date."""
+    rows = load("integrations.json")["rows"]
+    board = load_optional("board_entries.json") or {}
+    latest = board.get("latest", {}).get("integrations", {})
+    as_of = ""
+    if board.get("pulled_at"):
+        d = board["pulled_at"][:10]
+        as_of = "%d %s %s" % (int(d[8:10]), ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][int(d[5:7]) - 1], d[:4])
+    out = []
+    for r in rows:
+        choice = r.get("choice", "open")
+        row = latest.get(r["id"], {}).get("choice")
+        if row and row.get("value") in ("final", "open"):
+            choice = row["value"]
+        out.append({"id": r["id"], "vendor": r["vendor"], "choice": choice, "fallback": r.get("fallback", ""), "screens": list(r["screens"])})
+    return {"as_of": as_of, "rows": out}
+
+
+def freeze_blob(changelog):
+    f = changelog.get("freeze") or {}
+    return f.get("templates") or None
+
+
 def build_wire_v02(v02, states, reasons, review=False):
     """review=True renders the docs/review/ copy: the same page with only the two v0.2 tabs and no setup link."""
     live = live_screens(v02)
@@ -619,11 +645,13 @@ def build_wire_v02(v02, states, reasons, review=False):
            '<label id="fstate-wrap">State <select id="fstate"></select></label>'
            '<label>Compliance <select id="fcomp"></select></label>'
            '<label>Template <select id="ftpl"></select></label>'
+           '<label>Frozen <select id="ffreeze"></select></label>'
            '<div class="actions"><button id="mapbtn">Journey map</button></div></div>\n'
            '<div class="banner">All copy is placeholder pending compliance review; comment on language on any screen.</div>\n')
     layout = WIRE_LAYOUT
     data = ('<script>var SECTIONS=' + js_blob(v02["sections"]) + ';\nvar SCREENS=' + js_blob(live) + ';\nvar DROPPED=' + js_blob(dropped) +
-            ';\nvar SPLIT=' + js_blob(split) + ';\nvar STATES=' + js_blob(states["states"] if states else []) + ';\nvar REASONS=' + js_blob(reasons) + ';</script>\n')
+            ';\nvar SPLIT=' + js_blob(split) + ';\nvar STATES=' + js_blob(states["states"] if states else []) + ';\nvar REASONS=' + js_blob(reasons) +
+            ';\nvar INTEGRATIONS=' + js_blob(integrations_blob()) + ';\nvar FREEZE=' + js_blob(freeze_blob(load("changelog.json"))) + ';</script>\n')
     page = (head("yeslyf wireframes v0.2", read_script("renderer_v02.css"), config="../config.js" if review else "config.js") + '<body>\n' +
             header("index.html" if review else "wireframes_v02.html", "wireframes v0.2, " + str(len(live)) + " screens", who_html=who,
                    export_label="Export comments", tabs=REVIEW_TABS if review else None, setup_link=not review) +
@@ -785,12 +813,16 @@ def changelog_parts(chg, v02, audiences=None):
     live_ids = {s["id"] for s in live_screens(v02)}
     c = chg["counts"]
     split = chg.get("split", [])
-    body = ['<section><h1>Changelog: v0.1 to v0.2</h1><p class="lead">Every touched screen with its cause: a brief item, a review row, "Vatsal, 10 Sep 2026" or "Vatsal, 11 Sep 2026". '
-            'Dropped screens keep their ID and point to where their content went; split screens keep their ID and list their instances. Counts for Spinach are at the end.</p>'
+    fz = chg.get("freeze") or {}
+    tbd = chg.get("to_be_decided", [])
+    body = ['<section><h1>Changelog: v0.1 to v0.2</h1><p class="lead">Every touched screen with its cause: a brief item, a review row, or a first name with a date. '
+            'Dropped screens keep their ID and point to where their content went; split screens keep their ID and list their instances. The freeze register and the unfreeze log sit before the counts for Spinach at the end.</p>'
             '<div class="stats"><div class="stat"><b>%d</b><span>screens in v0.2</span></div><div class="stat"><b>%d</b><span>changed</span></div>'
             '<div class="stat"><b>%d</b><span>added</span></div><div class="stat"><b>%d</b><span>dropped</span></div><div class="stat"><b>%d</b><span>split</span></div><div class="stat"><b>%d</b><span>branches rerouted</span></div>'
-            '<div class="stat"><b>%d</b><span>brief items superseded</span></div><div class="stat"><b>%d</b><span>to be verified</span></div><div class="stat"><b>%d</b><span>templates</span></div></div></section>' % (
-                c["total"], len(chg["changed"]), len(chg["added"]), len(chg["dropped"]), len(split), len(chg["rerouted"]), len(chg["superseded"]), len(chg["to_be_verified"]), c["unique_templates"])]
+            '<div class="stat"><b>%d</b><span>brief items superseded</span></div><div class="stat"><b>%d</b><span>to be verified</span></div><div class="stat"><b>%d</b><span>to be decided</span></div>'
+            '<div class="stat"><b>%d</b><span>frozen</span></div><div class="stat"><b>%d</b><span>open</span></div><div class="stat"><b>%d</b><span>templates, all frozen</span></div></div></section>' % (
+                c["total"], len(chg["changed"]), len(chg["added"]), len(chg["dropped"]), len(split), len(chg["rerouted"]), len(chg["superseded"]), len(chg["to_be_verified"]), len(tbd),
+                fz.get("frozen", 0), fz.get("open", 0), c["unique_templates"])]
     body.append('<section id="c-changed"><h2>Changed<small>%d screens</small></h2>%s</section>' % (len(chg["changed"]), table_html(
         ["Screen", "Title", "Status", "Cause"], [[sid_link(x["id"], live_ids), esc(x["title"]), '<span class="tag changed">%s</span>' % esc(x["status"]), esc("; ".join(x["causes"]))] for x in chg["changed"]])))
     body.append('<section id="c-added"><h2>Added<small>%d screens</small></h2>%s</section>' % (len(chg["added"]), table_html(
@@ -805,16 +837,36 @@ def changelog_parts(chg, v02, audiences=None):
         ["Item", "The brief recorded", "Applied instead", "Cause"], [[esc(x["item"]), esc(x["brief"]), esc(x["override"]), esc(x["cause"])] for x in chg["superseded"]]))
     body.append('<section id="c-tbv"><h2>To be verified<small>%d items, by item</small></h2>%s</section>' % (len(chg["to_be_verified"]), table_html(
         ["Item", "Screens"], [[esc(x["item"]), " ".join(sid_link(s, live_ids) for s in x["screens"])] for x in chg["to_be_verified"]])))
+    body.append('<section id="c-tbd"><h2>To be decided<small>%d items, by item; open product decisions, written on the screen they touch</small></h2>%s</section>' % (len(tbd), table_html(
+        ["Item", "Screens"], [[esc(x["item"]), " ".join(sid_link(s, live_ids) for s in x["screens"])] for x in tbd])))
+    if fz:
+        tf = fz.get("templates", {})
+        body.append('<section id="c-freeze"><h2>Freeze register<small>%d frozen, %d open, since %s</small></h2>'
+                    '<p class="meta">Frozen covers %s; not covered: %s. An open screen carries its reason; only a commit changes a status (%s). '
+                    'Templates: %d, %s since %s (%s).</p><h3>Open screens</h3>%s<h3>Owed on frozen screens</h3>%s</section>' % (
+                        fz["frozen"], fz["open"], esc(fz["since"]), esc(fz["what"]), esc(fz["not_covered"]), esc(fz["cause"]),
+                        tf.get("count", 0), esc(tf.get("status", "")), esc(tf.get("since", "")), esc(tf.get("what", "")),
+                        table_html(["Screen", "Title", "Open because", "Owed", "Cause"], [[sid_link(x["id"], live_ids), esc(x["title"]), esc("; ".join(x["reason"])), esc("; ".join(x["owed"]) or "-"), esc(x["cause"])] for x in fz["open_screens"]]),
+                        table_html(["Screen", "Title", "Owed"], [[sid_link(x["id"], live_ids), esc(x["title"]), esc("; ".join(x["owed"]))] for x in fz["owed_on_frozen"]])))
+        log = fz.get("unfreeze_log", [])
+        body.append('<section id="c-unfreeze"><h2>Unfreeze log<small>%s</small></h2>%s</section>' % (
+            ("%d entries" % len(log)) if log else "empty; a frozen screen changes only with an entry here",
+            table_html(["Date", "Screen", "Cause", "What changed"], [[esc(x.get("date", "")), sid_link(x.get("screen", ""), live_ids), esc(x.get("cause", "")), esc(x.get("what", ""))] for x in log]) if log else '<p class="meta">No screen has been unfrozen.</p>'))
     by_sec_rows = []
     for sec, info in c["by_section"].items():
-        by_sec_rows.append([esc(sec), esc(info["name"]), str(info["screens"]), str(info["templates"]), esc(", ".join("%s %d" % kv for kv in info["by_template"].items()))])
+        by_sec_rows.append([esc(sec), esc(info["name"]), str(info["screens"]), str(info.get("frozen", "")), str(info.get("open", "")), str(info["templates"]), esc(", ".join("%s %d" % kv for kv in info["by_template"].items()))])
+    open_tpl = c.get("open_by_template", {})
+    tstatus = ("%s since %s" % (fz["templates"]["status"], fz["templates"]["since"])) if fz else ""
     body.append('<section id="c-counts"><h2>Counts for Spinach<small>templates and instances</small></h2>'
-                '<p class="meta">%d screens in v0.2 across %d unique templates. Status: %s.</p><h3>By section</h3>%s<h3>By template</h3>%s</section>' % (
-                    c["total"], c["unique_templates"], esc(", ".join("%s %d" % kv for kv in sorted(c["by_status"].items()))),
-                    table_html(["Section", "Name", "Screens", "Templates", "Instances per template"], by_sec_rows),
-                    table_html(["Template", "Screens"], [[esc(k), str(v)] for k, v in c["by_template"].items()])))
+                '<p class="meta">%d screens in v0.2 across %d unique templates; %d frozen, %d open. Status: %s.</p><h3>By section</h3>%s<h3>By template</h3>%s</section>' % (
+                    c["total"], c["unique_templates"], c.get("frozen", 0), c.get("open", 0), esc(", ".join("%s %d" % kv for kv in sorted(c["by_status"].items()))),
+                    table_html(["Section", "Name", "Screens", "Frozen", "Open", "Templates", "Instances per template"], by_sec_rows),
+                    table_html(["Template", "Status", "Screens", "Frozen", "Open"], [[esc(k), esc(tstatus), str(v), str(v - open_tpl.get(k, 0)), str(open_tpl.get(k, 0))] for k, v in c["by_template"].items()])))
     entries = [("c-changed", "Changed"), ("c-added", "Added"), ("c-dropped", "Dropped"), ("c-split", "Split"), ("c-rerouted", "Rerouted branches"),
-               ("c-superseded", "Superseded brief items"), ("c-tbv", "To be verified"), ("c-counts", "Counts for Spinach")]
+               ("c-superseded", "Superseded brief items"), ("c-tbv", "To be verified"), ("c-tbd", "To be decided")]
+    if fz:
+        entries += [("c-freeze", "Freeze register"), ("c-unfreeze", "Unfreeze log")]
+    entries.append(("c-counts", "Counts for Spinach"))
     if audiences:
         body.append('<section id="c-audiences"><h2>Audience files<small>self-contained; each opens from disk with no network</small></h2>'
                     '<p class="meta">Generated by scripts/build_audiences.py from the same data. Comment controls and the markdown export work offline; no write-back.</p>%s</section>' % table_html(

@@ -11,7 +11,9 @@ Order of application:
      "stage": "after_generation" (phase 9) apply after the spine and the states are generated, so they can
      touch generated screens; the section strip (spine.json "strip") is drawn on every spine screen then.
   5. Events by template (appendix D) and the compliance checklist text.
-  6. Validation (scripts/validate_v02.py, structural checks) then the write.
+  6. The freeze register (data/v02/freeze.json; phase 12): screen.freeze on every live screen, frozen or open with
+     its reason and its owed items; only a commit changes it.
+  7. Validation (scripts/validate_v02.py, structural checks, then the register's own checks) then the write.
 The changelog lists changed, added, dropped, rerouted, superseded and to-be-verified items and the counts
 for Spinach. Hand-edit data/*.json, never docs/.
 """
@@ -35,6 +37,14 @@ FORWARD_TAGS = ("required", "optional", "default", "system", "read")
 
 def load(name):
     with open(os.path.join(DATA, name)) as fh:
+        return json.load(fh)
+
+
+def load_optional_v02(name):
+    path = os.path.join(DATA, "v02", name)
+    if not os.path.exists(path):
+        return None
+    with open(path) as fh:
         return json.load(fh)
 
 
@@ -472,6 +482,82 @@ class Build:
             s["compliance"]["checks"] = [reasons[r]["check"] for r in s["compliance"]["reasons"]]
 
 
+def freeze_register(screens, freeze):
+    """Phase 12 (minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026): screen.freeze on every live screen from
+    data/v02/freeze.json. status frozen or open; since; cause; reason (open screens: the explicit reason, every
+    'to be decided:' line and every blocking 'to be verified:' item on the screen); owed (the other items on the
+    screen: to be verified items that do not block, and to be decided lines listed as owed). Returns the problems:
+    an open screen without a reason, a frozen screen carrying a blocking item, a listed screen that is not live."""
+    problems = []
+    live_ids = {s["id"] for s in screens if s["v02"]["status"] not in ("dropped", "split")}
+    open_by = {}
+    for o in freeze["open"]:
+        if o["id"] not in live_ids:
+            problems.append("freeze.json: open screen %s is not live" % o["id"])
+        open_by[o["id"]] = o
+    blocks = {}
+    for b in freeze["blocks"]:
+        for sid in b["screens"]:
+            blocks.setdefault(sid, []).append(b["item"])
+    tbd_owed = {}
+    for b in freeze.get("tbd_owed", []):
+        for sid in b["screens"]:
+            tbd_owed.setdefault(sid, {})[b["item"]] = b.get("owed", "")
+    tbv_on = {}
+    for x in tbv_items(screens):
+        for sid in x["screens"]:
+            tbv_on.setdefault(sid, []).append(x["item"])
+    tbd_on = {}
+    for x in tbd_items(screens):
+        for sid in x["screens"]:
+            tbd_on.setdefault(sid, []).append(x["item"])
+    for b in freeze["blocks"]:
+        for sid in b["screens"]:
+            if b["item"] not in tbv_on.get(sid, []):
+                problems.append("freeze.json: blocking item %r is not on %s" % (b["item"], sid))
+    for s in screens:
+        if s["v02"]["status"] in ("dropped", "split"):
+            s.pop("freeze", None)
+            continue
+        sid = s["id"]
+        o = open_by.get(sid)
+        blocking = [i for i in tbv_on.get(sid, []) if i in blocks.get(sid, [])]
+        owed_tbv = [i for i in tbv_on.get(sid, []) if i not in blocks.get(sid, [])]
+        tbd_lines = tbd_on.get(sid, [])
+        tbd_block = [i for i in tbd_lines if i not in tbd_owed.get(sid, {})]
+        tbd_list = [i for i in tbd_lines if i in tbd_owed.get(sid, {})]
+        if o is not None:
+            reason = ([o["reason"]] if o.get("reason") else []) + ["to be decided: " + i for i in tbd_block] + ["to be verified: " + i for i in blocking]
+            if not reason:
+                problems.append("%s: open without a reason" % sid)
+            s["freeze"] = {"status": "open", "since": freeze["since"], "cause": o.get("cause") or freeze["cause"], "reason": reason,
+                           "owed": ["to be verified: " + i for i in owed_tbv] + ["to be decided: " + i + " (" + tbd_owed[sid][i] + ")" for i in tbd_list]}
+        else:
+            for i in blocking:
+                problems.append("%s: frozen but carries the blocking item %r" % (sid, i))
+            for i in tbd_block:
+                problems.append("%s: frozen but carries the open decision %r (list it under open, or under tbd_owed)" % (sid, i))
+            s["freeze"] = {"status": "frozen", "since": freeze["since"], "cause": freeze["cause"], "reason": [],
+                           "owed": ["to be verified: " + i for i in owed_tbv] + ["to be decided: " + i + " (" + tbd_owed[sid][i] + ")" for i in tbd_list]}
+    return problems
+
+
+def freeze_summary(screens, freeze, sections):
+    live = [s for s in screens if s["v02"]["status"] not in ("dropped", "split")]
+    open_screens = [s for s in live if s["freeze"]["status"] == "open"]
+    templates = sorted({s["template"] for s in live})
+    return {
+        "since": freeze["since"], "cause": freeze["cause"], "what": "template, fields and their tags, branches, states and events",
+        "not_covered": "copy, prices, counts, bands, scoring maps and grid values (config; arrive later without changing the build)",
+        "frozen": len(live) - len(open_screens), "open": len(open_screens),
+        "open_screens": [{"id": s["id"], "title": s["title"], "sec": s["sec"], "since": s["freeze"]["since"], "cause": s["freeze"]["cause"],
+                          "reason": s["freeze"]["reason"], "owed": s["freeze"]["owed"]} for s in open_screens],
+        "owed_on_frozen": [{"id": s["id"], "title": s["title"], "owed": s["freeze"]["owed"]} for s in live if s["freeze"]["status"] == "frozen" and s["freeze"]["owed"]],
+        "templates": dict(freeze["templates"], names=templates, count=len(templates)),
+        "unfreeze_log": list(freeze.get("unfreeze_log", [])),
+    }
+
+
 def marker_items(screens, marker):
     """Every '<marker> <item>' on a live screen, grouped by item text; the item runs to the first ), ;, '. ' or
     line break. marker is TBV ('to be verified:') or TBD ('to be decided:')."""
@@ -483,10 +569,15 @@ def marker_items(screens, marker):
             while i >= 0:
                 rest = o[i + len(marker):].strip()
                 cut = len(rest)
-                for stop in (")", ";", ". ", "\n"):
-                    j = rest.find(stop)
-                    if 0 <= j < cut:
+                depth = 0
+                for j, ch in enumerate(rest):  # the item ends at the first ), ; or '. ' outside its own brackets
+                    if ch == "(":
+                        depth += 1
+                    elif ch == ")" and depth > 0:
+                        depth -= 1
+                    elif (ch == ")" or ch == ";" or ch == "\n" or (ch == "." and rest[j + 1:j + 2] == " ")) and depth == 0:
                         cut = j
+                        break
                 item = rest[:cut].strip().rstrip(".")
                 found.setdefault(item, [])
                 if sid not in found[item]:
@@ -516,19 +607,27 @@ def tbd_items(screens):
 def counts(screens, sections):
     live = [s for s in screens if s["v02"]["status"] not in ("dropped", "split")]
     by_sec = {}
+
+    def n_open(items):
+        return sum(1 for s in items if s.get("freeze", {}).get("status") == "open")
+
     for sec in sections:
         items = [s for s in live if s["sec"] == sec[0]]
         t = {}
         for s in items:
             t[s["template"]] = t.get(s["template"], 0) + 1
-        by_sec[sec[0]] = {"name": sec[1], "screens": len(items), "templates": len(t), "by_template": dict(sorted(t.items()))}
+        by_sec[sec[0]] = {"name": sec[1], "screens": len(items), "templates": len(t), "by_template": dict(sorted(t.items())),
+                          "frozen": len(items) - n_open(items), "open": n_open(items)}
     t = {}
+    open_by_template = {}
     for s in live:
         t[s["template"]] = t.get(s["template"], 0) + 1
+        open_by_template[s["template"]] = open_by_template.get(s["template"], 0) + (1 if s.get("freeze", {}).get("status") == "open" else 0)
     st = {}
     for s in screens:
         st[s["v02"]["status"]] = st.get(s["v02"]["status"], 0) + 1
     return {"total": len(live), "unique_templates": len(t), "by_template": dict(sorted(t.items())),
+            "open_by_template": dict(sorted(open_by_template.items())), "frozen": len(live) - n_open(live), "open": n_open(live),
             "by_section": by_sec, "by_status": st}
 
 
@@ -543,7 +642,10 @@ def main():
     reasons = load("compliance_reasons.json")["reasons"]
     b.finish(reasons)
 
+    freeze = load_optional_v02("freeze.json")
     problems = validate_v02.structural(b.screens)
+    if freeze is not None:
+        problems += freeze_register(b.screens, freeze)
     if problems:
         print("validation failed:")
         for p in problems:
@@ -564,6 +666,7 @@ def main():
         "superseded": effects["superseded"],
         "to_be_verified": tbv_items(b.screens),
         "to_be_decided": tbd_items(b.screens),
+        "freeze": freeze_summary(b.screens, freeze, b.sections) if freeze is not None else None,
         "counts": counts(b.screens, b.sections),
     }
     dump("screens_v02.json", {"source": changelog["source"], "sections": b.sections, "screens": b.screens})
@@ -573,6 +676,9 @@ def main():
         c["total"], ", ".join("%s %d" % kv for kv in sorted(c["by_status"].items())), c["unique_templates"],
         len(changelog["changed"]), len(changelog["added"]), len(changelog["dropped"]), len(changelog["split"]),
         len(changelog["rerouted"]), len(changelog["to_be_verified"]), len(changelog["to_be_decided"])))
+    if changelog["freeze"]:
+        print("freeze register: %d frozen, %d open, %d templates frozen since %s" % (
+            changelog["freeze"]["frozen"], changelog["freeze"]["open"], changelog["freeze"]["templates"]["count"], changelog["freeze"]["since"]))
     return 0
 
 

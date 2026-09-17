@@ -49,6 +49,13 @@
   .dot{position:absolute;right:12px;top:12px;width:7px;height:7px;border-radius:50%;background:var(--accent);border:1px solid #C9A800}
   .mk{font-style:normal;font-size:10px;border:1px solid #C9A800;border-radius:4px;padding:0 4px;margin-left:6px;color:#7A6000;vertical-align:middle}
   .mk.new{border-color:var(--ink);color:var(--ink)}
+  .mk.open{border-style:dashed;border-color:var(--mute);color:var(--mute)}
+  .frame-top .fz{color:var(--mute)}
+  .marker .fz-line{margin-bottom:3px}
+  .marker .fz-line b,.marker .fz-owed b{display:inline;margin:0}
+  .marker .fz-owed{margin-bottom:3px}
+  .marker .fz-list{margin:2px 0 4px;padding-left:16px}
+  .marker .fz-list li{margin:1px 0}
 
   .main{overflow:auto;padding:14px 20px 40px}
   .mobile-jump{display:none;margin-bottom:10px}

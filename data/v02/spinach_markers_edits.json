@@ -1,0 +1,30 @@
+{
+ "source": "Phase 12, pass 2 (the brief of 17 Sep 2026): the X00 cards that explain the frozen marker and how Spinach works from the board. Sorts after spinach_corrections_edits.json; applies after generation.",
+ "groups": [
+  {
+   "id": "phase12-x00-frozen",
+   "kind": "override",
+   "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+   "stage": "after_generation",
+   "edits": [
+    {"op": "ui_replace", "screen": "X00", "match": ["card", "Frozen"],
+     "value": ["card", "Frozen files and tabs", ["The v0.1 wireframe and admin files are served byte-identical under v01/", "The Meeting, Gaps and Inputs tabs are frozen as of 9 Sep 2026; decisions are shown on them and their controls are disabled"]],
+     "cause": "Vatsal, 17 Sep 2026"},
+    {"op": "ui_insert", "screen": "X00", "after": ["card", "Frozen files and tabs"],
+     "value": ["card", "What frozen means", [
+      "Frozen: this screen's template, its fields and their tags, its branches, its states and its events will not change without an entry in the Unfreeze log on the Changelog tab, giving the date, the cause and what changed.",
+      "Not covered by frozen: copy, prices, counts, bands, scoring maps and grid values; those are config and arrive later without changing the build.",
+      "Open: something named on the screen can still change its build; the reason is written on it."
+     ]]},
+    {"op": "ui_insert", "screen": "X00", "after": ["card", "What frozen means"],
+     "value": ["card", "How Spinach works from this board", [
+      "Frozen and open, per screen: frozen means the build will not change without an Unfreeze log entry; open means the reason written on the screen can still change its build.",
+      "Final and open, per row on the Integrations tab: final means the vendor is settled and its public documentation can be read now; open means the row may still change. The date every row is final sits at the top of that tab.",
+      "Questions go in the comment box of the screen, under the identity Spinach.",
+      "Answers appear under the question on the screen and in the Tracker's question list.",
+      "The daily update is posted from the Tracker."
+     ]]}
+   ]
+  }
+ ]
+}

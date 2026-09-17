@@ -52,7 +52,7 @@ def header(subtitle, views, export_label):
             '<button id="export" class="primary">' + site.esc(export_label) + '</button></header>\n')
 
 
-def bar(tiers=True, path=True, state=True, comp=True, tpl=True, banner=False):
+def bar(tiers=True, path=True, state=True, comp=True, tpl=True, banner=False, freeze=True):
     parts = ['<div class="bar">']
     if tiers:
         parts.append('<div id="tiers" class="tiers"></div>')
@@ -64,15 +64,18 @@ def bar(tiers=True, path=True, state=True, comp=True, tpl=True, banner=False):
         parts.append('<label>Compliance <select id="fcomp"></select></label>')
     if tpl:
         parts.append('<label>Template <select id="ftpl"></select></label>')
+    if freeze:
+        parts.append('<label>Frozen <select id="ffreeze"></select></label>')
     parts.append('<div class="actions"><button id="mapbtn">Journey map</button></div></div>\n')
     if banner:
         parts.append('<div class="banner">%s</div>\n' % site.esc(BANNER))
     return "".join(parts)
 
 
-def blob(sections, screens, dropped, split, states, reasons, opts):
+def blob(sections, screens, dropped, split, states, reasons, opts, integ=None, freeze=None):
     return ('<script>var SECTIONS=' + site.js_blob(sections) + ';\nvar SCREENS=' + site.js_blob(screens) + ';\nvar DROPPED=' + site.js_blob(dropped) +
             ';\nvar SPLIT=' + site.js_blob(split) + ';\nvar STATES=' + site.js_blob(states) + ';\nvar REASONS=' + site.js_blob(reasons) +
+            ';\nvar INTEGRATIONS=' + site.js_blob(integ or {"as_of": "", "rows": []}) + ';\nvar FREEZE=' + site.js_blob(freeze) +
             ';\nvar WIRE_OPTS=' + site.js_blob(opts) + ';</script>\n')
 
 
@@ -104,14 +107,20 @@ def doc_pane(vid, nav, body):
 
 def counts_doc(chg):
     c = chg["counts"]
+    fz = chg.get("freeze") or {}
     by_sec_rows = []
     for sec, info in c["by_section"].items():
-        by_sec_rows.append([site.esc(sec), site.esc(info["name"]), str(info["screens"]), str(info["templates"]), site.esc(", ".join("%s %d" % kv for kv in info["by_template"].items()))])
-    return ('<section id="counts"><h1>Counts: templates and instances</h1><p class="lead">%d screens in v0.2 across %d unique templates. Every instance of a repeated layout is drawn and tagged; this page counts them.</p>'
-            '<h3>By section</h3>%s<h3>By template</h3>%s</section>' % (
-                c["total"], c["unique_templates"],
-                site.table_html(["Section", "Name", "Screens", "Templates", "Instances per template"], by_sec_rows),
-                site.table_html(["Template", "Screens"], [[site.esc(k), str(v)] for k, v in c["by_template"].items()])))
+        by_sec_rows.append([site.esc(sec), site.esc(info["name"]), str(info["screens"]), str(info.get("frozen", "")), str(info.get("open", "")), str(info["templates"]), site.esc(", ".join("%s %d" % kv for kv in info["by_template"].items()))])
+    open_tpl = c.get("open_by_template", {})
+    tstatus = ("%s since %s" % (fz["templates"]["status"], fz["templates"]["since"])) if fz else ""
+    open_rows = site.table_html(["Screen", "Title", "Open because"], [[site.sid_link(x["id"], {x["id"]}), site.esc(x["title"]), site.esc("; ".join(x["reason"]))] for x in fz.get("open_screens", [])]) if fz else ""
+    return ('<section id="counts"><h1>Counts: templates and instances</h1><p class="lead">%d screens in v0.2 across %d unique templates; %d frozen, %d open. Every instance of a repeated layout is drawn and tagged; this page counts them. '
+            'Frozen: template, fields and tags, branches, states and events do not change without an entry in the Unfreeze log; copy, prices, counts, bands, scoring maps and grid values are config and are not covered.</p>'
+            '<h3>By section</h3>%s<h3>By template</h3>%s<h3>Open screens</h3>%s</section>' % (
+                c["total"], c["unique_templates"], c.get("frozen", 0), c.get("open", 0),
+                site.table_html(["Section", "Name", "Screens", "Frozen", "Open", "Templates", "Instances per template"], by_sec_rows),
+                site.table_html(["Template", "Status", "Screens", "Frozen", "Open"], [[site.esc(k), site.esc(tstatus), str(v), str(v - open_tpl.get(k, 0)), str(open_tpl.get(k, 0))] for k, v in c["by_template"].items()]),
+                open_rows))
 
 
 def page(title, head_subtitle, views, export_label, bar_html, panes, data, opts_js=True):
@@ -126,6 +135,8 @@ def build_all(v02, states, reasons, admin, changelog):
     dropped = [s["id"] for s in v02["screens"] if s["v02"]["status"] == "dropped"]
     split = [s["id"] for s in v02["screens"] if s["v02"]["status"] == "split"]
     state_list = states["states"] if states else []
+    integ = site.integrations_blob()
+    freeze = site.freeze_blob(changelog)
     out = {}
 
     # team: everything, identity from the seven
@@ -137,7 +148,7 @@ def build_all(v02, states, reasons, admin, changelog):
     out["yeslyf_v02_team.html"] = (page(
         "yeslyf wireframes v0.2, team file", "wireframes v0.2 for the team, %d screens" % len(live),
         [("wire", "Wireframes v0.2"), ("admin", "Admin and CRM v0.2"), ("changelog", "Changelog")], "Export comments",
-        bar(banner=True), panes, blob(v02["sections"], prep(live, "team"), dropped, split, state_list, reasons, opts)), "team")
+        bar(banner=True), panes, blob(v02["sections"], prep(live, "team"), dropped, split, state_list, reasons, opts, integ, freeze)), "team")
 
     # Spinach: the wireframes and the counts; identity locked; no compliance, no causes
     opts = {"identities": ["Spinach"], "lock": "Spinach", "key": "yeslyf_wire_v02_spinach", "spec": "design", "compFilter": False,
@@ -146,7 +157,7 @@ def build_all(v02, states, reasons, admin, changelog):
     out["yeslyf_v02_spinach.html"] = (page(
         "yeslyf wireframes v0.2, Spinach file", "wireframes v0.2 for Spinach, %d screens, %d templates" % (len(live), changelog["counts"]["unique_templates"]),
         [("wire", "Wireframes v0.2"), ("counts", "Counts")], "Export comments",
-        bar(comp=False), panes, blob(v02["sections"], prep(live, "spinach"), dropped, split, state_list, {}, opts)), "Spinach")
+        bar(comp=False), panes, blob(v02["sections"], prep(live, "spinach"), dropped, split, state_list, {}, opts, integ, freeze)), "Spinach")
 
     # compliance: flagged screens only, in flow order; identity locked; the review reasons only
     flagged = [s for s in live if s["compliance"]["review"]]
@@ -156,7 +167,7 @@ def build_all(v02, states, reasons, admin, changelog):
     out["yeslyf_v02_compliance.html"] = (page(
         "yeslyf wireframes v0.2, compliance file", "wireframes v0.2 for compliance review, %d screens flagged" % len(flagged),
         [("wire", "Screens for review")], "Export comments",
-        bar(tiers=False, path=False, state=False, tpl=False, banner=True), "", blob(v02["sections"], prep(flagged, "compliance"), dropped, split, [], review_reasons, opts)), "compliance")
+        bar(tiers=False, path=False, state=False, tpl=False, banner=True, freeze=False), "", blob(v02["sections"], prep(flagged, "compliance"), dropped, split, [], review_reasons, opts)), "compliance")
     return out
 
 

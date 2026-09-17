@@ -195,10 +195,30 @@
     ],
     [
      "card",
-     "Frozen",
+     "Frozen files and tabs",
      [
       "The v0.1 wireframe and admin files are served byte-identical under v01/",
       "The Meeting, Gaps and Inputs tabs are frozen as of 9 Sep 2026; decisions are shown on them and their controls are disabled"
+     ]
+    ],
+    [
+     "card",
+     "What frozen means",
+     [
+      "Frozen: this screen's template, its fields and their tags, its branches, its states and its events will not change without an entry in the Unfreeze log on the Changelog tab, giving the date, the cause and what changed.",
+      "Not covered by frozen: copy, prices, counts, bands, scoring maps and grid values; those are config and arrive later without changing the build.",
+      "Open: something named on the screen can still change its build; the reason is written on it."
+     ]
+    ],
+    [
+     "card",
+     "How Spinach works from this board",
+     [
+      "Frozen and open, per screen: frozen means the build will not change without an Unfreeze log entry; open means the reason written on the screen can still change its build.",
+      "Final and open, per row on the Integrations tab: final means the vendor is settled and its public documentation can be read now; open means the row may still change. The date every row is final sits at the top of that tab.",
+      "Questions go in the comment box of the screen, under the identity Spinach.",
+      "Answers appear under the question on the screen and in the Tracker's question list.",
+      "The daily update is posted from the Tracker."
      ]
     ],
     [
@@ -246,7 +266,17 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026",
      "minutes 16 Sep 2026, items 1 and 2; Gaurav, 16 Sep 2026; Vatsal, 17 Sep 2026",
-     "minutes 16 Sep 2026, item 4; Vatsal, 17 Sep 2026"
+     "minutes 16 Sep 2026, item 4; Vatsal, 17 Sep 2026",
+     "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026"
+    ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be decided: client-side storage and the session timeout rule, by Spinach's data lifecycle map (W21) (W21)"
     ]
    }
   },
@@ -318,6 +348,13 @@
    "v02": {
     "status": "kept",
     "causes": []
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -405,6 +442,15 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
      "Vatsal, 17 Sep 2026"
+    ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: whether a number that failed the OTP may be stored or contacted"
     ]
    }
   },
@@ -498,6 +544,17 @@
      "Vatsal, 17 Sep 2026",
      "minutes 16 Sep 2026, item 10"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 10",
+    "reason": [
+     "to be decided: the new-user branch follows A04's placement"
+    ],
+    "owed": [
+     "to be verified: whether a number that failed the OTP may be stored or contacted"
+    ]
    }
   },
   {
@@ -573,6 +630,17 @@
      "gap G03 (agreed, date set)",
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
      "minutes 16 Sep 2026, item 10"
+    ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 10",
+    "reason": [
+     "to be decided: placement, right after the OTP or after the first reveal questions"
+    ],
+    "owed": [
+     "to be verified: DPDP notice text (gap G03)"
     ]
    }
   },
@@ -659,6 +727,13 @@
     "causes": [
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -741,6 +816,13 @@
      "row 9",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -832,6 +914,13 @@
     "causes": [
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -921,6 +1010,13 @@
      "row 10",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -1008,6 +1104,13 @@
     "causes": [
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -1083,6 +1186,13 @@
     "causes": [
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -1163,6 +1273,13 @@
     "causes": [
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -1227,6 +1344,13 @@
    "v02": {
     "status": "kept",
     "causes": []
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -1322,6 +1446,13 @@
    "v02": {
     "status": "kept",
     "causes": []
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -1387,6 +1518,13 @@
     "causes": [
      "brief B1"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -1475,6 +1613,13 @@
      "brief B1",
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -1551,6 +1696,13 @@
    "v02": {
     "status": "kept",
     "causes": []
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -1681,6 +1833,13 @@
      "Vatsal, 10 Sep 2026 (supersedes brief T1)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -1789,6 +1948,13 @@
     "causes": [
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -1886,6 +2052,13 @@
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -2001,6 +2174,18 @@
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "to be verified: mandate type and limits for monthly and quarterly recurring UPI",
+     "to be verified: whether netbanking can carry a recurring mandate"
+    ],
+    "owed": [
+     "to be verified: the GST split rule"
+    ]
    }
   },
   {
@@ -2058,6 +2243,13 @@
    "v02": {
     "status": "kept",
     "causes": []
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -2142,6 +2334,13 @@
      "brief S1",
      "Vatsal, 10 Sep 2026 (supersedes brief S1)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -2333,6 +2532,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -2421,6 +2627,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -2595,6 +2808,15 @@
      "4.1 bug fix",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: maximum AA consent validity and fetch frequency under the wealth-management purpose"
+    ]
    }
   },
   {
@@ -2702,6 +2924,15 @@
      "Vatsal, 10 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "to be verified: TSP FIP health API readable before consent"
+    ],
+    "owed": []
    }
   },
   {
@@ -2792,6 +3023,15 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026",
      "minutes 16 Sep 2026, item 14"
+    ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: maximum AA consent validity and fetch frequency under the wealth-management purpose"
     ]
    }
   },
@@ -2901,6 +3141,13 @@
      "4.1 bug fix",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -3019,6 +3266,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -3113,6 +3367,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -3236,6 +3497,17 @@
      "minutes 16 Sep 2026, item 6",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 6",
+    "reason": [
+     "to be decided: CAS source for V1",
+     "to be verified: CAS parsing effort in V1",
+     "to be verified: parsing effort"
+    ],
+    "owed": []
    }
   },
   {
@@ -3327,6 +3599,13 @@
      "Vatsal, 10 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -3434,6 +3713,13 @@
      "Vatsal, 10 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -3568,6 +3854,16 @@
      "Vatsal, 17 Sep 2026",
      "minutes 16 Sep 2026, item 6"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 6",
+    "reason": [
+     "to be decided: CAS source for V1",
+     "to be verified: parsing effort"
+    ],
+    "owed": []
    }
   },
   {
@@ -3670,6 +3966,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -3851,6 +4154,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -3968,6 +4278,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -4046,6 +4363,13 @@
      "V5 Stage 3",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -4145,6 +4469,15 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
    }
   },
   {
@@ -4239,6 +4572,15 @@
      "Vatsal, 10 Sep 2026",
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
+    ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
     ]
    }
   },
@@ -4335,6 +4677,15 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
    }
   },
   {
@@ -4429,6 +4780,15 @@
      "Vatsal, 10 Sep 2026",
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
+    ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
     ]
    }
   },
@@ -4525,6 +4885,15 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
    }
   },
   {
@@ -4619,6 +4988,15 @@
      "Vatsal, 10 Sep 2026",
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
+    ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
     ]
    }
   },
@@ -4742,6 +5120,16 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: the Q7 wording",
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
    }
   },
   {
@@ -4837,6 +5225,16 @@
      "Vatsal, 10 Sep 2026",
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
+    ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: the Q8 wording",
+     "to be verified: the RPQ scoring map (gap G06)"
     ]
    }
   },
@@ -4939,6 +5337,15 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
    }
   },
   {
@@ -5017,6 +5424,13 @@
      "V5 Stage 3",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -5226,6 +5640,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -5393,6 +5814,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -5560,6 +5988,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -5727,6 +6162,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -5805,6 +6247,13 @@
      "V5 Stage 3",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -6008,6 +6457,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -6153,6 +6609,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -6244,6 +6707,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -6438,6 +6908,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -6516,6 +6993,13 @@
      "V5 Stage 3",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -6873,6 +7357,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -7070,6 +7561,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -7282,6 +7780,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -7495,6 +8000,16 @@
      "Vatsal, 17 Sep 2026",
      "minutes 16 Sep 2026, item 6"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 6",
+    "reason": [
+     "to be decided: CAS source for V1",
+     "to be verified: parsing effort"
+    ],
+    "owed": []
    }
   },
   {
@@ -7676,6 +8191,17 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "to be verified: NPS on AA"
+    ],
+    "owed": [
+     "to be verified: V1 covers CAS only via A10"
+    ]
    }
   },
   {
@@ -7852,6 +8378,15 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: the current service numbers and that the deep link works on both platforms"
+    ]
    }
   },
   {
@@ -8013,6 +8548,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -8175,6 +8717,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -8355,6 +8904,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -8548,6 +9104,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -8709,6 +9272,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -8787,6 +9357,13 @@
      "V5 Stage 3",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -8964,6 +9541,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -9131,6 +9715,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -9209,6 +9800,13 @@
      "V5 Stage 3",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -9401,6 +9999,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -9571,6 +10176,15 @@
      "Vatsal, 10 Sep 2026",
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
+    ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: V1 covers CAS only via A10"
     ]
    }
   },
@@ -9762,6 +10376,15 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: V1 covers CAS only via A10"
+    ]
    }
   },
   {
@@ -9904,6 +10527,15 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: V1 covers CAS only via A10"
+    ]
    }
   },
   {
@@ -9982,6 +10614,13 @@
      "V5 Stage 3",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -10143,6 +10782,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -10298,6 +10944,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -10398,6 +11051,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -10476,6 +11136,13 @@
      "V5 Stage 3",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -10705,6 +11372,15 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: the declaration wording against HoA's current questionnaire"
+    ]
    }
   },
   {
@@ -10848,6 +11524,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -10914,6 +11597,13 @@
      "Vatsal, 10 Sep 2026",
      "V5 Stage 3"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -10982,6 +11672,13 @@
      "V5 Stage 3",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -11048,6 +11745,13 @@
      "Vatsal, 10 Sep 2026",
      "V5 Stage 3"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -11118,6 +11822,13 @@
      "brief B2",
      "row 31"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -11202,6 +11913,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -11502,6 +12220,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -11634,6 +12359,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -11853,6 +12585,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -12041,6 +12780,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -12197,6 +12943,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -12402,6 +13155,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -12608,6 +13368,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -12792,6 +13559,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -12943,6 +13717,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -13063,6 +13844,16 @@
      "minutes 16 Sep 2026, item 6",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 6",
+    "reason": [
+     "to be decided: CAS source for V1",
+     "to be verified: parsing effort"
+    ],
+    "owed": []
    }
   },
   {
@@ -13224,6 +14015,13 @@
      "Vatsal, 16 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -13361,6 +14159,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -13502,6 +14307,15 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: call lengths in the recipe"
+    ]
    }
   },
   {
@@ -13601,6 +14415,15 @@
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: call lengths in the recipe"
+    ]
    }
   },
   {
@@ -13697,6 +14520,15 @@
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "no video and recording vendor yet (I24)"
+    ],
+    "owed": []
    }
   },
   {
@@ -13799,6 +14631,13 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -13887,6 +14726,13 @@
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -13984,6 +14830,16 @@
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "no video and recording vendor yet (I24)",
+     "to be verified: recording consent and retention"
+    ],
+    "owed": []
    }
   },
   {
@@ -14092,6 +14948,13 @@
      "brief H4",
      "Kajal, 16 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -14225,6 +15088,17 @@
      "Gaurav, 16 Sep 2026 (minutes item 13)",
      "minutes 16 Sep 2026, item 12 (rails final)"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read",
+     "to be verified: the SEBI nomination rule for new folios and the exact UCC field set on BSE StAR MF",
+     "to be verified: which BSE StAR MF services exist in the JSON interface (client registration, mandate, order, SIP, payment, reports)"
+    ],
+    "owed": []
    }
   },
   {
@@ -14336,6 +15210,17 @@
      "Gaurav, 16 Sep 2026 (minutes item 13)",
      "minutes 16 Sep 2026, item 12 (rails final)"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read",
+     "to be verified: direct plans and the RIA code hold on this rail",
+     "to be verified: which BSE StAR MF services exist in the JSON interface (client registration, mandate, order, SIP, payment, reports)"
+    ],
+    "owed": []
    }
   },
   {
@@ -14482,6 +15367,18 @@
      "Kajal, 16 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read",
+     "to be verified: e-NACH approval time at the banks, and whether a limit change amends the mandate or registers a new one"
+    ],
+    "owed": [
+     "to be verified: the amount limits and the maximum tenure for UPI autopay and e-NACH on BSE StAR MF"
+    ]
    }
   },
   {
@@ -14587,6 +15484,15 @@
      "Vatsal, 17 Sep 2026",
      "minutes 16 Sep 2026, item 12 (rails final)"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read"
+    ],
+    "owed": []
    }
   },
   {
@@ -14746,6 +15652,17 @@
      "Vatsal, 17 Sep 2026",
      "Vatsal, 16 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read"
+    ],
+    "owed": [
+     "to be verified: the earliest SIP start date after mandate approval on BSE StAR MF"
+    ]
    }
   },
   {
@@ -14850,6 +15767,16 @@
      "minutes 16 Sep 2026, item 12 (rails final)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read",
+     "to be verified: direct plans and the RIA code hold on this rail"
+    ],
+    "owed": []
    }
   },
   {
@@ -14944,6 +15871,16 @@
      "minutes 16 Sep 2026, item 12 (rails final)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read",
+     "to be verified: direct plans and the RIA code hold on this rail"
+    ],
+    "owed": []
    }
   },
   {
@@ -15033,6 +15970,15 @@
      "Vatsal, 17 Sep 2026",
      "Vatsal, 16 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read"
+    ],
+    "owed": []
    }
   },
   {
@@ -15122,6 +16068,13 @@
      "brief H4",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -15212,6 +16165,13 @@
      "brief G1 (default, not confirmed in the meeting)",
      "minutes 16 Sep 2026, item 12 (rails final)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -15306,6 +16266,13 @@
     "causes": [
      "row 41 (Somil); brief V1"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -15474,6 +16441,13 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -15639,6 +16613,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -15800,6 +16781,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -15961,6 +16949,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -16130,6 +17125,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -16295,6 +17297,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -16461,6 +17470,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -16627,6 +17643,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -16793,6 +17816,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -16964,6 +17994,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -17161,6 +18198,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -17335,6 +18379,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -17429,6 +18480,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -17515,6 +18573,13 @@
    "v02": {
     "status": "kept",
     "causes": []
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -17626,6 +18691,13 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -17718,6 +18790,13 @@
     "causes": [
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -17821,6 +18900,17 @@
      "Vatsal, 10 Sep 2026",
      "minutes 16 Sep 2026, item 5",
      "minutes 16 Sep 2026, item 12 (rails final)"
+    ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 5",
+    "reason": [
+     "to be decided: storage mechanics: upload, tags, expiry dates, versions, and which files a person may delete"
+    ],
+    "owed": [
+     "to be verified: V1 covers CAS only via A10"
     ]
    }
   },
@@ -17937,6 +19027,13 @@
      "Vatsal, 11 Sep 2026",
      "minutes 16 Sep 2026, item 20"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -18014,6 +19111,13 @@
      "brief V1",
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -18129,6 +19233,16 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: DPDP notice text (gap G03)",
+     "to be verified: DPDP notice, deletion and retention text"
+    ]
    }
   },
   {
@@ -18214,6 +19328,13 @@
     "causes": [
      "row 39 (Kajal)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -18308,6 +19429,13 @@
     "causes": [
      "row 43 (Kajal)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -18449,6 +19577,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -18562,6 +19697,15 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "to be verified: proration and refund on a period switch"
+    ],
+    "owed": []
    }
   },
   {
@@ -18700,6 +19844,13 @@
      "Vatsal, 10 Sep 2026 (supersedes brief T1)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -18813,6 +19964,13 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -18909,6 +20067,13 @@
      "Vatsal, 10 Sep 2026 (supersedes brief T1)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -19002,6 +20167,13 @@
      "Vatsal, 10 Sep 2026 (supersedes brief T1)",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -19080,6 +20252,15 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "to be verified: what happens to advice if the annual confirmation is not given (brief compliance)"
+    ],
+    "owed": []
    }
   },
   {
@@ -19281,6 +20462,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -19492,6 +20680,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -19603,6 +20798,13 @@
      "Vatsal, 11 Sep 2026",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -19917,6 +21119,16 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: DPDP notice, deletion and retention text",
+     "to be verified: what happens to advice if the annual confirmation is not given (brief compliance)"
+    ]
    }
   },
   {
@@ -20175,6 +21387,13 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "brief V2"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -20541,6 +21760,13 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "brief V2"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -21063,6 +22289,15 @@
      "brief V2",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: WhatsApp template approval lead time"
+    ]
    }
   },
   {
@@ -21152,6 +22387,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -21247,6 +22489,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -21337,6 +22586,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -21427,6 +22683,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -21515,6 +22778,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -21603,6 +22873,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -21691,6 +22968,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -21786,6 +23070,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -21873,6 +23164,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -21968,6 +23266,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -22056,6 +23361,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -22143,6 +23455,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -22232,6 +23551,13 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -22327,6 +23653,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -22422,6 +23755,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -22510,6 +23850,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -22598,6 +23945,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -22686,6 +24040,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -22774,6 +24135,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -22870,6 +24238,13 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -22979,6 +24354,13 @@
      "brief V2",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -23070,6 +24452,13 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "brief V2"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -23158,6 +24547,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -23253,6 +24649,13 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -23348,6 +24751,15 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "to be verified: what happens to advice if the annual confirmation is not given (brief compliance)"
+    ],
+    "owed": []
    }
   },
   {
@@ -23445,6 +24857,13 @@
      "Vatsal, 10 Sep 2026 (section 5)",
      "brief H5"
     ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": []
    }
   },
   {
@@ -23541,6 +24960,15 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)"
+    ]
+   },
+   "freeze": {
+    "status": "frozen",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+    "reason": [],
+    "owed": [
+     "to be verified: DPDP notice, deletion and retention text"
     ]
    }
   },
@@ -23662,6 +25090,15 @@
      "Vatsal, 17 Sep 2026",
      "Vatsal, 16 Sep 2026 (Zoho One decided)"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 20",
+    "reason": [
+     "to be decided: the tool over the app database (admin brief, W12)"
+    ],
+    "owed": []
    }
   },
   {
@@ -23768,6 +25205,15 @@
     "causes": [
      "row 72 (Harish)"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
    }
   },
   {
@@ -23852,6 +25298,15 @@
    "v02": {
     "status": "kept",
     "causes": []
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
    }
   },
   {
@@ -23974,6 +25429,15 @@
      "Vatsal, 10 Sep 2026",
      "Vatsal, 11 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
    }
   },
   {
@@ -24100,6 +25564,17 @@
     "status": "changed",
     "causes": [
      "brief H1"
+    ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": [
+     "to be verified: the grid values per cell"
     ]
    }
   },
@@ -24239,6 +25714,15 @@
      "Vatsal, 17 Sep 2026",
      "Vatsal, 16 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
    }
   },
   {
@@ -24322,6 +25806,15 @@
    "v02": {
     "status": "kept",
     "causes": []
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
    }
   },
   {
@@ -24419,6 +25912,15 @@
      "brief H2",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
    }
   },
   {
@@ -24499,6 +26001,15 @@
     "causes": [
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
    }
   },
   {
@@ -24599,6 +26110,17 @@
      "brief H6",
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+    ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": [
+     "to be verified: record formats (brief H6)"
     ]
    }
   },
@@ -24736,6 +26258,15 @@
      "brief H2",
      "Vatsal, 17 Sep 2026"
     ]
+   },
+   "freeze": {
+    "status": "open",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
    }
   },
   {

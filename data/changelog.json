@@ -10,7 +10,8 @@
     "Vatsal, 11 Sep 2026",
     "Vatsal, 17 Sep 2026",
     "minutes 16 Sep 2026, items 1 and 2; Gaurav, 16 Sep 2026; Vatsal, 17 Sep 2026",
-    "minutes 16 Sep 2026, item 4; Vatsal, 17 Sep 2026"
+    "minutes 16 Sep 2026, item 4; Vatsal, 17 Sep 2026",
+    "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1925,7 +1926,7 @@
    ]
   },
   {
-   "item": "DPDP notice text (gap G03",
+   "item": "DPDP notice text (gap G03)",
    "screens": [
     "A04",
     "H09"
@@ -2017,7 +2018,7 @@
    ]
   },
   {
-   "item": "record formats (brief H6",
+   "item": "record formats (brief H6)",
    "screens": [
     "L08"
    ]
@@ -2047,7 +2048,7 @@
    ]
   },
   {
-   "item": "the RPQ scoring map (gap G06",
+   "item": "the RPQ scoring map (gap G06)",
    "screens": [
     "D08a",
     "D08b",
@@ -2097,7 +2098,7 @@
    ]
   },
   {
-   "item": "what happens to advice if the annual confirmation is not given (brief compliance",
+   "item": "what happens to advice if the annual confirmation is not given (brief compliance)",
    "screens": [
     "Q04",
     "N01",
@@ -2118,7 +2119,7 @@
    ]
   },
   {
-   "item": "which BSE StAR MF services exist in the JSON interface (client registration, mandate, order, SIP, payment, reports",
+   "item": "which BSE StAR MF services exist in the JSON interface (client registration, mandate, order, SIP, payment, reports)",
    "screens": [
     "E02",
     "E07"
@@ -2136,7 +2137,7 @@
    ]
   },
   {
-   "item": "client-side storage and the session timeout rule, by Spinach's data lifecycle map (W21",
+   "item": "client-side storage and the session timeout rule, by Spinach's data lifecycle map (W21)",
    "screens": [
     "X00"
    ]
@@ -2160,12 +2161,633 @@
    ]
   },
   {
-   "item": "the tool over the app database (admin brief, W12",
+   "item": "the tool over the app database (admin brief, W12)",
    "screens": [
     "M01"
    ]
   }
  ],
+ "freeze": {
+  "since": "17 Sep 2026",
+  "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+  "what": "template, fields and their tags, branches, states and events",
+  "not_covered": "copy, prices, counts, bands, scoring maps and grid values (config; arrive later without changing the build)",
+  "frozen": 160,
+  "open": 34,
+  "open_screens": [
+   {
+    "id": "A03",
+    "title": "OTP",
+    "sec": "A",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 10",
+    "reason": [
+     "to be decided: the new-user branch follows A04's placement"
+    ],
+    "owed": [
+     "to be verified: whether a number that failed the OTP may be stored or contacted"
+    ]
+   },
+   {
+    "id": "A04",
+    "title": "Welcome video",
+    "sec": "A",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 10",
+    "reason": [
+     "to be decided: placement, right after the OTP or after the first reveal questions"
+    ],
+    "owed": [
+     "to be verified: DPDP notice text (gap G03)"
+    ]
+   },
+   {
+    "id": "P04",
+    "title": "Pay",
+    "sec": "P",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "to be verified: mandate type and limits for monthly and quarterly recurring UPI",
+     "to be verified: whether netbanking can carry a recurring mandate"
+    ],
+    "owed": [
+     "to be verified: the GST split rule"
+    ]
+   },
+   {
+    "id": "A05a",
+    "title": "Your bank is slow right now",
+    "sec": "D",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "to be verified: TSP FIP health API readable before consent"
+    ],
+    "owed": []
+   },
+   {
+    "id": "A10",
+    "title": "Your CAS: request it",
+    "sec": "D",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 6",
+    "reason": [
+     "to be decided: CAS source for V1",
+     "to be verified: CAS parsing effort in V1",
+     "to be verified: parsing effort"
+    ],
+    "owed": []
+   },
+   {
+    "id": "A10c",
+    "title": "Your CAS: what I read",
+    "sec": "D",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 6",
+    "reason": [
+     "to be decided: CAS source for V1",
+     "to be verified: parsing effort"
+    ],
+    "owed": []
+   },
+   {
+    "id": "D02c",
+    "title": "Stocks and ETFs",
+    "sec": "D",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 6",
+    "reason": [
+     "to be decided: CAS source for V1",
+     "to be verified: parsing effort"
+    ],
+    "owed": []
+   },
+   {
+    "id": "D02d",
+    "title": "NPS",
+    "sec": "D",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "to be verified: NPS on AA"
+    ],
+    "owed": [
+     "to be verified: V1 covers CAS only via A10"
+    ]
+   },
+   {
+    "id": "G12a",
+    "title": "Locked holdings",
+    "sec": "G",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 6",
+    "reason": [
+     "to be decided: CAS source for V1",
+     "to be verified: parsing effort"
+    ],
+    "owed": []
+   },
+   {
+    "id": "K02",
+    "title": "Call confirmed",
+    "sec": "K",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "no video and recording vendor yet (I24)"
+    ],
+    "owed": []
+   },
+   {
+    "id": "K06",
+    "title": "Your calls",
+    "sec": "K",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "no video and recording vendor yet (I24)",
+     "to be verified: recording consent and retention"
+    ],
+    "owed": []
+   },
+   {
+    "id": "E02",
+    "title": "One-time investing setup",
+    "sec": "E",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read",
+     "to be verified: the SEBI nomination rule for new folios and the exact UCC field set on BSE StAR MF",
+     "to be verified: which BSE StAR MF services exist in the JSON interface (client registration, mandate, order, SIP, payment, reports)"
+    ],
+    "owed": []
+   },
+   {
+    "id": "E07",
+    "title": "BSE StAR MF onboarding",
+    "sec": "E",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read",
+     "to be verified: direct plans and the RIA code hold on this rail",
+     "to be verified: which BSE StAR MF services exist in the JSON interface (client registration, mandate, order, SIP, payment, reports)"
+    ],
+    "owed": []
+   },
+   {
+    "id": "E10",
+    "title": "SIP mandate registration",
+    "sec": "E",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read",
+     "to be verified: e-NACH approval time at the banks, and whether a limit change amends the mandate or registers a new one"
+    ],
+    "owed": [
+     "to be verified: the amount limits and the maximum tenure for UPI autopay and e-NACH on BSE StAR MF"
+    ]
+   },
+   {
+    "id": "E03",
+    "title": "Place a mutual fund order",
+    "sec": "E",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read"
+    ],
+    "owed": []
+   },
+   {
+    "id": "E11",
+    "title": "Set up monthly SIPs",
+    "sec": "E",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read"
+    ],
+    "owed": [
+     "to be verified: the earliest SIP start date after mandate approval on BSE StAR MF"
+    ]
+   },
+   {
+    "id": "E08",
+    "title": "BSE StAR MF transactions",
+    "sec": "E",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read",
+     "to be verified: direct plans and the RIA code hold on this rail"
+    ],
+    "owed": []
+   },
+   {
+    "id": "E09",
+    "title": "BSE StAR MF reporting",
+    "sec": "E",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read",
+     "to be verified: direct plans and the RIA code hold on this rail"
+    ],
+    "owed": []
+   },
+   {
+    "id": "E04",
+    "title": "ETFs and stocks via smallcase Gateway",
+    "sec": "E",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 11",
+    "reason": [
+     "built last; open until the vendor documentation is read"
+    ],
+    "owed": []
+   },
+   {
+    "id": "H06",
+    "title": "Vault",
+    "sec": "H",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 5",
+    "reason": [
+     "to be decided: storage mechanics: upload, tags, expiry dates, versions, and which files a person may delete"
+    ],
+    "owed": [
+     "to be verified: V1 covers CAS only via A10"
+    ]
+   },
+   {
+    "id": "Q02",
+    "title": "Change plan",
+    "sec": "Q",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "to be verified: proration and refund on a period switch"
+    ],
+    "owed": []
+   },
+   {
+    "id": "Q04",
+    "title": "Annual: risk profile and agreement",
+    "sec": "Q",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "to be verified: what happens to advice if the annual confirmation is not given (brief compliance)"
+    ],
+    "owed": []
+   },
+   {
+    "id": "N28",
+    "title": "State S23: Annual confirmation overdue (Q04)",
+    "sec": "N",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "to be verified: what happens to advice if the annual confirmation is not given (brief compliance)"
+    ],
+    "owed": []
+   },
+   {
+    "id": "M01",
+    "title": "Admin stack (bought, not built)",
+    "sec": "M",
+    "since": "17 Sep 2026",
+    "cause": "minutes 16 Sep 2026, item 20",
+    "reason": [
+     "to be decided: the tool over the app database (admin brief, W12)"
+    ],
+    "owed": []
+   },
+   {
+    "id": "L00",
+    "title": "Engine map",
+    "sec": "L",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
+   },
+   {
+    "id": "L01",
+    "title": "Logic panel: roles and layout",
+    "sec": "L",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
+   },
+   {
+    "id": "L02",
+    "title": "Assumptions",
+    "sec": "L",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
+   },
+   {
+    "id": "L03",
+    "title": "Buckets and cohorts",
+    "sec": "L",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": [
+     "to be verified: the grid values per cell"
+    ]
+   },
+   {
+    "id": "L04",
+    "title": "Instrument universe",
+    "sec": "L",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
+   },
+   {
+    "id": "L07",
+    "title": "Market inputs (simple)",
+    "sec": "L",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
+   },
+   {
+    "id": "L05",
+    "title": "Staging and impact preview",
+    "sec": "L",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
+   },
+   {
+    "id": "L06",
+    "title": "Publish",
+    "sec": "L",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
+   },
+   {
+    "id": "L08",
+    "title": "Audit and versions",
+    "sec": "L",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": [
+     "to be verified: record formats (brief H6)"
+    ]
+   },
+   {
+    "id": "L09",
+    "title": "Portfolio constraints",
+    "sec": "L",
+    "since": "17 Sep 2026",
+    "cause": "Vatsal, 17 Sep 2026",
+    "reason": [
+     "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery"
+    ],
+    "owed": []
+   }
+  ],
+  "owed_on_frozen": [
+   {
+    "id": "X00",
+    "title": "How to read this file",
+    "owed": [
+     "to be decided: client-side storage and the session timeout rule, by Spinach's data lifecycle map (W21) (W21)"
+    ]
+   },
+   {
+    "id": "A02",
+    "title": "Mobile number",
+    "owed": [
+     "to be verified: whether a number that failed the OTP may be stored or contacted"
+    ]
+   },
+   {
+    "id": "A05",
+    "title": "How should I get your numbers?",
+    "owed": [
+     "to be verified: maximum AA consent validity and fetch frequency under the wealth-management purpose"
+    ]
+   },
+   {
+    "id": "A06",
+    "title": "AA consent (vendor flow)",
+    "owed": [
+     "to be verified: maximum AA consent validity and fetch frequency under the wealth-management purpose"
+    ]
+   },
+   {
+    "id": "D08a",
+    "title": "Risk profile question 1",
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
+   },
+   {
+    "id": "D08b",
+    "title": "Risk profile question 2",
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
+   },
+   {
+    "id": "D08c",
+    "title": "Risk profile question 3",
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
+   },
+   {
+    "id": "D08d",
+    "title": "Risk profile question 4",
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
+   },
+   {
+    "id": "D08e",
+    "title": "Risk profile question 5",
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
+   },
+   {
+    "id": "D08f",
+    "title": "Risk profile question 6",
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
+   },
+   {
+    "id": "D08g",
+    "title": "Risk profile question 7",
+    "owed": [
+     "to be verified: the Q7 wording",
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
+   },
+   {
+    "id": "D08h",
+    "title": "Risk profile question 8",
+    "owed": [
+     "to be verified: the Q8 wording",
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
+   },
+   {
+    "id": "D09",
+    "title": "Your risk profile",
+    "owed": [
+     "to be verified: the RPQ scoring map (gap G06)"
+    ]
+   },
+   {
+    "id": "D02e",
+    "title": "EPF",
+    "owed": [
+     "to be verified: the current service numbers and that the deep link works on both platforms"
+    ]
+   },
+   {
+    "id": "D04a",
+    "title": "Term cover",
+    "owed": [
+     "to be verified: V1 covers CAS only via A10"
+    ]
+   },
+   {
+    "id": "D04b",
+    "title": "Health cover",
+    "owed": [
+     "to be verified: V1 covers CAS only via A10"
+    ]
+   },
+   {
+    "id": "D04c",
+    "title": "Other policy",
+    "owed": [
+     "to be verified: V1 covers CAS only via A10"
+    ]
+   },
+   {
+    "id": "D10",
+    "title": "Review, build, and what would sharpen it",
+    "owed": [
+     "to be verified: the declaration wording against HoA's current questionnaire"
+    ]
+   },
+   {
+    "id": "K01",
+    "title": "Talk to an adviser",
+    "owed": [
+     "to be verified: call lengths in the recipe"
+    ]
+   },
+   {
+    "id": "K05",
+    "title": "Pick a slot",
+    "owed": [
+     "to be verified: call lengths in the recipe"
+    ]
+   },
+   {
+    "id": "H09",
+    "title": "Profile and settings",
+    "owed": [
+     "to be verified: DPDP notice text (gap G03)",
+     "to be verified: DPDP notice, deletion and retention text"
+    ]
+   },
+   {
+    "id": "N01",
+    "title": "Returning-user state machine",
+    "owed": [
+     "to be verified: DPDP notice, deletion and retention text",
+     "to be verified: what happens to advice if the annual confirmation is not given (brief compliance)"
+    ]
+   },
+   {
+    "id": "N04",
+    "title": "Message templates",
+    "owed": [
+     "to be verified: WhatsApp template approval lead time"
+    ]
+   },
+   {
+    "id": "N30",
+    "title": "State S25: Account deletion requested (H09)",
+    "owed": [
+     "to be verified: DPDP notice, deletion and retention text"
+    ]
+   }
+  ],
+  "templates": {
+   "status": "frozen",
+   "since": "17 Sep 2026",
+   "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+   "what": "element types and their order",
+   "names": [
+    "T-card",
+    "T-card-stack",
+    "T-chart",
+    "T-detail",
+    "T-hub",
+    "T-list",
+    "T-locked",
+    "T-msg",
+    "T-num",
+    "T-paywall",
+    "T-picker",
+    "T-progress",
+    "T-review",
+    "T-sheet",
+    "T-source",
+    "T-split",
+    "T-table",
+    "T-tap",
+    "T-upload",
+    "T-video",
+    "T-webview"
+   ],
+   "count": 21
+  },
+  "unfreeze_log": []
+ },
  "counts": {
   "total": 194,
   "unique_templates": 21,
@@ -2192,6 +2814,31 @@
    "T-video": 2,
    "T-webview": 3
   },
+  "open_by_template": {
+   "T-card": 6,
+   "T-card-stack": 1,
+   "T-chart": 0,
+   "T-detail": 0,
+   "T-hub": 0,
+   "T-list": 7,
+   "T-locked": 1,
+   "T-msg": 1,
+   "T-num": 2,
+   "T-paywall": 1,
+   "T-picker": 0,
+   "T-progress": 0,
+   "T-review": 1,
+   "T-sheet": 0,
+   "T-source": 1,
+   "T-split": 0,
+   "T-table": 11,
+   "T-tap": 1,
+   "T-upload": 0,
+   "T-video": 1,
+   "T-webview": 0
+  },
+  "frozen": 160,
+  "open": 34,
   "by_section": {
    "X": {
     "name": "Read me first",
@@ -2199,7 +2846,9 @@
     "templates": 1,
     "by_template": {
      "T-card-stack": 1
-    }
+    },
+    "frozen": 1,
+    "open": 0
    },
    "A": {
     "name": "Entry and identity",
@@ -2209,7 +2858,9 @@
      "T-card": 1,
      "T-tap": 2,
      "T-video": 1
-    }
+    },
+    "frozen": 2,
+    "open": 2
    },
    "R": {
     "name": "Quick reveal (pre-paywall)",
@@ -2222,7 +2873,9 @@
      "T-progress": 1,
      "T-tap": 7,
      "T-video": 1
-    }
+    },
+    "frozen": 12,
+    "open": 0
    },
    "P": {
     "name": "Paywall and checkout",
@@ -2232,7 +2885,9 @@
      "T-card": 2,
      "T-paywall": 1,
      "T-webview": 2
-    }
+    },
+    "frozen": 4,
+    "open": 1
    },
    "O": {
     "name": "Onboarding hub",
@@ -2242,7 +2897,9 @@
      "T-card-stack": 1,
      "T-hub": 1,
      "T-sheet": 1
-    }
+    },
+    "frozen": 3,
+    "open": 0
    },
    "D": {
     "name": "Data collection",
@@ -2262,7 +2919,9 @@
      "T-tap": 10,
      "T-upload": 1,
      "T-webview": 1
-    }
+    },
+    "frozen": 58,
+    "open": 5
    },
    "G": {
     "name": "Outputs: plan and investment plan",
@@ -2274,7 +2933,9 @@
      "T-list": 1,
      "T-locked": 1,
      "T-progress": 2
-    }
+    },
+    "frozen": 13,
+    "open": 1
    },
    "K": {
     "name": "Adviser calls",
@@ -2285,7 +2946,9 @@
      "T-card-stack": 2,
      "T-list": 1,
      "T-picker": 1
-    }
+    },
+    "frozen": 4,
+    "open": 2
    },
    "E": {
     "name": "Execution",
@@ -2296,7 +2959,9 @@
      "T-hub": 1,
      "T-list": 5,
      "T-review": 1
-    }
+    },
+    "frozen": 3,
+    "open": 8
    },
    "H": {
     "name": "Living dashboard",
@@ -2309,7 +2974,9 @@
      "T-hub": 12,
      "T-list": 3,
      "T-table": 1
-    }
+    },
+    "frozen": 22,
+    "open": 1
    },
    "Q": {
     "name": "Lifecycle and reviews",
@@ -2321,7 +2988,9 @@
      "T-list": 2,
      "T-paywall": 1,
      "T-review": 2
-    }
+    },
+    "frozen": 8,
+    "open": 2
    },
    "N": {
     "name": "Returning-user states",
@@ -2330,7 +2999,9 @@
     "by_template": {
      "T-msg": 27,
      "T-table": 4
-    }
+    },
+    "frozen": 30,
+    "open": 1
    },
    "M": {
     "name": "Admin (bought tools)",
@@ -2338,7 +3009,9 @@
     "templates": 1,
     "by_template": {
      "T-table": 1
-    }
+    },
+    "frozen": 0,
+    "open": 1
    },
    "L": {
     "name": "Logic panel (built by devs)",
@@ -2346,7 +3019,9 @@
     "templates": 1,
     "by_template": {
      "T-table": 10
-    }
+    },
+    "frozen": 0,
+    "open": 10
    }
   },
   "by_status": {

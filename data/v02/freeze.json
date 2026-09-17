@@ -1,0 +1,281 @@
+{
+ "source": "minutes 16 Sep 2026, item 19 (Spinach works from the board once each screen and each API carries a frozen marker); the brief of 17 Sep 2026, pass 2; Vatsal, 17 Sep 2026",
+ "note": "The freeze register. Every live screen is frozen since the date below unless it is listed under open. A frozen screen's template, fields and tags, branches, states and events do not change without an entry in unfreeze_log (date, screen, cause, what changed); copy, prices, counts, bands, scoring maps and grid values are config and are not covered. An open screen carries its reason on the page: the explicit reason here, every 'to be decided:' line on the screen, and every 'to be verified:' item that blocks it (the blocks list, per item and screen). Items not in blocks are owed: listed on the screen as owed, not as a reason. tbd_owed names the 'to be decided' lines that do not open their screen (each is a tracker row). Only a commit changes a status; the page has no control for it. scripts/apply_decisions.py writes screen.freeze from this file and fails the build when an open screen has no reason or a frozen screen carries a blocking item.",
+ "since": "17 Sep 2026",
+ "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+ "templates": {
+  "status": "frozen",
+  "since": "17 Sep 2026",
+  "cause": "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+  "what": "element types and their order"
+ },
+ "open": [
+  {
+   "id": "A03",
+   "reason": "",
+   "cause": "minutes 16 Sep 2026, item 10"
+  },
+  {
+   "id": "A04",
+   "reason": "",
+   "cause": "minutes 16 Sep 2026, item 10"
+  },
+  {
+   "id": "A10",
+   "reason": "",
+   "cause": "minutes 16 Sep 2026, item 6"
+  },
+  {
+   "id": "A10c",
+   "reason": "",
+   "cause": "minutes 16 Sep 2026, item 6"
+  },
+  {
+   "id": "D02c",
+   "reason": "",
+   "cause": "minutes 16 Sep 2026, item 6"
+  },
+  {
+   "id": "G12a",
+   "reason": "",
+   "cause": "minutes 16 Sep 2026, item 6"
+  },
+  {
+   "id": "H06",
+   "reason": "",
+   "cause": "minutes 16 Sep 2026, item 5"
+  },
+  {
+   "id": "P04",
+   "reason": "",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "E02",
+   "reason": "built last; open until the vendor documentation is read",
+   "cause": "minutes 16 Sep 2026, item 11"
+  },
+  {
+   "id": "E03",
+   "reason": "built last; open until the vendor documentation is read",
+   "cause": "minutes 16 Sep 2026, item 11"
+  },
+  {
+   "id": "E04",
+   "reason": "built last; open until the vendor documentation is read",
+   "cause": "minutes 16 Sep 2026, item 11"
+  },
+  {
+   "id": "E07",
+   "reason": "built last; open until the vendor documentation is read",
+   "cause": "minutes 16 Sep 2026, item 11"
+  },
+  {
+   "id": "E08",
+   "reason": "built last; open until the vendor documentation is read",
+   "cause": "minutes 16 Sep 2026, item 11"
+  },
+  {
+   "id": "E09",
+   "reason": "built last; open until the vendor documentation is read",
+   "cause": "minutes 16 Sep 2026, item 11"
+  },
+  {
+   "id": "E10",
+   "reason": "built last; open until the vendor documentation is read",
+   "cause": "minutes 16 Sep 2026, item 11"
+  },
+  {
+   "id": "E11",
+   "reason": "built last; open until the vendor documentation is read",
+   "cause": "minutes 16 Sep 2026, item 11"
+  },
+  {
+   "id": "Q02",
+   "reason": "",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "Q04",
+   "reason": "",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "N28",
+   "reason": "",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "D02d",
+   "reason": "",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "A05a",
+   "reason": "",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "K02",
+   "reason": "no video and recording vendor yet (I24)",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "K06",
+   "reason": "no video and recording vendor yet (I24)",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "M01",
+   "reason": "",
+   "cause": "minutes 16 Sep 2026, item 20"
+  },
+  {
+   "id": "L00",
+   "reason": "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "L01",
+   "reason": "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "L02",
+   "reason": "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "L03",
+   "reason": "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "L04",
+   "reason": "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "L05",
+   "reason": "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "L06",
+   "reason": "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "L07",
+   "reason": "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "L08",
+   "reason": "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery",
+   "cause": "Vatsal, 17 Sep 2026"
+  },
+  {
+   "id": "L09",
+   "reason": "the table shapes are owed under W04, due 19 Sep 2026; freezes with that delivery",
+   "cause": "Vatsal, 17 Sep 2026"
+  }
+ ],
+ "blocks": [
+  {
+   "item": "CAS parsing effort in V1",
+   "screens": [
+    "A10"
+   ]
+  },
+  {
+   "item": "NPS on AA",
+   "screens": [
+    "D02d"
+   ]
+  },
+  {
+   "item": "TSP FIP health API readable before consent",
+   "screens": [
+    "A05a"
+   ]
+  },
+  {
+   "item": "direct plans and the RIA code hold on this rail",
+   "screens": [
+    "E07",
+    "E08",
+    "E09"
+   ]
+  },
+  {
+   "item": "e-NACH approval time at the banks, and whether a limit change amends the mandate or registers a new one",
+   "screens": [
+    "E10"
+   ]
+  },
+  {
+   "item": "mandate type and limits for monthly and quarterly recurring UPI",
+   "screens": [
+    "P04"
+   ]
+  },
+  {
+   "item": "whether netbanking can carry a recurring mandate",
+   "screens": [
+    "P04"
+   ]
+  },
+  {
+   "item": "proration and refund on a period switch",
+   "screens": [
+    "Q02"
+   ]
+  },
+  {
+   "item": "recording consent and retention",
+   "screens": [
+    "K06"
+   ]
+  },
+  {
+   "item": "the SEBI nomination rule for new folios and the exact UCC field set on BSE StAR MF",
+   "screens": [
+    "E02"
+   ]
+  },
+  {
+   "item": "what happens to advice if the annual confirmation is not given (brief compliance)",
+   "screens": [
+    "Q04",
+    "N28"
+   ]
+  },
+  {
+   "item": "parsing effort",
+   "screens": [
+    "A10",
+    "A10c",
+    "D02c",
+    "G12a"
+   ]
+  },
+  {
+   "item": "which BSE StAR MF services exist in the JSON interface (client registration, mandate, order, SIP, payment, reports)",
+   "screens": [
+    "E02",
+    "E07"
+   ]
+  }
+ ],
+ "tbd_owed": [
+  {
+   "item": "client-side storage and the session timeout rule, by Spinach's data lifecycle map (W21)",
+   "screens": [
+    "X00"
+   ],
+   "owed": "W21"
+  }
+ ],
+ "unfreeze_log": []
+}

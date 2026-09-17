@@ -2,7 +2,9 @@
 // Embedded by scripts/build_site.py into docs/wireframes_v02.html after the data blobs:
 //   SECTIONS, SCREENS (live screens in flow order), DROPPED (ids), STATES (section N contract, may be empty),
 //   REASONS (compliance reason -> {review, check}).
-// Filters: tier, path, state, compliance, template. Comments save under localStorage key "yeslyf_wire_v02";
+//   INTEGRATIONS (phase 12: {as_of, rows: [{id, vendor, choice, fallback, screens}]}, the rows that serve each screen)
+//   and FREEZE (the templates' freeze status), both optional.
+// Filters: tier, path, state, compliance, template, frozen. Comments save under localStorage key "yeslyf_wire_v02";
 // every verdict, reason and comment change is one row in board_entries (page "wireframes_v02") through the shared
 // layer scripts/board_store.js (window.yeslyfBoard), which also fills the top bar pill and the History toggle.
 // WIRE_OPTS (optional, set by the audience files of phase 9): identities (list), lock (one identity, fixed),
@@ -21,7 +23,11 @@
   var VERDICTS = ["Keep","Change","Drop","Question"];
   var KEY = OPTS.key || "yeslyf_wire_v02";
   var PAGE = OPTS.page || "wireframes_v02";
-  var state = { idx:0, tier:"ALL", path:"both", st:"", comp:"all", tpl:"all", map:false };
+  var state = { idx:0, tier:"ALL", path:"both", st:"", comp:"all", tpl:"all", fz:"all", map:false };
+  var FREEZES = ["all","frozen","open"];
+  var INTEG = (typeof INTEGRATIONS !== "undefined" && INTEGRATIONS) ? INTEGRATIONS : {as_of:"", rows:[]};
+  var TFZ = (typeof FREEZE !== "undefined" && FREEZE) ? FREEZE : null;
+  var liveChoices = null;  // final or open per integrations row, read from the board table once the page is live
   var byId = {}; SCREENS.forEach(function(s,i){ byId[s.id]=i; });
   var secName = {}; SECTIONS.forEach(function(s){ secName[s[0]]=s[1]; });
   var states = (typeof STATES !== "undefined" && STATES) ? STATES : [];
@@ -66,12 +72,13 @@
     return !!(c.reasons && c.reasons.indexOf(state.comp) >= 0);
   }
   function tplOk(s){ return state.tpl === "all" || s.template === state.tpl; }
-  function inScope(s){ return pathOk(s) && compOk(s) && tplOk(s); }
+  function fzOk(s){ return state.fz === "all" || (s.freeze && s.freeze.status === state.fz); }
+  function inScope(s){ return pathOk(s) && compOk(s) && tplOk(s) && fzOk(s); }
   function scope(){ return SCREENS.filter(inScope); }
   function walkList(){ var out = []; SCREENS.forEach(function(s,i){ if(inScope(s) && tierOk(s)) out.push(i); }); return out; }
   function ensureScope(i){
     if(inScope(SCREENS[i])) return;
-    state.path = "both"; state.comp = "all"; state.tpl = "all"; syncFilters();
+    state.path = "both"; state.comp = "all"; state.tpl = "all"; state.fz = "all"; syncFilters();
   }
 
   // ---------- wireframe element renderer (v0.1 grammar) ----------
@@ -113,6 +120,7 @@
         var cls = (i === state.idx ? ' on' : '') + (tierOk(s) ? '' : ' dim');
         var dot = n && (n.text || n.verdict) ? '<i class="dot"></i>' : '';
         var mark = s.v02 && s.v02.status === "new" ? '<i class="mk new">new</i>' : (s.v02 && (s.v02.status === "changed" || s.v02.status === "rebuilt") ? '<i class="mk">changed</i>' : '');
+        if(s.freeze && s.freeze.status === "open") mark += '<i class="mk open">open</i>';
         html += '<a class="nav-item'+cls+'" href="#'+s.id+'"><span class="nav-id">'+s.id+'</span><span>'+esc(s.title)+mark+'</span>'+dot+'</a>';
       });
       html += '</div>';
@@ -148,7 +156,8 @@
     frame.className = "frame " + (s.frame === "desktop" ? "desktop" : "phone");
     var body = s.ui.map(el).join("");
     var hidden = !tierOk(s) ? '<div class="w-hidden">Not shown to a '+esc(state.tier)+' user</div>' : '';
-    frame.innerHTML = '<div class="frame-top"><span>'+esc(s.id)+'</span><span>'+esc(s.title)+'</span><span>'+esc(s.template)+'</span></div><div class="frame-body">'+hidden+body+'</div>';
+    var fz = s.freeze ? '<span class="fz">'+esc(s.freeze.status)+'</span>' : '';
+    frame.innerHTML = '<div class="frame-top"><span>'+esc(s.id)+'</span><span>'+esc(s.title)+'</span><span>'+esc(s.template)+'</span>'+fz+'</div><div class="frame-body">'+hidden+body+'</div>';
     document.getElementById("crumb").textContent = secName[s.sec] + "  /  " + s.id + "  " + s.title;
     var w = walkList(); var pos = w.indexOf(state.idx);
     document.getElementById("counter").textContent = (pos >= 0 ? (pos+1) + " of " + w.length : "outside the current filter") + "  /  " + SCREENS.length + " screens in v0.2";
@@ -186,7 +195,28 @@
     var label = st === "new" ? "New in v0.2" : (st === "changed" || st === "rebuilt") ? "Changed in v0.2" + (st === "rebuilt" ? " (rebuilt)" : "") : "Kept from v0.1";
     var cls = st === "new" ? " new" : (st === "changed" || st === "rebuilt") ? " changed" : "";
     var causes = (SPEC === "full" && v.causes && v.causes.length) ? '<div>Cause: '+v.causes.map(esc).join("; ")+'</div>' : '';
-    return '<div class="marker'+cls+'"><b>'+label+'</b>'+causes+'</div>';
+    return '<div class="marker'+cls+'">'+freezeLine(s)+'<b>'+label+'</b>'+causes+'</div>';
+  }
+  function freezeLine(s){
+    // Frozen since <date>, owed: ...  or  Open because: ... (phase 12; text, never colour alone). One item reads
+    // inline; several read as a list, so the box stays scannable.
+    var f = s.freeze; if(!f) return '';
+    function items(arr){ if(!arr || !arr.length) return ''; if(arr.length === 1) return ' '+esc(arr[0]); return '<ul class="fz-list">'+arr.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ul>'; }
+    var owed = (f.owed && f.owed.length) ? '<div class="fz-owed">Owed:'+items(f.owed)+'</div>' : '';
+    if(f.status === "open") return '<div class="fz-line"><b>Open</b> since '+esc(f.since)+', because:'+items(f.reason)+owed+'</div>';
+    return '<div class="fz-line"><b>Frozen</b> since '+esc(f.since)+(owed ? '' : '')+'</div>'+owed;
+  }
+  function integrationsBlock(s){
+    // The rows whose screens list names this screen, with the final or open choice: the build's value with its
+    // date until the live rows arrive, then the current choice from the board table. Rows serving every screen
+    // (screens ["all"]) are not repeated here.
+    var rows = INTEG.rows.filter(function(r){ return r.screens.indexOf(s.id) >= 0; });
+    var title = "Integrations" + ((!liveChoices && INTEG.as_of) ? " (as of " + esc(INTEG.as_of) + ")" : "");
+    if(!rows.length) return '<div class="spec-block"><div class="spec-t">'+title+'</div><div class="tiers">none</div></div>';
+    return '<div class="spec-block"><div class="spec-t">'+title+'</div><ul>'+rows.map(function(r){
+      var ch = (liveChoices && liveChoices[r.id]) || r.choice || "open";
+      var slip = (r.fallback && r.fallback !== "none") ? '; if it slips: '+esc(r.fallback) : '';
+      return '<li>'+esc(r.id)+' '+esc(r.vendor)+', '+esc(ch)+slip+'</li>'; }).join("")+'</ul></div>';
   }
 
   function renderSpec(){
@@ -224,6 +254,7 @@
     html += list("Branches", s.spec.branches, true);
     html += list("States", s.spec.states);
     html += list("Dev notes", s.spec.dev);
+    html += integrationsBlock(s);
     html += list("Events", s.events);
     if(SPEC === "full"){
       html += '<div class="spec-block"><div class="spec-t">Compliance flag</div><div class="tiers">' + (c.review ? 'review: yes' : 'review: no') + '; reasons: ' + esc((c.reasons || []).join(", ")) + (c.note ? '; ' + esc(c.note) : '') + '</div></div>';
@@ -321,6 +352,7 @@
     else if(kind === "path"){ state.path = PATHS.indexOf(value) >= 0 ? value : "both"; }
     else if(kind === "comp"){ state.comp = (value === "all" || value === "flagged" || reasonNames.indexOf(value) >= 0) ? value : "all"; }
     else if(kind === "tpl"){ state.tpl = (value === "all" || templates.indexOf(value) >= 0) ? value : "all"; }
+    else if(kind === "freeze"){ state.fz = FREEZES.indexOf(value) >= 0 ? value : "all"; }
     else if(kind === "state"){
       state.st = stateById[value] ? value : "";
       var st = stateById[state.st];
@@ -340,6 +372,7 @@
     var p = document.getElementById("fpath"); if(p) p.value = state.path;
     var c = document.getElementById("fcomp"); if(c) c.value = state.comp;
     var t = document.getElementById("ftpl"); if(t) t.value = state.tpl;
+    var z = document.getElementById("ffreeze"); if(z) z.value = state.fz;
     var s = document.getElementById("fstate"); if(s) s.value = state.st;
     var sel = document.getElementById("jump");
     if(sel){ sel.innerHTML = scope().map(function(x){ return '<option value="'+x.id+'">'+x.id+'  '+esc(x.title)+'</option>'; }).join(""); sel.value = SCREENS[state.idx].id; }
@@ -370,8 +403,13 @@
     }
     var ft = document.getElementById("ftpl");
     if(ft){
-      ft.innerHTML = opt("all", "all templates", true) + templates.map(function(t){ return opt(t, t, false); }).join("");
+      ft.innerHTML = opt("all", "all templates" + (TFZ ? ", " + TFZ.count + " " + TFZ.status + " since " + TFZ.since : ""), true) + templates.map(function(t){ return opt(t, t, false); }).join("");
       ft.addEventListener("change", function(){ setFilter("tpl", ft.value); });
+    }
+    var ff = document.getElementById("ffreeze");
+    if(ff){
+      ff.innerHTML = opt("all", "frozen and open", true) + opt("frozen", "frozen only", false) + opt("open", "open only", false);
+      ff.addEventListener("change", function(){ setFilter("freeze", ff.value); });
     }
 
     var prev = document.getElementById("prev"); if(prev) prev.addEventListener("click", function(){ step(-1); });
@@ -401,7 +439,9 @@
     var ta = document.getElementById("comment"); var timer;
     if(ta) ta.addEventListener("input", function(){ var id = SCREENS[state.idx].id; var n = noteFor(id); n.text = ta.value; n.who = store.who; save();
       flash("Saving..."); clearTimeout(timer); timer = setTimeout(function(){ saved(put(id, "text", noteFor(id).text || "", "comment")); renderNav(); }, 1500); });
-    if(BOARD){ BOARD.attach(ta, function(){ return SCREENS[state.idx].id; }); BOARD.init({page: PAGE, apply: applyRemote}); }
+    if(BOARD){ BOARD.attach(ta, function(){ return SCREENS[state.idx].id; }); BOARD.init({page: PAGE, apply: applyRemote});
+      if(INTEG.rows.length) BOARD.read({page: "integrations", apply: function(latest, rows, ok){ if(!ok) return; liveChoices = {};
+        latest.forEach(function(r){ if(r.field === "choice" && (r.value === "final" || r.value === "open")) liveChoices[r.item_id] = r.value; }); renderSpec(); }}); }
 
     var sel = document.getElementById("jump");
     if(sel) sel.addEventListener("change", function(){ if(byId[sel.value] !== undefined) go(byId[sel.value]); });
@@ -422,7 +462,7 @@
     walk: function(){ return walkList().map(function(i){ return SCREENS[i].id; }); },
     current: function(){ return SCREENS[state.idx].id; },
     exportText: exportText,
-    filters: function(){ return {tiers:TIERS, paths:PATHS, comps:COMP_FILTER ? ["all","flagged"].concat(reasonNames) : [], templates:templates, states:states.map(function(st){ return st.id; })}; },
+    filters: function(){ return {tiers:TIERS, paths:PATHS, comps:COMP_FILTER ? ["all","flagged"].concat(reasonNames) : [], templates:templates, states:states.map(function(st){ return st.id; }), freeze:document.getElementById("ffreeze") ? FREEZES : []}; },
     landing: function(id){ return stateById[id] ? stateById[id].lands_on : ""; }
   };
 })();
