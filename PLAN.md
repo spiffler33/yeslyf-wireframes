@@ -466,3 +466,28 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   reports/phase12_pass1.md. Next: Phase 13 after the admin session (the Admin and CRM page against Zoho One, the tool
   over the app database, lead stages and the fulfilment percentage, the website brief); the CAS decision applied to
   A10, A10c, D02c and G12a when W11 closes; docs links and sandbox dates beyond the three seeds (W16).
+
+## 18. Status, 17 Sep 2026, afternoon (the board after the walkthrough: held edits, the folded spec panel)
+
+- Held edits (080e6e2, e800ed9): Kajal's Integrations edits never reached the table because a write without a name
+  was refused and the notice cleared in under two seconds. scripts/board_store.js now holds a nameless edit in the
+  browser (the latest value per item and field), the pill reads "N edits waiting for a name", the page asks in words
+  beside the name control ("Who is this? Pick your name to record your N edits.") until a name is picked, and
+  named(who) sends the held rows; init({who, local}) also sends what the page shows and the table lacks, compared
+  against every fetched row (test rows and the pages read alongside included) and only after the table is read.
+  The first version of that sync re-sent 15 stale values from Vatsal's browser at 13:50 (rows 15 to 29): twelve
+  (W mirrors under page tracker, the A02 and O01 test comments) are in data/board_ignore.json; rows 15 to 17 (I00
+  status and choice, I01 status) were Vatsal's own unrecorded edits and stand. 16 test rows ignored in all.
+- The spec panel (12b196e): six things open (marker line, purpose, fields, Moving forward, ladder and chip maps
+  where present, branches), the rest folded with a count (causes inside the marker box, Logic, States, Dev notes,
+  Integrations when a row serves the screen, Events, the compliance flag, which opens itself when review is yes).
+  A fold the reader changes stays that way on the next screens; "Show all sections" at the foot; both remembered in
+  the browser (store.panel). Template, path and tier read as one foot line. Default reader Spinach (Vatsal,
+  17 Sep 2026). The compliance audience page keeps its short panel. Skin, columns, widths and block names unchanged.
+- Raafiya joins the reviewer identities after Somil (spiff, 17 Sep 2026): renderer, Integrations, Tracker, the team
+  audience file, check 16, validate_v02 NAMES_UI, CLAUDE.md.
+- Rules amended: plan_v2.md section 12 and the handoff say the no-name rule holds the edit instead of dropping it.
+- Known limitation: the review link (docs/review/) runs the full panel with causes and the compliance flag, as set
+  up before today; only the Spinach file under docs/audiences/ hides both. Switch the review page's mode if Spinach
+  should see the lighter panel there.
+- Next unchanged: Spinach's questions (21 Sep 2026), then Phase 13 after the admin session.
