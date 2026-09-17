@@ -14,7 +14,7 @@
   var OPTS = (typeof WIRE_OPTS !== "undefined" && WIRE_OPTS) ? WIRE_OPTS : {};
   var TIERS = ["ALL","DIY","DIWM","DIFM"];
   var PATHS = ["both","aa","manual"];
-  var IDENTITIES = OPTS.identities || ["Bhuvanaa","Harish","Gaurav","Kajal","Somil","Vatsal","Spinach","Compliance"];
+  var IDENTITIES = OPTS.identities || ["Bhuvanaa","Harish","Gaurav","Kajal","Somil","Raafiya","Vatsal","Spinach","Compliance"];
   var LOCK = OPTS.lock || "";
   var SPEC = OPTS.spec || "full";
   var COMP_FILTER = OPTS.compFilter !== false;

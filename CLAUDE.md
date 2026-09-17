@@ -5,9 +5,9 @@ spiff (Vatsal) directs the work. Read plan_v2.md for what to build now; PLAN.md 
 repo, the data layer and the history. These rules override both where they conflict.
 
 ## People and voice
-- First names only: Bhuvanaa, Harish, Gaurav, Kajal, Somil, Vatsal (spiff). No titles, no surnames, never "founders".
-  Reviewer identities in the comment controls: the five names above, plus "Spinach" (the UI/UX studio) and
-  "Compliance" (the compliance reviewers). Never invent a person's name.
+- First names only: Bhuvanaa, Harish, Gaurav, Kajal, Somil, Raafiya (added 17 Sep 2026), Vatsal (spiff). No titles,
+  no surnames, never "founders". Reviewer identities in the comment controls: the six names above, plus "Spinach"
+  (the UI/UX studio) and "Compliance" (the compliance reviewers). Never invent a person's name.
 - Tone in generated pages: plain, short, no sales language, no praise. Sentence case. Plain hyphens, no em dashes.
 - ASCII only in files and pages. No emojis. Currency as "Rs", never the rupee symbol. Brand as "yeslyf", lowercase,
   everywhere, including at the start of a sentence.

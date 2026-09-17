@@ -257,8 +257,8 @@ def check16(screens):
         if name == "yeslyf_v02_team.html":
             if "CRM backlog" not in html or 'data-viewpane="admin"' not in html or 'data-viewpane="changelog"' not in html:
                 p.append("team file lacks the admin, CRM backlog or changelog view")
-            if opts.get("identities") != ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Spinach", "Compliance"]:
-                p.append("team identities are not the seven")
+            if opts.get("identities") != ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Spinach", "Compliance"]:
+                p.append("team identities are not the eight")
         notes.append("%s %d screens, %d KB" % (name, out["screens"], round(len(html) / 1024)))
     return p, "; ".join(notes)
 

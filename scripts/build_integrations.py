@@ -37,7 +37,7 @@ import build_site as site  # noqa: E402
 
 PAGE = "integrations.html"
 DATA_FILE = os.path.join(DATA, "integrations.json")
-IDENTITIES = ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Vatsal", "Spinach", "Compliance"]
+IDENTITIES = ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Vatsal", "Spinach", "Compliance"]
 STATUSES = ["not started", "in talks", "agreement signed", "sandbox", "production", "dropped"]
 GATES = ["launch", "execution switch", "later"]
 FIELDS = ["id", "category", "vendor", "alternatives", "role", "screens", "gates", "fallback", "owner", "status",

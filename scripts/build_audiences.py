@@ -23,7 +23,7 @@ SCRIPTS = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SCRIPTS)
 import build_site as site  # noqa: E402
 
-TEAM_IDENTITIES = ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Spinach", "Compliance"]
+TEAM_IDENTITIES = ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Spinach", "Compliance"]
 BANNER = "All copy is placeholder pending compliance review; comment on language on any screen."
 FILES = [("yeslyf_v02_team.html", "team"), ("yeslyf_v02_spinach.html", "Spinach"), ("yeslyf_v02_compliance.html", "compliance")]
 

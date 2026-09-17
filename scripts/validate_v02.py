@@ -24,7 +24,7 @@ FORBIDDEN = ["founders", "Founders", "recommendation", "Recommendation", "Priya"
              "15-minute", "45 minute", "30 minute", "15 minute", "minute call", "one call", "One call", "two calls",
              "three calls", "four calls", "1 call", "2 calls", "3 calls", "4 calls", "60-day", "60 day", "S26"]
 # First names that must not appear in drawn ui text (callouts name the item, never a person).
-NAMES_UI = ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Vatsal", "spiff", "Priya"]
+NAMES_UI = ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Vatsal", "spiff", "Priya"]
 # Phase 12 (Vatsal, 17 Sep 2026): a screen cites an integrations row by its I-number; the vendor name is rendered
 # from data/integrations.json. These names must not appear anywhere on a live screen.
 VENDOR_NAMES = ["Digio", "Setu", "OneMoney", "Cybrilla", "SendGrid", "Azure", "HubSpot", "OneSignal", "Calendly", "Appsmith", "Retool"]

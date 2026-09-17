@@ -208,7 +208,7 @@
 <div class="rec"><b>Vatsal recommendation:</b> Thirty community members in January on a build with the reveal, paywall and data flow; execution optional.</div>
 <div class="gap-c"><label>Status <select data-gap="G13" data-f="status" disabled><option value="">open</option><option>owner named</option><option>agreed, date set</option><option>dropped</option></select></label><label>Owner <input data-gap="G13" data-f="owner" placeholder="first name" disabled></label><label>By <input type="date" data-gap="G13" data-f="date" disabled></label></div>
 <textarea class="note" data-gap="G13" data-f="note" placeholder="Note" disabled></textarea></div></main></div>
-<script>var BOARD_IGNORE=[{"page": "setup", "item_id": "TEST", "minute": "2026-09-16T04:53"}, {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-16T04:55"}, {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-16T06:23"}];// yeslyf board store: the shared save layer of every page (phase 11, Vatsal, 16 Sep 2026).
+<script>var BOARD_IGNORE=[{"page": "setup", "item_id": "TEST", "minute": "2026-09-16T04:53"}, {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-16T04:55"}, {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-16T06:23"}, {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-17T05:50"}, {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W01", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W02", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W04", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W05", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W06", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W08", "minute": "2026-09-17T05:50"}];// yeslyf board store: the shared save layer of every page (phase 11, Vatsal, 16 Sep 2026).
 // Every comment, verdict and field edit on every page is one row in the Supabase table board_entries
 // (page, item_id, field, value, who, kind, created_at); rows are never updated or deleted. docs/config.js, loaded
 // in the head before this script, sets SUPABASE_URL and SUPABASE_ANON_KEY; both blank keeps the page local only.
@@ -231,10 +231,13 @@
 // browser (the latest value per item and field), the pill says how many are waiting, and the moment the page picks
 // a name (named(who)) they go out stamped with it. init({who, local}) does the same on load: local() returns the
 // values the page shows ({item_id, field, value, kind}); any the table does not hold are sent too, so an edit typed
-// before the name was picked, or before this rule existed, is recorded once there is a name.
+// before the name was picked, or before this rule existed, is recorded once there is a name. While edits wait, the
+// page asks in words beside the name control ("Who is this? Pick your name to record your N edits.") until a name
+// is picked; the ask is the store's own element and style, so every page gets it (Vatsal, 17 Sep 2026).
 (function(){
   var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
-  var NAME_TEXT = "Pick who you are at the top; your edits are held until then and recorded once you do.";
+  var NAME_TEXT = "Held until you pick your name at the top; recorded then.";
+  var ALL = {}, loaded = false;  // the latest value per item and field over every row fetched on load, test rows included
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var FIELDS = "id,page,item_id,field,value,who,kind,created_at";
   var IGNORE = (typeof BOARD_IGNORE !== "undefined" && BOARD_IGNORE) ? BOARD_IGNORE : [];
@@ -263,9 +266,29 @@
     return false;
   }
   function keep(rows){ var out = []; for(var i = 0; i < rows.length; i++) if(!ignored(rows[i])) out.push(rows[i]); return out; }
+  function control(){ return document.getElementById("reviewer") || document.getElementById("who"); }
+  var styled = false;
+  function askStyle(){
+    if(styled || !document.head || !document.head.appendChild) return; styled = true;
+    var st = document.createElement("style");
+    st.textContent = ".askname-note{font-weight:700;color:#1B1F27;background:#FFF4B8;border:1px solid #C9A800;border-radius:6px;padding:4px 8px;font-size:12px;line-height:1.3}" +
+                     "select.askname,input.askname{border:2px solid #1B1F27 !important}";
+    document.head.appendChild(st);
+  }
+  function ask(held){
+    // The ask beside the name control while edits wait for a name: words that stay, not a flash.
+    var c = control(); if(!c || !c.parentNode) return;
+    var el = document.getElementById("askname");
+    if(!held){ if(el && el.parentNode) el.parentNode.removeChild(el); if(c.classList) c.classList.remove("askname"); return; }
+    if(!el || !el.parentNode){ el = document.createElement("span"); el.id = "askname"; el.className = "askname-note"; c.parentNode.insertBefore(el, c.nextSibling); askStyle(); }
+    el.textContent = "Who is this? Pick your name to record your " + (held === 1 ? "edit." : held + " edits.");
+    if(c.classList) c.classList.add("askname");
+  }
   function pill(){
+    var held = page ? pc().held.length : 0;
+    ask(held);
     var p = document.getElementById("sheetpill"); if(!p) return;
-    var text, title, on = false, held = page ? pc().held.length : 0;
+    var text, title, on = false;
     if(held){ text = held + (held === 1 ? " edit" : " edits") + " waiting for a name"; title = NAME_TEXT; }
     else if(!configured){ text = "offline, saved locally"; title = "docs/config.js has no Supabase URL and key: edits stay in this browser"; }
     else if(!checked){ text = "connecting"; title = "reading board_entries"; }
@@ -305,28 +328,33 @@
       });
     })();
   }
-  function fetchRows(pageName, offset, acc, cb){
+  function fetchRows(pageName, offset, acc, cb, all){
     // every row of one page (or of every page when pageName is ""), 1000 at a time, in id order; test rows dropped
+    // (all, when given, still records the latest value per item and field over every row, test rows included:
+    // the sync compares against it, so a local copy of a test row is never re-sent as a real one; 17 Sep 2026)
     var filter = pageName ? "&page=eq." + encodeURIComponent(pageName) : "";
     request("GET", "?select=" + FIELDS + filter + "&order=id.asc&limit=" + PAGE_SIZE + "&offset=" + offset, undefined, function(s, rows){
       if(s !== "ok" || !rows || typeof rows.length !== "number"){ cb(false); return; }
+      if(all) rows.forEach(function(r){ var k = r.item_id + "|" + r.field; if(!all[k] || r.id > all[k].id) all[k] = {id: r.id, value: String(r.value === undefined || r.value === null ? "" : r.value)}; });
       acc = acc.concat(keep(rows));
-      if(rows.length < PAGE_SIZE) cb(true, acc); else fetchRows(pageName, offset + PAGE_SIZE, acc, cb);
+      if(rows.length < PAGE_SIZE) cb(true, acc); else fetchRows(pageName, offset + PAGE_SIZE, acc, cb, all);
     });
   }
   function latestOf(rows){ var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; }); var out = []; for(var k in latest) out.push(latest[k]); return out; }
   function fetchPages(names, acc, cb){
     // the rows of several pages, merged in id order (ids grow with time, so the latest row per field is the last one)
     if(!names.length){ acc.sort(function(a, b){ return a.id - b.id; }); cb(true, acc); return; }
-    fetchRows(names[0], 0, [], function(ok, rows){ if(!ok){ cb(false); return; } fetchPages(names.slice(1), acc.concat(rows), cb); });
+    fetchRows(names[0], 0, [], function(ok, rows){ if(!ok){ cb(false); return; } fetchPages(names.slice(1), acc.concat(rows), cb); }, ALL);
   }
   function load(){
     pill();
     if(!configured || !page) return;
+    ALL = {}; loaded = false;
     flush(function(sent){
       fetchPages([page].concat(also), [], function(ok, rows){
         checked = true; var c = pc();
         if(ok){
+          loaded = true;
           var own = rows.filter(function(r){ return r.page === page; });
           c.rows = rows; c.last_write = own.length ? own[own.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
           if(applyFn){
@@ -375,23 +403,25 @@
     for(var i = 0; i < c.held.length; i++){ if(c.held[i].item_id === r.item_id && c.held[i].field === r.field){ c.held[i] = r; saveCache(); pill(); refreshHistory(); return; } }
     c.held.push(r); saveCache(); pill(); refreshHistory();
   }
-  function latestValue(c, item_id, field){
-    // the table's latest value for one field of this page (rows arrive in id order), or null when it has none
-    var v = null; c.rows.forEach(function(r){ if(r.page === page && r.item_id === item_id && r.field === field) v = String(r.value || ""); }); return v;
+  function latestValue(item_id, field){
+    // the table's latest value for one field over every row fetched on load (this page and the pages read with it,
+    // test rows included), or null when the table has none
+    var e = ALL[item_id + "|" + field]; return e ? e.value : null;
   }
   function sync(who){
-    // The page has a name: the held rows are stamped with it and sent, then every value the page shows that the
-    // table does not hold (local() minus the latest row per field) goes out as well. Returns how many were sent.
+    // The page has a name: the held rows are stamped with it and sent, then, once the table has been read, every
+    // value the page shows that the table does not hold (local() minus the latest row per field) goes out as well.
+    // Returns how many were sent.
     who = String(who || "").trim(); if(!page || !who) return 0;
     var c = pc(), now = new Date().toISOString(), out = [], seen = {};
     c.held.forEach(function(r){ r.who = who; r.created_at = now; delete r.held; out.push(r); seen[r.item_id + "|" + r.field] = 1; });
     c.held = [];
     c.outbox.forEach(function(r){ seen[r.item_id + "|" + r.field] = 1; });
-    var local = []; try { local = localFn ? (localFn() || []) : []; } catch(e){ local = []; }
+    var local = []; try { local = (loaded && localFn) ? (localFn() || []) : []; } catch(e){ local = []; }
     local.forEach(function(e){
       var item = String(e.item_id), field = String(e.field), value = String(e.value === undefined || e.value === null ? "" : e.value);
       if(seen[item + "|" + field]) return;
-      var remote = latestValue(c, item, field);
+      var remote = latestValue(item, field);
       if(remote === null ? value === "" : remote === value) return;
       out.push({page: page, item_id: item, field: field, value: value, who: who, kind: String(e.kind || "field_edit"), created_at: now, queued: true});
     });

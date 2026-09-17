@@ -32,7 +32,7 @@ import build_integrations as integ  # noqa: E402
 
 PAGE = "tracker.html"
 DATA_FILE = os.path.join(DATA, "tracker.json")
-IDENTITIES = ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Vatsal", "Spinach", "Compliance"]
+IDENTITIES = ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Vatsal", "Spinach", "Compliance"]
 STATUSES = ["not started", "in progress", "delivered", "blocked"]
 DIRECTIONS = ["HoA to Spinach", "Spinach to HoA", "HoA internal"]
 FIELDS = ["id", "item", "direction", "owner", "due_date", "due_about", "status", "blocked_by", "source", "lands_at", "notes"]

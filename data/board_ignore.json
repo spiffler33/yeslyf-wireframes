@@ -4,6 +4,14 @@
   "rows": [
     {"page": "setup", "item_id": "TEST", "minute": "2026-09-16T04:53", "what": "the setup probe (Vatsal, 16 Sep 2026)"},
     {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-16T04:55", "what": "the A02 Keep and comment of the live check, 10:25 IST (Kajal, 16 Sep 2026)"},
-    {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-16T06:23", "what": "the somil:example comment written on the call, 11:53 IST (minutes 16 Sep 2026, section 1)"}
+    {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-16T06:23", "what": "the somil:example comment written on the call, 11:53 IST (minutes 16 Sep 2026, section 1)"},
+    {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-17T05:50", "what": "the A02 test rows re-sent from Vatsal's browser by the first sync on name (commit 080e6e2), 11:20 IST (Vatsal, 17 Sep 2026)"},
+    {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-17T05:50", "what": "the somil:example comment re-sent the same way (Vatsal, 17 Sep 2026)"},
+    {"page": "tracker", "item_id": "W01", "minute": "2026-09-17T05:50", "what": "mirror of the 16 Sep W01 row under page integrations, re-sent the same way (Vatsal, 17 Sep 2026)"},
+    {"page": "tracker", "item_id": "W02", "minute": "2026-09-17T05:50", "what": "mirror of the 16 Sep W02 rows, re-sent the same way (Vatsal, 17 Sep 2026)"},
+    {"page": "tracker", "item_id": "W04", "minute": "2026-09-17T05:50", "what": "mirror of the 16 Sep W04 row, re-sent the same way (Vatsal, 17 Sep 2026)"},
+    {"page": "tracker", "item_id": "W05", "minute": "2026-09-17T05:50", "what": "mirror of the 16 Sep W05 row, re-sent the same way (Vatsal, 17 Sep 2026)"},
+    {"page": "tracker", "item_id": "W06", "minute": "2026-09-17T05:50", "what": "mirror of the 16 Sep W06 row, re-sent the same way (Vatsal, 17 Sep 2026)"},
+    {"page": "tracker", "item_id": "W08", "minute": "2026-09-17T05:50", "what": "mirror of the 16 Sep W08 rows, re-sent the same way (Vatsal, 17 Sep 2026)"}
   ]
 }
