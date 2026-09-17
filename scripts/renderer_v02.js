@@ -167,6 +167,7 @@
     if(typeof f === "string") return f;
     var bits = [];
     if(f.gate) bits.push("gate");
+    if(f.forward) bits.push(f.forward);
     if(f.source) bits.push("source " + (Array.isArray(f.source) ? f.source.join(", ") : f.source));
     if(f.precision) bits.push("precision " + (Array.isArray(f.precision) ? f.precision.join(", ") : f.precision));
     return (f.f || f.name || "") + (bits.length ? " (" + bits.join("; ") + ")" : "") + (f.note ? ": " + f.note : "");
@@ -199,6 +200,7 @@
     html += '<div class="spec-block"><div class="spec-t">Path</div><div class="tiers">'+esc(s.path)+'</div></div>';
     html += '<div class="spec-block"><div class="spec-t">Shown to</div><div class="tiers">'+esc(s.tier.join(", "))+'</div></div>';
     html += list("Fields captured", (s.spec.fields || []).map(fieldLine));
+    html += list("Moving forward", s.spec.forward);
     if(s.spec.ladder && s.spec.ladder.length){
       html += '<div class="spec-block"><div class="spec-t">Capture ladder</div><ul>'+s.spec.ladder.map(function(x){ return '<li><b>'+esc(x[0])+'</b>: '+esc(x[1])+'</li>'; }).join("")+'</ul></div>';
     }

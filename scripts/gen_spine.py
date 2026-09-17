@@ -13,6 +13,7 @@ draws the section strip (spine.json "strip") and places the screens by data/v02/
 
 CAUSE = "Vatsal, 10 Sep 2026"
 CAUSE_P9 = "Vatsal, 11 Sep 2026"  # phase 9: no client-data assumptions, data-capture improvements
+CAUSE_FWD = "Vatsal, 17 Sep 2026"  # mandatory and optional inputs: the Moving forward block and the field tags
 SHEET_TARGETS = {"aa": "A05", "cas": "A10", "vault": "H06"}
 EXIT_RULE = "Exit (rule 12): silent autosave with a Saved toast; no sheet (Vatsal, 11 Sep 2026)"
 
@@ -70,7 +71,7 @@ def num_screen(item, doc):
     fields = []
     for f in item["fields"]:
         fields.append({"f": f, "gate": f in doc["gate_fields"], "source": item.get("sources", "manual"),
-                       "precision": "exact | approx | unknown", "note": item["mode"]})
+                       "precision": "exact | approx | unknown", "note": item["mode"], "forward": "optional"})
     logic = [
         "%s (rule 3): %s" % (item["mode"].capitalize(), "the exact input leads; the bands sit under it" if item["mode"] == "exact-first" else "the bands lead; the exact input stays visible"),
         "Band rule (rule 3; Vatsal, 11 Sep 2026): fixed bands for this field from the M2 tables 9.1 to 9.5 where a table exists, else Rs ___ placeholder chips; a tapped band fills the exact field with the midpoint and tags the value approx; typing an exact number removes the tag. Dynamic bands are shelved until the data flywheel exists.",
@@ -86,6 +87,16 @@ def num_screen(item, doc):
     if item.get("plausibility"):
         logic.append("Plausibility (rule 4): %s; a mismatch prompts a check, never a block." % item["plausibility"])
     logic.extend(item.get("logic", []))
+    gate_names = [f["f"] for f in fields if f["gate"]]
+    sharpen_names = [f["f"] for f in fields if not f["gate"]]
+    forward = [
+        "Continue is always enabled: an exact amount, a band, the %s chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2)." % item.get("none", "None"),
+        "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+    ]
+    if gate_names:
+        forward.append("Optional, gate: %s; left not sure, D10 lists it and D13 takes a range before the plan builds (rule 7)." % ", ".join(gate_names))
+    if sharpen_names:
+        forward.append("Optional, sharpen: %s; left not sure, it becomes a Sharpen this link in the plan section that reads it." % ", ".join(sharpen_names))
     branches = [["Continue", item["next"]], ["Skip", item["next"]]]
     for key in ("aa", "cas", "vault"):
         if any(step[0] == key for step in item["ladder"]):
@@ -113,10 +124,10 @@ def num_screen(item, doc):
     return {
         "id": sid, "sec": "D", "title": item["title"], "tier": ["ALL"], "frame": "phone",
         "purpose": item["purpose"], "ui": ui,
-        "spec": {"fields": fields, "logic": logic, "branches": branches, "states": states, "dev": dev, "ladder": ladder},
+        "spec": {"fields": fields, "forward": forward, "logic": logic, "branches": branches, "states": states, "dev": dev, "ladder": ladder},
         "template": "T-num", "path": "both", "events": [],
         "compliance": {"review": False, "reasons": ["plain copy"]},
-        "v02": {"status": "new", "causes": [CAUSE, CAUSE_P9] + item.get("causes", [])},
+        "v02": {"status": "new", "causes": [CAUSE, CAUSE_P9, CAUSE_FWD] + item.get("causes", [])},
     }
 
 
@@ -137,13 +148,16 @@ def rpq_screens(doc):
             "id": q["id"], "sec": "D", "title": "Risk profile question %d" % (i + 1), "tier": ["ALL"], "frame": "phone",
             "purpose": "Risk profile question %d of 8: %s." % (i + 1, q["topic"]),
             "ui": ui,
-            "spec": {"fields": [{"f": "rpq_answers", "gate": True, "source": "manual", "precision": "exact", "note": "answer %d of 8" % (i + 1)}],
+            "spec": {"fields": [{"f": "rpq_answers", "gate": True, "source": "manual", "precision": "exact", "note": "answer %d of 8" % (i + 1), "forward": "required"}],
+                     "forward": ["Next is enabled once an option is chosen; the tap auto-advances.",
+                                 "Required: the answer (SEBI suitability; no fallback and no skip, appendix B).",
+                                 "Optional: nothing."],
                      "logic": logic, "branches": [["Next", nxt]],
                      "states": ["Retake from D09 or Settings: answers prefilled, any can change", EXIT_RULE],
                      "dev": ["Store the answer with the questionnaire version; to be verified: the RPQ scoring map (gap G06)."]},
             "template": "T-tap", "path": "both", "events": [],
             "compliance": {"review": True, "reasons": ["advice language"]},
-            "v02": {"status": "new", "causes": ["brief H3", CAUSE, CAUSE_P9]},
+            "v02": {"status": "new", "causes": ["brief H3", CAUSE, CAUSE_P9, CAUSE_FWD]},
         })
     return out
 

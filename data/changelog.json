@@ -7,7 +7,8 @@
    "status": "rebuilt",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -15,7 +16,16 @@
    "title": "Mobile number",
    "status": "changed",
    "causes": [
-    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
+    "Vatsal, 17 Sep 2026"
+   ]
+  },
+  {
+   "id": "A03",
+   "title": "OTP",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -28,11 +38,28 @@
    ]
   },
   {
+   "id": "R01",
+   "title": "Name and age",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 17 Sep 2026"
+   ]
+  },
+  {
    "id": "R02",
    "title": "Household",
    "status": "changed",
    "causes": [
-    "row 9"
+    "row 9",
+    "Vatsal, 17 Sep 2026"
+   ]
+  },
+  {
+   "id": "R03",
+   "title": "Household income",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -40,7 +67,32 @@
    "title": "Total saved and invested",
    "status": "changed",
    "causes": [
-    "row 10"
+    "row 10",
+    "Vatsal, 17 Sep 2026"
+   ]
+  },
+  {
+   "id": "R05",
+   "title": "Savings rate",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 17 Sep 2026"
+   ]
+  },
+  {
+   "id": "R06",
+   "title": "Money journey so far",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 17 Sep 2026"
+   ]
+  },
+  {
+   "id": "R07",
+   "title": "What matters at 50 / 65",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -66,7 +118,16 @@
    "status": "rebuilt",
    "causes": [
     "brief T1",
-    "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+    "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+    "Vatsal, 17 Sep 2026"
+   ]
+  },
+  {
+   "id": "P02",
+   "title": "Your details for the agreement",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -75,7 +136,8 @@
    "status": "changed",
    "causes": [
     "Vatsal, 10 Sep 2026 (supersedes brief T1)",
-    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+    "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -84,7 +146,8 @@
    "status": "rebuilt",
    "causes": [
     "brief K1; row 21",
-    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -113,7 +176,8 @@
    "status": "rebuilt",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "4.1 bug fix"
+    "4.1 bug fix",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -122,7 +186,8 @@
    "status": "changed",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -140,7 +205,8 @@
    "status": "changed",
    "causes": [
     "4.1 bug fix",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -162,7 +228,8 @@
     "Vatsal, 10 Sep 2026",
     "row 8",
     "4.1 bug fix",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -182,7 +249,8 @@
    "causes": [
     "Vatsal, 10 Sep 2026",
     "4.1 bug fix",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -192,7 +260,8 @@
    "causes": [
     "row 59",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -203,7 +272,8 @@
     "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
     "row 60",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -212,7 +282,8 @@
    "status": "changed",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -221,7 +292,8 @@
    "status": "rebuilt",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -352,7 +424,8 @@
    "causes": [
     "brief T2",
     "Vatsal, 10 Sep 2026 (supersedes brief T2)",
-    "Vatsal, 10 Sep 2026 (section 5)"
+    "Vatsal, 10 Sep 2026 (section 5)",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -395,7 +468,8 @@
    "status": "changed",
    "causes": [
     "brief G1 (default, not confirmed in the meeting)",
-    "Kajal, 16 Sep 2026"
+    "Kajal, 16 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -404,7 +478,8 @@
    "status": "changed",
    "causes": [
     "brief G1 (default, not confirmed in the meeting)",
-    "Kajal, 16 Sep 2026"
+    "Kajal, 16 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -412,6 +487,7 @@
    "title": "ETFs and stocks via smallcase Gateway",
    "status": "changed",
    "causes": [
+    "Vatsal, 17 Sep 2026",
     "Vatsal, 16 Sep 2026"
    ]
   },
@@ -420,7 +496,8 @@
    "title": "Guided action outside the app",
    "status": "changed",
    "causes": [
-    "brief H4"
+    "brief H4",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -503,7 +580,8 @@
    "causes": [
     "Vatsal, 10 Sep 2026 (supersedes brief T2)",
     "Vatsal, 10 Sep 2026 (section 5)",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -512,7 +590,8 @@
    "status": "rebuilt",
    "causes": [
     "Vatsal, 10 Sep 2026 (supersedes brief T1)",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -577,6 +656,7 @@
    "causes": [
     "brief H2",
     "row 51",
+    "Vatsal, 17 Sep 2026",
     "Vatsal, 16 Sep 2026"
    ]
   },
@@ -585,7 +665,16 @@
    "title": "Staging and impact preview",
    "status": "changed",
    "causes": [
-    "brief H2"
+    "brief H2",
+    "Vatsal, 17 Sep 2026"
+   ]
+  },
+  {
+   "id": "L06",
+   "title": "Publish",
+   "status": "changed",
+   "causes": [
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -606,7 +695,8 @@
    "template": "T-sheet",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -639,7 +729,8 @@
    "title": "Your CAS: upload and password",
    "template": "T-upload",
    "causes": [
-    "Vatsal, 10 Sep 2026"
+    "Vatsal, 10 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -647,7 +738,8 @@
    "title": "Your CAS: what I read",
    "template": "T-review",
    "causes": [
-    "Vatsal, 10 Sep 2026"
+    "Vatsal, 10 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -664,7 +756,8 @@
    "template": "T-detail",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -684,7 +777,8 @@
    "causes": [
     "brief H3",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -694,7 +788,8 @@
    "causes": [
     "brief H3",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -704,7 +799,8 @@
    "causes": [
     "brief H3",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -714,7 +810,8 @@
    "causes": [
     "brief H3",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -724,7 +821,8 @@
    "causes": [
     "brief H3",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -734,7 +832,8 @@
    "causes": [
     "brief H3",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -744,7 +843,8 @@
    "causes": [
     "brief H3",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -754,7 +854,8 @@
    "causes": [
     "brief H3",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -773,7 +874,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -782,7 +884,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -791,7 +894,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -800,7 +904,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -819,7 +924,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -828,7 +934,8 @@
    "template": "T-split",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -838,7 +945,8 @@
    "causes": [
     "Vatsal, 10 Sep 2026",
     "V5 Q1.4",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -847,7 +955,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -866,7 +975,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -875,7 +985,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -884,7 +995,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -893,7 +1005,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -902,7 +1015,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -911,7 +1025,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -920,7 +1035,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -929,7 +1045,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -938,7 +1055,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -947,7 +1065,8 @@
    "template": "T-num",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -967,7 +1086,8 @@
    "causes": [
     "row 59",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -987,7 +1107,8 @@
    "causes": [
     "row 60",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -997,7 +1118,8 @@
    "causes": [
     "row 60",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1007,7 +1129,8 @@
    "causes": [
     "row 60",
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1027,7 +1150,8 @@
    "causes": [
     "Vatsal, 10 Sep 2026",
     "V5 Q4.4b",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1036,7 +1160,8 @@
    "template": "T-tap",
    "causes": [
     "Vatsal, 10 Sep 2026",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1054,7 +1179,8 @@
    "title": "Quick ranges",
    "template": "T-list",
    "causes": [
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1107,7 +1233,8 @@
    "title": "Pick a slot",
    "template": "T-picker",
    "causes": [
-    "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+    "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1123,7 +1250,8 @@
    "title": "BSE StAR MF onboarding",
    "template": "T-list",
    "causes": [
-    "brief G1 (default, not confirmed in the meeting)"
+    "brief G1 (default, not confirmed in the meeting)",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1131,7 +1259,8 @@
    "title": "SIP mandate registration",
    "template": "T-card",
    "causes": [
-    "Kajal, 16 Sep 2026"
+    "Kajal, 16 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1140,6 +1269,7 @@
    "template": "T-list",
    "causes": [
     "Kajal, 16 Sep 2026",
+    "Vatsal, 17 Sep 2026",
     "Vatsal, 16 Sep 2026"
    ]
   },
@@ -1245,7 +1375,8 @@
    "template": "T-hub",
    "causes": [
     "Vatsal, 10 Sep 2026 (section 5)",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1278,7 +1409,8 @@
    "template": "T-card",
    "causes": [
     "Vatsal, 10 Sep 2026 (supersedes brief T1)",
-    "Vatsal, 10 Sep 2026 (section 5)"
+    "Vatsal, 10 Sep 2026 (section 5)",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1286,7 +1418,8 @@
    "title": "Payment failed",
    "template": "T-card",
    "causes": [
-    "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+    "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1303,7 +1436,8 @@
    "template": "T-review",
    "causes": [
     "Vatsal, 10 Sep 2026 (section 5)",
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1311,7 +1445,8 @@
    "title": "Something changed",
    "template": "T-list",
    "causes": [
-    "Vatsal, 11 Sep 2026"
+    "Vatsal, 11 Sep 2026",
+    "Vatsal, 17 Sep 2026"
    ]
   },
   {
@@ -1578,7 +1713,8 @@
    "title": "Portfolio constraints",
    "template": "T-table",
    "causes": [
-    "brief H2"
+    "brief H2",
+    "Vatsal, 17 Sep 2026"
    ]
   }
  ],
@@ -1850,6 +1986,12 @@
    ]
   },
   {
+   "item": "the SEBI nomination rule for new folios and the exact UCC field set on BSE StAR MF",
+   "screens": [
+    "E02"
+   ]
+  },
+  {
    "item": "the amount limits and the maximum tenure for UPI autopay and e-NACH on BSE StAR MF",
    "screens": [
     "E10"
@@ -2079,8 +2221,8 @@
   },
   "by_status": {
    "rebuilt": 15,
-   "kept": 17,
-   "changed": 49,
+   "kept": 9,
+   "changed": 57,
    "new": 112,
    "dropped": 3,
    "split": 3

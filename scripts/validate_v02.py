@@ -96,6 +96,16 @@ def structural(screens):
         for key in ("fields", "logic", "branches", "states", "dev"):
             if key not in s["spec"]:
                 p.append("%s: spec lacks %s" % (sid, key))
+        # Mandatory and optional inputs (Vatsal, 17 Sep 2026): a screen that draws an input carries a Moving forward
+        # block, and every captured field on such a screen carries its tag.
+        ui = s.get("ui", [])
+        has_input = any(r[0] in ("in", "radio") for r in ui) or (any(r[0] == "chips" for r in ui) and bool(s["spec"].get("fields")))
+        if has_input and not s["spec"].get("forward"):
+            p.append("%s: inputs drawn but no Moving forward block (spec.forward)" % sid)
+        if s["spec"].get("forward"):
+            for f in s["spec"].get("fields", []):
+                if isinstance(f, str) or f.get("forward") not in ("required", "optional", "default", "system"):
+                    p.append("%s: field %r lacks its required, optional, default or system tag" % (sid, f if isinstance(f, str) else f.get("f")))
         if s.get("template") not in TEMPLATES:
             p.append("%s: template %r not in appendix F" % (sid, s.get("template")))
         if s.get("path") not in PATHS:

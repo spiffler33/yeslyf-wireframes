@@ -1,0 +1,794 @@
+{
+ "source": "Vatsal, 17 Sep 2026: the developers asked which inputs are mandatory and which are optional, that is, which ones stop the user from moving forward. One test decides it (an input is required only when the next screen cannot exist without it), every screen with an input gets a Moving forward block, and every captured field a tag: required, optional, default or system. The generated number and risk screens carry theirs from gen_spine.py.",
+ "groups": [
+  {
+   "id": "required-optional",
+   "kind": "override",
+   "cause": "Vatsal, 17 Sep 2026",
+   "stage": "after_generation",
+   "edits": [
+    {
+     "op": "forward",
+     "screen": "A02",
+     "value": [
+      "Send OTP is enabled when the mobile number has 10 digits.",
+      "Required: mobile (identity; the OTP goes to it).",
+      "Optional: nothing."
+     ],
+     "tags": {
+      "mobile (10 digits, +91 only at launch)": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "A03",
+     "value": [
+      "Verify is enabled when all six digits are typed; a wrong code shows the error and keeps the screen; Resend is a link.",
+      "Required: otp (identity).",
+      "Optional: nothing."
+     ],
+     "tags": {
+      "otp": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "R01",
+     "value": [
+      "Continue is enabled when first name and age are both set; under 18 is blocked with a plain message.",
+      "Required: first_name (the adviser voice addresses the user by name from here on); age (the two paths at 50 and 65 are computed from it).",
+      "Optional: nothing."
+     ],
+     "tags": {
+      "first_name": "required",
+      "age (18 to 70)": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "R02",
+     "value": [
+      "Continue is enabled when one household chip is chosen; a tap may auto-advance.",
+      "Required: household_type (the reveal and the dependants default are computed from it).",
+      "Optional: nothing."
+     ],
+     "tags": {
+      "household_type": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "R03",
+     "value": [
+      "Continue is enabled when a band is chosen or an exact amount is typed; a typed amount replaces the band.",
+      "Required: income_band (the reveal is computed from it).",
+      "Optional: income_exact; typed, it satisfies the requirement and removes the approx tag."
+     ],
+     "tags": {
+      "income_band": "required",
+      "income_exact": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "R04",
+     "value": [
+      "Continue is enabled when a band is chosen or an exact amount is typed; a typed amount replaces the band.",
+      "Required: corpus_band (the reveal is computed from it).",
+      "Optional: corpus_exact; typed, it satisfies the requirement and removes the approx tag."
+     ],
+     "tags": {
+      "corpus_band": "required",
+      "corpus_exact": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "R05",
+     "value": [
+      "Continue is enabled when a band is chosen or an exact percent or amount is typed; a typed value replaces the band.",
+      "Required: savings_rate_band (the reveal is computed from it).",
+      "Optional: savings_rate_exact; typed, it satisfies the requirement and removes the approx tag."
+     ],
+     "tags": {
+      "savings_rate_band": "required",
+      "savings_rate_exact": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "R06",
+     "value": [
+      "Continue is always enabled; choosing is a tap, skipping is Continue with nothing chosen.",
+      "Required: nothing.",
+      "Optional: journey_feel; it sets the tone of the reveal copy only, never a number."
+     ],
+     "tags": {
+      "journey_feel": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "R07",
+     "value": [
+      "Sketch my paths is enabled when one option is chosen.",
+      "Required: aspiration (R08 frames the two paths around it).",
+      "Optional: nothing."
+     ],
+     "tags": {
+      "aspiration (Freedom / Family / Generosity / Security / Legacy)": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "P01",
+     "value": [
+      "Continue is enabled when a card is chosen; the period toggle starts on monthly.",
+      "Required: sku (the agreement and the price on P04 need it).",
+      "Default: period, monthly; the toggle changes it."
+     ],
+     "tags": {
+      "sku (diy, diwm)": "required",
+      "period (monthly, quarterly)": "default"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "P02",
+     "value": [
+      "Continue to agreement is enabled when name as per PAN, PAN, date of birth and email are all set and the PAN format is valid.",
+      "Required: legal_name, pan, dob (the agreement and the KRA check need them); email (the signed agreement, the plan PDF and the invoices go to it).",
+      "Optional: address; asked only when the KRA fetch fails, and then required before Continue."
+     ],
+     "tags": {
+      "legal_name": "required",
+      "pan": "required",
+      "dob": "required",
+      "email": "required",
+      "address (only if KRA fetch fails)": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "P03",
+     "value": [
+      "Sign with Aadhaar OTP opens the vendor flow; P04 is reached only when the signature returns; there is no skip; Back returns to P02.",
+      "Required: the signature (the advisory agreement, before any payment); nothing is typed here.",
+      "System: agreement_version, esign_txn; written by the app and the eSign vendor."
+     ],
+     "tags": {
+      "agreement_version": "system",
+      "esign_txn": "system"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "P04",
+     "value": [
+      "Pay securely is enabled when a payment method is chosen; the vendor flow completes the payment.",
+      "Required: payment_method (UPI mandate or netbanking).",
+      "Optional: coupon; applied before GST when valid, ignored when blank.",
+      "System: mandate_id or txn_id, gst_type; written by the payment vendor and the app."
+     ],
+     "tags": {
+      "payment_method (upi, netbanking)": "required",
+      "mandate_id or txn_id": "system",
+      "coupon": "optional",
+      "gst_type (igst, cgst_sgst, none)": "system"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "O03",
+     "value": [
+      "Set it and exit is always enabled; with no chip chosen it exits with No reminder.",
+      "Required: nothing.",
+      "Default: return_time, No reminder; a chip replaces it and schedules the first nudge."
+     ],
+     "tags": {
+      "return_time": "default"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "A05",
+     "value": [
+      "Connect via Account Aggregator is enabled when a bank chip is chosen; the two other ways and Not now need nothing.",
+      "Required: salary_bank, for the AA button only (the consent request names the bank).",
+      "Default: aa_mobile, the login number; editable.",
+      "System: aa_status; written by the AA flow."
+     ],
+     "tags": {
+      "aa_mobile": "default",
+      "salary_bank": "required",
+      "aa_status": "system"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "A06",
+     "value": [
+      "Continue returns from the vendor consent flow; the AA path continues only when consent is approved; a decline or a timeout lands on A09 with the other ways.",
+      "Required: the consent approval, for the AA path only; nothing is typed here.",
+      "System: consent_handle; written by the AA vendor."
+     ],
+     "tags": {
+      "consent_handle": "system"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "A08",
+     "value": [
+      "That's about right is always enabled; every account starts as included with its fetched value.",
+      "Required: nothing.",
+      "Default: per account, include flag on and the fetched value; Edit and Exclude change a row and lock it against refresh."
+     ],
+     "tags": {
+      "per account: include flag, override value, source lock": "default"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "A10b",
+     "value": [
+      "Read it is enabled when a PDF is attached and the password field is filled.",
+      "Required: cas_file; cas_password (the CAS PDF is password protected; a wrong password shows the error and keeps the screen).",
+      "Optional: nothing."
+     ],
+     "tags": {
+      "cas_file": "required",
+      "cas_password": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "A10c",
+     "value": [
+      "Continue is always enabled; Looks right keeps the parsed values, Something is off opens the rows for editing.",
+      "Required: nothing.",
+      "Default: mutual_funds, stocks; parsed from the CAS and tagged CAS-verified.",
+      "Optional: current_sip; read from the CAS transactions when present, else not sure."
+     ],
+     "tags": {
+      "mutual_funds": "default",
+      "stocks": "default",
+      "current_sip": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D01",
+     "value": [
+      "Continue is always enabled: with members added, with Just me, or with nothing.",
+      "Required: nothing.",
+      "Optional: members (a person opens D01a), partner_earns, pets; Just me sets has_dependants to explicit none; nothing chosen leaves has_dependants not sure and D10 lists it before the build.",
+      "System: has_dependants; derived from the members (a child, a dependant parent, or a partner marked Earns: no)."
+     ],
+     "tags": {
+      "members": "optional",
+      "has_dependants": "system",
+      "partner_earns": "optional",
+      "pets": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D01a",
+     "value": [
+      "Save is enabled when the relation chip is chosen.",
+      "Required: the relation (Partner, Child or Dependant parent), the identity of the member.",
+      "Optional: name, age, Earns and Lives with you; unset is not sure and never filled in for the user; Earns decides has_dependants for a partner and D10 lists it if the plan needs it."
+     ],
+     "tags": {
+      "members": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D02",
+     "value": [
+      "Continue is always enabled: it opens the first ticked type; None of these sets all ten to explicit none; nothing ticked stores every type as not sure.",
+      "Required: nothing.",
+      "Optional: the ticks; bank_and_deposits, mutual_funds, stocks and epf are gate fields, so left not sure they are asked as quick ranges on D13 before the build; the other six become Sharpen this links."
+     ],
+     "tags": {
+      "bank_and_deposits": "optional",
+      "mutual_funds": "optional",
+      "stocks": "optional",
+      "epf": "optional",
+      "nps": "optional",
+      "ppf": "optional",
+      "gold": "optional",
+      "home_value": "optional",
+      "investment_property_value": "optional",
+      "ulip_surrender_value": "optional",
+      "other_assets": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D03",
+     "value": [
+      "Continue is always enabled: with loans added, with No loans, or with nothing.",
+      "Required: nothing.",
+      "Optional: loans (a loan opens D03a), credit_card_balance, informal_loans; No loans sets has_loans to explicit none and total_emi to zero as a value; nothing chosen leaves has_loans not sure and D10 lists it before the build.",
+      "System: total_emi; summed from the loans; a loan with no EMI keeps it not sure and D13 takes a range."
+     ],
+     "tags": {
+      "has_loans": "optional",
+      "total_emi": "system",
+      "loans": "optional",
+      "credit_card_balance": "optional",
+      "informal_loans": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D03a",
+     "value": [
+      "Save is enabled when the loan type chip is chosen.",
+      "Required: the loan type, the identity of the loan.",
+      "Optional: monthly EMI, years left, lender, tax-deductible, prepayment allowed; Not sure yet, skip saves the loan with its type only; the EMI feeds total_emi (gate), so left not sure D13 takes a range."
+     ],
+     "tags": {
+      "loans": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D04",
+     "value": [
+      "Continue is always enabled: it opens the first ticked cover; None of these sets every cover to explicit none; nothing ticked stores every cover as not sure.",
+      "Required: nothing.",
+      "Optional: the ticks; term_status and health_status are gate fields, so left not sure D10 lists them before the build; other_policies becomes a Sharpen this link."
+     ],
+     "tags": {
+      "term_status": "optional",
+      "health_status": "optional",
+      "other_policies": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D04a",
+     "value": [
+      "Save is always enabled; ticking Term life on D04 already set term_status to yes.",
+      "Required: nothing.",
+      "Optional: term_sum_assured, term_premium, term_cover_until_age; Not sure yet, skip keeps them not sure and G05 shows a verify action instead of a gap."
+     ],
+     "tags": {
+      "term_sum_assured": "optional",
+      "term_premium": "optional",
+      "term_cover_until_age": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D04b",
+     "value": [
+      "Save is always enabled; ticking Health on D04 already set health_status to yes.",
+      "Required: nothing.",
+      "Optional: health_type, health_sum_insured, health_floater, health_premium; Not sure yet, skip keeps them not sure and G05 shows a verify action; Employer only triggers the health advice as soon as it is set."
+     ],
+     "tags": {
+      "health_type": "optional",
+      "health_sum_insured": "optional",
+      "health_floater": "optional",
+      "health_premium": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D04c",
+     "value": [
+      "Save is enabled when the policy type chip is chosen.",
+      "Required: the policy type, the identity of the policy.",
+      "Optional: cover amount, annual premium; Not sure yet, skip saves the policy with its type only."
+     ],
+     "tags": {
+      "other_policies": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D06b",
+     "value": [
+      "Continue is always enabled; Not sure yet, skip moves on with the three buckets not sure.",
+      "Required: nothing.",
+      "Optional: bucket_fixed, bucket_variable, bucket_guilt_free (sharpen fields for G06); the total on D06a is the gate, not the split."
+     ],
+     "tags": {
+      "bucket_fixed": "optional",
+      "bucket_variable": "optional",
+      "bucket_guilt_free": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D06c",
+     "value": [
+      "Continue is always enabled; choosing is a tap, skipping is Continue with nothing chosen.",
+      "Required: nothing.",
+      "Optional: month_end_pattern (a sharpen field for G06 and a tone choice); a check against D06a prompts, never blocks."
+     ],
+     "tags": {
+      "month_end_pattern": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D07",
+     "value": [
+      "Continue is always enabled: with goals added, with No goals for now, or with nothing.",
+      "Required: nothing.",
+      "Optional: goals (a goal opens D07a) and yes_list; No goals for now sets goals to explicit none; nothing chosen leaves goals not sure and D10 lists it before the build; work_optional_age is set on D07b and only shown here."
+     ],
+     "tags": {
+      "goals": "optional",
+      "work_optional_age": "optional",
+      "yes_list": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D07a",
+     "value": [
+      "Save is enabled when the goal has a name.",
+      "Required: the goal name, the identity of the goal.",
+      "Optional: horizon or exact year, cost (band or exact), priority; I am not sure yet keeps them not sure; a goal with no timeline or budget is stored as-is, shown on the Yes list and excluded from the SIP maths (M2 6.1)."
+     ],
+     "tags": {
+      "goals": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D07b",
+     "value": [
+      "Continue is enabled when a chip is chosen; I have not thought about it: use 60 counts as a value tagged default accepted.",
+      "Required: work_optional_age (gate; the projection needs an anchor and the user accepts it here).",
+      "Optional: nothing."
+     ],
+     "tags": {
+      "work_optional_age": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D10",
+     "value": [
+      "Build my plan is enabled when the declaration is confirmed and every gate field is a value or explicit none; otherwise the Ready to build card lists what is missing and links to D13 for ranges.",
+      "Required: declaration_accepted_at (I confirm).",
+      "System: plan_input_version; written by the app on build."
+     ],
+     "tags": {
+      "plan_input_version": "system",
+      "declaration_accepted_at": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "D13",
+     "value": [
+      "Done is enabled when every listed field has a band chosen.",
+      "Required: a band per listed field (each is a gate field that was left not sure; rule 7).",
+      "Optional: nothing; leaving the screen keeps the autosave and the ladder (S19) brings the user back."
+     ],
+     "tags": {
+      "not_sure_fields[]": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "E02",
+     "value": [
+      "Continue is enabled when the bank account is verified, the FATCA declaration is done and the nominee choice is made; the mandate may stay pending (E10).",
+      "Required: bank_account, fatca, nominee (nominate or opt out); the rail needs all three to create the client code; to be verified: the SEBI nomination rule for new folios and the exact UCC field set on BSE StAR MF.",
+      "Optional: mandate; registered on E10 before the first SIP; lumpsum orders on E03 pay at order time."
+     ],
+     "tags": {
+      "bank_account": "required",
+      "nominee": "required",
+      "fatca": "required",
+      "mandate": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "E03",
+     "value": [
+      "Confirm and pay is always enabled once the order summary has loaded; the payment authorisation completes it.",
+      "Required: the payment authorisation in the vendor flow; nothing is typed here.",
+      "Default: order; prefilled from the action plan (scheme, amount, type) and editable within the action's range."
+     ],
+     "tags": {
+      "order": "default"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "E04",
+     "value": [
+      "Connect and place order is enabled when a broker chip is chosen; the broker login happens inside the smallcase Gateway flow.",
+      "Required: broker (the gateway needs it to open the login).",
+      "System: gateway_txn; written by smallcase Gateway."
+     ],
+     "tags": {
+      "broker": "required",
+      "gateway_txn": "system"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "E05",
+     "value": [
+      "I have done this is always enabled; it marks the action done and unverified; the upload verifies it.",
+      "Required: nothing.",
+      "Optional: policy_upload; without it the action stays done, unverified, and H04 carries a verify item.",
+      "System: self_reported_at; written on the tap."
+     ],
+     "tags": {
+      "policy_upload": "optional",
+      "self_reported_at": "system"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "E07",
+     "value": [
+      "Back to setup is always enabled; nothing is typed here; the rows show the rail's statuses.",
+      "Required: nothing.",
+      "System: ucc, fatca, bank_verified, mandate_id; written by BSE StAR MF and the app."
+     ],
+     "tags": {
+      "ucc": "system",
+      "fatca": "system",
+      "bank_verified": "system",
+      "mandate_id": "system"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "E10",
+     "value": [
+      "Approve the mandate is enabled when a mandate type is chosen; the approval happens in the UPI app or at the bank.",
+      "Required: mandate_type (UPI autopay or e-NACH).",
+      "Default: mandate_limit; the planned SIPs on this rail plus headroom; editable above the planned total.",
+      "System: mandate_id, mandate_status; written by the rail and its webhook."
+     ],
+     "tags": {
+      "mandate_type": "required",
+      "mandate_limit": "default",
+      "mandate_id": "system",
+      "mandate_status": "system"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "E11",
+     "value": [
+      "Confirm and register is enabled when the mandate is active; nothing on this screen blocks it otherwise.",
+      "Required: nothing typed; the active mandate (E10) is the condition.",
+      "Default: the SIPs; scheme, amount and start month from the action plan (not edited here), SIP date the 5th, step-up none; the date and the step-up are editable.",
+      "System: mandate_id; from E10."
+     ],
+     "tags": {
+      "sips[]: scheme, amount, sip_date, start_month, step_up": "default",
+      "mandate_id": "system"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "K01",
+     "value": [
+      "Pick a slot is always enabled.",
+      "Required: nothing.",
+      "Optional: call_topic, call_note; they brief the adviser, nothing else.",
+      "System: calls_included_per_period, calls_used; config and the booking count."
+     ],
+     "tags": {
+      "call_topic": "optional",
+      "call_note": "optional",
+      "calls_included_per_period (config)": "system",
+      "calls_used": "system"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "K05",
+     "value": [
+      "Confirm is enabled when a slot is chosen.",
+      "Required: call_slot (the booking is the slot).",
+      "Optional: same_adviser_requested; shown only when the continuity flag is on."
+     ],
+     "tags": {
+      "call_slot": "required",
+      "same_adviser_requested (only when the flag is on)": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "Q01",
+     "value": [
+      "Rebuild my plan is always enabled; every row starts as Good to go.",
+      "Required: nothing.",
+      "Default: confirmed_changes[], Good to go per row; Edit and Keep my manual number change a row.",
+      "Optional: life_events[]; adding one opens Q06 first.",
+      "System: review_id."
+     ],
+     "tags": {
+      "review_id": "system",
+      "confirmed_changes[]": "default",
+      "life_events[]": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "Q02",
+     "value": [
+      "Confirm the change is enabled when the chosen card or period differs from the current membership.",
+      "Required: nothing beyond a change.",
+      "Default: sku and period; the current membership is preselected."
+     ],
+     "tags": {
+      "sku (diy, diwm)": "default",
+      "period (monthly, quarterly)": "default"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "Q03a",
+     "value": [
+      "Confirm cancel is always enabled; a reason is never a condition of leaving.",
+      "Required: nothing.",
+      "Optional: cancel_reason, pause_until (Pause instead), refund_requested."
+     ],
+     "tags": {
+      "cancel_reason": "optional",
+      "pause_until": "optional",
+      "refund_requested": "optional"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "Q03b",
+     "value": [
+      "Retry payment is always enabled; Change method opens P04 with the method chips; Later returns home within the grace period.",
+      "Required: nothing typed; the payment itself completes the retry.",
+      "System: grace_until, retry_count; written by the app."
+     ],
+     "tags": {
+      "grace_until": "system",
+      "retry_count": "system"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "Q05",
+     "value": [
+      "Rebuild my plan is always enabled; every row starts confirmed at its stored value.",
+      "Required: nothing.",
+      "Default: take_home, total_outgoings, bank_and_deposits, mutual_funds, stocks; That's about right keeps the value, Change it reopens the field's D screen."
+     ],
+     "tags": {
+      "take_home": "default",
+      "total_outgoings": "default",
+      "bank_and_deposits": "default",
+      "mutual_funds": "default",
+      "stocks": "default"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "Q06",
+     "value": [
+      "Next is enabled when at least one chip is ticked or the free line has text.",
+      "Required: life_events[] (at least one change; with none there is nothing to reopen).",
+      "Optional: nothing."
+     ],
+     "tags": {
+      "life_events[]": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "H01j",
+     "value": [
+      "Sharpen now is always enabled and opens D10; Yes, Sunday and Not now are optional taps that set or skip the S18 nudge.",
+      "Required: nothing.",
+      "Optional: the Sunday choice."
+     ],
+     "tags": {}
+    },
+    {
+     "op": "forward",
+     "screen": "L04",
+     "value": [
+      "Add instrument needs an ISIN; a row saves as Staged with the ISIN alone; Market inputs is always enabled.",
+      "Required: isin, to add a row.",
+      "Optional at entry, required before publish: cells[], weight, core_or_satellite; L05 validation blocks publish on a gap, never typing here.",
+      "Default: status, Staged."
+     ],
+     "tags": {
+      "isin, cells[], weight, core_or_satellite, status": "required"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "L05",
+     "value": [
+      "Preview needs a user ID or a persona; Publish opens L06 only when validation passes (grids sum to 100, no empty cell, no unknown ISIN, no L09 breach).",
+      "Required: a user ID or a persona, to preview; a passing validation, to publish.",
+      "Optional: nothing."
+     ],
+     "tags": {}
+    },
+    {
+     "op": "forward",
+     "screen": "L06",
+     "value": [
+      "Publish is enabled when a reason is typed.",
+      "Required: reason (the audit line on every version).",
+      "Default: publish_at, now; a later time schedules it."
+     ],
+     "tags": {
+      "reason": "required",
+      "publish_at": "default"
+     }
+    },
+    {
+     "op": "forward",
+     "screen": "L09",
+     "value": [
+      "Staging and test is always enabled; a saved constraint applies to the next validation run.",
+      "Required: nothing beyond the defaults.",
+      "Default: max_weight_per_product, max_direct_shares_in_equity; from config, editable.",
+      "Optional: category_override[isin]; blank keeps the master category.",
+      "System: category_tag[isin]; from the instrument master."
+     ],
+     "tags": {
+      "max_weight_per_product": "default",
+      "max_direct_shares_in_equity": "default",
+      "category_tag[isin]": "system",
+      "category_override[isin]": "optional"
+     }
+    },
+    {
+     "op": "ui_replace",
+     "screen": "X00",
+     "match": [
+      "p",
+      "Left: the journey, section by section. Middle: the screen. Right: what the screen does, its fields with gate, source and precision, its logic, branches, states, dev notes, events and compliance flag, plus your verdict and comments."
+     ],
+     "value": [
+      "p",
+      "Left: the journey, section by section. Middle: the screen. Right: what the screen does, its fields with gate, source, precision and the required, optional, default or system tag, its Moving forward block (what the primary button needs), its logic, branches, states, dev notes, events and compliance flag, plus your verdict and comments."
+     ]
+    },
+    {
+     "op": "ui_insert",
+     "screen": "X00",
+     "after": [
+      "card",
+      "Changed on 11 Sep 2026"
+     ],
+     "value": [
+      "card",
+      "Mandatory and optional inputs (17 Sep 2026)",
+      [
+       "Every screen with an input carries a Moving forward block in the spec panel: what the primary button needs, what is required, what is optional. Each captured field is tagged required (the button waits for it), optional (never blocks; skipped is not sure or empty, never zero), default (prefilled, counts as set, editable) or system (written by the app or a vendor, never typed).",
+       "The test: an input is required only when the next screen cannot exist without it: identity, consent, payment, the answer the next screen computes from, or the identity of an item being added.",
+       "Identity, consent and money are required: mobile and OTP; name, PAN, date of birth, email and the signed agreement; the payment method; bank account, FATCA and the nominee choice before the first order; the broker before a gateway order; the mandate type before a mandate.",
+       "The free reveal takes one tap per screen (R06, the feel of the journey, can be skipped); the eight risk questions take one answer each, no skip.",
+       "The data spine never blocks on a number: Continue is always enabled; a field is a value, explicit none or not sure; a gate field left not sure is asked again before the build (D10 lists it, D13 takes a range). The spine blocks in two places only: the risk questions and D10.",
+       "A list item saves with its identity alone (a member's relation, a loan's type, a policy's type, a goal's name); every amount on a detail screen is optional and becomes a Sharpen this link in the plan.",
+       "After the plan, nothing that helps us but not the user is required: call topics, cancel reasons, review confirmations and reminders are optional; a slot is required to book a call; at least one change is required to reopen the spine from Q06.",
+       "Admin: a record saves with its key (an ISIN, a publish reason); validation blocks publish, never typing."
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

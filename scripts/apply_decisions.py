@@ -28,6 +28,7 @@ import validate_v02  # noqa: E402
 
 NUM_EVENTS = ["set", "skip", "hesitation_45", "hesitation_90", "hesitation_120", "band_tapped", "exact_entered"]
 TBV = "to be verified:"
+FORWARD_TAGS = ("required", "optional", "default", "system")  # mandatory and optional inputs (Vatsal, 17 Sep 2026)
 
 
 def load(name):
@@ -192,6 +193,26 @@ class Build:
             if len(hits) != 1:
                 raise SystemExit("%s: spec field %r found %d times" % (s["id"], e["field"], len(hits)))
             fields[hits[0]] = e["value"]
+            self.touch(s, cause)
+        elif op == "forward":
+            # Moving forward block (spec.forward) plus one tag per captured field (Vatsal, 17 Sep 2026):
+            # every field on the screen must be named in e["tags"], so nothing stays unclassified.
+            s["spec"]["forward"] = e["value"]
+            tags = dict(e.get("tags", {}))
+            fields = s["spec"]["fields"]
+            for i, f in enumerate(fields):
+                key = f if isinstance(f, str) else f.get("f")
+                if key not in tags:
+                    raise SystemExit("%s: forward tags miss field %r" % (s["id"], key))
+                tag = tags.pop(key)
+                if tag not in FORWARD_TAGS:
+                    raise SystemExit("%s: forward tag %r on %r not in %s" % (s["id"], tag, key, FORWARD_TAGS))
+                if isinstance(f, str):
+                    fields[i] = {"f": f, "forward": tag}
+                else:
+                    f["forward"] = tag
+            if tags:
+                raise SystemExit("%s: forward tags name unknown fields %s" % (s["id"], sorted(tags)))
             self.touch(s, cause)
         elif op == "status":
             if e["value"] not in ("changed", "rebuilt", "new"):

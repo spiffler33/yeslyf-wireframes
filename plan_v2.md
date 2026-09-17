@@ -717,3 +717,49 @@ Cause on every touched screen: "Kajal, 16 Sep 2026". Data: data/v02/sip_mandate_
 - Wiring: E02 gains the mandate link (E10); E01 gains the SIPs link (E11); E03 is lumpsum and redemption only. Flow
   order E01, E02, E07, E10, E03, E11, E08, E09, E04, E05, E06.
 - To be verified: the E10 and E11 items in appendix E. Counts after the rebuild: 193 live screens, 21 templates.
+
+## 11. 17 Sep 2026 (Vatsal): mandatory and optional inputs
+
+The developers asked which inputs are mandatory and which are optional, that is, which ones stop the user from
+moving forward. Cause on every touched screen: "Vatsal, 17 Sep 2026".
+
+The test. An input is required only when the next screen cannot honestly exist without it: the app cannot identify
+the user, cannot proceed lawfully, cannot compute what the next screen shows, or cannot save the item being added.
+Everything else is optional and is picked up later by the ladder, D13 or a Sharpen this link.
+
+Four tags, one per captured field (printed after the field name in the spec panel):
+- required: the primary action stays disabled until the field is set.
+- optional: never blocks; skipped means not sure or empty, never zero (rule 6 of 4.3).
+- default: prefilled; counts as set; the user may change it.
+- system: written by the app or a vendor; never typed.
+
+Where it lands, section by section:
+- Identity, consent and money are required: A02 mobile, A03 OTP; P01 the SKU (period defaults to monthly); P02 name
+  as per PAN, PAN, date of birth and email (address only when the KRA fetch fails); P03 the signature; P04 the
+  payment method (coupon optional); E02 bank account, FATCA and the nominee choice (mandate may stay pending; to be
+  verified: the SEBI nomination rule for new folios and the UCC field set on BSE StAR MF); E04 the broker; E10 the
+  mandate type (limit defaults to the planned SIPs plus headroom); E11 needs an active mandate, not a field.
+- The free reveal, R01 to R07: one tap per screen is required (R01 first name and age; R03 to R05 a band, or the
+  exact amount which satisfies it), except R06, which only sets tone and can be skipped.
+- The AA and CAS ways: A05 needs the bank chip for the AA button only; A06 needs the consent approval for the AA path
+  only; A08 and A10c start with every value included and never block; A10b needs the PDF and its password.
+- The data spine, D01 to D07b and D13: no number blocks. Continue is always enabled; a field is a value, explicit
+  none or not sure; a gate field left not sure is listed on D10 and, for amounts, asked as a range on D13 before the
+  build (rule 7). The spine blocks in two places only: the eight risk questions (one answer each, no skip; SEBI
+  suitability, no fallback) and D10 (declaration confirmed and every gate field value or explicit none). D07b needs
+  one tap, and the "use 60" chip counts. A list item saves with its identity alone: D01a the relation, D03a the loan
+  type, D04c the policy type, D07a the goal name; D04a and D04b save with nothing, since the tick on D04 already set
+  the status. Every amount on a detail screen is optional and becomes a Sharpen this link in the plan.
+- After the plan: K01 topic and note optional, K05 the slot required; Q01, Q05 rows start confirmed and never block;
+  Q02 needs a change; Q03a a reason is never a condition of leaving; Q06 needs at least one change to reopen the
+  spine; O03 exits with No reminder by default; H01j the Sunday choice is optional.
+- Admin: L04 an ISIN adds a row (cells, weight and core-or-satellite are required before publish, checked on L05);
+  L05 a user ID or persona to preview; L06 a reason to publish (publish_at defaults to now); L09 the two limits have
+  defaults, overrides are optional.
+
+How it is carried: every screen that draws an input carries spec.forward (the "Moving forward" block: what the
+primary button needs, then Required, Optional, Default and System lines) and a forward tag on every field in
+spec.fields. Non-generated screens get both from data/v02/required_optional_edits.json (op "forward", which refuses
+an untagged field); the T-num and risk screens get theirs from scripts/gen_spine.py; validate_v02.py fails the
+build when a screen with an in, radio or chips-with-fields row lacks the block or a field lacks its tag. Appendix A
+is not repeated here; the Changelog tab carries the cause per screen.

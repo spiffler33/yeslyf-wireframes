@@ -75,7 +75,7 @@
     ],
     [
      "p",
-     "Left: the journey, section by section. Middle: the screen. Right: what the screen does, its fields with gate, source and precision, its logic, branches, states, dev notes, events and compliance flag, plus your verdict and comments."
+     "Left: the journey, section by section. Middle: the screen. Right: what the screen does, its fields with gate, source, precision and the required, optional, default or system tag, its Moving forward block (what the primary button needs), its logic, branches, states, dev notes, events and compliance flag, plus your verdict and comments."
     ],
     [
      "p",
@@ -161,6 +161,20 @@
     ],
     [
      "card",
+     "Mandatory and optional inputs (17 Sep 2026)",
+     [
+      "Every screen with an input carries a Moving forward block in the spec panel: what the primary button needs, what is required, what is optional. Each captured field is tagged required (the button waits for it), optional (never blocks; skipped is not sure or empty, never zero), default (prefilled, counts as set, editable) or system (written by the app or a vendor, never typed).",
+      "The test: an input is required only when the next screen cannot exist without it: identity, consent, payment, the answer the next screen computes from, or the identity of an item being added.",
+      "Identity, consent and money are required: mobile and OTP; name, PAN, date of birth, email and the signed agreement; the payment method; bank account, FATCA and the nominee choice before the first order; the broker before a gateway order; the mandate type before a mandate.",
+      "The free reveal takes one tap per screen (R06, the feel of the journey, can be skipped); the eight risk questions take one answer each, no skip.",
+      "The data spine never blocks on a number: Continue is always enabled; a field is a value, explicit none or not sure; a gate field left not sure is asked again before the build (D10 lists it, D13 takes a range). The spine blocks in two places only: the risk questions and D10.",
+      "A list item saves with its identity alone (a member's relation, a loan's type, a policy's type, a goal's name); every amount on a detail screen is optional and becomes a Sharpen this link in the plan.",
+      "After the plan, nothing that helps us but not the user is required: call topics, cancel reasons, review confirmations and reminders are optional; a slot is required to book a call; at least one change is required to reopen the spine from Q06.",
+      "Admin: a record saves with its key (an ISIN, a publish reason); validation blocks publish, never typing."
+     ]
+    ],
+    [
+     "card",
      "Beta rule",
      [
       "If fewer than 70 percent of paid users in the January beta reach the gate within 7 days, the gate list is cut again before the studio starts screens"
@@ -216,7 +230,8 @@
     "status": "rebuilt",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -324,7 +339,10 @@
    ],
    "spec": {
     "fields": [
-     "mobile (10 digits, +91 only at launch)"
+     {
+      "f": "mobile (10 digits, +91 only at launch)",
+      "forward": "required"
+     }
     ],
     "logic": [
      "Existing account: same flow, then route by state.",
@@ -344,6 +362,11 @@
     "dev": [
      "OTP via SMS provider; WhatsApp OTP as fallback channel.",
      "Store consent to be contacted on this number (needed for nudges)."
+    ],
+    "forward": [
+     "Send OTP is enabled when the mobile number has 10 digits.",
+     "Required: mobile (identity; the OTP goes to it).",
+     "Optional: nothing."
     ]
    },
    "frame": "phone",
@@ -364,7 +387,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -402,7 +426,10 @@
    ],
    "spec": {
     "fields": [
-     "otp"
+     {
+      "f": "otp",
+      "forward": "required"
+     }
     ],
     "logic": [
      "New user: A04.",
@@ -425,6 +452,11 @@
     ],
     "dev": [
      "Biometric unlock stored per device after first successful login."
+    ],
+    "forward": [
+     "Verify is enabled when all six digits are typed; a wrong code shows the error and keeps the screen; Resend is a link.",
+     "Required: otp (identity).",
+     "Optional: nothing."
     ]
    },
    "frame": "phone",
@@ -443,8 +475,10 @@
     "A03_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 17 Sep 2026"
+    ]
    }
   },
   {
@@ -554,8 +588,14 @@
    ],
    "spec": {
     "fields": [
-     "first_name",
-     "age (18 to 70)"
+     {
+      "f": "first_name",
+      "forward": "required"
+     },
+     {
+      "f": "age (18 to 70)",
+      "forward": "required"
+     }
     ],
     "logic": [
      "Age sets years to 50 and to 65 for the reveal."
@@ -571,6 +611,11 @@
     ],
     "dev": [
      "Auto-advance when both filled."
+    ],
+    "forward": [
+     "Continue is enabled when first name and age are both set; under 18 is blocked with a plain message.",
+     "Required: first_name (the adviser voice addresses the user by name from here on); age (the two paths at 50 and 65 are computed from it).",
+     "Optional: nothing."
     ]
    },
    "frame": "phone",
@@ -589,8 +634,10 @@
     "R01_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 17 Sep 2026"
+    ]
    }
   },
   {
@@ -629,7 +676,10 @@
    ],
    "spec": {
     "fields": [
-     "household_type"
+     {
+      "f": "household_type",
+      "forward": "required"
+     }
     ],
     "logic": [
      "Household type prefills D01 family circle and sets has_dependants for the reveal's protection line.",
@@ -642,7 +692,12 @@
      ]
     ],
     "states": [],
-    "dev": []
+    "dev": [],
+    "forward": [
+     "Continue is enabled when one household chip is chosen; a tap may auto-advance.",
+     "Required: household_type (the reveal and the dependants default are computed from it).",
+     "Optional: nothing."
+    ]
    },
    "frame": "phone",
    "template": "T-tap",
@@ -662,7 +717,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "row 9"
+     "row 9",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -705,8 +761,14 @@
    ],
    "spec": {
     "fields": [
-     "income_band",
-     "income_exact"
+     {
+      "f": "income_band",
+      "forward": "required"
+     },
+     {
+      "f": "income_exact",
+      "forward": "optional"
+     }
     ],
     "logic": [
      "Band tapped: exact field prefilled with the midpoint; user confirms or corrects.",
@@ -722,6 +784,11 @@
     "states": [],
     "dev": [
      "Standing band rule from the V5 script applies to every band question in the app."
+    ],
+    "forward": [
+     "Continue is enabled when a band is chosen or an exact amount is typed; a typed amount replaces the band.",
+     "Required: income_band (the reveal is computed from it).",
+     "Optional: income_exact; typed, it satisfies the requirement and removes the approx tag."
     ]
    },
    "frame": "phone",
@@ -740,8 +807,10 @@
     "R03_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 17 Sep 2026"
+    ]
    }
   },
   {
@@ -783,8 +852,14 @@
    ],
    "spec": {
     "fields": [
-     "corpus_band",
-     "corpus_exact"
+     {
+      "f": "corpus_band",
+      "forward": "required"
+     },
+     {
+      "f": "corpus_exact",
+      "forward": "optional"
+     }
     ],
     "logic": [
      "Top band assumes Rs 7 crore unless exact is given.",
@@ -797,7 +872,12 @@
      ]
     ],
     "states": [],
-    "dev": []
+    "dev": [],
+    "forward": [
+     "Continue is enabled when a band is chosen or an exact amount is typed; a typed amount replaces the band.",
+     "Required: corpus_band (the reveal is computed from it).",
+     "Optional: corpus_exact; typed, it satisfies the requirement and removes the approx tag."
+    ]
    },
    "frame": "phone",
    "template": "T-tap",
@@ -817,7 +897,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "row 10"
+     "row 10",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -860,8 +941,14 @@
    ],
    "spec": {
     "fields": [
-     "savings_rate_band",
-     "savings_rate_exact"
+     {
+      "f": "savings_rate_band",
+      "forward": "required"
+     },
+     {
+      "f": "savings_rate_exact",
+      "forward": "optional"
+     }
     ],
     "logic": [
      "Midpoints 2.5%, 10%, 25%, 40%, 50%."
@@ -873,7 +960,12 @@
      ]
     ],
     "states": [],
-    "dev": []
+    "dev": [],
+    "forward": [
+     "Continue is enabled when a band is chosen or an exact percent or amount is typed; a typed value replaces the band.",
+     "Required: savings_rate_band (the reveal is computed from it).",
+     "Optional: savings_rate_exact; typed, it satisfies the requirement and removes the approx tag."
+    ]
    },
    "frame": "phone",
    "template": "T-tap",
@@ -891,8 +983,10 @@
     "R05_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 17 Sep 2026"
+    ]
    }
   },
   {
@@ -924,7 +1018,10 @@
    ],
    "spec": {
     "fields": [
-     "journey_feel"
+     {
+      "f": "journey_feel",
+      "forward": "optional"
+     }
     ],
     "logic": [
      "Maps to the tone variants (confident / mixed / gentle) used in copy from here on."
@@ -938,6 +1035,11 @@
     "states": [],
     "dev": [
      "Replaces the M1 Q2 emotional-state question."
+    ],
+    "forward": [
+     "Continue is always enabled; choosing is a tap, skipping is Continue with nothing chosen.",
+     "Required: nothing.",
+     "Optional: journey_feel; it sets the tone of the reveal copy only, never a number."
     ]
    },
    "frame": "phone",
@@ -956,8 +1058,10 @@
     "R06_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 17 Sep 2026"
+    ]
    }
   },
   {
@@ -995,7 +1099,10 @@
    ],
    "spec": {
     "fields": [
-     "aspiration (Freedom / Family / Generosity / Security / Legacy)"
+     {
+      "f": "aspiration (Freedom / Family / Generosity / Security / Legacy)",
+      "forward": "required"
+     }
     ],
     "logic": [
      "Aspiration picks the one-line meaning under each path on R09.",
@@ -1008,7 +1115,12 @@
      ]
     ],
     "states": [],
-    "dev": []
+    "dev": [],
+    "forward": [
+     "Sketch my paths is enabled when one option is chosen.",
+     "Required: aspiration (R08 frames the two paths around it).",
+     "Optional: nothing."
+    ]
    },
    "frame": "phone",
    "template": "T-tap",
@@ -1026,8 +1138,10 @@
     "R07_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 17 Sep 2026"
+    ]
    }
   },
   {
@@ -1480,8 +1594,14 @@
    ],
    "spec": {
     "fields": [
-     "sku (diy, diwm)",
-     "period (monthly, quarterly)"
+     {
+      "f": "sku (diy, diwm)",
+      "forward": "required"
+     },
+     {
+      "f": "period (monthly, quarterly)",
+      "forward": "default"
+     }
     ],
     "logic": [
      "Two SKUs, DIY and DIWM; each billed monthly or quarterly; the period toggle sits above the cards (Vatsal, 10 Sep 2026, supersedes brief T1).",
@@ -1506,6 +1626,11 @@
     "dev": [
      "Cards are config, not code: label, price per period, bullets, included calls per period. Marketing changes them without a release.",
      "Track paywall_viewed, the period toggled and which card was expanded."
+    ],
+    "forward": [
+     "Continue is enabled when a card is chosen; the period toggle starts on monthly.",
+     "Required: sku (the agreement and the price on P04 need it).",
+     "Default: period, monthly; the toggle changes it."
     ]
    },
    "frame": "phone",
@@ -1532,7 +1657,8 @@
     "status": "rebuilt",
     "causes": [
      "brief T1",
-     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -1577,11 +1703,26 @@
    ],
    "spec": {
     "fields": [
-     "legal_name",
-     "pan",
-     "dob",
-     "email",
-     "address (only if KRA fetch fails)"
+     {
+      "f": "legal_name",
+      "forward": "required"
+     },
+     {
+      "f": "pan",
+      "forward": "required"
+     },
+     {
+      "f": "dob",
+      "forward": "required"
+     },
+     {
+      "f": "email",
+      "forward": "required"
+     },
+     {
+      "f": "address (only if KRA fetch fails)",
+      "forward": "optional"
+     }
     ],
     "logic": [
      "PAN format check client side; KRA lookup server side.",
@@ -1600,6 +1741,11 @@
     "dev": [
      "Vendor: Digio for KRA/CKYC fetch and eSign, unless HoA already has one.",
      "Full KYC for execution (bank, nominee, FATCA) is deferred to E02; do not front-load it here."
+    ],
+    "forward": [
+     "Continue to agreement is enabled when name as per PAN, PAN, date of birth and email are all set and the PAN format is valid.",
+     "Required: legal_name, pan, dob (the agreement and the KRA check need them); email (the signed agreement, the plan PDF and the invoices go to it).",
+     "Optional: address; asked only when the KRA fetch fails, and then required before Continue."
     ]
    },
    "frame": "phone",
@@ -1618,8 +1764,10 @@
     "P02_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 17 Sep 2026"
+    ]
    }
   },
   {
@@ -1659,8 +1807,14 @@
    ],
    "spec": {
     "fields": [
-     "agreement_version",
-     "esign_txn"
+     {
+      "f": "agreement_version",
+      "forward": "system"
+     },
+     {
+      "f": "esign_txn",
+      "forward": "system"
+     }
     ],
     "logic": [
      "Cannot proceed to payment without a completed eSign.",
@@ -1680,6 +1834,11 @@
     "dev": [
      "Agreement template must be the fixed-fee variant and must name the app as an advice channel. Counsel task, on the critical path.",
      "Aadhaar eSign via the same vendor as P02."
+    ],
+    "forward": [
+     "Sign with Aadhaar OTP opens the vendor flow; P04 is reached only when the signature returns; there is no skip; Back returns to P02.",
+     "Required: the signature (the advisory agreement, before any payment); nothing is typed here.",
+     "System: agreement_version, esign_txn; written by the app and the eSign vendor."
     ]
    },
    "frame": "phone",
@@ -1703,7 +1862,8 @@
     "status": "changed",
     "causes": [
      "Vatsal, 10 Sep 2026 (supersedes brief T1)",
-     "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)"
+     "Vatsal, 10 Sep 2026 (CLAUDE.md v2: an in-place self-link carries a logic line)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -1747,10 +1907,22 @@
    ],
    "spec": {
     "fields": [
-     "payment_method (upi, netbanking)",
-     "mandate_id or txn_id",
-     "coupon",
-     "gst_type (igst, cgst_sgst, none)"
+     {
+      "f": "payment_method (upi, netbanking)",
+      "forward": "required"
+     },
+     {
+      "f": "mandate_id or txn_id",
+      "forward": "system"
+     },
+     {
+      "f": "coupon",
+      "forward": "optional"
+     },
+     {
+      "f": "gst_type (igst, cgst_sgst, none)",
+      "forward": "system"
+     }
     ],
     "logic": [
      "UPI and netbanking only, no cards (brief K1).",
@@ -1777,6 +1949,12 @@
     "dev": [
      "Razorpay recurring UPI and netbanking. Webhook updates tier and billing state.",
      "Invoice includes SEBI registration and fee mode, as the agreement requires."
+    ],
+    "forward": [
+     "Pay securely is enabled when a payment method is chosen; the vendor flow completes the payment.",
+     "Required: payment_method (UPI mandate or netbanking).",
+     "Optional: coupon; applied before GST when valid, ignored when blank.",
+     "System: mandate_id or txn_id, gst_type; written by the payment vendor and the app."
     ]
    },
    "frame": "phone",
@@ -1798,7 +1976,8 @@
     "status": "rebuilt",
     "causes": [
      "brief K1; row 21",
-     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -2166,7 +2345,8 @@
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": "slot or none"
+      "note": "slot or none",
+      "forward": "default"
      }
     ],
     "logic": [
@@ -2186,6 +2366,11 @@
     ],
     "dev": [
      "Event return_time_picked {slot}; the CRM schedules the first nudge from it."
+    ],
+    "forward": [
+     "Set it and exit is always enabled; with no chip chosen it exits with No reminder.",
+     "Required: nothing.",
+     "Default: return_time, No reminder; a chip replaces it and schedules the first nudge."
     ]
    },
    "template": "T-sheet",
@@ -2207,7 +2392,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -2299,21 +2485,24 @@
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": "the number the banks know; prefilled from A02"
+      "note": "the number the banks know; prefilled from A02",
+      "forward": "default"
      },
      {
       "f": "salary_bank",
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": "one of eight chips plus Other; feeds the FIP health check"
+      "note": "one of eight chips plus Other; feeds the FIP health check",
+      "forward": "required"
      },
      {
       "f": "aa_status",
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": "connected, not_connected, cas_uploaded or later"
+      "note": "connected, not_connected, cas_uploaded or later",
+      "forward": "system"
      }
     ],
     "logic": [
@@ -2350,6 +2539,12 @@
      "Store consent_status, consent_valid_till, fetch_frequency, last_fetch_at per FIP.",
      "The eight bank chips are config from the FIP health check, not code; the placeholders stand for the eight banks the check ranks highest.",
      "Event source_choice carries aa, cas, manual or later."
+    ],
+    "forward": [
+     "Connect via Account Aggregator is enabled when a bank chip is chosen; the two other ways and Not now need nothing.",
+     "Required: salary_bank, for the AA button only (the consent request names the bank).",
+     "Default: aa_mobile, the login number; editable.",
+     "System: aa_status; written by the AA flow."
     ]
    },
    "template": "T-source",
@@ -2371,7 +2566,8 @@
     "status": "rebuilt",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "4.1 bug fix"
+     "4.1 bug fix",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -2512,7 +2708,10 @@
    ],
    "spec": {
     "fields": [
-     "consent_handle"
+     {
+      "f": "consent_handle",
+      "forward": "system"
+     }
     ],
     "logic": [
      "User can deselect accounts; we record which were excluded.",
@@ -2536,6 +2735,11 @@
     "dev": [
      "TSP options: Setu, Finvu, OneMoney. Corporate RIA FIU registration is in hand per spiff.",
      "Consent template: periodic consent, fetch now plus quarterly for the review; store consent_status, consent_valid_till, fetch_frequency, last_fetch_at per FIP (as on A05)."
+    ],
+    "forward": [
+     "Continue returns from the vendor consent flow; the AA path continues only when consent is approved; a decline or a timeout lands on A09 with the other ways.",
+     "Required: the consent approval, for the AA path only; nothing is typed here.",
+     "System: consent_handle; written by the AA vendor."
     ]
    },
    "frame": "phone",
@@ -2557,7 +2761,8 @@
     "status": "changed",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -2734,7 +2939,10 @@
    ],
    "spec": {
     "fields": [
-     "per account: include flag, override value, source lock"
+     {
+      "f": "per account: include flag, override value, source lock",
+      "forward": "default"
+     }
     ],
     "logic": [
      "Every field carries a source: AA-fed or manual. A manual override locks the field so a later AA refresh does not overwrite it unless the user unlocks it (spiff, Q10).",
@@ -2753,6 +2961,11 @@
     ],
     "dev": [
      "Holdings stored at ISIN level with units, value, SIP mandates. Needed for I02."
+    ],
+    "forward": [
+     "That's about right is always enabled; every account starts as included with its fetched value.",
+     "Required: nothing.",
+     "Default: per account, include flag on and the fetched value; Edit and Exclude change a row and lock it against refresh."
     ]
    },
    "frame": "phone",
@@ -2774,7 +2987,8 @@
     "status": "changed",
     "causes": [
      "4.1 bug fix",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -3119,14 +3333,16 @@
       "gate": false,
       "source": "cas",
       "precision": "exact",
-      "note": "stored in H06"
+      "note": "stored in H06",
+      "forward": "required"
      },
      {
       "f": "cas_password",
       "gate": false,
       "source": "cas",
       "precision": "exact",
-      "note": "used once to parse; not stored"
+      "note": "used once to parse; not stored",
+      "forward": "required"
      }
     ],
     "logic": [
@@ -3150,6 +3366,11 @@
     "dev": [
      "Parsing via the open-source casparser library or a vendor (spec v0.1 A09).",
      "Password handling for the compliance reviewers: entered on the device, used once to open the PDF, not stored; where parsing runs (device or server) is a dev call; the PDF itself is retained in H06."
+    ],
+    "forward": [
+     "Read it is enabled when a PDF is attached and the password field is filled.",
+     "Required: cas_file; cas_password (the CAS PDF is password protected; a wrong password shows the error and keeps the screen).",
+     "Optional: nothing."
     ]
    },
    "template": "T-upload",
@@ -3170,7 +3391,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -3237,21 +3459,24 @@
       "gate": true,
       "source": "cas",
       "precision": "exact",
-      "note": "holdings at ISIN level with units and value"
+      "note": "holdings at ISIN level with units and value",
+      "forward": "default"
      },
      {
       "f": "stocks",
       "gate": true,
       "source": "cas",
       "precision": "exact",
-      "note": "when the statement is from NSDL or CDSL"
+      "note": "when the statement is from NSDL or CDSL",
+      "forward": "default"
      },
      {
       "f": "current_sip",
       "gate": false,
       "source": "cas",
       "precision": "exact",
-      "note": "SIPs detected from the transaction rows"
+      "note": "SIPs detected from the transaction rows",
+      "forward": "optional"
      }
     ],
     "logic": [
@@ -3271,6 +3496,12 @@
     "dev": [
      "Holdings stored at ISIN level with units, value, SIP mandates (spec v0.1 A08).",
      "Event cas_parsed carries the holding count and the statement date."
+    ],
+    "forward": [
+     "Continue is always enabled; Looks right keeps the parsed values, Something is off opens the rows for editing.",
+     "Required: nothing.",
+     "Default: mutual_funds, stocks; parsed from the CAS and tagged CAS-verified.",
+     "Optional: current_sip; read from the CAS transactions when present, else not sure."
     ]
    },
    "template": "T-review",
@@ -3291,7 +3522,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026"
+     "Vatsal, 10 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -3483,28 +3715,32 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "list; prefilled from R02"
+      "note": "list; prefilled from R02",
+      "forward": "optional"
      },
      {
       "f": "has_dependants",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "explicit none via Just me"
+      "note": "explicit none via Just me",
+      "forward": "system"
      },
      {
       "f": "partner_earns",
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": "opens D05b when yes"
+      "note": "opens D05b when yes",
+      "forward": "optional"
      },
      {
       "f": "pets",
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": "row 8 note"
+      "note": "row 8 note",
+      "forward": "optional"
      }
     ],
     "logic": [
@@ -3541,6 +3777,12 @@
     ],
     "dev": [
      "Bhuvanaa asked for a family-tree feel in v0.1; keep it a card list at wireframe level, Spinach decides the visual (spec v0.1)."
+    ],
+    "forward": [
+     "Continue is always enabled: with members added, with Just me, or with nothing.",
+     "Required: nothing.",
+     "Optional: members (a person opens D01a), partner_earns, pets; Just me sets has_dependants to explicit none; nothing chosen leaves has_dependants not sure and D10 lists it before the build.",
+     "System: has_dependants; derived from the members (a child, a dependant parent, or a partner marked Earns: no)."
     ]
    },
    "template": "T-list",
@@ -3563,7 +3805,8 @@
      "Vatsal, 10 Sep 2026",
      "row 8",
      "4.1 bug fix",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -3633,7 +3876,8 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "relation, name, age, earns, lives_with_you"
+      "note": "relation, name, age, earns, lives_with_you",
+      "forward": "required"
      }
     ],
     "logic": [
@@ -3653,6 +3897,11 @@
     ],
     "dev": [
      "Age drives the family ages on the G09 timeline."
+    ],
+    "forward": [
+     "Save is enabled when the relation chip is chosen.",
+     "Required: the relation (Partner, Child or Dependant parent), the identity of the member.",
+     "Optional: name, age, Earns and Lives with you; unset is not sure and never filled in for the user; Earns decides has_dependants for a partner and D10 lists it if the plan needs it."
     ]
    },
    "template": "T-detail",
@@ -3673,7 +3922,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -3803,8 +4053,14 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "answer 1 of 8"
+      "note": "answer 1 of 8",
+      "forward": "required"
      }
+    ],
+    "forward": [
+     "Next is enabled once an option is chosen; the tap auto-advances.",
+     "Required: the answer (SEBI suitability; no fallback and no skip, appendix B).",
+     "Optional: nothing."
     ],
     "logic": [
      "Question 1 of the eight HoA questions, verbatim from the questionnaire (brief H3); a tap auto-advances.",
@@ -3843,7 +4099,8 @@
     "causes": [
      "brief H3",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -3891,8 +4148,14 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "answer 2 of 8"
+      "note": "answer 2 of 8",
+      "forward": "required"
      }
+    ],
+    "forward": [
+     "Next is enabled once an option is chosen; the tap auto-advances.",
+     "Required: the answer (SEBI suitability; no fallback and no skip, appendix B).",
+     "Optional: nothing."
     ],
     "logic": [
      "Question 2 of the eight HoA questions, verbatim from the questionnaire (brief H3); a tap auto-advances.",
@@ -3931,7 +4194,8 @@
     "causes": [
      "brief H3",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -3979,8 +4243,14 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "answer 3 of 8"
+      "note": "answer 3 of 8",
+      "forward": "required"
      }
+    ],
+    "forward": [
+     "Next is enabled once an option is chosen; the tap auto-advances.",
+     "Required: the answer (SEBI suitability; no fallback and no skip, appendix B).",
+     "Optional: nothing."
     ],
     "logic": [
      "Question 3 of the eight HoA questions, verbatim from the questionnaire (brief H3); a tap auto-advances.",
@@ -4019,7 +4289,8 @@
     "causes": [
      "brief H3",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -4067,8 +4338,14 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "answer 4 of 8"
+      "note": "answer 4 of 8",
+      "forward": "required"
      }
+    ],
+    "forward": [
+     "Next is enabled once an option is chosen; the tap auto-advances.",
+     "Required: the answer (SEBI suitability; no fallback and no skip, appendix B).",
+     "Optional: nothing."
     ],
     "logic": [
      "Question 4 of the eight HoA questions, verbatim from the questionnaire (brief H3); a tap auto-advances.",
@@ -4107,7 +4384,8 @@
     "causes": [
      "brief H3",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -4155,8 +4433,14 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "answer 5 of 8"
+      "note": "answer 5 of 8",
+      "forward": "required"
      }
+    ],
+    "forward": [
+     "Next is enabled once an option is chosen; the tap auto-advances.",
+     "Required: the answer (SEBI suitability; no fallback and no skip, appendix B).",
+     "Optional: nothing."
     ],
     "logic": [
      "Question 5 of the eight HoA questions, verbatim from the questionnaire (brief H3); a tap auto-advances.",
@@ -4195,7 +4479,8 @@
     "causes": [
      "brief H3",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -4243,8 +4528,14 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "answer 6 of 8"
+      "note": "answer 6 of 8",
+      "forward": "required"
      }
+    ],
+    "forward": [
+     "Next is enabled once an option is chosen; the tap auto-advances.",
+     "Required: the answer (SEBI suitability; no fallback and no skip, appendix B).",
+     "Optional: nothing."
     ],
     "logic": [
      "Question 6 of the eight HoA questions, verbatim from the questionnaire (brief H3); a tap auto-advances.",
@@ -4283,7 +4574,8 @@
     "causes": [
      "brief H3",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -4357,8 +4649,14 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "answer 7 of 8"
+      "note": "answer 7 of 8",
+      "forward": "required"
      }
+    ],
+    "forward": [
+     "Next is enabled once an option is chosen; the tap auto-advances.",
+     "Required: the answer (SEBI suitability; no fallback and no skip, appendix B).",
+     "Optional: nothing."
     ],
     "logic": [
      "Question 7 of the eight HoA questions, verbatim from the questionnaire (brief H3); a tap auto-advances.",
@@ -4398,7 +4696,8 @@
     "causes": [
      "brief H3",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -4446,8 +4745,14 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "answer 8 of 8"
+      "note": "answer 8 of 8",
+      "forward": "required"
      }
+    ],
+    "forward": [
+     "Next is enabled once an option is chosen; the tap auto-advances.",
+     "Required: the answer (SEBI suitability; no fallback and no skip, appendix B).",
+     "Optional: nothing."
     ],
     "logic": [
      "Question 8 of the eight HoA questions, verbatim from the questionnaire (brief H3); a tap auto-advances.",
@@ -4487,7 +4792,8 @@
     "causes": [
      "brief H3",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -4782,8 +5088,14 @@
       "gate": true,
       "source": "aa | manual",
       "precision": "exact | approx | unknown",
-      "note": "exact-first"
+      "note": "exact-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the No regular income chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, gate: take_home; left not sure, D10 lists it and D13 takes a range before the plan builds (rule 7)."
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
@@ -4866,7 +5178,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -4957,8 +5270,14 @@
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "band-first"
+      "note": "band-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the Partner does not earn chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, sharpen: partner_take_home; left not sure, it becomes a Sharpen this link in the plan section that reads it."
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
@@ -5026,7 +5345,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -5117,8 +5437,14 @@
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "exact-first"
+      "note": "exact-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the No rent chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, sharpen: rental_income; left not sure, it becomes a Sharpen this link in the plan section that reads it."
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
@@ -5186,7 +5512,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -5277,8 +5604,14 @@
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "band-first"
+      "note": "band-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the Nothing else chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, sharpen: other_income; left not sure, it becomes a Sharpen this link in the plan section that reads it."
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
@@ -5346,7 +5679,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -5535,8 +5869,14 @@
       "gate": true,
       "source": "aa | manual",
       "precision": "exact | approx | unknown",
-      "note": "exact-first"
+      "note": "exact-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the None chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, gate: total_outgoings; left not sure, D10 lists it and D13 takes a range before the plan builds (rule 7)."
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
@@ -5620,7 +5960,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -5690,21 +6031,24 @@
       "gate": false,
       "source": "manual",
       "precision": "approx | exact | unknown",
-      "note": "sharpen: G06"
+      "note": "sharpen: G06",
+      "forward": "optional"
      },
      {
       "f": "bucket_variable",
       "gate": false,
       "source": "manual",
       "precision": "approx | exact | unknown",
-      "note": "sharpen: G06"
+      "note": "sharpen: G06",
+      "forward": "optional"
      },
      {
       "f": "bucket_guilt_free",
       "gate": false,
       "source": "manual",
       "precision": "approx | exact | unknown",
-      "note": "sharpen: G06"
+      "note": "sharpen: G06",
+      "forward": "optional"
      }
     ],
     "logic": [
@@ -5729,6 +6073,11 @@
     ],
     "dev": [
      "Store three values with precision approx until typed (rule 9)."
+    ],
+    "forward": [
+     "Continue is always enabled; Not sure yet, skip moves on with the three buckets not sure.",
+     "Required: nothing.",
+     "Optional: bucket_fixed, bucket_variable, bucket_guilt_free (sharpen fields for G06); the total on D06a is the gate, not the split."
     ]
    },
    "template": "T-split",
@@ -5756,7 +6105,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -5800,7 +6150,8 @@
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": "sharpen: G06"
+      "note": "sharpen: G06",
+      "forward": "optional"
      }
     ],
     "logic": [
@@ -5819,6 +6170,11 @@
     ],
     "dev": [
      "Store the option key; the concern rule reads option D."
+    ],
+    "forward": [
+     "Continue is always enabled; choosing is a tap, skipping is Continue with nothing chosen.",
+     "Required: nothing.",
+     "Optional: month_end_pattern (a sharpen field for G06 and a tone choice); a check against D06a prompts, never blocks."
     ]
    },
    "template": "T-tap",
@@ -5840,7 +6196,8 @@
     "causes": [
      "Vatsal, 10 Sep 2026",
      "V5 Q1.4",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -5946,8 +6303,14 @@
       "gate": false,
       "source": "aa | manual",
       "precision": "exact | approx | unknown",
-      "note": "exact-first"
+      "note": "exact-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the Nothing on autopilot chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, sharpen: current_sip; left not sure, it becomes a Sharpen this link in the plan section that reads it."
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
@@ -6027,7 +6390,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -6227,77 +6591,88 @@
       "gate": true,
       "source": "aa | manual",
       "precision": "exact | approx | unknown",
-      "note": "D02a"
+      "note": "D02a",
+      "forward": "optional"
      },
      {
       "f": "mutual_funds",
       "gate": true,
       "source": "aa | cas | manual",
       "precision": "exact | approx | unknown",
-      "note": "D02b"
+      "note": "D02b",
+      "forward": "optional"
      },
      {
       "f": "stocks",
       "gate": true,
       "source": "aa | cas | manual",
       "precision": "exact | approx | unknown",
-      "note": "D02c"
+      "note": "D02c",
+      "forward": "optional"
      },
      {
       "f": "epf",
       "gate": true,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "D02e"
+      "note": "D02e",
+      "forward": "optional"
      },
      {
       "f": "nps",
       "gate": false,
       "source": "aa | manual",
       "precision": "exact | approx | unknown",
-      "note": "D02d"
+      "note": "D02d",
+      "forward": "optional"
      },
      {
       "f": "ppf",
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "D02f"
+      "note": "D02f",
+      "forward": "optional"
      },
      {
       "f": "gold",
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "D02g"
+      "note": "D02g",
+      "forward": "optional"
      },
      {
       "f": "home_value",
       "gate": false,
       "source": "manual",
       "precision": "approx | unknown",
-      "note": "D02h"
+      "note": "D02h",
+      "forward": "optional"
      },
      {
       "f": "investment_property_value",
       "gate": false,
       "source": "manual",
       "precision": "approx | unknown",
-      "note": "D02h"
+      "note": "D02h",
+      "forward": "optional"
      },
      {
       "f": "ulip_surrender_value",
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "D02i"
+      "note": "D02i",
+      "forward": "optional"
      },
      {
       "f": "other_assets",
       "gate": false,
       "source": "manual",
       "precision": "approx | unknown",
-      "note": "D02j"
+      "note": "D02j",
+      "forward": "optional"
      }
     ],
     "logic": [
@@ -6424,7 +6799,12 @@
      "after": "D12e",
      "order": "spine order, D02a to D02j",
      "prefilled": "AA-fed and CAS-verified types arrive pre-ticked and locked with their value shown; the question then reads Anything else?"
-    }
+    },
+    "forward": [
+     "Continue is always enabled: it opens the first ticked type; None of these sets all ten to explicit none; nothing ticked stores every type as not sure.",
+     "Required: nothing.",
+     "Optional: the ticks; bank_and_deposits, mutual_funds, stocks and epf are gate fields, so left not sure they are asked as quick ranges on D13 before the build; the other six become Sharpen this links."
+    ]
    },
    "template": "T-list",
    "path": "both",
@@ -6445,7 +6825,8 @@
     "causes": [
      "Vatsal, 10 Sep 2026",
      "4.1 bug fix",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -6551,8 +6932,14 @@
       "gate": true,
       "source": "aa | manual",
       "precision": "exact | approx | unknown",
-      "note": "exact-first"
+      "note": "exact-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the None chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, gate: bank_and_deposits; left not sure, D10 lists it and D13 takes a range before the plan builds (rule 7)."
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
@@ -6635,7 +7022,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -6746,8 +7134,14 @@
       "gate": true,
       "source": "aa | cas | manual",
       "precision": "exact | approx | unknown",
-      "note": "exact-first"
+      "note": "exact-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the No mutual funds chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, gate: mutual_funds; left not sure, D10 lists it and D13 takes a range before the plan builds (rule 7)."
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
@@ -6840,7 +7234,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -6951,8 +7346,14 @@
       "gate": true,
       "source": "aa | cas | manual",
       "precision": "exact | approx | unknown",
-      "note": "exact-first"
+      "note": "exact-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the No stocks or ETFs chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, gate: stocks; left not sure, D10 lists it and D13 takes a range before the plan builds (rule 7)."
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
@@ -7044,7 +7445,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -7134,8 +7536,14 @@
       "gate": false,
       "source": "aa | manual",
       "precision": "exact | approx | unknown",
-      "note": "band-first"
+      "note": "band-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the No NPS chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, sharpen: nps; left not sure, it becomes a Sharpen this link in the plan section that reads it."
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
@@ -7218,7 +7626,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -7307,8 +7716,14 @@
       "gate": true,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "exact-first"
+      "note": "exact-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the No EPF chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, gate: epf; left not sure, D10 lists it and D13 takes a range before the plan builds (rule 7)."
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
@@ -7387,7 +7802,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -7471,8 +7887,14 @@
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "band-first"
+      "note": "band-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the None chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, sharpen: ppf; left not sure, it becomes a Sharpen this link in the plan section that reads it."
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
@@ -7541,7 +7963,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -7625,8 +8048,14 @@
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "band-first"
+      "note": "band-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the None chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, sharpen: gold; left not sure, it becomes a Sharpen this link in the plan section that reads it."
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
@@ -7696,7 +8125,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -7780,22 +8210,30 @@
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "band-first"
+      "note": "band-first",
+      "forward": "optional"
      },
      {
       "f": "investment_property_value",
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "band-first"
+      "note": "band-first",
+      "forward": "optional"
      },
      {
       "f": "investment_property_rent",
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "band-first"
+      "note": "band-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the No property chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, sharpen: home_value, investment_property_value, investment_property_rent; left not sure, it becomes a Sharpen this link in the plan section that reads it."
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
@@ -7867,7 +8305,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -7956,22 +8395,30 @@
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "exact-first"
+      "note": "exact-first",
+      "forward": "optional"
      },
      {
       "f": "ulip_premium",
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "exact-first"
+      "note": "exact-first",
+      "forward": "optional"
      },
      {
       "f": "ulip_years_completed",
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "exact-first"
+      "note": "exact-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the No such policy chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, sharpen: ulip_surrender_value, ulip_premium, ulip_years_completed; left not sure, it becomes a Sharpen this link in the plan section that reads it."
     ],
     "logic": [
      "Exact-first (rule 3): the exact input leads; the bands sit under it",
@@ -8051,7 +8498,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -8135,8 +8583,14 @@
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "band-first"
+      "note": "band-first",
+      "forward": "optional"
      }
+    ],
+    "forward": [
+     "Continue is always enabled: an exact amount, a band, the Nothing else chip or Not sure yet, skip all move on; a band or chip tap may auto-advance (rule 2).",
+     "Required: nothing on this screen; the spine never blocks on a number (Vatsal, 17 Sep 2026).",
+     "Optional, sharpen: other_assets; left not sure, it becomes a Sharpen this link in the plan section that reads it."
     ],
     "logic": [
      "Band-first (rule 3): the bands lead; the exact input stays visible",
@@ -8205,7 +8659,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -8368,35 +8823,40 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "explicit none via No loans"
+      "note": "explicit none via No loans",
+      "forward": "optional"
      },
      {
       "f": "total_emi",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "sum of the EMIs; zero as a value when No loans"
+      "note": "sum of the EMIs; zero as a value when No loans",
+      "forward": "system"
      },
      {
       "f": "loans",
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "per loan: type, emi, outstanding, years_left, rate, lender, tax_deductible, prepayment_allowed"
+      "note": "per loan: type, emi, outstanding, years_left, rate, lender, tax_deductible, prepayment_allowed",
+      "forward": "optional"
      },
      {
       "f": "credit_card_balance",
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": ""
+      "note": "",
+      "forward": "optional"
      },
      {
       "f": "informal_loans",
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "to or from friends and family"
+      "note": "to or from friends and family",
+      "forward": "optional"
      }
     ],
     "logic": [
@@ -8427,6 +8887,12 @@
     ],
     "dev": [
      "The derived rate uses the standard EMI formula; store the derived flag so a typed rate overrides it."
+    ],
+    "forward": [
+     "Continue is always enabled: with loans added, with No loans, or with nothing.",
+     "Required: nothing.",
+     "Optional: loans (a loan opens D03a), credit_card_balance, informal_loans; No loans sets has_loans to explicit none and total_emi to zero as a value; nothing chosen leaves has_loans not sure and D10 lists it before the build.",
+     "System: total_emi; summed from the loans; a loan with no EMI keeps it not sure and D13 takes a range."
     ]
    },
    "template": "T-list",
@@ -8448,7 +8914,8 @@
     "causes": [
      "row 59",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -8558,7 +9025,8 @@
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "one entry per loan"
+      "note": "one entry per loan",
+      "forward": "required"
      }
     ],
     "logic": [
@@ -8580,6 +9048,11 @@
     ],
     "dev": [
      "Store emi, outstanding, years_left, rate (derived or typed), lender, tax_deductible, prepayment_allowed with source and precision per field (rule 9)."
+    ],
+    "forward": [
+     "Save is enabled when the loan type chip is chosen.",
+     "Required: the loan type, the identity of the loan.",
+     "Optional: monthly EMI, years left, lender, tax-deductible, prepayment allowed; Not sure yet, skip saves the loan with its type only; the EMI feeds total_emi (gate), so left not sure D13 takes a range."
     ]
    },
    "template": "T-detail",
@@ -8608,7 +9081,8 @@
     "causes": [
      "row 59",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -8760,21 +9234,24 @@
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "have (ticked) | none (unticked); the amount is tri-state on D04a"
+      "note": "have (ticked) | none (unticked); the amount is tri-state on D04a",
+      "forward": "optional"
      },
      {
       "f": "health_status",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "have (ticked) | none (unticked); the amount and the type are on D04b"
+      "note": "have (ticked) | none (unticked); the amount and the type are on D04b",
+      "forward": "optional"
      },
      {
       "f": "other_policies",
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "D04c"
+      "note": "D04c",
+      "forward": "optional"
      }
     ],
     "logic": [
@@ -8847,7 +9324,12 @@
      "after": "D12g",
      "order": "D04a, D04b, D04c; ULIP or endowment on D02i",
      "prefilled": "A cover that arrives via AA is pre-ticked and locked with its value shown"
-    }
+    },
+    "forward": [
+     "Continue is always enabled: it opens the first ticked cover; None of these sets every cover to explicit none; nothing ticked stores every cover as not sure.",
+     "Required: nothing.",
+     "Optional: the ticks; term_status and health_status are gate fields, so left not sure D10 lists them before the build; other_policies becomes a Sharpen this link."
+    ]
    },
    "template": "T-list",
    "path": "both",
@@ -8869,7 +9351,8 @@
      "Vatsal, 10 Sep 2026 (CLAUDE.md v2 wording)",
      "row 60",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -8949,21 +9432,24 @@
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "sharpen: G05"
+      "note": "sharpen: G05",
+      "forward": "optional"
      },
      {
       "f": "term_premium",
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": ""
+      "note": "",
+      "forward": "optional"
      },
      {
       "f": "term_cover_until_age",
       "gate": false,
       "source": "manual",
       "precision": "exact | unknown",
-      "note": ""
+      "note": "",
+      "forward": "optional"
      }
     ],
     "logic": [
@@ -9002,6 +9488,11 @@
       "band",
       "A band for this field: fixed bands (M2 table where one exists, else Rs ___ placeholders); the midpoint fills the field, tagged approx"
      ]
+    ],
+    "forward": [
+     "Save is always enabled; ticking Term life on D04 already set term_status to yes.",
+     "Required: nothing.",
+     "Optional: term_sum_assured, term_premium, term_cover_until_age; Not sure yet, skip keeps them not sure and G05 shows a verify action instead of a gap."
     ]
    },
    "template": "T-detail",
@@ -9031,7 +9522,8 @@
     "causes": [
      "row 60",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -9122,28 +9614,32 @@
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": "employer only | personal | both"
+      "note": "employer only | personal | both",
+      "forward": "optional"
      },
      {
       "f": "health_sum_insured",
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "sharpen: G05"
+      "note": "sharpen: G05",
+      "forward": "optional"
      },
      {
       "f": "health_floater",
       "gate": false,
       "source": "manual",
       "precision": "exact | unknown",
-      "note": "sharpen: G05"
+      "note": "sharpen: G05",
+      "forward": "optional"
      },
      {
       "f": "health_premium",
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": ""
+      "note": "",
+      "forward": "optional"
      }
     ],
     "logic": [
@@ -9182,6 +9678,11 @@
       "band",
       "A band for this field: fixed bands (M2 table where one exists, else Rs ___ placeholders); the midpoint fills the field, tagged approx"
      ]
+    ],
+    "forward": [
+     "Save is always enabled; ticking Health on D04 already set health_status to yes.",
+     "Required: nothing.",
+     "Optional: health_type, health_sum_insured, health_floater, health_premium; Not sure yet, skip keeps them not sure and G05 shows a verify action; Employer only triggers the health advice as soon as it is set."
     ]
    },
    "template": "T-detail",
@@ -9211,7 +9712,8 @@
     "causes": [
      "row 60",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -9284,7 +9786,8 @@
       "gate": false,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "sharpen: G05"
+      "note": "sharpen: G05",
+      "forward": "required"
      }
     ],
     "logic": [
@@ -9322,6 +9825,11 @@
       "typed",
       "Cover and premium typed"
      ]
+    ],
+    "forward": [
+     "Save is enabled when the policy type chip is chosen.",
+     "Required: the policy type, the identity of the policy.",
+     "Optional: cover amount, annual premium; Not sure yet, skip saves the policy with its type only."
     ]
    },
    "template": "T-detail",
@@ -9346,7 +9854,8 @@
     "causes": [
      "row 60",
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -9506,21 +10015,24 @@
       "gate": true,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "at least one goal or explicit none"
+      "note": "at least one goal or explicit none",
+      "forward": "optional"
      },
      {
       "f": "work_optional_age",
       "gate": true,
       "source": "manual | default accepted",
       "precision": "exact",
-      "note": "D07b; default 60 only when accepted on screen"
+      "note": "D07b; default 60 only when accepted on screen",
+      "forward": "optional"
      },
      {
       "f": "yes_list",
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": "display only"
+      "note": "display only",
+      "forward": "optional"
      }
     ],
     "logic": [
@@ -9556,6 +10068,11 @@
     ],
     "dev": [
      "Timeline to years map from M2 6.1 (see D07a)."
+    ],
+    "forward": [
+     "Continue is always enabled: with goals added, with No goals for now, or with nothing.",
+     "Required: nothing.",
+     "Optional: goals (a goal opens D07a) and yes_list; No goals for now sets goals to explicit none; nothing chosen leaves goals not sure and D10 lists it before the build; work_optional_age is set on D07b and only shown here."
     ]
    },
    "template": "T-list",
@@ -9576,7 +10093,8 @@
     "status": "changed",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -9673,7 +10191,8 @@
       "gate": true,
       "source": "manual",
       "precision": "exact | approx | unknown",
-      "note": "per goal: name, year or timeline, cost_today, priority; cost_today unknown keeps the goal unpriced on the Yes list"
+      "note": "per goal: name, year or timeline, cost_today, priority; cost_today unknown keeps the goal unpriced on the Yes list",
+      "forward": "required"
      }
     ],
     "logic": [
@@ -9696,6 +10215,11 @@
     ],
     "dev": [
      "Unpriced goals (cost_today not sure) are not passed to the React's life-events loop; they stay on the Yes list until priced (Vatsal, 11 Sep 2026)."
+    ],
+    "forward": [
+     "Save is enabled when the goal has a name.",
+     "Required: the goal name, the identity of the goal.",
+     "Optional: horizon or exact year, cost (band or exact), priority; I am not sure yet keeps them not sure; a goal with no timeline or budget is stored as-is, shown on the Yes list and excluded from the SIP maths (M2 6.1)."
     ]
    },
    "template": "T-detail",
@@ -9724,7 +10248,8 @@
     "causes": [
      "Vatsal, 10 Sep 2026",
      "V5 Q4.4b",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -9777,7 +10302,8 @@
       "gate": true,
       "source": "manual | default accepted",
       "precision": "exact",
-      "note": "default 60, tagged default accepted only when the user takes it on this screen"
+      "note": "default 60, tagged default accepted only when the user takes it on this screen",
+      "forward": "required"
      }
     ],
     "logic": [
@@ -9797,6 +10323,11 @@
     ],
     "dev": [
      "Store the value with source default accepted when the chip is used; the tag exists nowhere else."
+    ],
+    "forward": [
+     "Continue is enabled when a chip is chosen; I have not thought about it: use 60 counts as a value tagged default accepted.",
+     "Required: work_optional_age (gate; the projection needs an anchor and the user accepts it here).",
+     "Optional: nothing."
     ]
    },
    "template": "T-tap",
@@ -9817,7 +10348,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -10017,14 +10549,16 @@
       "gate": false,
       "source": "system",
       "precision": "exact",
-      "note": "snapshot with source and precision per field"
+      "note": "snapshot with source and precision per field",
+      "forward": "system"
      },
      {
       "f": "declaration_accepted_at",
       "gate": true,
       "source": "manual",
       "precision": "exact",
-      "note": "moved from D09"
+      "note": "moved from D09",
+      "forward": "required"
      }
     ],
     "logic": [
@@ -10092,6 +10626,11 @@
     "dev": [
      "Snapshot of inputs as plan_input_version with source and precision per field (advice record).",
      "Events gate_met and plan_built {band_count} (appendix D)."
+    ],
+    "forward": [
+     "Build my plan is enabled when the declaration is confirmed and every gate field is a value or explicit none; otherwise the Ready to build card lists what is missing and links to D13 for ranges.",
+     "Required: declaration_accepted_at (I confirm).",
+     "System: plan_input_version; written by the app on build."
     ]
    },
    "template": "T-review",
@@ -10116,7 +10655,8 @@
     "status": "rebuilt",
     "causes": [
      "Vatsal, 10 Sep 2026",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -10203,7 +10743,8 @@
       "gate": true,
       "source": "manual",
       "precision": "approx",
-      "note": "one band per field the React reads that was not sure; the midpoint is stored tagged approx"
+      "note": "one band per field the React reads that was not sure; the midpoint is stored tagged approx",
+      "forward": "required"
      }
     ],
     "logic": [
@@ -10231,6 +10772,11 @@
     "dev": [
      "Rows come from fp_react_inputs.json (fallback: band required on every field) crossed with the stored tri-state per field.",
      "Store each band as value = midpoint, source manual, precision approx, with the band label (rule 9); events range_picked {field} and ranges_done {count}."
+    ],
+    "forward": [
+     "Done is enabled when every listed field has a band chosen.",
+     "Required: a band per listed field (each is a gate field that was left not sure; rule 7).",
+     "Optional: nothing; leaving the screen keeps the autosave and the ladder (S19) brings the user back."
     ]
    },
    "template": "T-list",
@@ -10252,7 +10798,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -12709,10 +13256,22 @@
    ],
    "spec": {
     "fields": [
-     "call_topic",
-     "call_note",
-     "calls_included_per_period (config)",
-     "calls_used"
+     {
+      "f": "call_topic",
+      "forward": "optional"
+     },
+     {
+      "f": "call_note",
+      "forward": "optional"
+     },
+     {
+      "f": "calls_included_per_period (config)",
+      "forward": "system"
+     },
+     {
+      "f": "calls_used",
+      "forward": "system"
+     }
     ],
     "logic": [
      "A call is a call, with a topic; there are no call types. Any adviser from the call centre takes any call (Vatsal, 10 Sep 2026, supersedes brief T2).",
@@ -12743,6 +13302,12 @@
     "dev": [
      "Call length is config; to be verified: call lengths in the recipe.",
      "The call centre sees the plan (G03) and the inputs (D10) before the call (M01)."
+    ],
+    "forward": [
+     "Pick a slot is always enabled.",
+     "Required: nothing.",
+     "Optional: call_topic, call_note; they brief the adviser, nothing else.",
+     "System: calls_included_per_period, calls_used; config and the booking count."
     ]
    },
    "frame": "phone",
@@ -12767,7 +13332,8 @@
     "causes": [
      "brief T2",
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
-     "Vatsal, 10 Sep 2026 (section 5)"
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -12811,8 +13377,14 @@
    ],
    "spec": {
     "fields": [
-     "call_slot",
-     "same_adviser_requested (only when the flag is on)"
+     {
+      "f": "call_slot",
+      "forward": "required"
+     },
+     {
+      "f": "same_adviser_requested (only when the flag is on)",
+      "forward": "optional"
+     }
     ],
     "logic": [
      "Any available adviser from the call centre; no name shown.",
@@ -12834,6 +13406,11 @@
     ],
     "dev": [
      "Calendar from the call-centre tool; video link from the CRM (section 6)."
+    ],
+    "forward": [
+     "Confirm is enabled when a slot is chosen.",
+     "Required: call_slot (the booking is the slot).",
+     "Optional: same_adviser_requested; shown only when the continuity flag is on."
     ]
    },
    "template": "T-picker",
@@ -12854,7 +13431,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026 (supersedes brief T2)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T2)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -13383,10 +13961,22 @@
    ],
    "spec": {
     "fields": [
-     "bank_account",
-     "nominee",
-     "fatca",
-     "mandate"
+     {
+      "f": "bank_account",
+      "forward": "required"
+     },
+     {
+      "f": "nominee",
+      "forward": "required"
+     },
+     {
+      "f": "fatca",
+      "forward": "required"
+     },
+     {
+      "f": "mandate",
+      "forward": "optional"
+     }
     ],
     "logic": [
      "Creates the client code on BSE StAR MF under HoA's RIA registration. Direct plans only (agreement and Reg 22A).",
@@ -13413,6 +14003,11 @@
     "dev": [
      "Direct BSE StAR MF APIs or an API layer such as Cybrilla Fintech Primitives; dev call.",
      "Mandate limit set above total planned SIPs with headroom for step-ups."
+    ],
+    "forward": [
+     "Continue is enabled when the bank account is verified, the FATCA declaration is done and the nominee choice is made; the mandate may stay pending (E10).",
+     "Required: bank_account, fatca, nominee (nominate or opt out); the rail needs all three to create the client code; to be verified: the SEBI nomination rule for new folios and the exact UCC field set on BSE StAR MF.",
+     "Optional: mandate; registered on E10 before the first SIP; lumpsum orders on E03 pay at order time."
     ]
    },
    "frame": "phone",
@@ -13435,7 +14030,8 @@
     "status": "changed",
     "causes": [
      "brief G1 (default, not confirmed in the meeting)",
-     "Kajal, 16 Sep 2026"
+     "Kajal, 16 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -13486,10 +14082,22 @@
    ],
    "spec": {
     "fields": [
-     "ucc",
-     "fatca",
-     "bank_verified",
-     "mandate_id"
+     {
+      "f": "ucc",
+      "forward": "system"
+     },
+     {
+      "f": "fatca",
+      "forward": "system"
+     },
+     {
+      "f": "bank_verified",
+      "forward": "system"
+     },
+     {
+      "f": "mandate_id",
+      "forward": "system"
+     }
     ],
     "logic": [
      "brief G1: default, not confirmed in the meeting.",
@@ -13506,6 +14114,11 @@
     ],
     "dev": [
      "Direct BSE StAR MF APIs or an API layer; dev call (spec v0.1 E02)."
+    ],
+    "forward": [
+     "Back to setup is always enabled; nothing is typed here; the rows show the rail's statuses.",
+     "Required: nothing.",
+     "System: ucc, fatca, bank_verified, mandate_id; written by BSE StAR MF and the app."
     ]
    },
    "template": "T-list",
@@ -13526,7 +14139,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "brief G1 (default, not confirmed in the meeting)"
+     "brief G1 (default, not confirmed in the meeting)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -13599,10 +14213,22 @@
    ],
    "spec": {
     "fields": [
-     "mandate_type",
-     "mandate_limit",
-     "mandate_id",
-     "mandate_status"
+     {
+      "f": "mandate_type",
+      "forward": "required"
+     },
+     {
+      "f": "mandate_limit",
+      "forward": "default"
+     },
+     {
+      "f": "mandate_id",
+      "forward": "system"
+     },
+     {
+      "f": "mandate_status",
+      "forward": "system"
+     }
     ],
     "logic": [
      "Mandate registration (Kajal, 16 Sep 2026): the SIP mandate was one row on E02 with no flow and no states; this screen is the registration itself, between the one-time setup (E02) and the SIPs (E11).",
@@ -13630,6 +14256,12 @@
     ],
     "dev": [
      "Mandate registration and status through the same rail API layer as E02 (dev call); webhook per mandate event, reconciled nightly with E08."
+    ],
+    "forward": [
+     "Approve the mandate is enabled when a mandate type is chosen; the approval happens in the UPI app or at the bank.",
+     "Required: mandate_type (UPI autopay or e-NACH).",
+     "Default: mandate_limit; the planned SIPs on this rail plus headroom; editable above the planned total.",
+     "System: mandate_id, mandate_status; written by the rail and its webhook."
     ]
    },
    "template": "T-card",
@@ -13653,7 +14285,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Kajal, 16 Sep 2026"
+     "Kajal, 16 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -13705,7 +14338,10 @@
    ],
    "spec": {
     "fields": [
-     "order"
+     {
+      "f": "order",
+      "forward": "default"
+     }
     ],
     "logic": [
      "SIPs are registered on E11 against the mandate (E10), with the start date from the action plan (Kajal, 16 Sep 2026).",
@@ -13727,6 +14363,11 @@
     ],
     "dev": [
      "BSE StAR 2FA as required."
+    ],
+    "forward": [
+     "Confirm and pay is always enabled once the order summary has loaded; the payment authorisation completes it.",
+     "Required: the payment authorisation in the vendor flow; nothing is typed here.",
+     "Default: order; prefilled from the action plan (scheme, amount, type) and editable within the action's range."
     ]
    },
    "frame": "phone",
@@ -13748,7 +14389,8 @@
     "status": "changed",
     "causes": [
      "brief G1 (default, not confirmed in the meeting)",
-     "Kajal, 16 Sep 2026"
+     "Kajal, 16 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -13836,8 +14478,14 @@
    ],
    "spec": {
     "fields": [
-     "sips[]: scheme, amount, sip_date, start_month, step_up",
-     "mandate_id"
+     {
+      "f": "sips[]: scheme, amount, sip_date, start_month, step_up",
+      "forward": "default"
+     },
+     {
+      "f": "mandate_id",
+      "forward": "system"
+     }
     ],
     "logic": [
      "SIP setup (Kajal, 16 Sep 2026): in v0.1 the SIPs were a case of the order screen (E03) drawn for a lumpsum; this screen registers every SIP from the action plan against the mandate (E10) in one confirmation.",
@@ -13872,6 +14520,12 @@
     ],
     "dev": [
      "One registration call per SIP through the rail API layer (dev call); webhook per SIP event; E08 reconciles nightly."
+    ],
+    "forward": [
+     "Confirm and register is enabled when the mandate is active; nothing on this screen blocks it otherwise.",
+     "Required: nothing typed; the active mandate (E10) is the condition.",
+     "Default: the SIPs; scheme, amount and start month from the action plan (not edited here), SIP date the 5th, step-up none; the date and the step-up are editable.",
+     "System: mandate_id; from E10."
     ]
    },
    "template": "T-list",
@@ -13894,6 +14548,7 @@
     "status": "new",
     "causes": [
      "Kajal, 16 Sep 2026",
+     "Vatsal, 17 Sep 2026",
      "Vatsal, 16 Sep 2026"
     ]
    }
@@ -14113,8 +14768,14 @@
    ],
    "spec": {
     "fields": [
-     "broker",
-     "gateway_txn"
+     {
+      "f": "broker",
+      "forward": "required"
+     },
+     {
+      "f": "gateway_txn",
+      "forward": "system"
+     }
     ],
     "logic": [
      "No new demat needed; the user's existing broker executes.",
@@ -14131,6 +14792,11 @@
     ],
     "dev": [
      "smallcase Gateway SDK; transaction status webhook."
+    ],
+    "forward": [
+     "Connect and place order is enabled when a broker chip is chosen; the broker login happens inside the smallcase Gateway flow.",
+     "Required: broker (the gateway needs it to open the login).",
+     "System: gateway_txn; written by smallcase Gateway."
     ]
    },
    "frame": "phone",
@@ -14151,6 +14817,7 @@
    "v02": {
     "status": "changed",
     "causes": [
+     "Vatsal, 17 Sep 2026",
      "Vatsal, 16 Sep 2026"
     ]
    }
@@ -14191,8 +14858,14 @@
    ],
    "spec": {
     "fields": [
-     "policy_upload",
-     "self_reported_at"
+     {
+      "f": "policy_upload",
+      "forward": "optional"
+     },
+     {
+      "f": "self_reported_at",
+      "forward": "system"
+     }
     ],
     "logic": [
      "No product names or links that could look like distribution; RIA advises, does not distribute.",
@@ -14206,7 +14879,13 @@
      ]
     ],
     "states": [],
-    "dev": []
+    "dev": [],
+    "forward": [
+     "I have done this is always enabled; it marks the action done and unverified; the upload verifies it.",
+     "Required: nothing.",
+     "Optional: policy_upload; without it the action stays done, unverified, and H04 carries a verify item.",
+     "System: self_reported_at; written on the tap."
+    ]
    },
    "frame": "phone",
    "template": "T-card",
@@ -14227,7 +14906,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "brief H4"
+     "brief H4",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -16237,6 +16917,11 @@
     ],
     "dev": [
      "Hero card and state card come from the state table (N01); nothing else changes between variants."
+    ],
+    "forward": [
+     "Sharpen now is always enabled and opens D10; Yes, Sunday and Not now are optional taps that set or skip the S18 nudge.",
+     "Required: nothing.",
+     "Optional: the Sunday choice."
     ]
    },
    "frame": "phone",
@@ -16259,7 +16944,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -17457,9 +18143,18 @@
    ],
    "spec": {
     "fields": [
-     "review_id",
-     "confirmed_changes[]",
-     "life_events[]"
+     {
+      "f": "review_id",
+      "forward": "system"
+     },
+     {
+      "f": "confirmed_changes[]",
+      "forward": "default"
+     },
+     {
+      "f": "life_events[]",
+      "forward": "optional"
+     }
     ],
     "logic": [
      "Locked manual fields are not overwritten; the diff shows both and asks (spiff, Q10).",
@@ -17493,6 +18188,13 @@
     ],
     "dev": [
      "Periodic AA consent covers this fetch; frequency in the consent template."
+    ],
+    "forward": [
+     "Rebuild my plan is always enabled; every row starts as Good to go.",
+     "Required: nothing.",
+     "Default: confirmed_changes[], Good to go per row; Edit and Keep my manual number change a row.",
+     "Optional: life_events[]; adding one opens Q06 first.",
+     "System: review_id."
     ]
    },
    "frame": "phone",
@@ -17515,7 +18217,8 @@
     "causes": [
      "Vatsal, 10 Sep 2026 (supersedes brief T2)",
      "Vatsal, 10 Sep 2026 (section 5)",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -17571,8 +18274,14 @@
    ],
    "spec": {
     "fields": [
-     "sku (diy, diwm)",
-     "period (monthly, quarterly)"
+     {
+      "f": "sku (diy, diwm)",
+      "forward": "default"
+     },
+     {
+      "f": "period (monthly, quarterly)",
+      "forward": "default"
+     }
     ],
     "logic": [
      "Switch SKU and period (Vatsal, 10 Sep 2026); the new mandate goes through P04.",
@@ -17595,6 +18304,11 @@
     ],
     "dev": [
      "Razorpay subscription update; the invoice carries the new SKU and period."
+    ],
+    "forward": [
+     "Confirm the change is enabled when the chosen card or period differs from the current membership.",
+     "Required: nothing beyond a change.",
+     "Default: sku and period; the current membership is preselected."
     ]
    },
    "frame": "phone",
@@ -17616,7 +18330,8 @@
     "status": "rebuilt",
     "causes": [
      "Vatsal, 10 Sep 2026 (supersedes brief T1)",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -17792,9 +18507,18 @@
    ],
    "spec": {
     "fields": [
-     "cancel_reason",
-     "pause_until",
-     "refund_requested"
+     {
+      "f": "cancel_reason",
+      "forward": "optional"
+     },
+     {
+      "f": "pause_until",
+      "forward": "optional"
+     },
+     {
+      "f": "refund_requested",
+      "forward": "optional"
+     }
     ],
     "logic": [
      "Confirm cancel: the plan stays readable, refresh stops (spec v0.1).",
@@ -17818,6 +18542,11 @@
     ],
     "dev": [
      "Razorpay subscription cancel or pause; the CRM records the reason."
+    ],
+    "forward": [
+     "Confirm cancel is always enabled; a reason is never a condition of leaving.",
+     "Required: nothing.",
+     "Optional: cancel_reason, pause_until (Pause instead), refund_requested."
     ]
    },
    "template": "T-card",
@@ -17839,7 +18568,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026 (supersedes brief T1)",
-     "Vatsal, 10 Sep 2026 (section 5)"
+     "Vatsal, 10 Sep 2026 (section 5)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -17881,8 +18611,14 @@
    ],
    "spec": {
     "fields": [
-     "grace_until",
-     "retry_count"
+     {
+      "f": "grace_until",
+      "forward": "system"
+     },
+     {
+      "f": "retry_count",
+      "forward": "system"
+     }
     ],
     "logic": [
      "Grace 7 days (spec v0.1); a banner shows on H01f until the payment succeeds (section 5).",
@@ -17903,6 +18639,11 @@
     ],
     "dev": [
      "Razorpay subscription webhooks drive this state."
+    ],
+    "forward": [
+     "Retry payment is always enabled; Change method opens P04 with the method chips; Later returns home within the grace period.",
+     "Required: nothing typed; the payment itself completes the retry.",
+     "System: grace_until, retry_count; written by the app."
     ]
    },
    "template": "T-card",
@@ -17923,7 +18664,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 10 Sep 2026 (supersedes brief T1)"
+     "Vatsal, 10 Sep 2026 (supersedes brief T1)",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -18191,31 +18933,36 @@
       "gate": true,
       "source": "manual",
       "precision": "exact or approx",
-      "note": "locked manual value stays unless updated here"
+      "note": "locked manual value stays unless updated here",
+      "forward": "default"
      },
      {
       "f": "total_outgoings",
       "gate": true,
       "source": "manual",
-      "precision": "exact or approx"
+      "precision": "exact or approx",
+      "forward": "default"
      },
      {
       "f": "bank_and_deposits",
       "gate": true,
       "source": "manual",
-      "precision": "exact or approx"
+      "precision": "exact or approx",
+      "forward": "default"
      },
      {
       "f": "mutual_funds",
       "gate": true,
       "source": "manual or cas",
-      "precision": "exact or approx"
+      "precision": "exact or approx",
+      "forward": "default"
      },
      {
       "f": "stocks",
       "gate": true,
       "source": "manual or cas",
-      "precision": "exact or approx"
+      "precision": "exact or approx",
+      "forward": "default"
      }
     ],
     "logic": [
@@ -18259,6 +19006,11 @@
     "dev": [
      "Runs on the plan anniversary quarter like Q01; the same review_id and diff pipeline.",
      "Each row links to its single D screen; saving there returns here."
+    ],
+    "forward": [
+     "Rebuild my plan is always enabled; every row starts confirmed at its stored value.",
+     "Required: nothing.",
+     "Default: take_home, total_outgoings, bank_and_deposits, mutual_funds, stocks; That's about right keeps the value, Change it reopens the field's D screen."
     ]
    },
    "template": "T-review",
@@ -18280,7 +19032,8 @@
     "status": "new",
     "causes": [
      "Vatsal, 10 Sep 2026 (section 5)",
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -18344,7 +19097,8 @@
       "gate": false,
       "source": "manual",
       "precision": "exact",
-      "note": "chip, free text for something else, reported_at"
+      "note": "chip, free text for something else, reported_at",
+      "forward": "required"
      }
     ],
     "logic": [
@@ -18464,6 +19218,11 @@
        "O02"
       ]
      }
+    ],
+    "forward": [
+     "Next is enabled when at least one chip is ticked or the free line has text.",
+     "Required: life_events[] (at least one change; with none there is nothing to reopen).",
+     "Optional: nothing."
     ]
    },
    "template": "T-list",
@@ -18484,7 +19243,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "Vatsal, 11 Sep 2026"
+     "Vatsal, 11 Sep 2026",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -23063,7 +23823,10 @@
    ],
    "spec": {
     "fields": [
-     "isin, cells[], weight, core_or_satellite, status"
+     {
+      "f": "isin, cells[], weight, core_or_satellite, status",
+      "forward": "required"
+     }
     ],
     "logic": [
      "Weights within a cell's asset class sum to 100.",
@@ -23085,6 +23848,12 @@
     "states": [],
     "dev": [
      "ISIN facts via an external API (spiff, Q19): AMFI or MF data API for funds; exchange master for listed instruments. Refresh NAVs nightly."
+    ],
+    "forward": [
+     "Add instrument needs an ISIN; a row saves as Staged with the ISIN alone; Market inputs is always enabled.",
+     "Required: isin, to add a row.",
+     "Optional at entry, required before publish: cells[], weight, core_or_satellite; L05 validation blocks publish on a gap, never typing here.",
+     "Default: status, Staged."
     ]
    },
    "template": "T-table",
@@ -23106,6 +23875,7 @@
     "causes": [
      "brief H2",
      "row 51",
+     "Vatsal, 17 Sep 2026",
      "Vatsal, 16 Sep 2026"
     ]
    }
@@ -23261,6 +24031,11 @@
     "states": [],
     "dev": [
      "Impact preview runs the engine against a snapshot of all active users; async job."
+    ],
+    "forward": [
+     "Preview needs a user ID or a persona; Publish opens L06 only when validation passes (grids sum to 100, no empty cell, no unknown ISIN, no L09 breach).",
+     "Required: a user ID or a persona, to preview; a passing validation, to publish.",
+     "Optional: nothing."
     ]
    },
    "template": "T-table",
@@ -23280,7 +24055,8 @@
    "v02": {
     "status": "changed",
     "causes": [
-     "brief H2"
+     "brief H2",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
@@ -23316,8 +24092,14 @@
    ],
    "spec": {
     "fields": [
-     "reason",
-     "publish_at"
+     {
+      "f": "reason",
+      "forward": "required"
+     },
+     {
+      "f": "publish_at",
+      "forward": "default"
+     }
     ],
     "logic": [
      "Publishing creates instrument_set_version; the plan-upgrade job recomputes affected users and creates H05 diffs (spiff, Q19).",
@@ -23330,7 +24112,12 @@
      ]
     ],
     "states": [],
-    "dev": []
+    "dev": [],
+    "forward": [
+     "Publish is enabled when a reason is typed.",
+     "Required: reason (the audit line on every version).",
+     "Default: publish_at, now; a later time schedules it."
+    ]
    },
    "template": "T-table",
    "path": "both",
@@ -23347,8 +24134,10 @@
     "L06_view"
    ],
    "v02": {
-    "status": "kept",
-    "causes": []
+    "status": "changed",
+    "causes": [
+     "Vatsal, 17 Sep 2026"
+    ]
    }
   },
   {
@@ -23524,10 +24313,22 @@
    ],
    "spec": {
     "fields": [
-     "max_weight_per_product",
-     "max_direct_shares_in_equity",
-     "category_tag[isin]",
-     "category_override[isin]"
+     {
+      "f": "max_weight_per_product",
+      "forward": "default"
+     },
+     {
+      "f": "max_direct_shares_in_equity",
+      "forward": "default"
+     },
+     {
+      "f": "category_tag[isin]",
+      "forward": "system"
+     },
+     {
+      "f": "category_override[isin]",
+      "forward": "optional"
+     }
     ],
     "logic": [
      "L05 validation blocks publish on a constraint breach (brief H2).",
@@ -23545,6 +24346,13 @@
     ],
     "dev": [
      "Weights in L04 are checked against these constraints on every staging save."
+    ],
+    "forward": [
+     "Staging and test is always enabled; a saved constraint applies to the next validation run.",
+     "Required: nothing beyond the defaults.",
+     "Default: max_weight_per_product, max_direct_shares_in_equity; from config, editable.",
+     "Optional: category_override[isin]; blank keeps the master category.",
+     "System: category_tag[isin]; from the instrument master."
     ]
    },
    "template": "T-table",
@@ -23564,7 +24372,8 @@
    "v02": {
     "status": "new",
     "causes": [
-     "brief H2"
+     "brief H2",
+     "Vatsal, 17 Sep 2026"
     ]
    }
   },
