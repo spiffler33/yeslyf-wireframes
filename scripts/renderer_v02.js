@@ -172,12 +172,50 @@
     renderStrip();
   }
 
-  function list(title, arr, linkable){
+  // ---------- the spec panel ----------
+  // Six things open, the rest folded with a count (Vatsal, 17 Sep 2026; the default reader is Spinach). Open by
+  // default: the marker line, the purpose, the fields, Moving forward, the capture ladder, the multi-select and
+  // chip maps, the branches. Folded: the causes, Logic, States, Dev notes, Integrations (absent when no row serves
+  // the screen), Events, the compliance flag (open by itself on a screen flagged for review). A fold the reader
+  // opens or closes stays that way on the next screens; "Show all sections" opens every fold; both are remembered
+  // in this browser (store.panel). Template, path and tier read as one line at the foot: the frame header and the
+  // filter bar already carry them.
+  if(!store.panel || typeof store.panel !== "object") store.panel = {all:false, open:{}};
+  if(!store.panel.open) store.panel.open = {};
+  var OPEN_DEFAULT = {fields:true, forward:true, ladder:true, multi:true, chips:true, branches:true};
+  function isOpen(key, self){
+    if(store.panel.all) return true;
+    var pref = store.panel.open[key];
+    if(pref === true || pref === false) return pref;
+    return !!OPEN_DEFAULT[key] || !!self;
+  }
+  function block(key, title, n, inner, self){
+    // one section: a details element whose summary carries the title and, for a list, its count
+    var open = isOpen(key, self);
+    return '<details class="spec-block" data-key="'+key+'" data-open="'+(open ? '1' : '0')+'"'+(open ? ' open' : '')+'><summary class="spec-t">'+title+
+           (n === null || n === undefined ? '' : ' <span class="cnt">('+n+')</span>')+'</summary>'+inner+'</details>';
+  }
+  function list(key, title, arr, linkable){
     if(!arr || !arr.length) return '';
-    return '<div class="spec-block"><div class="spec-t">'+title+'</div><ul>'+arr.map(function(x){
+    return block(key, title, arr.length, '<ul>'+arr.map(function(x){
       if(linkable){ return '<li><span>'+esc(x[0])+'</span> <a href="#'+esc(x[1])+'" class="br">'+esc(x[1])+'</a></li>'; }
       return '<li>'+esc(x)+'</li>';
-    }).join("")+'</ul></div>';
+    }).join("")+'</ul>');
+  }
+  function wirePanel(spec){
+    // a fold the reader changes is remembered (unless every fold is open); the foot button flips all of them
+    Array.prototype.forEach.call(spec.querySelectorAll("details[data-key]"), function(d){
+      d.addEventListener("toggle", function(){
+        var was = d.getAttribute("data-open") === "1", now = !!d.open; if(was === now) return;
+        d.setAttribute("data-open", now ? "1" : "0"); if(store.panel.all) return; store.panel.open[d.getAttribute("data-key")] = now; save(); });
+    });
+    var b = document.getElementById("showall");
+    if(b) b.addEventListener("click", function(){ store.panel.all = !store.panel.all; if(!store.panel.all) store.panel.open = {}; save(); renderSpec(); });
+  }
+  function fitComment(){
+    // the comment box starts at two lines and grows with its text
+    var ta = document.getElementById("comment"); if(!ta) return;
+    ta.style.height = "auto"; var h = ta.scrollHeight; if(typeof h === "number" && h > 0) ta.style.height = (h + 2) + "px";
   }
   function fieldLine(f){
     if(typeof f === "string") return f;
@@ -199,29 +237,36 @@
     var st = v.status;
     var label = st === "new" ? "New in v0.2" : (st === "changed" || st === "rebuilt") ? "Changed in v0.2" + (st === "rebuilt" ? " (rebuilt)" : "") : "Kept from v0.1";
     var cls = st === "new" ? " new" : (st === "changed" || st === "rebuilt") ? " changed" : "";
-    var causes = (SPEC === "full" && v.causes && v.causes.length) ? '<div>Cause: '+v.causes.map(esc).join("; ")+'</div>' : '';
-    return '<div class="marker'+cls+'">'+freezeLine(s)+'<b>'+label+'</b>'+causes+'</div>';
+    var causes = '';
+    if(SPEC === "full" && v.causes && v.causes.length){
+      var n = v.causes.length;
+      causes = block("causes", n + (n === 1 ? " cause" : " causes"), null, '<ul>'+v.causes.map(function(c){ return '<li>'+esc(c)+'</li>'; }).join("")+'</ul>');
+    }
+    return '<div class="marker'+cls+'">'+freezeLine(s, '<b class="lbl">'+label+'</b>')+causes+'</div>';
   }
-  function freezeLine(s){
-    // Frozen since <date>, owed: ...  or  Open because: ... (phase 12; text, never colour alone). One item reads
-    // inline; several read as a list, so the box stays scannable.
-    var f = s.freeze; if(!f) return '';
+  function freezeLine(s, label){
+    // One line on a frozen screen with nothing owed: "Frozen since <date>. <label>". Open because: <reasons>, and
+    // what is owed, keep their own lines (phase 12; text, never colour alone). One item reads inline; several read
+    // as a list, so the box stays scannable.
+    var f = s.freeze;
+    if(!f) return '<div class="fz-line">'+label+'</div>';
     function items(arr){ if(!arr || !arr.length) return ''; if(arr.length === 1) return ' '+esc(arr[0]); return '<ul class="fz-list">'+arr.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ul>'; }
     var owed = (f.owed && f.owed.length) ? '<div class="fz-owed">Owed:'+items(f.owed)+'</div>' : '';
-    if(f.status === "open") return '<div class="fz-line"><b>Open</b> since '+esc(f.since)+', because:'+items(f.reason)+owed+'</div>';
-    return '<div class="fz-line"><b>Frozen</b> since '+esc(f.since)+(owed ? '' : '')+'</div>'+owed;
+    if(f.status === "open") return '<div class="fz-line"><b>Open</b> since '+esc(f.since)+', because:'+items(f.reason)+owed+'</div><div class="fz-line">'+label+'</div>';
+    if(!owed) return '<div class="fz-line"><b>Frozen</b> since '+esc(f.since)+'. '+label+'</div>';
+    return '<div class="fz-line"><b>Frozen</b> since '+esc(f.since)+'</div>'+owed+'<div class="fz-line">'+label+'</div>';
   }
   function integrationsBlock(s){
     // The rows whose screens list names this screen, with the final or open choice: the build's value with its
     // date until the live rows arrive, then the current choice from the board table. Rows serving every screen
-    // (screens ["all"]) are not repeated here.
+    // (screens ["all"]) are not repeated here; a screen no row serves has no block.
     var rows = INTEG.rows.filter(function(r){ return r.screens.indexOf(s.id) >= 0; });
-    var title = "Integrations" + ((!liveChoices && INTEG.as_of) ? " (as of " + esc(INTEG.as_of) + ")" : "");
-    if(!rows.length) return '<div class="spec-block"><div class="spec-t">'+title+'</div><div class="tiers">none</div></div>';
-    return '<div class="spec-block"><div class="spec-t">'+title+'</div><ul>'+rows.map(function(r){
+    if(!rows.length) return '';
+    var asOf = (!liveChoices && INTEG.as_of) ? '<div class="tiers">as of '+esc(INTEG.as_of)+'</div>' : '';
+    return block("integrations", "Integrations", rows.length, asOf+'<ul>'+rows.map(function(r){
       var ch = (liveChoices && liveChoices[r.id]) || r.choice || "open";
       var slip = (r.fallback && r.fallback !== "none") ? '; if it slips: '+esc(r.fallback) : '';
-      return '<li>'+esc(r.id)+' '+esc(r.vendor)+', '+esc(ch)+slip+'</li>'; }).join("")+'</ul></div>';
+      return '<li>'+esc(r.id)+' '+esc(r.vendor)+', '+esc(ch)+slip+'</li>'; }).join("")+'</ul>');
   }
 
   function renderSpec(){
@@ -239,35 +284,34 @@
       reviewControls(s, n);
       return;
     }
-    html += '<div class="spec-block"><div class="spec-t">Template</div><div class="tiers">'+esc(s.template)+'</div></div>';
-    html += '<div class="spec-block"><div class="spec-t">Path</div><div class="tiers">'+esc(s.path)+'</div></div>';
-    html += '<div class="spec-block"><div class="spec-t">Shown to</div><div class="tiers">'+esc(s.tier.join(", "))+'</div></div>';
-    html += list(fieldsTitle(s), (s.spec.fields || []).map(fieldLine));
-    html += list("Moving forward", s.spec.forward);
+    html += list("fields", fieldsTitle(s), (s.spec.fields || []).map(fieldLine));
+    html += list("forward", "Moving forward", s.spec.forward);
     if(s.spec.ladder && s.spec.ladder.length){
-      html += '<div class="spec-block"><div class="spec-t">Capture ladder</div><ul>'+s.spec.ladder.map(function(x){ return '<li><b>'+esc(x[0])+'</b>: '+esc(x[1])+'</li>'; }).join("")+'</ul></div>';
+      html += block("ladder", "Capture ladder", s.spec.ladder.length, '<ul>'+s.spec.ladder.map(function(x){ return '<li><b>'+esc(x[0])+'</b>: '+esc(x[1])+'</li>'; }).join("")+'</ul>');
     }
     if(s.spec.multi_select){
       var ms = s.spec.multi_select;
-      html += '<div class="spec-block"><div class="spec-t">Multi-select</div><ul>'+(ms.options || []).map(function(o){ return '<li><span>'+esc(o[0])+'</span> opens <a href="#'+esc(o[1])+'" class="br">'+esc(o[1])+'</a></li>'; }).join("")+
-              '<li>'+esc(ms.none)+': every type is '+esc(ms.unticked)+'; then <a href="#'+esc(ms.after)+'" class="br">'+esc(ms.after)+'</a></li><li>Unticked types: '+esc(ms.unticked)+', never opened</li>'+(ms.prefilled ? '<li>'+esc(ms.prefilled)+'</li>' : '')+'</ul></div>';
+      html += block("multi", "Multi-select", (ms.options || []).length, '<ul>'+(ms.options || []).map(function(o){ return '<li><span>'+esc(o[0])+'</span> opens <a href="#'+esc(o[1])+'" class="br">'+esc(o[1])+'</a></li>'; }).join("")+
+              '<li>'+esc(ms.none)+': every type is '+esc(ms.unticked)+'; then <a href="#'+esc(ms.after)+'" class="br">'+esc(ms.after)+'</a></li><li>Unticked types: '+esc(ms.unticked)+', never opened</li>'+(ms.prefilled ? '<li>'+esc(ms.prefilled)+'</li>' : '')+'</ul>');
     }
     if(s.spec.chip_map){
-      html += '<div class="spec-block"><div class="spec-t">Chips and what each reopens</div><ul>'+s.spec.chip_map.map(function(c){ return '<li><span>'+esc(c.chip)+'</span>: '+c.reopens.map(function(t){ return '<a href="#'+esc(t)+'" class="br">'+esc(t)+'</a>'; }).join(", ")+'</li>'; }).join("")+'</ul></div>';
+      html += block("chips", "Chips and what each reopens", s.spec.chip_map.length, '<ul>'+s.spec.chip_map.map(function(c){ return '<li><span>'+esc(c.chip)+'</span>: '+c.reopens.map(function(t){ return '<a href="#'+esc(t)+'" class="br">'+esc(t)+'</a>'; }).join(", ")+'</li>'; }).join("")+'</ul>');
     }
-    html += list("Logic", s.spec.logic);
-    html += list("Branches", s.spec.branches, true);
-    html += list("States", s.spec.states);
-    html += list("Dev notes", s.spec.dev);
+    html += list("branches", "Branches", s.spec.branches, true);
+    html += list("logic", "Logic", s.spec.logic);
+    html += list("states", "States", s.spec.states);
+    html += list("dev", "Dev notes", s.spec.dev);
     html += integrationsBlock(s);
-    html += list("Events", s.events);
+    html += list("events", "Events", s.events);
     if(SPEC === "full"){
-      html += '<div class="spec-block"><div class="spec-t">Compliance flag</div><div class="tiers">' + (c.review ? 'review: yes' : 'review: no') + '; reasons: ' + esc((c.reasons || []).join(", ")) + (c.note ? '; ' + esc(c.note) : '') + '</div></div>';
-      if(c.checks && c.checks.length){
-        html += '<div class="chk"><b>Compliance checklist</b><ul>'+c.checks.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ul></div>';
-      }
+      var inner = '<div class="tiers">reasons: ' + esc((c.reasons || []).join(", ")) + (c.note ? '; ' + esc(c.note) : '') + '</div>';
+      if(c.checks && c.checks.length) inner += '<div class="chk"><b>Compliance checklist</b><ul>'+c.checks.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ul></div>';
+      html += block("compliance", "Compliance flag, review: " + (c.review ? "yes" : "no"), null, inner, !!c.review);
     }
-    document.getElementById("spec").innerHTML = html;
+    html += '<div class="spec-foot"><span>Template '+esc(s.template)+', path '+esc(s.path)+', shown to '+esc(s.tier.join(", "))+'</span>'+
+            '<button type="button" id="showall" class="hist-toggle">'+(store.panel.all ? "Show fewer sections" : "Show all sections")+'</button></div>';
+    var spec = document.getElementById("spec"); spec.innerHTML = html;
+    wirePanel(spec);
     reviewControls(s, n);
   }
   function isSpinach(who){ var w = String(who || ""); return w === "Spinach" || w.indexOf("Spinach (") === 0; }
@@ -298,6 +342,7 @@
     if(v) Array.prototype.forEach.call(v.querySelectorAll("button"), function(b){ b.className = (b.getAttribute("data-v") === n.verdict) ? "on" : ""; });
     var rs = document.getElementById("reason"); if(rs) rs.value = n.reason || "";
     var ta = document.getElementById("comment"); if(ta){ ta.value = n.text || ""; ta.placeholder = "Comment on "+s.id+": what to keep, change or drop, and why. Compliance: comment on language."; }
+    fitComment();
     var rv = document.getElementById("reviewer"); if(rv) rv.value = store.who || "";
     syncReason();
     if(BOARD) BOARD.refreshHistory();
@@ -468,7 +513,7 @@
         var id = SCREENS[state.idx].id; var n = noteFor(id); n.verdict = (n.verdict === b.getAttribute("data-v")) ? "" : b.getAttribute("data-v"); n.who = store.who; save(); var ok = put(id, "verdict", n.verdict, "verdict"); renderSpec(); renderNav(); saved(ok); });
     }
     var ta = document.getElementById("comment"); var timer;
-    if(ta) ta.addEventListener("input", function(){ var id = SCREENS[state.idx].id; var n = noteFor(id); n.text = ta.value; n.who = store.who; save();
+    if(ta) ta.addEventListener("input", function(){ fitComment(); var id = SCREENS[state.idx].id; var n = noteFor(id); n.text = ta.value; n.who = store.who; save();
       flash("Saving..."); clearTimeout(timer); timer = setTimeout(function(){ saved(put(id, "text", noteFor(id).text || "", "comment")); renderNav(); }, 1500); });
     if(BOARD){ BOARD.attach(ta, function(){ return SCREENS[state.idx].id; }); BOARD.init({page: PAGE, apply: applyRemote, who: store.who || "", local: localRows});
       if(INTEG.rows.length) BOARD.read({page: "integrations", apply: function(latest, rows, ok){ if(!ok) return; liveChoices = {};
