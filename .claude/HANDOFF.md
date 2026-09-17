@@ -7,12 +7,13 @@ frozen marker on every screen, final or open on every integrations row, and Spin
 session (about 30 Sep 2026, Phase 13).
 
 ## Read first
-1. PLAN.md section 17 and reports/phase12_pass1.md, pass2.md, pass3.md (what shipped, the contradictions found in
-   the brief and what was done about each, the judgment calls).
+1. PLAN.md section 17 and plan_v2.md section 12 (the rules that hold from here on); reports/phase12_pass1.md,
+   pass2.md, pass3.md (what shipped, the contradictions found in the brief and what was done about each).
 2. data/v02/freeze.json (the freeze register: open screens with causes, the blocking items, the unfreeze log) and
    data/tracker.json (the W rows, the milestones, the board link).
 3. scripts/board_store.js header (identity rule, the ignore list, read() and init({also})).
-4. Memory: project_state, review-transport-preferences, supabase-project.
+4. Memory: project_state, board-page-density (never restyle the wireframes page), review-transport-preferences,
+   kajal-integration-stack, supabase-project.
 
 ## Verify before coding
 - `git status --short` shows only the two untracked files in inputs/meeting/ (the docx and the Zoom transcript,

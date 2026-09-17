@@ -125,7 +125,6 @@ JS = r"""
   function edits(id){ if(!S.rows[id]) S.rows[id]={}; return S.rows[id]; }
   function val(id,f){ var e=S.rows[id]||{}; if(e[f]!==undefined) return e[f]; var r=byId[id]; return (r&&r[f]!==undefined)?r[f]:""; }
   function put(id,field,value){ if(!window.yeslyfBoard) return true; var ok=yeslyfBoard.write({item_id:id,field:field,value:value,who:S.who||"",kind:"field_edit"}); if(!ok) setTimeout(function(){ flash(yeslyfBoard.noIdentity); },0); return ok; }
-  function wb(){ return window.yeslyfBoard?yeslyfBoard.label():"offline; this file is the record"; }
   function today(){ var d=new Date(); return d.getFullYear()+"-"+two(d.getMonth()+1)+"-"+two(d.getDate()); }
   function two(n){ return (n<10?"0":"")+n; }
   function dmy(iso){ if(!iso||iso.length<10) return ""; return parseInt(iso.slice(8,10),10)+" "+MONTHS[parseInt(iso.slice(5,7),10)-1]+" "+iso.slice(0,4); }

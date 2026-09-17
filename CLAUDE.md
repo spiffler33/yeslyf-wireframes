@@ -26,7 +26,9 @@ repo, the data layer and the history. These rules override both where they confl
 - Unconfirmed vendor, regulatory or cost facts are written as "to be verified: <the item>". Never as facts, never
   with a person's name.
 - Never write "we recommend". Never write "recommendation" on v0.2 pages. A gap found during the build is written
-  "gap, to be decided" and appended to gaps.json with the screen it came from.
+  "gap, to be decided" and appended to gaps.json with the screen it came from. An open product decision on a screen
+  is written "to be decided: <item>" (same grammar as "to be verified"; phase 12) and makes the screen open in the
+  freeze register unless the register lists it as owed.
 - The frozen tabs' attribution is not transferable: never move a position to another name, never merge two
   people's positions into one unattributed line.
 
@@ -47,6 +49,10 @@ repo, the data layer and the history. These rules override both where they confl
   what it does. A self-link standing in for a screen that must exist is a bug.
 - Every screen carries at least one event name (appendix D of plan_v2.md) and a compliance flag with a reason
   category (appendix G). No screen without both.
+- Every field entry carries a tag (required, optional, default, system, read). A screen cites an integrations row by
+  its I-number, never a vendor name (the name is rendered from data/integrations.json). The freeze register
+  data/v02/freeze.json (plan_v2.md section 12) changes only by a commit; a frozen screen's build changes only with an
+  unfreeze log entry giving the date, the cause and what changed.
 - Review rows keep their numbers 1 to 73. New inputs append. The second review round writes to the "v02_comments"
   sheet tab and never to the first-round tabs.
 

@@ -763,3 +763,32 @@ spec.fields. Non-generated screens get both from data/v02/required_optional_edit
 an untagged field); the T-num and risk screens get theirs from scripts/gen_spine.py; validate_v02.py fails the
 build when a screen with an in, radio or chips-with-fields row lacks the block or a field lacks its tag. Appendix A
 is not repeated here; the Changelog tab carries the cause per screen.
+
+## 12. 17 Sep 2026 (Vatsal): corrections, frozen and final markers, tracker (phase 12)
+
+After the Spinach walkthrough of 16 Sep 2026 (minutes in inputs/meeting/). Cause on every change: "minutes 16 Sep
+2026, item N", "Gaurav, 16 Sep 2026" or "Vatsal, 17 Sep 2026". The brief is yeslyf_phase12_brief.md; the reports
+are reports/phase12_pass1.md to pass3.md.
+
+Rules that hold from here on:
+- "to be decided: <item>" is the grammar for an open product decision, written on the screen it touches, with the
+  same shape as "to be verified: <item>"; the item runs to the first ), ; or full stop outside its own brackets.
+  The Changelog aggregates both (To be verified, To be decided).
+- A screen cites an integrations row by its I-number (see I06); the vendor name and its final or open marker are
+  rendered from data/integrations.json (the spec panel's Integrations line; M01's Tool column from a list cell of
+  I-numbers). A vendor name on a live screen fails the build (scripts/validate_v02.py VENDOR_NAMES).
+- Every field entry carries one of five tags: required, optional, default, system, read (the screen shows a value
+  captured elsewhere). Screens without inputs get theirs from op "tags" and print "Fields read".
+- The freeze register data/v02/freeze.json: every live screen is frozen since 17 Sep 2026 unless listed open with a
+  cause; an open screen carries its reason (its "to be decided" lines, the "to be verified" items that block it,
+  or an explicit line); a frozen screen changes only with an unfreeze_log entry (date, screen, cause, what changed).
+  Frozen covers the template, the fields and their tags, the branches, the states and the events; copy, prices,
+  counts, bands, scoring maps and grid values are config. All 21 templates are frozen (element types and their
+  order). Only a commit changes a status; the pages have no control for it.
+- The Tracker (data/tracker.json, W series, never renumbered): direction, owner, due, status (not started, in
+  progress, delivered, blocked), blocked by, source, lands at, notes; the daily update and Spinach's questions
+  (comments under the identity Spinach; an answer is a row with field "answer" on the same item).
+- No write to the board table without an identity; test rows are keyed in data/board_ignore.json.
+- States: S2b is "checkout started, eSign incomplete (not paid)" and S2c "eSign done, payment not completed" (P04;
+  the signed agreement is not asked again while its version is current). S1 lands on the first unanswered reveal
+  screen, R01 to R07. States S1 to S25 plus S2b and S2c; S26 is not used.
