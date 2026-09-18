@@ -491,3 +491,17 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   up before today; only the Spinach file under docs/audiences/ hides both. Switch the review page's mode if Spinach
   should see the lighter panel there.
 - Next unchanged: Spinach's questions (21 Sep 2026), then Phase 13 after the admin session.
+
+## 19. Status, 18 Sep 2026 (Kajal's integration updates; W18 folded into W03)
+
+- Kajal's points from her pass over the Integrations and Tracker tabs, applied to the seeds (the board rows she wrote
+  stand): I11 WhatsApp messaging is WATI, final (final_since 2026-09-18); I08 Mobile OTP stays Gupshup but reads open,
+  with Twilio (in use today) as the alternative, superseding the final of minutes 16 Sep 2026, item 3; I05 Accord
+  already read open on the page and is unchanged. Cause on each changed row: "Kajal, 18 Sep 2026".
+- W03 and W18 said the same thing (the engine API details landing at I04). W18 is folded into W03: status dropped,
+  folded_into W03, its ID kept, never rendered or counted; W03's item, source and notes carry the content.
+  scripts/build_tracker.py validates a dropped row (folded_into names a live row; no milestone or blocked_by points
+  at a dropped row) and draws one line under the counts saying where it went; check 19 counts live rows.
+- Somil asked why D02c is open. Not because it is new: it is open since 17 Sep 2026 with the CAS decision (minutes
+  16 Sep 2026, item 6), reasons "to be decided: CAS source for V1" and "to be verified: parsing effort", the same
+  block as A10, A10c and G12a. It freezes when W11 closes (the CAS source, I23).

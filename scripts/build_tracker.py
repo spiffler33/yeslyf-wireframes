@@ -10,6 +10,9 @@ The Tracker: project management on the page, for the daily update Spinach asked 
   edited on the page; every edit is one row in board_entries (page "tracker", item_id the W id) through
   scripts/board_store.js; rows written before the move (page "integrations", the same W ids) are read too, so the
   history is whole. Overdue rows say so in words. No write without an identity.
+- A row whose status is dropped names folded_into, the row that carries its content (W18 into W03, Kajal, 18 Sep
+  2026). It keeps its ID, never renders and never counts; one line under the counts says where it went. The W
+  series is never renumbered.
 - Spinach's questions: every comment written under the identity Spinach (or "Spinach (name)" from the import script)
   on any page: screen or row, age, open or answered. An answer is a row on the same item with field "answer"; a
   question is answered once an answer row follows it.
@@ -48,6 +51,7 @@ def validate(doc):
     rows = doc.get("rows", [])
     seen = set()
     ids = [r.get("id", "") for r in rows]
+    by_id = {r.get("id", ""): r for r in rows}
     for i, row in enumerate(rows):
         rid = row.get("id", "")
         for f in FIELDS:
@@ -58,8 +62,15 @@ def validate(doc):
         if rid in seen:
             problems.append("%s: duplicate id" % rid)
         seen.add(rid)
-        if row.get("status") not in STATUSES:
-            problems.append("%s: status %r is not one of %s" % (rid, row.get("status"), ", ".join(STATUSES)))
+        if row.get("status") not in STATUSES and row.get("status") != "dropped":
+            problems.append("%s: status %r is not one of %s or dropped" % (rid, row.get("status"), ", ".join(STATUSES)))
+        fi = row.get("folded_into", "")
+        if row.get("status") == "dropped" and not fi:
+            problems.append("%s: dropped without folded_into (the row that carries its content)" % rid)
+        if fi and row.get("status") != "dropped":
+            problems.append("%s: folded_into %r on a row that is not dropped" % (rid, fi))
+        if fi and (fi == rid or fi not in ids or by_id.get(fi, {}).get("status") == "dropped"):
+            problems.append("%s: folded_into %r is not a live tracker row" % (rid, fi))
         if row.get("direction") not in DIRECTIONS:
             problems.append("%s: direction %r is not one of %s" % (rid, row.get("direction"), ", ".join(DIRECTIONS)))
         for f in ("item", "source"):
@@ -69,8 +80,8 @@ def validate(doc):
         if d and not is_date(d):
             problems.append("%s: due_date %r is not yyyy-mm-dd" % (rid, d))
         b = row.get("blocked_by", "")
-        if b and b not in ids:
-            problems.append("%s: blocked_by %r is not a tracker row" % (rid, b))
+        if b and (b not in ids or by_id[b].get("status") == "dropped"):
+            problems.append("%s: blocked_by %r is not a live tracker row" % (rid, b))
     expected = ["W%02d" % n for n in range(1, len(rows) + 1)]
     if ids != expected:
         problems.append("ids are not W01 to W%02d in order (the W series is never renumbered)" % len(rows))
@@ -80,11 +91,16 @@ def validate(doc):
         if not is_date(str(m.get("date", ""))):
             problems.append("milestone %r: date is not yyyy-mm-dd" % m.get("label"))
         for rid in m.get("rows", []):
-            if rid not in ids:
-                problems.append("milestone %r names %s, not a tracker row" % (m.get("label"), rid))
+            if rid not in ids or by_id[rid].get("status") == "dropped":
+                problems.append("milestone %r names %s, not a live tracker row" % (m.get("label"), rid))
     if not str(doc.get("board_link", "")).startswith("https://"):
         problems.append("board_link must be the https review link")
     return problems
+
+
+def live_rows(doc):
+    """The rows that render and count: every row whose status is not dropped."""
+    return [r for r in doc["rows"] if r.get("status") != "dropped"]
 
 
 EXTRA_CSS = integ.EXTRA_CSS + """
@@ -257,13 +273,16 @@ def render_row(row):
 
 
 def build_page(doc, counts, integ_rows, review=False):
-    rows = doc["rows"]
+    rows = live_rows(doc)
+    dropped = [r for r in doc["rows"] if r.get("status") == "dropped"]
+    folded = ('<p class="meta">Folded: %s. A folded row keeps its ID and never renders.</p>' % "; ".join(
+        "%s into %s (%s)" % (esc(r["id"]), esc(r["folded_into"]), esc(r["notes"])) for r in dropped)) if dropped else ""
     who = '<div class="who">Editing as <select id="reviewer"></select></div>'
     intro = ('<section><h1>Tracker</h1>'
              '<p class="lead">What HoA owes Spinach, what Spinach owes HoA, and what HoA settles inside. One row per item, the W series; '
              'open a row to set owner, due date, status, blocked by and notes. Every edit is recorded as it happens and shows on every device; '
              'overdue rows say so in words. Copy today\'s update composes the WhatsApp text from the last 24 hours of the board.</p>'
-             '<div class="strip" id="strip"></div><div class="counts" id="counts"></div>'
+             '<div class="strip" id="strip"></div><div class="counts" id="counts"></div>' + folded +
              '<div class="updrow"><button id="update" type="button">Copy today\'s update</button><span class="meta">plain text, about 15 lines, first names, no costs; anyone can press it</span></div>'
              '<div class="upd" id="upd"><pre></pre></div></section>')
     toolbar = ('<div class="toolbar" id="filters"><label>Direction <select name="direction"><option>All</option>%s</select></label>'
@@ -319,7 +338,7 @@ def main():
     for name, page in pages.items():
         with open(os.path.join(DOCS, name), "w") as fh:
             fh.write(page)
-        print("wrote docs/%s (%d bytes, %d tracker rows)" % (name, len(page), len(doc["rows"])))
+        print("wrote docs/%s (%d bytes, %d tracker rows, %d folded)" % (name, len(page), len(live_rows(doc)), len(doc["rows"]) - len(live_rows(doc))))
 
 
 if __name__ == "__main__":

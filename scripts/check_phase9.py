@@ -349,7 +349,7 @@ def check19():
     p = []
     doc = load("tracker.json")
     p += ["tracker.json: " + x for x in build_tracker.validate(doc)]
-    n = len(doc["rows"])
+    n = len(build_tracker.live_rows(doc))
     for name in ("tracker.html", "review/tracker.html"):
         path = os.path.join(DOCS, name)
         if not os.path.exists(path):
@@ -392,7 +392,7 @@ def check19():
         p.append("the daily update runs to %d lines" % len(text.splitlines()))
     if out["rows"] != n:
         p.append("the page holds %d rows, expected %d" % (out["rows"], n))
-    return p, "%d rows W01 to %s; the update reads %d lines from the build data" % (n, doc["rows"][-1]["id"], len(text.splitlines()))
+    return p, "%d live rows, W01 to %s, %d folded; the update reads %d lines from the build data" % (n, doc["rows"][-1]["id"], len(doc["rows"]) - n, len(text.splitlines()))
 
 
 def main():

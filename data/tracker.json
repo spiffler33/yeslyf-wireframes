@@ -1,6 +1,6 @@
 {
   "source": "The Tracker tab (phase 12, pass 3; Vatsal, 17 Sep 2026): project management on the page. W01 to W09 moved here from data/dependencies.json (the team message of 16 Sep 2026, Spinach agenda item 7) with their saved rows; W10 onwards from the minutes of 16 Sep 2026 and Vatsal's decisions of 17 Sep 2026.",
-  "note": "One row per item. Fields: id (W01..; the W series continues, never renumbered), item, direction (HoA to Spinach | Spinach to HoA | HoA internal), owner (comma-separated first names, or Spinach; empty when nobody is named yet), due_date (yyyy-mm-dd or empty), due_about (true when the date is approximate), status (not started | in progress | delivered | blocked), blocked_by (a row ID or empty), source (the cause), lands_at (where the deliverable will be), notes. Owner, due date, status, blocked by and notes are edited on docs/tracker.html; every edit is one row in board_entries (page tracker, item_id the W id); rows written before the move under page integrations are read too. milestones: the strip on top; the entry with final_by reads the date from the Integrations tab. board_link: the review link named in the daily update. The daily update and the question list are composed on the page from the board table; nothing here is hand-copied from it.",
+  "note": "One row per item. Fields: id (W01..; the W series continues, never renumbered), item, direction (HoA to Spinach | Spinach to HoA | HoA internal), owner (comma-separated first names, or Spinach; empty when nobody is named yet), due_date (yyyy-mm-dd or empty), due_about (true when the date is approximate), status (not started | in progress | delivered | blocked | dropped: the row is folded into the row named by folded_into, keeps its ID and never renders; the page says so in one line), blocked_by (a row ID or empty), source (the cause), lands_at (where the deliverable will be), notes. Owner, due date, status, blocked by and notes are edited on docs/tracker.html; every edit is one row in board_entries (page tracker, item_id the W id); rows written before the move under page integrations are read too. milestones: the strip on top; the entry with final_by reads the date from the Integrations tab. board_link: the review link named in the daily update. The daily update and the question list are composed on the page from the board table; nothing here is hand-copied from it.",
   "board_link": "https://spiffler33.github.io/yeslyf-wireframes/review/",
   "milestones": [
     {"date": "2026-09-19", "label": "W03 and W04 due", "rows": ["W03", "W04"]},
@@ -38,16 +38,16 @@
     },
     {
       "id": "W03",
-      "item": "Engine API: repo access and fp_react_inputs.json this week; plan JSON output contract and version fields, date to be given",
+      "item": "Engine API: repo access and fp_react_inputs.json this week; plan JSON output contract and version fields, date to be given; the HoA Core Platform API details including the data-in APIs, with bands or midpoints as the input shape",
       "direction": "HoA to Spinach",
       "owner": "Gaurav, Somil, Raafiya",
       "due_date": "2026-09-19",
       "due_about": false,
       "status": "not started",
       "blocked_by": "",
-      "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7",
+      "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7; minutes 16 Sep 2026, item 17 (W18 folded in: Kajal, 18 Sep 2026)",
       "lands_at": "Integrations, row I04 (engine)",
-      "notes": "Due 19 Sep 2026: the repo access and the inputs file. The output contract and version fields: date to be given."
+      "notes": "Due 19 Sep 2026: the repo access and the inputs file. The output contract, version fields and the data-in APIs (from W18): date to be given."
     },
     {
       "id": "W04",
@@ -238,11 +238,12 @@
       "owner": "Gaurav, Raafiya",
       "due_date": "",
       "due_about": false,
-      "status": "not started",
+      "status": "dropped",
       "blocked_by": "",
-      "source": "minutes 16 Sep 2026, item 17",
+      "source": "minutes 16 Sep 2026, item 17; folded into W03: Kajal, 18 Sep 2026",
       "lands_at": "I04",
-      "notes": ""
+      "notes": "the same deliverable, the engine API details landing at I04; Kajal, 18 Sep 2026",
+      "folded_into": "W03"
     },
     {
       "id": "W19",

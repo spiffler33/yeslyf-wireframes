@@ -261,7 +261,7 @@
       "id": "I08",
       "category": "Mobile OTP",
       "vendor": "Gupshup",
-      "alternatives": "",
+      "alternatives": "Twilio (in use today)",
       "role": "One-time password by SMS at entry, WhatsApp OTP as the fallback; the verification logic is internal (Spinach)",
       "screens": [
         "A02",
@@ -277,10 +277,10 @@
       "docs_url": "",
       "cost": "",
       "notes": "Entry is always mobile plus OTP. A person is registered the moment the OTP is right; email is never the login.",
-      "cause": "Vatsal, 16 Sep 2026 (entry is always mobile OTP); minutes 16 Sep 2026, items 1 and 2; final: minutes 16 Sep 2026, item 3",
+      "cause": "Vatsal, 16 Sep 2026 (entry is always mobile OTP); minutes 16 Sep 2026, items 1 and 2; final: minutes 16 Sep 2026, item 3; open: Kajal, 18 Sep 2026 (supersedes the final of minutes 16 Sep 2026, item 3)",
       "to_be_verified": "",
-      "choice": "final",
-      "final_since": "2026-09-16"
+      "choice": "open",
+      "final_since": ""
     },
     {
       "id": "I09",
@@ -349,7 +349,7 @@
     {
       "id": "I11",
       "category": "WhatsApp messaging",
-      "vendor": "Gupshup",
+      "vendor": "WATI",
       "alternatives": "",
       "role": "WhatsApp business messaging for the nudge ladders and reminders",
       "screens": [
@@ -367,10 +367,10 @@
       "docs_url": "",
       "cost": "",
       "notes": "Meta business verification and template approvals have lead time.",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; WATI, final: Kajal, 18 Sep 2026",
       "to_be_verified": "",
-      "choice": "open",
-      "final_since": ""
+      "choice": "final",
+      "final_since": "2026-09-18"
     },
     {
       "id": "I12",
