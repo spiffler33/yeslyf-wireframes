@@ -18,8 +18,13 @@ admin_brief.html (T1 to T6 plus the gap rows), admin_operator.html (the Zoho aft
 - `python3 scripts/check_phase9.py`: 19 PASS. `python3 scripts/check_site.py`: 3 PASS.
 
 ## Next
-- Phase 13, the admin session (about 30 Sep 2026): walk the seats page and the brief with the team. Kajal runs the
-  operator page on a Zoho One trial with the CSVs Vatsal sends via Drive (data/seed/<run>/exports/).
+- Before the admin session (about 30 Sep 2026): no build work is queued; the board is ready for it (seats, brief,
+  operator page). The team walks the seats page and the brief; Kajal runs the operator page on a Zoho One trial
+  with the CSVs Vatsal sends via Drive (data/seed/<run>/exports/).
+- After it, Phase 13 (PLAN.md section 17): first fold the session's board rows into data/seats.json and the brief;
+  then the Admin and CRM page against Zoho One (I14), the tool over the app database (W12), lead stages and the
+  profile fulfilment percentage (W26), the website brief; the CAS decision applied to A10, A10c, D02c and G12a when
+  W11 closes; docs links and sandbox dates (W16).
 - Nothing goes to Spinach now. The fixtures zip (data/seed/<run>/exports/fixtures/yeslyf_seed_<anchor>_<run>.zip,
   gitignored, rebuilt by seed_export.py) is for Spinach's dev and staging databases once they build from the final
   brief; how and when it is sent is Vatsal's call.
