@@ -1,0 +1,12 @@
+{
+ "source": "PLAN_admin_seed_v01.md phases A to E; seed/PROGRESS.md",
+ "note": "synthetic people, the Zoho exports and the admin discovery pages",
+ "rows": [
+  {"date": "23 Sep 2026", "change": "Seed phase A: a generator and two runs of synthetic people (500 and 3,040), each with a coverage and validation report; the seed itself stays off the board", "pages": [], "cause": "seed plan, 22 Sep 2026 (phase A)"},
+  {"date": "23 Sep 2026", "change": "Tier mix DIWM 60, DIY 36, DIFM 4; the S16 flag follows the path mix; the progress ring starts after the reveal, so S1 reads 0", "pages": [], "cause": "Vatsal, 23 Sep 2026"},
+  {"date": "23 Sep 2026", "change": "Zoho, Desk, Campaigns and landing exports with a minimisation scan that fails the build on a leak; the operator checklist for the Zoho afternoon with a notes box per step; no CSV on the board", "pages": ["admin_operator.html"], "cause": "seed plan, 22 Sep 2026 (phase B); Vatsal, 23 Sep 2026"},
+  {"date": "23 Sep 2026", "change": "The admin tab: M02 to M14 drawn over a masked seed (phones masked, no PAN), run switch 500 or 3,000, freeze marker open on every screen", "pages": ["admin_wireframes.html"], "cause": "seed plan, 22 Sep 2026 (phase C); Vatsal, 23 Sep 2026"},
+  {"date": "23 Sep 2026", "change": "The seats page (99 questions, 38 answered from the seed, 61 gaps) and the brief skeleton T1 to T6 with the gap rows", "pages": ["admin_seats.html", "admin_brief.html"], "cause": "seed plan, 22 Sep 2026 (phase D)"},
+  {"date": "23 Sep 2026", "change": "One Admin seed tab on every page; tracker W12 lands on the brief and W13 on the operator page; Mixpanel JSONL exports for round two (not imported)", "pages": ["tracker.html"], "cause": "seed plan, 22 Sep 2026 (phase E)"}
+ ]
+}

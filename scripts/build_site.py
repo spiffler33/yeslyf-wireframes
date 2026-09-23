@@ -825,7 +825,7 @@ def build_admin_v02(admin, v02, states, review=False):
     return page
 
 
-def changelog_parts(chg, v02, audiences=None):
+def changelog_parts(chg, v02, audiences=None, seed_rows=False):
     """(nav links html, body html) of the Changelog page; audiences (name, for, href, bytes) adds the audience-file
     section. Shared with the team audience file, which passes no audiences."""
     live_ids = {s["id"] for s in live_screens(v02)}
@@ -892,11 +892,11 @@ def changelog_parts(chg, v02, audiences=None):
         entries.append(("c-audiences", "Audience files"))
     # The seed and admin discovery work (PLAN_admin_seed_v01.md, 23 Sep 2026) keeps its rows in its own file:
     # apply_decisions.py regenerates changelog.json whole, so rows written there would not survive.
-    seed = load_optional("changelog_seed.json")
+    seed = load_optional("changelog_seed.json") if seed_rows else None  # the site's page only; the audience files stay as sent
     if seed and seed.get("rows"):
         labels = dict(TABS + SEED_PAGES)
         def pages_html(hrefs):
-            return ", ".join('<a href="%s">%s</a>' % (esc(h), esc(labels[h])) if h in labels else esc(h) for h in hrefs)
+            return ", ".join('<a href="%s">%s</a>' % (esc(h), esc(labels[h])) if h in labels else esc(h) for h in hrefs) or "-"
         body.append('<section id="c-seed"><h2>Seed and admin discovery<small>%s</small></h2>%s</section>' % (esc(seed.get("note", "")), table_html(
             ["Date", "Change", "Where", "Cause"],
             [[esc(r["date"]), esc(r["change"]), pages_html(r["pages"]), '<span class="cause">%s</span>' % esc(r["cause"])] for r in seed["rows"]])))
@@ -906,7 +906,7 @@ def changelog_parts(chg, v02, audiences=None):
 
 
 def build_changelog(chg, v02, audiences=None):
-    nav, body = changelog_parts(chg, v02, audiences)
+    nav, body = changelog_parts(chg, v02, audiences, seed_rows=True)
     page = (head("yeslyf changelog v0.1 to v0.2") + '<body>\n' + header("changelog.html", "changelog, v0.1 to v0.2", show_export=False) +
             '<div class="layout"><nav class="nav">' + nav + '</nav><main class="main">' + body + '</main></div>\n' + store_script() + '<script>' + js_pill("changelog") + '</script>\n</body>\n</html>\n')
     return page

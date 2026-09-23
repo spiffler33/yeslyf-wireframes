@@ -259,12 +259,21 @@ def fact(label, body):
     return '<div class="f"><b>%s</b>%s</div>' % (esc(label), body)
 
 
-def render_row(row):
+def lands_at_html(value, review=False):
+    """A lands_at that is exactly one of the site's pages reads as a link to it (W12 and W13 land on the admin seed pages,
+    PLAN_admin_seed_v01.md D9); any other value stays text."""
+    pages = dict(site.TABS + site.SEED_PAGES)
+    if value in pages:
+        return '<a href="%s%s">%s</a>' % ("../" if review else "", esc(value), esc(pages[value]))
+    return esc(value or "-")
+
+
+def render_row(row, review=False):
     rid = esc(row["id"])
     line = ('<tr class="r1"><td class="n">%s</td><td class="it"><b>%s</b></td><td class="dir c-dir">%s</td><td><span data-show="owner"></span></td>'
             '<td class="due c-due"><span data-due></span></td><td><span class="tag" data-show="status"></span></td><td class="tg" title="open"></td></tr>' % (
                 rid, esc(row["item"]), esc(row["direction"])))
-    facts = [fact("Source", '<span class="cause">%s</span>' % esc(row["source"])), fact("Lands at", esc(row["lands_at"] or "-"))]
+    facts = [fact("Source", '<span class="cause">%s</span>' % esc(row["source"])), fact("Lands at", lands_at_html(row["lands_at"], review))]
     form = ('<label>Owner</label>%s<label>Due</label>%s<label>Status</label>%s<label>Blocked by</label>%s<label>Notes</label>%s' % (
         control(row, "owner", "first names, or Spinach"), control(row, "due_date", "date"), control(row, "status", "select", STATUSES),
         control(row, "blocked_by", "a row ID, W19"), control(row, "notes", "textarea")))
@@ -291,7 +300,7 @@ def build_page(doc, counts, integ_rows, review=False):
                '<span id="count" class="meta"></span><span class="sp"></span><button id="openall" type="button">Open all</button><button id="closeall" type="button">Close all</button></div>' % (
                    "".join("<option>%s</option>" % esc(d) for d in DIRECTIONS), "".join("<option>%s</option>" % esc(s) for s in STATUSES)))
     thead = ('<thead><tr><th class="c-id">ID</th><th>Item</th><th class="c-dir">Direction</th><th>Owner</th><th class="c-due">Due</th><th>Status</th><th class="c-tg"></th></tr></thead>')
-    table = '<div class="wrap"><table id="tbl">' + thead + "\n".join(render_row(r) for r in rows) + '</table></div>'
+    table = '<div class="wrap"><table id="tbl">' + thead + "\n".join(render_row(r, review) for r in rows) + '</table></div>'
     qsec = ('<section><h2>Spinach\'s questions</h2><p class="meta lead">Every comment written under the identity Spinach, on any page, newest first: where, how old, open or answered. '
             'An answer is written under the question on the screen (the Answer box on the Wireframes v0.2 tab) and shows here.</p>'
             '<div class="counts"><span class="k" id="qcount">reading the board</span></div><div class="qs" id="qs"></div></section>')

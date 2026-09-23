@@ -163,7 +163,7 @@
       "status": "not started",
       "blocked_by": "",
       "source": "minutes 16 Sep 2026, item 20",
-      "lands_at": "",
+      "lands_at": "admin_brief.html",
       "notes": ""
     },
     {
@@ -176,7 +176,7 @@
       "status": "not started",
       "blocked_by": "",
       "source": "minutes 16 Sep 2026, items 20, 21",
-      "lands_at": "",
+      "lands_at": "admin_operator.html",
       "notes": ""
     },
     {

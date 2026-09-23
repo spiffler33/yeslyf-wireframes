@@ -514,7 +514,77 @@ def build_landing_rows(people):
     return rows
 
 
-# ---------------------------------------------------------------- CSV writer
+def screen_section_map():
+    """screen_id -> section letter, from data/screens_v02.json: for each screen, its declared "sec"
+    validated against the letters in the "sections" table (PLAN_admin_seed_v01.md section 12, the
+    Mixpanel row: "the first element of ... 'sections' whose letter matches the screen's 'sec'")."""
+    screens = load_json(REPO_ROOT / "data" / "screens_v02.json")
+    letters = set(s[0] for s in screens["sections"])
+    m = {}
+    for s in screens["screens"]:
+        sec = s.get("sec")
+        if sec in letters:
+            m[s["id"]] = sec
+    return m
+
+
+def build_mixpanel_events(seed_dir, people, section_map, state_enter_set):
+    """One line per events.jsonl row, in file order, event name unchanged. events.jsonl is grouped by
+    person and chronological within each person (checked), so a single pass with a per-person state
+    tracker gives the correct 'latest state_enter at or before this event' for every row."""
+    person_state = {}
+    lines = []
+    with open(seed_dir / "events.jsonl", encoding="utf-8") as f:
+        for line in f:
+            e = json.loads(line)
+            pid = e["person_id"]
+            if e["event"] in state_enter_set:
+                person_state[pid] = e["props"]["state"]
+            p = people[pid]
+            screen_id = e["screen_id"]
+            props = {
+                "distinct_id": pid,
+                "time": int(datetime.datetime.fromisoformat(e["at"]).timestamp()),
+                "$insert_id": e["event_id"],
+                "screen_id": screen_id,
+                "section": section_map.get(screen_id) if screen_id else None,
+                "tier": p["tier"],
+                "state": person_state.get(pid),
+                "source_path": p["source_path"],
+                "is_topup": p["is_topup"],
+            }
+            obj = {"event": e["event"], "properties": props}
+            lines.append(json.dumps(obj, sort_keys=True, separators=(",", ":")))
+    return lines
+
+
+def build_mixpanel_profiles(people):
+    """One line per person, sorted by person_id. 'signed_up' uses otp_verified_at (the precise moment;
+    its date always equals key_dates.signed_up, checked) rather than fabricating a midnight timestamp
+    from the date-only key_dates field."""
+    lines = []
+    for pid in sorted(people.keys()):
+        p = people[pid]
+        otp = p.get("otp_verified_at")
+        signed_up = int(datetime.datetime.fromisoformat(otp).timestamp()) if otp else None
+        obj = {
+            "$distinct_id": pid,
+            "$set": {
+                "tier": p["tier"],
+                "state": p["state_id"],
+                "source": p["source"],
+                "source_path": p["source_path"],
+                "city_tier": p["city_tier"],
+                "age_band": p["age_band"],
+                "is_topup": p["is_topup"],
+                "signed_up": signed_up,
+            },
+        }
+        lines.append(json.dumps(obj, sort_keys=True, separators=(",", ":")))
+    return lines
+
+
+# ---------------------------------------------------------------- CSV / JSONL writers
 
 def write_csv(path, header, rows):
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -523,6 +593,14 @@ def write_csv(path, header, rows):
         w.writerow(header)
         for r in rows:
             w.writerow([cellstr(r[h]) for h in header])
+
+
+def write_jsonl(path, lines):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        for line in lines:
+            f.write(line)
+            f.write("\n")
 
 
 # ---------------------------------------------------------------- run export build
@@ -577,7 +655,17 @@ def write_run_exports(run, schema):
 
     emit("landing/landing_sheet.csv", header_for("landing/landing_sheet.csv"), build_landing_rows(people))
 
-    return summaries
+    section_map = screen_section_map()
+    mixpanel_summaries = []
+
+    def emit_jsonl(relpath, lines):
+        write_jsonl(exports_dir / relpath, lines)
+        mixpanel_summaries.append((relpath, len(lines)))
+
+    emit_jsonl("mixpanel/events.jsonl", build_mixpanel_events(seed_dir, people, section_map, state_enter_set))
+    emit_jsonl("mixpanel/profiles.jsonl", build_mixpanel_profiles(people))
+
+    return summaries, mixpanel_summaries
 
 
 # ---------------------------------------------------------------- fixtures (README + private zip)
@@ -676,7 +764,7 @@ def build_fixtures_zip(run):
     return zip_path, zip_name
 
 
-def write_exports_readme(run, summaries, scan_line, zip_name):
+def write_exports_readme(run, summaries, mixpanel_summaries, scan_line, zip_name):
     lines = []
     lines.append("# Exports: " + run)
     lines.append("")
@@ -686,6 +774,16 @@ def write_exports_readme(run, summaries, scan_line, zip_name):
     lines.append("|---|---|---|")
     for relpath, nrows, ncols in summaries:
         lines.append("| {} | {} | {} |".format(relpath, nrows, ncols))
+    lines.append("")
+    lines.append("## Mixpanel (JSONL, phase E done early: plan section 12)")
+    lines.append("")
+    lines.append("Third party: no names, phones, emails or PAN. One JSON object per line, compact,")
+    lines.append("sorted keys, ASCII, \\n endings.")
+    lines.append("")
+    lines.append("| file | lines |")
+    lines.append("|---|---|")
+    for relpath, nlines in mixpanel_summaries:
+        lines.append("| {} | {} |".format(relpath, nlines))
     lines.append("")
     lines.append("## Scan")
     lines.append("")
@@ -786,6 +884,7 @@ def collect_sensitive(run, seed_cfg):
 
     people = load_json(seed_dir / "people.json")
     pan = set(v["pan"] for v in people.values() if v.get("pan"))
+    phone = set(v["phone"] for v in people.values() if v.get("phone"))
     email_other = set()
     for v in people.values():
         if v.get("email"):
@@ -803,6 +902,7 @@ def collect_sensitive(run, seed_cfg):
         "isin": isin,
         "holding_name": holding_name,
         "email_other": email_other,
+        "phone": phone,
         "money_field_counts": counts,
         "money_field_names": sorted(money_fields),
     }
@@ -988,6 +1088,57 @@ def find_export_csvs(exports_root):
     return found
 
 
+def find_mixpanel_files(exports_root):
+    found = []
+    d = exports_root / "mixpanel"
+    if d.is_dir():
+        for p in sorted(d.glob("*.jsonl")):
+            found.append(str(p.relative_to(exports_root)).replace("\\", "/"))
+    return found
+
+
+MIXPANEL_LEAK_KEYS = ("pan", "isin", "holding_name", "email_other", "phone")
+MIXPANEL_LEAK_LABELS = {
+    "pan": "PAN", "isin": "ISIN", "holding_name": "holding name",
+    "email_other": "non-example.com email", "phone": "phone number",
+}
+
+
+def scan_mixpanel_file(relpath, path, sensitive):
+    """Exact-membership only (no substring check): mixpanel properties are structured fields
+    (ids, codes, timestamps, booleans), never prose, so there is nothing to substring-scan.
+    Checked over every JSON value (every leaf), not just each line as a whole."""
+    problems = []
+    line_count = 0
+    value_count = 0
+    raw = path.read_bytes()
+    if not raw.isascii():
+        problems.append(relpath + ": file is not ASCII")
+    with open(path, encoding="utf-8") as f:
+        for i, raw_line in enumerate(f, start=1):
+            line = raw_line.rstrip("\n")
+            if not line:
+                continue
+            line_count += 1
+            try:
+                obj = json.loads(line)
+            except ValueError:
+                problems.append("{} line {}: not valid json".format(relpath, i))
+                continue
+            for leaf in walk_json_leaves(obj):
+                value_count += 1
+                if isinstance(leaf, bool):
+                    continue
+                if isinstance(leaf, (int, float)):
+                    if leaf in sensitive["rupee"]:
+                        problems.append("{} line {}: leak, rupee value equal ({})".format(relpath, i, leaf))
+                elif isinstance(leaf, str):
+                    for key in MIXPANEL_LEAK_KEYS:
+                        if leaf in sensitive[key]:
+                            problems.append("{} line {}: leak, {} equal".format(relpath, i, MIXPANEL_LEAK_LABELS[key]))
+    return problems, line_count, value_count
+
+
 def run_scan(run, exports_root, seed_cfg, schema):
     sensitive = collect_sensitive(run, seed_cfg)
     band_cache = band_label_cache(seed_cfg)
@@ -1047,15 +1198,25 @@ def run_scan(run, exports_root, seed_cfg, schema):
     for p in sorted(campaign_found):
         check_file(p, template)
 
-    return problems, cell_checks, sensitive
+    mp_lines = 0
+    mp_values = 0
+    for relpath in find_mixpanel_files(exports_root):
+        mp_problems, n_lines, n_values = scan_mixpanel_file(relpath, exports_root / relpath, sensitive)
+        problems.extend(mp_problems)
+        mp_lines += n_lines
+        mp_values += n_values
+
+    return problems, cell_checks, mp_lines, mp_values, sensitive
 
 
 # ---------------------------------------------------------------- CLI
 
 def do_build(run, schema):
-    summaries = write_run_exports(run, schema)
+    summaries, mixpanel_summaries = write_run_exports(run, schema)
     for relpath, nrows, ncols in summaries:
         print("{} {}: {} rows, {} columns".format(run, relpath, nrows, ncols))
+    for relpath, nlines in mixpanel_summaries:
+        print("{} {}: {} lines".format(run, relpath, nlines))
 
     # the zip embeds fixtures/README.md, and the README names the zip, so derive the name first
     # (it only needs the anchor date, not the zip itself), write the README, then build the zip.
@@ -1067,29 +1228,33 @@ def do_build(run, schema):
 
     seed_cfg = load_json(SEED_CONFIG_PATH)
     exports_root = SEED_DIR / run / "exports"
-    problems, cell_checks, _sensitive = run_scan(run, exports_root, seed_cfg, schema)
+    problems, cell_checks, mp_lines, mp_values, _sensitive = run_scan(run, exports_root, seed_cfg, schema)
     if problems:
-        scan_line = "FAIL: {} breach(es) across {} cells checked".format(len(problems), cell_checks)
+        scan_line = "FAIL: {} breach(es) across {} CSV cells and {} mixpanel lines ({} values) checked".format(
+            len(problems), cell_checks, mp_lines, mp_values)
         print("{} scan: {}".format(run, scan_line))
         for pr in problems:
             print("  " + pr)
     else:
-        scan_line = "PASS: 0 breaches across {} cells checked".format(cell_checks)
+        scan_line = "PASS: 0 breaches across {} CSV cells and {} mixpanel lines ({} values) checked".format(
+            cell_checks, mp_lines, mp_values)
         print("{} scan: {}".format(run, scan_line))
 
-    write_exports_readme(run, summaries, scan_line, zip_name)
+    write_exports_readme(run, summaries, mixpanel_summaries, scan_line, zip_name)
     return len(problems) == 0
 
 
 def do_scan_only(run, schema, exports_root):
     seed_cfg = load_json(SEED_CONFIG_PATH)
-    problems, cell_checks, _sensitive = run_scan(run, exports_root, seed_cfg, schema)
+    problems, cell_checks, mp_lines, mp_values, _sensitive = run_scan(run, exports_root, seed_cfg, schema)
     if problems:
-        print("{} scan: FAIL, {} breach(es) across {} cells checked".format(run, len(problems), cell_checks))
+        print("{} scan: FAIL, {} breach(es) across {} CSV cells and {} mixpanel lines ({} values) checked".format(
+            run, len(problems), cell_checks, mp_lines, mp_values))
         for pr in problems:
             print("  " + pr)
         return False
-    print("{} scan: PASS, 0 breaches across {} cells checked".format(run, cell_checks))
+    print("{} scan: PASS, 0 breaches across {} CSV cells and {} mixpanel lines ({} values) checked".format(
+        run, cell_checks, mp_lines, mp_values))
     return True
 
 
