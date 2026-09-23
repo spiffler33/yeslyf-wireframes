@@ -1,0 +1,945 @@
+{
+ "sku_cards": [
+  {
+   "sku": "diy",
+   "name": "yeslyf DIY, app only",
+   "price_monthly": "Rs ___",
+   "price_quarterly": "Rs ___",
+   "calls_included": "none; a la carte Rs ___ per call"
+  },
+  {
+   "sku": "diwm",
+   "name": "yeslyf DIWM, app plus adviser calls",
+   "price_monthly": "Rs ___",
+   "price_quarterly": "Rs ___",
+   "calls_included": "N per period; extra calls a la carte"
+  }
+ ],
+ "copy_slots": [
+  {
+   "slot": "N-Q06",
+   "channel": "push",
+   "state": "any post-plan state",
+   "deep_link": "Q06",
+   "text": "Something changed? Tell me in one tap and I update only what it touches. About N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S1-1h",
+   "channel": "push",
+   "state": "S1",
+   "deep_link": "R01",
+   "text": "Your two paths are about N minutes away. Pick up at <screen title>.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S1-d1",
+   "channel": "WhatsApp",
+   "state": "S1",
+   "deep_link": "R01",
+   "text": "Hi, it is yeslyf. You started your reveal and stopped at <screen title>. About N minutes from here to your two paths. Pick up where you left off.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S10-anniv",
+   "channel": "WhatsApp",
+   "state": "S10",
+   "deep_link": "Q04",
+   "text": "A year with yeslyf. Nothing to do until the review; on the anniversary I ask you to confirm your risk profile and renew, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S10-now",
+   "channel": "push",
+   "state": "S10",
+   "deep_link": "H01d",
+   "text": "Every action is done. Your quarterly review is on <date>.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S11-3d",
+   "channel": "push",
+   "state": "S11",
+   "deep_link": "H05",
+   "text": "Your plan changed. Your plan was updated: accept in about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S12-d0",
+   "channel": "WhatsApp",
+   "state": "S12",
+   "deep_link": "Q03b",
+   "text": "Your payment did not go through. Payment failed shows the retry and the change-method option; you have 7 days before the plan refresh pauses. Nothing is lost.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S12-d3",
+   "channel": "email",
+   "state": "S12",
+   "deep_link": "Q03b",
+   "text": "Retry payment; what stops on day 7 and what does not.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S12-d6",
+   "channel": "push",
+   "state": "S12",
+   "deep_link": "Q03b",
+   "text": "Tomorrow the plan refresh pauses. Retry payment: about N minutes; nothing is lost.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S13-30d",
+   "channel": "email",
+   "state": "S13",
+   "deep_link": "Q03c",
+   "text": "Resubscribe; what has changed in the markets since your plan was last refreshed. Placeholder; advertising code review.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S13-90d",
+   "channel": "WhatsApp",
+   "state": "S13",
+   "deep_link": "Q03c",
+   "text": "Three months since your membership lapsed. Lapsed shows what stopped; resubscribe restores the refresh and the review. About N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S14-review",
+   "channel": "WhatsApp",
+   "state": "S14",
+   "deep_link": "H09",
+   "text": "Your review with your adviser is on <date>. Update your numbers from Settings before it, about N minutes, so the review runs on fresh figures.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S15-7d-before",
+   "channel": "push",
+   "state": "S15",
+   "deep_link": "A06",
+   "text": "Your Account Aggregator consent ends in 7 days. Reconnect: about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S15-review",
+   "channel": "WhatsApp",
+   "state": "S15",
+   "deep_link": "Q01",
+   "text": "Your consent has ended and the quarterly review needs fresh numbers. Consent framing: reconnect in about N minutes; read-only, revoke any time.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S16-review",
+   "channel": "WhatsApp",
+   "state": "S16",
+   "deep_link": "Q05",
+   "text": "Your numbers were last updated by you N days ago. Update your numbers takes about N minutes; connecting Account Aggregator keeps them live from then on.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S17-1h",
+   "channel": "push",
+   "state": "S17",
+   "deep_link": "A10a",
+   "text": "Your CAS should be in your inbox. Upload it: about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S17-24h",
+   "channel": "WhatsApp",
+   "state": "S17",
+   "deep_link": "A10a",
+   "text": "Look for the email subject Consolidated Account Statement. Your CAS: waiting for the email has the upload; the password is the one you set when requesting, or your PAN. About N minutes. Or type it instead.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S18-d21",
+   "channel": "email",
+   "state": "S18",
+   "deep_link": "H01j",
+   "text": "Three weeks on: the numbers still given as bands, and what each changes in the plan.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S18-d7",
+   "channel": "WhatsApp",
+   "state": "S18",
+   "deep_link": "H01j",
+   "text": "Your plan is built on what we have. N numbers would sharpen it; Home shows each with a Sharpen this link. About N minutes, on the Sunday you picked.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S18-sunday",
+   "channel": "push",
+   "state": "S18",
+   "deep_link": "H01j",
+   "text": "Sunday: the N exact numbers that sharpen your plan; you gave them as bands. About N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S19-d10",
+   "channel": "WhatsApp",
+   "state": "S19",
+   "deep_link": "O02",
+   "text": "Your plan needs N more fields: <fields>. Your next steps lists them with the minutes each takes. Type what you know; a rough range does for the rest.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S19-d14",
+   "channel": "email",
+   "state": "S19",
+   "deep_link": "O02",
+   "text": "What the plan can already say, and the N fields that finish it. Your next steps.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S19-d7",
+   "channel": "push",
+   "state": "S19",
+   "deep_link": "O02",
+   "text": "N quick ranges and your plan builds. About N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S19-d7-alacarte",
+   "channel": "push",
+   "state": "S19",
+   "deep_link": "K04",
+   "text": "N quick ranges and your plan builds. About N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S19-d7-call",
+   "channel": "human call",
+   "state": "S19",
+   "deep_link": "O02",
+   "text": "Outbound call from the call centre; the CRM task carries the state ID, the missing fields and the tier.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S19-monthly",
+   "channel": "email",
+   "state": "S19",
+   "deep_link": "O02",
+   "text": "What the plan can already say, and the N fields that finish it. Your next steps.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S2-d1",
+   "channel": "push",
+   "state": "S2",
+   "deep_link": "P01",
+   "text": "Your reveal is saved. Unlock my plan is one screen: two cards, one choice, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S2-d21",
+   "channel": "email",
+   "state": "S2",
+   "deep_link": "P01",
+   "text": "What the plan includes, and what members say, with Unlock my plan one tap away. Placeholder; advertising code review.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S2-d3",
+   "channel": "WhatsApp",
+   "state": "S2",
+   "deep_link": "P01",
+   "text": "One thing from your reveal: the gap between your two paths comes from what you save and how it is placed. Unlock my plan shows what the plan does about it. About N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S2-d7",
+   "channel": "email",
+   "state": "S2",
+   "deep_link": "P01",
+   "text": "What the plan includes, and what members say, with Unlock my plan one tap away. Placeholder; advertising code review.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S2-d82",
+   "channel": "email",
+   "state": "S2",
+   "deep_link": "P01",
+   "text": "What the plan includes, and what members say, with Unlock my plan one tap away. Placeholder; advertising code review.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S20-1h",
+   "channel": "push",
+   "state": "S20",
+   "deep_link": "K01",
+   "text": "We missed you. Rebook your call: same topic, new slot, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S20-24h",
+   "channel": "WhatsApp",
+   "state": "S20",
+   "deep_link": "K01",
+   "text": "Your call did not happen. Talk to an adviser has a rebook card with the same topic; pick a new slot in about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S20-2nd-alacarte",
+   "channel": "push",
+   "state": "S20",
+   "deep_link": "K04",
+   "text": "We missed you. Rebook your call: same topic, new slot, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S20-2nd-call",
+   "channel": "human call",
+   "state": "S20",
+   "deep_link": "K01",
+   "text": "Outbound call from the call centre; the CRM task carries the state ID, the missing fields and the tier.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S21-48h",
+   "channel": "push",
+   "state": "S21",
+   "deep_link": "K03",
+   "text": "From your call: <first action>. After the call shows it, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S21-7d",
+   "channel": "WhatsApp",
+   "state": "S21",
+   "deep_link": "E01",
+   "text": "Notes from your call are in After the call, with the first action we agreed. The Execution hub walks you through it, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S22-14d",
+   "channel": "email",
+   "state": "S22",
+   "deep_link": "Q01",
+   "text": "What moved this quarter, and the one screen that turns it into an updated plan.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S22-7d",
+   "channel": "push",
+   "state": "S22",
+   "deep_link": "Q01",
+   "text": "Your quarterly review is waiting. Quarterly review: about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S23-7d-after",
+   "channel": "WhatsApp",
+   "state": "S23",
+   "deep_link": "Q04",
+   "text": "Once a year I ask you to confirm your risk profile and renew the agreement. A year with yeslyf: about N minutes, Aadhaar OTP.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S23-7d-before",
+   "channel": "email",
+   "state": "S23",
+   "deep_link": "Q04",
+   "text": "Your annual confirmation is due on <date>: the risk profile and the agreement, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S23-d0",
+   "channel": "push",
+   "state": "S23",
+   "deep_link": "Q04",
+   "text": "Your annual confirmation is due today. A year with yeslyf: about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S24-received",
+   "channel": "email",
+   "state": "S24",
+   "deep_link": "Q03a",
+   "text": "Refund request received; what the agreement says about the unexpired period (brief H5: to be decided).",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S25-received",
+   "channel": "email",
+   "state": "S25",
+   "deep_link": "H09",
+   "text": "Deletion request received; the DPDP flow, and the regulated records that are retained.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S2b-d1",
+   "channel": "push",
+   "state": "S2b",
+   "deep_link": "P03",
+   "text": "Your agreement is ready to sign. Agreement and eSign: about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S2b-d3",
+   "channel": "WhatsApp",
+   "state": "S2b",
+   "deep_link": "P03",
+   "text": "Your agreement is waiting for your signature, and I cannot advise until you sign. Aadhaar OTP on Agreement and eSign, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S2c-d1",
+   "channel": "push",
+   "state": "S2c",
+   "deep_link": "P04",
+   "text": "Your agreement is signed. One step left: the payment, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S2c-d3",
+   "channel": "WhatsApp",
+   "state": "S2c",
+   "deep_link": "P04",
+   "text": "Your agreement is signed and saved; it is not asked again. The payment is the last step, about N minutes, and your plan starts right after.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S3-24h",
+   "channel": "push",
+   "state": "S3",
+   "deep_link": "O02",
+   "text": "Your plan starts with what to have ready. Before you start: about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S3-72h",
+   "channel": "WhatsApp",
+   "state": "S3",
+   "deep_link": "O02",
+   "text": "Paid, and nothing else yet. Start with Before you start: what to have open, and about N minutes to the first section. You can skip anything and come back.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S3-d7",
+   "channel": "push",
+   "state": "S3",
+   "deep_link": "O02",
+   "text": "Your plan starts with what to have ready. Before you start: about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S4-24h",
+   "channel": "push",
+   "state": "S4",
+   "deep_link": "O02",
+   "text": "Continue where you left off: <section>, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S4-72h",
+   "channel": "WhatsApp",
+   "state": "S4",
+   "deep_link": "O02",
+   "text": "You left off at <section>. About N minutes to finish it; everything so far is saved. Pick up at Your next steps.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S4-d7",
+   "channel": "push",
+   "state": "S4",
+   "deep_link": "O02",
+   "text": "Continue where you left off: <section>, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S4-o03",
+   "channel": "push",
+   "state": "S4",
+   "deep_link": "O02",
+   "text": "Continue where you left off: <section>, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S5-24h",
+   "channel": "push",
+   "state": "S5",
+   "deep_link": "D10",
+   "text": "Everything the plan needs is in. Review and build: about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S5-d7",
+   "channel": "WhatsApp",
+   "state": "S5",
+   "deep_link": "G01a",
+   "text": "Your numbers are in and the gate is met. One screen left: Review, build, and what would sharpen it. About N minutes to a built plan; on day 7 I build it on what we have.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S6-48h",
+   "channel": "push",
+   "state": "S6",
+   "deep_link": "G03",
+   "text": "Your plan is ready. Plan overview: about N minutes to read.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S7-1h-before",
+   "channel": "push",
+   "state": "S7",
+   "deep_link": "K02",
+   "text": "Your call is in an hour. Call confirmed has the join link; have your plan open.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S7-24h-before",
+   "channel": "WhatsApp",
+   "state": "S7",
+   "deep_link": "K02",
+   "text": "Your call with a yeslyf adviser is tomorrow at <time>. Read your plan first if it is built; the call is for questions, not a first look. Call confirmed has the join link.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S8-14d",
+   "channel": "email",
+   "state": "S8",
+   "deep_link": "E01",
+   "text": "Two weeks in: the first action, and what it changes. Execution hub.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S8-48h",
+   "channel": "push",
+   "state": "S8",
+   "deep_link": "E01",
+   "text": "First action: <action>. Execution hub, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S8-7d",
+   "channel": "WhatsApp",
+   "state": "S8",
+   "deep_link": "E01",
+   "text": "You have read your plan. The first action is <action>; the Execution hub walks you through it in about N minutes. Which one feels hardest?",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S9-done",
+   "channel": "push",
+   "state": "S9",
+   "deep_link": "E01",
+   "text": "One down. The next action is on the Execution hub, about N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "N-S9-missed-sip",
+   "channel": "WhatsApp",
+   "state": "S9",
+   "deep_link": "E06",
+   "text": "A SIP did not go through this month. Verification and progress shows which one and the fix. About N minutes.",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D01a",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D01a",
+   "text": "Why this one matters on Member detail: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D02a",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D02a",
+   "text": "Why this one matters on Bank balances and deposits: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D02b",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D02b",
+   "text": "Why this one matters on Mutual funds: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D02c",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D02c",
+   "text": "Why this one matters on Stocks and ETFs: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D02d",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D02d",
+   "text": "Why this one matters on NPS: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D02e",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D02e",
+   "text": "Why this one matters on EPF: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D02f",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D02f",
+   "text": "Why this one matters on PPF and post office: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D02g",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D02g",
+   "text": "Why this one matters on Gold and silver: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D02h",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D02h",
+   "text": "Why this one matters on Property: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D02i",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D02i",
+   "text": "Why this one matters on ULIP or endowment: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D02j",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D02j",
+   "text": "Why this one matters on Anything else: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D03a",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D03a",
+   "text": "Why this one matters on Loan detail: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D04a",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D04a",
+   "text": "Why this one matters on Term cover: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D04b",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D04b",
+   "text": "Why this one matters on Health cover: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D04c",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D04c",
+   "text": "Why this one matters on Other policy: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D05a",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D05a",
+   "text": "Why this one matters on Your monthly take-home: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D05b",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D05b",
+   "text": "Why this one matters on Partner's take-home: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D05c",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D05c",
+   "text": "Why this one matters on Rental income: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D05d",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D05d",
+   "text": "Why this one matters on Other income: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D06a",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D06a",
+   "text": "Why this one matters on Total monthly outgoings: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D06d",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D06d",
+   "text": "Why this one matters on Already investing every month: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  },
+  {
+   "slot": "W-D07a",
+   "channel": "in-app",
+   "state": null,
+   "deep_link": "D07a",
+   "text": "Why this one matters on Goal detail: placeholder copy",
+   "label": "placeholder copy (gap G08)"
+  }
+ ],
+ "feature_flags": {
+  "tiers_live": "diy, diwm (difm from the admin side)",
+  "artificial_wait_on_g01": "off",
+  "nudge_cap_per_week": "1 from day 14 after payment",
+  "aa_required": "optional",
+  "trial_period": "none",
+  "adviser_continuity": "off"
+ },
+ "calls_included": {
+  "diy": {
+   "monthly": "0",
+   "quarterly": "0"
+  },
+  "diwm": {
+   "monthly": "N",
+   "quarterly": "N"
+  }
+ },
+ "a_la_carte_price": "Rs ___",
+ "bands": {
+  "placeholder": true,
+  "note": "placeholder ladders per field, labelled placeholder until the M2 tables 9.1 to 9.5 arrive (plan sections 6 and 19); the board shows Rs ___ chips; a tapped band stores the midpoint tagged approx; the open top band stores 1.5 times its lower bound",
+  "ladders_rs": {
+   "monthly_income": [
+    0,
+    20000,
+    35000,
+    50000,
+    75000,
+    100000,
+    150000,
+    200000,
+    300000,
+    500000
+   ],
+   "monthly_spend": [
+    0,
+    15000,
+    25000,
+    40000,
+    60000,
+    80000,
+    100000,
+    150000,
+    200000,
+    300000
+   ],
+   "monthly_small": [
+    0,
+    2000,
+    5000,
+    10000,
+    20000,
+    35000,
+    50000,
+    75000,
+    100000
+   ],
+   "asset": [
+    0,
+    50000,
+    100000,
+    250000,
+    500000,
+    1000000,
+    2500000,
+    5000000,
+    10000000,
+    20000000,
+    50000000
+   ],
+   "property": [
+    0,
+    2500000,
+    5000000,
+    7500000,
+    10000000,
+    15000000,
+    20000000,
+    30000000,
+    50000000
+   ],
+   "loan_outstanding": [
+    0,
+    100000,
+    500000,
+    1000000,
+    2500000,
+    5000000,
+    10000000
+   ],
+   "cover_term": [
+    0,
+    2500000,
+    5000000,
+    10000000,
+    15000000,
+    20000000,
+    30000000
+   ],
+   "cover_health": [
+    0,
+    300000,
+    500000,
+    1000000,
+    2500000,
+    5000000
+   ],
+   "goal_cost": [
+    0,
+    100000,
+    500000,
+    1000000,
+    2500000,
+    5000000,
+    10000000,
+    20000000
+   ],
+   "premium_annual": [
+    0,
+    10000,
+    25000,
+    50000,
+    100000
+   ],
+   "ulip_years": [
+    0,
+    3,
+    5,
+    10,
+    15
+   ]
+  },
+  "reveal": {
+   "income": {
+    "labels": [
+     "Under 10 lakhs",
+     "10 to 25 lakhs",
+     "25 to 50 lakhs",
+     "50 lakhs to 1 crore",
+     "Over 1 crore"
+    ],
+    "bounds_lakh": [
+     0,
+     10,
+     25,
+     50,
+     100
+    ],
+    "mid_lakh": [
+     5,
+     17.5,
+     37.5,
+     75,
+     120
+    ]
+   },
+   "corpus": {
+    "labels": [
+     "Under 5 lakhs",
+     "5 to 25 lakhs",
+     "25 lakhs to 1 crore",
+     "1 to 5 crores",
+     "Over 5 crores"
+    ],
+    "bounds_lakh": [
+     0,
+     5,
+     25,
+     100,
+     500
+    ],
+    "mid_lakh": [
+     2.5,
+     15,
+     62.5,
+     300,
+     700
+    ]
+   },
+   "savings": {
+    "labels": [
+     "Almost nothing, less than 5%",
+     "Around 10%, small consistent chunks",
+     "Around 25%, meaningful amounts",
+     "Around 40%, some serious money",
+     "More than 40%, I live well below my means"
+    ],
+    "bounds_pct": [
+     0,
+     6.25,
+     17.5,
+     32.5,
+     45
+    ],
+    "mid_pct": [
+     2.5,
+     10,
+     25,
+     40,
+     50
+    ]
+   }
+  }
+ },
+ "difm_threshold": {
+  "value_rs": 10000000,
+  "board_reads": "Rs ___",
+  "label": "placeholder (assumption)"
+ },
+ "agreement_version": "AGR v1 (to be verified: agreement template versions)",
+ "price_note": "amounts in the seed are Rs ___ with a price key (sku_period); no price is invented (CLAUDE.md)",
+ "assumptions_versions": [
+  {
+   "assumptions_version": "A1",
+   "instrument_set_version": "I1",
+   "published_at": "2026-04-26T08:00:00+05:30"
+  },
+  {
+   "assumptions_version": "A2",
+   "instrument_set_version": "I1",
+   "published_at": "2026-07-10T08:00:00+05:30"
+  },
+  {
+   "assumptions_version": "A2",
+   "instrument_set_version": "I2",
+   "published_at": "2026-09-11T08:00:00+05:30"
+  }
+ ]
+}

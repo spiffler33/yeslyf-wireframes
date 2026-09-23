@@ -1,0 +1,79 @@
+{
+ "harish": {
+  "staff_id": "harish",
+  "name": "Harish",
+  "roles": [
+   "principal_officer",
+   "difm_owner"
+  ]
+ },
+ "adv01": {
+  "staff_id": "adv01",
+  "name": "Adviser 01",
+  "roles": [
+   "adviser",
+   "call_centre"
+  ]
+ },
+ "adv02": {
+  "staff_id": "adv02",
+  "name": "Adviser 02",
+  "roles": [
+   "adviser",
+   "call_centre"
+  ]
+ },
+ "adv03": {
+  "staff_id": "adv03",
+  "name": "Adviser 03",
+  "roles": [
+   "adviser",
+   "call_centre"
+  ]
+ },
+ "adv04": {
+  "staff_id": "adv04",
+  "name": "Adviser 04",
+  "roles": [
+   "adviser",
+   "call_centre"
+  ]
+ },
+ "adv05": {
+  "staff_id": "adv05",
+  "name": "Adviser 05",
+  "roles": [
+   "adviser",
+   "call_centre"
+  ]
+ },
+ "adv06": {
+  "staff_id": "adv06",
+  "name": "Adviser 06",
+  "roles": [
+   "adviser",
+   "call_centre"
+  ]
+ },
+ "ops01": {
+  "staff_id": "ops01",
+  "name": "Ops 01",
+  "roles": [
+   "ops"
+  ]
+ },
+ "sup01": {
+  "staff_id": "sup01",
+  "name": "Support 01",
+  "roles": [
+   "support"
+  ]
+ },
+ "cmp01": {
+  "staff_id": "cmp01",
+  "name": "Compliance 01",
+  "roles": [
+   "compliance"
+  ]
+ }
+}

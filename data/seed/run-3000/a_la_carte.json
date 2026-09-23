@@ -1,0 +1,11 @@
+{
+"P00002":[{"purchase_id":"P00002-A1","date":"2025-08-26T13:08:38+05:30","amount":"Rs ___","receipt":"RCPT-SEED-03023-1","call_id":"P00002-C1"}],
+"P00348":[{"purchase_id":"P00348-A1","date":"2026-05-23T22:14:23+05:30","amount":"Rs ___","receipt":"RCPT-SEED-03010-1","call_id":"P00348-C1"}],
+"P00392":[{"purchase_id":"P00392-A1","date":"2026-06-07T01:05:12+05:30","amount":"Rs ___","receipt":"RCPT-SEED-03020-1","call_id":"P00392-C1"}],
+"P00912":[{"purchase_id":"P00912-A1","date":"2026-06-28T16:38:06+05:30","amount":"Rs ___","receipt":"RCPT-SEED-03015-1","call_id":"P00912-C1"}],
+"P01202":[{"purchase_id":"P01202-A1","date":"2026-08-04T13:44:49+05:30","amount":"Rs ___","receipt":"RCPT-SEED-03011-1","call_id":"P01202-C1"}],
+"P01550":[{"purchase_id":"P01550-A1","date":"2026-09-19T06:38:37+05:30","amount":"Rs ___","receipt":"RCPT-SEED-02887-1","call_id":"P01550-C1"}],
+"P01615":[{"purchase_id":"P01615-A1","date":"2026-07-26T10:58:43+05:30","amount":"Rs ___","receipt":"RCPT-SEED-03000-1","call_id":"P01615-C1"}],
+"P01827":[{"purchase_id":"P01827-A1","date":"2026-08-24T02:29:27+05:30","amount":"Rs ___","receipt":"RCPT-SEED-03008-1","call_id":"P01827-C1"}],
+"P02751":[{"purchase_id":"P02751-A1","date":"2026-09-18T06:19:23+05:30","amount":"Rs ___","receipt":"RCPT-SEED-02861-1","call_id":"P02751-C1"}]
+}

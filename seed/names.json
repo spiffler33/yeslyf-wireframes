@@ -1,0 +1,18 @@
+{
+ "about": "Synthetic name lists by region for the seed (plan section 5: names synthetic, region-diverse by city, drawn from lists committed in the repo). Common given names and surnames combined at random; no real person is meant. The team's first names, the Spinach names in the minutes, the retired personas (Rajesh, Deepika) and the wireframe example name (Aarav) are left out so a seed person is never mistaken for one of them.",
+ "cause": "seed plan, 22 Sep 2026",
+ "excluded": ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Vatsal", "Saquib", "Eshani", "Rajesh", "Deepika", "Aarav", "Parikh"],
+ "first": {
+  "north": ["Aditya", "Akshay", "Aman", "Ankit", "Arjun", "Ayesha", "Deepak", "Divya", "Ishaan", "Kabir", "Karan", "Kavya", "Manish", "Meera", "Mohit", "Naina", "Neha", "Nikhil", "Pooja", "Pranav", "Priya", "Rahul", "Ritika", "Rohan", "Sakshi", "Sanjana", "Shreya", "Simran", "Tanvi", "Varun", "Vikram", "Yash", "Zoya", "Ishita", "Aakash", "Harpreet", "Gurpreet", "Jasleen", "Mehak", "Tarun", "Anjali", "Sahil", "Nitin", "Payal", "Ruchi"],
+  "west": ["Aniket", "Chinmay", "Devika", "Gauri", "Hardik", "Heena", "Jay", "Kunal", "Mansi", "Nishant", "Omkar", "Parth", "Prachi", "Rutuja", "Sagar", "Saloni", "Shruti", "Siddharth", "Tejas", "Urvi", "Vaibhav", "Dhruv", "Hetal", "Krupa", "Mihir", "Nidhi", "Pranali", "Riddhi", "Sameer", "Yogesh", "Bhavin", "Foram", "Jigar", "Kinjal", "Nirav", "Amruta", "Ketan", "Madhura", "Rohit", "Sneha"],
+  "south": ["Anand", "Arun", "Bhavana", "Chaitanya", "Deepa", "Gayathri", "Janani", "Karthik", "Keerthana", "Lakshmi", "Madhav", "Nandini", "Naveen", "Pavithra", "Prasanna", "Rajiv", "Ramya", "Sandeep", "Shalini", "Sowmya", "Srinivas", "Suresh", "Swathi", "Varsha", "Venkat", "Vidya", "Vignesh", "Vishnu", "Aravind", "Divakar", "Harini", "Kavitha", "Meenakshi", "Nithya", "Pradeep", "Revathi", "Sai", "Sindhu", "Ganesh", "Aparna"],
+  "east": ["Abhijit", "Anirban", "Arpita", "Debasish", "Ishani", "Moumita", "Priyanka", "Rajarshi", "Rituparna", "Sayan", "Soumya", "Subhajit", "Sudipta", "Tanushree", "Ananya", "Biswajit", "Payel", "Sourav", "Indrani", "Arnab", "Shreyasi", "Tanmoy", "Poulami", "Kaushik"]
+ },
+ "last": {
+  "north": ["Sharma", "Verma", "Gupta", "Malhotra", "Kapoor", "Khanna", "Mehra", "Arora", "Bhatia", "Chopra", "Saxena", "Srivastava", "Tiwari", "Pandey", "Mishra", "Chauhan", "Rathore", "Singh", "Sethi", "Gill", "Bedi", "Kohli", "Tandon", "Agarwal", "Bansal"],
+  "west": ["Patil", "Deshmukh", "Kulkarni", "Joshi", "Pawar", "Shinde", "Gokhale", "Apte", "Bhosale", "Jadhav", "Patel", "Shah", "Mehta", "Desai", "Trivedi", "Thakkar", "Vora", "Dave", "Pandya", "Chitale", "Naik", "Sawant", "Jain", "Kamat"],
+  "south": ["Iyer", "Iyengar", "Rao", "Reddy", "Naidu", "Nair", "Menon", "Pillai", "Krishnan", "Subramanian", "Raman", "Hegde", "Shetty", "Kamath", "Pai", "Gowda", "Murthy", "Varma", "Chandran", "Rajan", "Srinivasan", "Balakrishnan", "Natarajan", "Kumar", "Prasad"],
+  "east": ["Banerjee", "Chatterjee", "Mukherjee", "Das", "Ghosh", "Bose", "Sen", "Roy", "Dutta", "Saha", "Mitra", "Chakraborty", "Mohanty", "Patnaik", "Sahoo", "Nayak", "Pradhan", "Majumdar"]
+ },
+ "cross_region_share": 0.15
+}

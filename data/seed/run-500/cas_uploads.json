@@ -1,0 +1,13 @@
+{
+"P00001":[{"requested_at":"2025-08-27T18:30:15+05:30","cas_source":"cams_kfintech","reminder_count":1,"uploaded_at":"2025-08-28T07:47:20+05:30","parsed_at":"2025-08-28T07:49:28+05:30","abandoned_at":null}],
+"P00002":[{"requested_at":"2025-09-11T08:01:39+05:30","cas_source":"cams_kfintech","reminder_count":1,"uploaded_at":"2025-09-11T16:33:12+05:30","parsed_at":"2025-09-11T16:34:41+05:30","abandoned_at":null}],
+"P00035":[{"requested_at":"2026-05-01T01:09:11+05:30","cas_source":"cams_kfintech","reminder_count":1,"uploaded_at":null,"parsed_at":null,"abandoned_at":"2026-05-01T04:51:50+05:30"}],
+"P00156":[{"requested_at":"2026-06-17T05:06:04+05:30","cas_source":"cams_kfintech","reminder_count":2,"uploaded_at":"2026-06-18T06:03:58+05:30","parsed_at":"2026-06-18T06:05:05+05:30","abandoned_at":null}],
+"P00223":[{"requested_at":"2026-07-07T09:33:00+05:30","cas_source":"cams_kfintech","reminder_count":2,"uploaded_at":"2026-07-08T21:07:04+05:30","parsed_at":"2026-07-08T21:10:00+05:30","abandoned_at":null}],
+"P00288":[{"requested_at":"2026-07-26T16:43:54+05:30","cas_source":"cams_kfintech","reminder_count":2,"uploaded_at":"2026-07-28T00:58:14+05:30","parsed_at":"2026-07-28T01:01:16+05:30","abandoned_at":null}],
+"P00317":[{"requested_at":"2026-08-08T22:34:23+05:30","cas_source":"cams_kfintech","reminder_count":2,"uploaded_at":"2026-08-10T16:45:59+05:30","parsed_at":"2026-08-10T16:48:16+05:30","abandoned_at":null}],
+"P00332":[{"requested_at":"2026-08-10T16:19:12+05:30","cas_source":"cams_kfintech","reminder_count":2,"uploaded_at":"2026-08-12T13:22:28+05:30","parsed_at":"2026-08-12T13:24:44+05:30","abandoned_at":null}],
+"P00364":[{"requested_at":"2026-09-20T10:03:42+05:30","cas_source":"cams_kfintech","reminder_count":2,"uploaded_at":"2026-09-21T10:43:58+05:30","parsed_at":"2026-09-21T10:47:32+05:30","abandoned_at":null}],
+"P00466":[{"requested_at":"2026-09-20T14:53:00+05:30","cas_source":"cams_kfintech","reminder_count":2,"uploaded_at":null,"parsed_at":null,"abandoned_at":null}],
+"P00474":[{"requested_at":"2026-09-20T11:54:16+05:30","cas_source":"cams_kfintech","reminder_count":2,"uploaded_at":null,"parsed_at":null,"abandoned_at":null}]
+}
