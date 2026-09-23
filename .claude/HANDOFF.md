@@ -1,49 +1,38 @@
-# Handoff - 23 Sep 2026 (phase closed: seed phase A)
+# Handoff - 23 Sep 2026 (phase closed: seed plan phases B to E)
 
-State: PLAN_admin_seed_v01.md phase A (seed/config.json, scripts/seed_gen.py, data/seed/run-500 and run-3000 with
-report.md each) is committed and pushed; phases B to E wait for Vatsal's go.
+State: PLAN_admin_seed_v01.md is done (phases A to E, pushed). The board has one "Admin seed" tab leading to four
+pages: admin_wireframes.html (M02 to M14 over a masked seed), admin_seats.html (99 questions: 38 answered, 61 gaps),
+admin_brief.html (T1 to T6 plus the gap rows), admin_operator.html (the Zoho afternoon checklist).
 
 ## Read first
-1. seed/PROGRESS.md: state, files, how the generator works, the open questions, what phase B needs.
-2. PLAN_admin_seed_v01.md sections 12 to 18 (phase B onwards) and PLAN.md section 20.
-3. data/seed/run-3000/report.md (read with head or sed; never load a full seed JSON or events.jsonl).
+1. seed/PROGRESS.md: state, Vatsal's answers of 23 Sep 2026, decisions, files, how to regenerate.
+2. PLAN.md section 21 (and section 20 for phase A).
+3. data/seats.json when working on the brief (the seats judgment: surface, answered, gap, brief table).
 
 ## Verify before coding
 - `git status --short`: only the two untracked files in inputs/meeting/ (the docx and the Zoom transcript,
   untracked on purpose).
-- `python3 scripts/seed_gen.py --anchor 2026-09-23`: "run-500: 507 people, 16272 events" and "run-3000: 3040
-  people, 72371 events", and `git status` stays clean. Without --anchor the anchor is the run date: every date
-  moves and every seed file changes. Regenerate on a new date only on purpose (demo morning), then commit it.
-- `python3 scripts/check_phase9.py`: 19 PASS. `python3 scripts/check_site.py`: 3 PASS. `python3 scripts/build_site.py`
-  leaves docs/ unchanged.
+- `python3 scripts/seed_gen.py --anchor 2026-09-23` then `python3 scripts/seed_export.py` then
+  `python3 scripts/build_site.py`: "run-3000: 3040 people, 72398 events", both scans PASS, and `git status` stays
+  clean (without --anchor every date moves; regenerate on a new date only on purpose, then commit it).
+- `python3 scripts/check_phase9.py`: 19 PASS. `python3 scripts/check_site.py`: 3 PASS.
 
-## Waiting on Vatsal
-- The go for phase B. Silence on the phase A summary is consent for the seed plan decisions.
-- Three questions: where the progress ring starts (at OTP per the seed plan, implemented; after the reveal per
-  plan_v2 4.3 rule 11); DIFM = the S14 count, 8 people (3.8 percent), or raise S14 to 21 for 10 percent; the S16
-  flag on the manual path plus the AA-failed fallback (37 percent) against the plan's about 30 percent.
-- Two CLAUDE.md readings to confirm: synthetic customer names are allowed ("never invent a person's name" read as
-  the team and reviewers); admin screens may show Harish as the DIFM owner ("no adviser named" read as app copy).
-
-## Next, after the go
-- Run B, C, D and E in sequence without stopping; one commit per phase with the plan section 18 messages; the
-  one-line Tracker update at the end of each phase; seed/PROGRESS.md at every boundary and every subagent return.
-- B: data/seed/<run>/exports/ (zoho/*.csv, desk/tickets.csv, campaigns/<stage>.csv, landing/landing_sheet.csv,
-  fixtures/ with README.md), the minimisation scan (fails on a PAN pattern, a rupee value that is not a band label,
-  a holding, an email outside example.com), docs/admin_operator.html with checkboxes on scripts/board_store.js.
-  One subagent per export file, each given plan section 12, seed/config.json and data/seed/<run>/; check their
-  files yourself.
-- C: docs/admin_wireframes.html, M02 to M14 on the wireframes_v02 renderer (scripts/renderer_v02.js and .css),
-  run switch 500 or 3,000, freeze marker open on every new screen; subagents in batches of three or four screens.
-  GitHub Pages serves docs/ only, so the page needs the seed data copied into docs/ by build_site.py.
-- D: docs/admin_seats.html and docs/admin_brief.html (two subagents). E: nav rows, changelog rows, tracker W12 and
-  W13 lands_at, mixpanel JSONL.
+## Next
+- Phase 13, the admin session (about 30 Sep 2026): walk the seats page and the brief with the team. Kajal runs the
+  operator page on a Zoho One trial with the CSVs Vatsal sends via Drive (data/seed/<run>/exports/). Spinach gets
+  data/seed/<run>/exports/fixtures/yeslyf_seed_<anchor>_<run>.zip privately (gitignored; seed_export.py rebuilds it).
+- Seats answers and comments come back as board rows (pages admin_seats, admin_operator, admin_wireframes); read
+  them with scripts/pull_board.py before changing data/seats.json.
 
 ## Constraints carried forward
-- Money is "Rs ___" with a price key; included calls "N"; minutes "about N minutes" (CLAUDE.md wins over the plan's
-  Amount columns). A Zoho currency field will not take "Rs ___" (to be verified): settle the Deals Amount column in B.
-- Screens cite integrations by I-number; vendor names live in the data only.
-- Do not touch existing pages except the nav rows in phase E; reuse the wireframes_v02 renderer and the
-  board_entries write-back; standard library Python only; no network; seed 20260922.
-- Never type into a live board page from spiff's Chrome; test on a local copy (port 8791; 8765 is taken).
-- Events are 72,371 against the plan's estimate of about 150,000; not padded.
+- Nothing seed-related on the board beyond the masked admin bundle (phones "+91 9xxxx xx123", no PAN, dob or
+  legal name); the build asserts it. No CSV linked from the board.
+- The site build runs the minimisation scan and fails on a breach. No regex in shipped checks: exact membership
+  against the seed's own values, stdlib parsers for types.
+- Screens cite integrations by I-number (vendor names rendered from data/integrations.json); money "Rs ___";
+  seats and roles by role, never people's names; CLAUDE.md wins over the plan.
+- The header fits one more tab at 1,512 px; a second new tab pushes it to three rows and cuts into the wireframes
+  layout (calc(100vh - 128px)).
+- Test board pages only on a local copy of docs/ with config.js blanked (port 8791; 8765 is taken); docs/config.js
+  holds the live key.
+- data/changelog_seed.json holds the seed rows of the changelog (apply_decisions.py rewrites changelog.json whole).

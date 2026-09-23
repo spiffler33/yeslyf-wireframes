@@ -194,11 +194,6 @@ def state_enter_names(states):
     return set("state_enter_" + s["id"] for s in states)
 
 
-def journey_stage_order():
-    states = load_json(STATES_PATH)["states"]
-    return ["S0", "S0w"] + [s["id"] for s in states]
-
-
 # ---------------------------------------------------------------- row builders
 
 def build_leads_rows(people):

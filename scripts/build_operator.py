@@ -136,10 +136,10 @@ def schema_index(schema):
 SEATS_FILE = os.path.join(DATA, "seats.json")
 
 
-def load_seats(seats_path=None):
+def load_seats():
     # Step 11's Zoho views per seat (PLAN_admin_seed_v01.md section 15). Minimal reading only; the seats page's own
     # builder (scripts/build_seats.py) owns full contract validation.
-    path = seats_path or SEATS_FILE
+    path = SEATS_FILE
     if not os.path.exists(path):
         raise SystemExit("build_operator: %s does not exist yet (step 11's Zoho views per seat)" % path)
     with open(path) as fh:
@@ -465,7 +465,7 @@ def build_page(doc, items, schema, schema_idx, integrations, states, seats_doc):
             blob + site.store_script() + '<script>' + JS + '</script>\n</body>\n</html>\n')
 
 
-def main(seats_path=None):
+def main():
     with open(DATA_FILE) as fh:
         raw = fh.read()
     site.check_ascii("data/operator.json", raw)
@@ -494,7 +494,7 @@ def main(seats_path=None):
     states = site.load_optional("v02", "states.json")
     if states is None:
         raise SystemExit("build_operator: data/v02/states.json is required (step 8's S4 ladder)")
-    seats_doc = load_seats(seats_path)
+    seats_doc = load_seats()
 
     items = all_items(doc)
     page = build_page(doc, items, schema, schema_idx, integrations, states, seats_doc)

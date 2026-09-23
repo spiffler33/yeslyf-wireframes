@@ -18,11 +18,9 @@ data/seats.json contract (one row per seat, in the file's own order; PLAN_admin_
 The eight seat ids and names, and each seat's question-id prefix, are fixed below (SEATS); a question id is not
 free text, it is a stable board item_id forever.
 
-main(seats_path=None) reads data/seats.json unless given a path (a test passes a fixture), validates it against the
-contract, and raises SystemExit with a clear message when the file is missing or breaks the contract. It does not
-require every one of the eight seats to be present (a fixture may cover two); it does require that any seat present
-is one of the eight, named exactly, with question ids unique and in that seat's prefix-NN form.
-Runs standalone. Not called from build_site.py; the orchestrator wires that in separately.
+main() reads data/seats.json, validates it against the contract, and raises SystemExit with a clear message when the
+file is missing or breaks the contract: any seat present is one of the eight, named exactly, with question ids unique
+and in that seat's prefix-NN form. Called from build_site.main(); also runs on its own.
 """
 import json
 import os
@@ -237,8 +235,8 @@ def build_page(doc, questions, ctx):
             blob + site.store_script() + '<script>' + JS + '</script>\n</body>\n</html>\n')
 
 
-def main(seats_path=None):
-    path = seats_path or DATA_FILE
+def main():
+    path = DATA_FILE
     if not os.path.exists(path):
         raise SystemExit("build_seats: %s does not exist yet (the seats contract, PLAN_admin_seed_v01.md section 15)" % path)
     with open(path) as fh:

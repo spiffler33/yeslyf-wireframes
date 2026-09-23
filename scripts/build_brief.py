@@ -26,8 +26,7 @@ Sources (read-only; never printed whole, never hand-edited):
 - data/integrations.json: I11 WATI, I13 (T5, T6).
 - data/v02/flow.json: screen order, for the three T6 funnels.
 
-Standalone: run directly (`python3 scripts/build_brief.py`), or call main(seats_path) from a test script. Never
-added to build_site.py; the orchestrator wires it in later (plan section 18, phase E).
+Called from build_site.main(); also runs on its own (`python3 scripts/build_brief.py`).
 """
 import collections
 import itertools
@@ -619,8 +618,8 @@ def build_tables(src):
     return {"T1": t1, "T2": t2, "T3": t3, "config_doc": config_doc}
 
 
-def main(seats_path=None):
-    seats_file = seats_path or os.path.join(DATA, "seats.json")
+def main():
+    seats_file = os.path.join(DATA, "seats.json")
     if not os.path.exists(seats_file):
         raise SystemExit("build_brief: %s is missing. The seats page (deliverable D7) writes it; "
                           "run scripts/build_brief.py again once it exists." % os.path.relpath(seats_file, ROOT))

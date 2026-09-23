@@ -1,5 +1,8 @@
 # PLAN: seed people and admin discovery, v0.1
 
+Status, 23 Sep 2026: phases A to E done and pushed (PLAN.md section 21; seed/PROGRESS.md). The Admin seed nav landed
+with phase D, not E.
+
 Date: 22 Sep 2026. For Claude Code in the yeslyf-wireframes repo. CLAUDE.md rules apply throughout (ASCII, Rs, first names, a cause on every row, "to be verified: <item>" with no name attached, freeze markers, per-screen comment controls through the Supabase write-back).
 
 Cause labels used in this file:

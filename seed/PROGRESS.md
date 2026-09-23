@@ -10,8 +10,8 @@ Plan: PLAN_admin_seed_v01.md (the spec; CLAUDE.md wins on a conflict). Resume fr
 - The phase A summary went to Vatsal in chat on 23 Sep 2026: layers, the state by tier grid, topups, the N01
   multi-predicate list, every phase A assumption, the CLAUDE.md conflicts and the three questions below. Silence
   after it is consent for the seed plan decisions (plan, cause labels); his go starts phase B.
-- 23 Sep 2026, afternoon: Vatsal's go ("go"). The three questions and two readings stay open; the seed keeps
-  the implemented defaults until he answers. Phases B to E run in sequence, one commit per phase (plan section 18
+- 23 Sep 2026, afternoon: Vatsal's go ("go"); his answers to the three questions and two readings followed the
+  same afternoon (below). Phases B to E ran in sequence, one commit per phase (plan section 18
   messages); the one-line tracker update goes in the phase report (the tracker's update is composed on its page
   from board rows; there is no data slot for it).
 - Seed regenerated (55607b2): tier mix 60/36/4 and the S16 line (Vatsal, 23 Sep 2026); run-3000 has 126
@@ -24,10 +24,10 @@ Plan: PLAN_admin_seed_v01.md (the spec; CLAUDE.md wins on a conflict). Resume fr
   app_events 12,464 (plan guessed about 20,000; not padded), tickets 73, landing 940, 27 campaign lists.
   Regenerate: `python3 scripts/seed_gen.py --anchor 2026-09-23`, then `python3 scripts/seed_export.py`, then
   `python3 scripts/build_site.py` (it runs the scan and fails on a breach).
-- Phase B pushed (e16701f). Phase C foundation merged from its worktree into the main checkout (not yet
-  committed): renderer hooks (five pages render identically, checked screen by screen), data/admin_screens.json,
-  scripts/admin_core.js, scripts/build_admin_wireframes.py (masked bundles in docs/seed/<run>/admin/: run-3000
-  35 files, 18.8 MB; run-500 10 files, 3.9 MB; no PAN, no full phone; plus a sip table for M13).
+- Phase C's foundation was built in a separate git worktree and merged: renderer hooks (five pages render
+  identically, checked screen by screen), data/admin_screens.json, scripts/admin_core.js,
+  scripts/build_admin_wireframes.py (masked bundles in docs/seed/<run>/admin/: run-3000 35 files, 18.8 MB;
+  run-500 10 files, 3.9 MB; no PAN, no full phone; plus a sip table for M13).
 - Phase C done ("admin wireframes v0.1"): docs/admin_wireframes.html draws M02 to M14 over the masked bundle
   with the run switch (500 or 3,000) and the Admin Link deep link; scripts/admin_screens_1.js (M02 to M04),
   _2.js (M05 to M09), _3.js (M10 to M14). Checks: the screen agents' own counts against the bundle (170, 97
@@ -81,11 +81,10 @@ Plan: PLAN_admin_seed_v01.md (the spec; CLAUDE.md wins on a conflict). Resume fr
 - Deals Amount: "Rs ___" as a single-line text field; to be verified: whether the standard Amount currency field
   can stay blank on import.
 - One AA Status column on contacts (it is both a mirror and a field in the plan's list).
-- fixtures/: README.md only; the bundle is the canonical files in data/seed/<run>/ (not copied: it would double
-  the repo). Open: how Spinach receives it (the repo is private; Pages is public and the seed carries synthetic
-  PANs).
-- The repo is private (spiffler33 the only collaborator), so Kajal downloads the minimised CSVs from Pages:
-  build_operator copies zoho/, desk/, campaigns/, landing/ of both runs to docs/seed/<run>/exports/.
+- fixtures/: README.md plus the private zip (Vatsal's answer 2); the canonical JSON is not copied into the repo
+  twice.
+- The repo is private (spiffler33 the only collaborator), but no CSV goes on the board (Vatsal's answer 1): the
+  operator page names each file by path and the CSVs reach Kajal via Drive. Nothing copies exports into docs/.
 - Seats and roles are named by role on the new pages (CLAUDE.md: no owner markers), not "(Harish)" or
   "(Kajal's seat)" as in plan section 15.
 - Admin Link contract: admin_wireframes.html?run=3000&screen=M03&person=P00001 (run=500 for run-500).
@@ -114,8 +113,16 @@ Plan: PLAN_admin_seed_v01.md (the spec; CLAUDE.md wins on a conflict). Resume fr
   a_la_carte, calls, tickets, ops_queue, integration_events, tasks, nudges_sent), state_flags.json (what the
   resolver reads), staff.json, config.json (the app config table), events.jsonl, report.md.
 - Inspect with scripts and counts; never load a full seed JSON or events.jsonl into context.
+- seed/export_schema.json and scripts/seed_export.py: data/seed/<run>/exports/ (zoho, desk, campaigns, landing,
+  mixpanel, fixtures README and the gitignored zip, README with the scan line); `--scan-only`, `--run`.
+- data/operator.json and scripts/build_operator.py: docs/admin_operator.html (board page admin_operator).
+- data/admin_screens.json, scripts/admin_core.js, scripts/admin_screens_1.js to _3.js and
+  scripts/build_admin_wireframes.py: docs/admin_wireframes.html and the masked docs/seed/<run>/admin/ bundles.
+- data/seats.json and scripts/build_seats.py: docs/admin_seats.html (board page admin_seats);
+  scripts/build_brief.py: docs/admin_brief.html; data/changelog_seed.json: the changelog's seed section.
+- All of them run from `python3 scripts/build_site.py` (about 18 s; most of it the admin bundles).
 
-## How the generator works (for phases B to E)
+## How the generator works
 
 - Each paid person gets a target state; overlay states (S7, S11, S12, S13, S15, S17, S20, S22, S23, S24, S25)
   sit on an underlying state (config overlay_bases). The timeline is drawn from the time model until the target
@@ -133,16 +140,17 @@ Plan: PLAN_admin_seed_v01.md (the spec; CLAUDE.md wins on a conflict). Resume fr
 - Every ugly case at its count. 86 people with more than one predicate (the N01 gap list). 3 engine-failure people
   match no state (kept at S5). 72,371 events (the plan estimated about 150,000).
 
-## Open questions (in the phase A summary, 23 Sep 2026)
+## Open questions
 
-1. The O02 progress ring: the seed plan says endowed 20 at OTP; plan_v2 4.3 rule 11 says 20 after the reveal. The
-   seed follows the seed plan (S1 people show 20).
-2. DIFM share: the plan gives DIFM 10 percent and S14 8 people; every DIFM person resolves to S14, so the seed has
-   DIFM = 8 (3.8 percent). Veto: raise S14 to 21.
-3. S16: the plan says about 30 percent (manual or CAS path); the seed flags manual plus AA-failed (37 percent).
+- None from the seed plan: the three phase A questions and the two readings were answered on 23 Sep 2026 (see
+  "Vatsal's answers" above).
+- For Vatsal when he reads the seats page: fi-01's Zoho view names the export's own column labels "Razorpay Customer
+  Id" and "Razorpay Subscription or Txn Id" (plan section 12); the I-number rule covers screens, so they stay.
 
-## Next (after the go)
+## Next
 
-- Phase B: exports (Zoho CSVs, Desk, Campaigns, landing sheet, fixtures, minimisation scan) and docs/admin_operator.html
-  (checkboxes writing to board_entries). One subagent per export file, each given plan section 12, seed/config.json
-  and data/seed/<run>/.
+- Phase 13, the admin session (about 30 Sep 2026): walk admin_seats.html and admin_brief.html with the team; Kajal
+  runs admin_operator.html on a Zoho One trial with the CSVs from data/seed/<run>/exports/ (Vatsal sends them via
+  Drive); Spinach gets data/seed/<run>/exports/fixtures/yeslyf_seed_<anchor>_<run>.zip privately.
+- Demo morning: regenerate on purpose (seed_gen.py without --anchor, then seed_export.py, then build_site.py) and
+  commit the result; every date moves.

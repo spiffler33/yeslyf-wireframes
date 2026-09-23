@@ -526,3 +526,32 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
 - Open with Vatsal: where the progress ring starts (at OTP per the seed plan, after the reveal per plan_v2 4.3
   rule 11); DIFM is 8 people (S14) not 10 percent; the S16 flag covers the manual path and the AA-failed fallback
   (37 percent). Phases B to E wait for his go, then run without stopping, one commit per phase.
+
+## 21. Status, 23 Sep 2026 (seed plan phases B to E: exports, the admin tab, seats, brief, board links)
+
+- PLAN_admin_seed_v01.md is done: 55607b2 and d5ca4e4 (seed changes from Vatsal's answers), e16701f (B), bd85739
+  (C), 97f352a (D), 63996a9 (E), all pushed. Detail and regeneration steps: seed/PROGRESS.md.
+- Vatsal, 23 Sep 2026: the board is public, so the admin tab loads a masked seed (phones "+91 9xxxx xx123", no PAN,
+  emails unchanged); no CSV on the board (the CSVs reach Kajal via Drive); the fixtures ship as a private zip named by
+  run date and size (gitignored); a notes box per operator step; the progress ring starts after the reveal (v0.2
+  governs; S1 reads 0); tier mix 60/36/4 with DIFM the 8 S14 people; S16 follows the path mix; synthetic customer
+  names and Harish as the DIFM owner on admin screens are right.
+- B: seed/export_schema.json and scripts/seed_export.py (Zoho, Desk, Campaigns, landing, Mixpanel, the fixtures
+  README and zip). The minimisation scan checks types with parsers and leaks by exact membership against the seed's
+  own values, no patterns; the site build fails on a breach. docs/admin_operator.html: 12 steps, 94 checkboxes.
+- C: docs/admin_wireframes.html, M02 to M14 over docs/seed/<run>/admin/ (the masked bundle), run switch 500 or
+  3,000, the Admin Link deep link; renderer_v02.js gained inert hooks (every screen of the five pages that inline it
+  renders identically, checked screen by screen). M01 stays on the wireframes tab.
+- D: data/seats.json (99 questions: 38 answered, 61 gaps: T1 5, T2 2, T3 3, T4 4, T5 42 including the 35 N01 state
+  pairs, T6 5), docs/admin_seats.html (answered and a comment per question on the board), docs/admin_brief.html
+  (T1 to T6 with causes and the gap rows, live from the seats page).
+- E: one "Admin seed" tab on every page and a sub-nav across the four pages (landed with D; four tabs would push the
+  header to a third row at laptop width); tracker W12 lands on the brief, W13 on the operator page; the changelog's
+  seed section reads data/changelog_seed.json (apply_decisions.py rewrites changelog.json whole); Mixpanel JSONL.
+- Known limits: the brief is a skeleton (T4 layouts, a T5 opt-in and DND edge and the T6 retention window read "to
+  be decided"); the admin tab's KPI rows that need the event log say so instead of aggregating it; no vendor call
+  anywhere (round one); docs/seed carries about 23 MB of masked bundles that change on every regeneration; run-3000
+  has 72,398 events against the plan's estimate of about 150,000 (not padded).
+- Firm, carried forward: CLAUDE.md wins over the plan; no regex in shipped checks; on screens a vendor name is only
+  rendered from data beside its I-number; money "Rs ___"; nothing seed-related on the board beyond the masked admin
+  bundle.
