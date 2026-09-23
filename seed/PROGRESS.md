@@ -151,6 +151,6 @@ Plan: PLAN_admin_seed_v01.md (the spec; CLAUDE.md wins on a conflict). Resume fr
 
 - Phase 13, the admin session (about 30 Sep 2026): walk admin_seats.html and admin_brief.html with the team; Kajal
   runs admin_operator.html on a Zoho One trial with the CSVs from data/seed/<run>/exports/ (Vatsal sends them via
-  Drive); Spinach gets data/seed/<run>/exports/fixtures/yeslyf_seed_<anchor>_<run>.zip privately.
+  Drive). Nothing goes to Spinach now: the fixtures zip waits until they build from the final brief (Vatsal's call).
 - Demo morning: regenerate on purpose (seed_gen.py without --anchor, then seed_export.py, then build_site.py) and
   commit the result; every date moves.

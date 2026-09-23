@@ -19,8 +19,10 @@ admin_brief.html (T1 to T6 plus the gap rows), admin_operator.html (the Zoho aft
 
 ## Next
 - Phase 13, the admin session (about 30 Sep 2026): walk the seats page and the brief with the team. Kajal runs the
-  operator page on a Zoho One trial with the CSVs Vatsal sends via Drive (data/seed/<run>/exports/). Spinach gets
-  data/seed/<run>/exports/fixtures/yeslyf_seed_<anchor>_<run>.zip privately (gitignored; seed_export.py rebuilds it).
+  operator page on a Zoho One trial with the CSVs Vatsal sends via Drive (data/seed/<run>/exports/).
+- Nothing goes to Spinach now. The fixtures zip (data/seed/<run>/exports/fixtures/yeslyf_seed_<anchor>_<run>.zip,
+  gitignored, rebuilt by seed_export.py) is for Spinach's dev and staging databases once they build from the final
+  brief; how and when it is sent is Vatsal's call.
 - Seats answers and comments come back as board rows (pages admin_seats, admin_operator, admin_wireframes); read
   them with scripts/pull_board.py before changing data/seats.json.
 
