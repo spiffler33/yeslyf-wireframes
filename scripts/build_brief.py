@@ -41,6 +41,7 @@ DATA = os.path.join(ROOT, "data")
 DOCS = os.path.join(ROOT, "docs")
 sys.path.insert(0, SCRIPTS)
 import build_site as site  # noqa: E402
+import build_seats  # noqa: E402
 
 PAGE = "admin_brief.html"
 RUN = "run-3000"
@@ -344,7 +345,7 @@ def build_t4(schema, schema_idx, questions, states_doc, operator_doc):
                 detail += "; values: " + "; ".join(str(v) for v in c["values"])
             elif c.get("note"):
                 detail += "; " + str(c["note"])
-            rows.append([obj, c["label"], detail, CAUSE_T4])
+            rows.append([obj, c["label"], detail, c.get("cause") or CAUSE_T4])
 
     for q in questions:
         if q.get("surface") == "Zoho" and isinstance(q.get("view"), dict):
@@ -515,7 +516,8 @@ TABLES = [
 
 def render_gap_row(q):
     text = ("gap - <b>%s</b>: %s <span class=\"meta\">%s</span>" %
-            (esc(q["question"]), esc(q.get("gap") or "(no detail)"), esc(gap_cause(q))))
+            (esc(q["question"]), esc(q.get("gap") or "(no detail)") + (" <i>%s</i>" % esc(q["proposed"]) if q.get("proposed") else ""),
+             esc(gap_cause(q))))
     return '<tr class="gaprow" id="gap-%s" data-qid="%s"><td colspan="99">%s</td></tr>' % (esc(q["id"]), esc(q["id"]), text)
 
 
@@ -544,7 +546,7 @@ JS = r"""
   function countGaps(brief){ var n=0; for(var id in shown){ if(shown[id]&&byId[id].brief===brief) n++; } return n; }
   function updateSummary(brief){ var el=document.getElementById("count-"+brief); if(!el) return; var g=countGaps(brief);
     el.textContent=", "+((BASE_COUNTS[brief]||0)+g)+" rows, "+g+" gaps"; }
-  function gapHtml(q){ return "gap - <b>"+esc(q.question)+"</b>: "+esc(q.gap||"(no detail)")+" <span class=\"meta\">"+esc(q.cause_text)+"</span>"; }
+  function gapHtml(q){ return "gap - <b>"+esc(q.question)+"</b>: "+esc(q.gap||"(no detail)")+(q.proposed?" <i>"+esc(q.proposed)+"</i>":"")+" <span class=\"meta\">"+esc(q.cause_text)+"</span>"; }
   function addGap(q){ if(shown[q.id]) return; var tbody=document.getElementById("tbody-"+q.brief); if(!tbody) return;
     var tr=document.createElement("tr"); tr.className="gaprow"; tr.id="gap-"+q.id; tr.setAttribute("data-qid",q.id);
     var td=document.createElement("td"); td.setAttribute("colspan","99"); td.innerHTML=gapHtml(q);
@@ -573,7 +575,7 @@ def build_page(table_rows, questions):
              'gap come from the seats page.</p></section>')
 
     questions_blob = [
-        {"id": q["id"], "brief": q.get("brief"), "question": q.get("question"), "gap": q.get("gap") or "",
+        {"id": q["id"], "brief": q.get("brief"), "question": q.get("question"), "gap": q.get("gap") or "", "proposed": q.get("proposed") or "",
          "answered": q.get("answered"), "cause_text": gap_cause(q)}
         for q in questions
     ]
@@ -633,6 +635,9 @@ def main():
             print("ERROR: " + p)
         sys.exit(1)
     questions = flatten_seats(seats_doc)
+    order = build_seats.precedence_order()
+    for q in questions:
+        q["proposed"] = build_seats.proposal(q, order)
 
     src = load_sources()
     partial = build_tables(src)

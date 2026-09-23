@@ -167,9 +167,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S23 and S10; the seed shows S23 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S23 and S10.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S23",
+            "S10"
+          ]
         },
         {
           "id": "po-16",
@@ -177,9 +181,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S18 and S8; the seed shows S18 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S18 and S8.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S18",
+            "S8"
+          ]
         },
         {
           "id": "po-17",
@@ -187,9 +195,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S21 and S8; the seed shows S21 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S21 and S8.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S21",
+            "S8"
+          ]
         },
         {
           "id": "po-18",
@@ -197,9 +209,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S12 and S10; the seed shows S12 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S12 and S10.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S12",
+            "S10"
+          ]
         },
         {
           "id": "po-19",
@@ -207,9 +223,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S17 and S4; the seed shows S17 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S17 and S4.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S17",
+            "S4"
+          ]
         },
         {
           "id": "po-20",
@@ -217,9 +237,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S22 and S9; the seed shows S22 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S22 and S9.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S22",
+            "S9"
+          ]
         },
         {
           "id": "po-21",
@@ -227,9 +251,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S11 and S10; the seed shows S11 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S11 and S10.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S11",
+            "S10"
+          ]
         },
         {
           "id": "po-22",
@@ -237,9 +265,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S11 and S8; the seed shows S11 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S11 and S8.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S11",
+            "S8"
+          ]
         },
         {
           "id": "po-23",
@@ -247,9 +279,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S13 and S9; the seed shows S13 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S13 and S9.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S13",
+            "S9"
+          ]
         },
         {
           "id": "po-24",
@@ -257,9 +293,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S15 and S10; the seed shows S15 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S15 and S10.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S15",
+            "S10"
+          ]
         },
         {
           "id": "po-25",
@@ -267,9 +307,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S21 and S6; the seed shows S21 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S21 and S6.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S21",
+            "S6"
+          ]
         },
         {
           "id": "po-26",
@@ -277,9 +321,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S24 and S4; the seed shows S24 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S24 and S4.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S24",
+            "S4"
+          ]
         },
         {
           "id": "po-27",
@@ -287,9 +335,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S25 and S6; the seed shows S25 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S25 and S6.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S25",
+            "S6"
+          ]
         },
         {
           "id": "po-28",
@@ -297,9 +349,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S7 and S8; the seed shows S7 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S7 and S8.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S7",
+            "S8"
+          ]
         },
         {
           "id": "po-29",
@@ -307,9 +363,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S11 and S9; the seed shows S11 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S11 and S9.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S11",
+            "S9"
+          ]
         },
         {
           "id": "po-30",
@@ -317,9 +377,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S12 and S9; the seed shows S12 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S12 and S9.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S12",
+            "S9"
+          ]
         },
         {
           "id": "po-31",
@@ -327,9 +391,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S13 and S6; the seed shows S13 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S13 and S6.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S13",
+            "S6"
+          ]
         },
         {
           "id": "po-32",
@@ -337,9 +405,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S13 and S8; the seed shows S13 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S13 and S8.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S13",
+            "S8"
+          ]
         },
         {
           "id": "po-33",
@@ -347,9 +419,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S15 and S9; the seed shows S15 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S15 and S9.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S15",
+            "S9"
+          ]
         },
         {
           "id": "po-34",
@@ -357,9 +433,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S17 and S3; the seed shows S17 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S17 and S3.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S17",
+            "S3"
+          ]
         },
         {
           "id": "po-35",
@@ -367,9 +447,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S20 and S6; the seed shows S20 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S20 and S6.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S20",
+            "S6"
+          ]
         },
         {
           "id": "po-36",
@@ -377,9 +461,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S20 and S9; the seed shows S20 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S20 and S9.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S20",
+            "S9"
+          ]
         },
         {
           "id": "po-37",
@@ -387,9 +475,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S22 and S10; the seed shows S22 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S22 and S10.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S22",
+            "S10"
+          ]
         },
         {
           "id": "po-38",
@@ -397,9 +489,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S24 and S6; the seed shows S24 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S24 and S6.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S24",
+            "S6"
+          ]
         },
         {
           "id": "po-39",
@@ -407,9 +503,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S25 and S9; the seed shows S25 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S25 and S9.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S25",
+            "S9"
+          ]
         },
         {
           "id": "po-40",
@@ -417,9 +517,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S7 and S6; the seed shows S7 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S7 and S6.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S7",
+            "S6"
+          ]
         },
         {
           "id": "po-41",
@@ -427,9 +531,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S7 and S9; the seed shows S7 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S7 and S9.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S7",
+            "S9"
+          ]
         },
         {
           "id": "po-42",
@@ -437,9 +545,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S13 and S19; the seed shows S13 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S13 and S19.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S13",
+            "S19"
+          ]
         },
         {
           "id": "po-43",
@@ -447,9 +559,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S15 and S8; the seed shows S15 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S15 and S8.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S15",
+            "S8"
+          ]
         },
         {
           "id": "po-44",
@@ -457,9 +573,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S18 and S9; the seed shows S18 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S18 and S9.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S18",
+            "S9"
+          ]
         },
         {
           "id": "po-45",
@@ -467,9 +587,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S20 and S4; the seed shows S20 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S20 and S4.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S20",
+            "S4"
+          ]
         },
         {
           "id": "po-46",
@@ -477,9 +601,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S20 and S8; the seed shows S20 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S20 and S8.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S20",
+            "S8"
+          ]
         },
         {
           "id": "po-47",
@@ -487,9 +615,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S24 and S5; the seed shows S24 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S24 and S5.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S24",
+            "S5"
+          ]
         },
         {
           "id": "po-48",
@@ -497,9 +629,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S25 and S19; the seed shows S25 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S25 and S19.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S25",
+            "S19"
+          ]
         },
         {
           "id": "po-49",
@@ -507,9 +643,13 @@
           "surface": "Admin tab",
           "screen": "M05",
           "answered": "no",
-          "gap": "N01 sets no order between S7 and S19; the seed shows S7 by the assumed precedence of plan section 7.",
+          "gap": "N01 sets no order between S7 and S19.",
           "brief": "T5",
-          "cause": "N01 gap list (report.md)"
+          "cause": "N01 gap list (report.md)",
+          "pair": [
+            "S7",
+            "S19"
+          ]
         },
         {
           "id": "po-50",
@@ -668,8 +808,8 @@
           "question": "Today's tasks (S2b, S19, S20) with state, missing fields, tier and a deep link",
           "surface": "Zoho",
           "screen": "Call centre today",
-          "answered": "no",
-          "gap": "Tasks carry State ID, Missing Fields and Tier but no Admin Link; the deep link sits on the Contact only.",
+          "answered": "yes",
+          "gap": "",
           "brief": "T4",
           "view": {
             "object": "Tasks",
@@ -683,13 +823,13 @@
           "question": "Outcome capture",
           "surface": "Zoho",
           "screen": "Call centre outcomes",
-          "answered": "no",
-          "gap": "Tasks carry Status only: the seed's tasks.outcome ('called; still S19', 'the state ended') and closed_at are not in the Tasks export, so the CRM has no field to capture an outcome.",
+          "answered": "yes",
+          "gap": "",
           "brief": "T4",
           "view": {
             "object": "Tasks",
             "name": "Call centre outcomes",
-            "criteria": "Status is done; State ID is S2b, S19 or S20; sort by Due"
+            "criteria": "Outcome is not pending; State ID is S2b, S19 or S20; group by Outcome"
           },
           "cause": "plan section 15"
         },

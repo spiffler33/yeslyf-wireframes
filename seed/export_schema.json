@@ -1262,6 +1262,30 @@
      ],
      "source": "tasks[].status",
      "field": "tasks.status"
+    },
+    {
+     "label": "Outcome",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "pending",
+      "done",
+      "no_show",
+      "not_reached",
+      "declined"
+     ],
+     "source": "tasks[].status and tasks[].outcome: open is pending; a closed task maps its outcome (the state ended, or called and still in the state) to done",
+     "field": "tasks.outcome",
+     "cause": "seed plan, 23 Sep 2026",
+     "note": "the seed produces pending and done only; no_show, not_reached and declined are there for the call centre to capture"
+    },
+    {
+     "label": "Admin Link",
+     "type": "url",
+     "zoho_type": "URL",
+     "source": "computed: admin_link_base + '?run=' + run number + '&screen=M03&person=' + person_id (the contact's record)",
+     "field": null,
+     "cause": "seed plan, 23 Sep 2026"
     }
    ]
   },

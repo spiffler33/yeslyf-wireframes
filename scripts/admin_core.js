@@ -85,7 +85,7 @@
 
   // ---------------------------------------------------------------- the API object
   var ADMIN = {
-    run: "3000", ready: Promise.resolve(), meta: null, people: [], byId: {}, t: {}, ievents: {},
+    run: "500", ready: Promise.resolve(), meta: null, people: [], byId: {}, t: {}, ievents: {},
     states: (typeof ADMIN_STATES !== "undefined" && ADMIN_STATES) ? ADMIN_STATES : [],
     statesById: {}, placement: (typeof ADMIN_PLACEMENT !== "undefined" && ADMIN_PLACEMENT) ? ADMIN_PLACEMENT : [],
     anchor: null, current: "", nav: {}, draw: {}, h: H
@@ -102,14 +102,14 @@
   function runsMap(){ return (typeof ADMIN_RUNS !== "undefined" && ADMIN_RUNS) ? ADMIN_RUNS : {}; }
 
   function saveUI(){
-    try { localStorage.setItem(UI_KEY, JSON.stringify({run: ADMIN.run, person: ADMIN.current || ""})); } catch(e){}
+    try { localStorage.setItem(UI_KEY, JSON.stringify({person: ADMIN.current || ""})); } catch(e){}
   }
   function readUI(){
     try { return JSON.parse(localStorage.getItem(UI_KEY) || "{}") || {}; } catch(e){ return {}; }
   }
 
   ADMIN.load = function(run){
-    run = runsMap()[run] ? run : "3000";
+    run = runsMap()[run] ? run : "500";
     ADMIN.run = run;
     loaded = false;
     saveUI();
@@ -275,7 +275,8 @@
   var qScreen = params.get("screen");
   var qPerson = params.get("person");
   var savedUI = readUI();
-  var startRun = (qRun === "500" || qRun === "3000") ? qRun : (runsMap()[savedUI.run] ? savedUI.run : "3000");
+  // run-500 on every load; run-3000 only by the switch or a deep link that names it (Vatsal, 23 Sep 2026)
+  var startRun = (qRun === "500" || qRun === "3000") ? qRun : "500";
   if(qScreen){
     try { history.replaceState(null, "", location.pathname + location.search + "#" + qScreen); }
     catch(e){ location.hash = qScreen; }

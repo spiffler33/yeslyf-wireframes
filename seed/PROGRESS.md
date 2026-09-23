@@ -47,6 +47,12 @@ Plan: PLAN_admin_seed_v01.md (the spec; CLAUDE.md wins on a conflict). Resume fr
   judgment dropped four M13 "not in the seed" claims (the data exists); M13 now computes active users and the
   KYC failure rate from the seed and says "in the event log, not on this tab" where only the event log holds
   it. seed/export_schema.json columns carry an exact "field" path (T1's "where mirrored" matches on it).
+- Later on 23 Sep 2026 (seed plan, 23 Sep 2026; Vatsal, 23 Sep 2026), one commit: zoho/tasks.csv gains Admin Link
+  and an Outcome picklist (pending, done, no_show, not_reached, declined; the seed yields pending 20 and done 94,
+  exact mapping in seed_export.TASK_OUTCOME); the admin tab opens on run-500 (run-3000 by the switch or a deep link)
+  and states the load sizes (1.5 MB, 7.3 MB, about 0.4 MB per person); the 35 state-pair questions carry "pair" and
+  show the winner under the section 7 order, "proposed, to be confirmed at the admin session". cc-01 and cc-02 are
+  now answered: 40 answered, 59 gaps (T4 2).
 - Nav (landed with D): one "Admin seed" tab on every page and a sub-nav across its four pages (four tabs would
   grow the header from 93 to 128 px at 1,512 px and cut into the wireframes layout).
 

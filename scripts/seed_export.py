@@ -352,7 +352,22 @@ def build_calls_rows(calls, staff):
     return rows
 
 
-def build_tasks_rows(tasks, staff):
+# The Outcome picklist of zoho/tasks.csv (seed plan, 23 Sep 2026): pending, done, no_show, not_reached, declined.
+# The seed records an open task with no outcome, and a closed one as one of the outcomes below; the call centre's
+# "called; still <state>" is a call made, so done. A value the generator adds later fails the export here.
+TASK_OUTCOME = {"the state ended": "done", "called; still S2b": "done", "called; still S19": "done",
+                "called; still S20": "done"}
+
+
+def task_outcome(t):
+    if t["status"] == "open":
+        return "pending"
+    if t["outcome"] not in TASK_OUTCOME:
+        raise SystemExit("seed_export: task %s has outcome %r with no Outcome mapping" % (t["task_id"], t["outcome"]))
+    return TASK_OUTCOME[t["outcome"]]
+
+
+def build_tasks_rows(run, tasks, staff, admin_link_base):
     rows = []
     for pid, items in tasks.items():
         for t in items:
@@ -377,6 +392,8 @@ def build_tasks_rows(tasks, staff):
                 "Assignee": staff_name(staff, t["assignee"]),
                 "Due": t["due"],
                 "Status": t["status"],
+                "Outcome": task_outcome(t),
+                "Admin Link": admin_link(admin_link_base, run, pid),
             })
     rows.sort(key=lambda r: r["Task External ID"])
     return rows
@@ -631,7 +648,7 @@ def write_run_exports(run, schema):
     emit("zoho/deals.csv", header_for("zoho/deals.csv"), build_deals_rows(people, subscriptions))
     emit("zoho/a_la_carte.csv", header_for("zoho/a_la_carte.csv"), build_a_la_carte_rows(a_la_carte))
     emit("zoho/calls.csv", header_for("zoho/calls.csv"), build_calls_rows(calls, staff))
-    emit("zoho/tasks.csv", header_for("zoho/tasks.csv"), build_tasks_rows(tasks, staff))
+    emit("zoho/tasks.csv", header_for("zoho/tasks.csv"), build_tasks_rows(run, tasks, staff, admin_link_base))
 
     states = load_json(STATES_PATH)["states"]
     allowed_events = allowed_app_event_names()

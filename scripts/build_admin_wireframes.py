@@ -368,6 +368,20 @@ def all_text(obj):
     return out
 
 
+def run_sizes_text():
+    """What each run costs to open, read from the bundles just written: the four files the switch loads, and the
+    average person chunk fetched when a person is opened (the page opens on run-500; Vatsal, 23 Sep 2026)."""
+    def mb(n):
+        return "%.1f MB" % (n / 1e6)
+    loads, chunks = {}, []
+    for run in ("run-500", "run-3000"):
+        d = os.path.join(DOCS, "seed", run, "admin")
+        loads[run] = sum(os.path.getsize(os.path.join(d, f)) for f in ("meta.json", "people.json", "tables.json", "integration_events.json"))
+        chunks += [os.path.getsize(os.path.join(d, "person", f)) for f in sorted(os.listdir(os.path.join(d, "person")))]
+    return "500 loads %s; 3,000 loads %s; each person opened adds about %s" % (
+        mb(loads["run-500"]), mb(loads["run-3000"]), mb(sum(chunks) / len(chunks)))
+
+
 def validate_admin_screens(doc, wireframe_ids, vendor_names):
     p = []
     screens = doc.get("screens", [])
@@ -465,12 +479,13 @@ ADMIN_SCREEN_FILES = ["admin_screens_1.js", "admin_screens_2.js", "admin_screens
 def build_page(admin_doc, states, admin_crm, anchor_text):
     who = '<div class="who">Reviewing as <select id="reviewer"></select></div>'
     bar = ('<div class="bar abar">'
-           '<label>Run <select id="arun"><option value="3000">3,000 people</option><option value="500">500 people</option></select></label>'
+           '<label>Run <select id="arun"><option value="500">500 people</option><option value="3000">3,000 people</option></select></label>'
+           '<span class="a-note">%s</span>'
            '<label>Person <input id="aperson" list="apeople" placeholder="search a person" autocomplete="off"><datalist id="apeople"></datalist></label>'
-           '<span class="a-note">Synthetic people, seed 20260922, anchor %s. M01, the bought stack, stays on the '
-           '<a href="wireframes_v02.html#M01">wireframes tab</a>.</span>' + site.seed_subnav("admin_wireframes.html") + '</div>\n'
-           '<div class="banner">Every person here is synthetic. Write actions are mock; only comments are recorded.</div>\n'
-           ) % site.esc(anchor_text)
+           + site.seed_subnav("admin_wireframes.html") + '</div>\n'
+           '<div class="banner">Every person here is synthetic (seed 20260922, anchor %s). Write actions are mock; only comments '
+           'are recorded. M01, the bought stack, stays on the <a href="wireframes_v02.html#M01">wireframes tab</a>.</div>\n'
+           ) % (site.esc(run_sizes_text()), site.esc(anchor_text))
     layout = site.WIRE_LAYOUT
     wire_opts = {"page": "admin_wireframes", "key": "yeslyf_admin_wire_v01", "version": "admin v0.1",
                  "exportTitle": "# yeslyf admin wireframes v0.1 - review comments",

@@ -66,7 +66,7 @@ def qid_ok(qid, prefix):
     return len(digits) == 2 and digits.isdigit()
 
 
-def validate(doc, screen_ids, integration_ids):
+def validate(doc, screen_ids, integration_ids, order):
     problems = []
     seats = doc.get("seats")
     if not isinstance(seats, list):
@@ -103,6 +103,9 @@ def validate(doc, screen_ids, integration_ids):
                 problems.append("question %r: answered %r is not yes or no" % (qid, answered))
             if answered == "no" and not str(q.get("gap", "")).strip():
                 problems.append("question %r: answered no with no gap text" % qid)
+            if "pair" in q and not (isinstance(q["pair"], list) and len(q["pair"]) == 2 and q["pair"][0] != q["pair"][1]
+                                    and all(s in order for s in q["pair"])):
+                problems.append("question %r: pair %r is not two states of the section 7 precedence order" % (qid, q.get("pair")))
             brief = q.get("brief", "")
             if brief not in BRIEFS:
                 problems.append("question %r: brief %r is not one of %s" % (qid, brief, ", ".join(BRIEFS)))
@@ -135,6 +138,20 @@ def screen_html(q, ctx):
     return esc("%s (%s)" % (inum, vendor))
 
 
+def precedence_order():
+    with open(os.path.join(ROOT, "seed", "config.json")) as fh:
+        return json.load(fh)["precedence"]["order"]
+
+
+def proposal(q, order):
+    """For an N01 state-pair question: the pair's winner under the section 7 precedence order, worded as a proposal
+    the admin session confirms rather than invents (Vatsal, 23 Sep 2026); "" for any other question."""
+    pair = q.get("pair")
+    if not pair:
+        return ""
+    return "%s wins under the section 7 precedence order: proposed, to be confirmed at the admin session." % min(pair, key=order.index)
+
+
 def render_question(q, ctx):
     qid = q["id"]
     ans = q.get("answered", "no")
@@ -142,7 +159,8 @@ def render_question(q, ctx):
     sel = '<select class="ans" id="ans-%s" data-id="%s">%s</select>' % (esc(qid), esc(qid), opts)
     box = '<textarea class="note seatnote" id="note-%s" data-id="%s"></textarea>' % (esc(qid), esc(qid))
     return ('<tr id="row-%s"><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td class="gaptext">%s</td><td>%s</td></tr>' % (
-        esc(qid), esc(qid), esc(q["question"]), esc(q["surface"]), screen_html(q, ctx), sel, esc(q.get("gap", "")), box))
+        esc(qid), esc(qid), esc(q["question"]), esc(q["surface"]), screen_html(q, ctx), sel,
+        esc(q.get("gap", "")) + ('<div class="proposed">%s</div>' % esc(q["proposed"]) if q.get("proposed") else ""), box))
 
 
 def render_seat(seat, ctx):
@@ -153,6 +171,7 @@ def render_seat(seat, ctx):
 
 
 EXTRA_CSS = """
+  .proposed{margin-top:4px;color:var(--ink)}
   .who select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;max-width:170px}
   td select.ans{padding:4px 6px;border:1px solid var(--line);border-radius:5px;background:#fff}
   td textarea.seatnote{width:100%;min-height:36px;border:1px solid var(--line);border-radius:6px;padding:5px;resize:vertical;background:#fff;font-size:12px}
@@ -252,12 +271,15 @@ def main():
     integrations = site.load("integrations.json")
     integration_ids = set(r["id"] for r in integrations["rows"])
 
-    problems = validate(doc, screen_ids, integration_ids)
+    order = precedence_order()
+    problems = validate(doc, screen_ids, integration_ids, order)
     if problems:
         raise SystemExit("build_seats: %s breaks the contract:\n%s" % (path, "\n".join("  - " + p for p in problems)))
 
     ctx = {"integ_by_id": {r["id"]: r for r in integrations["rows"]}}
     questions = [q for seat in doc["seats"] for q in seat["questions"]]
+    for q in questions:
+        q["proposed"] = proposal(q, order)
     page = build_page(doc, questions, ctx)
     site.check_ascii(PAGE, page)
 

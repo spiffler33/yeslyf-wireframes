@@ -548,6 +548,9 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
 - E: one "Admin seed" tab on every page and a sub-nav across the four pages (landed with D; four tabs would push the
   header to a third row at laptop width); tracker W12 lands on the brief, W13 on the operator page; the changelog's
   seed section reads data/changelog_seed.json (apply_decisions.py rewrites changelog.json whole); Mixpanel JSONL.
+- Later the same day (seed plan, 23 Sep 2026; Vatsal, 23 Sep 2026): the tasks export gains Admin Link and an Outcome
+  picklist; the admin tab opens on run-500 and states what each run loads; the 35 state-pair gaps show their winner
+  under the section 7 order, proposed, to be confirmed at the admin session. Seats: 40 answered, 59 gaps.
 - Known limits: the brief is a skeleton (T4 layouts, a T5 opt-in and DND edge and the T6 retention window read "to
   be decided"); the admin tab's KPI rows that need the event log say so instead of aggregating it; no vendor call
   anywhere (round one); docs/seed carries about 23 MB of masked bundles that change on every regeneration; run-3000
