@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>yeslyf operator checklist</title>
+<style>
+  :root{--paper:#EEF0F3;--panel:#fff;--ink:#1B1F27;--mute:#5F6773;--line:#D3D7DE;--accent:#FFDA00;--accent-soft:#FFF4B8;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45;scroll-behavior:smooth}
+  button,select,input,textarea{font-family:inherit;font-size:13px}
+  a{color:inherit}
+  ::selection{background:var(--accent)}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:8px 18px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .brand{font-weight:700;font-size:16px;white-space:nowrap}
+  .brand span{font-weight:400;color:var(--mute);margin-left:8px;font-size:13px}
+  .tabs{display:flex;gap:2px;flex-wrap:wrap}
+  .tabs a{text-decoration:none;font-size:13px;padding:6px 10px;border-radius:6px;border:1px solid transparent;color:var(--mute)}
+  .tabs a:hover{background:#F5F6F8}
+  .tabs a.on{color:var(--ink);font-weight:600;border-color:var(--line);background:#fff}
+  .who{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mute);margin-left:auto}
+  .who input{padding:6px 8px;border:1px solid var(--line);border-radius:6px;width:170px}
+  .saved{font-size:12px;color:var(--mute);min-width:120px}
+  .pill{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--mute);text-decoration:none;white-space:nowrap}
+  .pill.on{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .pill.held{border-color:var(--ink);color:var(--ink)}
+  .top .primary{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
+  .top .ghost{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:6px;cursor:pointer}
+  .frozen{padding:6px 18px;background:#F1F2F4;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--mute)}
+  .decided-line{font-size:12.5px;margin:0 0 8px;padding:5px 10px;border-radius:6px;background:var(--accent-soft);border:1px solid #C9A800}
+  .layout{display:grid;grid-template-columns:240px minmax(0,1fr)}
+  .nav{position:sticky;top:49px;height:calc(100vh - 49px);overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:10px 0}
+  .nav a{display:block;padding:6px 14px 6px 11px;text-decoration:none;font-size:13px;border-left:3px solid transparent}
+  .nav a:hover{background:#F5F6F8}
+  .nav .sub{padding-left:24px;font-size:12px;color:var(--mute)}
+  .main{padding:18px 26px 120px;max-width:1150px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px;scroll-margin-top:60px}
+  h1{font-size:22px;margin:0 0 6px}
+  h2{font-size:17px;margin:0 0 4px}
+  h2 small{font-weight:400;color:var(--mute);font-size:13px;margin-left:8px}
+  h3{font-size:14px;margin:14px 0 4px}
+  .lead{color:var(--mute);margin:0 0 12px;max-width:860px}
+  .rule{padding-left:10px;border-left:3px solid var(--accent);margin:8px 0 12px;max-width:900px}
+  ul{margin:6px 0;padding-left:18px} li{margin:3px 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:8px 0 4px}
+  .stat{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#FCFCFD}
+  .stat b{display:block;font-size:22px} .stat span{font-size:12px;color:var(--mute)}
+  .item{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 12px;background:#FCFCFD;scroll-margin-top:60px}
+  .item.hi{border-color:#C9A800;box-shadow:0 0 0 3px var(--accent-soft)}
+  .item.done{border-color:#7A8797}
+  .item-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+  .item-h b{font-size:15px}
+  .tag{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;background:#fff;color:var(--mute);white-space:nowrap}
+  .tag.hi{border-color:#B2434F;color:#B2434F;font-weight:600}
+  .tag.team{border-color:var(--ink);color:var(--ink);font-weight:600}
+  .tag.done{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .tag.new{border-color:var(--ink);color:var(--ink)}
+  .tag.changed{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .screens a{font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;margin-right:3px;background:#fff}
+  .ctx{font-size:13px;margin:0 0 8px;color:#3B4250}
+  .pos{margin:0 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+  .pos li{font-size:12.5px} .pos b{font-weight:600}
+  .pos .ref{color:var(--mute);font-size:11.5px}
+  .cond{font-size:12.5px;margin:0 0 8px} .cond li{list-style:none;margin-left:-18px}
+  .dflt-line{font-size:12.5px;margin:6px 0 4px;color:#3B4250}
+  .opt{display:flex;gap:10px;align-items:flex-start;padding:7px 10px;border:1px solid var(--line);border-radius:8px;margin:5px 0;background:#fff;cursor:pointer}
+  .opt input{margin-top:3px}
+  .opt.dflt{border-color:#C9A800;background:#FFFDF2}
+  .opt .held{display:block;font-size:11.5px;color:var(--mute);margin-top:2px}
+  .dpill{display:inline-block;font-size:10.5px;font-weight:700;background:var(--accent);border-radius:4px;padding:1px 6px;margin-left:6px;white-space:nowrap}
+  .ppill{display:inline-block;font-size:10.5px;border:1px dashed var(--mute);border-radius:4px;padding:1px 6px;margin-left:6px;color:var(--mute);white-space:nowrap}
+  .dep{font-size:12.5px;color:#3B4250;margin:8px 0 0;padding:6px 10px;border:1px dashed var(--line);border-radius:6px;background:#fff}
+  .dep.on{border-style:solid;border-color:#C9A800;background:#FFFBEA}
+  .dep b{font-weight:600}
+  .meta{font-size:11.5px;color:var(--mute)}
+  .note{width:100%;min-height:40px;border:1px solid var(--line);border-radius:6px;padding:6px;resize:vertical;background:#fff;margin-top:6px}
+  .decided{display:flex;gap:8px;align-items:center;font-size:12.5px;margin-top:8px}
+  .qa{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:start;padding:7px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+  .qa:last-child{border-bottom:0}
+  .qa .t{white-space:pre-wrap} .qa .t b{white-space:nowrap}
+  .qa .c{display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  .qa button{border:1px solid var(--line);background:#fff;padding:4px 9px;border-radius:5px;cursor:pointer}
+  .qa button.on{background:var(--accent);border-color:#C9A800;font-weight:600}
+  .qa button.on.no{background:#F1F2F4;border-color:var(--ink)}
+  .qa input{padding:4px 6px;border:1px solid var(--line);border-radius:5px;width:180px}
+  .qa .decided-line{grid-column:1 / -1;margin:0}
+  .gap{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 8px;background:#FCFCFD;scroll-margin-top:60px}
+  .gap-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+  .gap .why{font-size:12.5px;color:#3B4250;margin:6px 0}
+  .gap .rec{font-size:12.5px;margin:6px 0;padding-left:10px;border-left:3px solid var(--accent)}
+  .gap-c{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:12px}
+  .gap-c select,.gap-c input{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  table{width:100%;border-collapse:collapse;font-size:12.5px} th{text-align:left;border-bottom:2px solid var(--ink);padding:6px 8px;font-size:12px;vertical-align:bottom} td{border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
+  td.n{font-variant-numeric:tabular-nums;color:var(--mute);white-space:nowrap}
+  td .raw{white-space:pre-wrap}
+  td .ans{margin-top:4px;padding-left:8px;border-left:3px solid var(--accent);font-size:12px}
+  td .basis{color:var(--mute);font-size:11.5px;margin-top:3px}
+  .status{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;white-space:nowrap;background:#fff}
+  .status.open{border-color:#C9A800;background:var(--accent-soft)}
+  .status.quick-accept{border-color:#7A8797}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:12px;align-items:center}
+  .filters select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  tr.hidden{display:none}
+  tr.hi td{background:var(--accent-soft)}
+  details{margin:8px 0} summary{cursor:pointer;font-weight:600;font-size:13px}
+  pre{background:#F5F6F8;border:1px solid var(--line);border-radius:6px;padding:10px;font-size:11.5px;overflow:auto;white-space:pre-wrap}
+  .setup input{width:100%;padding:7px;border:1px solid var(--line);border-radius:6px;margin:4px 0}
+  .frame-wrap{height:calc(100vh - 49px)} .frame-wrap iframe{width:100%;height:100%;border:0;background:#fff}
+  .frame-bar{display:flex;gap:10px;align-items:center;padding:6px 18px;background:var(--panel);border-bottom:1px solid var(--line);font-size:12px;color:var(--mute);flex-wrap:wrap}
+  .frame-bar select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff;max-width:360px}
+  .frame-wrap.with-bar{height:calc(100vh - 88px)}
+  .wrap{overflow-x:auto}
+  .sid{font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;background:#fff;white-space:nowrap}
+  .cause{color:var(--mute);font-size:11.5px}
+  .histwrap{margin-top:6px}
+  .hist-toggle{font-size:11px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:2px 8px;color:var(--mute);cursor:pointer}
+  .histbox{margin-top:6px}
+  .hist{list-style:none;margin:0;padding:0;font-size:12px;color:var(--ink)}
+  .hist li{padding:3px 0;border-top:1px solid var(--line)}
+  .hist .t{color:var(--mute);margin-right:6px}
+  .hist-empty{font-size:12px;color:var(--mute)}
+  @media (max-width:1000px){.layout{display:block}.nav{display:none}.main{padding:12px}.who{margin-left:0}.qa{grid-template-columns:1fr}.qa .c{justify-content:flex-start}}
+
+  .who select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;max-width:170px}
+  .citem{border-top:1px solid var(--line);padding:8px 0}
+  .citem:first-child{border-top:0}
+  .citem label{display:flex;gap:8px;align-items:flex-start;cursor:pointer;font-size:13px}
+  .citem input{margin-top:3px}
+  .gen{margin:6px 0 0 24px}
+  .gen table{font-size:12px}
+  .gen ul{margin:2px 0;padding-left:18px;font-size:12.5px}
+  .gen.meta{font-size:12px;color:var(--mute);margin-top:6px}
+  .gen.imp{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:12px}
+  .stepnotes-wrap{margin-top:10px}
+  .stepnotes-wrap label{display:block;font-size:11px;color:var(--mute);margin-bottom:3px}
+</style>
+<script src="config.js"></script>
+</head>
+<body>
+<header class="top"><div class="brand">yeslyf <span>operator checklist, 94 items</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html">Wireframes v0.2</a><a href="tracker.html">Tracker</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="changelog.html">Changelog</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a><a href="setup.html">Setup</a></nav><div class="who">Editing as <select id="reviewer"></select></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a></header>
+<main class="main" style="max-width:none"><section><h1>Operator checklist: the Zoho afternoon</h1><p class="lead">Every person in these files is synthetic; nothing is ever sent.</p><p class="meta">Minimisation scan: pass, run-500 and run-3000</p><p class="meta" id="progress">0 of 94 done</p></section><section id="step-org"><h2>1. Org</h2><p class="lead">The Zoho One trial everything else in this checklist is built on.</p><div class="citem" id="row-org/trial"><label><input type="checkbox" id="chk-org/trial" data-id="org/trial"><span>Create the Zoho One trial under hey@yeslifers.com, India datacentre (zoho.in).</span></label></div><div class="citem" id="row-org/card"><label><input type="checkbox" id="chk-org/card" data-id="org/card"><span>to be verified: whether the Zoho One trial needs a card</span></label></div><div class="citem" id="row-org/record-cap"><label><input type="checkbox" id="chk-org/record-cap" data-id="org/record-cap"><span>to be verified: whether trial orgs cap record counts below the seed&#x27;s totals</span></label><div class="gen meta">run-500: Leads 230, Contacts 277, Deals 58, A la carte 2, Calls 23, Tasks 29, App Events 2787; run-3000: Leads 1400, Contacts 1640, Deals 206, A la carte 9, Calls 84, Tasks 114, App Events 12464</div></div><div class="citem" id="row-org/created-time"><label><input type="checkbox" id="chk-org/created-time" data-id="org/created-time"><span>to be verified: whether Created Time can be mapped on CSV import; if not, the key-date fields carry the timeline and the audit stamp reads the import day</span></label></div><div class="citem" id="row-org/sandbox"><label><input type="checkbox" id="chk-org/sandbox" data-id="org/sandbox"><span>If HoA has already bought Zoho One, a second org is the sandbox; the live org is never used.</span></label></div><div class="stepnotes-wrap"><label for="notes-org">Notes for this step (answers to the to be verified items go here)</label><textarea class="note stepnotes" id="notes-org" data-id="org"></textarea></div></section><section id="step-connect"><h2>2. Never-connect list</h2><p class="lead">Nothing in this org sends a real message. Leave every channel below disconnected.</p><div class="citem" id="row-connect/whatsapp"><label><input type="checkbox" id="chk-connect/whatsapp" data-id="connect/whatsapp"><span>No WhatsApp (WATI, I11).</span></label></div><div class="citem" id="row-connect/sms"><label><input type="checkbox" id="chk-connect/sms" data-id="connect/sms"><span>No SMS or OTP (Gupshup, I08).</span></label></div><div class="citem" id="row-connect/email"><label><input type="checkbox" id="chk-connect/email" data-id="connect/email"><span>No email sending domain (Amazon SES, I10).</span></label></div><div class="citem" id="row-connect/desk-mail"><label><input type="checkbox" id="chk-connect/desk-mail" data-id="connect/desk-mail"><span>No Desk mail channel.</span></label></div><div class="citem" id="row-connect/campaigns-verify"><label><input type="checkbox" id="chk-connect/campaigns-verify" data-id="connect/campaigns-verify"><span>No Campaigns sender verification.</span></label></div><div class="citem" id="row-connect/bookings-calendar"><label><input type="checkbox" id="chk-connect/bookings-calendar" data-id="connect/bookings-calendar"><span>No Bookings calendar sync.</span></label></div><div class="citem" id="row-connect/campaigns-import"><label><input type="checkbox" id="chk-connect/campaigns-import" data-id="connect/campaigns-import"><span>Campaigns lists are imported and never sent.</span></label></div><div class="stepnotes-wrap"><label for="notes-connect">Notes for this step (answers to the to be verified items go here)</label><textarea class="note stepnotes" id="notes-connect" data-id="connect"></textarea></div></section><section id="step-fields"><h2>3. Custom fields per object</h2><p class="lead">One checkbox per object; the table under each one lists every column its export carries.</p><div class="citem" id="row-fields/leads"><label><input type="checkbox" id="chk-fields/leads" data-id="fields/leads"><span>Create the custom fields for Leads. Create each column the import screen cannot map to an existing field.</span></label><div class="gen wrap"><table><thead><tr><th>Label</th><th>Zoho type</th><th>Values, band or note</th></tr></thead><tbody><tr><td>Lead External ID</td><td>single line</td><td>-</td></tr><tr><td>First Name</td><td>single line</td><td>-</td></tr><tr><td>Last Name</td><td>single line</td><td>-</td></tr><tr><td>Phone</td><td>phone</td><td>-</td></tr><tr><td>Email</td><td>email</td><td>-</td></tr><tr><td>City</td><td>single line</td><td>-</td></tr><tr><td>Lead Source</td><td>picklist</td><td>community; corporate_session; web_reveal; organic; referral</td></tr><tr><td>Lead Stage</td><td>picklist</td><td>lead; verified lead</td></tr><tr><td>WhatsApp Opt-in</td><td>checkbox</td><td>-</td></tr><tr><td>DND</td><td>checkbox</td><td>-</td></tr><tr><td>Age Band</td><td>picklist</td><td>under 25; 25 to 29; 30 to 34; 35 to 39; 40 to 44; 45 and over</td></tr><tr><td>Top Concern</td><td>picklist</td><td>Saving enough every month; Where to invest; Paying off loans; Insurance and cover; Retiring early; My children&#x27;s education</td></tr><tr><td>Keyword</td><td>picklist</td><td>PLAN; ALPHA</td></tr><tr><td>Community Joined</td><td>checkbox</td><td>-</td></tr><tr><td>Created Date</td><td>date</td><td>-</td></tr><tr><td>Is Seed Topup</td><td>checkbox</td><td>-</td></tr></tbody></table></div></div><div class="citem" id="row-fields/contacts"><label><input type="checkbox" id="chk-fields/contacts" data-id="fields/contacts"><span>Create the custom fields for Contacts. Create each column the import screen cannot map to an existing field.</span></label><div class="gen wrap"><table><thead><tr><th>Label</th><th>Zoho type</th><th>Values, band or note</th></tr></thead><tbody><tr><td>Contact External ID</td><td>single line</td><td>-</td></tr><tr><td>First Name</td><td>single line</td><td>-</td></tr><tr><td>Last Name</td><td>single line</td><td>-</td></tr><tr><td>Phone</td><td>phone</td><td>the match key on re-import per plan section 12; the id column for this scan stays Contact External ID</td></tr><tr><td>Email</td><td>email</td><td>-</td></tr><tr><td>City</td><td>single line</td><td>-</td></tr><tr><td>Age Band</td><td>picklist</td><td>under 25; 25 to 29; 30 to 34; 35 to 39; 40 to 44; 45 and over</td></tr><tr><td>Source</td><td>picklist</td><td>community; corporate_session; web_reveal; organic; referral</td></tr><tr><td>WhatsApp Opt-in</td><td>checkbox</td><td>-</td></tr><tr><td>DND</td><td>checkbox</td><td>-</td></tr><tr><td>Journey Stage</td><td>picklist</td><td>S0; S0w; S1; S2; S2b; S2c; S3; S4; S5; S6; S7; S8; S9; S10; S11; S12; S13; S14; S15; S16; S17; S18; S19; S20; S21; S22; S23; S24; S25</td></tr><tr><td>Tier</td><td>picklist</td><td>free; diy; diwm; difm</td></tr><tr><td>SKU</td><td>picklist</td><td>diy; diwm</td></tr><tr><td>Subscription Status</td><td>picklist</td><td>pending_mandate; active; failed; lapsed; cancelled; adviser relationship</td></tr><tr><td>Adviser Owner</td><td>picklist</td><td>Harish; Adviser 01; Adviser 02; Adviser 03; Adviser 04; Adviser 05; Adviser 06; Ops 01; Support 01; Compliance 01</td></tr><tr><td>Income Band</td><td>picklist</td><td>Under 10 lakhs; 10 to 25 lakhs; 25 to 50 lakhs; 50 lakhs to 1 crore; Over 1 crore</td></tr><tr><td>Corpus Band</td><td>picklist</td><td>Under 5 lakhs; 5 to 25 lakhs; 25 lakhs to 1 crore; 1 to 5 crores; Over 5 crores</td></tr><tr><td>Savings Band</td><td>picklist</td><td>Almost nothing, less than 5%; Around 10%, small consistent chunks; Around 25%, meaningful amounts; Around 40%, some serious money; More than 40%, I live well below my means</td></tr><tr><td>Aspiration</td><td>picklist</td><td>Freedom; Family; Generosity; Security; Legacy</td></tr><tr><td>Signed Up</td><td>date</td><td>-</td></tr><tr><td>Reveal Seen</td><td>date</td><td>-</td></tr><tr><td>Paid</td><td>date</td><td>-</td></tr><tr><td>Data Complete</td><td>date</td><td>-</td></tr><tr><td>Plan Built</td><td>date</td><td>-</td></tr><tr><td>Plan Read</td><td>date</td><td>-</td></tr><tr><td>Last Call</td><td>date</td><td>-</td></tr><tr><td>Next Review</td><td>date</td><td>-</td></tr><tr><td>Renewal Due</td><td>date</td><td>-</td></tr><tr><td>Last Activity</td><td>date</td><td>-</td></tr><tr><td>Onboarding %</td><td>percent</td><td>-</td></tr><tr><td>KYC Status</td><td>picklist</td><td>not_started; verified; verified (address typed); verified (assisted onboarding, M12)</td></tr><tr><td>AA Status</td><td>picklist</td><td>not_connected; connected; partial; cas_uploaded; failed; expired</td></tr><tr><td>FP Status</td><td>picklist</td><td>not_started; in_progress; built; read; not applicable (adviser relationship)</td></tr><tr><td>IP Status</td><td>picklist</td><td>not_started; ready; executing; done</td></tr><tr><td>Actions Done</td><td>number</td><td>-</td></tr><tr><td>Actions Total</td><td>number</td><td>-</td></tr><tr><td>Consent Valid Till</td><td>date</td><td>-</td></tr><tr><td>Source Completeness</td><td>picklist</td><td>no; yes</td></tr><tr><td>Sharpen Count</td><td>number</td><td>-</td></tr><tr><td>Last Manual Update</td><td>date-time</td><td>kept as a datetime, not a date, since the seed field carries full timestamp precision unlike the ten key dates</td></tr><tr><td>DIFM Prospect Flag</td><td>picklist</td><td>manual; rule</td></tr><tr><td>Adviser Continuity</td><td>picklist</td><td>off</td></tr><tr><td>Last Adviser</td><td>picklist</td><td>Harish; Adviser 01; Adviser 02; Adviser 03; Adviser 04; Adviser 05; Adviser 06; Ops 01; Support 01; Compliance 01</td></tr><tr><td>Profile Fulfilment %</td><td>percent</td><td>-</td></tr><tr><td>Admin Link</td><td>URL</td><td>-</td></tr><tr><td>Is Seed Topup</td><td>checkbox</td><td>-</td></tr></tbody></table></div></div><div class="citem" id="row-fields/deals"><label><input type="checkbox" id="chk-fields/deals" data-id="fields/deals"><span>Create the custom fields for Deals. Create each column the import screen cannot map to an existing field.</span></label><div class="gen wrap"><table><thead><tr><th>Label</th><th>Zoho type</th><th>Values, band or note</th></tr></thead><tbody><tr><td>Deal External ID</td><td>single line</td><td>-</td></tr><tr><td>Contact External ID</td><td>single line</td><td>a reference to contacts.csv, not this file&#x27;s own external id; format-checked only, not required to be unique here since one contact can hold several deals</td></tr><tr><td>Deal Name</td><td>single line</td><td>-</td></tr><tr><td>SKU</td><td>picklist</td><td>diy; diwm</td></tr><tr><td>Period</td><td>picklist</td><td>monthly; quarterly</td></tr><tr><td>Amount</td><td>single line</td><td>to be verified: whether the standard Amount currency field can stay blank on import; the seed carries Rs ___, so Amount is a text field until prices are set</td></tr><tr><td>GST Type</td><td>picklist</td><td>cgst_sgst; igst; none</td></tr><tr><td>Payment Method</td><td>picklist</td><td>upi; netbanking</td></tr><tr><td>Coupon</td><td>single line</td><td>-</td></tr><tr><td>Razorpay Customer Id</td><td>single line</td><td>a vendor reference code, not this file&#x27;s own external id; not required to be unique</td></tr><tr><td>Razorpay Subscription or Txn Id</td><td>single line</td><td>a vendor reference code, not this file&#x27;s own external id; not required to be unique</td></tr><tr><td>Mandate Status</td><td>picklist</td><td>active; pending; none (charged per period)</td></tr><tr><td>Start</td><td>date</td><td>-</td></tr><tr><td>Next Billing</td><td>date</td><td>-</td></tr><tr><td>Status</td><td>picklist</td><td>active; pending_mandate; failed; cancelled; lapsed</td></tr><tr><td>Grace Until</td><td>date</td><td>-</td></tr><tr><td>Retry Count</td><td>number</td><td>-</td></tr><tr><td>Calls Included Per Period</td><td>picklist</td><td>0; N</td></tr><tr><td>Calls Used</td><td>number</td><td>-</td></tr><tr><td>Cancel Reason</td><td>single line</td><td>-</td></tr><tr><td>Refund Requested</td><td>checkbox</td><td>-</td></tr><tr><td>Refund Status</td><td>single line</td><td>the one realised value is a to-be-decided placeholder sentence (brief H5), not a coded status, so this column is text rather than picklist</td></tr></tbody></table></div></div><div class="citem" id="row-fields/a_la_carte"><label><input type="checkbox" id="chk-fields/a_la_carte" data-id="fields/a_la_carte"><span>Create the custom fields for A la carte. Create each column the import screen cannot map to an existing field.</span></label><div class="gen wrap"><table><thead><tr><th>Label</th><th>Zoho type</th><th>Values, band or note</th></tr></thead><tbody><tr><td>Purchase External ID</td><td>single line</td><td>-</td></tr><tr><td>Contact External ID</td><td>single line</td><td>a reference to contacts.csv, not this file&#x27;s own external id; not required to be unique</td></tr><tr><td>Date</td><td>date-time</td><td>-</td></tr><tr><td>Amount</td><td>single line</td><td>-</td></tr><tr><td>Receipt</td><td>single line</td><td>a receipt code, not required to be unique here</td></tr><tr><td>Call Id</td><td>single line</td><td>a reference to calls.csv, not this file&#x27;s own external id; not required to be unique</td></tr></tbody></table></div></div><div class="citem" id="row-fields/calls"><label><input type="checkbox" id="chk-fields/calls" data-id="fields/calls"><span>Create the custom fields for Calls. Create each column the import screen cannot map to an existing field.</span></label><div class="gen wrap"><table><thead><tr><th>Label</th><th>Zoho type</th><th>Values, band or note</th></tr></thead><tbody><tr><td>Call External ID</td><td>single line</td><td>-</td></tr><tr><td>Contact External ID</td><td>single line</td><td>a reference to contacts.csv, not this file&#x27;s own external id; not required to be unique</td></tr><tr><td>Adviser</td><td>picklist</td><td>Harish; Adviser 01; Adviser 02; Adviser 03; Adviser 04; Adviser 05; Adviser 06; Ops 01; Support 01; Compliance 01</td></tr><tr><td>Booked At</td><td>date-time</td><td>-</td></tr><tr><td>Slot</td><td>date-time</td><td>-</td></tr><tr><td>Topic</td><td>picklist</td><td>My plan; Using the app; The investments and why they were chosen; Something changed; My numbers</td></tr><tr><td>Status</td><td>picklist</td><td>booked; completed; no_show; cancelled</td></tr><tr><td>Notes</td><td>multi-line</td><td>-</td></tr><tr><td>Input Changes</td><td>multi-select</td><td>members; has_dependants; partner_earns; pets; rpq_answers; risk_band; take_home; partner_take_home; rental_income; other_income; total_outgoings; bucket_fixed; bucket_variable; bucket_guilt_free; month_end_pattern; current_sip; bank_and_deposits; mutual_funds; stocks; nps; epf; ppf; gold; home_value; investment_property_value; investment_property_rent; ulip_surrender_value; ulip_premium; ulip_years_completed; other_assets; has_loans; total_emi; loans; credit_card_balance; informal_loans; term_status; health_status; other_policies; term_sum_assured; term_premium; term_cover_until_age; health_type; health_sum_insured; health_floater; health_premium; goals; work_optional_age</td></tr></tbody></table></div></div><div class="citem" id="row-fields/tasks"><label><input type="checkbox" id="chk-fields/tasks" data-id="fields/tasks"><span>Create the custom fields for Tasks. Create each column the import screen cannot map to an existing field.</span></label><div class="gen wrap"><table><thead><tr><th>Label</th><th>Zoho type</th><th>Values, band or note</th></tr></thead><tbody><tr><td>Task External ID</td><td>single line</td><td>-</td></tr><tr><td>Contact External ID</td><td>single line</td><td>a reference to contacts.csv, not this file&#x27;s own external id; not required to be unique</td></tr><tr><td>Subject</td><td>single line</td><td>-</td></tr><tr><td>State ID</td><td>picklist</td><td>S2b; S19; S20; S24; S25</td></tr><tr><td>Tier</td><td>picklist</td><td>free; diy; diwm; difm</td></tr><tr><td>Days Unsigned</td><td>number</td><td>S2b only, blank otherwise. Plan section 12&#x27;s tasks.csv column list left this out; section 11&#x27;s tasks row and the S2b crm_task.fields in data/v02/states.json both carry it, so it is added here (Vatsal, 23 Sep 2026)</td></tr><tr><td>Missing Fields</td><td>multi-select</td><td>members; has_dependants; partner_earns; pets; rpq_answers; risk_band; take_home; partner_take_home; rental_income; other_income; total_outgoings; bucket_fixed; bucket_variable; bucket_guilt_free; month_end_pattern; current_sip; bank_and_deposits; mutual_funds; stocks; nps; epf; ppf; gold; home_value; investment_property_value; investment_property_rent; ulip_surrender_value; ulip_premium; ulip_years_completed; other_assets; has_loans; total_emi; loans; credit_card_balance; informal_loans; term_status; health_status; other_policies; term_sum_assured; term_premium; term_cover_until_age; health_type; health_sum_insured; health_floater; health_premium; goals; work_optional_age</td></tr><tr><td>Last Screen</td><td>single line</td><td>-</td></tr><tr><td>Minutes Left</td><td>single line</td><td>-</td></tr><tr><td>Call Topic</td><td>picklist</td><td>My plan; Using the app; The investments and why they were chosen; Something changed; My numbers</td></tr><tr><td>No-show Count</td><td>number</td><td>S20 only, blank otherwise</td></tr><tr><td>Payment Reference</td><td>single line</td><td>the deal&#x27;s first payment_id (payments.json format PAY-NNNNN-N); text rather than id since the field is blank on every non-S24 task</td></tr><tr><td>Cancel Reason</td><td>single line</td><td>-</td></tr><tr><td>Period Unexpired</td><td>checkbox</td><td>S24 only, blank otherwise</td></tr><tr><td>Records Retained</td><td>multi-select</td><td>client agreement; KYC record; risk profile; advice register; fee records and invoices</td></tr><tr><td>Requested At</td><td>date-time</td><td>-</td></tr><tr><td>Assignee</td><td>picklist</td><td>Harish; Adviser 01; Adviser 02; Adviser 03; Adviser 04; Adviser 05; Adviser 06; Ops 01; Support 01; Compliance 01</td></tr><tr><td>Due</td><td>date-time</td><td>-</td></tr><tr><td>Status</td><td>picklist</td><td>open; done</td></tr></tbody></table></div></div><div class="stepnotes-wrap"><label for="notes-fields">Notes for this step (answers to the to be verified items go here)</label><textarea class="note stepnotes" id="notes-fields" data-id="fields"></textarea></div></section><section id="step-picklist"><h2>4. Picklists</h2><p class="lead">Values are taken from the export columns, not typed by hand.</p><div class="citem" id="row-picklist/journey-stage"><label><input type="checkbox" id="chk-picklist/journey-stage" data-id="picklist/journey-stage"><span>Create the Journey Stage picklist.</span></label><div class="gen meta">Values: S0; S0w; S1; S2; S2b; S2c; S3; S4; S5; S6; S7; S8; S9; S10; S11; S12; S13; S14; S15; S16; S17; S18; S19; S20; S21; S22; S23; S24; S25</div></div><div class="citem" id="row-picklist/tier"><label><input type="checkbox" id="chk-picklist/tier" data-id="picklist/tier"><span>Create the Tier picklist.</span></label><div class="gen meta">Values: free; diy; diwm; difm</div></div><div class="citem" id="row-picklist/sku"><label><input type="checkbox" id="chk-picklist/sku" data-id="picklist/sku"><span>Create the SKU picklist.</span></label><div class="gen meta">Values: diy; diwm</div></div><div class="citem" id="row-picklist/subscription-status"><label><input type="checkbox" id="chk-picklist/subscription-status" data-id="picklist/subscription-status"><span>Create the Subscription Status picklist.</span></label><div class="gen meta">Values: pending_mandate; active; failed; lapsed; cancelled; adviser relationship</div></div><div class="citem" id="row-picklist/source"><label><input type="checkbox" id="chk-picklist/source" data-id="picklist/source"><span>Create the Source picklist.</span></label><div class="gen meta">Values: community; corporate_session; web_reveal; organic; referral</div></div><div class="citem" id="row-picklist/lead-stage"><label><input type="checkbox" id="chk-picklist/lead-stage" data-id="picklist/lead-stage"><span>Create the Lead Stage picklist.</span></label><div class="gen meta">Values: lead; verified lead</div></div><div class="citem" id="row-picklist/aa-status"><label><input type="checkbox" id="chk-picklist/aa-status" data-id="picklist/aa-status"><span>Create the AA Status picklist.</span></label><div class="gen meta">Values: not_connected; connected; partial; cas_uploaded; failed; expired</div></div><div class="citem" id="row-picklist/task-state-id"><label><input type="checkbox" id="chk-picklist/task-state-id" data-id="picklist/task-state-id"><span>Create the Task State ID picklist.</span></label><div class="gen meta">Values: S2b; S19; S20; S24; S25</div></div><div class="stepnotes-wrap"><label for="notes-picklist">Notes for this step (answers to the to be verified items go here)</label><textarea class="note stepnotes" id="notes-picklist" data-id="picklist"></textarea></div></section><section id="step-module"><h2>5. Custom module App Events</h2><p class="lead">One module, one checkbox, its columns from the schema.</p><div class="citem" id="row-module/app-events"><label><input type="checkbox" id="chk-module/app-events" data-id="module/app-events"><span>Create the custom module App Events, with the columns below.</span></label><div class="gen wrap"><table><thead><tr><th>Label</th><th>Zoho type</th><th>Values, band or note</th></tr></thead><tbody><tr><td>Event External ID</td><td>single line</td><td>-</td></tr><tr><td>Contact External ID</td><td>single line</td><td>a reference to contacts.csv, not this file&#x27;s own external id; not required to be unique</td></tr><tr><td>Event</td><td>picklist</td><td>aa_connected; aa_declined; aa_failed; action_done; agreement_due; call_booked; call_completed; cancelled; data_complete; data_progress; esign_done; lapsed; no_show; paid; payment_failed; payment_recovered; paywall_viewed; pdf_downloaded; plan_built; plan_read; plan_updated; resubscribed; reveal_seen; review_done; review_due; rpq_due; signed_up; state_enter_S1; state_enter_S10; state_enter_S11; state_enter_S12; state_enter_S13; state_enter_S14; state_enter_S15; state_enter_S16; state_enter_S17; state_enter_S18; state_enter_S19; state_enter_S2; state_enter_S20; state_enter_S21; state_enter_S22; state_enter_S23; state_enter_S24; state_enter_S25; state_enter_S2b; state_enter_S2c; state_enter_S3; state_enter_S4; state_enter_S5; state_enter_S6; state_enter_S7; state_enter_S8; state_enter_S9; ticket_created; update_accepted</td></tr><tr><td>Screen</td><td>single line</td><td>-</td></tr><tr><td>At</td><td>date-time</td><td>-</td></tr><tr><td>Props</td><td>multi-line</td><td>-</td></tr></tbody></table></div></div><div class="stepnotes-wrap"><label for="notes-module">Notes for this step (answers to the to be verified items go here)</label><textarea class="note stepnotes" id="notes-module" data-id="module"></textarea></div></section><section id="step-roles"><h2>6. Roles</h2><p class="lead">One principle: advisers see their own people, ops sees records, the principal officer sees everything.</p><div class="citem" id="row-roles/principal-officer"><label><input type="checkbox" id="chk-roles/principal-officer" data-id="roles/principal-officer"><span>Create the Principal officer role.</span></label></div><div class="citem" id="row-roles/adviser"><label><input type="checkbox" id="chk-roles/adviser" data-id="roles/adviser"><span>Create the Adviser role.</span></label></div><div class="citem" id="row-roles/call-centre"><label><input type="checkbox" id="chk-roles/call-centre" data-id="roles/call-centre"><span>Create the Call centre role.</span></label></div><div class="citem" id="row-roles/ops"><label><input type="checkbox" id="chk-roles/ops" data-id="roles/ops"><span>Create the Ops role.</span></label></div><div class="citem" id="row-roles/marketing"><label><input type="checkbox" id="chk-roles/marketing" data-id="roles/marketing"><span>Create the Marketing role.</span></label></div><div class="citem" id="row-roles/compliance"><label><input type="checkbox" id="chk-roles/compliance" data-id="roles/compliance"><span>Create the Compliance role.</span></label></div><div class="citem" id="row-roles/support"><label><input type="checkbox" id="chk-roles/support" data-id="roles/support"><span>Create the Support role.</span></label></div><div class="citem" id="row-roles/finance"><label><input type="checkbox" id="chk-roles/finance" data-id="roles/finance"><span>Create the Finance role, read only.</span></label></div><div class="stepnotes-wrap"><label for="notes-roles">Notes for this step (answers to the to be verified items go here)</label><textarea class="note stepnotes" id="notes-roles" data-id="roles"></textarea></div></section><section id="step-desk"><h2>7. Desk</h2><p class="lead">One department covers every ticket.</p><div class="citem" id="row-desk/department"><label><input type="checkbox" id="chk-desk/department" data-id="desk/department"><span>Create one department.</span></label></div><div class="citem" id="row-desk/categories"><label><input type="checkbox" id="chk-desk/categories" data-id="desk/categories"><span>Create the categories exactly as the ticket file spells them: support, adviser_message, grievance.</span></label></div><div class="citem" id="row-desk/sla"><label><input type="checkbox" id="chk-desk/sla" data-id="desk/sla"><span>Set the SLA to one business day.</span></label></div><div class="citem" id="row-desk/scores-ref"><label><input type="checkbox" id="chk-desk/scores-ref" data-id="desk/scores-ref"><span>Add the SCORES Ref field.</span></label></div><div class="stepnotes-wrap"><label for="notes-desk">Notes for this step (answers to the to be verified items go here)</label><textarea class="note stepnotes" id="notes-desk" data-id="desk"></textarea></div></section><section id="step-campaigns"><h2>8. Campaigns</h2><p class="lead">Lists are imported for reference; nothing sends.</p><div class="citem" id="row-campaigns/lists"><label><input type="checkbox" id="chk-campaigns/lists" data-id="campaigns/lists"><span>Create one list per journey stage.</span></label><ul class="gen"><li>campaigns/S0.csv: run-500 192, run-3000 1170</li><li>campaigns/S0w.csv: run-500 38, run-3000 230</li><li>campaigns/S1.csv: run-500 70, run-3000 400</li><li>campaigns/S10.csv: run-500 2, run-3000 10</li><li>campaigns/S11.csv: run-500 2, run-3000 8</li><li>campaigns/S12.csv: run-500 2, run-3000 6</li><li>campaigns/S13.csv: run-500 3, run-3000 8</li><li>campaigns/S14.csv: run-500 2, run-3000 8</li><li>campaigns/S15.csv: run-500 2, run-3000 6</li><li>campaigns/S17.csv: run-500 2, run-3000 6</li><li>campaigns/S18.csv: run-500 2, run-3000 6</li><li>campaigns/S19.csv: run-500 2, run-3000 8</li><li>campaigns/S2.csv: run-500 140, run-3000 990</li><li>campaigns/S20.csv: run-500 2, run-3000 6</li><li>campaigns/S21.csv: run-500 2, run-3000 8</li><li>campaigns/S22.csv: run-500 2, run-3000 6</li><li>campaigns/S23.csv: run-500 2, run-3000 6</li><li>campaigns/S24.csv: run-500 2, run-3000 6</li><li>campaigns/S25.csv: run-500 2, run-3000 6</li><li>campaigns/S2b.csv: run-500 5, run-3000 25</li><li>campaigns/S2c.csv: run-500 5, run-3000 15</li><li>campaigns/S3.csv: run-500 3, run-3000 12</li><li>campaigns/S4.csv: run-500 5, run-3000 22</li><li>campaigns/S5.csv: run-500 2, run-3000 8</li><li>campaigns/S6.csv: run-500 2, run-3000 8</li><li>campaigns/S7.csv: run-500 2, run-3000 8</li><li>campaigns/S8.csv: run-500 4, run-3000 16</li><li>campaigns/S9.csv: run-500 8, run-3000 32</li></ul></div><div class="citem" id="row-campaigns/journey"><label><input type="checkbox" id="chk-campaigns/journey" data-id="campaigns/journey"><span>Create one Marketing Automation journey drawn from the S4 ladder. Never activate it.</span></label><div class="gen meta">S4 ladder (never activated):</div><ul class="gen"><li>O03 time, when set, push: N-S4-o03, links to O02</li><li>24h, push: N-S4-24h, links to O02</li><li>72h, whatsapp: N-S4-72h, links to O02</li><li>day 7, push: N-S4-d7, links to O02</li></ul></div><div class="stepnotes-wrap"><label for="notes-campaigns">Notes for this step (answers to the to be verified items go here)</label><textarea class="note stepnotes" id="notes-campaigns" data-id="campaigns"></textarea></div></section><section id="step-bookings"><h2>9. Bookings</h2><p class="lead">One service, by hand.</p><div class="citem" id="row-bookings/service"><label><input type="checkbox" id="chk-bookings/service" data-id="bookings/service"><span>Create one service, 45-minute slots, staff Adviser 01 to 06. Add a handful of appointments by hand.</span></label></div><div class="stepnotes-wrap"><label for="notes-bookings">Notes for this step (answers to the to be verified items go here)</label><textarea class="note stepnotes" id="notes-bookings" data-id="bookings"></textarea></div></section><section id="step-import"><h2>10. Import order</h2><p class="lead">Import in this order. Each external ID column makes a re-import update instead of duplicate. The files arrive via Drive; the board links none.</p><div class="citem" id="row-import/leads"><label><input type="checkbox" id="chk-import/leads" data-id="import/leads"><span>Import Leads.</span></label><div class="gen imp"><span class="meta">zoho/leads.csv</span><span class="meta">external ID: Lead External ID (re-imports update instead of duplicate)</span><span class="meta">run-500 230, run-3000 1400</span></div></div><div class="citem" id="row-import/contacts"><label><input type="checkbox" id="chk-import/contacts" data-id="import/contacts"><span>Import Contacts.</span></label><div class="gen imp"><span class="meta">zoho/contacts.csv</span><span class="meta">external ID: Contact External ID (re-imports update instead of duplicate)</span><span class="meta">run-500 277, run-3000 1640</span></div></div><div class="citem" id="row-import/deals"><label><input type="checkbox" id="chk-import/deals" data-id="import/deals"><span>Import Deals.</span></label><div class="gen imp"><span class="meta">zoho/deals.csv</span><span class="meta">external ID: Deal External ID (re-imports update instead of duplicate)</span><span class="meta">run-500 58, run-3000 206</span></div></div><div class="citem" id="row-import/a_la_carte"><label><input type="checkbox" id="chk-import/a_la_carte" data-id="import/a_la_carte"><span>Import A la carte.</span></label><div class="gen imp"><span class="meta">zoho/a_la_carte.csv</span><span class="meta">external ID: Purchase External ID (re-imports update instead of duplicate)</span><span class="meta">run-500 2, run-3000 9</span></div></div><div class="citem" id="row-import/calls"><label><input type="checkbox" id="chk-import/calls" data-id="import/calls"><span>Import Calls.</span></label><div class="gen imp"><span class="meta">zoho/calls.csv</span><span class="meta">external ID: Call External ID (re-imports update instead of duplicate)</span><span class="meta">run-500 23, run-3000 84</span></div></div><div class="citem" id="row-import/tasks"><label><input type="checkbox" id="chk-import/tasks" data-id="import/tasks"><span>Import Tasks.</span></label><div class="gen imp"><span class="meta">zoho/tasks.csv</span><span class="meta">external ID: Task External ID (re-imports update instead of duplicate)</span><span class="meta">run-500 29, run-3000 114</span></div></div><div class="citem" id="row-import/app_events"><label><input type="checkbox" id="chk-import/app_events" data-id="import/app_events"><span>Import App Events.</span></label><div class="gen imp"><span class="meta">zoho/app_events.csv</span><span class="meta">external ID: Event External ID (re-imports update instead of duplicate)</span><span class="meta">run-500 2787, run-3000 12464</span></div></div><div class="citem" id="row-import/tickets"><label><input type="checkbox" id="chk-import/tickets" data-id="import/tickets"><span>Import Desk tickets.</span></label><div class="gen imp"><span class="meta">desk/tickets.csv</span><span class="meta">external ID: Ticket External ID (re-imports update instead of duplicate)</span><span class="meta">run-500 21, run-3000 73</span></div></div><div class="citem" id="row-import/campaigns-s0"><label><input type="checkbox" id="chk-import/campaigns-s0" data-id="import/campaigns-s0"><span>Import the S0 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S0.csv</span><span class="meta">run-500 192, run-3000 1170</span></div></div><div class="citem" id="row-import/campaigns-s0w"><label><input type="checkbox" id="chk-import/campaigns-s0w" data-id="import/campaigns-s0w"><span>Import the S0w campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S0w.csv</span><span class="meta">run-500 38, run-3000 230</span></div></div><div class="citem" id="row-import/campaigns-s1"><label><input type="checkbox" id="chk-import/campaigns-s1" data-id="import/campaigns-s1"><span>Import the S1 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S1.csv</span><span class="meta">run-500 70, run-3000 400</span></div></div><div class="citem" id="row-import/campaigns-s10"><label><input type="checkbox" id="chk-import/campaigns-s10" data-id="import/campaigns-s10"><span>Import the S10 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S10.csv</span><span class="meta">run-500 2, run-3000 10</span></div></div><div class="citem" id="row-import/campaigns-s11"><label><input type="checkbox" id="chk-import/campaigns-s11" data-id="import/campaigns-s11"><span>Import the S11 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S11.csv</span><span class="meta">run-500 2, run-3000 8</span></div></div><div class="citem" id="row-import/campaigns-s12"><label><input type="checkbox" id="chk-import/campaigns-s12" data-id="import/campaigns-s12"><span>Import the S12 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S12.csv</span><span class="meta">run-500 2, run-3000 6</span></div></div><div class="citem" id="row-import/campaigns-s13"><label><input type="checkbox" id="chk-import/campaigns-s13" data-id="import/campaigns-s13"><span>Import the S13 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S13.csv</span><span class="meta">run-500 3, run-3000 8</span></div></div><div class="citem" id="row-import/campaigns-s14"><label><input type="checkbox" id="chk-import/campaigns-s14" data-id="import/campaigns-s14"><span>Import the S14 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S14.csv</span><span class="meta">run-500 2, run-3000 8</span></div></div><div class="citem" id="row-import/campaigns-s15"><label><input type="checkbox" id="chk-import/campaigns-s15" data-id="import/campaigns-s15"><span>Import the S15 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S15.csv</span><span class="meta">run-500 2, run-3000 6</span></div></div><div class="citem" id="row-import/campaigns-s17"><label><input type="checkbox" id="chk-import/campaigns-s17" data-id="import/campaigns-s17"><span>Import the S17 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S17.csv</span><span class="meta">run-500 2, run-3000 6</span></div></div><div class="citem" id="row-import/campaigns-s18"><label><input type="checkbox" id="chk-import/campaigns-s18" data-id="import/campaigns-s18"><span>Import the S18 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S18.csv</span><span class="meta">run-500 2, run-3000 6</span></div></div><div class="citem" id="row-import/campaigns-s19"><label><input type="checkbox" id="chk-import/campaigns-s19" data-id="import/campaigns-s19"><span>Import the S19 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S19.csv</span><span class="meta">run-500 2, run-3000 8</span></div></div><div class="citem" id="row-import/campaigns-s2"><label><input type="checkbox" id="chk-import/campaigns-s2" data-id="import/campaigns-s2"><span>Import the S2 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S2.csv</span><span class="meta">run-500 140, run-3000 990</span></div></div><div class="citem" id="row-import/campaigns-s20"><label><input type="checkbox" id="chk-import/campaigns-s20" data-id="import/campaigns-s20"><span>Import the S20 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S20.csv</span><span class="meta">run-500 2, run-3000 6</span></div></div><div class="citem" id="row-import/campaigns-s21"><label><input type="checkbox" id="chk-import/campaigns-s21" data-id="import/campaigns-s21"><span>Import the S21 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S21.csv</span><span class="meta">run-500 2, run-3000 8</span></div></div><div class="citem" id="row-import/campaigns-s22"><label><input type="checkbox" id="chk-import/campaigns-s22" data-id="import/campaigns-s22"><span>Import the S22 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S22.csv</span><span class="meta">run-500 2, run-3000 6</span></div></div><div class="citem" id="row-import/campaigns-s23"><label><input type="checkbox" id="chk-import/campaigns-s23" data-id="import/campaigns-s23"><span>Import the S23 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S23.csv</span><span class="meta">run-500 2, run-3000 6</span></div></div><div class="citem" id="row-import/campaigns-s24"><label><input type="checkbox" id="chk-import/campaigns-s24" data-id="import/campaigns-s24"><span>Import the S24 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S24.csv</span><span class="meta">run-500 2, run-3000 6</span></div></div><div class="citem" id="row-import/campaigns-s25"><label><input type="checkbox" id="chk-import/campaigns-s25" data-id="import/campaigns-s25"><span>Import the S25 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S25.csv</span><span class="meta">run-500 2, run-3000 6</span></div></div><div class="citem" id="row-import/campaigns-s2b"><label><input type="checkbox" id="chk-import/campaigns-s2b" data-id="import/campaigns-s2b"><span>Import the S2b campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S2b.csv</span><span class="meta">run-500 5, run-3000 25</span></div></div><div class="citem" id="row-import/campaigns-s2c"><label><input type="checkbox" id="chk-import/campaigns-s2c" data-id="import/campaigns-s2c"><span>Import the S2c campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S2c.csv</span><span class="meta">run-500 5, run-3000 15</span></div></div><div class="citem" id="row-import/campaigns-s3"><label><input type="checkbox" id="chk-import/campaigns-s3" data-id="import/campaigns-s3"><span>Import the S3 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S3.csv</span><span class="meta">run-500 3, run-3000 12</span></div></div><div class="citem" id="row-import/campaigns-s4"><label><input type="checkbox" id="chk-import/campaigns-s4" data-id="import/campaigns-s4"><span>Import the S4 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S4.csv</span><span class="meta">run-500 5, run-3000 22</span></div></div><div class="citem" id="row-import/campaigns-s5"><label><input type="checkbox" id="chk-import/campaigns-s5" data-id="import/campaigns-s5"><span>Import the S5 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S5.csv</span><span class="meta">run-500 2, run-3000 8</span></div></div><div class="citem" id="row-import/campaigns-s6"><label><input type="checkbox" id="chk-import/campaigns-s6" data-id="import/campaigns-s6"><span>Import the S6 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S6.csv</span><span class="meta">run-500 2, run-3000 8</span></div></div><div class="citem" id="row-import/campaigns-s7"><label><input type="checkbox" id="chk-import/campaigns-s7" data-id="import/campaigns-s7"><span>Import the S7 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S7.csv</span><span class="meta">run-500 2, run-3000 8</span></div></div><div class="citem" id="row-import/campaigns-s8"><label><input type="checkbox" id="chk-import/campaigns-s8" data-id="import/campaigns-s8"><span>Import the S8 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S8.csv</span><span class="meta">run-500 4, run-3000 16</span></div></div><div class="citem" id="row-import/campaigns-s9"><label><input type="checkbox" id="chk-import/campaigns-s9" data-id="import/campaigns-s9"><span>Import the S9 campaigns list.</span></label><div class="gen imp"><span class="meta">campaigns/S9.csv</span><span class="meta">run-500 8, run-3000 32</span></div></div><div class="stepnotes-wrap"><label for="notes-import">Notes for this step (answers to the to be verified items go here)</label><textarea class="note stepnotes" id="notes-import" data-id="import"></textarea></div></section><section id="step-views"><h2>11. Saved views per seat</h2><p class="lead">No filters yet; the seats page of phase D supplies them.</p><div class="citem" id="row-views/principal-officer"><label><input type="checkbox" id="chk-views/principal-officer" data-id="views/principal-officer"><span>Saved views for the Principal officer seat.</span></label></div><div class="citem" id="row-views/adviser"><label><input type="checkbox" id="chk-views/adviser" data-id="views/adviser"><span>Saved views for the Adviser seat.</span></label></div><div class="citem" id="row-views/call-centre"><label><input type="checkbox" id="chk-views/call-centre" data-id="views/call-centre"><span>Saved views for the Call centre seat.</span></label></div><div class="citem" id="row-views/ops"><label><input type="checkbox" id="chk-views/ops" data-id="views/ops"><span>Saved views for the Ops seat.</span></label></div><div class="citem" id="row-views/marketing"><label><input type="checkbox" id="chk-views/marketing" data-id="views/marketing"><span>Saved views for the Marketing seat.</span></label></div><div class="citem" id="row-views/compliance"><label><input type="checkbox" id="chk-views/compliance" data-id="views/compliance"><span>Saved views for the Compliance seat.</span></label></div><div class="citem" id="row-views/support"><label><input type="checkbox" id="chk-views/support" data-id="views/support"><span>Saved views for the Support seat.</span></label></div><div class="citem" id="row-views/finance"><label><input type="checkbox" id="chk-views/finance" data-id="views/finance"><span>Saved views for the Finance seat.</span></label></div><div class="stepnotes-wrap"><label for="notes-views">Notes for this step (answers to the to be verified items go here)</label><textarea class="note stepnotes" id="notes-views" data-id="views"></textarea></div></section><section id="step-screenshots"><h2>12. Screenshots for the brief</h2><p class="lead">One screenshot per seat, for the brief.</p><div class="citem" id="row-screenshots/principal-officer"><label><input type="checkbox" id="chk-screenshots/principal-officer" data-id="screenshots/principal-officer"><span>Screenshot the Principal officer seat view.</span></label></div><div class="citem" id="row-screenshots/adviser"><label><input type="checkbox" id="chk-screenshots/adviser" data-id="screenshots/adviser"><span>Screenshot the Adviser seat view.</span></label></div><div class="citem" id="row-screenshots/call-centre"><label><input type="checkbox" id="chk-screenshots/call-centre" data-id="screenshots/call-centre"><span>Screenshot the Call centre seat view.</span></label></div><div class="citem" id="row-screenshots/ops"><label><input type="checkbox" id="chk-screenshots/ops" data-id="screenshots/ops"><span>Screenshot the Ops seat view.</span></label></div><div class="citem" id="row-screenshots/marketing"><label><input type="checkbox" id="chk-screenshots/marketing" data-id="screenshots/marketing"><span>Screenshot the Marketing seat view.</span></label></div><div class="citem" id="row-screenshots/compliance"><label><input type="checkbox" id="chk-screenshots/compliance" data-id="screenshots/compliance"><span>Screenshot the Compliance seat view.</span></label></div><div class="citem" id="row-screenshots/support"><label><input type="checkbox" id="chk-screenshots/support" data-id="screenshots/support"><span>Screenshot the Support seat view.</span></label></div><div class="citem" id="row-screenshots/finance"><label><input type="checkbox" id="chk-screenshots/finance" data-id="screenshots/finance"><span>Screenshot the Finance seat view.</span></label></div><div class="stepnotes-wrap"><label for="notes-screenshots">Notes for this step (answers to the to be verified items go here)</label><textarea class="note stepnotes" id="notes-screenshots" data-id="screenshots"></textarea></div></section></main>
+<script>var ITEMS=[{"id": "org/trial", "text": "Create the Zoho One trial under hey@yeslifers.com, India datacentre (zoho.in)."}, {"id": "org/card", "text": "to be verified: whether the Zoho One trial needs a card"}, {"id": "org/record-cap", "text": "to be verified: whether trial orgs cap record counts below the seed's totals"}, {"id": "org/created-time", "text": "to be verified: whether Created Time can be mapped on CSV import; if not, the key-date fields carry the timeline and the audit stamp reads the import day"}, {"id": "org/sandbox", "text": "If HoA has already bought Zoho One, a second org is the sandbox; the live org is never used."}, {"id": "connect/whatsapp", "text": "No WhatsApp"}, {"id": "connect/sms", "text": "No SMS or OTP"}, {"id": "connect/email", "text": "No email sending domain"}, {"id": "connect/desk-mail", "text": "No Desk mail channel."}, {"id": "connect/campaigns-verify", "text": "No Campaigns sender verification."}, {"id": "connect/bookings-calendar", "text": "No Bookings calendar sync."}, {"id": "connect/campaigns-import", "text": "Campaigns lists are imported and never sent."}, {"id": "fields/leads", "text": "Create the custom fields for Leads. Create each column the import screen cannot map to an existing field."}, {"id": "fields/contacts", "text": "Create the custom fields for Contacts. Create each column the import screen cannot map to an existing field."}, {"id": "fields/deals", "text": "Create the custom fields for Deals. Create each column the import screen cannot map to an existing field."}, {"id": "fields/a_la_carte", "text": "Create the custom fields for A la carte. Create each column the import screen cannot map to an existing field."}, {"id": "fields/calls", "text": "Create the custom fields for Calls. Create each column the import screen cannot map to an existing field."}, {"id": "fields/tasks", "text": "Create the custom fields for Tasks. Create each column the import screen cannot map to an existing field."}, {"id": "picklist/journey-stage", "text": "Create the Journey Stage picklist."}, {"id": "picklist/tier", "text": "Create the Tier picklist."}, {"id": "picklist/sku", "text": "Create the SKU picklist."}, {"id": "picklist/subscription-status", "text": "Create the Subscription Status picklist."}, {"id": "picklist/source", "text": "Create the Source picklist."}, {"id": "picklist/lead-stage", "text": "Create the Lead Stage picklist."}, {"id": "picklist/aa-status", "text": "Create the AA Status picklist."}, {"id": "picklist/task-state-id", "text": "Create the Task State ID picklist."}, {"id": "module/app-events", "text": "Create the custom module App Events, with the columns below."}, {"id": "roles/principal-officer", "text": "Create the Principal officer role."}, {"id": "roles/adviser", "text": "Create the Adviser role."}, {"id": "roles/call-centre", "text": "Create the Call centre role."}, {"id": "roles/ops", "text": "Create the Ops role."}, {"id": "roles/marketing", "text": "Create the Marketing role."}, {"id": "roles/compliance", "text": "Create the Compliance role."}, {"id": "roles/support", "text": "Create the Support role."}, {"id": "roles/finance", "text": "Create the Finance role, read only."}, {"id": "desk/department", "text": "Create one department."}, {"id": "desk/categories", "text": "Create the categories exactly as the ticket file spells them: support, adviser_message, grievance."}, {"id": "desk/sla", "text": "Set the SLA to one business day."}, {"id": "desk/scores-ref", "text": "Add the SCORES Ref field."}, {"id": "campaigns/lists", "text": "Create one list per journey stage."}, {"id": "campaigns/journey", "text": "Create one Marketing Automation journey drawn from the S4 ladder. Never activate it."}, {"id": "bookings/service", "text": "Create one service, 45-minute slots, staff Adviser 01 to 06. Add a handful of appointments by hand."}, {"id": "import/leads", "text": "Import Leads."}, {"id": "import/contacts", "text": "Import Contacts."}, {"id": "import/deals", "text": "Import Deals."}, {"id": "import/a_la_carte", "text": "Import A la carte."}, {"id": "import/calls", "text": "Import Calls."}, {"id": "import/tasks", "text": "Import Tasks."}, {"id": "import/app_events", "text": "Import App Events."}, {"id": "import/tickets", "text": "Import Desk tickets."}, {"id": "views/principal-officer", "text": "Saved views for the Principal officer seat."}, {"id": "views/adviser", "text": "Saved views for the Adviser seat."}, {"id": "views/call-centre", "text": "Saved views for the Call centre seat."}, {"id": "views/ops", "text": "Saved views for the Ops seat."}, {"id": "views/marketing", "text": "Saved views for the Marketing seat."}, {"id": "views/compliance", "text": "Saved views for the Compliance seat."}, {"id": "views/support", "text": "Saved views for the Support seat."}, {"id": "views/finance", "text": "Saved views for the Finance seat."}, {"id": "screenshots/principal-officer", "text": "Screenshot the Principal officer seat view."}, {"id": "screenshots/adviser", "text": "Screenshot the Adviser seat view."}, {"id": "screenshots/call-centre", "text": "Screenshot the Call centre seat view."}, {"id": "screenshots/ops", "text": "Screenshot the Ops seat view."}, {"id": "screenshots/marketing", "text": "Screenshot the Marketing seat view."}, {"id": "screenshots/compliance", "text": "Screenshot the Compliance seat view."}, {"id": "screenshots/support", "text": "Screenshot the Support seat view."}, {"id": "screenshots/finance", "text": "Screenshot the Finance seat view."}, {"id": "import/campaigns-s0", "text": "Import the S0 campaigns list."}, {"id": "import/campaigns-s0w", "text": "Import the S0w campaigns list."}, {"id": "import/campaigns-s1", "text": "Import the S1 campaigns list."}, {"id": "import/campaigns-s10", "text": "Import the S10 campaigns list."}, {"id": "import/campaigns-s11", "text": "Import the S11 campaigns list."}, {"id": "import/campaigns-s12", "text": "Import the S12 campaigns list."}, {"id": "import/campaigns-s13", "text": "Import the S13 campaigns list."}, {"id": "import/campaigns-s14", "text": "Import the S14 campaigns list."}, {"id": "import/campaigns-s15", "text": "Import the S15 campaigns list."}, {"id": "import/campaigns-s17", "text": "Import the S17 campaigns list."}, {"id": "import/campaigns-s18", "text": "Import the S18 campaigns list."}, {"id": "import/campaigns-s19", "text": "Import the S19 campaigns list."}, {"id": "import/campaigns-s2", "text": "Import the S2 campaigns list."}, {"id": "import/campaigns-s20", "text": "Import the S20 campaigns list."}, {"id": "import/campaigns-s21", "text": "Import the S21 campaigns list."}, {"id": "import/campaigns-s22", "text": "Import the S22 campaigns list."}, {"id": "import/campaigns-s23", "text": "Import the S23 campaigns list."}, {"id": "import/campaigns-s24", "text": "Import the S24 campaigns list."}, {"id": "import/campaigns-s25", "text": "Import the S25 campaigns list."}, {"id": "import/campaigns-s2b", "text": "Import the S2b campaigns list."}, {"id": "import/campaigns-s2c", "text": "Import the S2c campaigns list."}, {"id": "import/campaigns-s3", "text": "Import the S3 campaigns list."}, {"id": "import/campaigns-s4", "text": "Import the S4 campaigns list."}, {"id": "import/campaigns-s5", "text": "Import the S5 campaigns list."}, {"id": "import/campaigns-s6", "text": "Import the S6 campaigns list."}, {"id": "import/campaigns-s7", "text": "Import the S7 campaigns list."}, {"id": "import/campaigns-s8", "text": "Import the S8 campaigns list."}, {"id": "import/campaigns-s9", "text": "Import the S9 campaigns list."}];
+var STEPS=["org", "connect", "fields", "picklist", "module", "roles", "desk", "campaigns", "bookings", "import", "views", "screenshots"];
+var IDENTITIES=["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Vatsal", "Spinach", "Compliance"];</script>
+<script>var BOARD_IGNORE=[{"page": "setup", "item_id": "TEST", "minute": "2026-09-16T04:53"}, {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-16T04:55"}, {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-16T06:23"}, {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-17T05:50"}, {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W01", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W02", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W04", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W05", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W06", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W08", "minute": "2026-09-17T05:50"}];// yeslyf board store: the shared save layer of every page (phase 11, Vatsal, 16 Sep 2026).
+// Every comment, verdict and field edit on every page is one row in the Supabase table board_entries
+// (page, item_id, field, value, who, kind, created_at); rows are never updated or deleted. docs/config.js, loaded
+// in the head before this script, sets SUPABASE_URL and SUPABASE_ANON_KEY; both blank keeps the page local only.
+// Each page keeps its own localStorage store as before (that is the offline cache). This layer adds one key,
+// "yeslyf_entries_v1", holding per page the rows last fetched, the outbox (inserts that failed) and the last write.
+// On load it sends the outbox, fetches the page's rows (1000 at a time), hands the latest value per item and
+// field to the page (the apply callback; a queued local edit for the same field wins), and writes
+// "live, last write <time>" or "offline, saved locally" into the top bar pill. The history toggle under a comment
+// box lists every row of that item, newest first, queued rows on top.
+// Requests carry the key in the apikey header only (the publishable key is not a JWT and is refused in
+// Authorization; the legacy anon key works the same way in apikey alone).
+// Phase 12 (Vatsal, 17 Sep 2026): write() refuses a row with no identity and returns false (the page says so in
+// plain words; nothing is queued); rows in BOARD_IGNORE (data/board_ignore.json: page, item_id and the minute of
+// created_at) are test rows and are dropped from every fetch, so counts, exports and history never see them;
+// read({page, apply}) fetches another page's rows read-only (page "" is every page) for the pages that need them
+// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update); init({also})
+// names pages whose rows are read into this page's cache as well (the Tracker reads the W rows written under
+// page integrations before the move), so the latest value and the history are whole; writes stay on the page.
+// Held edits (Vatsal, 17 Sep 2026): a write without a name is not refused into thin air. The row waits in this
+// browser (the latest value per item and field), the pill says how many are waiting, and the moment the page picks
+// a name (named(who)) they go out stamped with it. init({who, local}) does the same on load: local() returns the
+// values the page shows ({item_id, field, value, kind}); any the table does not hold are sent too, so an edit typed
+// before the name was picked, or before this rule existed, is recorded once there is a name. While edits wait, the
+// page asks in words beside the name control ("Who is this? Pick your name to record your N edits.") until a name
+// is picked; the ask is the store's own element and style, so every page gets it (Vatsal, 17 Sep 2026).
+(function(){
+  var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
+  var NAME_TEXT = "Held until you pick your name at the top; recorded then.";
+  var ALL = {}, loaded = false;  // the latest value per item and field over every row fetched on load, test rows included
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var FIELDS = "id,page,item_id,field,value,who,kind,created_at";
+  var IGNORE = (typeof BOARD_IGNORE !== "undefined" && BOARD_IGNORE) ? BOARD_IGNORE : [];
+  function cfg(name){ try { var v = window[name]; return typeof v === "string" ? v.trim() : ""; } catch(e){ return ""; } }
+  var url = cfg("SUPABASE_URL"); while(url.length && url.charAt(url.length - 1) === "/") url = url.slice(0, -1);
+  var key = cfg("SUPABASE_ANON_KEY");
+  var configured = !!(url && key);
+  var cache = {};
+  try { cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ cache = {}; }
+  function saveCache(){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e){} }
+  var page = "", also = [], applyFn = null, localFn = null, WHO = "", live = false, checked = false, lastWrite = "", boxes = [];
+  function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; if(!c.held) c.held = []; return c; }
+  function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
+  function two(n){ return (n < 10 ? "0" : "") + n; }
+  function fmt(ts){
+    // created_at arrives as UTC from the database and as toISOString() from the outbox; the first 19 characters are
+    // the same shape in both, so the display never depends on how a browser parses fractional seconds or offsets.
+    var d = new Date(String(ts || "").slice(0, 19) + "Z");
+    if(isNaN(d.getTime())) return String(ts || "");
+    return d.getDate() + " " + MONTHS[d.getMonth()] + " " + two(d.getHours()) + ":" + two(d.getMinutes());
+  }
+  function ignored(r){
+    // a test row: same page and item, written in the minute the ignore list names (data/board_ignore.json)
+    var minute = String(r.created_at || "").slice(0, 16);
+    for(var i = 0; i < IGNORE.length; i++){ var g = IGNORE[i]; if(g.page === r.page && g.item_id === r.item_id && g.minute === minute) return true; }
+    return false;
+  }
+  function keep(rows){ var out = []; for(var i = 0; i < rows.length; i++) if(!ignored(rows[i])) out.push(rows[i]); return out; }
+  function control(){ return document.getElementById("reviewer") || document.getElementById("who"); }
+  var styled = false;
+  function askStyle(){
+    if(styled || !document.head || !document.head.appendChild) return; styled = true;
+    var st = document.createElement("style");
+    st.textContent = ".askname-note{font-weight:700;color:#1B1F27;background:#FFF4B8;border:1px solid #C9A800;border-radius:6px;padding:4px 8px;font-size:12px;line-height:1.3}" +
+                     "select.askname,input.askname{border:2px solid #1B1F27 !important}";
+    document.head.appendChild(st);
+  }
+  function ask(held){
+    // The ask beside the name control while edits wait for a name: words that stay, not a flash.
+    var c = control(); if(!c || !c.parentNode) return;
+    var el = document.getElementById("askname");
+    if(!held){ if(el && el.parentNode) el.parentNode.removeChild(el); if(c.classList) c.classList.remove("askname"); return; }
+    if(!el || !el.parentNode){ el = document.createElement("span"); el.id = "askname"; el.className = "askname-note"; c.parentNode.insertBefore(el, c.nextSibling); askStyle(); }
+    el.textContent = "Who is this? Pick your name to record your " + (held === 1 ? "edit." : held + " edits.");
+    if(c.classList) c.classList.add("askname");
+  }
+  function pill(){
+    var held = page ? pc().held.length : 0;
+    ask(held);
+    var p = document.getElementById("sheetpill"); if(!p) return;
+    var text, title, on = false;
+    if(held){ text = held + (held === 1 ? " edit" : " edits") + " waiting for a name"; title = NAME_TEXT; }
+    else if(!configured){ text = "offline, saved locally"; title = "docs/config.js has no Supabase URL and key: edits stay in this browser"; }
+    else if(!checked){ text = "connecting"; title = "reading board_entries"; }
+    else if(live){ text = "live" + (lastWrite ? ", last write " + fmt(lastWrite) : ""); title = "every edit is a row in board_entries; the time is the last write on this page by anyone"; on = true; }
+    else { text = "offline, saved locally"; title = "the last request to Supabase failed: edits stay in this browser and are sent on the next load"; }
+    p.textContent = text; p.title = title; p.className = "pill" + (on ? " on" : "") + (held ? " held" : "");
+  }
+  function strip(r){ return {page: r.page, item_id: r.item_id, field: r.field, value: r.value, who: r.who, kind: r.kind}; }
+  function request(method, query, body, cb){
+    // cb(status, json) exactly once; status is "ok", "rejected" (the server answered with an error) or "net".
+    var done = false;
+    function finish(s, j){ if(done) return; done = true; try { cb(s, j); } catch(e){} }
+    var headers = {"apikey": key};
+    if(body !== undefined){ headers["Content-Type"] = "application/json"; headers["Prefer"] = "return=representation"; }
+    var p;
+    try { p = fetch(url + "/rest/v1/board_entries" + query, {method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body)}); }
+    catch(e){ finish("net"); return; }
+    Promise.resolve(p).then(function(res){
+      if(!res || typeof res.ok !== "boolean") throw new Error("no response");
+      if(!res.ok){ finish("rejected", res.status); return; }
+      return res.json().then(function(j){ finish("ok", j); });
+    }).catch(function(){ finish("net"); });
+  }
+  function remember(j){
+    var r = (j && typeof j.length === "number" && j.length) ? j[0] : null; if(!r || !r.created_at) return;
+    var c = pc(); c.rows.push(r); c.last_write = r.created_at; lastWrite = c.last_write;
+  }
+  function flush(cb){
+    // Send every queued row in order; a row that fails stays queued; the caller learns whether all went through.
+    var c = pc(); var queue = c.outbox.slice(); var i = 0; var failed = 0;
+    (function next(){
+      if(i >= queue.length){ saveCache(); cb(failed === 0); return; }
+      var row = queue[i++];
+      request("POST", "", strip(row), function(s, j){
+        if(s === "ok"){ var at = c.outbox.indexOf(row); if(at >= 0) c.outbox.splice(at, 1); remember(j); } else failed++;
+        next();
+      });
+    })();
+  }
+  function fetchRows(pageName, offset, acc, cb, all){
+    // every row of one page (or of every page when pageName is ""), 1000 at a time, in id order; test rows dropped
+    // (all, when given, still records the latest value per item and field over every row, test rows included:
+    // the sync compares against it, so a local copy of a test row is never re-sent as a real one; 17 Sep 2026)
+    var filter = pageName ? "&page=eq." + encodeURIComponent(pageName) : "";
+    request("GET", "?select=" + FIELDS + filter + "&order=id.asc&limit=" + PAGE_SIZE + "&offset=" + offset, undefined, function(s, rows){
+      if(s !== "ok" || !rows || typeof rows.length !== "number"){ cb(false); return; }
+      if(all) rows.forEach(function(r){ var k = r.item_id + "|" + r.field; if(!all[k] || r.id > all[k].id) all[k] = {id: r.id, value: String(r.value === undefined || r.value === null ? "" : r.value)}; });
+      acc = acc.concat(keep(rows));
+      if(rows.length < PAGE_SIZE) cb(true, acc); else fetchRows(pageName, offset + PAGE_SIZE, acc, cb, all);
+    });
+  }
+  function latestOf(rows){ var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; }); var out = []; for(var k in latest) out.push(latest[k]); return out; }
+  function fetchPages(names, acc, cb){
+    // the rows of several pages, merged in id order (ids grow with time, so the latest row per field is the last one)
+    if(!names.length){ acc.sort(function(a, b){ return a.id - b.id; }); cb(true, acc); return; }
+    fetchRows(names[0], 0, [], function(ok, rows){ if(!ok){ cb(false); return; } fetchPages(names.slice(1), acc.concat(rows), cb); }, ALL);
+  }
+  function load(){
+    pill();
+    if(!configured || !page) return;
+    ALL = {}; loaded = false;
+    flush(function(sent){
+      fetchPages([page].concat(also), [], function(ok, rows){
+        checked = true; var c = pc();
+        if(ok){
+          loaded = true;
+          var own = rows.filter(function(r){ return r.page === page; });
+          c.rows = rows; c.last_write = own.length ? own[own.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
+          if(applyFn){
+            var pending = {}; c.outbox.forEach(function(r){ pending[r.item_id + "|" + r.field] = 1; });
+            var out = latestOf(rows).filter(function(r){ return !pending[r.item_id + "|" + r.field]; });
+            try { applyFn(out); } catch(e){}
+          }
+        }
+        live = ok && sent && !c.outbox.length; pill(); refreshHistory();
+        if(ok && WHO) sync(WHO);
+      });
+    });
+  }
+  function read(opts){
+    // Read-only: the rows of another page (or of every page when opts.page is ""); apply(latest, rows) once they arrive.
+    opts = opts || {};
+    if(!configured){ try { opts.apply([], [], false); } catch(e){} return; }
+    fetchRows(String(opts.page || ""), 0, [], function(ok, rows){
+      rows = ok ? rows : [];
+      try { opts.apply(latestOf(rows), rows, ok); } catch(e){}
+    });
+  }
+  function write(row){
+    // row: {item_id, field, value, who, kind}. Without a name the row is held (false: not recorded yet); every row
+    // names who wrote it (Vatsal, 17 Sep 2026) and the held rows go out through named(). With a name it is queued
+    // first, removed on success, so a tab closed mid-request sends the row on the next load (a duplicate row is
+    // harmless: same latest value).
+    if(!page) return false;
+    var who = String(row.who || "").trim();
+    var r = {page: page, item_id: String(row.item_id), field: String(row.field),
+             value: String(row.value === undefined || row.value === null ? "" : row.value),
+             who: who, kind: String(row.kind || "field_edit"), created_at: new Date().toISOString(), queued: true};
+    if(!who){ hold(r); return false; }
+    if(!configured){ pill(); return true; }
+    var c = pc(); c.outbox.push(r); saveCache();
+    request("POST", "", strip(r), function(s, j){
+      var at = c.outbox.indexOf(r);
+      if(s === "ok"){ if(at >= 0) c.outbox.splice(at, 1); remember(j); live = true; } else live = false;
+      checked = true; saveCache(); pill(); refreshHistory();
+    });
+    return true;
+  }
+  function hold(r){
+    // the latest value per item and field waits here, in first-edit order, until the page picks a name
+    var c = pc(); r.held = true;
+    for(var i = 0; i < c.held.length; i++){ if(c.held[i].item_id === r.item_id && c.held[i].field === r.field){ c.held[i] = r; saveCache(); pill(); refreshHistory(); return; } }
+    c.held.push(r); saveCache(); pill(); refreshHistory();
+  }
+  function latestValue(item_id, field){
+    // the table's latest value for one field over every row fetched on load (this page and the pages read with it,
+    // test rows included), or null when the table has none
+    var e = ALL[item_id + "|" + field]; return e ? e.value : null;
+  }
+  function sync(who){
+    // The page has a name: the held rows are stamped with it and sent, then, once the table has been read, every
+    // value the page shows that the table does not hold (local() minus the latest row per field) goes out as well.
+    // Returns how many were sent.
+    who = String(who || "").trim(); if(!page || !who) return 0;
+    var c = pc(), now = new Date().toISOString(), out = [], seen = {};
+    c.held.forEach(function(r){ r.who = who; r.created_at = now; delete r.held; out.push(r); seen[r.item_id + "|" + r.field] = 1; });
+    c.held = [];
+    c.outbox.forEach(function(r){ seen[r.item_id + "|" + r.field] = 1; });
+    var local = []; try { local = (loaded && localFn) ? (localFn() || []) : []; } catch(e){ local = []; }
+    local.forEach(function(e){
+      var item = String(e.item_id), field = String(e.field), value = String(e.value === undefined || e.value === null ? "" : e.value);
+      if(seen[item + "|" + field]) return;
+      var remote = latestValue(item, field);
+      if(remote === null ? value === "" : remote === value) return;
+      out.push({page: page, item_id: item, field: field, value: value, who: who, kind: String(e.kind || "field_edit"), created_at: now, queued: true});
+    });
+    if(!out.length){ saveCache(); pill(); return 0; }
+    if(!configured){ saveCache(); pill(); return out.length; }
+    out.forEach(function(r){ c.outbox.push(r); }); saveCache(); pill();
+    flush(function(sent){ checked = true; live = sent; pill(); refreshHistory(); });
+    return out.length;
+  }
+  function named(who){ WHO = String(who || "").trim(); return sync(WHO); }
+  function history(item_id){
+    var c = pc(); item_id = String(item_id);
+    var held = c.held.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    var queued = c.outbox.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    var rows = c.rows.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    return held.concat(queued, rows);
+  }
+  function historyHtml(item_id){
+    if(!configured) return '<div class="hist-empty">local only: docs/config.js has no Supabase URL and key</div>';
+    var rows = history(item_id);
+    if(!rows.length) return '<div class="hist-empty">' + (checked ? "no rows yet for " + esc(item_id) : "not loaded yet") + '</div>';
+    return '<ul class="hist">' + rows.map(function(r){
+      return '<li><span class="t">' + esc(fmt(r.created_at)) + '</span> <b>' + esc(r.who || (r.held ? "(no name yet)" : "(no identity)")) + '</b> ' + esc(r.field) + ': ' +
+             (r.value ? esc(r.value) : '<i>cleared</i>') + (r.held ? ' <i>waiting for a name</i>' : r.queued ? ' <i>queued, not sent yet</i>' : '') + '</li>';
+    }).join("") + '</ul>';
+  }
+  function refreshHistory(){ boxes.forEach(function(b){ if(!b.box.hidden) b.box.innerHTML = historyHtml(b.id()); }); }
+  function attach(el, idFn){
+    // Adds a "History" toggle right after a control; idFn is the item id or a function returning it.
+    if(!el || !el.parentNode) return;
+    var id = typeof idFn === "function" ? idFn : function(){ return idFn; };
+    var wrap = document.createElement("div"); wrap.className = "histwrap"; wrap.style.gridColumn = "1 / -1";  // a full row inside a grid form
+    var b = document.createElement("button"); b.type = "button"; b.className = "hist-toggle"; b.textContent = "History";
+    var box = document.createElement("div"); box.className = "histbox"; box.hidden = true;
+    b.addEventListener("click", function(){ box.hidden = !box.hidden; if(!box.hidden) box.innerHTML = historyHtml(id()); });
+    wrap.appendChild(b); wrap.appendChild(box);
+    el.parentNode.insertBefore(wrap, el.nextSibling);
+    boxes.push({box: box, id: id});
+  }
+  function init(opts){ opts = opts || {}; page = String(opts.page || ""); also = (opts.also || []).map(String).filter(function(p){ return p && p !== page; }); applyFn = opts.apply || null; localFn = opts.local || null; WHO = String(opts.who || "").trim(); load(); }
+  function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0, held: page ? pc().held.length : 0}; }
+  function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
+  window.yeslyfBoard = {init: init, write: write, named: named, read: read, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label, fmt: fmt,
+                        noIdentity: NAME_TEXT};
+})();
+</script><script>
+(function(){
+  var KEY="yeslyf_operator_v1";
+  var byId={}; ITEMS.forEach(function(it){ byId[it.id]=it; });
+  var stepIds={}; STEPS.forEach(function(id){ stepIds[id]=true; });
+  var S={}; try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
+  if(!S.rows) S.rows={}; if(!S.who) S.who="";
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  var ft; function flash(t){ var s=document.getElementById("saved"); if(!s) return; s.textContent=t||"Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1800); }
+  function esc(s){ return String(s===undefined||s===null?"":s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
+  function row(id){ if(!S.rows[id]) S.rows[id]={}; return S.rows[id]; }
+  function val(id){ var e=S.rows[id]; return (e&&e.done!==undefined)?e.done:"no"; }
+  function noteVal(id){ var e=S.rows[id]; return (e&&e.notes!==undefined)?e.notes:""; }
+  function localRows(){ var out=[];
+    for(var id in S.rows){ var e=S.rows[id];
+      if(byId[id]&&e.done!==undefined) out.push({item_id:id,field:"done",value:e.done,kind:"field_edit"});
+      if(stepIds[id]&&e.notes!==undefined) out.push({item_id:id,field:"notes",value:e.notes,kind:"field_edit"}); }
+    return out; }
+  function put(id,field,value){ if(!window.yeslyfBoard) return true; var ok=yeslyfBoard.write({item_id:id,field:field,value:value,who:S.who||"",kind:"field_edit"}); if(!ok) setTimeout(function(){ flash(yeslyfBoard.noIdentity); },0); return ok; }
+  function paintItem(id){ var el=document.getElementById("chk-"+id); var want=val(id)==="yes"; if(el&&el.checked!==want) el.checked=want; }
+  function paintNotes(id){ var el=document.getElementById("notes-"+id); if(el){ var v=noteVal(id); if(el.value!==v) el.value=v; } }
+  function paintProgress(){ var done=0; ITEMS.forEach(function(it){ if(val(it.id)==="yes") done++; }); var el=document.getElementById("progress"); if(el) el.textContent=done+" of "+ITEMS.length+" done"; }
+  function paintAll(){ ITEMS.forEach(function(it){ paintItem(it.id); }); STEPS.forEach(paintNotes); paintProgress(); var rv=document.getElementById("reviewer"); if(rv&&rv.value!==(S.who||"")) rv.value=S.who||""; }
+  function setDone(id,checked){ if(!byId[id]) return; var v=checked?"yes":"no"; row(id).done=v; save(); paintItem(id); paintProgress(); if(put(id,"done",v)) flash(); }
+  function setNotes(id,text){ if(!stepIds[id]) return; row(id).notes=text; save(); paintNotes(id); if(put(id,"notes",text)) flash(); }
+  function applyRemote(rows){ rows.forEach(function(r){
+      if(r.field==="done"&&byId[r.item_id]) row(r.item_id).done=r.value||"no";
+      else if(r.field==="notes"&&stepIds[r.item_id]) row(r.item_id).notes=r.value||""; });
+    save(); paintAll(); }
+  var tmr={};
+  document.addEventListener("DOMContentLoaded",function(){
+    if(window.yeslyfBoard){
+      Array.prototype.forEach.call(document.querySelectorAll("textarea.stepnotes"),function(t){ yeslyfBoard.attach(t,t.getAttribute("data-id")); });
+      yeslyfBoard.init({page:"admin_operator",apply:applyRemote,who:S.who||"",local:localRows});
+    }
+    var rv=document.getElementById("reviewer"); if(rv){ rv.innerHTML='<option value="">editing as</option>'+IDENTITIES.map(function(n){ return '<option value="'+esc(n)+'">'+esc(n)+'</option>'; }).join("");
+      rv.value=S.who||"";
+      rv.addEventListener("change",function(){ S.who=IDENTITIES.indexOf(rv.value)>=0?rv.value:""; save(); var n=(window.yeslyfBoard&&S.who)?yeslyfBoard.named(S.who):0;
+        flash(S.who?"Editing as "+S.who+(n?"; "+n+(n===1?" edit":" edits")+" recorded":""):""); }); }
+    paintAll();
+    document.body.addEventListener("change",function(e){ var t=e.target; if(!t||t.tagName!=="INPUT"||t.type!=="checkbox") return; var id=t.getAttribute("data-id"); if(!id||!byId[id]) return; setDone(id,t.checked); });
+    document.body.addEventListener("input",function(e){ var t=e.target; if(!t||!t.classList||!t.classList.contains("stepnotes")) return; var id=t.getAttribute("data-id"); if(!id||!stepIds[id]) return;
+      row(id).notes=t.value; save(); flash("Saving...");
+      clearTimeout(tmr[id]); tmr[id]=setTimeout(function(){ if(put(id,"notes",noteVal(id))) flash(); },1500); });
+  });
+  window.yeslyfOperator={
+    items: function(){ return ITEMS.map(function(it){ return it.id; }); },
+    done: function(id){ return val(id)==="yes"; },
+    set: function(id,bool){ var el=document.getElementById("chk-"+id); if(el) el.checked=!!bool; setDone(id,!!bool); },
+    notes: function(id){ return noteVal(id); },
+    setNotes: function(id,text){ setNotes(id,text); },
+    apply: applyRemote
+  };
+})();
+</script>
+</body>
+</html>

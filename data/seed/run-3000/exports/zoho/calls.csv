@@ -1,0 +1,85 @@
+Call External ID,Contact External ID,Adviser,Booked At,Slot,Topic,Status,Notes,Input Changes
+P00002-C1,P00002,Adviser 01,2025-08-26T13:12:21+05:30,2025-08-30T18:00:00+05:30,Using the app,completed,Walked through using the app; next step agreed.,
+P00005-C1,P00005,Adviser 03,2025-10-07T16:58:10+05:30,2025-10-13T19:30:00+05:30,My plan,completed,Walked through my plan; next step agreed.,bucket_guilt_free
+P00005-C2,P00005,Adviser 05,2025-12-05T14:06:00+05:30,2025-12-06T19:00:00+05:30,My plan,completed,Walked through my plan; next step agreed.,health_sum_insured; ulip_premium
+P00006-C1,P00006,Adviser 01,2025-09-21T18:36:56+05:30,2025-09-23T18:30:00+05:30,Using the app,completed,Walked through using the app; next step agreed.,
+P00006-C2,P00006,Adviser 06,2025-10-07T01:04:49+05:30,2025-10-09T17:00:00+05:30,My plan,completed,Walked through my plan; next step agreed.,bucket_variable; bank_and_deposits
+P00012-C1,P00012,Adviser 06,2026-05-22T22:04:11+05:30,2026-05-26T16:30:00+05:30,My plan,completed,Walked through my plan; next step agreed.,partner_take_home
+P00028-C1,P00028,Adviser 01,2026-05-13T18:11:57+05:30,2026-05-14T15:00:00+05:30,My plan,completed,Walked through my plan; next step agreed.,bank_and_deposits
+P00061-C1,P00061,Adviser 06,2026-04-29T23:28:17+05:30,2026-05-03T19:30:00+05:30,The investments and why they were chosen,completed,Walked through the investments and why they were chosen; next step agreed.,ulip_years_completed
+P00061-C2,P00061,Adviser 04,2026-06-01T12:57:46+05:30,2026-06-05T12:00:00+05:30,My plan,completed,Walked through my plan; next step agreed. No input changes; the plan is unchanged.,
+P00083-C1,P00083,Adviser 04,2026-04-16T14:14:37+05:30,2026-04-19T19:00:00+05:30,Something changed,completed,Walked through something changed; next step agreed.,
+P00083-C2,P00083,Adviser 06,2026-05-07T16:51:46+05:30,2026-05-11T17:30:00+05:30,My plan,completed,Walked through my plan; next step agreed.,bucket_guilt_free
+P00162-C1,P00162,Adviser 06,2026-06-06T06:49:26+05:30,2026-06-12T19:00:00+05:30,Something changed,completed,Walked through something changed; next step agreed. No input changes; the plan is unchanged.,
+P00162-C2,P00162,Adviser 06,2026-07-06T07:52:54+05:30,2026-07-10T12:30:00+05:30,Using the app,completed,Walked through using the app; next step agreed. No input changes; the plan is unchanged.,
+P00194-C1,P00194,Adviser 06,2026-04-25T22:21:25+05:30,2026-04-28T10:00:00+05:30,The investments and why they were chosen,completed,Walked through the investments and why they were chosen; next step agreed.,
+P00194-C2,P00194,Adviser 03,2026-05-06T19:44:57+05:30,2026-05-09T10:30:00+05:30,The investments and why they were chosen,completed,Walked through the investments and why they were chosen; next step agreed. No input changes; the plan is unchanged.,
+P00306-C1,P00306,Adviser 04,2026-05-22T16:26:36+05:30,2026-05-24T19:00:00+05:30,My plan,completed,Walked through my plan; next step agreed.,
+P00325-C1,P00325,Adviser 05,2026-05-09T11:38:05+05:30,2026-05-12T17:30:00+05:30,The investments and why they were chosen,completed,Walked through the investments and why they were chosen; next step agreed. No input changes; the plan is unchanged.,
+P00331-C1,P00331,Adviser 03,2026-05-27T16:06:01+05:30,2026-06-01T17:00:00+05:30,My plan,completed,Walked through my plan; next step agreed. No input changes; the plan is unchanged.,
+P00332-C1,P00332,Adviser 03,2026-06-03T00:17:48+05:30,2026-06-07T10:00:00+05:30,My numbers,completed,Walked through my numbers; next step agreed.,bucket_variable; current_sip
+P00332-C2,P00332,Adviser 01,2026-07-12T07:57:33+05:30,2026-07-15T10:30:00+05:30,Using the app,completed,Walked through using the app; next step agreed.,bucket_fixed; health_sum_insured
+P00348-C1,P00348,Adviser 04,2026-05-23T22:16:14+05:30,2026-05-28T18:00:00+05:30,My plan,completed,Walked through my plan; next step agreed. No input changes; the plan is unchanged.,
+P00385-C1,P00385,Adviser 01,2026-09-18T09:44:31+05:30,2026-09-23T11:30:00+05:30,My numbers,booked,,
+P00392-C1,P00392,Adviser 02,2026-06-07T01:06:33+05:30,2026-06-13T16:30:00+05:30,The investments and why they were chosen,completed,Walked through the investments and why they were chosen; next step agreed. No input changes; the plan is unchanged.,
+P00458-C1,P00458,Adviser 03,2026-09-09T06:29:46+05:30,2026-09-13T19:00:00+05:30,My numbers,no_show,,
+P00458-C2,P00458,Adviser 03,2026-09-14T15:20:56+05:30,2026-09-17T12:30:00+05:30,My numbers,no_show,,
+P00462-C1,P00462,Adviser 03,2026-05-21T15:31:38+05:30,2026-05-26T15:00:00+05:30,My plan,completed,Walked through my plan; next step agreed.,
+P00466-C1,P00466,Adviser 04,2026-06-05T08:01:14+05:30,2026-06-06T15:00:00+05:30,My numbers,completed,Walked through my numbers; next step agreed.,home_value; total_outgoings
+P00474-C1,P00474,Adviser 03,2026-05-28T13:12:23+05:30,2026-05-31T19:00:00+05:30,My plan,completed,Walked through my plan; next step agreed. No input changes; the plan is unchanged.,
+P00515-C1,P00515,Adviser 01,2026-06-08T15:22:52+05:30,2026-06-14T17:00:00+05:30,My numbers,completed,Walked through my numbers; next step agreed.,bucket_variable; bucket_guilt_free
+P00515-C2,P00515,Adviser 03,2026-07-28T18:58:48+05:30,2026-08-03T17:00:00+05:30,Something changed,completed,Walked through something changed; next step agreed.,bucket_fixed
+P00612-C1,P00612,Adviser 01,2026-06-07T12:59:32+05:30,2026-06-09T11:30:00+05:30,My plan,no_show,,
+P00612-C2,P00612,Adviser 04,2026-06-10T01:56:31+05:30,2026-06-12T12:00:00+05:30,My plan,completed,Walked through my plan; next step agreed. No input changes; the plan is unchanged.,
+P00734-C1,P00734,Adviser 03,2026-06-20T21:23:27+05:30,2026-06-25T19:30:00+05:30,The investments and why they were chosen,completed,Walked through the investments and why they were chosen; next step agreed. No input changes; the plan is unchanged.,
+P00749-C1,P00749,Adviser 02,2026-09-09T05:45:45+05:30,2026-09-13T17:30:00+05:30,My numbers,no_show,,
+P00749-C2,P00749,Adviser 02,2026-09-14T06:38:47+05:30,2026-09-17T19:00:00+05:30,My numbers,no_show,,
+P00757-C1,P00757,Adviser 05,2026-06-14T22:38:00+05:30,2026-06-17T19:00:00+05:30,Something changed,completed,Walked through something changed; next step agreed. No input changes; the plan is unchanged.,
+P00766-C1,P00766,Adviser 06,2026-09-23T00:34:07+05:30,2026-09-26T17:30:00+05:30,My numbers,booked,,
+P00787-C1,P00787,Adviser 06,2026-06-24T06:27:08+05:30,2026-06-29T17:00:00+05:30,The investments and why they were chosen,completed,Walked through the investments and why they were chosen; next step agreed.,take_home; partner_take_home
+P00816-C1,P00816,Adviser 01,2026-07-16T04:29:24+05:30,2026-07-19T18:00:00+05:30,My plan,completed,Walked through my plan; next step agreed. No input changes; the plan is unchanged.,
+P00816-C2,P00816,Adviser 06,2026-08-06T13:42:58+05:30,2026-08-09T16:30:00+05:30,My plan,completed,Walked through my plan; next step agreed. No input changes; the plan is unchanged.,
+P00912-C1,P00912,Adviser 05,2026-06-28T16:42:21+05:30,2026-06-30T12:00:00+05:30,My numbers,completed,Walked through my numbers; next step agreed. No input changes; the plan is unchanged.,
+P00928-C1,P00928,Adviser 02,2026-07-08T15:39:46+05:30,2026-07-11T17:30:00+05:30,Using the app,completed,Walked through using the app; next step agreed.,current_sip; total_outgoings
+P00991-C1,P00991,Adviser 01,2026-07-18T04:02:39+05:30,2026-07-23T15:00:00+05:30,Something changed,completed,Walked through something changed; next step agreed.,epf; bucket_variable
+P01034-C1,P01034,Adviser 04,2026-07-09T19:19:32+05:30,2026-07-12T15:00:00+05:30,My plan,completed,Walked through my plan; next step agreed.,
+P01099-C1,P01099,Adviser 03,2026-07-31T01:01:59+05:30,2026-08-05T12:00:00+05:30,My numbers,completed,Walked through my numbers; next step agreed.,bucket_variable; bucket_guilt_free
+P01099-C2,P01099,Adviser 05,2026-09-19T16:47:02+05:30,2026-09-21T18:30:00+05:30,Using the app,completed,Walked through using the app; next step agreed. No input changes; the plan is unchanged.,
+P01155-C1,P01155,Adviser 06,2026-09-08T17:27:20+05:30,2026-09-12T18:00:00+05:30,The investments and why they were chosen,no_show,,
+P01155-C2,P01155,Adviser 02,2026-09-13T17:52:12+05:30,2026-09-15T11:00:00+05:30,The investments and why they were chosen,no_show,,
+P01202-C1,P01202,Adviser 05,2026-08-04T13:48:52+05:30,2026-08-10T11:30:00+05:30,My plan,completed,Walked through my plan; next step agreed. No input changes; the plan is unchanged.,
+P01320-C1,P01320,Adviser 05,2026-07-29T18:34:31+05:30,2026-08-04T12:00:00+05:30,Something changed,completed,Walked through something changed; next step agreed. No input changes; the plan is unchanged.,
+P01330-C1,P01330,Adviser 04,2026-07-09T08:44:14+05:30,2026-07-11T17:00:00+05:30,The investments and why they were chosen,completed,Walked through the investments and why they were chosen; next step agreed.,
+P01335-C1,P01335,Adviser 05,2026-07-29T10:32:24+05:30,2026-08-04T17:00:00+05:30,Something changed,completed,Walked through something changed; next step agreed. No input changes; the plan is unchanged.,
+P01374-C1,P01374,Adviser 01,2026-07-14T10:53:51+05:30,2026-07-17T16:00:00+05:30,Something changed,completed,Walked through something changed; next step agreed.,
+P01468-C1,P01468,Adviser 02,2026-08-26T00:32:40+05:30,2026-08-28T12:30:00+05:30,My plan,completed,Walked through my plan; next step agreed. No input changes; the plan is unchanged.,
+P01482-C1,P01482,Adviser 03,2026-09-20T21:23:07+05:30,2026-09-23T11:00:00+05:30,My plan,booked,,
+P01500-C1,P01500,Adviser 02,2026-08-02T08:20:59+05:30,2026-08-08T17:00:00+05:30,The investments and why they were chosen,completed,Walked through the investments and why they were chosen; next step agreed. No input changes; the plan is unchanged.,
+P01500-C2,P01500,Adviser 01,2026-08-30T16:19:44+05:30,2026-09-03T15:00:00+05:30,Using the app,completed,Walked through using the app; next step agreed. No input changes; the plan is unchanged.,
+P01550-C1,P01550,Adviser 06,2026-09-19T06:43:09+05:30,2026-09-25T15:00:00+05:30,Using the app,booked,,
+P01567-C1,P01567,Adviser 04,2026-08-25T16:27:04+05:30,2026-08-31T12:00:00+05:30,Using the app,no_show,,
+P01567-C2,P01567,Adviser 06,2026-09-02T10:24:09+05:30,2026-09-04T16:00:00+05:30,Using the app,completed,Walked through using the app; next step agreed. No input changes; the plan is unchanged.,
+P01585-C1,P01585,Adviser 04,2026-08-31T09:50:17+05:30,2026-09-04T19:00:00+05:30,The investments and why they were chosen,cancelled,,
+P01615-C1,P01615,Adviser 01,2026-07-26T11:03:24+05:30,2026-07-30T18:00:00+05:30,Something changed,completed,Walked through something changed; next step agreed.,
+P01621-C1,P01621,Adviser 04,2026-08-22T13:10:37+05:30,2026-08-23T15:00:00+05:30,My plan,completed,Walked through my plan; next step agreed. No input changes; the plan is unchanged.,
+P01807-C1,P01807,Adviser 02,2026-09-15T07:02:15+05:30,2026-09-18T15:00:00+05:30,My plan,no_show,,
+P01807-C2,P01807,Adviser 01,2026-09-18T15:40:34+05:30,2026-09-20T11:00:00+05:30,My plan,no_show,,
+P01823-C1,P01823,Adviser 01,2026-08-27T03:43:33+05:30,2026-08-31T15:00:00+05:30,My plan,completed,Walked through my plan; next step agreed. No input changes; the plan is unchanged.,
+P01827-C1,P01827,Adviser 04,2026-08-24T02:33:50+05:30,2026-08-28T17:30:00+05:30,My plan,completed,Walked through my plan; next step agreed. No input changes; the plan is unchanged.,
+P01860-C1,P01860,Adviser 01,2026-09-17T09:26:52+05:30,2026-09-18T19:30:00+05:30,My plan,no_show,,
+P01860-C2,P01860,Adviser 03,2026-09-19T01:45:36+05:30,2026-09-21T19:00:00+05:30,My plan,no_show,,
+P01918-C1,P01918,Adviser 03,2026-08-12T07:40:20+05:30,2026-08-14T18:30:00+05:30,Something changed,completed,Walked through something changed; next step agreed.,
+P01952-C1,P01952,Adviser 04,2026-08-20T10:59:13+05:30,2026-08-23T12:00:00+05:30,My plan,completed,Walked through my plan; next step agreed.,
+P01990-C1,P01990,Adviser 01,2026-09-01T17:47:44+05:30,2026-09-02T19:30:00+05:30,The investments and why they were chosen,completed,Walked through the investments and why they were chosen; next step agreed.,ppf
+P02011-C1,P02011,Adviser 05,2026-09-01T13:47:52+05:30,2026-09-05T18:00:00+05:30,Using the app,completed,Walked through using the app; next step agreed.,
+P02073-C1,P02073,Adviser 06,2026-09-18T16:14:05+05:30,2026-09-23T18:00:00+05:30,Something changed,booked,,
+P02141-C1,P02141,Adviser 04,2026-08-19T20:05:31+05:30,2026-08-22T18:30:00+05:30,My numbers,completed,Walked through my numbers; next step agreed.,
+P02167-C1,P02167,Adviser 05,2026-09-22T21:10:25+05:30,2026-09-26T15:30:00+05:30,Something changed,booked,,
+P02278-C1,P02278,Adviser 01,2026-09-17T19:49:29+05:30,2026-09-23T16:00:00+05:30,The investments and why they were chosen,booked,,
+P02402-C1,P02402,Adviser 05,2026-09-11T10:40:42+05:30,2026-09-15T10:00:00+05:30,Using the app,completed,Walked through using the app; next step agreed. No input changes; the plan is unchanged.,
+P02425-C1,P02425,Adviser 05,2026-09-06T07:01:14+05:30,2026-09-07T18:00:00+05:30,The investments and why they were chosen,completed,Walked through the investments and why they were chosen; next step agreed.,
+P02549-C1,P02549,Adviser 02,2026-09-21T11:15:38+05:30,2026-09-24T15:00:00+05:30,Using the app,booked,,
+P02551-C1,P02551,Adviser 02,2026-09-16T09:57:12+05:30,2026-09-20T18:00:00+05:30,The investments and why they were chosen,completed,Walked through the investments and why they were chosen; next step agreed.,
+P02751-C1,P02751,Adviser 03,2026-09-18T06:22:58+05:30,2026-09-20T19:30:00+05:30,My numbers,completed,Walked through my numbers; next step agreed.,
+P02861-C1,P02861,Adviser 04,2026-09-19T11:26:11+05:30,2026-09-20T15:30:00+05:30,My numbers,no_show,,
+P02861-C2,P02861,Adviser 06,2026-09-20T19:53:07+05:30,2026-09-22T12:00:00+05:30,My numbers,no_show,,

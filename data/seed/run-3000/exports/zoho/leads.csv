@@ -1,0 +1,1401 @@
+Lead External ID,First Name,Last Name,Phone,Email,City,Lead Source,Lead Stage,WhatsApp Opt-in,DND,Age Band,Top Concern,Keyword,Community Joined,Created Date,Is Seed Topup
+P00010,Aniket,Kulkarni,9000009261,,Mumbai,organic,lead,true,false,,,,false,2026-03-27,false
+P00011,Vikram,Malhotra,9000038025,,Delhi,community,lead,true,false,,,,true,2026-03-27,false
+P00014,Vidya,Kamath,9000009870,vidya.kamath.234@example.com,Chennai,web_reveal,lead,true,false,30 to 34,Retiring early,PLAN,false,2026-03-28,false
+P00016,Swathi,Srinivasan,9000034321,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-03-28,false
+P00017,Ishani,Mohanty,9000093150,,Pune,referral,lead,true,false,,,,true,2026-03-28,false
+P00019,Debasish,Chakraborty,9000014958,,Kolkata,community,lead,true,false,,,,true,2026-03-28,false
+P00020,Nithya,Kamath,9000088881,,Hyderabad,organic,lead,false,false,,,,false,2026-03-29,false
+P00021,Pradeep,Subramanian,9000064995,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-03-29,false
+P00026,Tanvi,Chopra,9000061791,,Delhi,referral,lead,true,false,,,,false,2026-03-30,false
+P00032,Gayathri,Iyengar,9000067756,gayathri.iyengar.170@example.com,Bengaluru,web_reveal,lead,true,false,35 to 39,Where to invest,ALPHA,false,2026-03-30,false
+P00033,Saloni,Pawar,9000041970,,Pune,community,lead,true,false,,,,true,2026-03-30,false
+P00034,Vaibhav,Pandya,9000002229,vaibhav.pandya.693@example.com,Pune,community,lead,true,false,,My children's education,PLAN,true,2026-03-30,false
+P00036,Ankit,Arora,9000028904,,Gurugram,organic,lead,true,false,,,,false,2026-03-30,false
+P00041,Omkar,Desai,9000066523,,Pune,referral,lead,true,false,,,,false,2026-03-30,false
+P00042,Aparna,Kumar,9000009623,,Chennai,community,lead,true,false,,,,true,2026-03-30,false
+P00044,Sandeep,Reddy,9000025087,sandeep.reddy.945@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Where to invest,PLAN,false,2026-03-30,false
+P00049,Devika,Bhosale,9000051022,,Mumbai,community,lead,true,false,,,,true,2026-03-31,false
+P00051,Kunal,Pandya,9000056737,,Mumbai,community,lead,true,false,,,,true,2026-03-31,false
+P00052,Tarun,Mishra,9000006588,tarun.mishra.393@example.com,Gurugram,community,lead,true,false,,Retiring early,ALPHA,true,2026-04-01,false
+P00054,Kunal,Joshi,9000094922,,Ahmedabad,organic,lead,true,false,,,,false,2026-04-01,false
+P00055,Foram,Deshmukh,9000040338,,Pune,community,lead,true,false,,,,true,2026-04-01,false
+P00056,Ketan,Desai,9000048095,ketan.desai.213@example.com,Pune,web_reveal,lead,true,false,30 to 34,My children's education,PLAN,false,2026-04-01,false
+P00058,Siddharth,Bhosale,9000064805,,Noida,community,lead,true,false,,,,true,2026-04-01,false
+P00059,Soumya,Nayak,9000074269,soumya.nayak.152@example.com,Kolkata,web_reveal,lead,false,false,30 to 34,Retiring early,PLAN,false,2026-04-01,false
+P00060,Saloni,Vora,9000008800,,Surat,corporate_session,lead,false,false,,,,false,2026-04-01,false
+P00062,Karan,Rathore,9000058939,karan.rathore.164@example.com,Gurugram,web_reveal,lead,true,false,35 to 39,Retiring early,ALPHA,false,2026-04-02,false
+P00064,Anand,Rao,9000073146,anand.rao.788@example.com,Bengaluru,community,lead,true,false,,Paying off loans,ALPHA,true,2026-04-02,false
+P00065,Lakshmi,Rao,9000078365,,Bengaluru,community,lead,true,false,,,,true,2026-04-02,false
+P00069,Vaibhav,Vora,9000073692,vaibhav.vora.932@example.com,Delhi,community,lead,true,false,,Insurance and cover,PLAN,true,2026-04-02,false
+P00071,Naina,Chauhan,9000053041,naina.chauhan.970@example.com,Noida,web_reveal,lead,true,true,30 to 34,Insurance and cover,ALPHA,false,2026-04-02,false
+P00072,Madhav,Naidu,9000072954,,Chennai,community,lead,true,false,,,,true,2026-04-02,false
+P00073,Tanushree,Ghosh,9000009722,tanushree.ghosh.406@example.com,Bengaluru,community,lead,true,false,,Retiring early,ALPHA,true,2026-04-03,false
+P00074,Sakshi,Chauhan,9000075597,,Pune,organic,lead,false,false,,,,false,2026-04-03,false
+P00076,Rohan,Saxena,9000009658,rohan.saxena.946@example.com,Noida,community,lead,true,false,,Insurance and cover,PLAN,true,2026-04-03,false
+P00082,Gayathri,Iyer,9000038882,,Hyderabad,corporate_session,lead,true,false,,,,false,2026-04-03,false
+P00085,Priya,Bedi,9000086884,,Delhi,corporate_session,lead,true,false,,,,false,2026-04-03,false
+P00088,Nithya,Menon,9000096606,,Hyderabad,community,lead,true,false,,,,true,2026-04-04,false
+P00090,Vishnu,Kumar,9000050283,,Bengaluru,community,lead,true,false,,,,true,2026-04-04,false
+P00091,Swathi,Iyer,9000000600,swathi.iyer.308@example.com,Bengaluru,community,lead,true,false,,My children's education,PLAN,true,2026-04-04,false
+P00092,Janani,Kumar,9000066047,,Hyderabad,organic,lead,true,false,,,,false,2026-04-04,false
+P00093,Madhura,Bhosale,9000008852,,Ahmedabad,community,lead,true,false,,,,true,2026-04-04,false
+P00095,Kunal,Bhosale,9000038217,,Ahmedabad,referral,lead,true,false,,,,false,2026-04-05,false
+P00100,Harini,Chandran,9000016279,,Bengaluru,community,lead,true,false,,,,true,2026-04-05,false
+P00102,Krupa,Jadhav,9000004418,,Ahmedabad,community,lead,true,false,,,,true,2026-04-05,false
+P00103,Sourav,Sahoo,9000005716,sourav.sahoo.435@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Paying off loans,PLAN,false,2026-04-06,false
+P00104,Suresh,Murthy,9000086469,,Hyderabad,community,lead,true,false,,,,true,2026-04-06,false
+P00106,Aakash,Arora,9000023627,,Noida,community,lead,true,false,,,,true,2026-04-06,false
+P00107,Deepa,Kamath,9000049924,,Delhi,organic,lead,true,false,,,,false,2026-04-06,false
+P00110,Madhura,Pawar,9000080040,,Mumbai,corporate_session,lead,true,false,,,,false,2026-04-06,false
+P00111,Srinivas,Hegde,9000099277,srinivas.hegde.288@example.com,Chennai,web_reveal,lead,false,false,40 to 44,Paying off loans,PLAN,false,2026-04-06,false
+P00112,Devika,Naik,9000099928,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-04-06,false
+P00113,Amruta,Shah,9000004552,,Mumbai,referral,lead,true,false,,,,false,2026-04-06,false
+P00115,Karan,Rathore,9000044372,karan.rathore.250@example.com,Gurugram,web_reveal,lead,false,false,25 to 29,Where to invest,PLAN,false,2026-04-07,false
+P00117,Anand,Hegde,9000021343,,Chennai,organic,lead,true,false,,,,false,2026-04-07,false
+P00118,Yogesh,Shinde,9000031480,yogesh.shinde.335@example.com,Pune,web_reveal,lead,true,false,30 to 34,My children's education,PLAN,false,2026-04-07,false
+P00120,Aman,Bhatia,9000002366,,Chennai,community,lead,true,false,,,,true,2026-04-07,false
+P00122,Pranav,Sharma,9000071981,pranav.sharma.571@example.com,Gurugram,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-04-07,false
+P00125,Shreya,Verma,9000061112,,Gurugram,community,lead,false,false,,,,true,2026-04-08,false
+P00127,Sowmya,Pillai,9000078445,,Chennai,referral,lead,false,false,,,,false,2026-04-08,false
+P00131,Ruchi,Agarwal,9000084159,,Delhi,corporate_session,lead,true,false,,,,false,2026-04-08,false
+P00132,Omkar,Bhosale,9000048986,omkar.bhosale.933@example.com,Mumbai,web_reveal,lead,false,false,30 to 34,Insurance and cover,ALPHA,true,2026-04-08,false
+P00133,Aniket,Patil,9000096899,aniket.patil.361@example.com,Pune,community,lead,true,false,,Saving enough every month,PLAN,true,2026-04-08,false
+P00137,Vaibhav,Thakkar,9000003211,vaibhav.thakkar.239@example.com,Mumbai,community,lead,false,false,,Retiring early,ALPHA,true,2026-04-09,false
+P00139,Anirban,Sen,9000056061,,Noida,community,lead,true,false,,,,true,2026-04-09,false
+P00140,Ayesha,Kapoor,9000012626,,Gurugram,community,lead,true,false,,,,true,2026-04-09,false
+P00141,Hetal,Thakkar,9000044221,hetal.thakkar.238@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Paying off loans,PLAN,false,2026-04-09,false
+P00144,Anjali,Sethi,9000044091,,Gurugram,corporate_session,lead,true,false,,,,false,2026-04-09,false
+P00147,Tanvi,Rathore,9000076268,tanvi.rathore.423@example.com,Noida,community,lead,true,false,,Retiring early,ALPHA,true,2026-04-10,false
+P00148,Abhijit,Pradhan,9000051842,abhijit.pradhan.193@example.com,Kolkata,web_reveal,lead,false,false,40 to 44,Where to invest,PLAN,true,2026-04-10,false
+P00149,Ramya,Srinivasan,9000051991,,Delhi,organic,lead,false,false,,,,false,2026-04-10,false
+P00154,Zoya,Arora,9000087432,,Delhi,organic,lead,true,false,,,,false,2026-04-10,false
+P00156,Hardik,Trivedi,9000061543,,Mumbai,referral,lead,false,false,,,,false,2026-04-10,false
+P00157,Yogesh,Trivedi,9000042914,yogesh.trivedi.212@example.com,Pune,web_reveal,lead,true,false,30 to 34,Insurance and cover,ALPHA,false,2026-04-11,false
+P00158,Bhavana,Rao,9000063729,,Bengaluru,community,lead,true,true,,,,true,2026-04-11,false
+P00159,Divakar,Pai,9000000708,,Bengaluru,community,lead,true,false,,,,true,2026-04-11,false
+P00160,Nitin,Srivastava,9000051089,,Delhi,corporate_session,lead,false,false,,,,true,2026-04-11,false
+P00166,Vignesh,Balakrishnan,9000060144,vignesh.balakrishnan.294@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Saving enough every month,PLAN,false,2026-04-12,false
+P00167,Swathi,Natarajan,9000094554,swathi.natarajan.583@example.com,Hyderabad,community,lead,true,false,,My children's education,PLAN,true,2026-04-12,false
+P00172,Keerthana,Pai,9000040331,,Hyderabad,corporate_session,lead,true,false,,,,false,2026-04-12,false
+P00177,Rajiv,Krishnan,9000099877,,Bengaluru,community,lead,true,false,,,,true,2026-04-13,false
+P00179,Harini,Balakrishnan,9000099793,,Chennai,community,lead,false,false,,,,true,2026-04-13,false
+P00181,Ishaan,Mishra,9000078848,,Gurugram,corporate_session,lead,false,false,,,,false,2026-04-14,false
+P00184,Mohit,Bansal,9000090982,,Delhi,corporate_session,lead,true,false,,,,false,2026-04-14,false
+P00185,Deepa,Varma,9000039498,,Bengaluru,organic,lead,true,false,,,,false,2026-04-14,false
+P00189,Chinmay,Vora,9000029118,chinmay.vora.183@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Saving enough every month,PLAN,false,2026-04-14,false
+P00193,Simran,Srivastava,9000036757,,Gurugram,corporate_session,lead,false,false,,,,false,2026-04-14,false
+P00195,Lakshmi,Rajan,9000041821,,Hyderabad,community,lead,true,false,,,,true,2026-04-15,false
+P00196,Jigar,Patil,9000079932,,Pune,organic,lead,true,false,,,,false,2026-04-15,false
+P00205,Aniket,Patil,9000017453,,Nagpur,organic,lead,true,false,,,,false,2026-04-16,false
+P00206,Pooja,Sethi,9000066137,pooja.sethi.174@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,My children's education,PLAN,false,2026-04-16,false
+P00207,Dhruv,Jain,9000001097,dhruv.jain.601@example.com,Pune,web_reveal,lead,false,false,35 to 39,My children's education,PLAN,false,2026-04-16,false
+P00209,Prachi,Trivedi,9000091123,,Ahmedabad,community,lead,true,false,,,,true,2026-04-16,false
+P00210,Tejas,Kulkarni,9000094601,,Ahmedabad,corporate_session,lead,false,false,,,,false,2026-04-16,false
+P00211,Nandini,Subramanian,9000028866,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-04-16,false
+P00212,Payal,Bedi,9000087440,,Pune,community,lead,true,false,,,,true,2026-04-17,false
+P00213,Arpita,Dutta,9000081459,arpita.dutta.310@example.com,Gurugram,web_reveal,lead,false,false,30 to 34,Paying off loans,PLAN,false,2026-04-17,false
+P00215,Lakshmi,Iyengar,9000056574,,Bengaluru,corporate_session,lead,false,false,,,,false,2026-04-17,false
+P00219,Saloni,Naik,9000015535,,Mumbai,corporate_session,lead,false,true,,,,false,2026-04-17,false
+P00220,Yogesh,Sawant,9000033945,,Ahmedabad,community,lead,true,false,,,,true,2026-04-18,false
+P00222,Nirav,Gokhale,9000057417,,Mumbai,community,lead,true,false,,,,true,2026-04-18,false
+P00224,Rituparna,Chatterjee,9000027226,,Kolkata,organic,lead,false,false,,,,false,2026-04-18,false
+P00230,Chaitanya,Reddy,9000091155,,Chennai,community,lead,true,false,,,,true,2026-04-19,false
+P00231,Vaibhav,Jadhav,9000047376,,Pune,community,lead,true,false,,,,true,2026-04-19,false
+P00233,Harini,Menon,9000062164,harini.menon.968@example.com,Chennai,web_reveal,lead,true,false,30 to 34,Paying off loans,PLAN,false,2026-04-19,false
+P00234,Vikram,Mehra,9000044028,vikram.mehra.730@example.com,Lucknow,web_reveal,lead,true,false,30 to 34,Insurance and cover,ALPHA,true,2026-04-19,false
+P00236,Tanvi,Agarwal,9000076299,,Delhi,corporate_session,lead,true,false,,,,true,2026-04-19,false
+P00238,Moumita,Chatterjee,9000035513,,Chennai,corporate_session,lead,true,false,,,,false,2026-04-19,false
+P00239,Manish,Chauhan,9000048927,manish.chauhan.222@example.com,Delhi,web_reveal,lead,true,false,40 to 44,Retiring early,PLAN,false,2026-04-19,false
+P00241,Meera,Chauhan,9000071396,meera.chauhan.141@example.com,Gurugram,community,lead,true,false,,Retiring early,PLAN,true,2026-04-20,false
+P00242,Arnab,Chatterjee,9000072842,arnab.chatterjee.650@example.com,Pune,community,lead,true,true,,Insurance and cover,PLAN,true,2026-04-20,false
+P00243,Vishnu,Varma,9000011619,vishnu.varma.271@example.com,Hyderabad,web_reveal,lead,false,false,35 to 39,Retiring early,PLAN,false,2026-04-20,false
+P00245,Shruti,Vora,9000006919,,Mumbai,corporate_session,lead,false,false,,,,false,2026-04-20,false
+P00248,Manish,Mishra,9000070839,manish.mishra.397@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,Saving enough every month,PLAN,false,2026-04-20,false
+P00253,Tarun,Chopra,9000015054,,Gurugram,corporate_session,lead,true,true,,,,false,2026-04-21,false
+P00256,Nitin,Srivastava,9000005727,nitin.srivastava.893@example.com,Gurugram,web_reveal,lead,false,false,35 to 39,Where to invest,PLAN,false,2026-04-21,false
+P00257,Anjali,Khanna,9000033023,anjali.khanna.611@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Insurance and cover,PLAN,false,2026-04-21,false
+P00261,Aparna,Naidu,9000016016,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-04-21,false
+P00264,Aman,Srivastava,9000086677,aman.srivastava.681@example.com,Noida,web_reveal,lead,true,true,30 to 34,Paying off loans,PLAN,false,2026-04-21,false
+P00266,Aravind,Varma,9000093048,aravind.varma.244@example.com,Chennai,web_reveal,lead,false,false,30 to 34,Saving enough every month,ALPHA,false,2026-04-22,false
+P00269,Divakar,Prasad,9000095159,,Hyderabad,community,lead,true,true,,,,true,2026-04-22,false
+P00270,Rahul,Sethi,9000007769,,Delhi,corporate_session,lead,false,false,,,,false,2026-04-22,false
+P00271,Neha,Saxena,9000019273,neha.saxena.299@example.com,Lucknow,community,lead,true,false,,My children's education,PLAN,true,2026-04-22,false
+P00273,Deepa,Subramanian,9000077126,,Hyderabad,corporate_session,lead,true,false,,,,true,2026-04-22,false
+P00274,Mihir,Trivedi,9000059255,,Pune,corporate_session,lead,true,false,,,,true,2026-04-23,false
+P00276,Sahil,Bansal,9000048533,sahil.bansal.805@example.com,Gurugram,community,lead,true,false,,Paying off loans,PLAN,true,2026-04-23,false
+P00282,Kunal,Vora,9000071125,,Pune,organic,lead,true,false,,,,false,2026-04-23,false
+P00285,Shreya,Mehra,9000096801,,Delhi,referral,lead,true,false,,,,false,2026-04-23,false
+P00286,Rohit,Joshi,9000086281,,Mumbai,community,lead,true,false,,,,true,2026-04-23,false
+P00287,Rajiv,Naidu,9000006368,rajiv.naidu.486@example.com,Chennai,web_reveal,lead,true,false,35 to 39,Paying off loans,PLAN,false,2026-04-23,false
+P00289,Aravind,Reddy,9000019790,,Bengaluru,community,lead,true,false,,,,true,2026-04-24,false
+P00290,Nidhi,Mehta,9000028157,,Mumbai,community,lead,false,false,,,,true,2026-04-24,false
+P00296,Sahil,Gupta,9000018969,,Gurugram,organic,lead,false,false,,,,false,2026-04-24,false
+P00299,Aniket,Deshmukh,9000072186,,Pune,community,lead,true,false,,,,true,2026-04-24,false
+P00307,Vignesh,Hegde,9000073571,vignesh.hegde.236@example.com,Mumbai,community,lead,true,false,,Where to invest,PLAN,true,2026-04-25,false
+P00308,Pavithra,Chandran,9000096426,,Hyderabad,community,lead,true,false,,,,true,2026-04-25,false
+P00310,Arjun,Singh,9000016770,,Delhi,community,lead,true,false,,,,true,2026-04-25,false
+P00311,Ayesha,Chauhan,9000037852,,Delhi,corporate_session,lead,false,false,,,,false,2026-04-25,false
+P00312,Jay,Naik,9000036349,,Mumbai,organic,lead,true,false,,,,true,2026-04-25,false
+P00313,Rahul,Sharma,9000077969,,Gurugram,corporate_session,lead,true,false,,,,false,2026-04-25,false
+P00314,Vishnu,Iyer,9000022038,vishnu.iyer.314@example.com,Bengaluru,web_reveal,lead,true,false,30 to 34,Retiring early,PLAN,false,2026-04-26,false
+P00317,Ruchi,Chauhan,9000099176,,Noida,community,lead,true,false,,,,true,2026-04-26,false
+P00318,Nishant,Shinde,9000002289,,Mumbai,community,lead,true,false,,,,true,2026-04-26,false
+P00320,Sanjana,Sharma,9000068949,,Gurugram,organic,lead,true,false,,,,false,2026-04-26,false
+P00321,Sanjana,Pandey,9000011377,,Delhi,community,lead,true,false,,,,true,2026-04-26,false
+P00326,Hetal,Thakkar,9000016242,hetal.thakkar.276@example.com,Mumbai,web_reveal,lead,true,false,25 to 29,Saving enough every month,PLAN,true,2026-04-27,false
+P00330,Sakshi,Tiwari,9000033736,,Noida,organic,lead,true,false,,,,false,2026-04-27,false
+P00335,Madhura,Gokhale,9000005277,,Pune,community,lead,true,false,,,,true,2026-04-28,false
+P00337,Zoya,Singh,9000044672,,Noida,organic,lead,true,false,,,,false,2026-04-28,false
+P00338,Payal,Chopra,9000028908,,Delhi,referral,lead,true,false,,,,false,2026-04-28,false
+P00339,Rutuja,Jadhav,9000083742,rutuja.jadhav.466@example.com,Pune,web_reveal,lead,true,true,30 to 34,Where to invest,PLAN,false,2026-04-28,false
+P00340,Rahul,Arora,9000092310,,Delhi,corporate_session,lead,true,true,,,,false,2026-04-28,false
+P00341,Urvi,Vora,9000050528,,Mumbai,community,lead,true,false,,,,true,2026-04-28,false
+P00343,Karan,Agarwal,9000097718,,Gurugram,corporate_session,lead,true,false,,,,false,2026-04-28,false
+P00345,Ishaan,Chopra,9000035479,ishaan.chopra.656@example.com,Hyderabad,web_reveal,lead,true,true,35 to 39,Retiring early,ALPHA,false,2026-04-28,false
+P00350,Kavitha,Kumar,9000025442,kavitha.kumar.988@example.com,Chennai,community,lead,true,false,,Where to invest,PLAN,true,2026-04-29,false
+P00354,Kunal,Sawant,9000060845,,Gurugram,corporate_session,lead,false,false,,,,true,2026-04-29,false
+P00356,Ayesha,Bansal,9000046875,,Gurugram,organic,lead,true,false,,,,false,2026-04-29,false
+P00359,Harini,Natarajan,9000010999,harini.natarajan.586@example.com,Coimbatore,web_reveal,lead,true,false,45 and over,Retiring early,PLAN,true,2026-04-30,false
+P00364,Gauri,Apte,9000069442,,Mumbai,community,lead,false,false,,,,true,2026-04-30,false
+P00366,Varsha,Hegde,9000007149,,Chennai,community,lead,true,false,,,,true,2026-04-30,false
+P00367,Nirav,Sawant,9000038638,,Pune,community,lead,true,false,,,,true,2026-04-30,false
+P00368,Ishaan,Singh,9000036705,,Gurugram,community,lead,true,false,,,,true,2026-04-30,false
+P00369,Tarun,Bhatia,9000045540,tarun.bhatia.499@example.com,Noida,web_reveal,lead,true,false,35 to 39,Paying off loans,PLAN,false,2026-05-01,false
+P00372,Aparna,Pai,9000009545,aparna.pai.385@example.com,Chennai,community,lead,true,false,,Paying off loans,PLAN,true,2026-05-01,false
+P00375,Nitin,Bedi,9000000851,nitin.bedi.309@example.com,Gurugram,web_reveal,lead,false,false,30 to 34,Insurance and cover,PLAN,true,2026-05-01,false
+P00376,Suresh,Rao,9000098621,,Chennai,corporate_session,lead,true,false,,,,false,2026-05-01,false
+P00378,Naveen,Iyengar,9000064899,,Bengaluru,community,lead,true,false,,,,true,2026-05-01,false
+P00379,Swathi,Natarajan,9000020281,,Bengaluru,community,lead,true,false,,,,true,2026-05-01,false
+P00380,Pavithra,Krishnan,9000075522,,Bengaluru,referral,lead,false,false,,,,false,2026-05-01,false
+P00382,Rajarshi,Majumdar,9000052430,,Kolkata,community,lead,true,false,,,,true,2026-05-02,false
+P00383,Lakshmi,Iyer,9000088772,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-05-02,false
+P00384,Akshay,Agarwal,9000051092,,Chennai,community,lead,false,false,,,,true,2026-05-02,false
+P00386,Suresh,Kumar,9000079150,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-05-02,false
+P00387,Kavitha,Subramanian,9000028779,,Chennai,community,lead,false,false,,,,true,2026-05-02,false
+P00388,Deepa,Shetty,9000035645,deepa.shetty.328@example.com,Pune,web_reveal,lead,false,false,25 to 29,Saving enough every month,PLAN,false,2026-05-02,false
+P00389,Karthik,Varma,9000092752,karthik.varma.416@example.com,Bengaluru,web_reveal,lead,true,false,30 to 34,Saving enough every month,PLAN,false,2026-05-02,false
+P00393,Rohit,Dave,9000020454,rohit.dave.154@example.com,Ahmedabad,web_reveal,lead,true,false,30 to 34,Retiring early,ALPHA,false,2026-05-03,false
+P00394,Heena,Bhosale,9000007432,,Mumbai,community,lead,true,false,,,,true,2026-05-03,false
+P00396,Mihir,Bhosale,9000011153,,Pune,corporate_session,lead,false,false,,,,false,2026-05-03,false
+P00398,Janani,Natarajan,9000033263,,Bengaluru,corporate_session,lead,true,false,,,,true,2026-05-03,false
+P00399,Yogesh,Trivedi,9000017030,yogesh.trivedi.431@example.com,Pune,web_reveal,lead,true,false,30 to 34,Retiring early,PLAN,false,2026-05-03,false
+P00400,Ananya,Chatterjee,9000032082,,Gurugram,organic,lead,false,false,,,,false,2026-05-03,false
+P00401,Vaibhav,Apte,9000012802,,Indore,organic,lead,true,false,,,,false,2026-05-03,false
+P00403,Tanushree,Mitra,9000034108,,Chennai,organic,lead,true,false,,,,false,2026-05-03,false
+P00405,Hardik,Pawar,9000047359,,Mumbai,corporate_session,lead,true,false,,,,false,2026-05-04,false
+P00407,Karthik,Iyer,9000091838,,Bengaluru,organic,lead,true,false,,,,false,2026-05-04,false
+P00408,Bhavin,Jain,9000015329,,Mumbai,referral,lead,false,false,,,,false,2026-05-04,false
+P00410,Ayesha,Mishra,9000091306,,Gurugram,corporate_session,lead,true,false,,,,false,2026-05-04,false
+P00411,Sai,Shetty,9000071803,sai.shetty.418@example.com,Bengaluru,web_reveal,lead,true,false,35 to 39,Insurance and cover,ALPHA,false,2026-05-04,false
+P00416,Hetal,Joshi,9000012212,,Pune,community,lead,true,false,,,,true,2026-05-04,false
+P00417,Kavitha,Iyer,9000000951,,Chennai,community,lead,true,true,,,,true,2026-05-04,false
+P00418,Vishnu,Pillai,9000026686,,Bengaluru,community,lead,true,false,,,,true,2026-05-04,false
+P00420,Rohan,Mehra,9000068169,rohan.mehra.685@example.com,Kolkata,web_reveal,lead,false,true,25 to 29,Saving enough every month,ALPHA,true,2026-05-05,false
+P00421,Varsha,Rajan,9000063969,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-05-05,false
+P00422,Pavithra,Rajan,9000097211,,Hyderabad,corporate_session,lead,false,false,,,,false,2026-05-05,false
+P00423,Rohan,Arora,9000065060,,Noida,referral,lead,true,false,,,,true,2026-05-05,false
+P00424,Sneha,Gokhale,9000070172,sneha.gokhale.692@example.com,Mumbai,community,lead,true,false,,My children's education,PLAN,true,2026-05-05,false
+P00425,Venkat,Rajan,9000036175,,Hyderabad,community,lead,true,false,,,,true,2026-05-06,false
+P00436,Lakshmi,Kumar,9000043667,lakshmi.kumar.206@example.com,Hyderabad,web_reveal,lead,true,false,40 to 44,Insurance and cover,ALPHA,false,2026-05-07,false
+P00437,Parth,Pawar,9000061274,,Mumbai,referral,lead,true,false,,,,false,2026-05-07,false
+P00439,Meenakshi,Rao,9000024123,meenakshi.rao.688@example.com,Chennai,community,lead,true,false,,Paying off loans,PLAN,true,2026-05-07,false
+P00440,Vishnu,Srinivasan,9000022033,,Chennai,corporate_session,lead,true,false,,,,false,2026-05-07,false
+P00442,Aman,Sharma,9000093828,,Delhi,organic,lead,false,false,,,,false,2026-05-08,false
+P00443,Pooja,Saxena,9000048863,pooja.saxena.445@example.com,Gurugram,community,lead,false,false,,Where to invest,PLAN,true,2026-05-08,false
+P00444,Simran,Bhatia,9000062582,,Chandigarh,community,lead,true,false,,,,true,2026-05-08,false
+P00445,Prachi,Vora,9000045278,prachi.vora.495@example.com,Pune,web_reveal,lead,false,false,30 to 34,Retiring early,PLAN,false,2026-05-08,false
+P00450,Prasanna,Menon,9000091890,,Bengaluru,community,lead,true,false,,,,true,2026-05-08,false
+P00455,Kavitha,Naidu,9000000426,,Hyderabad,community,lead,true,false,,,,true,2026-05-08,false
+P00456,Mihir,Sawant,9000074564,,Nagpur,organic,lead,false,true,,,,true,2026-05-08,false
+P00460,Shalini,Rao,9000047714,,Hyderabad,organic,lead,true,false,,,,false,2026-05-09,false
+P00461,Vidya,Natarajan,9000082472,,Chennai,organic,lead,true,false,,,,false,2026-05-09,false
+P00464,Simran,Gupta,9000090348,simran.gupta.765@example.com,Lucknow,community,lead,true,false,,Paying off loans,ALPHA,true,2026-05-09,false
+P00465,Gurpreet,Agarwal,9000013407,,Delhi,community,lead,true,false,,,,true,2026-05-09,false
+P00468,Kunal,Thakkar,9000037069,,Mumbai,organic,lead,false,false,,,,false,2026-05-09,false
+P00469,Suresh,Raman,9000029462,suresh.raman.276@example.com,Bengaluru,community,lead,true,true,,Paying off loans,PLAN,true,2026-05-09,false
+P00471,Nishant,Shinde,9000049823,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-05-09,false
+P00472,Varun,Mehra,9000091970,,Noida,corporate_session,lead,true,false,,,,false,2026-05-09,false
+P00482,Lakshmi,Srinivasan,9000049969,,Mumbai,corporate_session,lead,true,false,,,,false,2026-05-10,false
+P00483,Varsha,Natarajan,9000053226,,Hyderabad,community,lead,true,false,,,,true,2026-05-10,false
+P00484,Sayan,Das,9000066087,sayan.das.362@example.com,Ahmedabad,community,lead,true,false,,Insurance and cover,PLAN,true,2026-05-10,false
+P00488,Vikram,Kohli,9000014558,,Delhi,referral,lead,true,false,,,,false,2026-05-11,false
+P00489,Harpreet,Chopra,9000030013,,Gurugram,community,lead,true,false,,,,true,2026-05-11,false
+P00490,Rajiv,Natarajan,9000032270,rajiv.natarajan.343@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Where to invest,PLAN,false,2026-05-11,false
+P00492,Naina,Rathore,9000036547,naina.rathore.464@example.com,Gurugram,community,lead,true,false,,Retiring early,PLAN,true,2026-05-11,false
+P00494,Neha,Malhotra,9000049696,,Noida,community,lead,true,false,,,,true,2026-05-11,false
+P00495,Harpreet,Srivastava,9000006817,harpreet.srivastava.266@example.com,Delhi,community,lead,true,false,,Insurance and cover,PLAN,true,2026-05-11,false
+P00496,Aparna,Pai,9000017348,,Bengaluru,organic,lead,true,false,,,,false,2026-05-12,false
+P00497,Yogesh,Bhosale,9000037244,,Pune,referral,lead,false,false,,,,false,2026-05-12,false
+P00498,Hardik,Joshi,9000042388,hardik.joshi.313@example.com,Pune,community,lead,true,false,,Retiring early,ALPHA,true,2026-05-12,false
+P00499,Kavya,Malhotra,9000067089,,Chennai,organic,lead,true,false,,,,false,2026-05-12,false
+P00502,Aniket,Desai,9000083615,aniket.desai.582@example.com,Pune,community,lead,true,true,,My children's education,PLAN,true,2026-05-12,false
+P00503,Sowmya,Gowda,9000042851,,Hyderabad,corporate_session,lead,false,false,,,,false,2026-05-12,false
+P00505,Kavitha,Natarajan,9000053098,,Chennai,corporate_session,lead,true,false,,,,false,2026-05-12,false
+P00506,Simran,Mehra,9000027272,simran.mehra.417@example.com,Delhi,community,lead,true,false,,Where to invest,ALPHA,true,2026-05-12,false
+P00508,Saloni,Sawant,9000093820,,Mumbai,corporate_session,lead,true,true,,,,false,2026-05-12,false
+P00512,Moumita,Das,9000097519,,Pune,community,lead,false,false,,,,true,2026-05-13,false
+P00516,Harini,Natarajan,9000020628,,Chennai,referral,lead,true,false,,,,false,2026-05-13,false
+P00517,Yash,Kapoor,9000058555,,Delhi,corporate_session,lead,true,true,,,,false,2026-05-13,false
+P00521,Mihir,Sawant,9000064411,mihir.sawant.225@example.com,Pune,web_reveal,lead,true,false,30 to 34,Where to invest,PLAN,false,2026-05-13,false
+P00523,Sakshi,Sethi,9000010835,,Delhi,community,lead,true,false,,,,true,2026-05-13,false
+P00524,Sagar,Joshi,9000048837,sagar.joshi.740@example.com,Pune,community,lead,true,false,,Where to invest,PLAN,true,2026-05-13,false
+P00528,Karan,Sharma,9000004007,,Noida,community,lead,true,false,,,,true,2026-05-14,false
+P00529,Simran,Tiwari,9000019049,,Chandigarh,community,lead,true,false,,,,true,2026-05-14,false
+P00532,Aniket,Sawant,9000022665,,Mumbai,community,lead,true,false,,,,true,2026-05-14,false
+P00538,Soumya,Chakraborty,9000093698,soumya.chakraborty.568@example.com,Kolkata,web_reveal,lead,true,false,30 to 34,Retiring early,ALPHA,false,2026-05-14,false
+P00539,Payal,Khanna,9000009446,,Gurugram,community,lead,true,false,,,,true,2026-05-14,false
+P00540,Revathi,Srinivasan,9000010591,,Chennai,community,lead,true,false,,,,true,2026-05-15,false
+P00545,Madhura,Shinde,9000038708,,Delhi,organic,lead,true,false,,,,true,2026-05-15,false
+P00547,Manish,Chauhan,9000037571,,Delhi,corporate_session,lead,true,false,,,,false,2026-05-15,false
+P00550,Jigar,Joshi,9000092943,,Mumbai,community,lead,true,false,,,,true,2026-05-15,false
+P00554,Anand,Krishnan,9000026141,anand.krishnan.383@example.com,Bengaluru,web_reveal,lead,false,false,25 to 29,Retiring early,ALPHA,false,2026-05-15,false
+P00556,Janani,Naidu,9000000927,janani.naidu.668@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,My children's education,ALPHA,false,2026-05-16,false
+P00559,Devika,Kulkarni,9000067469,,Mumbai,corporate_session,lead,true,false,,,,false,2026-05-16,false
+P00560,Swathi,Hegde,9000044674,,Hyderabad,referral,lead,true,false,,,,false,2026-05-16,false
+P00561,Yogesh,Thakkar,9000022114,,Mumbai,community,lead,true,false,,,,true,2026-05-16,false
+P00562,Madhav,Reddy,9000000248,,Chennai,corporate_session,lead,true,false,,,,false,2026-05-16,false
+P00564,Naveen,Chandran,9000057460,,Gurugram,organic,lead,true,true,,,,false,2026-05-16,false
+P00566,Ananya,Mitra,9000040123,,Bhubaneswar,organic,lead,true,false,,,,false,2026-05-16,false
+P00568,Siddharth,Vora,9000048792,,Mumbai,organic,lead,true,false,,,,false,2026-05-17,false
+P00570,Chinmay,Jadhav,9000068420,chinmay.jadhav.609@example.com,Gurugram,web_reveal,lead,true,false,35 to 39,Retiring early,ALPHA,true,2026-05-17,false
+P00573,Nirav,Dave,9000052170,,Pune,community,lead,true,false,,,,true,2026-05-17,false
+P00578,Tanushree,Das,9000083504,tanushree.das.604@example.com,Chennai,community,lead,true,false,,My children's education,PLAN,true,2026-05-17,false
+P00582,Simran,Singh,9000029006,,Gurugram,community,lead,true,false,,,,true,2026-05-17,false
+P00583,Lakshmi,Srinivasan,9000004864,lakshmi.srinivasan.783@example.com,Chennai,web_reveal,lead,true,false,30 to 34,Insurance and cover,PLAN,false,2026-05-17,false
+P00585,Nishant,Thakkar,9000094981,nishant.thakkar.930@example.com,Chennai,community,lead,true,false,,Paying off loans,PLAN,true,2026-05-18,false
+P00586,Revathi,Iyengar,9000038654,,Bengaluru,organic,lead,true,false,,,,false,2026-05-18,false
+P00587,Mihir,Joshi,9000010498,,Mumbai,corporate_session,lead,true,false,,,,false,2026-05-18,false
+P00591,Aniket,Jain,9000006132,,Mumbai,corporate_session,lead,true,false,,,,true,2026-05-18,false
+P00593,Tanvi,Arora,9000071320,tanvi.arora.484@example.com,Gurugram,community,lead,false,false,,Paying off loans,ALPHA,true,2026-05-18,false
+P00595,Prasanna,Krishnan,9000009952,prasanna.krishnan.967@example.com,Bengaluru,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-05-18,false
+P00599,Sahil,Chauhan,9000026435,sahil.chauhan.118@example.com,Gurugram,web_reveal,lead,true,true,35 to 39,Paying off loans,PLAN,false,2026-05-19,false
+P00604,Dhruv,Jadhav,9000051277,,Bengaluru,community,lead,true,false,,,,true,2026-05-19,false
+P00607,Sindhu,Hegde,9000084859,,Delhi,corporate_session,lead,false,false,,,,false,2026-05-19,false
+P00609,Vignesh,Murthy,9000007971,vignesh.murthy.202@example.com,Chennai,community,lead,true,false,,Paying off loans,PLAN,true,2026-05-19,false
+P00614,Vikram,Gupta,9000017639,,Gurugram,corporate_session,lead,true,false,,,,false,2026-05-20,false
+P00617,Jay,Jadhav,9000015252,jay.jadhav.144@example.com,Ahmedabad,community,lead,true,false,,Saving enough every month,PLAN,true,2026-05-20,false
+P00619,Nishant,Kamat,9000077384,,Mumbai,community,lead,true,false,,,,true,2026-05-20,false
+P00620,Vidya,Chandran,9000092289,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-05-20,false
+P00623,Ankit,Singh,9000004986,ankit.singh.143@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,Insurance and cover,PLAN,false,2026-05-20,false
+P00624,Sowmya,Iyer,9000087285,,Hyderabad,community,lead,true,false,,,,true,2026-05-20,false
+P00625,Divya,Arora,9000033910,,Delhi,community,lead,true,false,,,,true,2026-05-21,false
+P00626,Gurpreet,Chauhan,9000002317,gurpreet.chauhan.265@example.com,Pune,community,lead,true,false,,Retiring early,ALPHA,true,2026-05-21,false
+P00627,Ketan,Pawar,9000072715,,Mumbai,organic,lead,true,false,,,,false,2026-05-21,false
+P00631,Nandini,Iyengar,9000039833,,Bengaluru,community,lead,true,false,,,,true,2026-05-21,false
+P00632,Poulami,Patnaik,9000066088,,Kolkata,corporate_session,lead,true,true,,,,false,2026-05-21,false
+P00633,Yash,Tiwari,9000055687,,Delhi,community,lead,true,false,,,,true,2026-05-21,false
+P00634,Mihir,Kamat,9000007780,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-05-21,false
+P00635,Anirban,Ghosh,9000060901,,Chennai,corporate_session,lead,true,false,,,,false,2026-05-21,false
+P00649,Ketan,Pandya,9000061454,,Mumbai,community,lead,true,false,,,,true,2026-05-22,false
+P00651,Kavitha,Iyer,9000005711,,Mumbai,community,lead,true,false,,,,true,2026-05-22,false
+P00655,Varsha,Pai,9000004357,,Bengaluru,organic,lead,true,false,,,,false,2026-05-22,false
+P00658,Nikhil,Pandey,9000057107,,Delhi,community,lead,true,false,,,,true,2026-05-23,false
+P00659,Varsha,Chandran,9000035946,,Hyderabad,community,lead,true,false,,,,true,2026-05-23,false
+P00663,Hardik,Trivedi,9000012434,hardik.trivedi.742@example.com,Mumbai,community,lead,true,false,,Retiring early,PLAN,true,2026-05-23,false
+P00665,Varun,Gupta,9000034075,varun.gupta.581@example.com,Noida,web_reveal,lead,true,false,25 to 29,Saving enough every month,PLAN,false,2026-05-23,false
+P00666,Deepa,Nair,9000038572,,Bengaluru,organic,lead,true,false,,,,true,2026-05-24,false
+P00668,Madhura,Thakkar,9000005203,madhura.thakkar.354@example.com,Mumbai,web_reveal,lead,true,false,25 to 29,Insurance and cover,ALPHA,false,2026-05-24,false
+P00670,Lakshmi,Balakrishnan,9000098781,,Hyderabad,organic,lead,true,false,,,,false,2026-05-24,false
+P00671,Gauri,Bhosale,9000004393,,Pune,corporate_session,lead,true,false,,,,false,2026-05-24,false
+P00673,Ketan,Deshmukh,9000037726,ketan.deshmukh.462@example.com,Pune,web_reveal,lead,true,false,30 to 34,Paying off loans,ALPHA,false,2026-05-24,false
+P00676,Karan,Rathore,9000084219,karan.rathore.531@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,Paying off loans,ALPHA,false,2026-05-24,false
+P00677,Indrani,Banerjee,9000010876,indrani.banerjee.456@example.com,Kolkata,community,lead,true,false,,Saving enough every month,PLAN,true,2026-05-24,false
+P00678,Nidhi,Desai,9000036586,,Ahmedabad,community,lead,true,false,,,,true,2026-05-24,false
+P00681,Keerthana,Raman,9000063599,,Chennai,community,lead,true,false,,,,true,2026-05-24,false
+P00683,Tejas,Bhosale,9000024504,,Mumbai,community,lead,true,false,,,,true,2026-05-25,false
+P00687,Dhruv,Apte,9000047145,,Mumbai,referral,lead,true,true,,,,true,2026-05-25,false
+P00689,Pranali,Bhosale,9000090209,pranali.bhosale.327@example.com,Mumbai,web_reveal,lead,true,false,35 to 39,Insurance and cover,PLAN,false,2026-05-25,false
+P00690,Swathi,Balakrishnan,9000086286,swathi.balakrishnan.565@example.com,Chennai,web_reveal,lead,true,false,25 to 29,Insurance and cover,PLAN,false,2026-05-25,false
+P00695,Revathi,Nair,9000025561,,Chennai,community,lead,false,false,,,,true,2026-05-25,false
+P00696,Devika,Thakkar,9000050456,devika.thakkar.993@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Insurance and cover,ALPHA,false,2026-05-26,false
+P00699,Ramya,Prasad,9000091125,,Bengaluru,organic,lead,true,false,,,,false,2026-05-26,false
+P00701,Naina,Srivastava,9000079686,,Noida,corporate_session,lead,true,false,,,,false,2026-05-26,false
+P00702,Vaibhav,Jain,9000063682,vaibhav.jain.511@example.com,Delhi,web_reveal,lead,true,false,30 to 34,Paying off loans,PLAN,false,2026-05-26,false
+P00707,Riddhi,Sawant,9000008649,riddhi.sawant.578@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Where to invest,PLAN,false,2026-05-26,false
+P00709,Rajiv,Kamath,9000094447,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-05-26,false
+P00710,Deepa,Menon,9000081632,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-05-26,false
+P00712,Mohit,Bansal,9000059464,mohit.bansal.448@example.com,Noida,web_reveal,lead,true,false,40 to 44,Paying off loans,ALPHA,false,2026-05-27,false
+P00713,Pranav,Bhatia,9000028149,,Gurugram,corporate_session,lead,false,false,,,,false,2026-05-27,false
+P00717,Rohit,Dave,9000048188,,Mumbai,referral,lead,true,false,,,,false,2026-05-27,false
+P00719,Shreya,Chopra,9000048913,,Delhi,referral,lead,true,false,,,,false,2026-05-27,false
+P00726,Rohan,Mishra,9000032871,,Gurugram,community,lead,true,false,,,,true,2026-05-28,false
+P00731,Kabir,Saxena,9000063364,,Gurugram,organic,lead,false,true,,,,true,2026-05-28,false
+P00732,Chinmay,Dave,9000042135,chinmay.dave.149@example.com,Mumbai,community,lead,true,false,,Where to invest,ALPHA,true,2026-05-28,false
+P00736,Yogesh,Pandya,9000026472,,Mumbai,community,lead,true,false,,,,true,2026-05-28,false
+P00738,Ishani,Banerjee,9000063295,ishani.banerjee.463@example.com,Bhubaneswar,web_reveal,lead,false,false,25 to 29,Paying off loans,ALPHA,false,2026-05-28,false
+P00739,Akshay,Mehra,9000014777,akshay.mehra.591@example.com,Chandigarh,community,lead,true,false,,Insurance and cover,PLAN,true,2026-05-28,false
+P00740,Priyanka,Nayak,9000026599,,Kolkata,community,lead,true,false,,,,true,2026-05-28,false
+P00742,Devika,Naik,9000014823,,Pune,community,lead,true,false,,,,true,2026-05-29,false
+P00743,Sahil,Pandey,9000027899,,Gurugram,community,lead,true,false,,,,true,2026-05-29,false
+P00746,Aniket,Desai,9000047119,,Mumbai,corporate_session,lead,false,false,,,,false,2026-05-29,false
+P00748,Yogesh,Mehta,9000087679,,Noida,corporate_session,lead,true,false,,,,false,2026-05-29,false
+P00751,Rohan,Srivastava,9000024367,rohan.srivastava.210@example.com,Lucknow,web_reveal,lead,true,false,30 to 34,Paying off loans,PLAN,true,2026-05-29,false
+P00755,Nishant,Jadhav,9000065172,,Pune,community,lead,true,false,,,,true,2026-05-30,false
+P00756,Arjun,Gupta,9000095404,,Mumbai,community,lead,true,false,,,,true,2026-05-30,false
+P00759,Ananya,Sen,9000063702,,Pune,corporate_session,lead,false,false,,,,false,2026-05-30,false
+P00760,Chinmay,Jain,9000049226,,Pune,organic,lead,true,true,,,,false,2026-05-30,false
+P00761,Parth,Patil,9000011669,,Pune,community,lead,true,false,,,,true,2026-05-30,false
+P00763,Varsha,Reddy,9000042577,varsha.reddy.686@example.com,Hyderabad,community,lead,true,false,,Saving enough every month,ALPHA,true,2026-05-30,false
+P00764,Kabir,Kohli,9000006366,,Delhi,referral,lead,true,false,,,,false,2026-05-30,false
+P00765,Sneha,Joshi,9000066628,,Ahmedabad,community,lead,true,false,,,,true,2026-05-30,false
+P00767,Mohit,Bansal,9000016629,,Lucknow,community,lead,true,true,,,,true,2026-05-30,false
+P00768,Nitin,Verma,9000013010,nitin.verma.673@example.com,Noida,web_reveal,lead,true,false,35 to 39,Saving enough every month,PLAN,false,2026-05-30,false
+P00771,Keerthana,Kumar,9000047717,,Bengaluru,organic,lead,true,false,,,,false,2026-05-31,false
+P00772,Divya,Mehra,9000047345,,Gurugram,referral,lead,true,false,,,,false,2026-05-31,false
+P00773,Sandeep,Krishnan,9000013362,,Hyderabad,community,lead,true,false,,,,true,2026-05-31,false
+P00774,Krupa,Thakkar,9000094119,,Pune,organic,lead,false,false,,,,false,2026-05-31,false
+P00777,Indrani,Roy,9000099580,indrani.roy.493@example.com,Kolkata,community,lead,true,false,,Where to invest,PLAN,true,2026-05-31,false
+P00778,Shreya,Malhotra,9000092714,,Delhi,corporate_session,lead,true,false,,,,true,2026-05-31,false
+P00779,Mihir,Pawar,9000030538,,Pune,community,lead,true,false,,,,true,2026-05-31,false
+P00783,Parth,Bhosale,9000056513,,Pune,referral,lead,true,false,,,,false,2026-05-31,false
+P00788,Aparna,Kamath,9000042744,,Hyderabad,organic,lead,true,false,,,,false,2026-06-01,false
+P00789,Manish,Tandon,9000018290,,Gurugram,community,lead,true,false,,,,true,2026-06-01,false
+P00791,Kaushik,Dutta,9000036089,,Delhi,community,lead,true,false,,,,true,2026-06-01,false
+P00793,Priya,Bansal,9000018387,priya.bansal.679@example.com,Lucknow,web_reveal,lead,true,false,25 to 29,My children's education,PLAN,false,2026-06-01,false
+P00798,Nirav,Gokhale,9000001085,,Mumbai,community,lead,true,false,,,,true,2026-06-01,false
+P00799,Shreyasi,Sen,9000015409,,Noida,organic,lead,true,false,,,,false,2026-06-01,false
+P00803,Sneha,Deshmukh,9000010108,sneha.deshmukh.552@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Insurance and cover,ALPHA,false,2026-06-01,false
+P00804,Vikram,Srivastava,9000060471,,Gurugram,organic,lead,true,false,,,,false,2026-06-01,false
+P00805,Arnab,Majumdar,9000059189,,Gurugram,community,lead,true,false,,,,true,2026-06-01,false
+P00810,Riddhi,Kamat,9000037068,,Pune,corporate_session,lead,true,false,,,,false,2026-06-02,false
+P00811,Bhavana,Chandran,9000061197,,Hyderabad,organic,lead,true,false,,,,false,2026-06-02,false
+P00813,Divya,Tandon,9000039981,,Delhi,community,lead,true,false,,,,true,2026-06-02,false
+P00814,Foram,Shah,9000083137,foram.shah.384@example.com,Mumbai,community,lead,true,false,,Saving enough every month,PLAN,true,2026-06-02,false
+P00815,Sakshi,Gill,9000064307,,Gurugram,organic,lead,false,false,,,,false,2026-06-02,false
+P00817,Foram,Gokhale,9000024962,foram.gokhale.537@example.com,Pune,web_reveal,lead,true,false,30 to 34,Insurance and cover,PLAN,false,2026-06-02,false
+P00818,Aniket,Sawant,9000038139,,Pune,community,lead,true,false,,,,true,2026-06-02,false
+P00824,Ketan,Shah,9000045799,ketan.shah.303@example.com,Mumbai,community,lead,true,false,,My children's education,PLAN,true,2026-06-03,false
+P00825,Yash,Bhatia,9000015782,,Delhi,corporate_session,lead,true,false,,,,false,2026-06-03,false
+P00827,Anjali,Bedi,9000072489,,Gurugram,community,lead,true,false,,,,true,2026-06-03,false
+P00829,Aakash,Tandon,9000015091,,Gurugram,community,lead,true,false,,,,true,2026-06-03,false
+P00832,Priya,Mehra,9000063144,,Delhi,community,lead,true,false,,,,true,2026-06-03,false
+P00833,Aniket,Pawar,9000014939,,Surat,community,lead,true,false,,,,true,2026-06-03,false
+P00842,Divya,Bedi,9000036399,divya.bedi.172@example.com,Delhi,community,lead,true,false,,Paying off loans,ALPHA,true,2026-06-04,false
+P00845,Vidya,Shetty,9000088308,vidya.shetty.489@example.com,Chennai,community,lead,true,false,,Retiring early,PLAN,true,2026-06-04,false
+P00849,Aniket,Apte,9000073006,,Mumbai,organic,lead,true,false,,,,false,2026-06-04,false
+P00850,Vishnu,Krishnan,9000034027,vishnu.krishnan.745@example.com,Chennai,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-06-05,false
+P00851,Pranali,Apte,9000048605,,Mumbai,corporate_session,lead,false,false,,,,false,2026-06-05,false
+P00852,Sindhu,Shetty,9000060020,sindhu.shetty.585@example.com,Coimbatore,community,lead,true,true,,Insurance and cover,PLAN,true,2026-06-05,false
+P00853,Arjun,Rathore,9000089334,arjun.rathore.455@example.com,Gurugram,web_reveal,lead,false,false,30 to 34,Where to invest,PLAN,false,2026-06-05,false
+P00854,Tanmoy,Mukherjee,9000028747,tanmoy.mukherjee.344@example.com,Noida,web_reveal,lead,true,false,25 to 29,Retiring early,PLAN,false,2026-06-05,false
+P00855,Meera,Bedi,9000082048,,Gurugram,organic,lead,true,false,,,,true,2026-06-05,false
+P00857,Rajarshi,Das,9000091166,rajarshi.das.176@example.com,Hyderabad,community,lead,false,false,,Paying off loans,PLAN,true,2026-06-05,false
+P00859,Srinivas,Shetty,9000036707,srinivas.shetty.380@example.com,Hyderabad,community,lead,true,false,,Paying off loans,PLAN,true,2026-06-05,false
+P00860,Ayesha,Khanna,9000043478,ayesha.khanna.960@example.com,Gurugram,community,lead,true,false,,Retiring early,PLAN,true,2026-06-05,false
+P00861,Subhajit,Majumdar,9000029072,,Chennai,community,lead,false,false,,,,true,2026-06-05,false
+P00862,Lakshmi,Hegde,9000074113,lakshmi.hegde.519@example.com,Hyderabad,web_reveal,lead,false,false,35 to 39,Paying off loans,ALPHA,true,2026-06-06,false
+P00863,Karan,Kapoor,9000064752,karan.kapoor.343@example.com,Gurugram,community,lead,true,true,,Retiring early,ALPHA,true,2026-06-06,false
+P00866,Karthik,Kamath,9000070047,,Chennai,corporate_session,lead,true,false,,,,false,2026-06-06,false
+P00870,Shreya,Singh,9000055272,,Noida,community,lead,true,false,,,,true,2026-06-06,false
+P00871,Deepa,Naidu,9000058143,deepa.naidu.631@example.com,Chennai,community,lead,true,false,,My children's education,PLAN,true,2026-06-06,false
+P00872,Anirban,Patnaik,9000043613,,Delhi,corporate_session,lead,true,true,,,,false,2026-06-06,false
+P00877,Aravind,Shetty,9000058404,aravind.shetty.829@example.com,Hyderabad,community,lead,true,false,,Where to invest,PLAN,true,2026-06-06,false
+P00878,Gayathri,Murthy,9000025499,,Bengaluru,community,lead,true,false,,,,true,2026-06-06,false
+P00880,Gurpreet,Mishra,9000062279,,Gurugram,community,lead,true,false,,,,true,2026-06-06,false
+P00883,Yogesh,Jadhav,9000017845,,Pune,corporate_session,lead,true,false,,,,false,2026-06-07,false
+P00884,Rohan,Agarwal,9000049768,,Gurugram,organic,lead,true,false,,,,true,2026-06-07,false
+P00886,Sudipta,Mukherjee,9000062225,,Pune,community,lead,true,false,,,,true,2026-06-07,false
+P00887,Akshay,Khanna,9000016622,,Mumbai,corporate_session,lead,true,false,,,,false,2026-06-07,false
+P00888,Aman,Agarwal,9000083661,aman.agarwal.296@example.com,Noida,community,lead,true,false,,My children's education,ALPHA,true,2026-06-07,false
+P00889,Kabir,Khanna,9000049878,,Delhi,community,lead,true,false,,,,true,2026-06-07,false
+P00890,Aravind,Menon,9000090419,aravind.menon.458@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Saving enough every month,ALPHA,false,2026-06-07,false
+P00895,Keerthana,Rajan,9000081395,keerthana.rajan.493@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Paying off loans,PLAN,false,2026-06-08,false
+P00896,Mohit,Kapoor,9000014615,,Gurugram,community,lead,true,false,,,,true,2026-06-08,false
+P00898,Swathi,Krishnan,9000053638,,Chennai,community,lead,true,false,,,,true,2026-06-08,false
+P00900,Vaibhav,Sawant,9000003595,,Mumbai,community,lead,true,false,,,,true,2026-06-08,false
+P00903,Nikhil,Malhotra,9000019466,,Gurugram,corporate_session,lead,true,false,,,,true,2026-06-08,false
+P00905,Meera,Kapoor,9000046353,,Gurugram,corporate_session,lead,false,false,,,,true,2026-06-08,false
+P00906,Urvi,Apte,9000065281,,Pune,corporate_session,lead,true,false,,,,false,2026-06-08,false
+P00907,Madhav,Balakrishnan,9000025784,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-06-08,false
+P00908,Vidya,Chandran,9000067208,vidya.chandran.756@example.com,Bengaluru,community,lead,true,false,,Insurance and cover,PLAN,true,2026-06-08,false
+P00909,Bhavana,Menon,9000090379,,Chennai,corporate_session,lead,false,false,,,,false,2026-06-08,false
+P00910,Deepa,Krishnan,9000075430,deepa.krishnan.316@example.com,Kochi,community,lead,true,false,,Retiring early,ALPHA,true,2026-06-09,false
+P00913,Ketan,Gokhale,9000084101,,Mumbai,corporate_session,lead,true,false,,,,false,2026-06-09,false
+P00914,Prachi,Pawar,9000027541,,Ahmedabad,corporate_session,lead,false,false,,,,false,2026-06-09,false
+P00916,Kinjal,Gokhale,9000024638,,Bengaluru,corporate_session,lead,true,true,,,,false,2026-06-09,false
+P00917,Kunal,Gokhale,9000020238,,Pune,community,lead,true,false,,,,true,2026-06-09,false
+P00918,Arun,Pai,9000058634,,Hyderabad,organic,lead,false,false,,,,false,2026-06-09,false
+P00919,Rohit,Bhosale,9000093791,,Pune,community,lead,true,false,,,,true,2026-06-09,false
+P00920,Ankit,Singh,9000036496,ankit.singh.264@example.com,Gurugram,community,lead,true,false,,My children's education,ALPHA,true,2026-06-09,false
+P00922,Naina,Verma,9000036246,,Delhi,community,lead,true,false,,,,true,2026-06-09,false
+P00923,Prasanna,Subramanian,9000010074,,Hyderabad,community,lead,true,false,,,,true,2026-06-09,false
+P00924,Tanmoy,Bose,9000059689,,Kolkata,organic,lead,true,false,,,,false,2026-06-09,false
+P00925,Gurpreet,Sharma,9000043678,,Noida,community,lead,true,false,,,,true,2026-06-09,false
+P00926,Shruti,Patel,9000017279,,Gurugram,organic,lead,false,false,,,,false,2026-06-09,false
+P00927,Riddhi,Shinde,9000029186,,Pune,community,lead,false,false,,,,true,2026-06-09,false
+P00937,Arjun,Arora,9000024013,,Gurugram,community,lead,true,false,,,,true,2026-06-10,false
+P00940,Aniket,Sawant,9000072824,,Pune,organic,lead,true,false,,,,false,2026-06-10,false
+P00942,Aman,Bedi,9000010813,,Gurugram,organic,lead,false,false,,,,true,2026-06-10,false
+P00943,Ganesh,Rao,9000018146,,Bengaluru,community,lead,true,false,,,,true,2026-06-10,false
+P00944,Zoya,Mishra,9000028285,,Delhi,corporate_session,lead,false,true,,,,false,2026-06-10,false
+P00947,Harpreet,Bedi,9000029241,harpreet.bedi.444@example.com,Gurugram,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-06-10,false
+P00951,Priya,Mehra,9000055439,,Chennai,community,lead,true,true,,,,true,2026-06-10,false
+P00952,Gauri,Shah,9000072229,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-06-10,false
+P00953,Sanjana,Khanna,9000019388,sanjana.khanna.287@example.com,Gurugram,community,lead,true,false,,Retiring early,ALPHA,true,2026-06-10,false
+P00955,Ganesh,Raman,9000038258,ganesh.raman.982@example.com,Pune,web_reveal,lead,false,false,25 to 29,Insurance and cover,PLAN,false,2026-06-10,false
+P00958,Yash,Tiwari,9000007938,,Gurugram,organic,lead,true,false,,,,false,2026-06-11,false
+P00959,Harini,Raman,9000091255,harini.raman.572@example.com,Hyderabad,community,lead,false,false,,Insurance and cover,PLAN,true,2026-06-11,false
+P00960,Mihir,Dave,9000011645,mihir.dave.339@example.com,Mumbai,web_reveal,lead,false,false,30 to 34,Paying off loans,ALPHA,false,2026-06-11,false
+P00961,Kavya,Tiwari,9000083573,kavya.tiwari.224@example.com,Delhi,community,lead,true,false,,Insurance and cover,PLAN,true,2026-06-11,false
+P00966,Ishaan,Bhatia,9000055022,,Gurugram,referral,lead,true,false,,,,true,2026-06-11,false
+P00967,Sai,Hegde,9000054073,,Chennai,corporate_session,lead,true,false,,,,false,2026-06-11,false
+P00968,Nikhil,Chauhan,9000093940,,Gurugram,corporate_session,lead,true,false,,,,false,2026-06-11,false
+P00969,Shalini,Menon,9000045639,,Visakhapatnam,corporate_session,lead,true,false,,,,false,2026-06-11,false
+P00971,Chaitanya,Menon,9000042046,,Hyderabad,corporate_session,lead,true,false,,,,false,2026-06-11,false
+P00973,Aman,Bansal,9000057145,,Gurugram,community,lead,true,false,,,,true,2026-06-11,false
+P00978,Jasleen,Bansal,9000060234,,Gurugram,community,lead,true,false,,,,true,2026-06-12,false
+P00980,Nandini,Pai,9000070337,nandini.pai.314@example.com,Bengaluru,community,lead,true,false,,Retiring early,PLAN,true,2026-06-12,false
+P00981,Rutuja,Kulkarni,9000032971,,Mumbai,organic,lead,true,true,,,,false,2026-06-12,false
+P00984,Urvi,Jadhav,9000094028,urvi.jadhav.524@example.com,Pune,community,lead,true,false,,My children's education,PLAN,true,2026-06-12,false
+P00986,Ganesh,Reddy,9000017270,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-06-12,false
+P00987,Aman,Chauhan,9000012365,,Gurugram,corporate_session,lead,true,false,,,,false,2026-06-12,false
+P00988,Varsha,Pai,9000038257,,Hyderabad,community,lead,true,false,,,,true,2026-06-13,false
+P00992,Revathi,Subramanian,9000006386,revathi.subramanian.588@example.com,Bengaluru,community,lead,true,false,,Paying off loans,ALPHA,true,2026-06-13,false
+P00994,Rohan,Pandey,9000007209,,Gurugram,community,lead,true,false,,,,true,2026-06-13,false
+P00996,Omkar,Trivedi,9000084969,,Hyderabad,organic,lead,true,false,,,,false,2026-06-13,false
+P00998,Sindhu,Varma,9000090146,,Chennai,corporate_session,lead,true,false,,,,false,2026-06-13,false
+P00999,Saloni,Thakkar,9000044159,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-06-13,false
+P01000,Venkat,Iyengar,9000039655,venkat.iyengar.734@example.com,Hyderabad,web_reveal,lead,false,false,30 to 34,Paying off loans,PLAN,false,2026-06-13,false
+P01002,Nandini,Chandran,9000001623,nandini.chandran.161@example.com,Chennai,community,lead,true,false,,Paying off loans,ALPHA,true,2026-06-13,false
+P01003,Rajarshi,Chatterjee,9000036027,,Mumbai,community,lead,true,true,,,,true,2026-06-14,false
+P01005,Krupa,Trivedi,9000006818,krupa.trivedi.844@example.com,Ahmedabad,web_reveal,lead,true,true,30 to 34,Where to invest,PLAN,false,2026-06-14,false
+P01009,Aditya,Bansal,9000039862,,Delhi,corporate_session,lead,false,false,,,,false,2026-06-14,false
+P01011,Aravind,Shetty,9000093394,aravind.shetty.357@example.com,Bengaluru,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-06-14,false
+P01012,Meenakshi,Nair,9000035465,,Hyderabad,community,lead,true,false,,,,true,2026-06-14,false
+P01016,Shruti,Bhosale,9000043594,,Pune,organic,lead,false,true,,,,true,2026-06-14,false
+P01017,Mohit,Pandey,9000038877,,Delhi,community,lead,true,false,,,,true,2026-06-14,false
+P01018,Arnab,Sahoo,9000091923,arnab.sahoo.427@example.com,Kolkata,web_reveal,lead,true,false,40 to 44,Paying off loans,PLAN,true,2026-06-15,false
+P01019,Aakash,Mishra,9000041811,aakash.mishra.278@example.com,Gurugram,community,lead,true,false,,Saving enough every month,ALPHA,true,2026-06-15,false
+P01022,Madhav,Shetty,9000079606,madhav.shetty.853@example.com,Hyderabad,web_reveal,lead,true,true,25 to 29,Where to invest,PLAN,false,2026-06-15,false
+P01028,Mansi,Pawar,9000086087,mansi.pawar.342@example.com,Mumbai,community,lead,true,true,,My children's education,ALPHA,true,2026-06-15,false
+P01030,Krupa,Jain,9000057120,,Gurugram,organic,lead,true,true,,,,false,2026-06-15,false
+P01031,Arun,Subramanian,9000097517,,Bengaluru,community,lead,false,false,,,,true,2026-06-15,false
+P01033,Meera,Kapoor,9000052627,meera.kapoor.599@example.com,Gurugram,community,lead,false,false,,My children's education,PLAN,true,2026-06-15,false
+P01036,Divakar,Subramanian,9000004440,,Bengaluru,community,lead,false,false,,,,true,2026-06-16,false
+P01037,Varun,Verma,9000066063,,Noida,community,lead,true,false,,,,true,2026-06-16,false
+P01040,Pranav,Tiwari,9000043730,,Gurugram,community,lead,true,false,,,,true,2026-06-16,false
+P01041,Keerthana,Varma,9000094325,,Chennai,corporate_session,lead,true,false,,,,false,2026-06-16,false
+P01042,Vignesh,Iyer,9000065894,,Coimbatore,community,lead,true,false,,,,true,2026-06-16,false
+P01043,Omkar,Deshmukh,9000031588,,Mumbai,corporate_session,lead,true,false,,,,false,2026-06-16,false
+P01049,Meera,Arora,9000037773,,Gurugram,organic,lead,true,false,,,,false,2026-06-16,false
+P01050,Kavitha,Prasad,9000011272,,Bengaluru,community,lead,true,false,,,,true,2026-06-17,false
+P01051,Kinjal,Jadhav,9000096089,,Mumbai,community,lead,true,false,,,,true,2026-06-17,false
+P01053,Vikram,Khanna,9000086410,vikram.khanna.278@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,Saving enough every month,PLAN,false,2026-06-17,false
+P01057,Urvi,Dave,9000065397,urvi.dave.387@example.com,Mumbai,web_reveal,lead,true,false,25 to 29,Where to invest,PLAN,false,2026-06-17,false
+P01059,Rajarshi,Patnaik,9000020153,,Kolkata,organic,lead,true,false,,,,false,2026-06-17,false
+P01060,Arjun,Chauhan,9000099360,arjun.chauhan.731@example.com,Delhi,web_reveal,lead,false,false,40 to 44,Paying off loans,PLAN,false,2026-06-17,false
+P01061,Rutuja,Dave,9000042183,rutuja.dave.772@example.com,Pune,web_reveal,lead,true,false,30 to 34,Where to invest,PLAN,false,2026-06-17,false
+P01064,Akshay,Saxena,9000040340,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-06-17,false
+P01068,Akshay,Saxena,9000090354,,Delhi,corporate_session,lead,true,false,,,,false,2026-06-17,false
+P01070,Nithya,Nair,9000035764,,Chennai,corporate_session,lead,false,false,,,,false,2026-06-18,false
+P01071,Nitin,Kapoor,9000012143,,Noida,community,lead,true,false,,,,true,2026-06-18,false
+P01074,Vidya,Iyer,9000035679,,Bengaluru,organic,lead,true,false,,,,false,2026-06-18,false
+P01076,Gauri,Kulkarni,9000059370,gauri.kulkarni.260@example.com,Mumbai,web_reveal,lead,true,true,25 to 29,Retiring early,ALPHA,false,2026-06-18,false
+P01079,Naveen,Iyer,9000005862,,Hyderabad,corporate_session,lead,true,true,,,,false,2026-06-18,false
+P01083,Gayathri,Menon,9000030050,,Chennai,corporate_session,lead,true,false,,,,false,2026-06-19,false
+P01086,Aniket,Kulkarni,9000063643,,Ahmedabad,community,lead,false,false,,,,true,2026-06-19,false
+P01087,Revathi,Balakrishnan,9000065459,,Hyderabad,corporate_session,lead,true,false,,,,false,2026-06-19,false
+P01088,Gurpreet,Khanna,9000082397,gurpreet.khanna.561@example.com,Jaipur,community,lead,true,false,,My children's education,PLAN,true,2026-06-19,false
+P01089,Foram,Patil,9000073452,,Mumbai,organic,lead,true,false,,,,false,2026-06-19,false
+P01090,Gauri,Kamat,9000004655,,Pune,community,lead,true,false,,,,true,2026-06-19,false
+P01093,Tarun,Sethi,9000008481,,Delhi,organic,lead,true,false,,,,false,2026-06-20,false
+P01094,Suresh,Nair,9000048750,suresh.nair.513@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Retiring early,PLAN,false,2026-06-20,false
+P01100,Deepak,Kohli,9000027112,deepak.kohli.738@example.com,Bengaluru,community,lead,false,false,,Saving enough every month,PLAN,true,2026-06-20,false
+P01101,Aman,Singh,9000040967,,Jaipur,community,lead,true,false,,,,true,2026-06-20,false
+P01102,Kabir,Tandon,9000082595,,Delhi,organic,lead,true,false,,,,false,2026-06-20,false
+P01103,Pradeep,Kumar,9000039313,,Bengaluru,community,lead,true,false,,,,true,2026-06-20,false
+P01105,Swathi,Hegde,9000005522,,Hyderabad,community,lead,true,true,,,,true,2026-06-20,false
+P01108,Manish,Gill,9000053238,,Delhi,corporate_session,lead,true,false,,,,false,2026-06-20,false
+P01109,Tanushree,Sen,9000071916,,Bhubaneswar,community,lead,true,false,,,,true,2026-06-20,false
+P01110,Ketan,Chitale,9000014803,,Pune,community,lead,true,false,,,,true,2026-06-20,false
+P01111,Ishita,Agarwal,9000058689,,Gurugram,corporate_session,lead,true,false,,,,true,2026-06-20,false
+P01113,Divakar,Kumar,9000008395,divakar.kumar.531@example.com,Bengaluru,web_reveal,lead,true,false,25 to 29,Paying off loans,ALPHA,true,2026-06-21,false
+P01114,Nikhil,Bansal,9000080721,,Gurugram,community,lead,true,false,,,,true,2026-06-21,false
+P01116,Mihir,Deshmukh,9000075642,,Hyderabad,organic,lead,false,false,,,,false,2026-06-21,false
+P01117,Deepak,Chopra,9000010646,deepak.chopra.110@example.com,Gurugram,community,lead,true,false,,Paying off loans,ALPHA,true,2026-06-21,false
+P01120,Simran,Kohli,9000083415,,Noida,community,lead,true,true,,,,true,2026-06-21,false
+P01124,Tarun,Rathore,9000056359,,Noida,corporate_session,lead,true,false,,,,true,2026-06-21,false
+P01129,Heena,Naik,9000096620,,Ahmedabad,organic,lead,true,false,,,,false,2026-06-22,false
+P01130,Neha,Gill,9000056226,,Ahmedabad,community,lead,true,true,,,,true,2026-06-22,false
+P01133,Nishant,Shah,9000005684,,Mumbai,corporate_session,lead,true,false,,,,false,2026-06-22,false
+P01137,Rutuja,Pandya,9000009864,rutuja.pandya.545@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Paying off loans,ALPHA,false,2026-06-22,false
+P01138,Ritika,Chopra,9000034411,,Gurugram,community,lead,true,false,,,,true,2026-06-22,false
+P01139,Revathi,Raman,9000042004,,Chennai,community,lead,true,false,,,,true,2026-06-23,false
+P01140,Siddharth,Patil,9000014564,,Mumbai,community,lead,true,false,,,,true,2026-06-23,false
+P01141,Ishani,Nayak,9000073062,,Mumbai,organic,lead,false,false,,,,false,2026-06-23,false
+P01143,Nandini,Chandran,9000024725,,Bengaluru,community,lead,true,false,,,,true,2026-06-23,false
+P01145,Saloni,Desai,9000057331,saloni.desai.573@example.com,Pune,community,lead,true,false,,My children's education,ALPHA,true,2026-06-23,false
+P01149,Vishnu,Rajan,9000050904,vishnu.rajan.257@example.com,Chennai,community,lead,true,false,,My children's education,ALPHA,true,2026-06-23,false
+P01150,Ishita,Mehra,9000056135,,Hyderabad,community,lead,true,false,,,,true,2026-06-23,false
+P01154,Jasleen,Saxena,9000087137,,Delhi,corporate_session,lead,true,false,,,,false,2026-06-23,false
+P01156,Ramya,Chandran,9000088028,,Gurugram,community,lead,true,false,,,,true,2026-06-23,false
+P01158,Keerthana,Raman,9000042448,,Bengaluru,organic,lead,true,false,,,,false,2026-06-23,false
+P01160,Vignesh,Pai,9000041836,vignesh.pai.621@example.com,Hyderabad,community,lead,true,false,,My children's education,PLAN,true,2026-06-23,false
+P01162,Pranali,Patil,9000012969,pranali.patil.360@example.com,Ahmedabad,community,lead,true,false,,Where to invest,PLAN,true,2026-06-24,false
+P01165,Ruchi,Agarwal,9000024053,,Gurugram,referral,lead,true,false,,,,false,2026-06-24,false
+P01166,Nandini,Naidu,9000077284,,Hyderabad,corporate_session,lead,false,false,,,,true,2026-06-24,false
+P01168,Venkat,Raman,9000004791,,Bengaluru,community,lead,true,false,,,,true,2026-06-24,false
+P01169,Ramya,Rajan,9000002474,,Bengaluru,community,lead,true,false,,,,true,2026-06-24,false
+P01170,Venkat,Srinivasan,9000029579,,Mumbai,community,lead,true,false,,,,true,2026-06-24,false
+P01171,Ruchi,Sharma,9000036278,,Delhi,community,lead,true,false,,,,true,2026-06-24,false
+P01172,Shalini,Shetty,9000030829,shalini.shetty.297@example.com,Bengaluru,web_reveal,lead,true,false,25 to 29,Retiring early,PLAN,false,2026-06-24,false
+P01174,Aman,Tandon,9000002293,,Gurugram,corporate_session,lead,true,false,,,,false,2026-06-24,false
+P01176,Sameer,Deshmukh,9000036786,,Pune,community,lead,true,false,,,,true,2026-06-25,false
+P01177,Sahil,Gupta,9000056672,,Gurugram,community,lead,false,false,,,,true,2026-06-25,false
+P01178,Varun,Tandon,9000098763,,Noida,organic,lead,true,true,,,,false,2026-06-25,false
+P01181,Pooja,Bhatia,9000013658,,Noida,corporate_session,lead,false,false,,,,true,2026-06-25,false
+P01182,Ketan,Bhosale,9000039145,,Gurugram,organic,lead,true,true,,,,false,2026-06-25,false
+P01188,Rutuja,Gokhale,9000082742,,Chennai,organic,lead,false,false,,,,false,2026-06-25,false
+P01191,Ramya,Balakrishnan,9000001004,,Chennai,organic,lead,false,false,,,,false,2026-06-25,false
+P01197,Lakshmi,Iyer,9000041415,,Chennai,organic,lead,false,false,,,,false,2026-06-26,false
+P01199,Arun,Rajan,9000018500,arun.rajan.657@example.com,Bengaluru,community,lead,true,false,,Retiring early,ALPHA,true,2026-06-26,false
+P01200,Simran,Verma,9000071373,simran.verma.571@example.com,Gurugram,community,lead,true,false,,My children's education,PLAN,true,2026-06-26,false
+P01201,Aakash,Srivastava,9000008888,,Gurugram,community,lead,true,false,,,,true,2026-06-26,false
+P01208,Nandini,Rao,9000094318,,Bengaluru,organic,lead,true,false,,,,false,2026-06-26,false
+P01209,Ishita,Saxena,9000060749,,Delhi,corporate_session,lead,true,false,,,,true,2026-06-26,false
+P01210,Zoya,Sharma,9000099094,zoya.sharma.166@example.com,Noida,community,lead,true,false,,Saving enough every month,PLAN,true,2026-06-26,false
+P01211,Deepa,Varma,9000074361,,Hyderabad,community,lead,true,false,,,,true,2026-06-26,false
+P01212,Anjali,Mishra,9000081361,,Noida,corporate_session,lead,false,false,,,,false,2026-06-26,false
+P01218,Bhavin,Jain,9000070477,bhavin.jain.525@example.com,Mumbai,community,lead,true,false,,Where to invest,PLAN,true,2026-06-27,false
+P01220,Sindhu,Chandran,9000031885,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-06-27,false
+P01221,Payel,Mukherjee,9000030718,,Noida,referral,lead,true,false,,,,true,2026-06-27,false
+P01225,Pranali,Bhosale,9000090601,pranali.bhosale.652@example.com,Pune,community,lead,false,false,,Saving enough every month,ALPHA,true,2026-06-27,false
+P01226,Payel,Saha,9000039009,,Kolkata,community,lead,true,false,,,,true,2026-06-27,false
+P01227,Moumita,Majumdar,9000092868,,Gurugram,community,lead,true,false,,,,true,2026-06-27,false
+P01234,Madhav,Hegde,9000042155,,Hyderabad,organic,lead,true,false,,,,false,2026-06-28,false
+P01235,Vignesh,Reddy,9000040465,,Hyderabad,community,lead,true,false,,,,true,2026-06-28,false
+P01245,Karthik,Rao,9000003743,karthik.rao.373@example.com,Bengaluru,web_reveal,lead,true,false,25 to 29,Retiring early,PLAN,false,2026-06-28,false
+P01247,Sneha,Gokhale,9000095723,,Mumbai,corporate_session,lead,true,false,,,,false,2026-06-28,false
+P01248,Saloni,Kulkarni,9000058396,saloni.kulkarni.392@example.com,Mumbai,web_reveal,lead,true,false,25 to 29,Retiring early,ALPHA,false,2026-06-29,false
+P01250,Rahul,Bedi,9000098167,rahul.bedi.664@example.com,Gurugram,community,lead,true,false,,Saving enough every month,PLAN,true,2026-06-29,false
+P01251,Prasanna,Prasad,9000064214,prasanna.prasad.652@example.com,Bengaluru,web_reveal,lead,true,false,25 to 29,Retiring early,PLAN,false,2026-06-29,false
+P01253,Chaitanya,Varma,9000039806,chaitanya.varma.291@example.com,Chennai,web_reveal,lead,true,false,30 to 34,Paying off loans,PLAN,false,2026-06-29,false
+P01254,Deepa,Reddy,9000075868,deepa.reddy.273@example.com,Gurugram,community,lead,true,false,,My children's education,ALPHA,true,2026-06-29,false
+P01256,Naina,Chopra,9000081317,naina.chopra.141@example.com,Delhi,web_reveal,lead,true,false,35 to 39,Paying off loans,ALPHA,false,2026-06-29,false
+P01260,Hardik,Shinde,9000060081,,Pune,community,lead,true,false,,,,true,2026-06-29,false
+P01261,Varun,Kohli,9000042430,,Gurugram,community,lead,true,false,,,,true,2026-06-29,false
+P01265,Gauri,Pawar,9000042850,,Mumbai,community,lead,true,false,,,,true,2026-06-30,false
+P01267,Sandeep,Prasad,9000052975,,Chennai,corporate_session,lead,true,false,,,,false,2026-06-30,false
+P01269,Venkat,Kamath,9000007112,,Chennai,community,lead,true,false,,,,true,2026-06-30,false
+P01271,Kunal,Apte,9000003772,,Pune,organic,lead,true,false,,,,false,2026-06-30,false
+P01272,Deepak,Agarwal,9000033480,deepak.agarwal.477@example.com,Gurugram,community,lead,true,false,,Paying off loans,ALPHA,true,2026-06-30,false
+P01273,Naveen,Reddy,9000063431,,Chennai,corporate_session,lead,true,false,,,,false,2026-06-30,false
+P01274,Mihir,Joshi,9000032051,mihir.joshi.650@example.com,Ahmedabad,community,lead,true,false,,Insurance and cover,PLAN,true,2026-06-30,false
+P01275,Swathi,Subramanian,9000050680,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-06-30,false
+P01278,Aparna,Krishnan,9000034367,,Hyderabad,community,lead,true,false,,,,true,2026-06-30,false
+P01281,Jay,Deshmukh,9000017732,jay.deshmukh.626@example.com,Ahmedabad,web_reveal,lead,true,false,30 to 34,Where to invest,ALPHA,false,2026-07-01,false
+P01282,Prasanna,Murthy,9000030514,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-07-01,false
+P01285,Mehak,Kapoor,9000080483,,Gurugram,corporate_session,lead,false,true,,,,false,2026-07-01,false
+P01287,Sayan,Sahoo,9000016243,,Kolkata,organic,lead,false,false,,,,false,2026-07-01,false
+P01288,Hardik,Desai,9000036389,,Mumbai,community,lead,true,false,,,,true,2026-07-01,false
+P01290,Kavitha,Rao,9000071764,,Bengaluru,community,lead,true,false,,,,true,2026-07-01,false
+P01292,Nidhi,Kulkarni,9000076652,,Pune,community,lead,true,true,,,,true,2026-07-01,false
+P01293,Anand,Iyer,9000078663,anand.iyer.558@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Where to invest,PLAN,false,2026-07-01,false
+P01295,Bhavana,Naidu,9000013263,bhavana.naidu.971@example.com,Bengaluru,community,lead,true,false,,Paying off loans,PLAN,true,2026-07-01,false
+P01296,Sindhu,Rao,9000052022,sindhu.rao.558@example.com,Hyderabad,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-07-01,false
+P01297,Tanmoy,Roy,9000025539,,Kolkata,corporate_session,lead,false,false,,,,false,2026-07-01,false
+P01299,Vignesh,Nair,9000036666,,Bengaluru,organic,lead,true,false,,,,false,2026-07-02,false
+P01302,Lakshmi,Raman,9000072700,,Chennai,corporate_session,lead,true,false,,,,false,2026-07-02,false
+P01304,Pavithra,Chandran,9000021550,pavithra.chandran.263@example.com,Chennai,web_reveal,lead,true,false,35 to 39,Where to invest,PLAN,false,2026-07-02,false
+P01305,Aravind,Prasad,9000057079,,Bengaluru,organic,lead,true,false,,,,true,2026-07-02,false
+P01307,Arnab,Mitra,9000093639,,Kolkata,organic,lead,false,false,,,,false,2026-07-02,false
+P01308,Kunal,Shah,9000041477,kunal.shah.268@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Retiring early,PLAN,false,2026-07-02,false
+P01309,Nirav,Deshmukh,9000053925,,Pune,community,lead,true,false,,,,true,2026-07-02,false
+P01311,Mihir,Vora,9000058408,,Pune,community,lead,true,false,,,,true,2026-07-02,false
+P01312,Yash,Bedi,9000056171,,Chandigarh,corporate_session,lead,false,false,,,,false,2026-07-02,false
+P01313,Swathi,Shetty,9000061433,,Visakhapatnam,community,lead,false,false,,,,true,2026-07-02,false
+P01315,Arnab,Mohanty,9000040238,,Kolkata,community,lead,true,false,,,,true,2026-07-02,false
+P01316,Chinmay,Pandya,9000091418,chinmay.pandya.962@example.com,Ahmedabad,community,lead,true,false,,Retiring early,ALPHA,true,2026-07-02,false
+P01318,Pavithra,Gowda,9000040544,,Bengaluru,community,lead,true,false,,,,true,2026-07-02,false
+P01323,Karan,Bansal,9000032460,,Coimbatore,corporate_session,lead,false,true,,,,false,2026-07-03,false
+P01325,Madhav,Prasad,9000074954,,Chennai,referral,lead,false,false,,,,false,2026-07-03,false
+P01326,Prasanna,Iyer,9000059188,,Bengaluru,community,lead,true,false,,,,true,2026-07-03,false
+P01327,Ayesha,Gill,9000010746,,Delhi,community,lead,true,false,,,,true,2026-07-03,false
+P01329,Mihir,Patil,9000002132,,Ahmedabad,community,lead,true,false,,,,true,2026-07-03,false
+P01331,Meera,Sharma,9000037981,meera.sharma.444@example.com,Delhi,web_reveal,lead,false,false,35 to 39,My children's education,ALPHA,false,2026-07-03,false
+P01332,Pradeep,Nair,9000062082,,Hyderabad,organic,lead,true,false,,,,false,2026-07-03,false
+P01333,Kunal,Bhosale,9000000995,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-07-03,false
+P01339,Nithya,Hegde,9000049972,nithya.hegde.801@example.com,Bengaluru,web_reveal,lead,true,false,25 to 29,Paying off loans,PLAN,true,2026-07-03,false
+P01341,Aniket,Chitale,9000021960,aniket.chitale.830@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,My children's education,PLAN,true,2026-07-03,false
+P01342,Ketan,Sawant,9000032205,,Ahmedabad,community,lead,true,false,,,,true,2026-07-03,false
+P01343,Gurpreet,Mishra,9000054351,,Gurugram,organic,lead,false,false,,,,false,2026-07-03,false
+P01346,Tanvi,Verma,9000061405,,Gurugram,corporate_session,lead,true,true,,,,false,2026-07-04,false
+P01347,Yogesh,Mehta,9000052014,,Mumbai,community,lead,true,false,,,,true,2026-07-04,false
+P01349,Deepa,Shetty,9000089984,,Bengaluru,community,lead,true,false,,,,true,2026-07-04,false
+P01350,Kinjal,Sawant,9000001945,,Mumbai,corporate_session,lead,false,false,,,,false,2026-07-04,false
+P01351,Vishnu,Rao,9000086080,vishnu.rao.295@example.com,Mumbai,web_reveal,lead,true,false,40 to 44,Paying off loans,ALPHA,false,2026-07-04,false
+P01352,Mansi,Apte,9000027950,mansi.apte.277@example.com,Pune,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-07-04,false
+P01354,Prasanna,Iyer,9000045859,prasanna.iyer.241@example.com,Hyderabad,community,lead,true,false,,Paying off loans,PLAN,true,2026-07-04,false
+P01356,Ishani,Das,9000071690,,Kolkata,community,lead,true,false,,,,true,2026-07-04,false
+P01357,Gurpreet,Gill,9000014698,gurpreet.gill.504@example.com,Gurugram,community,lead,true,false,,Where to invest,PLAN,true,2026-07-04,false
+P01359,Dhruv,Kamat,9000041373,,Ahmedabad,organic,lead,true,false,,,,false,2026-07-04,false
+P01365,Tejas,Shinde,9000096450,tejas.shinde.165@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Insurance and cover,ALPHA,false,2026-07-05,false
+P01366,Jasleen,Kapoor,9000074750,,Delhi,community,lead,true,false,,,,true,2026-07-05,false
+P01371,Naveen,Subramanian,9000091995,,Kochi,community,lead,true,true,,,,true,2026-07-05,false
+P01372,Sagar,Pandya,9000028208,,Ahmedabad,organic,lead,true,false,,,,false,2026-07-05,false
+P01373,Tejas,Shah,9000087267,,Mumbai,corporate_session,lead,true,false,,,,false,2026-07-05,false
+P01376,Mohit,Bedi,9000008768,,Delhi,community,lead,true,false,,,,true,2026-07-05,false
+P01380,Indrani,Chatterjee,9000049421,indrani.chatterjee.582@example.com,Chennai,community,lead,true,false,,Saving enough every month,ALPHA,true,2026-07-05,false
+P01382,Sindhu,Varma,9000071007,,Chennai,organic,lead,true,false,,,,false,2026-07-06,false
+P01384,Ganesh,Pillai,9000098556,,Chennai,organic,lead,false,false,,,,false,2026-07-06,false
+P01386,Ketan,Kamat,9000039548,ketan.kamat.672@example.com,Mumbai,web_reveal,lead,true,false,35 to 39,My children's education,ALPHA,false,2026-07-06,false
+P01388,Aparna,Reddy,9000086698,,Hyderabad,referral,lead,true,false,,,,true,2026-07-06,false
+P01389,Sneha,Shinde,9000052635,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-07-06,false
+P01390,Madhav,Rajan,9000065761,madhav.rajan.756@example.com,Ahmedabad,web_reveal,lead,false,false,30 to 34,Insurance and cover,PLAN,false,2026-07-06,false
+P01392,Kavitha,Pai,9000090799,,Bengaluru,corporate_session,lead,false,false,,,,false,2026-07-06,false
+P01393,Rituparna,Roy,9000043795,,Delhi,organic,lead,true,false,,,,false,2026-07-06,false
+P01395,Swathi,Nair,9000068179,swathi.nair.319@example.com,Hyderabad,web_reveal,lead,false,false,35 to 39,Paying off loans,PLAN,false,2026-07-06,false
+P01399,Divakar,Krishnan,9000051177,divakar.krishnan.815@example.com,Chennai,web_reveal,lead,false,false,35 to 39,Paying off loans,PLAN,false,2026-07-06,false
+P01400,Pradeep,Srinivasan,9000022839,pradeep.srinivasan.198@example.com,Bengaluru,web_reveal,lead,true,true,25 to 29,Where to invest,ALPHA,false,2026-07-06,false
+P01401,Kinjal,Shinde,9000011186,,Surat,organic,lead,true,false,,,,false,2026-07-06,false
+P01403,Jigar,Desai,9000086284,,Ahmedabad,organic,lead,false,false,,,,false,2026-07-06,false
+P01405,Pradeep,Murthy,9000052521,pradeep.murthy.452@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,My children's education,ALPHA,false,2026-07-07,false
+P01406,Anand,Murthy,9000070627,anand.murthy.370@example.com,Delhi,web_reveal,lead,false,false,40 to 44,Retiring early,PLAN,false,2026-07-07,false
+P01409,Heena,Shah,9000010548,,Ahmedabad,community,lead,true,false,,,,true,2026-07-07,false
+P01410,Chinmay,Mehta,9000003006,,Pune,organic,lead,true,false,,,,false,2026-07-07,false
+P01411,Kavya,Sharma,9000098744,kavya.sharma.408@example.com,Chandigarh,web_reveal,lead,true,false,30 to 34,Saving enough every month,PLAN,false,2026-07-07,false
+P01416,Rohan,Bhatia,9000075629,rohan.bhatia.887@example.com,Noida,web_reveal,lead,true,false,30 to 34,Insurance and cover,PLAN,false,2026-07-07,false
+P01420,Sayan,Banerjee,9000076180,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-07-08,false
+P01421,Pooja,Tandon,9000065096,pooja.tandon.597@example.com,Gurugram,web_reveal,lead,true,false,35 to 39,Retiring early,PLAN,false,2026-07-08,false
+P01422,Subhajit,Ghosh,9000066058,,Mumbai,community,lead,true,false,,,,true,2026-07-08,false
+P01423,Varun,Agarwal,9000015164,,Noida,community,lead,true,false,,,,true,2026-07-08,false
+P01424,Omkar,Joshi,9000051770,,Pune,corporate_session,lead,true,false,,,,true,2026-07-08,false
+P01428,Simran,Kohli,9000014954,,Noida,community,lead,true,false,,,,true,2026-07-08,false
+P01430,Rohit,Jain,9000013320,,Mumbai,organic,lead,true,false,,,,true,2026-07-08,false
+P01431,Aman,Chauhan,9000052413,,Delhi,community,lead,true,false,,,,true,2026-07-08,false
+P01432,Krupa,Pawar,9000007692,,Mumbai,community,lead,true,false,,,,true,2026-07-08,false
+P01433,Ishita,Mishra,9000090393,,Noida,community,lead,true,false,,,,true,2026-07-09,false
+P01434,Nitin,Chauhan,9000096601,,Gurugram,corporate_session,lead,false,false,,,,false,2026-07-09,false
+P01440,Vignesh,Nair,9000061866,,Hyderabad,community,lead,true,false,,,,true,2026-07-09,false
+P01441,Kabir,Tandon,9000056327,,Gurugram,corporate_session,lead,true,false,,,,false,2026-07-09,false
+P01442,Jigar,Sawant,9000017352,,Delhi,referral,lead,false,false,,,,false,2026-07-09,false
+P01443,Prasanna,Chandran,9000066978,,Pune,organic,lead,true,false,,,,false,2026-07-09,false
+P01445,Rahul,Arora,9000065041,,Mumbai,corporate_session,lead,true,false,,,,false,2026-07-09,false
+P01446,Nishant,Mehta,9000011139,,Pune,corporate_session,lead,true,false,,,,true,2026-07-09,false
+P01447,Rohan,Kapoor,9000028009,,Gurugram,organic,lead,true,false,,,,false,2026-07-09,false
+P01448,Debasish,Chakraborty,9000061932,,Delhi,referral,lead,true,false,,,,false,2026-07-09,false
+P01449,Kunal,Patel,9000075069,,Mumbai,organic,lead,true,true,,,,false,2026-07-09,false
+P01450,Amruta,Kulkarni,9000084656,amruta.kulkarni.395@example.com,Pune,community,lead,true,true,,Where to invest,ALPHA,true,2026-07-09,false
+P01451,Chinmay,Patil,9000076712,,Pune,corporate_session,lead,false,false,,,,false,2026-07-10,false
+P01452,Srinivas,Rao,9000039191,srinivas.rao.892@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Where to invest,ALPHA,false,2026-07-10,false
+P01455,Janani,Rao,9000078268,janani.rao.737@example.com,Hyderabad,web_reveal,lead,false,false,40 to 44,Insurance and cover,ALPHA,false,2026-07-10,false
+P01457,Varsha,Raman,9000010893,,Bengaluru,referral,lead,true,false,,,,false,2026-07-10,false
+P01460,Saloni,Shinde,9000002813,saloni.shinde.584@example.com,Pune,community,lead,true,false,,Saving enough every month,PLAN,true,2026-07-10,false
+P01464,Shruti,Chitale,9000027537,,Pune,community,lead,false,false,,,,true,2026-07-10,false
+P01465,Kavitha,Balakrishnan,9000030611,kavitha.balakrishnan.557@example.com,Bengaluru,web_reveal,lead,false,false,30 to 34,Paying off loans,ALPHA,false,2026-07-10,false
+P01467,Shalini,Pai,9000099460,,Mumbai,organic,lead,false,false,,,,false,2026-07-10,false
+P01469,Tanvi,Kapoor,9000051701,,Hyderabad,organic,lead,true,false,,,,false,2026-07-10,false
+P01471,Bhavin,Pawar,9000093039,bhavin.pawar.522@example.com,Pune,web_reveal,lead,true,false,25 to 29,Saving enough every month,PLAN,true,2026-07-10,false
+P01477,Madhav,Natarajan,9000038451,madhav.natarajan.386@example.com,Bengaluru,community,lead,true,false,,Where to invest,PLAN,true,2026-07-10,false
+P01478,Amruta,Vora,9000051565,,Mumbai,organic,lead,false,false,,,,false,2026-07-11,false
+P01486,Arjun,Saxena,9000014770,arjun.saxena.533@example.com,Gurugram,community,lead,true,false,,My children's education,ALPHA,true,2026-07-11,false
+P01489,Naveen,Shetty,9000037274,,Chennai,organic,lead,true,false,,,,true,2026-07-11,false
+P01492,Divakar,Natarajan,9000085740,,Hyderabad,community,lead,true,false,,,,true,2026-07-11,false
+P01493,Sneha,Trivedi,9000033955,,Mumbai,corporate_session,lead,true,false,,,,false,2026-07-11,false
+P01494,Deepa,Rajan,9000068500,,Bengaluru,referral,lead,true,false,,,,false,2026-07-11,false
+P01495,Nithya,Murthy,9000011951,,Chennai,organic,lead,true,false,,,,false,2026-07-11,false
+P01498,Jay,Pawar,9000015127,,Mumbai,community,lead,true,false,,,,true,2026-07-11,false
+P01499,Naveen,Pillai,9000040364,,Hyderabad,community,lead,true,true,,,,true,2026-07-11,false
+P01501,Urvi,Jadhav,9000080209,,Mumbai,organic,lead,false,false,,,,false,2026-07-12,false
+P01502,Meenakshi,Natarajan,9000082411,meenakshi.natarajan.518@example.com,Chennai,web_reveal,lead,true,false,30 to 34,Paying off loans,ALPHA,false,2026-07-12,false
+P01503,Venkat,Pillai,9000051447,,Bengaluru,organic,lead,true,false,,,,true,2026-07-12,false
+P01505,Ananya,Das,9000060173,ananya.das.544@example.com,Kolkata,web_reveal,lead,false,false,35 to 39,Paying off loans,PLAN,false,2026-07-12,false
+P01508,Karan,Sethi,9000006610,,Noida,organic,lead,true,false,,,,false,2026-07-12,false
+P01509,Aditya,Tandon,9000087045,,Gurugram,referral,lead,true,false,,,,false,2026-07-12,false
+P01510,Sudipta,Saha,9000035132,sudipta.saha.323@example.com,Chennai,community,lead,true,false,,Paying off loans,PLAN,true,2026-07-12,false
+P01514,Sakshi,Tiwari,9000052243,,Gurugram,corporate_session,lead,true,false,,,,true,2026-07-12,false
+P01516,Shreya,Kohli,9000047568,shreya.kohli.535@example.com,Delhi,community,lead,true,false,,My children's education,ALPHA,true,2026-07-12,false
+P01518,Amruta,Naik,9000099265,amruta.naik.635@example.com,Mumbai,community,lead,true,true,,Retiring early,PLAN,true,2026-07-12,false
+P01522,Yogesh,Jain,9000000629,,Mumbai,corporate_session,lead,true,false,,,,false,2026-07-13,false
+P01525,Anirban,Sen,9000020267,,Hyderabad,organic,lead,false,false,,,,false,2026-07-13,false
+P01526,Rahul,Singh,9000084708,,Lucknow,community,lead,true,false,,,,true,2026-07-13,false
+P01527,Sahil,Gill,9000056970,sahil.gill.845@example.com,Delhi,web_reveal,lead,true,false,40 to 44,Paying off loans,PLAN,false,2026-07-13,false
+P01531,Prasanna,Iyengar,9000005771,,Bengaluru,community,lead,true,false,,,,true,2026-07-13,false
+P01533,Akshay,Pandey,9000028954,,Delhi,corporate_session,lead,false,false,,,,false,2026-07-14,false
+P01534,Priyanka,Pradhan,9000022784,,Kolkata,referral,lead,true,false,,,,false,2026-07-14,false
+P01536,Revathi,Nair,9000003648,,Chennai,community,lead,true,false,,,,true,2026-07-14,false
+P01538,Manish,Arora,9000076185,manish.arora.614@example.com,Hyderabad,community,lead,true,false,,Insurance and cover,PLAN,true,2026-07-14,false
+P01539,Bhavin,Pawar,9000003455,,Pune,community,lead,true,false,,,,true,2026-07-14,false
+P01544,Aakash,Chopra,9000020288,aakash.chopra.529@example.com,Delhi,community,lead,true,false,,Insurance and cover,PLAN,true,2026-07-14,false
+P01548,Nishant,Dave,9000060876,nishant.dave.542@example.com,Ahmedabad,web_reveal,lead,false,false,35 to 39,Insurance and cover,PLAN,false,2026-07-14,false
+P01549,Vidya,Reddy,9000050716,,Chennai,community,lead,true,false,,,,true,2026-07-14,false
+P01551,Kinjal,Jadhav,9000048566,kinjal.jadhav.123@example.com,Pune,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-07-15,false
+P01552,Hetal,Pawar,9000049680,,Ahmedabad,community,lead,true,false,,,,true,2026-07-15,false
+P01555,Pradeep,Pillai,9000059034,,Hyderabad,corporate_session,lead,true,false,,,,true,2026-07-15,false
+P01559,Aditya,Chauhan,9000056852,,Delhi,community,lead,false,false,,,,true,2026-07-15,false
+P01561,Sai,Iyer,9000015504,,Hyderabad,community,lead,true,false,,,,true,2026-07-15,false
+P01563,Aparna,Pillai,9000002434,,Hyderabad,community,lead,false,false,,,,true,2026-07-15,false
+P01565,Ishaan,Arora,9000033526,,Delhi,corporate_session,lead,true,false,,,,false,2026-07-15,false
+P01566,Siddharth,Pawar,9000008973,,Chennai,organic,lead,true,false,,,,false,2026-07-15,false
+P01571,Chinmay,Gokhale,9000011283,,Ahmedabad,organic,lead,false,false,,,,false,2026-07-16,false
+P01572,Priya,Saxena,9000077109,,Gurugram,corporate_session,lead,true,false,,,,false,2026-07-16,false
+P01573,Amruta,Bhosale,9000079467,amruta.bhosale.779@example.com,Pune,community,lead,true,false,,My children's education,PLAN,true,2026-07-16,false
+P01575,Madhav,Murthy,9000067584,madhav.murthy.745@example.com,Chennai,web_reveal,lead,true,false,30 to 34,My children's education,ALPHA,false,2026-07-16,false
+P01580,Karthik,Pai,9000064356,,Hyderabad,organic,lead,true,true,,,,false,2026-07-16,false
+P01581,Priya,Tiwari,9000040732,priya.tiwari.324@example.com,Gurugram,web_reveal,lead,true,false,35 to 39,Paying off loans,PLAN,false,2026-07-16,false
+P01582,Pooja,Tandon,9000002649,,Gurugram,corporate_session,lead,true,false,,,,false,2026-07-16,false
+P01583,Amruta,Joshi,9000095297,amruta.joshi.912@example.com,Pune,web_reveal,lead,true,false,30 to 34,Retiring early,ALPHA,false,2026-07-16,false
+P01587,Sakshi,Malhotra,9000062137,,Noida,community,lead,true,false,,,,true,2026-07-17,false
+P01589,Riddhi,Pawar,9000060135,riddhi.pawar.430@example.com,Pune,community,lead,true,false,,Paying off loans,PLAN,true,2026-07-17,false
+P01593,Siddharth,Shah,9000035306,siddharth.shah.245@example.com,Pune,web_reveal,lead,true,true,30 to 34,Saving enough every month,ALPHA,true,2026-07-18,false
+P01596,Aakash,Bhatia,9000086671,,Mumbai,community,lead,true,false,,,,true,2026-07-18,false
+P01598,Nishant,Kulkarni,9000050564,nishant.kulkarni.285@example.com,Mumbai,community,lead,true,false,,Paying off loans,PLAN,true,2026-07-18,false
+P01603,Rohit,Shah,9000070308,rohit.shah.507@example.com,Mumbai,community,lead,true,false,,Insurance and cover,PLAN,true,2026-07-18,false
+P01604,Pranali,Bhosale,9000077596,,Ahmedabad,community,lead,true,false,,,,true,2026-07-18,false
+P01605,Kabir,Bedi,9000043763,kabir.bedi.229@example.com,Gurugram,community,lead,true,false,,Paying off loans,ALPHA,true,2026-07-18,false
+P01607,Aman,Gupta,9000053907,,Delhi,corporate_session,lead,true,false,,,,false,2026-07-18,false
+P01608,Keerthana,Shetty,9000031803,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-07-18,false
+P01609,Pavithra,Iyengar,9000053248,,Pune,community,lead,true,false,,,,true,2026-07-18,false
+P01612,Arun,Pai,9000043876,arun.pai.912@example.com,Hyderabad,community,lead,false,false,,Where to invest,ALPHA,true,2026-07-18,false
+P01613,Madhura,Gokhale,9000084696,,Kolkata,community,lead,true,false,,,,true,2026-07-18,false
+P01614,Kavitha,Srinivasan,9000022087,,Bengaluru,community,lead,true,false,,,,true,2026-07-18,false
+P01618,Rutuja,Apte,9000051197,,Mumbai,corporate_session,lead,true,false,,,,false,2026-07-19,false
+P01623,Hetal,Dave,9000092633,,Mumbai,organic,lead,true,false,,,,false,2026-07-19,false
+P01626,Kabir,Gill,9000037906,kabir.gill.398@example.com,Delhi,community,lead,true,false,,Retiring early,ALPHA,true,2026-07-19,false
+P01627,Divya,Gupta,9000099951,divya.gupta.860@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,Where to invest,PLAN,false,2026-07-19,false
+P01628,Kunal,Kulkarni,9000082326,,Ahmedabad,corporate_session,lead,true,false,,,,true,2026-07-19,false
+P01632,Anirban,Majumdar,9000075420,anirban.majumdar.595@example.com,Gurugram,community,lead,false,false,,Paying off loans,ALPHA,true,2026-07-20,false
+P01633,Zoya,Bhatia,9000035078,,Gurugram,corporate_session,lead,true,false,,,,false,2026-07-20,false
+P01634,Jigar,Trivedi,9000096052,,Ahmedabad,referral,lead,true,false,,,,false,2026-07-20,false
+P01640,Ritika,Srivastava,9000043942,,Gurugram,organic,lead,false,false,,,,false,2026-07-20,false
+P01643,Pradeep,Iyer,9000039632,,Chennai,corporate_session,lead,true,false,,,,false,2026-07-20,false
+P01644,Sai,Reddy,9000070481,sai.reddy.249@example.com,Delhi,web_reveal,lead,true,false,35 to 39,Paying off loans,PLAN,false,2026-07-20,false
+P01645,Poulami,Dutta,9000074850,poulami.dutta.463@example.com,Lucknow,web_reveal,lead,true,false,30 to 34,Paying off loans,PLAN,false,2026-07-20,false
+P01647,Neha,Malhotra,9000090139,neha.malhotra.432@example.com,Gurugram,community,lead,true,false,,My children's education,ALPHA,true,2026-07-21,false
+P01648,Mohit,Sharma,9000032361,,Gurugram,referral,lead,true,true,,,,false,2026-07-21,false
+P01649,Deepa,Varma,9000065466,deepa.varma.629@example.com,Bengaluru,web_reveal,lead,true,false,40 to 44,Retiring early,PLAN,false,2026-07-21,false
+P01654,Rituparna,Bose,9000022962,,Kolkata,community,lead,true,true,,,,true,2026-07-21,false
+P01655,Parth,Bhosale,9000034300,parth.bhosale.156@example.com,Mumbai,web_reveal,lead,false,false,25 to 29,Saving enough every month,PLAN,false,2026-07-21,false
+P01656,Parth,Apte,9000030263,,Gurugram,community,lead,true,false,,,,true,2026-07-21,false
+P01658,Sindhu,Kumar,9000037298,,Chennai,community,lead,true,false,,,,true,2026-07-22,false
+P01659,Sanjana,Chopra,9000091269,sanjana.chopra.404@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,Where to invest,PLAN,false,2026-07-22,false
+P01666,Debasish,Saha,9000000259,,Mumbai,community,lead,true,false,,,,true,2026-07-22,false
+P01668,Ketan,Bhosale,9000085160,ketan.bhosale.326@example.com,Ahmedabad,community,lead,true,false,,Where to invest,ALPHA,true,2026-07-22,false
+P01672,Gauri,Vora,9000038988,,Mumbai,organic,lead,true,false,,,,false,2026-07-22,false
+P01674,Meera,Rathore,9000037079,meera.rathore.974@example.com,Gurugram,community,lead,true,false,,My children's education,PLAN,true,2026-07-22,false
+P01679,Payal,Agarwal,9000076281,payal.agarwal.711@example.com,Noida,web_reveal,lead,true,false,30 to 34,Paying off loans,PLAN,false,2026-07-23,false
+P01682,Meera,Pandey,9000083506,meera.pandey.953@example.com,Noida,web_reveal,lead,true,false,25 to 29,Paying off loans,PLAN,false,2026-07-23,false
+P01683,Tanushree,Pradhan,9000005618,tanushree.pradhan.433@example.com,Chennai,community,lead,true,false,,Where to invest,ALPHA,true,2026-07-23,false
+P01684,Revathi,Hegde,9000011489,,Bengaluru,organic,lead,false,false,,,,false,2026-07-23,false
+P01686,Shalini,Nair,9000029653,shalini.nair.411@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,My children's education,PLAN,false,2026-07-23,false
+P01687,Chinmay,Chitale,9000098740,,Mumbai,corporate_session,lead,true,false,,,,false,2026-07-23,false
+P01692,Kavya,Sharma,9000073509,,Noida,corporate_session,lead,true,false,,,,false,2026-07-23,false
+P01693,Vidya,Prasad,9000096569,vidya.prasad.441@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Where to invest,PLAN,false,2026-07-23,false
+P01697,Mohit,Singh,9000028802,,Delhi,organic,lead,true,false,,,,false,2026-07-23,false
+P01699,Varun,Kohli,9000037684,varun.kohli.369@example.com,Chennai,community,lead,true,false,,Paying off loans,PLAN,true,2026-07-24,false
+P01700,Naveen,Naidu,9000028826,naveen.naidu.958@example.com,Bengaluru,community,lead,true,false,,My children's education,PLAN,true,2026-07-24,false
+P01701,Kaushik,Roy,9000059131,,Mumbai,community,lead,true,false,,,,true,2026-07-24,false
+P01703,Riddhi,Jadhav,9000073437,,Pune,community,lead,true,false,,,,true,2026-07-24,false
+P01704,Priyanka,Banerjee,9000060280,priyanka.banerjee.991@example.com,Pune,web_reveal,lead,false,false,25 to 29,Saving enough every month,ALPHA,false,2026-07-24,false
+P01707,Revathi,Menon,9000000222,,Hyderabad,community,lead,true,false,,,,true,2026-07-24,false
+P01709,Pooja,Saxena,9000063086,,Noida,community,lead,false,false,,,,true,2026-07-24,false
+P01716,Anjali,Mishra,9000016516,anjali.mishra.932@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,Insurance and cover,ALPHA,false,2026-07-24,false
+P01717,Kinjal,Shah,9000008398,,Pune,community,lead,true,true,,,,true,2026-07-24,false
+P01722,Sneha,Patil,9000068240,,Mumbai,organic,lead,true,false,,,,false,2026-07-25,false
+P01723,Priya,Bhatia,9000094556,,Noida,corporate_session,lead,false,false,,,,true,2026-07-25,false
+P01724,Janani,Nair,9000022128,,Chennai,corporate_session,lead,false,false,,,,false,2026-07-25,false
+P01725,Sakshi,Khanna,9000021181,sakshi.khanna.371@example.com,Gurugram,community,lead,true,false,,My children's education,PLAN,true,2026-07-25,false
+P01726,Madhura,Jadhav,9000048348,,Mumbai,community,lead,true,false,,,,true,2026-07-25,false
+P01727,Sneha,Shinde,9000063260,,Pune,referral,lead,false,false,,,,false,2026-07-25,false
+P01730,Vignesh,Pai,9000047898,vignesh.pai.546@example.com,Chennai,web_reveal,lead,false,false,35 to 39,Paying off loans,PLAN,true,2026-07-25,false
+P01731,Vidya,Krishnan,9000049263,,Coimbatore,corporate_session,lead,false,false,,,,false,2026-07-25,false
+P01732,Vidya,Pillai,9000079939,vidya.pillai.200@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,Retiring early,PLAN,false,2026-07-25,false
+P01738,Keerthana,Murthy,9000016711,,Hyderabad,referral,lead,false,false,,,,false,2026-07-26,false
+P01739,Rajiv,Prasad,9000007167,,Hyderabad,community,lead,true,false,,,,true,2026-07-26,false
+P01740,Payal,Bansal,9000025310,payal.bansal.319@example.com,Noida,web_reveal,lead,true,false,35 to 39,Insurance and cover,ALPHA,false,2026-07-26,false
+P01741,Nandini,Chandran,9000091331,,Hyderabad,community,lead,true,false,,,,true,2026-07-26,false
+P01742,Jay,Pandya,9000041617,,Pune,corporate_session,lead,true,false,,,,false,2026-07-26,false
+P01748,Ananya,Saha,9000083750,,Kolkata,organic,lead,true,false,,,,false,2026-07-26,false
+P01749,Anand,Shetty,9000073382,,Chennai,corporate_session,lead,true,false,,,,false,2026-07-26,false
+P01750,Sourav,Mitra,9000043251,,Bengaluru,corporate_session,lead,false,false,,,,true,2026-07-26,false
+P01751,Sneha,Jadhav,9000025704,,Mumbai,organic,lead,true,false,,,,true,2026-07-26,false
+P01754,Madhav,Chandran,9000045845,madhav.chandran.454@example.com,Bengaluru,web_reveal,lead,true,false,25 to 29,Insurance and cover,ALPHA,false,2026-07-26,false
+P01755,Sandeep,Chandran,9000035353,,Bengaluru,community,lead,true,false,,,,true,2026-07-26,false
+P01756,Karthik,Gowda,9000011584,,Bengaluru,community,lead,true,false,,,,true,2026-07-26,false
+P01762,Srinivas,Srinivasan,9000053708,srinivas.srinivasan.427@example.com,Bengaluru,web_reveal,lead,true,false,25 to 29,Where to invest,PLAN,false,2026-07-27,false
+P01764,Divakar,Rajan,9000053812,,Hyderabad,community,lead,true,false,,,,true,2026-07-27,false
+P01765,Ramya,Pai,9000052017,,Gurugram,community,lead,true,true,,,,true,2026-07-27,false
+P01766,Urvi,Pandya,9000069401,,Pune,corporate_session,lead,true,false,,,,false,2026-07-27,false
+P01769,Siddharth,Kulkarni,9000022517,siddharth.kulkarni.153@example.com,Mumbai,community,lead,true,false,,Saving enough every month,PLAN,true,2026-07-27,false
+P01770,Rutuja,Patil,9000058422,,Hyderabad,corporate_session,lead,true,false,,,,false,2026-07-27,false
+P01771,Rohan,Kapoor,9000007292,,Gurugram,corporate_session,lead,false,false,,,,false,2026-07-27,false
+P01773,Sandeep,Subramanian,9000004672,,Pune,organic,lead,true,false,,,,false,2026-07-27,false
+P01777,Priyanka,Saha,9000045403,,Pune,referral,lead,true,false,,,,false,2026-07-27,false
+P01782,Omkar,Jain,9000062701,,Ahmedabad,organic,lead,false,false,,,,false,2026-07-28,false
+P01787,Pooja,Srivastava,9000083240,,Gurugram,referral,lead,true,false,,,,false,2026-07-28,false
+P01790,Mihir,Deshmukh,9000071752,,Pune,corporate_session,lead,true,false,,,,false,2026-07-28,false
+P01791,Nithya,Kamath,9000084486,nithya.kamath.403@example.com,Bengaluru,community,lead,true,false,,Retiring early,PLAN,true,2026-07-28,false
+P01795,Akshay,Srivastava,9000033469,,Gurugram,community,lead,true,false,,,,true,2026-07-28,false
+P01796,Arjun,Bansal,9000059587,arjun.bansal.593@example.com,Noida,web_reveal,lead,false,false,40 to 44,Retiring early,ALPHA,false,2026-07-28,false
+P01800,Venkat,Srinivasan,9000082684,,Visakhapatnam,community,lead,true,false,,,,true,2026-07-29,false
+P01803,Shalini,Naidu,9000039355,,Chennai,referral,lead,true,false,,,,false,2026-07-29,false
+P01804,Harpreet,Tiwari,9000084165,,Gurugram,corporate_session,lead,false,false,,,,false,2026-07-29,false
+P01806,Rutuja,Pandya,9000039842,,Mumbai,community,lead,true,true,,,,true,2026-07-29,false
+P01812,Meera,Mishra,9000049830,,Gurugram,corporate_session,lead,true,true,,,,false,2026-07-29,false
+P01815,Aditya,Gupta,9000005823,aditya.gupta.607@example.com,Noida,web_reveal,lead,true,false,25 to 29,My children's education,PLAN,true,2026-07-29,false
+P01816,Arjun,Arora,9000027147,,Gurugram,community,lead,true,false,,,,true,2026-07-29,false
+P01817,Pavithra,Subramanian,9000078050,pavithra.subramanian.450@example.com,Bengaluru,community,lead,true,false,,Retiring early,PLAN,true,2026-07-29,false
+P01824,Nithya,Natarajan,9000066557,nithya.natarajan.244@example.com,Hyderabad,community,lead,true,false,,Where to invest,PLAN,true,2026-07-30,false
+P01828,Rohit,Patil,9000002284,rohit.patil.327@example.com,Pune,community,lead,true,false,,Paying off loans,ALPHA,true,2026-07-30,false
+P01829,Nishant,Vora,9000071829,,Pune,community,lead,true,false,,,,true,2026-07-30,false
+P01830,Venkat,Menon,9000030778,venkat.menon.401@example.com,Bengaluru,web_reveal,lead,true,false,40 to 44,Retiring early,PLAN,false,2026-07-30,false
+P01832,Pavithra,Iyengar,9000098016,pavithra.iyengar.339@example.com,Bengaluru,community,lead,true,false,,Retiring early,ALPHA,true,2026-07-30,false
+P01833,Aditya,Bedi,9000086198,,Delhi,organic,lead,true,false,,,,true,2026-07-30,false
+P01835,Ishani,Sahoo,9000059262,,Visakhapatnam,community,lead,true,false,,,,true,2026-07-30,false
+P01836,Siddharth,Shinde,9000009736,,Delhi,community,lead,true,false,,,,true,2026-07-31,false
+P01838,Mansi,Naik,9000008294,,Pune,community,lead,true,false,,,,true,2026-07-31,false
+P01840,Hardik,Kamat,9000019116,,Pune,community,lead,true,false,,,,true,2026-07-31,false
+P01841,Sandeep,Balakrishnan,9000048532,sandeep.balakrishnan.447@example.com,Bengaluru,web_reveal,lead,false,false,25 to 29,Where to invest,PLAN,false,2026-07-31,false
+P01844,Divakar,Balakrishnan,9000007230,divakar.balakrishnan.996@example.com,Chennai,web_reveal,lead,true,true,30 to 34,My children's education,PLAN,false,2026-07-31,false
+P01851,Nandini,Krishnan,9000089863,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-07-31,false
+P01854,Saloni,Jain,9000081963,saloni.jain.446@example.com,Pune,web_reveal,lead,true,false,30 to 34,Saving enough every month,ALPHA,false,2026-07-31,false
+P01855,Anirban,Chakraborty,9000073404,,Bengaluru,organic,lead,false,false,,,,false,2026-07-31,false
+P01856,Madhura,Bhosale,9000045041,,Pune,referral,lead,true,false,,,,false,2026-07-31,false
+P01857,Tarun,Tiwari,9000037371,,Delhi,organic,lead,false,false,,,,false,2026-07-31,false
+P01859,Karthik,Krishnan,9000063572,,Bengaluru,community,lead,true,false,,,,true,2026-08-01,false
+P01861,Sindhu,Pillai,9000062807,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-08-01,false
+P01862,Meenakshi,Gowda,9000074362,,Chennai,community,lead,true,false,,,,true,2026-08-01,false
+P01863,Revathi,Srinivasan,9000088098,revathi.srinivasan.357@example.com,Chennai,community,lead,true,true,,My children's education,PLAN,true,2026-08-01,false
+P01866,Venkat,Gowda,9000079455,,Hyderabad,community,lead,true,false,,,,true,2026-08-01,false
+P01867,Payal,Bhatia,9000083611,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-08-01,false
+P01874,Vignesh,Nair,9000007792,vignesh.nair.626@example.com,Hyderabad,community,lead,true,true,,Saving enough every month,PLAN,true,2026-08-01,false
+P01875,Harini,Reddy,9000054117,,Chennai,community,lead,true,false,,,,true,2026-08-02,false
+P01878,Sagar,Patil,9000009454,,Pune,community,lead,true,false,,,,true,2026-08-02,false
+P01879,Gauri,Apte,9000083181,,Bengaluru,community,lead,true,false,,,,true,2026-08-02,false
+P01881,Vishnu,Kumar,9000010400,,Chennai,organic,lead,true,false,,,,false,2026-08-02,false
+P01882,Moumita,Mitra,9000090514,,Hyderabad,organic,lead,true,true,,,,false,2026-08-02,false
+P01885,Pavithra,Kamath,9000017140,,Chennai,community,lead,true,false,,,,true,2026-08-02,false
+P01887,Revathi,Kamath,9000012031,revathi.kamath.611@example.com,Bengaluru,community,lead,true,false,,Retiring early,PLAN,true,2026-08-03,false
+P01890,Abhijit,Mukherjee,9000050139,,Kolkata,community,lead,true,false,,,,true,2026-08-03,false
+P01893,Payal,Kohli,9000021402,,Delhi,organic,lead,false,false,,,,true,2026-08-03,false
+P01896,Pranav,Mehra,9000074590,,Mumbai,corporate_session,lead,true,false,,,,false,2026-08-03,false
+P01901,Sindhu,Srinivasan,9000070623,,Bengaluru,community,lead,true,false,,,,true,2026-08-03,false
+P01902,Tejas,Chitale,9000077460,tejas.chitale.449@example.com,Pune,community,lead,true,false,,My children's education,ALPHA,true,2026-08-03,false
+P01903,Sameer,Pandya,9000025931,sameer.pandya.771@example.com,Gurugram,web_reveal,lead,false,false,35 to 39,Insurance and cover,PLAN,false,2026-08-03,false
+P01908,Vignesh,Kamath,9000064643,,Bengaluru,organic,lead,true,true,,,,false,2026-08-04,false
+P01910,Biswajit,Das,9000044360,,Pune,community,lead,true,false,,,,true,2026-08-04,false
+P01911,Anjali,Sethi,9000030497,,Noida,community,lead,true,false,,,,true,2026-08-04,false
+P01912,Foram,Gokhale,9000099863,,Mumbai,corporate_session,lead,false,true,,,,false,2026-08-04,false
+P01920,Neha,Kohli,9000071946,,Gurugram,community,lead,true,false,,,,true,2026-08-04,false
+P01921,Hetal,Chitale,9000009986,hetal.chitale.379@example.com,Mumbai,community,lead,true,false,,Where to invest,ALPHA,true,2026-08-04,false
+P01922,Prachi,Joshi,9000004387,,Pune,corporate_session,lead,true,false,,,,false,2026-08-04,false
+P01923,Simran,Saxena,9000025851,,Delhi,community,lead,true,false,,,,true,2026-08-04,false
+P01924,Harini,Kumar,9000063447,,Chennai,community,lead,true,false,,,,true,2026-08-04,false
+P01927,Riddhi,Pandya,9000093894,,Pune,community,lead,true,false,,,,true,2026-08-05,false
+P01928,Meenakshi,Krishnan,9000087951,,Bengaluru,community,lead,true,false,,,,true,2026-08-05,false
+P01931,Pavithra,Shetty,9000038747,,Chennai,referral,lead,true,false,,,,false,2026-08-05,false
+P01933,Madhura,Apte,9000005624,,Pune,corporate_session,lead,true,true,,,,true,2026-08-05,false
+P01934,Tarun,Mishra,9000037573,tarun.mishra.368@example.com,Mumbai,community,lead,false,false,,Paying off loans,ALPHA,true,2026-08-05,false
+P01935,Naina,Mishra,9000014173,,Delhi,corporate_session,lead,false,false,,,,false,2026-08-05,false
+P01937,Pranali,Kulkarni,9000062239,,Pune,referral,lead,true,false,,,,true,2026-08-05,false
+P01938,Chaitanya,Menon,9000075951,chaitanya.menon.649@example.com,Bengaluru,web_reveal,lead,true,false,25 to 29,Where to invest,ALPHA,false,2026-08-05,false
+P01940,Kinjal,Patel,9000016555,,Pune,organic,lead,true,false,,,,false,2026-08-05,false
+P01943,Sneha,Jain,9000074396,,Indore,referral,lead,true,false,,,,true,2026-08-05,false
+P01945,Zoya,Chopra,9000080490,,Gurugram,organic,lead,false,false,,,,false,2026-08-05,false
+P01949,Sudipta,Bose,9000065302,,Ahmedabad,organic,lead,false,false,,,,false,2026-08-05,false
+P01954,Nishant,Naik,9000062432,nishant.naik.527@example.com,Mumbai,web_reveal,lead,true,false,35 to 39,Retiring early,PLAN,false,2026-08-06,false
+P01956,Aniket,Pawar,9000058708,,Mumbai,corporate_session,lead,true,false,,,,false,2026-08-06,false
+P01960,Nithya,Iyengar,9000077070,nithya.iyengar.433@example.com,Chennai,community,lead,false,false,,Insurance and cover,PLAN,true,2026-08-06,false
+P01962,Kinjal,Naik,9000085451,kinjal.naik.647@example.com,Bengaluru,web_reveal,lead,false,false,25 to 29,My children's education,ALPHA,false,2026-08-06,false
+P01964,Varsha,Iyengar,9000000784,,Bengaluru,community,lead,true,false,,,,true,2026-08-06,false
+P01966,Chinmay,Jadhav,9000066410,,Pune,community,lead,true,false,,,,true,2026-08-06,false
+P01967,Sanjana,Sharma,9000063277,,Gurugram,community,lead,true,true,,,,true,2026-08-06,false
+P01968,Mansi,Deshmukh,9000012761,,Pune,community,lead,false,false,,,,true,2026-08-06,false
+P01969,Srinivas,Nair,9000077702,,Hyderabad,corporate_session,lead,true,false,,,,false,2026-08-07,false
+P01970,Chaitanya,Murthy,9000011351,chaitanya.murthy.409@example.com,Hyderabad,community,lead,true,false,,Retiring early,ALPHA,true,2026-08-07,false
+P01971,Lakshmi,Natarajan,9000057055,,Chennai,community,lead,true,false,,,,true,2026-08-07,false
+P01974,Venkat,Varma,9000080720,,Bengaluru,organic,lead,false,false,,,,false,2026-08-07,false
+P01975,Nishant,Shah,9000075651,,Surat,organic,lead,true,false,,,,false,2026-08-07,false
+P01977,Vidya,Menon,9000085420,,Bengaluru,corporate_session,lead,false,false,,,,false,2026-08-07,false
+P01979,Sameer,Vora,9000030267,,Ahmedabad,organic,lead,true,false,,,,false,2026-08-07,false
+P01980,Sandeep,Reddy,9000091217,sandeep.reddy.355@example.com,Chennai,web_reveal,lead,true,false,35 to 39,My children's education,PLAN,false,2026-08-07,false
+P01982,Madhura,Jain,9000061372,madhura.jain.184@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Insurance and cover,PLAN,false,2026-08-07,false
+P01983,Nitin,Rathore,9000024880,,Gurugram,corporate_session,lead,true,false,,,,false,2026-08-07,false
+P01984,Ishita,Chauhan,9000089414,ishita.chauhan.751@example.com,Delhi,web_reveal,lead,true,false,25 to 29,Retiring early,PLAN,false,2026-08-07,false
+P01985,Devika,Kamat,9000040043,,Ahmedabad,community,lead,true,false,,,,true,2026-08-07,false
+P01986,Ayesha,Tiwari,9000082015,,Delhi,organic,lead,false,false,,,,false,2026-08-07,false
+P01989,Gurpreet,Bhatia,9000018402,gurpreet.bhatia.760@example.com,Delhi,web_reveal,lead,true,false,40 to 44,Paying off loans,PLAN,false,2026-08-07,false
+P01996,Madhura,Dave,9000019014,madhura.dave.557@example.com,Ahmedabad,community,lead,true,false,,Paying off loans,PLAN,true,2026-08-08,false
+P01999,Vidya,Rao,9000080925,vidya.rao.334@example.com,Hyderabad,web_reveal,lead,false,false,35 to 39,Saving enough every month,PLAN,false,2026-08-08,false
+P02000,Tejas,Deshmukh,9000054196,,Mumbai,corporate_session,lead,false,false,,,,false,2026-08-08,false
+P02002,Anand,Murthy,9000075350,anand.murthy.665@example.com,Bengaluru,web_reveal,lead,true,false,25 to 29,Retiring early,PLAN,false,2026-08-08,false
+P02004,Kunal,Naik,9000097339,,Pune,community,lead,true,false,,,,true,2026-08-08,false
+P02006,Arnab,Majumdar,9000016801,,Kolkata,community,lead,true,false,,,,true,2026-08-08,false
+P02007,Chaitanya,Rao,9000013274,,Bengaluru,organic,lead,true,false,,,,true,2026-08-08,false
+P02008,Aniket,Dave,9000047598,aniket.dave.990@example.com,Mumbai,community,lead,true,false,,Where to invest,ALPHA,true,2026-08-08,false
+P02009,Kinjal,Bhosale,9000000966,kinjal.bhosale.532@example.com,Ahmedabad,web_reveal,lead,true,false,30 to 34,Insurance and cover,ALPHA,false,2026-08-08,false
+P02014,Sagar,Pawar,9000055981,,Ahmedabad,community,lead,true,false,,,,true,2026-08-09,false
+P02015,Ayesha,Kapoor,9000057168,,Gurugram,corporate_session,lead,false,true,,,,true,2026-08-09,false
+P02016,Gayathri,Iyengar,9000088076,gayathri.iyengar.478@example.com,Bengaluru,community,lead,true,false,,My children's education,ALPHA,true,2026-08-09,false
+P02017,Siddharth,Chitale,9000054060,,Mumbai,community,lead,true,false,,,,true,2026-08-09,false
+P02018,Omkar,Patel,9000054806,,Delhi,organic,lead,true,false,,,,true,2026-08-09,false
+P02022,Harpreet,Tiwari,9000089191,,Noida,corporate_session,lead,true,false,,,,false,2026-08-09,false
+P02025,Nirav,Thakkar,9000094659,,Pune,referral,lead,true,false,,,,false,2026-08-10,false
+P02027,Nidhi,Shinde,9000097591,nidhi.shinde.257@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Where to invest,ALPHA,false,2026-08-10,false
+P02029,Biswajit,Mohanty,9000053333,,Kolkata,community,lead,true,false,,,,true,2026-08-10,false
+P02033,Hetal,Jadhav,9000020082,,Pune,referral,lead,true,false,,,,false,2026-08-10,false
+P02034,Bhavana,Pillai,9000098110,,Hyderabad,corporate_session,lead,true,false,,,,false,2026-08-10,false
+P02036,Sneha,Shah,9000010659,sneha.shah.575@example.com,Mumbai,community,lead,true,false,,Paying off loans,PLAN,true,2026-08-10,false
+P02040,Madhav,Naidu,9000013133,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-08-10,false
+P02046,Siddharth,Pandya,9000019590,,Ahmedabad,corporate_session,lead,false,false,,,,false,2026-08-11,false
+P02047,Devika,Kulkarni,9000002203,devika.kulkarni.282@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Insurance and cover,PLAN,false,2026-08-11,false
+P02050,Tanvi,Pandey,9000004191,,Delhi,community,lead,true,false,,,,true,2026-08-11,false
+P02051,Aditya,Chopra,9000008499,,Gurugram,organic,lead,true,false,,,,false,2026-08-11,false
+P02053,Devika,Vora,9000052801,,Mumbai,community,lead,true,false,,,,true,2026-08-11,false
+P02054,Meenakshi,Rao,9000056763,,Bengaluru,community,lead,true,true,,,,true,2026-08-11,false
+P02056,Ganesh,Pai,9000062028,ganesh.pai.175@example.com,Hyderabad,web_reveal,lead,true,false,40 to 44,Retiring early,PLAN,false,2026-08-11,false
+P02060,Suresh,Menon,9000081149,,Chennai,community,lead,true,false,,,,true,2026-08-11,false
+P02061,Ayesha,Bansal,9000074541,,Gurugram,community,lead,true,false,,,,true,2026-08-11,false
+P02062,Meenakshi,Balakrishnan,9000015913,,Chennai,corporate_session,lead,true,false,,,,true,2026-08-11,false
+P02063,Meenakshi,Hegde,9000069514,,Chennai,community,lead,true,false,,,,true,2026-08-11,false
+P02065,Nitin,Khanna,9000076746,,Noida,community,lead,true,false,,,,true,2026-08-11,false
+P02071,Aman,Singh,9000062735,aman.singh.575@example.com,Delhi,web_reveal,lead,true,false,30 to 34,My children's education,PLAN,false,2026-08-11,false
+P02076,Sameer,Dave,9000023491,,Mumbai,corporate_session,lead,true,false,,,,false,2026-08-12,false
+P02077,Ishita,Arora,9000072773,,Delhi,corporate_session,lead,false,false,,,,true,2026-08-12,false
+P02078,Simran,Tandon,9000007514,,Noida,corporate_session,lead,true,false,,,,false,2026-08-12,false
+P02080,Revathi,Natarajan,9000036167,,Bengaluru,community,lead,true,false,,,,true,2026-08-12,false
+P02084,Foram,Shinde,9000011090,,Ahmedabad,corporate_session,lead,true,false,,,,true,2026-08-12,false
+P02088,Bhavana,Rajan,9000055934,,Bengaluru,community,lead,true,false,,,,true,2026-08-12,false
+P02092,Payel,Mohanty,9000038847,payel.mohanty.629@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,Saving enough every month,PLAN,false,2026-08-12,false
+P02094,Aniket,Apte,9000059883,,Pune,community,lead,true,false,,,,true,2026-08-12,false
+P02096,Neha,Agarwal,9000039828,,Hyderabad,community,lead,true,false,,,,true,2026-08-12,false
+P02100,Varun,Malhotra,9000044477,,Delhi,organic,lead,true,false,,,,false,2026-08-13,false
+P02101,Sandeep,Subramanian,9000094928,,Hyderabad,corporate_session,lead,true,false,,,,false,2026-08-13,false
+P02102,Hetal,Gokhale,9000087015,hetal.gokhale.330@example.com,Ahmedabad,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-08-13,false
+P02103,Aniket,Sawant,9000004383,,Pune,community,lead,true,false,,,,true,2026-08-13,false
+P02105,Madhav,Pillai,9000070149,madhav.pillai.339@example.com,Chennai,web_reveal,lead,true,false,30 to 34,Paying off loans,PLAN,false,2026-08-13,false
+P02108,Harini,Natarajan,9000090099,harini.natarajan.673@example.com,Bengaluru,web_reveal,lead,true,false,25 to 29,Insurance and cover,PLAN,false,2026-08-13,false
+P02116,Heena,Shinde,9000029147,,Ahmedabad,community,lead,true,false,,,,true,2026-08-13,false
+P02118,Nandini,Menon,9000049940,nandini.menon.365@example.com,Chennai,community,lead,true,false,,My children's education,ALPHA,true,2026-08-13,false
+P02121,Chaitanya,Nair,9000025301,,Bengaluru,organic,lead,true,false,,,,false,2026-08-14,false
+P02122,Rahul,Sharma,9000070590,,Delhi,community,lead,true,true,,,,true,2026-08-14,false
+P02123,Kunal,Trivedi,9000047735,kunal.trivedi.490@example.com,Chennai,web_reveal,lead,false,false,35 to 39,Insurance and cover,PLAN,false,2026-08-14,false
+P02125,Prachi,Mehta,9000084733,,Pune,corporate_session,lead,false,false,,,,false,2026-08-14,false
+P02129,Mihir,Apte,9000017766,mihir.apte.108@example.com,Pune,community,lead,true,false,,Where to invest,PLAN,true,2026-08-14,false
+P02132,Karan,Saxena,9000075025,,Gurugram,corporate_session,lead,false,false,,,,false,2026-08-14,false
+P02133,Priyanka,Banerjee,9000090167,,Bengaluru,organic,lead,true,false,,,,false,2026-08-14,false
+P02134,Nandini,Rao,9000010322,,Chennai,referral,lead,true,false,,,,false,2026-08-14,false
+P02138,Nitin,Gill,9000021865,,Gurugram,organic,lead,true,false,,,,true,2026-08-14,false
+P02140,Kinjal,Gokhale,9000026735,kinjal.gokhale.473@example.com,Pune,web_reveal,lead,false,false,35 to 39,Where to invest,ALPHA,false,2026-08-14,false
+P02142,Ishita,Tandon,9000058378,,Bengaluru,community,lead,true,false,,,,true,2026-08-15,false
+P02143,Sowmya,Pillai,9000034032,,Bengaluru,community,lead,true,false,,,,true,2026-08-15,false
+P02146,Ganesh,Naidu,9000048290,,Bengaluru,organic,lead,true,false,,,,false,2026-08-15,false
+P02151,Rajiv,Menon,9000039279,rajiv.menon.226@example.com,Bengaluru,community,lead,true,false,,Retiring early,PLAN,true,2026-08-16,false
+P02152,Mansi,Chitale,9000013185,,Surat,community,lead,true,false,,,,true,2026-08-16,false
+P02153,Kavya,Kohli,9000098040,,Noida,corporate_session,lead,true,false,,,,false,2026-08-16,false
+P02154,Aniket,Dave,9000083941,aniket.dave.597@example.com,Pune,community,lead,true,false,,Insurance and cover,PLAN,true,2026-08-16,false
+P02155,Pranav,Malhotra,9000080018,,Delhi,community,lead,true,false,,,,true,2026-08-16,false
+P02158,Harini,Murthy,9000035074,,Mumbai,corporate_session,lead,true,false,,,,false,2026-08-16,false
+P02163,Bhavin,Vora,9000047538,,Pune,community,lead,true,false,,,,true,2026-08-16,false
+P02164,Arun,Prasad,9000046950,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-08-16,false
+P02165,Harpreet,Verma,9000099280,harpreet.verma.359@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,Where to invest,ALPHA,false,2026-08-16,false
+P02168,Nitin,Bedi,9000088195,,Gurugram,organic,lead,false,false,,,,false,2026-08-17,false
+P02170,Krupa,Patel,9000082121,krupa.patel.889@example.com,Pune,web_reveal,lead,false,false,30 to 34,Paying off loans,PLAN,false,2026-08-17,false
+P02172,Chinmay,Desai,9000004872,,Pune,organic,lead,true,false,,,,false,2026-08-17,false
+P02173,Venkat,Murthy,9000011112,venkat.murthy.497@example.com,Bengaluru,community,lead,true,false,,Saving enough every month,ALPHA,true,2026-08-17,false
+P02176,Rajiv,Naidu,9000026762,,Hyderabad,community,lead,true,false,,,,true,2026-08-17,false
+P02177,Aman,Malhotra,9000001861,,Gurugram,corporate_session,lead,true,false,,,,false,2026-08-17,false
+P02178,Nirav,Trivedi,9000016046,,Pune,organic,lead,false,false,,,,false,2026-08-17,false
+P02180,Vidya,Gowda,9000018536,,Bengaluru,organic,lead,true,false,,,,false,2026-08-17,false
+P02181,Nirav,Patel,9000042525,,Ahmedabad,community,lead,true,false,,,,true,2026-08-17,false
+P02182,Rohan,Bedi,9000055405,rohan.bedi.905@example.com,Delhi,community,lead,true,false,,Paying off loans,PLAN,true,2026-08-17,false
+P02185,Pranav,Pandey,9000095823,pranav.pandey.703@example.com,Noida,community,lead,true,false,,Saving enough every month,ALPHA,true,2026-08-17,false
+P02186,Mehak,Agarwal,9000022430,,Jaipur,organic,lead,false,false,,,,false,2026-08-17,false
+P02193,Harini,Iyer,9000065581,harini.iyer.952@example.com,Chennai,web_reveal,lead,true,false,30 to 34,Paying off loans,ALPHA,false,2026-08-18,false
+P02196,Rohit,Shah,9000086472,,Pune,corporate_session,lead,true,false,,,,false,2026-08-18,false
+P02199,Keerthana,Kumar,9000061444,,Bengaluru,community,lead,true,false,,,,true,2026-08-18,false
+P02203,Ishani,Dutta,9000058487,ishani.dutta.323@example.com,Kolkata,web_reveal,lead,false,false,25 to 29,My children's education,PLAN,false,2026-08-18,false
+P02204,Deepak,Sethi,9000027449,,Delhi,community,lead,true,false,,,,true,2026-08-18,false
+P02206,Prachi,Pawar,9000015407,prachi.pawar.703@example.com,Ahmedabad,community,lead,true,false,,Where to invest,PLAN,true,2026-08-18,false
+P02207,Pradeep,Reddy,9000046114,,Bengaluru,community,lead,true,false,,,,true,2026-08-18,false
+P02212,Sai,Varma,9000090328,,Hyderabad,organic,lead,true,false,,,,false,2026-08-18,false
+P02218,Debasish,Das,9000065943,,Mumbai,community,lead,true,false,,,,true,2026-08-19,false
+P02221,Ruchi,Verma,9000026045,,Delhi,community,lead,true,false,,,,true,2026-08-19,false
+P02227,Mohit,Chopra,9000098201,,Gurugram,community,lead,true,false,,,,true,2026-08-19,false
+P02228,Nitin,Pandey,9000069527,,Gurugram,corporate_session,lead,true,false,,,,false,2026-08-19,false
+P02231,Kavitha,Srinivasan,9000094918,,Chennai,corporate_session,lead,true,false,,,,false,2026-08-19,false
+P02233,Amruta,Deshmukh,9000072068,amruta.deshmukh.584@example.com,Mumbai,community,lead,true,true,,Where to invest,ALPHA,true,2026-08-19,false
+P02239,Gayathri,Raman,9000055000,,Kochi,corporate_session,lead,false,false,,,,true,2026-08-19,false
+P02241,Karan,Saxena,9000023191,,Noida,community,lead,true,false,,,,true,2026-08-19,false
+P02243,Madhav,Kumar,9000020110,,Chennai,corporate_session,lead,true,true,,,,false,2026-08-19,false
+P02247,Kavya,Sethi,9000040278,,Hyderabad,community,lead,true,true,,,,true,2026-08-20,false
+P02249,Amruta,Jadhav,9000050838,,Mumbai,organic,lead,true,true,,,,false,2026-08-20,false
+P02251,Mihir,Naik,9000089705,mihir.naik.580@example.com,Pune,web_reveal,lead,false,true,30 to 34,Where to invest,PLAN,false,2026-08-20,false
+P02252,Naina,Agarwal,9000050542,,Gurugram,corporate_session,lead,true,false,,,,false,2026-08-20,false
+P02253,Rutuja,Apte,9000090007,,Pune,corporate_session,lead,false,false,,,,true,2026-08-20,false
+P02256,Harpreet,Tiwari,9000082099,,Delhi,corporate_session,lead,true,false,,,,false,2026-08-20,false
+P02258,Lakshmi,Subramanian,9000052577,lakshmi.subramanian.126@example.com,Chennai,web_reveal,lead,true,false,35 to 39,Retiring early,ALPHA,false,2026-08-20,false
+P02259,Mohit,Saxena,9000080229,,Gurugram,community,lead,true,true,,,,true,2026-08-20,false
+P02263,Harini,Pai,9000075737,,Hyderabad,corporate_session,lead,true,false,,,,false,2026-08-20,false
+P02270,Rohan,Bedi,9000084786,rohan.bedi.955@example.com,Noida,web_reveal,lead,true,false,30 to 34,Insurance and cover,ALPHA,false,2026-08-21,false
+P02274,Madhav,Chandran,9000012278,madhav.chandran.843@example.com,Bengaluru,web_reveal,lead,true,false,25 to 29,Where to invest,ALPHA,false,2026-08-21,false
+P02275,Indrani,Pradhan,9000006589,indrani.pradhan.254@example.com,Pune,community,lead,true,false,,My children's education,ALPHA,true,2026-08-21,false
+P02280,Vaibhav,Pandya,9000055760,vaibhav.pandya.583@example.com,Mumbai,web_reveal,lead,true,false,25 to 29,Saving enough every month,ALPHA,false,2026-08-21,false
+P02285,Ruchi,Srivastava,9000046701,,Gurugram,corporate_session,lead,true,false,,,,false,2026-08-22,false
+P02286,Gurpreet,Arora,9000061550,gurpreet.arora.419@example.com,Gurugram,web_reveal,lead,false,false,30 to 34,Saving enough every month,PLAN,false,2026-08-22,false
+P02288,Sindhu,Pai,9000037856,sindhu.pai.450@example.com,Hyderabad,community,lead,true,false,,Where to invest,PLAN,true,2026-08-22,false
+P02290,Aman,Mehra,9000035348,,Gurugram,community,lead,true,false,,,,true,2026-08-22,false
+P02291,Pradeep,Pai,9000077972,,Hyderabad,corporate_session,lead,false,false,,,,false,2026-08-22,false
+P02295,Ayesha,Sharma,9000046671,,Gurugram,organic,lead,true,false,,,,false,2026-08-22,false
+P02296,Chinmay,Naik,9000091390,chinmay.naik.237@example.com,Mumbai,community,lead,true,false,,Where to invest,PLAN,true,2026-08-22,false
+P02302,Bhavin,Mehta,9000035619,,Pune,community,lead,true,false,,,,true,2026-08-22,false
+P02304,Prachi,Chitale,9000053660,prachi.chitale.664@example.com,Pune,web_reveal,lead,true,false,30 to 34,Paying off loans,PLAN,false,2026-08-23,false
+P02306,Omkar,Joshi,9000080661,,Surat,corporate_session,lead,true,false,,,,false,2026-08-23,false
+P02307,Tanushree,Das,9000002444,tanushree.das.937@example.com,Bhubaneswar,community,lead,false,false,,Retiring early,PLAN,true,2026-08-23,false
+P02309,Jigar,Kamat,9000006279,,Mumbai,corporate_session,lead,true,false,,,,true,2026-08-23,false
+P02312,Divakar,Gowda,9000026380,,Hyderabad,organic,lead,true,false,,,,false,2026-08-23,false
+P02314,Heena,Patil,9000065227,heena.patil.504@example.com,Mumbai,community,lead,true,false,,My children's education,PLAN,true,2026-08-23,false
+P02315,Madhav,Krishnan,9000016562,,Chennai,community,lead,true,true,,,,true,2026-08-23,false
+P02316,Nithya,Hegde,9000074879,,Hyderabad,organic,lead,false,false,,,,false,2026-08-23,false
+P02318,Riddhi,Jadhav,9000007877,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-08-23,false
+P02320,Sakshi,Mishra,9000015895,,Noida,corporate_session,lead,false,false,,,,false,2026-08-23,false
+P02321,Dhruv,Bhosale,9000070931,,Pune,organic,lead,true,false,,,,false,2026-08-23,false
+P02323,Payel,Bose,9000069413,payel.bose.766@example.com,Bengaluru,web_reveal,lead,true,true,25 to 29,My children's education,PLAN,false,2026-08-23,false
+P02324,Vaibhav,Desai,9000088353,,Mumbai,corporate_session,lead,true,false,,,,false,2026-08-23,false
+P02328,Sandeep,Nair,9000074837,,Hyderabad,community,lead,true,true,,,,true,2026-08-24,false
+P02334,Vaibhav,Desai,9000001875,vaibhav.desai.647@example.com,Mumbai,web_reveal,lead,false,false,25 to 29,My children's education,ALPHA,false,2026-08-24,false
+P02335,Hardik,Pawar,9000081569,,Pune,community,lead,true,false,,,,true,2026-08-24,false
+P02336,Nandini,Rajan,9000051425,nandini.rajan.327@example.com,Pune,web_reveal,lead,true,false,30 to 34,Insurance and cover,PLAN,false,2026-08-24,false
+P02337,Poulami,Patnaik,9000077598,,Hyderabad,referral,lead,false,false,,,,false,2026-08-24,false
+P02338,Siddharth,Shah,9000037686,,Kolkata,corporate_session,lead,true,false,,,,false,2026-08-24,false
+P02339,Prasanna,Raman,9000041699,,Bengaluru,community,lead,false,true,,,,true,2026-08-24,false
+P02340,Divya,Srivastava,9000079437,,Noida,organic,lead,true,false,,,,false,2026-08-24,false
+P02341,Divya,Sethi,9000099021,,Chandigarh,corporate_session,lead,true,false,,,,false,2026-08-24,false
+P02344,Ketan,Kulkarni,9000038145,ketan.kulkarni.225@example.com,Mumbai,community,lead,true,false,,Retiring early,PLAN,true,2026-08-24,false
+P02345,Krupa,Patel,9000016252,,Ahmedabad,community,lead,true,false,,,,true,2026-08-24,false
+P02347,Aniket,Bhosale,9000000200,aniket.bhosale.436@example.com,Pune,web_reveal,lead,true,false,35 to 39,Insurance and cover,ALPHA,false,2026-08-24,false
+P02354,Kaushik,Dutta,9000066968,,Pune,corporate_session,lead,true,false,,,,true,2026-08-24,false
+P02355,Zoya,Srivastava,9000089799,zoya.srivastava.847@example.com,Delhi,community,lead,true,false,,Paying off loans,ALPHA,true,2026-08-24,false
+P02356,Indrani,Sen,9000054962,,Gurugram,corporate_session,lead,true,false,,,,false,2026-08-24,false
+P02357,Pranali,Trivedi,9000043537,pranali.trivedi.877@example.com,Pune,community,lead,true,false,,My children's education,ALPHA,true,2026-08-25,false
+P02359,Parth,Patel,9000041539,parth.patel.654@example.com,Ahmedabad,community,lead,true,false,,Retiring early,PLAN,true,2026-08-25,false
+P02365,Bhavin,Desai,9000023789,,Pune,community,lead,true,false,,,,true,2026-08-25,false
+P02366,Poulami,Bose,9000041920,poulami.bose.634@example.com,Kolkata,web_reveal,lead,true,true,25 to 29,Retiring early,PLAN,false,2026-08-25,false
+P02367,Revathi,Nair,9000062634,revathi.nair.338@example.com,Chennai,web_reveal,lead,false,false,35 to 39,Saving enough every month,ALPHA,true,2026-08-25,false
+P02368,Sahil,Pandey,9000077707,,Gurugram,community,lead,true,false,,,,true,2026-08-25,false
+P02371,Sneha,Thakkar,9000062343,,Mumbai,community,lead,true,false,,,,true,2026-08-25,false
+P02372,Amruta,Shinde,9000089574,amruta.shinde.430@example.com,Ahmedabad,community,lead,true,false,,My children's education,ALPHA,true,2026-08-25,false
+P02373,Varsha,Srinivasan,9000002910,,Chennai,organic,lead,false,true,,,,false,2026-08-25,false
+P02375,Pavithra,Balakrishnan,9000073512,pavithra.balakrishnan.931@example.com,Hyderabad,web_reveal,lead,true,true,35 to 39,Where to invest,PLAN,false,2026-08-25,false
+P02377,Kavya,Tiwari,9000046705,,Noida,corporate_session,lead,false,false,,,,false,2026-08-25,false
+P02379,Madhav,Balakrishnan,9000029039,,Kochi,community,lead,true,false,,,,true,2026-08-26,false
+P02381,Naveen,Rao,9000052470,naveen.rao.440@example.com,Bengaluru,web_reveal,lead,true,false,30 to 34,My children's education,PLAN,false,2026-08-26,false
+P02383,Zoya,Mehra,9000053505,zoya.mehra.478@example.com,Noida,community,lead,true,false,,My children's education,PLAN,true,2026-08-26,false
+P02385,Mansi,Desai,9000047502,,Pune,organic,lead,false,false,,,,false,2026-08-26,false
+P02386,Nandini,Rao,9000000857,,Hyderabad,organic,lead,true,false,,,,false,2026-08-26,false
+P02388,Kavitha,Natarajan,9000043341,,Chennai,community,lead,true,false,,,,true,2026-08-26,false
+P02389,Simran,Bedi,9000099973,,Delhi,organic,lead,false,false,,,,false,2026-08-26,false
+P02390,Mansi,Vora,9000034669,mansi.vora.606@example.com,Mumbai,web_reveal,lead,false,false,30 to 34,My children's education,PLAN,false,2026-08-26,false
+P02392,Riddhi,Desai,9000053442,riddhi.desai.603@example.com,Pune,community,lead,true,false,,Retiring early,ALPHA,true,2026-08-26,false
+P02393,Karthik,Naidu,9000092306,karthik.naidu.336@example.com,Coimbatore,web_reveal,lead,true,false,25 to 29,Insurance and cover,PLAN,false,2026-08-26,false
+P02394,Naina,Sharma,9000042366,,Gurugram,corporate_session,lead,true,false,,,,false,2026-08-26,false
+P02397,Rahul,Tiwari,9000024847,,Gurugram,corporate_session,lead,true,false,,,,false,2026-08-26,false
+P02398,Harpreet,Pandey,9000002338,,Noida,corporate_session,lead,true,true,,,,false,2026-08-26,false
+P02399,Payel,Mitra,9000003870,payel.mitra.800@example.com,Chennai,community,lead,true,false,,Saving enough every month,ALPHA,true,2026-08-26,false
+P02406,Harpreet,Arora,9000025733,harpreet.arora.286@example.com,Delhi,community,lead,true,false,,Where to invest,PLAN,true,2026-08-27,false
+P02407,Sandeep,Balakrishnan,9000080542,sandeep.balakrishnan.229@example.com,Bengaluru,web_reveal,lead,false,true,35 to 39,Where to invest,PLAN,false,2026-08-27,false
+P02408,Vaibhav,Jain,9000022408,,Mumbai,corporate_session,lead,true,false,,,,false,2026-08-27,false
+P02411,Krupa,Deshmukh,9000006749,,Ahmedabad,referral,lead,true,false,,,,false,2026-08-27,false
+P02413,Tarun,Malhotra,9000050060,,Gurugram,community,lead,true,true,,,,true,2026-08-27,false
+P02418,Revathi,Srinivasan,9000099995,,Chennai,corporate_session,lead,false,false,,,,false,2026-08-27,false
+P02419,Bhavana,Murthy,9000049168,,Bengaluru,community,lead,true,false,,,,true,2026-08-27,false
+P02420,Anand,Nair,9000003927,,Chennai,community,lead,true,false,,,,true,2026-08-27,false
+P02424,Nandini,Balakrishnan,9000059254,,Ahmedabad,community,lead,true,false,,,,true,2026-08-27,false
+P02426,Aakash,Gill,9000079639,aakash.gill.404@example.com,Gurugram,web_reveal,lead,true,true,40 to 44,Where to invest,PLAN,false,2026-08-27,false
+P02427,Abhijit,Sen,9000089693,,Kolkata,community,lead,true,false,,,,true,2026-08-27,false
+P02428,Pranav,Agarwal,9000034514,,Delhi,community,lead,true,false,,,,true,2026-08-27,false
+P02429,Ishita,Kapoor,9000034182,,Gurugram,community,lead,true,false,,,,true,2026-08-27,false
+P02433,Sakshi,Bansal,9000085393,,Delhi,organic,lead,false,false,,,,true,2026-08-28,false
+P02435,Moumita,Banerjee,9000071261,,Ahmedabad,community,lead,true,false,,,,true,2026-08-28,false
+P02436,Anand,Srinivasan,9000058577,anand.srinivasan.896@example.com,Bengaluru,community,lead,true,false,,Insurance and cover,PLAN,true,2026-08-28,false
+P02439,Sameer,Shinde,9000029673,sameer.shinde.567@example.com,Chennai,community,lead,true,false,,My children's education,PLAN,true,2026-08-28,false
+P02441,Sai,Kumar,9000024171,,Hyderabad,corporate_session,lead,true,true,,,,false,2026-08-28,false
+P02442,Rajiv,Srinivasan,9000013566,,Bengaluru,community,lead,true,false,,,,true,2026-08-28,false
+P02443,Heena,Shah,9000020305,,Mumbai,corporate_session,lead,true,false,,,,false,2026-08-28,false
+P02445,Riddhi,Deshmukh,9000026942,riddhi.deshmukh.556@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Insurance and cover,PLAN,false,2026-08-28,false
+P02448,Sai,Menon,9000064240,,Chennai,community,lead,true,false,,,,true,2026-08-28,false
+P02449,Rohit,Gokhale,9000030964,,Pune,community,lead,true,false,,,,true,2026-08-28,false
+P02451,Arun,Natarajan,9000048968,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-08-28,false
+P02455,Tanmoy,Sen,9000084567,,Noida,organic,lead,true,false,,,,false,2026-08-29,false
+P02457,Nitin,Chauhan,9000094128,nitin.chauhan.124@example.com,Gurugram,community,lead,true,false,,Where to invest,PLAN,true,2026-08-29,false
+P02459,Mansi,Bhosale,9000016473,,Ahmedabad,corporate_session,lead,true,false,,,,true,2026-08-29,false
+P02462,Prasanna,Subramanian,9000001392,,Hyderabad,referral,lead,true,false,,,,false,2026-08-29,false
+P02467,Deepa,Kamath,9000046496,,Bengaluru,corporate_session,lead,false,false,,,,true,2026-08-29,false
+P02470,Arjun,Sethi,9000062733,,Delhi,community,lead,true,false,,,,true,2026-08-29,false
+P02474,Arjun,Gill,9000070260,,Gurugram,organic,lead,true,false,,,,false,2026-08-30,false
+P02476,Swathi,Reddy,9000055262,,Hyderabad,community,lead,true,false,,,,true,2026-08-30,false
+P02477,Vishnu,Rao,9000078830,,Gurugram,community,lead,true,false,,,,true,2026-08-30,false
+P02482,Divya,Kapoor,9000087225,,Jaipur,referral,lead,false,false,,,,false,2026-08-30,false
+P02483,Kavitha,Krishnan,9000059186,kavitha.krishnan.105@example.com,Chennai,community,lead,false,false,,Where to invest,ALPHA,true,2026-08-30,false
+P02485,Shruti,Shah,9000092377,,Mumbai,community,lead,true,false,,,,true,2026-08-30,false
+P02486,Tejas,Shinde,9000098042,,Pune,corporate_session,lead,true,false,,,,false,2026-08-30,false
+P02487,Akshay,Gill,9000089703,akshay.gill.101@example.com,Delhi,community,lead,true,false,,Paying off loans,PLAN,true,2026-08-30,false
+P02490,Arpita,Mitra,9000056177,,Ahmedabad,community,lead,true,false,,,,true,2026-08-30,false
+P02492,Sneha,Kulkarni,9000066093,,Mumbai,corporate_session,lead,true,false,,,,false,2026-08-30,false
+P02493,Sudipta,Bose,9000027165,,Noida,organic,lead,true,false,,,,false,2026-08-30,false
+P02494,Ramya,Krishnan,9000020126,,Bengaluru,corporate_session,lead,true,true,,,,false,2026-08-30,false
+P02496,Vikram,Agarwal,9000091858,,Delhi,organic,lead,true,false,,,,false,2026-08-30,false
+P02499,Mansi,Patil,9000093221,mansi.patil.206@example.com,Ahmedabad,web_reveal,lead,false,false,30 to 34,Retiring early,ALPHA,false,2026-08-31,false
+P02502,Ishaan,Kapoor,9000022118,ishaan.kapoor.229@example.com,Gurugram,web_reveal,lead,false,false,30 to 34,Retiring early,ALPHA,false,2026-08-31,false
+P02503,Parth,Naik,9000090327,,Pune,community,lead,false,false,,,,true,2026-08-31,false
+P02506,Vaibhav,Naik,9000045282,,Surat,organic,lead,true,false,,,,true,2026-08-31,false
+P02508,Jigar,Thakkar,9000057392,,Gurugram,community,lead,true,false,,,,true,2026-08-31,false
+P02509,Vaibhav,Naik,9000043572,vaibhav.naik.292@example.com,Pune,community,lead,true,false,,Where to invest,PLAN,true,2026-08-31,false
+P02511,Aakash,Malhotra,9000013608,,Gurugram,organic,lead,false,true,,,,false,2026-08-31,false
+P02512,Simran,Khanna,9000083027,simran.khanna.564@example.com,Gurugram,web_reveal,lead,false,false,35 to 39,My children's education,PLAN,false,2026-08-31,false
+P02513,Nishant,Shah,9000011130,,Mumbai,community,lead,true,false,,,,true,2026-08-31,false
+P02519,Chaitanya,Hegde,9000046172,,Hyderabad,corporate_session,lead,true,false,,,,false,2026-08-31,false
+P02523,Vikram,Saxena,9000045676,vikram.saxena.845@example.com,Lucknow,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-09-01,false
+P02525,Lakshmi,Prasad,9000050572,lakshmi.prasad.234@example.com,Hyderabad,web_reveal,lead,false,true,35 to 39,Retiring early,PLAN,false,2026-09-01,false
+P02530,Saloni,Naik,9000092617,,Gurugram,community,lead,true,true,,,,true,2026-09-01,false
+P02536,Vikram,Chopra,9000038425,,Gurugram,organic,lead,false,false,,,,false,2026-09-01,false
+P02539,Akshay,Mehra,9000093924,,Gurugram,corporate_session,lead,true,false,,,,false,2026-09-01,false
+P02540,Nishant,Joshi,9000031641,,Pune,community,lead,true,false,,,,true,2026-09-01,false
+P02541,Biswajit,Ghosh,9000003084,,Mumbai,corporate_session,lead,false,false,,,,false,2026-09-01,false
+P02542,Sneha,Jadhav,9000096124,,Mumbai,community,lead,true,false,,,,true,2026-09-01,false
+P02544,Vishnu,Gowda,9000098233,,Bengaluru,corporate_session,lead,false,false,,,,true,2026-09-01,false
+P02545,Priya,Chauhan,9000036181,,Gurugram,community,lead,true,false,,,,true,2026-09-01,false
+P02546,Anjali,Singh,9000064228,,Bengaluru,corporate_session,lead,true,false,,,,true,2026-09-01,false
+P02548,Madhura,Pawar,9000095564,,Mumbai,community,lead,true,true,,,,true,2026-09-01,false
+P02552,Debasish,Majumdar,9000041992,debasish.majumdar.282@example.com,Mumbai,web_reveal,lead,false,false,35 to 39,Retiring early,PLAN,true,2026-09-02,false
+P02553,Pranav,Kapoor,9000068634,,Gurugram,corporate_session,lead,false,false,,,,false,2026-09-02,false
+P02554,Harpreet,Verma,9000033171,,Gurugram,organic,lead,true,false,,,,false,2026-09-02,false
+P02557,Naina,Tiwari,9000098787,naina.tiwari.692@example.com,Gurugram,web_reveal,lead,false,false,35 to 39,Retiring early,ALPHA,false,2026-09-02,false
+P02558,Madhura,Shah,9000057837,,Chennai,community,lead,true,false,,,,true,2026-09-02,false
+P02559,Varun,Khanna,9000092678,,Jaipur,organic,lead,true,false,,,,false,2026-09-02,false
+P02561,Parth,Dave,9000000335,,Pune,corporate_session,lead,true,false,,,,false,2026-09-02,false
+P02566,Sourav,Sahoo,9000050353,,Ahmedabad,community,lead,true,false,,,,true,2026-09-02,false
+P02571,Amruta,Deshmukh,9000051367,,Bengaluru,corporate_session,lead,false,false,,,,false,2026-09-02,false
+P02577,Karthik,Prasad,9000043756,,Chennai,community,lead,true,false,,,,true,2026-09-03,false
+P02579,Amruta,Mehta,9000013984,,Mumbai,organic,lead,true,false,,,,false,2026-09-03,false
+P02583,Ishaan,Chopra,9000006088,,Noida,community,lead,false,false,,,,true,2026-09-03,false
+P02584,Prasanna,Pai,9000006284,prasanna.pai.498@example.com,Bengaluru,web_reveal,lead,true,false,30 to 34,Insurance and cover,PLAN,false,2026-09-03,false
+P02585,Rajiv,Rao,9000081133,,Bengaluru,corporate_session,lead,false,false,,,,false,2026-09-03,false
+P02586,Biswajit,Mukherjee,9000061478,,Ahmedabad,organic,lead,true,false,,,,false,2026-09-03,false
+P02588,Keerthana,Raman,9000088425,,Hyderabad,community,lead,true,false,,,,true,2026-09-03,false
+P02590,Keerthana,Raman,9000029107,,Bengaluru,organic,lead,true,true,,,,false,2026-09-03,false
+P02592,Ketan,Dave,9000032670,,Mumbai,referral,lead,true,false,,,,false,2026-09-03,false
+P02597,Mohit,Pandey,9000046079,mohit.pandey.303@example.com,Gurugram,community,lead,true,false,,Saving enough every month,ALPHA,true,2026-09-04,false
+P02598,Kinjal,Gokhale,9000051608,,Mumbai,community,lead,false,false,,,,true,2026-09-04,false
+P02600,Deepa,Varma,9000027565,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-09-04,false
+P02603,Jasleen,Kohli,9000016550,jasleen.kohli.111@example.com,Delhi,community,lead,true,false,,My children's education,ALPHA,true,2026-09-04,false
+P02604,Vidya,Kamath,9000091179,vidya.kamath.253@example.com,Pune,community,lead,true,false,,Insurance and cover,PLAN,true,2026-09-04,false
+P02606,Moumita,Majumdar,9000015841,,Ahmedabad,community,lead,true,false,,,,true,2026-09-04,false
+P02609,Vishnu,Rajan,9000041321,,Hyderabad,community,lead,true,false,,,,true,2026-09-04,false
+P02611,Nithya,Pillai,9000071849,,Bengaluru,community,lead,true,true,,,,true,2026-09-05,false
+P02612,Aakash,Kohli,9000096481,,Delhi,corporate_session,lead,true,false,,,,false,2026-09-05,false
+P02613,Jigar,Kulkarni,9000073306,,Pune,community,lead,true,false,,,,true,2026-09-05,false
+P02614,Karthik,Menon,9000066894,,Chennai,organic,lead,true,false,,,,false,2026-09-05,false
+P02618,Naveen,Nair,9000079524,naveen.nair.491@example.com,Kochi,web_reveal,lead,true,false,30 to 34,Where to invest,PLAN,false,2026-09-05,false
+P02619,Sai,Murthy,9000044272,,Hyderabad,community,lead,true,false,,,,true,2026-09-05,false
+P02621,Kunal,Jadhav,9000039482,kunal.jadhav.520@example.com,Ahmedabad,community,lead,true,false,,My children's education,ALPHA,true,2026-09-05,false
+P02622,Janani,Subramanian,9000005053,,Coimbatore,community,lead,true,false,,,,true,2026-09-05,false
+P02623,Tejas,Shinde,9000056971,,Mumbai,organic,lead,true,false,,,,false,2026-09-05,false
+P02630,Shalini,Rajan,9000038457,,Bengaluru,community,lead,true,false,,,,true,2026-09-05,false
+P02631,Ishaan,Chauhan,9000058970,,Gurugram,community,lead,true,false,,,,true,2026-09-05,false
+P02633,Naveen,Pillai,9000029050,,Bengaluru,community,lead,true,false,,,,true,2026-09-05,false
+P02635,Swathi,Murthy,9000069543,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-09-06,false
+P02637,Tanushree,Dutta,9000015819,,Kolkata,referral,lead,false,false,,,,false,2026-09-06,false
+P02638,Ananya,Mohanty,9000038963,,Kolkata,organic,lead,true,false,,,,false,2026-09-06,false
+P02640,Nirav,Bhosale,9000072908,,Mumbai,organic,lead,false,false,,,,false,2026-09-06,false
+P02646,Sindhu,Murthy,9000050058,,Bengaluru,corporate_session,lead,false,false,,,,false,2026-09-06,false
+P02648,Rajiv,Varma,9000035435,,Kochi,community,lead,true,false,,,,true,2026-09-06,false
+P02649,Dhruv,Vora,9000027115,,Mumbai,community,lead,true,false,,,,true,2026-09-06,false
+P02650,Kinjal,Jain,9000068980,,Mumbai,referral,lead,true,false,,,,false,2026-09-06,false
+P02651,Deepak,Sharma,9000024981,deepak.sharma.911@example.com,Gurugram,community,lead,true,false,,Paying off loans,PLAN,true,2026-09-06,false
+P02652,Heena,Deshmukh,9000069018,,Mumbai,organic,lead,false,false,,,,false,2026-09-06,false
+P02658,Saloni,Deshmukh,9000006891,,Mumbai,referral,lead,true,false,,,,false,2026-09-06,false
+P02661,Arun,Kamath,9000079221,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-09-07,false
+P02664,Kunal,Kamat,9000011550,kunal.kamat.184@example.com,Surat,web_reveal,lead,true,false,35 to 39,Paying off loans,PLAN,true,2026-09-07,false
+P02666,Bhavana,Pillai,9000090405,bhavana.pillai.543@example.com,Chennai,web_reveal,lead,false,false,25 to 29,Where to invest,ALPHA,true,2026-09-07,false
+P02667,Revathi,Prasad,9000054918,,Hyderabad,community,lead,true,false,,,,true,2026-09-07,false
+P02668,Urvi,Trivedi,9000005964,,Mumbai,community,lead,true,false,,,,true,2026-09-07,false
+P02672,Bhavin,Apte,9000024648,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-09-07,false
+P02674,Lakshmi,Nair,9000055510,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-09-07,false
+P02675,Anand,Natarajan,9000081027,,Hyderabad,organic,lead,true,true,,,,false,2026-09-07,false
+P02676,Pavithra,Kumar,9000007718,,Hyderabad,community,lead,true,false,,,,true,2026-09-07,false
+P02677,Kunal,Patil,9000004567,,Ahmedabad,corporate_session,lead,false,false,,,,true,2026-09-07,false
+P02678,Shalini,Krishnan,9000021168,,Bengaluru,organic,lead,true,false,,,,false,2026-09-07,false
+P02681,Nikhil,Chauhan,9000089793,,Gurugram,organic,lead,false,false,,,,false,2026-09-07,false
+P02684,Sowmya,Balakrishnan,9000037176,sowmya.balakrishnan.430@example.com,Bengaluru,community,lead,true,false,,Paying off loans,PLAN,true,2026-09-08,false
+P02687,Keerthana,Chandran,9000030071,,Hyderabad,organic,lead,true,false,,,,false,2026-09-08,false
+P02690,Rohan,Sharma,9000059741,,Gurugram,corporate_session,lead,false,false,,,,false,2026-09-08,false
+P02691,Shruti,Pandya,9000062469,,Pune,organic,lead,false,false,,,,false,2026-09-08,false
+P02693,Ishaan,Arora,9000012561,ishaan.arora.135@example.com,Chennai,community,lead,true,false,,My children's education,ALPHA,true,2026-09-08,false
+P02695,Harpreet,Srivastava,9000002855,harpreet.srivastava.450@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,Insurance and cover,ALPHA,false,2026-09-08,false
+P02700,Harini,Reddy,9000000191,,Chennai,community,lead,true,false,,,,true,2026-09-08,false
+P02702,Sai,Naidu,9000071952,sai.naidu.580@example.com,Chennai,community,lead,true,false,,Retiring early,ALPHA,true,2026-09-08,false
+P02703,Vaibhav,Deshmukh,9000028282,,Mumbai,community,lead,true,false,,,,true,2026-09-08,false
+P02706,Nithya,Reddy,9000022633,nithya.reddy.821@example.com,Noida,web_reveal,lead,true,false,30 to 34,Insurance and cover,ALPHA,false,2026-09-08,false
+P02709,Krupa,Kulkarni,9000003787,,Mumbai,corporate_session,lead,true,false,,,,false,2026-09-08,false
+P02712,Varun,Gupta,9000016159,,Gurugram,community,lead,true,false,,,,true,2026-09-09,false
+P02713,Kabir,Bansal,9000088043,kabir.bansal.530@example.com,Delhi,web_reveal,lead,true,false,35 to 39,My children's education,PLAN,false,2026-09-09,false
+P02717,Sahil,Mishra,9000011523,sahil.mishra.685@example.com,Gurugram,web_reveal,lead,true,false,35 to 39,Saving enough every month,ALPHA,false,2026-09-09,false
+P02718,Amruta,Bhosale,9000089103,amruta.bhosale.342@example.com,Ahmedabad,community,lead,true,false,,Insurance and cover,PLAN,true,2026-09-09,false
+P02720,Mehak,Gill,9000042339,,Gurugram,corporate_session,lead,true,false,,,,false,2026-09-09,false
+P02723,Kinjal,Kulkarni,9000044009,,Mumbai,organic,lead,false,false,,,,true,2026-09-09,false
+P02727,Anjali,Pandey,9000027699,,Gurugram,community,lead,true,false,,,,true,2026-09-09,false
+P02728,Vidya,Balakrishnan,9000071258,,Bengaluru,corporate_session,lead,false,false,,,,false,2026-09-09,false
+P02730,Dhruv,Jadhav,9000080993,dhruv.jadhav.749@example.com,Mumbai,web_reveal,lead,true,false,30 to 34,Retiring early,PLAN,false,2026-09-09,false
+P02731,Harini,Srinivasan,9000092248,,Hyderabad,community,lead,true,false,,,,true,2026-09-09,false
+P02732,Keerthana,Iyer,9000073861,,Bengaluru,community,lead,true,false,,,,true,2026-09-09,false
+P02733,Revathi,Kumar,9000010802,,Chennai,community,lead,true,false,,,,true,2026-09-09,false
+P02735,Janani,Nair,9000096041,,Hyderabad,organic,lead,true,true,,,,false,2026-09-09,false
+P02738,Ishaan,Sharma,9000057685,ishaan.sharma.642@example.com,Gurugram,web_reveal,lead,false,false,35 to 39,Where to invest,PLAN,false,2026-09-10,false
+P02740,Jay,Desai,9000081449,jay.desai.462@example.com,Pune,web_reveal,lead,false,false,30 to 34,My children's education,ALPHA,false,2026-09-10,false
+P02742,Deepak,Agarwal,9000078145,,Gurugram,organic,lead,true,false,,,,false,2026-09-10,false
+P02743,Biswajit,Majumdar,9000010208,,Ahmedabad,community,lead,true,false,,,,true,2026-09-10,false
+P02744,Heena,Bhosale,9000071166,,Mumbai,community,lead,true,false,,,,true,2026-09-10,false
+P02745,Dhruv,Kulkarni,9000032970,,Pune,organic,lead,false,true,,,,false,2026-09-10,false
+P02746,Swathi,Shetty,9000014292,,Hyderabad,corporate_session,lead,true,false,,,,false,2026-09-10,false
+P02747,Harpreet,Pandey,9000057821,,Gurugram,corporate_session,lead,true,false,,,,false,2026-09-10,false
+P02748,Biswajit,Banerjee,9000037548,biswajit.banerjee.281@example.com,Delhi,web_reveal,lead,true,true,40 to 44,My children's education,ALPHA,false,2026-09-10,false
+P02752,Rutuja,Chitale,9000029862,,Pune,community,lead,true,false,,,,true,2026-09-10,false
+P02753,Vishnu,Kumar,9000011126,,Hyderabad,community,lead,true,true,,,,true,2026-09-10,false
+P02757,Ananya,Das,9000028687,,Kolkata,community,lead,true,false,,,,true,2026-09-10,false
+P02759,Sandeep,Krishnan,9000048230,sandeep.krishnan.330@example.com,Bengaluru,community,lead,true,false,,Where to invest,PLAN,true,2026-09-10,false
+P02760,Yogesh,Dave,9000066950,,Ahmedabad,corporate_session,lead,true,true,,,,false,2026-09-10,false
+P02766,Varsha,Varma,9000014818,,Bengaluru,community,lead,true,false,,,,true,2026-09-10,false
+P02770,Prachi,Shah,9000086924,,Mumbai,corporate_session,lead,true,false,,,,true,2026-09-11,false
+P02771,Zoya,Srivastava,9000044273,,Lucknow,corporate_session,lead,false,false,,,,false,2026-09-11,false
+P02774,Yash,Malhotra,9000044766,,Mumbai,organic,lead,true,false,,,,true,2026-09-11,false
+P02776,Jigar,Patil,9000086473,jigar.patil.555@example.com,Gurugram,web_reveal,lead,true,false,30 to 34,Saving enough every month,PLAN,false,2026-09-11,false
+P02777,Tanvi,Khanna,9000047074,tanvi.khanna.282@example.com,Delhi,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-09-11,false
+P02779,Ayesha,Agarwal,9000086222,ayesha.agarwal.240@example.com,Noida,community,lead,false,false,,Retiring early,ALPHA,true,2026-09-11,false
+P02783,Moumita,Roy,9000003151,,Kolkata,community,lead,true,true,,,,true,2026-09-11,false
+P02784,Gurpreet,Tiwari,9000002269,,Chennai,organic,lead,false,false,,,,false,2026-09-11,false
+P02791,Ishita,Saxena,9000012082,ishita.saxena.926@example.com,Mumbai,web_reveal,lead,true,false,40 to 44,Saving enough every month,PLAN,false,2026-09-11,false
+P02795,Rutuja,Pandya,9000053513,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-09-12,false
+P02796,Priya,Tiwari,9000090449,,Noida,corporate_session,lead,false,true,,,,false,2026-09-12,false
+P02798,Kunal,Chitale,9000033330,kunal.chitale.598@example.com,Pune,web_reveal,lead,false,true,25 to 29,Insurance and cover,ALPHA,false,2026-09-12,false
+P02799,Nitin,Khanna,9000075625,,Gurugram,corporate_session,lead,true,false,,,,false,2026-09-12,false
+P02801,Sai,Srinivasan,9000054260,,Hyderabad,organic,lead,true,false,,,,true,2026-09-12,false
+P02805,Sindhu,Naidu,9000076457,,Bengaluru,organic,lead,false,false,,,,false,2026-09-12,false
+P02809,Gauri,Bhosale,9000036054,,Mumbai,organic,lead,false,false,,,,false,2026-09-12,false
+P02812,Naveen,Gowda,9000037416,,Chennai,organic,lead,false,false,,,,false,2026-09-12,false
+P02813,Ayesha,Bansal,9000007158,,Delhi,organic,lead,false,false,,,,false,2026-09-12,false
+P02815,Meenakshi,Krishnan,9000098618,,Bengaluru,community,lead,true,false,,,,true,2026-09-12,false
+P02816,Simran,Agarwal,9000001249,,Gurugram,corporate_session,lead,true,false,,,,false,2026-09-12,false
+P02817,Harpreet,Malhotra,9000027428,,Delhi,community,lead,false,false,,,,true,2026-09-12,false
+P02819,Sneha,Pawar,9000018596,sneha.pawar.199@example.com,Ahmedabad,web_reveal,lead,true,true,25 to 29,Where to invest,ALPHA,true,2026-09-12,false
+P02827,Ketan,Chitale,9000073167,ketan.chitale.720@example.com,Pune,web_reveal,lead,true,false,25 to 29,My children's education,PLAN,false,2026-09-13,false
+P02832,Nirav,Mehta,9000083714,,Pune,corporate_session,lead,true,false,,,,false,2026-09-13,false
+P02833,Harini,Subramanian,9000089216,,Chennai,community,lead,false,false,,,,true,2026-09-13,false
+P02836,Ketan,Vora,9000061082,ketan.vora.712@example.com,Mumbai,community,lead,true,false,,Where to invest,PLAN,true,2026-09-13,false
+P02838,Nandini,Krishnan,9000059248,nandini.krishnan.206@example.com,Hyderabad,web_reveal,lead,false,true,35 to 39,Where to invest,ALPHA,false,2026-09-13,false
+P02840,Kunal,Pandya,9000078628,kunal.pandya.391@example.com,Mumbai,community,lead,true,false,,Saving enough every month,ALPHA,true,2026-09-13,false
+P02841,Naveen,Srinivasan,9000081534,,Hyderabad,organic,lead,true,false,,,,false,2026-09-13,false
+P02842,Vidya,Reddy,9000044859,,Chennai,community,lead,true,false,,,,true,2026-09-13,false
+P02848,Arun,Reddy,9000014213,,Bengaluru,corporate_session,lead,false,false,,,,false,2026-09-14,false
+P02849,Pavithra,Nair,9000080024,pavithra.nair.415@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Retiring early,PLAN,false,2026-09-14,false
+P02852,Aparna,Krishnan,9000001729,aparna.krishnan.196@example.com,Bengaluru,community,lead,true,false,,Paying off loans,PLAN,true,2026-09-14,false
+P02853,Shalini,Varma,9000009318,,Bengaluru,community,lead,true,false,,,,true,2026-09-14,false
+P02857,Ketan,Chitale,9000098571,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-09-14,false
+P02860,Sindhu,Rao,9000053328,,Visakhapatnam,community,lead,true,false,,,,true,2026-09-14,false
+P02863,Vishnu,Hegde,9000087486,,Bengaluru,community,lead,true,false,,,,true,2026-09-14,false
+P02864,Yash,Sethi,9000004135,yash.sethi.786@example.com,Gurugram,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-09-14,false
+P02866,Sowmya,Iyer,9000014154,,Bengaluru,community,lead,true,false,,,,true,2026-09-14,false
+P02867,Arun,Balakrishnan,9000025681,,Chennai,organic,lead,false,false,,,,false,2026-09-14,false
+P02868,Yogesh,Bhosale,9000048176,,Ahmedabad,organic,lead,false,false,,,,false,2026-09-14,false
+P02870,Sowmya,Gowda,9000094191,,Chennai,corporate_session,lead,true,false,,,,false,2026-09-14,false
+P02871,Pavithra,Krishnan,9000099330,,Hyderabad,community,lead,true,false,,,,true,2026-09-14,false
+P02872,Nikhil,Khanna,9000081111,,Delhi,corporate_session,lead,true,false,,,,false,2026-09-14,false
+P02878,Pradeep,Murthy,9000010902,pradeep.murthy.947@example.com,Bengaluru,web_reveal,lead,true,false,30 to 34,Insurance and cover,ALPHA,true,2026-09-15,false
+P02879,Mehak,Gill,9000037272,,Gurugram,community,lead,true,false,,,,true,2026-09-15,false
+P02883,Ganesh,Chandran,9000030528,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-09-15,false
+P02884,Jay,Shinde,9000036991,,Ahmedabad,organic,lead,true,true,,,,true,2026-09-15,false
+P02885,Varsha,Varma,9000061947,varsha.varma.189@example.com,Bengaluru,web_reveal,lead,false,false,25 to 29,Paying off loans,PLAN,true,2026-09-15,false
+P02886,Rutuja,Pandya,9000076846,,Mumbai,community,lead,true,false,,,,true,2026-09-15,false
+P02890,Shruti,Pandya,9000063024,,Ahmedabad,corporate_session,lead,true,false,,,,true,2026-09-15,false
+P02892,Gayathri,Balakrishnan,9000004074,gayathri.balakrishnan.363@example.com,Bengaluru,community,lead,true,false,,Paying off loans,ALPHA,true,2026-09-15,false
+P02895,Moumita,Bose,9000017167,moumita.bose.210@example.com,Kolkata,community,lead,true,false,,Where to invest,ALPHA,true,2026-09-15,false
+P02899,Nikhil,Agarwal,9000072019,,Chandigarh,organic,lead,false,false,,,,false,2026-09-15,false
+P02902,Srinivas,Prasad,9000031521,,Bengaluru,organic,lead,true,false,,,,true,2026-09-16,false
+P02904,Lakshmi,Balakrishnan,9000039543,,Bengaluru,community,lead,true,false,,,,true,2026-09-16,false
+P02908,Sandeep,Natarajan,9000061137,sandeep.natarajan.288@example.com,Bengaluru,community,lead,true,false,,My children's education,PLAN,true,2026-09-16,false
+P02912,Harini,Menon,9000036223,,Hyderabad,community,lead,true,false,,,,true,2026-09-16,false
+P02916,Revathi,Iyer,9000009800,revathi.iyer.619@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Insurance and cover,PLAN,true,2026-09-16,false
+P02917,Siddharth,Pandya,9000069068,,Pune,community,lead,true,false,,,,true,2026-09-16,false
+P02918,Keerthana,Gowda,9000056856,,Chennai,organic,lead,true,false,,,,false,2026-09-16,false
+P02921,Ayesha,Mehra,9000084877,,Gurugram,corporate_session,lead,false,false,,,,true,2026-09-16,false
+P02922,Sai,Raman,9000014679,,Chennai,corporate_session,lead,true,false,,,,false,2026-09-17,false
+P02924,Vignesh,Srinivasan,9000070863,,Bengaluru,community,lead,true,true,,,,true,2026-09-17,false
+P02926,Omkar,Sawant,9000062766,,Pune,referral,lead,true,true,,,,false,2026-09-17,false
+P02929,Pradeep,Nair,9000077700,,Bengaluru,community,lead,true,false,,,,true,2026-09-17,false
+P02930,Sanjana,Gupta,9000007870,sanjana.gupta.939@example.com,Gurugram,community,lead,false,false,,Saving enough every month,ALPHA,true,2026-09-17,false
+P02931,Naveen,Rajan,9000049419,naveen.rajan.328@example.com,Bengaluru,web_reveal,lead,true,false,25 to 29,Saving enough every month,PLAN,true,2026-09-17,false
+P02932,Ruchi,Kohli,9000091588,,Delhi,community,lead,true,false,,,,true,2026-09-17,false
+P02933,Yogesh,Pandya,9000059104,yogesh.pandya.550@example.com,Pune,community,lead,false,false,,Saving enough every month,ALPHA,true,2026-09-17,false
+P02936,Ramya,Menon,9000004991,,Bengaluru,community,lead,true,false,,,,true,2026-09-17,false
+P02938,Tejas,Kulkarni,9000079017,tejas.kulkarni.464@example.com,Pune,community,lead,true,false,,My children's education,ALPHA,true,2026-09-17,false
+P02939,Ganesh,Subramanian,9000009505,,Hyderabad,organic,lead,true,true,,,,false,2026-09-17,false
+P02940,Sai,Kumar,9000030982,,Hyderabad,corporate_session,lead,true,false,,,,true,2026-09-17,false
+P02941,Siddharth,Kamat,9000006554,siddharth.kamat.905@example.com,Pune,community,lead,false,false,,Insurance and cover,PLAN,true,2026-09-18,false
+P02942,Meenakshi,Natarajan,9000092112,,Delhi,community,lead,true,false,,,,true,2026-09-18,false
+P02945,Priyanka,Bose,9000057129,,Mumbai,community,lead,true,false,,,,true,2026-09-18,false
+P02947,Shalini,Iyer,9000027908,shalini.iyer.984@example.com,Hyderabad,community,lead,true,false,,Paying off loans,ALPHA,true,2026-09-18,false
+P02948,Shalini,Srinivasan,9000024971,shalini.srinivasan.328@example.com,Hyderabad,community,lead,true,false,,Where to invest,PLAN,true,2026-09-18,false
+P02949,Rituparna,Pradhan,9000010994,rituparna.pradhan.209@example.com,Mumbai,web_reveal,lead,true,false,25 to 29,Retiring early,PLAN,false,2026-09-18,false
+P02950,Janani,Iyer,9000026274,,Bengaluru,community,lead,true,false,,,,true,2026-09-18,false
+P02951,Aditya,Rathore,9000084334,,Delhi,corporate_session,lead,true,false,,,,false,2026-09-18,false
+P02953,Sagar,Sawant,9000065489,sagar.sawant.363@example.com,Mumbai,web_reveal,lead,false,false,30 to 34,Paying off loans,ALPHA,false,2026-09-18,false
+P02956,Suresh,Varma,9000051994,suresh.varma.274@example.com,Chennai,web_reveal,lead,true,false,30 to 34,Where to invest,PLAN,false,2026-09-18,false
+P02957,Pranali,Gokhale,9000067034,,Mumbai,community,lead,true,true,,,,true,2026-09-18,false
+P02959,Pavithra,Kamath,9000064820,pavithra.kamath.976@example.com,Bengaluru,community,lead,false,true,,My children's education,PLAN,true,2026-09-18,false
+P02961,Siddharth,Trivedi,9000097259,siddharth.trivedi.345@example.com,Ahmedabad,web_reveal,lead,true,false,35 to 39,My children's education,PLAN,true,2026-09-19,false
+P02962,Priyanka,Mukherjee,9000098171,,Kolkata,community,lead,true,false,,,,true,2026-09-19,false
+P02963,Hetal,Apte,9000025434,,Pune,community,lead,true,false,,,,true,2026-09-19,false
+P02964,Sahil,Khanna,9000092822,,Delhi,corporate_session,lead,true,false,,,,false,2026-09-19,false
+P02965,Venkat,Reddy,9000054292,,Bengaluru,community,lead,true,false,,,,true,2026-09-19,false
+P02967,Jigar,Kamat,9000028015,,Ahmedabad,organic,lead,false,false,,,,false,2026-09-19,false
+P02969,Rahul,Verma,9000071519,rahul.verma.725@example.com,Delhi,community,lead,true,false,,Paying off loans,ALPHA,true,2026-09-19,false
+P02970,Arjun,Bhatia,9000056730,,Delhi,referral,lead,true,false,,,,false,2026-09-19,false
+P02972,Amruta,Shinde,9000026364,,Mumbai,corporate_session,lead,true,false,,,,true,2026-09-19,false
+P02973,Vidya,Nair,9000062915,vidya.nair.934@example.com,Bengaluru,community,lead,true,true,,Saving enough every month,PLAN,true,2026-09-19,false
+P02974,Keerthana,Prasad,9000046266,,Bengaluru,community,lead,true,false,,,,true,2026-09-19,false
+P02975,Mohit,Tiwari,9000074661,,Gurugram,community,lead,true,false,,,,true,2026-09-19,false
+P02977,Meenakshi,Murthy,9000098552,,Bengaluru,organic,lead,true,false,,,,false,2026-09-19,false
+P02979,Rituparna,Pradhan,9000011940,rituparna.pradhan.726@example.com,Bengaluru,community,lead,false,false,,My children's education,PLAN,true,2026-09-19,false
+P02980,Deepa,Srinivasan,9000057698,deepa.srinivasan.935@example.com,Hyderabad,web_reveal,lead,true,false,35 to 39,Insurance and cover,PLAN,true,2026-09-19,false
+P02982,Manish,Tandon,9000070271,,Gurugram,community,lead,true,false,,,,true,2026-09-19,false
+P02983,Anjali,Khanna,9000072549,,Gurugram,community,lead,true,false,,,,true,2026-09-19,false
+P02985,Suresh,Nair,9000046946,,Hyderabad,referral,lead,true,false,,,,false,2026-09-19,false
+P02986,Nitin,Kapoor,9000027475,,Gurugram,corporate_session,lead,false,false,,,,true,2026-09-19,false
+P02987,Divya,Rathore,9000046688,,Delhi,organic,lead,true,false,,,,true,2026-09-19,false
+P02988,Sakshi,Chopra,9000087196,sakshi.chopra.385@example.com,Chandigarh,web_reveal,lead,true,false,30 to 34,My children's education,PLAN,false,2026-09-19,false
+P02990,Rohan,Khanna,9000035487,rohan.khanna.635@example.com,Gurugram,community,lead,true,false,,Insurance and cover,ALPHA,true,2026-09-20,false
+P02991,Tanmoy,Nayak,9000019649,,Kolkata,community,lead,false,false,,,,true,2026-09-20,false
+P02993,Aakash,Mishra,9000099332,,Noida,community,lead,true,false,,,,true,2026-09-20,false
+P02996,Abhijit,Mohanty,9000056300,abhijit.mohanty.145@example.com,Kolkata,community,lead,true,false,,Saving enough every month,PLAN,true,2026-09-20,false
+P02997,Suresh,Rajan,9000001443,,Chennai,community,lead,true,false,,,,true,2026-09-20,false
+P02998,Nishant,Desai,9000086763,,Pune,corporate_session,lead,false,false,,,,false,2026-09-20,false
+P02999,Jay,Apte,9000070239,,Mumbai,community,lead,true,true,,,,true,2026-09-20,false
+P03003,Simran,Rathore,9000003630,,Delhi,organic,lead,true,false,,,,false,2026-09-20,false
+P03004,Naveen,Subramanian,9000073840,naveen.subramanian.608@example.com,Bengaluru,web_reveal,lead,true,false,35 to 39,Saving enough every month,PLAN,false,2026-09-20,false
+P03005,Saloni,Thakkar,9000021178,saloni.thakkar.290@example.com,Pune,community,lead,true,false,,My children's education,PLAN,true,2026-09-21,false
+P03010,Sandeep,Menon,9000069319,,Hyderabad,community,lead,true,false,,,,true,2026-09-21,false
+P03011,Keerthana,Reddy,9000045515,keerthana.reddy.411@example.com,Bengaluru,community,lead,true,false,,Where to invest,PLAN,true,2026-09-21,false
+P03012,Lakshmi,Subramanian,9000014509,lakshmi.subramanian.466@example.com,Bengaluru,community,lead,true,false,,Where to invest,PLAN,true,2026-09-21,false
+P03014,Pooja,Saxena,9000059942,,Gurugram,community,lead,true,false,,,,true,2026-09-21,false
+P03016,Aditya,Chauhan,9000092484,,Delhi,community,lead,false,false,,,,true,2026-09-21,false
+P03017,Prasanna,Murthy,9000076000,,Bengaluru,corporate_session,lead,true,false,,,,false,2026-09-21,false
+P03018,Simran,Mishra,9000010516,,Noida,corporate_session,lead,false,false,,,,false,2026-09-21,false
+P03019,Rutuja,Jadhav,9000096708,rutuja.jadhav.650@example.com,Pune,community,lead,true,false,,Where to invest,PLAN,true,2026-09-21,false
+P03020,Aniket,Joshi,9000034912,,Pune,community,lead,true,false,,,,true,2026-09-21,false
+P03021,Vaibhav,Trivedi,9000081740,,Indore,corporate_session,lead,true,false,,,,false,2026-09-21,false
+P03023,Madhura,Jain,9000028609,,Pune,corporate_session,lead,false,false,,,,false,2026-09-21,false
+P03025,Janani,Varma,9000012722,,Hyderabad,community,lead,true,false,,,,true,2026-09-22,false
+P03026,Vaibhav,Desai,9000070069,,Mumbai,community,lead,true,false,,,,true,2026-09-22,false
+P03027,Suresh,Prasad,9000077301,,Chennai,community,lead,true,false,,,,true,2026-09-22,false
+P03029,Prasanna,Varma,9000000804,,Bengaluru,community,lead,true,false,,,,true,2026-09-22,false
+P03030,Sourav,Ghosh,9000010544,,Kolkata,community,lead,true,false,,,,true,2026-09-22,false
+P03031,Nirav,Naik,9000013712,,Visakhapatnam,referral,lead,true,true,,,,false,2026-09-22,false
+P03032,Parth,Jain,9000004147,,Pune,organic,lead,true,false,,,,false,2026-09-22,false
+P03033,Harini,Nair,9000048082,,Hyderabad,corporate_session,lead,false,false,,,,false,2026-09-22,false
+P03034,Nidhi,Trivedi,9000099453,nidhi.trivedi.727@example.com,Pune,web_reveal,lead,true,false,30 to 34,Insurance and cover,PLAN,false,2026-09-22,false
+P03036,Meera,Saxena,9000062063,,Jaipur,organic,lead,true,false,,,,true,2026-09-23,false
+P03037,Devika,Mehta,9000000795,,Ahmedabad,corporate_session,lead,true,false,,,,false,2026-09-23,false
+P03038,Biswajit,Banerjee,9000018683,,Kolkata,organic,lead,false,false,,,,false,2026-09-23,false
+P03039,Rohan,Kapoor,9000022897,rohan.kapoor.386@example.com,Delhi,community,lead,true,false,,Retiring early,ALPHA,true,2026-09-23,false
+P03040,Bhavin,Desai,9000079559,,Mumbai,corporate_session,lead,true,false,,,,false,2026-09-23,false

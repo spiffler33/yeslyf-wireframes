@@ -1017,6 +1017,8 @@ def main():
     build_events.main()
     import build_tracker  # docs/tracker.html and docs/review/tracker.html from data/tracker.json (phase 12, pass 3)
     build_tracker.main()
+    import build_operator  # docs/admin_operator.html from data/operator.json (seed plan D5, phase B part 2)
+    build_operator.main()
 
 
 if __name__ == "__main__":

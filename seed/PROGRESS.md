@@ -10,8 +10,72 @@ Plan: PLAN_admin_seed_v01.md (the spec; CLAUDE.md wins on a conflict). Resume fr
 - The phase A summary went to Vatsal in chat on 23 Sep 2026: layers, the state by tier grid, topups, the N01
   multi-predicate list, every phase A assumption, the CLAUDE.md conflicts and the three questions below. Silence
   after it is consent for the seed plan decisions (plan, cause labels); his go starts phase B.
-- Phases B to E: not started. After the go they run in sequence without stopping, one commit per phase (plan
-  section 18 messages), the one-line tracker update at the end of each phase.
+- 23 Sep 2026, afternoon: Vatsal's go ("go"). The three questions and two readings stay open; the seed keeps
+  the implemented defaults until he answers. Phases B to E run in sequence, one commit per phase (plan section 18
+  messages); the one-line tracker update goes in the phase report (the tracker's update is composed on its page
+  from board rows; there is no data slot for it).
+- Seed regenerated (55607b2): tier mix 60/36/4 and the S16 line (Vatsal, 23 Sep 2026); run-3000 has 126
+  DIWM, 76 DIY, 8 DIFM, 72,398 events; run-500 507 people, 16,272 events. The S24 payment_reference and the
+  paid event's razorpay_ids hold real synthetic ids (were placeholder strings).
+- Phase B done ("seed B: exports and operator page"): seed/export_schema.json (147 columns plus Days Unsigned),
+  scripts/seed_export.py (exports, the private fixtures zip, the scan), data/seed/<run>/exports/,
+  docs/admin_operator.html (data/operator.json, scripts/build_operator.py; 12 steps, 94 checkboxes, a notes box
+  per step). Rows run-3000: leads 1,400, contacts 1,640, deals 206, a la carte 9, calls 84, tasks 114,
+  app_events 12,464 (plan guessed about 20,000; not padded), tickets 73, landing 940, 27 campaign lists.
+  Regenerate: `python3 scripts/seed_gen.py --anchor 2026-09-23`, then `python3 scripts/seed_export.py`, then
+  `python3 scripts/build_site.py` (it runs the scan and fails on a breach).
+- Phase C foundation runs in a separate git worktree (renderer hooks, the masked seed bundle, the page,
+  admin_core.js); the three screen files follow in the main checkout.
+
+## Vatsal's answers (23 Sep 2026, afternoon)
+
+1. The board is public: the admin tab loads a masked variant only (phones "+91 9xxxx xx123", last three digits
+   kept; no PAN; emails unchanged). Full phones and PAN live only in data/seed/ and exports/, never in docs/. No
+   CSV is linked from the board; Kajal gets the CSVs from Vatsal via Drive.
+2. Fixtures ship as a private zip named by run date and run size (yeslyf_seed_<anchor>_<run>.zip, gitignored,
+   built by seed_export.py). Nothing seed-related on the board beyond the masked admin bundle.
+3. The operator page gets one notes box per step (board_entries, like the checkboxes).
+4. Progress ring: "keep sign-up; v0.2 governs where it conflicts with plan_v2", plus a gaps row. Held: the v0.2
+   O02 logic line says "the ring starts at 20 percent after the reveal" (O02 is frozen), so v0.2 and plan_v2
+   agree and only the seed starts at sign-up. Asked Vatsal which way; the seed keeps sign-up until he answers;
+   the gaps row waits for his answer.
+5. DIFM stays 8. seed/config.json tier_mix becomes DIWM 60, DIY 36, DIFM 4 (cause "Vatsal, 23 Sep 2026"); the
+   mix drives the DIWM:DIY quota, so the seed regenerates (DIWM 123 -> 126, DIY 79 -> 76). DIFM prospects stay
+   15; run-500 keeps its floor of 2.
+6. S16 stays 37 percent; the assumption line reads "S16 flag follows from the path mix: manual 30% plus
+   AA-failed" (config s16_flag and the report row).
+7. Synthetic customer names are the point; the no-invented-names rule covers the team and any real person.
+   Staff stay role labels except Harish.
+8. Harish as the DIFM relationship owner on admin screens is right (the no-named-adviser rule is app copy only);
+   first name only.
+
+## Phase B and C decisions (23 Sep 2026)
+
+- Scan: no regex (Vatsal's standing rule). seed/export_schema.json declares every column's type; the scan
+  checks types with stdlib parsers and leaks by exact membership against the seed's own PANs, ISINs, holding
+  names and rupee numbers (the exports come only from the seed, so this is complete). The site build fails on a
+  breach (build_operator runs `seed_export.py --scan-only`).
+- Deals Amount: "Rs ___" as a single-line text field; to be verified: whether the standard Amount currency field
+  can stay blank on import.
+- One AA Status column on contacts (it is both a mirror and a field in the plan's list).
+- fixtures/: README.md only; the bundle is the canonical files in data/seed/<run>/ (not copied: it would double
+  the repo). Open: how Spinach receives it (the repo is private; Pages is public and the seed carries synthetic
+  PANs).
+- The repo is private (spiffler33 the only collaborator), so Kajal downloads the minimised CSVs from Pages:
+  build_operator copies zoho/, desk/, campaigns/, landing/ of both runs to docs/seed/<run>/exports/.
+- Seats and roles are named by role on the new pages (CLAUDE.md: no owner markers), not "(Harish)" or
+  "(Kajal's seat)" as in plan section 15.
+- Admin Link contract: admin_wireframes.html?run=3000&screen=M03&person=P00001 (run=500 for run-500).
+- Admin tab: data/admin_screens.json (M02 to M14; M01 stays on the wireframes tab), template T-table, compliance
+  internal (plan_v2 appendix G), freeze open with its own marker (data/v02/freeze.json untouched: it registers the
+  194 v0.2 screens), events <id>_view plus <id>_<action> per mock write.
+- Renderer: four inert hooks in WIRE_OPTS (version, specTop, drawScreen; "v0.2" strings read VERSION). Proof:
+  every screen of the five pages that inline the renderer renders identically before and after
+  (scratchpad render_dump.js against dumps of the committed pages).
+- Seed bundle for the page: docs/seed/<run>/admin/ (meta, people without pan, dob and legal_name, tables with
+  assets and the derived audit log, integration_events, person/NNNN.json chunks of 100 with events).
+  admin_core.js exposes window.ADMIN (load, detail, select, open, draw registry, h helpers); three screen files
+  admin_screens_1.js to _3.js register ADMIN.draw.MXX.
 
 ## Files
 

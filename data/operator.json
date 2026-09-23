@@ -1,0 +1,151 @@
+{
+ "about": "Operator checklist for the Zoho One afternoon: every step to set up the trial org, its fields, picklists, roles, Desk, Campaigns and Bookings, then import the seed exports in order (PLAN_admin_seed_v01.md section 13). Checking an item off writes to board_entries so the team sees progress live. Every person in these files is synthetic; nothing is ever sent.",
+ "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 13)",
+ "steps": [
+  {
+   "id": "org", "n": 1, "title": "Org",
+   "intro": "The Zoho One trial everything else in this checklist is built on.",
+   "items": [
+    {"id": "org/trial", "text": "Create the Zoho One trial under hey@yeslifers.com, India datacentre (zoho.in)."},
+    {"id": "org/card", "text": "to be verified: whether the Zoho One trial needs a card"},
+    {"id": "org/record-cap", "text": "to be verified: whether trial orgs cap record counts below the seed's totals"},
+    {"id": "org/created-time", "text": "to be verified: whether Created Time can be mapped on CSV import; if not, the key-date fields carry the timeline and the audit stamp reads the import day"},
+    {"id": "org/sandbox", "text": "If HoA has already bought Zoho One, a second org is the sandbox; the live org is never used."}
+   ],
+   "generated": "org/record-cap appends the run-3000 and run-500 row counts per zoho object, computed from the export CSVs."
+  },
+  {
+   "id": "connect", "n": 2, "title": "Never-connect list",
+   "intro": "Nothing in this org sends a real message. Leave every channel below disconnected.",
+   "items": [
+    {"id": "connect/whatsapp", "text": "No WhatsApp"},
+    {"id": "connect/sms", "text": "No SMS or OTP"},
+    {"id": "connect/email", "text": "No email sending domain"},
+    {"id": "connect/desk-mail", "text": "No Desk mail channel."},
+    {"id": "connect/campaigns-verify", "text": "No Campaigns sender verification."},
+    {"id": "connect/bookings-calendar", "text": "No Bookings calendar sync."},
+    {"id": "connect/campaigns-import", "text": "Campaigns lists are imported and never sent."}
+   ],
+   "generated": "connect/whatsapp, connect/sms and connect/email append their vendor name and I-number, looked up in data/integrations.json (I11, I08, I10)."
+  },
+  {
+   "id": "fields", "n": 3, "title": "Custom fields per object",
+   "intro": "One checkbox per object; the table under each one lists every column its export carries.",
+   "items": [
+    {"id": "fields/leads", "text": "Create the custom fields for Leads. Create each column the import screen cannot map to an existing field."},
+    {"id": "fields/contacts", "text": "Create the custom fields for Contacts. Create each column the import screen cannot map to an existing field."},
+    {"id": "fields/deals", "text": "Create the custom fields for Deals. Create each column the import screen cannot map to an existing field."},
+    {"id": "fields/a_la_carte", "text": "Create the custom fields for A la carte. Create each column the import screen cannot map to an existing field."},
+    {"id": "fields/calls", "text": "Create the custom fields for Calls. Create each column the import screen cannot map to an existing field."},
+    {"id": "fields/tasks", "text": "Create the custom fields for Tasks. Create each column the import screen cannot map to an existing field."}
+   ],
+   "generated": "the column table under each item (label, Zoho type, picklist values or band or note) is read from seed/export_schema.json."
+  },
+  {
+   "id": "picklist", "n": 4, "title": "Picklists",
+   "intro": "Values are taken from the export columns, not typed by hand.",
+   "items": [
+    {"id": "picklist/journey-stage", "text": "Create the Journey Stage picklist."},
+    {"id": "picklist/tier", "text": "Create the Tier picklist."},
+    {"id": "picklist/sku", "text": "Create the SKU picklist."},
+    {"id": "picklist/subscription-status", "text": "Create the Subscription Status picklist."},
+    {"id": "picklist/source", "text": "Create the Source picklist."},
+    {"id": "picklist/lead-stage", "text": "Create the Lead Stage picklist."},
+    {"id": "picklist/aa-status", "text": "Create the AA Status picklist."},
+    {"id": "picklist/task-state-id", "text": "Create the Task State ID picklist."}
+   ],
+   "generated": "values are read from the matching seed/export_schema.json column (Source combines the contacts Source and the leads Lead Source columns; Task State ID reads the tasks State ID column)."
+  },
+  {
+   "id": "module", "n": 5, "title": "Custom module App Events",
+   "intro": "One module, one checkbox, its columns from the schema.",
+   "items": [
+    {"id": "module/app-events", "text": "Create the custom module App Events, with the columns below."}
+   ],
+   "generated": "the column table is read from seed/export_schema.json (zoho/app_events.csv)."
+  },
+  {
+   "id": "roles", "n": 6, "title": "Roles",
+   "intro": "One principle: advisers see their own people, ops sees records, the principal officer sees everything.",
+   "items": [
+    {"id": "roles/principal-officer", "text": "Create the Principal officer role."},
+    {"id": "roles/adviser", "text": "Create the Adviser role."},
+    {"id": "roles/call-centre", "text": "Create the Call centre role."},
+    {"id": "roles/ops", "text": "Create the Ops role."},
+    {"id": "roles/marketing", "text": "Create the Marketing role."},
+    {"id": "roles/compliance", "text": "Create the Compliance role."},
+    {"id": "roles/support", "text": "Create the Support role."},
+    {"id": "roles/finance", "text": "Create the Finance role, read only."}
+   ]
+  },
+  {
+   "id": "desk", "n": 7, "title": "Desk",
+   "intro": "One department covers every ticket.",
+   "items": [
+    {"id": "desk/department", "text": "Create one department."},
+    {"id": "desk/categories", "text": "Create the categories exactly as the ticket file spells them: support, adviser_message, grievance."},
+    {"id": "desk/sla", "text": "Set the SLA to one business day."},
+    {"id": "desk/scores-ref", "text": "Add the SCORES Ref field."}
+   ]
+  },
+  {
+   "id": "campaigns", "n": 8, "title": "Campaigns",
+   "intro": "Lists are imported for reference; nothing sends.",
+   "items": [
+    {"id": "campaigns/lists", "text": "Create one list per journey stage."},
+    {"id": "campaigns/journey", "text": "Create one Marketing Automation journey drawn from the S4 ladder. Never activate it."}
+   ],
+   "generated": "campaigns/lists lists every campaigns/<stage>.csv with its row counts per run; campaigns/journey renders the S4 ladder steps from data/v02/states.json."
+  },
+  {
+   "id": "bookings", "n": 9, "title": "Bookings",
+   "intro": "One service, by hand.",
+   "items": [
+    {"id": "bookings/service", "text": "Create one service, 45-minute slots, staff Adviser 01 to 06. Add a handful of appointments by hand."}
+   ]
+  },
+  {
+   "id": "import", "n": 10, "title": "Import order",
+   "intro": "Import in this order. Each external ID column makes a re-import update instead of duplicate. The files arrive via Drive; the board links none.",
+   "items": [
+    {"id": "import/leads", "text": "Import Leads."},
+    {"id": "import/contacts", "text": "Import Contacts."},
+    {"id": "import/deals", "text": "Import Deals."},
+    {"id": "import/a_la_carte", "text": "Import A la carte."},
+    {"id": "import/calls", "text": "Import Calls."},
+    {"id": "import/tasks", "text": "Import Tasks."},
+    {"id": "import/app_events", "text": "Import App Events."},
+    {"id": "import/tickets", "text": "Import Desk tickets."}
+   ],
+   "generated": "each item's file path, external ID column and row counts for run-500 and run-3000 are read from seed/export_schema.json and the export CSVs; no file is copied or linked (the files arrive via Drive; nothing seed-related is published except the masked admin bundle). One further item per campaigns/<stage>.csv is appended after Desk tickets, one per stage file found under the export directories (the schema carries one shared entry for all of them), id import/campaigns-<stage>."
+  },
+  {
+   "id": "views", "n": 11, "title": "Saved views per seat",
+   "intro": "No filters yet; the seats page of phase D supplies them.",
+   "items": [
+    {"id": "views/principal-officer", "text": "Saved views for the Principal officer seat."},
+    {"id": "views/adviser", "text": "Saved views for the Adviser seat."},
+    {"id": "views/call-centre", "text": "Saved views for the Call centre seat."},
+    {"id": "views/ops", "text": "Saved views for the Ops seat."},
+    {"id": "views/marketing", "text": "Saved views for the Marketing seat."},
+    {"id": "views/compliance", "text": "Saved views for the Compliance seat."},
+    {"id": "views/support", "text": "Saved views for the Support seat."},
+    {"id": "views/finance", "text": "Saved views for the Finance seat."}
+   ]
+  },
+  {
+   "id": "screenshots", "n": 12, "title": "Screenshots for the brief",
+   "intro": "One screenshot per seat, for the brief.",
+   "items": [
+    {"id": "screenshots/principal-officer", "text": "Screenshot the Principal officer seat view."},
+    {"id": "screenshots/adviser", "text": "Screenshot the Adviser seat view."},
+    {"id": "screenshots/call-centre", "text": "Screenshot the Call centre seat view."},
+    {"id": "screenshots/ops", "text": "Screenshot the Ops seat view."},
+    {"id": "screenshots/marketing", "text": "Screenshot the Marketing seat view."},
+    {"id": "screenshots/compliance", "text": "Screenshot the Compliance seat view."},
+    {"id": "screenshots/support", "text": "Screenshot the Support seat view."},
+    {"id": "screenshots/finance", "text": "Screenshot the Finance seat view."}
+   ]
+  }
+ ]
+}

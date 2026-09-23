@@ -7,3 +7,5 @@ node_modules/
 inputs/hoa/*.pdf
 # local-only config (sheet id, published csv url); never committed
 .local/
+# the fixtures zip is derived and delivered privately, never on the board; never committed
+data/seed/*/exports/fixtures/*.zip

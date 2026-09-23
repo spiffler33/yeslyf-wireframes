@@ -1,0 +1,1496 @@
+{
+ "about": "The declared export contract for data/seed/<run>/exports/: one entry per CSV file, one column per declared field, checked by scripts/seed_export.py's minimisation scan. Headers are the plan section 12 labels in order; parenthetical annotations in the plan (picklist values, tracker refs) are documentation, not header text.",
+ "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 12)",
+ "admin_link_base": "https://spiffler33.github.io/yeslyf-wireframes/admin_wireframes.html",
+ "files": [
+  {
+   "path": "zoho/leads.csv",
+   "object": "Leads",
+   "system": "Zoho CRM",
+   "rows": "people.json rows with kind = lead (never OTP'd: S0 community, corporate session, S0w web reveal, organic, referral)",
+   "external_id": "Lead External ID",
+   "columns": [
+    {
+     "label": "Lead External ID",
+     "type": "id",
+     "zoho_type": "single line"
+    },
+    {
+     "label": "First Name",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "people.first_name"
+    },
+    {
+     "label": "Last Name",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "people.last_name"
+    },
+    {
+     "label": "Phone",
+     "type": "phone",
+     "zoho_type": "phone",
+     "source": "people.phone"
+    },
+    {
+     "label": "Email",
+     "type": "email",
+     "zoho_type": "email",
+     "source": "people.email (blank for most leads; only web_reveal and some community leads carry one)"
+    },
+    {
+     "label": "City",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "people.city"
+    },
+    {
+     "label": "Lead Source",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "community",
+      "corporate_session",
+      "web_reveal",
+      "organic",
+      "referral"
+     ],
+     "source": "people.source"
+    },
+    {
+     "label": "Lead Stage",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "lead",
+      "verified lead"
+     ],
+     "source": "people.lead_stage, mapped lead -> lead, verified_lead -> verified lead (plan spelling, W26)"
+    },
+    {
+     "label": "WhatsApp Opt-in",
+     "type": "bool",
+     "zoho_type": "checkbox",
+     "source": "people.whatsapp_optin"
+    },
+    {
+     "label": "DND",
+     "type": "bool",
+     "zoho_type": "checkbox",
+     "source": "people.dnd"
+    },
+    {
+     "label": "Age Band",
+     "type": "band",
+     "zoho_type": "picklist",
+     "band": "age_bands.bands (label, third element of each [min, max, label] entry)",
+     "source": "people.age_band"
+    },
+    {
+     "label": "Top Concern",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "Saving enough every month",
+      "Where to invest",
+      "Paying off loans",
+      "Insurance and cover",
+      "Retiring early",
+      "My children's education"
+     ],
+     "source": "people.lead_details.top_concern"
+    },
+    {
+     "label": "Keyword",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "PLAN",
+      "ALPHA"
+     ],
+     "source": "people.lead_details.keyword"
+    },
+    {
+     "label": "Community Joined",
+     "type": "bool",
+     "zoho_type": "checkbox",
+     "source": "people.lead_details.community_joined"
+    },
+    {
+     "label": "Created Date",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "people.created_at, date part only"
+    },
+    {
+     "label": "Is Seed Topup",
+     "type": "bool",
+     "zoho_type": "checkbox",
+     "source": "people.is_topup"
+    }
+   ]
+  },
+  {
+   "path": "zoho/contacts.csv",
+   "object": "Contacts",
+   "system": "Zoho CRM",
+   "rows": "people.json rows with kind = user (S1 through S25, including DIFM)",
+   "external_id": "Contact External ID",
+   "columns": [
+    {
+     "label": "Contact External ID",
+     "type": "id",
+     "zoho_type": "single line"
+    },
+    {
+     "label": "First Name",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "people.first_name"
+    },
+    {
+     "label": "Last Name",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "people.last_name"
+    },
+    {
+     "label": "Phone",
+     "type": "phone",
+     "zoho_type": "phone",
+     "source": "people.phone",
+     "note": "the match key on re-import per plan section 12; the id column for this scan stays Contact External ID"
+    },
+    {
+     "label": "Email",
+     "type": "email",
+     "zoho_type": "email",
+     "source": "people.email"
+    },
+    {
+     "label": "City",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "people.city"
+    },
+    {
+     "label": "Age Band",
+     "type": "band",
+     "zoho_type": "picklist",
+     "band": "age_bands.bands (label, third element of each [min, max, label] entry)",
+     "source": "people.age_band"
+    },
+    {
+     "label": "Source",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "community",
+      "corporate_session",
+      "web_reveal",
+      "organic",
+      "referral"
+     ],
+     "source": "people.source"
+    },
+    {
+     "label": "WhatsApp Opt-in",
+     "type": "bool",
+     "zoho_type": "checkbox",
+     "source": "people.whatsapp_optin"
+    },
+    {
+     "label": "DND",
+     "type": "bool",
+     "zoho_type": "checkbox",
+     "source": "people.dnd"
+    },
+    {
+     "label": "Journey Stage",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "S0",
+      "S0w",
+      "S1",
+      "S2",
+      "S2b",
+      "S2c",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S7",
+      "S8",
+      "S9",
+      "S10",
+      "S11",
+      "S12",
+      "S13",
+      "S14",
+      "S15",
+      "S16",
+      "S17",
+      "S18",
+      "S19",
+      "S20",
+      "S21",
+      "S22",
+      "S23",
+      "S24",
+      "S25"
+     ],
+     "source": "people.journey_stage; every state ID in data/v02/states.json in its order, plus S0 and S0w, whether or not people sit in it"
+    },
+    {
+     "label": "Tier",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "free",
+      "diy",
+      "diwm",
+      "difm"
+     ],
+     "source": "people.tier"
+    },
+    {
+     "label": "SKU",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "diy",
+      "diwm"
+     ],
+     "source": "people.sku"
+    },
+    {
+     "label": "Subscription Status",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "pending_mandate",
+      "active",
+      "failed",
+      "lapsed",
+      "cancelled",
+      "adviser relationship"
+     ],
+     "source": "people.subscription_status"
+    },
+    {
+     "label": "Adviser Owner",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "Harish",
+      "Adviser 01",
+      "Adviser 02",
+      "Adviser 03",
+      "Adviser 04",
+      "Adviser 05",
+      "Adviser 06",
+      "Ops 01",
+      "Support 01",
+      "Compliance 01"
+     ],
+     "source": "people.adviser_id, resolved to the staff display name via staff.json"
+    },
+    {
+     "label": "Income Band",
+     "type": "band",
+     "zoho_type": "picklist",
+     "band": "reveal_bands.income.labels",
+     "source": "reveal.income_band, blank without a reveal"
+    },
+    {
+     "label": "Corpus Band",
+     "type": "band",
+     "zoho_type": "picklist",
+     "band": "reveal_bands.corpus.labels",
+     "source": "reveal.corpus_band, blank without a reveal"
+    },
+    {
+     "label": "Savings Band",
+     "type": "band",
+     "zoho_type": "picklist",
+     "band": "reveal_bands.savings.labels",
+     "source": "reveal.savings_rate_band, blank without a reveal"
+    },
+    {
+     "label": "Aspiration",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "Freedom",
+      "Family",
+      "Generosity",
+      "Security",
+      "Legacy"
+     ],
+     "source": "reveal.aspiration, blank without a reveal"
+    },
+    {
+     "label": "Signed Up",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "people.key_dates.signed_up"
+    },
+    {
+     "label": "Reveal Seen",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "people.key_dates.reveal_seen"
+    },
+    {
+     "label": "Paid",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "people.key_dates.paid"
+    },
+    {
+     "label": "Data Complete",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "people.key_dates.data_complete"
+    },
+    {
+     "label": "Plan Built",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "people.key_dates.plan_built"
+    },
+    {
+     "label": "Plan Read",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "people.key_dates.plan_read"
+    },
+    {
+     "label": "Last Call",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "people.key_dates.last_call"
+    },
+    {
+     "label": "Next Review",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "people.key_dates.next_review"
+    },
+    {
+     "label": "Renewal Due",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "people.key_dates.renewal_due"
+    },
+    {
+     "label": "Last Activity",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "people.key_dates.last_activity"
+    },
+    {
+     "label": "Onboarding %",
+     "type": "pct",
+     "zoho_type": "percent",
+     "min": 0,
+     "max": 100,
+     "source": "people.mirrors.onboarding_pct"
+    },
+    {
+     "label": "KYC Status",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "not_started",
+      "verified",
+      "verified (address typed)",
+      "verified (assisted onboarding, M12)"
+     ],
+     "source": "people.mirrors.kyc_status"
+    },
+    {
+     "label": "AA Status",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "not_connected",
+      "connected",
+      "partial",
+      "cas_uploaded",
+      "failed",
+      "expired"
+     ],
+     "source": "people.mirrors.aa_status (equal to people.aa_status)",
+     "note": "AA Status is both a mirror and a field in the plan's column list (section 12); this one column serves both, per Vatsal's phase B decision (23 Sep 2026)"
+    },
+    {
+     "label": "FP Status",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "not_started",
+      "in_progress",
+      "built",
+      "read",
+      "not applicable (adviser relationship)"
+     ],
+     "source": "people.mirrors.fp_status"
+    },
+    {
+     "label": "IP Status",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "not_started",
+      "ready",
+      "executing",
+      "done"
+     ],
+     "source": "people.mirrors.ip_status"
+    },
+    {
+     "label": "Actions Done",
+     "type": "int",
+     "zoho_type": "number",
+     "min": 0,
+     "max": 15,
+     "source": "people.mirrors.actions_done"
+    },
+    {
+     "label": "Actions Total",
+     "type": "int",
+     "zoho_type": "number",
+     "min": 0,
+     "max": 15,
+     "source": "people.mirrors.actions_total"
+    },
+    {
+     "label": "Consent Valid Till",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "people.consent_valid_till"
+    },
+    {
+     "label": "Source Completeness",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "no",
+      "yes"
+     ],
+     "source": "people.source_completeness"
+    },
+    {
+     "label": "Sharpen Count",
+     "type": "int",
+     "zoho_type": "number",
+     "min": 0,
+     "max": 10,
+     "source": "people.sharpen_count"
+    },
+    {
+     "label": "Last Manual Update",
+     "type": "datetime",
+     "zoho_type": "date-time",
+     "source": "people.last_manual_update",
+     "note": "kept as a datetime, not a date, since the seed field carries full timestamp precision unlike the ten key dates"
+    },
+    {
+     "label": "DIFM Prospect Flag",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "manual",
+      "rule"
+     ],
+     "source": "people.difm_prospect_flag"
+    },
+    {
+     "label": "Adviser Continuity",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "off"
+     ],
+     "source": "people.adviser_continuity",
+     "note": "mirrors seed/config.json feature_flags.adviser_continuity; the feature is off for every person in this seed, so the picklist has one member until it ships"
+    },
+    {
+     "label": "Last Adviser",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "Harish",
+      "Adviser 01",
+      "Adviser 02",
+      "Adviser 03",
+      "Adviser 04",
+      "Adviser 05",
+      "Adviser 06",
+      "Ops 01",
+      "Support 01",
+      "Compliance 01"
+     ],
+     "source": "people.last_adviser, resolved to the staff display name via staff.json"
+    },
+    {
+     "label": "Profile Fulfilment %",
+     "type": "pct",
+     "zoho_type": "percent",
+     "min": 0,
+     "max": 100,
+     "source": "people.profile_fulfilment_pct"
+    },
+    {
+     "label": "Admin Link",
+     "type": "url",
+     "zoho_type": "URL",
+     "source": "computed: admin_link_base + '?run=' + run number + '&screen=M03&person=' + person_id"
+    },
+    {
+     "label": "Is Seed Topup",
+     "type": "bool",
+     "zoho_type": "checkbox",
+     "source": "people.is_topup"
+    }
+   ]
+  },
+  {
+   "path": "zoho/deals.csv",
+   "object": "Deals",
+   "system": "Zoho CRM",
+   "rows": "one row per subscriptions.json entry (one paid person can hold more than one deal: a lapse and a resubscribe are two deals)",
+   "external_id": "Deal External ID",
+   "columns": [
+    {
+     "label": "Deal External ID",
+     "type": "id",
+     "zoho_type": "single line"
+    },
+    {
+     "label": "Contact External ID",
+     "type": "id",
+     "zoho_type": "single line",
+     "source": "subscriptions key (person_id)",
+     "note": "a reference to contacts.csv, not this file's own external id; format-checked only, not required to be unique here since one contact can hold several deals"
+    },
+    {
+     "label": "Deal Name",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "computed: SKU upper-cased + ' ' + period + ', ' + people.first_name + ' ' + people.last_name"
+    },
+    {
+     "label": "SKU",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "diy",
+      "diwm"
+     ],
+     "source": "subscriptions[].sku"
+    },
+    {
+     "label": "Period",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "monthly",
+      "quarterly"
+     ],
+     "source": "subscriptions[].period"
+    },
+    {
+     "label": "Amount",
+     "type": "money",
+     "zoho_type": "single line",
+     "source": "subscriptions[].amount",
+     "note": "to be verified: whether the standard Amount currency field can stay blank on import; the seed carries Rs ___, so Amount is a text field until prices are set"
+    },
+    {
+     "label": "GST Type",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "cgst_sgst",
+      "igst",
+      "none"
+     ],
+     "source": "subscriptions[].gst_type"
+    },
+    {
+     "label": "Payment Method",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "upi",
+      "netbanking"
+     ],
+     "source": "subscriptions[].payment_method"
+    },
+    {
+     "label": "Coupon",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "subscriptions[].coupon"
+    },
+    {
+     "label": "Razorpay Customer Id",
+     "type": "id",
+     "zoho_type": "single line",
+     "source": "subscriptions[].razorpay_customer_id",
+     "note": "a vendor reference code, not this file's own external id; not required to be unique"
+    },
+    {
+     "label": "Razorpay Subscription or Txn Id",
+     "type": "id",
+     "zoho_type": "single line",
+     "source": "subscriptions[].razorpay_subscription_or_txn_id",
+     "note": "a vendor reference code, not this file's own external id; not required to be unique"
+    },
+    {
+     "label": "Mandate Status",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "active",
+      "pending",
+      "none (charged per period)"
+     ],
+     "source": "subscriptions[].mandate_status"
+    },
+    {
+     "label": "Start",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "subscriptions[].start"
+    },
+    {
+     "label": "Next Billing",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "subscriptions[].next_billing"
+    },
+    {
+     "label": "Status",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "active",
+      "pending_mandate",
+      "failed",
+      "cancelled",
+      "lapsed"
+     ],
+     "source": "subscriptions[].status"
+    },
+    {
+     "label": "Grace Until",
+     "type": "date",
+     "zoho_type": "date",
+     "source": "subscriptions[].grace_until"
+    },
+    {
+     "label": "Retry Count",
+     "type": "int",
+     "zoho_type": "number",
+     "min": 0,
+     "max": 10,
+     "source": "subscriptions[].retry_count"
+    },
+    {
+     "label": "Calls Included Per Period",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "0",
+      "N"
+     ],
+     "source": "subscriptions[].calls_included_per_period"
+    },
+    {
+     "label": "Calls Used",
+     "type": "int",
+     "zoho_type": "number",
+     "min": 0,
+     "max": 20,
+     "source": "subscriptions[].calls_used"
+    },
+    {
+     "label": "Cancel Reason",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "subscriptions[].cancel_reason"
+    },
+    {
+     "label": "Refund Requested",
+     "type": "bool",
+     "zoho_type": "checkbox",
+     "source": "subscriptions[].refund_requested"
+    },
+    {
+     "label": "Refund Status",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "subscriptions[].refund_status",
+     "note": "the one realised value is a to-be-decided placeholder sentence (brief H5), not a coded status, so this column is text rather than picklist"
+    }
+   ]
+  },
+  {
+   "path": "zoho/a_la_carte.csv",
+   "object": "A la carte",
+   "system": "Zoho CRM",
+   "rows": "one row per a_la_carte.json entry (single-call purchases outside the plan)",
+   "external_id": "Purchase External ID",
+   "columns": [
+    {
+     "label": "Purchase External ID",
+     "type": "id",
+     "zoho_type": "single line"
+    },
+    {
+     "label": "Contact External ID",
+     "type": "id",
+     "zoho_type": "single line",
+     "source": "a_la_carte key (person_id)",
+     "note": "a reference to contacts.csv, not this file's own external id; not required to be unique"
+    },
+    {
+     "label": "Date",
+     "type": "datetime",
+     "zoho_type": "date-time",
+     "source": "a_la_carte[].date"
+    },
+    {
+     "label": "Amount",
+     "type": "money",
+     "zoho_type": "single line",
+     "source": "a_la_carte[].amount"
+    },
+    {
+     "label": "Receipt",
+     "type": "id",
+     "zoho_type": "single line",
+     "source": "a_la_carte[].receipt",
+     "note": "a receipt code, not required to be unique here"
+    },
+    {
+     "label": "Call Id",
+     "type": "id",
+     "zoho_type": "single line",
+     "source": "a_la_carte[].call_id, joins calls.csv Call External ID",
+     "note": "a reference to calls.csv, not this file's own external id; not required to be unique"
+    }
+   ]
+  },
+  {
+   "path": "zoho/calls.csv",
+   "object": "Calls",
+   "system": "Zoho CRM",
+   "rows": "one row per calls.json entry",
+   "external_id": "Call External ID",
+   "columns": [
+    {
+     "label": "Call External ID",
+     "type": "id",
+     "zoho_type": "single line"
+    },
+    {
+     "label": "Contact External ID",
+     "type": "id",
+     "zoho_type": "single line",
+     "source": "calls key (person_id)",
+     "note": "a reference to contacts.csv, not this file's own external id; not required to be unique"
+    },
+    {
+     "label": "Adviser",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "Harish",
+      "Adviser 01",
+      "Adviser 02",
+      "Adviser 03",
+      "Adviser 04",
+      "Adviser 05",
+      "Adviser 06",
+      "Ops 01",
+      "Support 01",
+      "Compliance 01"
+     ],
+     "source": "calls[].adviser_id, resolved to the staff display name via staff.json"
+    },
+    {
+     "label": "Booked At",
+     "type": "datetime",
+     "zoho_type": "date-time",
+     "source": "calls[].booked_at"
+    },
+    {
+     "label": "Slot",
+     "type": "datetime",
+     "zoho_type": "date-time",
+     "source": "calls[].slot"
+    },
+    {
+     "label": "Topic",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "My plan",
+      "Using the app",
+      "The investments and why they were chosen",
+      "Something changed",
+      "My numbers"
+     ],
+     "source": "calls[].topic"
+    },
+    {
+     "label": "Status",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "booked",
+      "completed",
+      "no_show",
+      "cancelled"
+     ],
+     "source": "calls[].status"
+    },
+    {
+     "label": "Notes",
+     "type": "text",
+     "zoho_type": "multi-line",
+     "source": "calls[].notes"
+    },
+    {
+     "label": "Input Changes",
+     "type": "multi",
+     "zoho_type": "multi-select",
+     "values": [
+      "members",
+      "has_dependants",
+      "partner_earns",
+      "pets",
+      "rpq_answers",
+      "risk_band",
+      "take_home",
+      "partner_take_home",
+      "rental_income",
+      "other_income",
+      "total_outgoings",
+      "bucket_fixed",
+      "bucket_variable",
+      "bucket_guilt_free",
+      "month_end_pattern",
+      "current_sip",
+      "bank_and_deposits",
+      "mutual_funds",
+      "stocks",
+      "nps",
+      "epf",
+      "ppf",
+      "gold",
+      "home_value",
+      "investment_property_value",
+      "investment_property_rent",
+      "ulip_surrender_value",
+      "ulip_premium",
+      "ulip_years_completed",
+      "other_assets",
+      "has_loans",
+      "total_emi",
+      "loans",
+      "credit_card_balance",
+      "informal_loans",
+      "term_status",
+      "health_status",
+      "other_policies",
+      "term_sum_assured",
+      "term_premium",
+      "term_cover_until_age",
+      "health_type",
+      "health_sum_insured",
+      "health_floater",
+      "health_premium",
+      "goals",
+      "work_optional_age"
+     ],
+     "source": "calls[].input_changes, spine field names joined with '; '"
+    }
+   ]
+  },
+  {
+   "path": "zoho/tasks.csv",
+   "object": "Tasks",
+   "system": "Zoho CRM",
+   "rows": "one row per tasks.json entry (the five crm_task states: S2b, S19, S20, S24, S25)",
+   "external_id": "Task External ID",
+   "columns": [
+    {
+     "label": "Task External ID",
+     "type": "id",
+     "zoho_type": "single line"
+    },
+    {
+     "label": "Contact External ID",
+     "type": "id",
+     "zoho_type": "single line",
+     "source": "tasks key (person_id)",
+     "note": "a reference to contacts.csv, not this file's own external id; not required to be unique"
+    },
+    {
+     "label": "Subject",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "tasks[].subject (already 'state ID: primary action' in the seed)"
+    },
+    {
+     "label": "State ID",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "S2b",
+      "S19",
+      "S20",
+      "S24",
+      "S25"
+     ],
+     "source": "tasks[].state_id; the states that have a crm_task in data/v02/states.json"
+    },
+    {
+     "label": "Tier",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "free",
+      "diy",
+      "diwm",
+      "difm"
+     ],
+     "source": "tasks[].fields.tier"
+    },
+    {
+     "label": "Days Unsigned",
+     "type": "int",
+     "zoho_type": "number",
+     "min": 0,
+     "max": 1000,
+     "source": "tasks[].fields.days_unsigned",
+     "note": "S2b only, blank otherwise. Plan section 12's tasks.csv column list left this out; section 11's tasks row and the S2b crm_task.fields in data/v02/states.json both carry it, so it is added here (Vatsal, 23 Sep 2026)"
+    },
+    {
+     "label": "Missing Fields",
+     "type": "multi",
+     "zoho_type": "multi-select",
+     "values": [
+      "members",
+      "has_dependants",
+      "partner_earns",
+      "pets",
+      "rpq_answers",
+      "risk_band",
+      "take_home",
+      "partner_take_home",
+      "rental_income",
+      "other_income",
+      "total_outgoings",
+      "bucket_fixed",
+      "bucket_variable",
+      "bucket_guilt_free",
+      "month_end_pattern",
+      "current_sip",
+      "bank_and_deposits",
+      "mutual_funds",
+      "stocks",
+      "nps",
+      "epf",
+      "ppf",
+      "gold",
+      "home_value",
+      "investment_property_value",
+      "investment_property_rent",
+      "ulip_surrender_value",
+      "ulip_premium",
+      "ulip_years_completed",
+      "other_assets",
+      "has_loans",
+      "total_emi",
+      "loans",
+      "credit_card_balance",
+      "informal_loans",
+      "term_status",
+      "health_status",
+      "other_policies",
+      "term_sum_assured",
+      "term_premium",
+      "term_cover_until_age",
+      "health_type",
+      "health_sum_insured",
+      "health_floater",
+      "health_premium",
+      "goals",
+      "work_optional_age"
+     ],
+     "source": "tasks[].fields.missing_fields, spine field names joined with '; '; S19 only, blank otherwise"
+    },
+    {
+     "label": "Last Screen",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "tasks[].fields.last_screen; S19 only, blank otherwise"
+    },
+    {
+     "label": "Minutes Left",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "tasks[].fields.minutes_left; S19 only, blank otherwise (CLAUDE.md: minutes are 'about N minutes')"
+    },
+    {
+     "label": "Call Topic",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "My plan",
+      "Using the app",
+      "The investments and why they were chosen",
+      "Something changed",
+      "My numbers"
+     ],
+     "source": "tasks[].fields.call_topic; S20 only, blank otherwise"
+    },
+    {
+     "label": "No-show Count",
+     "type": "int",
+     "zoho_type": "number",
+     "min": 0,
+     "max": 10,
+     "source": "tasks[].fields.no_show_count",
+     "note": "S20 only, blank otherwise"
+    },
+    {
+     "label": "Payment Reference",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "tasks[].fields.payment_reference; S24 only, blank otherwise",
+     "note": "the deal's first payment_id (payments.json format PAY-NNNNN-N); text rather than id since the field is blank on every non-S24 task"
+    },
+    {
+     "label": "Cancel Reason",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "tasks[].fields.cancel_reason; S24 only, blank otherwise"
+    },
+    {
+     "label": "Period Unexpired",
+     "type": "bool",
+     "zoho_type": "checkbox",
+     "source": "tasks[].fields.period_unexpired",
+     "note": "S24 only, blank otherwise"
+    },
+    {
+     "label": "Records Retained",
+     "type": "multi",
+     "zoho_type": "multi-select",
+     "values": [
+      "client agreement",
+      "KYC record",
+      "risk profile",
+      "advice register",
+      "fee records and invoices"
+     ],
+     "source": "tasks[].fields.records_retained, joined with '; '; S25 only, blank otherwise"
+    },
+    {
+     "label": "Requested At",
+     "type": "datetime",
+     "zoho_type": "date-time",
+     "source": "tasks[].fields.requested_at; S25 only, blank otherwise"
+    },
+    {
+     "label": "Assignee",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "Harish",
+      "Adviser 01",
+      "Adviser 02",
+      "Adviser 03",
+      "Adviser 04",
+      "Adviser 05",
+      "Adviser 06",
+      "Ops 01",
+      "Support 01",
+      "Compliance 01"
+     ],
+     "source": "tasks[].assignee, resolved to the staff display name via staff.json"
+    },
+    {
+     "label": "Due",
+     "type": "datetime",
+     "zoho_type": "date-time",
+     "source": "tasks[].due"
+    },
+    {
+     "label": "Status",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "open",
+      "done"
+     ],
+     "source": "tasks[].status"
+    }
+   ]
+  },
+  {
+   "path": "zoho/app_events.csv",
+   "object": "App Events",
+   "system": "Zoho CRM",
+   "rows": "events.jsonl rows whose event name is one of the CRM events in data/admin_crm.json EVENTS (multi-name rows such as 'call_booked / call_completed / no_show' split into single names) plus every state_enter_<state id> event for a state in data/v02/states.json; never a screen view, never a D-screen interaction event",
+   "external_id": "Event External ID",
+   "columns": [
+    {
+     "label": "Event External ID",
+     "type": "id",
+     "zoho_type": "single line"
+    },
+    {
+     "label": "Contact External ID",
+     "type": "id",
+     "zoho_type": "single line",
+     "source": "events.jsonl person_id",
+     "note": "a reference to contacts.csv, not this file's own external id; not required to be unique"
+    },
+    {
+     "label": "Event",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "aa_connected",
+      "aa_declined",
+      "aa_failed",
+      "action_done",
+      "agreement_due",
+      "call_booked",
+      "call_completed",
+      "cancelled",
+      "data_complete",
+      "data_progress",
+      "esign_done",
+      "lapsed",
+      "no_show",
+      "paid",
+      "payment_failed",
+      "payment_recovered",
+      "paywall_viewed",
+      "pdf_downloaded",
+      "plan_built",
+      "plan_read",
+      "plan_updated",
+      "resubscribed",
+      "reveal_seen",
+      "review_done",
+      "review_due",
+      "rpq_due",
+      "signed_up",
+      "state_enter_S1",
+      "state_enter_S10",
+      "state_enter_S11",
+      "state_enter_S12",
+      "state_enter_S13",
+      "state_enter_S14",
+      "state_enter_S15",
+      "state_enter_S16",
+      "state_enter_S17",
+      "state_enter_S18",
+      "state_enter_S19",
+      "state_enter_S2",
+      "state_enter_S20",
+      "state_enter_S21",
+      "state_enter_S22",
+      "state_enter_S23",
+      "state_enter_S24",
+      "state_enter_S25",
+      "state_enter_S2b",
+      "state_enter_S2c",
+      "state_enter_S3",
+      "state_enter_S4",
+      "state_enter_S5",
+      "state_enter_S6",
+      "state_enter_S7",
+      "state_enter_S8",
+      "state_enter_S9",
+      "ticket_created",
+      "update_accepted"
+     ],
+     "source": "events.jsonl event"
+    },
+    {
+     "label": "Screen",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "events.jsonl screen_id"
+    },
+    {
+     "label": "At",
+     "type": "datetime",
+     "zoho_type": "date-time",
+     "source": "events.jsonl at"
+    },
+    {
+     "label": "Props",
+     "type": "json",
+     "zoho_type": "multi-line",
+     "source": "events.jsonl props, compact JSON with sorted keys"
+    }
+   ]
+  },
+  {
+   "path": "desk/tickets.csv",
+   "object": "Tickets",
+   "system": "Zoho Desk",
+   "rows": "one row per tickets.json entry",
+   "external_id": "Ticket External ID",
+   "columns": [
+    {
+     "label": "Ticket External ID",
+     "type": "id",
+     "zoho_type": "single line"
+    },
+    {
+     "label": "Contact Email",
+     "type": "email",
+     "zoho_type": "email",
+     "source": "people.email for the ticket's person_id"
+    },
+    {
+     "label": "Contact Phone",
+     "type": "phone",
+     "zoho_type": "phone",
+     "source": "people.phone for the ticket's person_id"
+    },
+    {
+     "label": "Category",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "support",
+      "adviser_message",
+      "grievance"
+     ],
+     "source": "tickets[].category"
+    },
+    {
+     "label": "Subject",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "tickets[].subject"
+    },
+    {
+     "label": "Description",
+     "type": "text",
+     "zoho_type": "multi-line",
+     "source": "tickets[].description, with a sentence appended: stage, tier, last screen and last integration failure as of the ticket's created_at (see script for the exact rule)"
+    },
+    {
+     "label": "Created At",
+     "type": "datetime",
+     "zoho_type": "date-time",
+     "source": "tickets[].created_at"
+    },
+    {
+     "label": "SLA Due",
+     "type": "datetime",
+     "zoho_type": "date-time",
+     "source": "tickets[].sla_due"
+    },
+    {
+     "label": "Status",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "open",
+      "resolved"
+     ],
+     "source": "tickets[].status"
+    },
+    {
+     "label": "Resolved At",
+     "type": "datetime",
+     "zoho_type": "date-time",
+     "source": "tickets[].resolved_at"
+    },
+    {
+     "label": "SCORES Ref",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "tickets[].scores_ref",
+     "note": "blank for most tickets (only escalated grievances get one); text rather than id since id disallows blank"
+    }
+   ]
+  },
+  {
+   "path": "campaigns/<stage>.csv",
+   "object": "List",
+   "system": "Zoho Campaigns",
+   "rows": "one file per journey stage that has at least one person (leads included: S0 and S0w); one row per person in that stage",
+   "external_id": null,
+   "columns": [
+    {
+     "label": "Email",
+     "type": "email",
+     "zoho_type": "email",
+     "source": "people.email"
+    },
+    {
+     "label": "Phone",
+     "type": "phone",
+     "zoho_type": "phone",
+     "source": "people.phone"
+    },
+    {
+     "label": "First Name",
+     "type": "text",
+     "zoho_type": "single line",
+     "source": "people.first_name"
+    },
+    {
+     "label": "Stage",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "S0",
+      "S0w",
+      "S1",
+      "S2",
+      "S2b",
+      "S2c",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S7",
+      "S8",
+      "S9",
+      "S10",
+      "S11",
+      "S12",
+      "S13",
+      "S14",
+      "S15",
+      "S16",
+      "S17",
+      "S18",
+      "S19",
+      "S20",
+      "S21",
+      "S22",
+      "S23",
+      "S24",
+      "S25"
+     ],
+     "source": "people.journey_stage; constant within one file, named by the stage ID (campaigns/S2b.csv etc.)"
+    },
+    {
+     "label": "Tier",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "free",
+      "diy",
+      "diwm",
+      "difm"
+     ],
+     "source": "people.tier, blank for leads"
+    },
+    {
+     "label": "WhatsApp Opt-in",
+     "type": "bool",
+     "zoho_type": "checkbox",
+     "source": "people.whatsapp_optin"
+    }
+   ]
+  },
+  {
+   "path": "landing/landing_sheet.csv",
+   "object": "Sheet",
+   "system": "Google Sheet",
+   "rows": "people.json rows whose lead_details.landing_at is set (leads and, once converted, users)",
+   "external_id": null,
+   "note": "to be verified: the yeslifers.com sheet's current column names (plan section 12)",
+   "columns": [
+    {
+     "label": "Timestamp",
+     "type": "datetime",
+     "zoho_type": "date-time",
+     "source": "people.lead_details.landing_at"
+    },
+    {
+     "label": "Email",
+     "type": "email",
+     "zoho_type": "email",
+     "source": "people.email"
+    },
+    {
+     "label": "Top Money Concern",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "Saving enough every month",
+      "Where to invest",
+      "Paying off loans",
+      "Insurance and cover",
+      "Retiring early",
+      "My children's education"
+     ],
+     "source": "people.lead_details.top_concern"
+    },
+    {
+     "label": "Keyword",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "PLAN",
+      "ALPHA"
+     ],
+     "source": "people.lead_details.keyword"
+    },
+    {
+     "label": "Source",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "community",
+      "corporate_session",
+      "web_reveal",
+      "organic",
+      "referral"
+     ],
+     "source": "people.source"
+    },
+    {
+     "label": "Community Joined",
+     "type": "bool",
+     "zoho_type": "checkbox",
+     "source": "people.lead_details.community_joined"
+    },
+    {
+     "label": "Resource Sent",
+     "type": "picklist",
+     "zoho_type": "picklist",
+     "values": [
+      "Money checklist PDF",
+      "Reveal walkthrough video",
+      "none"
+     ],
+     "source": "people.lead_details.resource_sent"
+    }
+   ]
+  }
+ ]
+}
