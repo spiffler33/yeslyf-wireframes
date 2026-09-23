@@ -1,0 +1,1124 @@
+{
+  "about": "The seats page content (PLAN_admin_seed_v01.md section 15, deliverable D7): for each question an operator seat asks, the surface where the answer lives (the admin tab, the CRM or a vendor console), the screen, saved view or integrations row, and whether the seed (run-3000, anchor 23 Sep 2026) plus that surface answers it. A no carries a one-sentence gap and the brief table it lands in (T1 to T6 on the admin brief); a yes names the table the question belongs to. Section 15's items come first on each seat, in order, one per item; screen gaps found while the admin tab was drawn and the N01 gap list follow on the seat that asks them, each with its own cause.",
+  "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 15)",
+  "seats": [
+    {
+      "id": "principal-officer",
+      "seat": "Principal officer",
+      "questions": [
+        {
+          "id": "po-01",
+          "question": "Paid by SKU this week against last week",
+          "surface": "Zoho",
+          "screen": "Paid by SKU, this week and last",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "Deals",
+            "name": "Paid by SKU, this week and last",
+            "criteria": "Start in the last 14 days; group by SKU and by week of Start"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "po-02",
+          "question": "AUA by tier",
+          "surface": "Admin tab",
+          "screen": "M13",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T6",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "po-03",
+          "question": "SIP book: executed through I02 against AA-detected",
+          "surface": "Admin tab",
+          "screen": "M13",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T6",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "po-04",
+          "question": "DIFM prospects to call",
+          "surface": "Zoho",
+          "screen": "DIFM prospects to call",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "Contacts",
+            "name": "DIFM prospects to call",
+            "criteria": "DIFM Prospect Flag is rule or manual; show Phone, Tier, Adviser Owner, Last Call"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "po-05",
+          "question": "Annual RPQ overdue",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "po-06",
+          "question": "Agreement renewals overdue",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "po-07",
+          "question": "Grievances past SLA",
+          "surface": "Zoho",
+          "screen": "Grievances past SLA",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "Tickets",
+            "name": "Grievances past SLA",
+            "criteria": "Category is grievance; Status is open; SLA Due is before now"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "po-08",
+          "question": "Engine failures",
+          "surface": "Admin tab",
+          "screen": "M06",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "po-09",
+          "question": "Refunds pending",
+          "surface": "Admin tab",
+          "screen": "M06",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "po-10",
+          "question": "Who is on an old plan version (the S11 list)",
+          "surface": "Admin tab",
+          "screen": "M08",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "po-11",
+          "question": "Financial data by source across every field (AA, CAS, manual)",
+          "surface": "Admin tab",
+          "screen": "M13",
+          "answered": "no",
+          "gap": "M13 splits the source for current SIP records only; no surface aggregates financial_records.source across every field, and the CRM carries only Source Completeness per person.",
+          "brief": "T6",
+          "cause": "M13 screen gap (seed/PROGRESS.md, 23 Sep 2026)"
+        },
+        {
+          "id": "po-12",
+          "question": "Data capture not started, partial or complete, per data screen",
+          "surface": "Admin tab",
+          "screen": "M13",
+          "answered": "no",
+          "gap": "No completion flag per data screen (D01 to D09) is stored although O02 reads them; data_progress events carry a section step and an overall percent only, so M13 falls back to profile_fulfilment_pct.",
+          "brief": "T1",
+          "cause": "M13 screen gap (seed/PROGRESS.md, 23 Sep 2026)"
+        },
+        {
+          "id": "po-13",
+          "question": "Week-N retention by paid cohort",
+          "surface": "Admin tab",
+          "screen": "M13",
+          "answered": "no",
+          "gap": "M13 draws a 14-day recency proxy and no week-N cohort table exists; to be decided: cohort definition and retention window.",
+          "brief": "T6",
+          "cause": "M13 screen gap (seed/PROGRESS.md, 23 Sep 2026)"
+        },
+        {
+          "id": "po-14",
+          "question": "One-time buyers who start a membership (subscription and FP to IP conversion)",
+          "surface": "Admin tab",
+          "screen": "M13",
+          "answered": "no",
+          "gap": "P01 has no one-time card in v0.2, so neither conversion has a starting purchase and both KPI rows have nothing to measure.",
+          "brief": "T6",
+          "cause": "M13 screen gap (seed/PROGRESS.md, 23 Sep 2026)"
+        },
+        {
+          "id": "po-15",
+          "question": "Which state shows when S23 (annual confirmation overdue) and S10 (all actions done) both hold, 6 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S23 and S10; the seed shows S23 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-16",
+          "question": "Which state shows when S18 (plan built on partial data) and S8 (plan read, no action done) both hold, 5 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S18 and S8; the seed shows S18 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-17",
+          "question": "Which state shows when S21 (call done, no action started) and S8 (plan read, no action done) both hold, 5 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S21 and S8; the seed shows S21 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-18",
+          "question": "Which state shows when S12 (payment failed) and S10 (all actions done) both hold, 4 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S12 and S10; the seed shows S12 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-19",
+          "question": "Which state shows when S17 (CAS awaited) and S4 (data partial) both hold, 4 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S17 and S4; the seed shows S17 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-20",
+          "question": "Which state shows when S22 (quarterly review ignored) and S9 (executing) both hold, 4 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S22 and S9; the seed shows S22 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-21",
+          "question": "Which state shows when S11 (plan updated, not accepted) and S10 (all actions done) both hold, 3 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S11 and S10; the seed shows S11 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-22",
+          "question": "Which state shows when S11 (plan updated, not accepted) and S8 (plan read, no action done) both hold, 3 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S11 and S8; the seed shows S11 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-23",
+          "question": "Which state shows when S13 (lapsed) and S9 (executing) both hold, 3 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S13 and S9; the seed shows S13 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-24",
+          "question": "Which state shows when S15 (AA consent expired) and S10 (all actions done) both hold, 3 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S15 and S10; the seed shows S15 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-25",
+          "question": "Which state shows when S21 (call done, no action started) and S6 (plan built, not read) both hold, 3 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S21 and S6; the seed shows S21 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-26",
+          "question": "Which state shows when S24 (refund requested) and S4 (data partial) both hold, 3 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S24 and S4; the seed shows S24 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-27",
+          "question": "Which state shows when S25 (deletion requested) and S6 (plan built, not read) both hold, 3 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S25 and S6; the seed shows S25 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-28",
+          "question": "Which state shows when S7 (call booked) and S8 (plan read, no action done) both hold, 3 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S7 and S8; the seed shows S7 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-29",
+          "question": "Which state shows when S11 (plan updated, not accepted) and S9 (executing) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S11 and S9; the seed shows S11 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-30",
+          "question": "Which state shows when S12 (payment failed) and S9 (executing) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S12 and S9; the seed shows S12 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-31",
+          "question": "Which state shows when S13 (lapsed) and S6 (plan built, not read) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S13 and S6; the seed shows S13 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-32",
+          "question": "Which state shows when S13 (lapsed) and S8 (plan read, no action done) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S13 and S8; the seed shows S13 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-33",
+          "question": "Which state shows when S15 (AA consent expired) and S9 (executing) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S15 and S9; the seed shows S15 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-34",
+          "question": "Which state shows when S17 (CAS awaited) and S3 (paid, nothing else) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S17 and S3; the seed shows S17 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-35",
+          "question": "Which state shows when S20 (call no-show) and S6 (plan built, not read) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S20 and S6; the seed shows S20 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-36",
+          "question": "Which state shows when S20 (call no-show) and S9 (executing) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S20 and S9; the seed shows S20 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-37",
+          "question": "Which state shows when S22 (quarterly review ignored) and S10 (all actions done) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S22 and S10; the seed shows S22 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-38",
+          "question": "Which state shows when S24 (refund requested) and S6 (plan built, not read) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S24 and S6; the seed shows S24 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-39",
+          "question": "Which state shows when S25 (deletion requested) and S9 (executing) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S25 and S9; the seed shows S25 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-40",
+          "question": "Which state shows when S7 (call booked) and S6 (plan built, not read) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S7 and S6; the seed shows S7 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-41",
+          "question": "Which state shows when S7 (call booked) and S9 (executing) both hold, 2 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S7 and S9; the seed shows S7 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-42",
+          "question": "Which state shows when S13 (lapsed) and S19 (stalled below the gate) both hold, 1 person",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S13 and S19; the seed shows S13 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-43",
+          "question": "Which state shows when S15 (AA consent expired) and S8 (plan read, no action done) both hold, 1 person",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S15 and S8; the seed shows S15 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-44",
+          "question": "Which state shows when S18 (plan built on partial data) and S9 (executing) both hold, 1 person",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S18 and S9; the seed shows S18 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-45",
+          "question": "Which state shows when S20 (call no-show) and S4 (data partial) both hold, 1 person",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S20 and S4; the seed shows S20 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-46",
+          "question": "Which state shows when S20 (call no-show) and S8 (plan read, no action done) both hold, 1 person",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S20 and S8; the seed shows S20 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-47",
+          "question": "Which state shows when S24 (refund requested) and S5 (gate met, D10 not confirmed) both hold, 1 person",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S24 and S5; the seed shows S24 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-48",
+          "question": "Which state shows when S25 (deletion requested) and S19 (stalled below the gate) both hold, 1 person",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S25 and S19; the seed shows S25 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-49",
+          "question": "Which state shows when S7 (call booked) and S19 (stalled below the gate) both hold, 1 person",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 sets no order between S7 and S19; the seed shows S7 by the assumed precedence of plan section 7.",
+          "brief": "T5",
+          "cause": "N01 gap list (report.md)"
+        },
+        {
+          "id": "po-50",
+          "question": "Which state shows when D10 is confirmed and the engine fails, 3 people",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "No state covers D10 confirmed with no plan built, so no predicate holds and the seed keeps these people at S5.",
+          "brief": "T5",
+          "cause": "PLAN.md section 20"
+        },
+        {
+          "id": "po-51",
+          "question": "Where someone lands when an overlay ends after they moved on during it",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "Exits to the previous state (S7, S11, S12, S15, S23) ignore progress made during the overlay; report.md logs 3 changes outside the states.json exits: S12 to S18, S13 to S10, S7 to S9.",
+          "brief": "T5",
+          "cause": "PLAN.md section 20"
+        },
+        {
+          "id": "po-52",
+          "question": "Hours when a nudge may go out (quiet hours)",
+          "surface": "Admin tab",
+          "screen": "M10",
+          "answered": "no",
+          "gap": "N01 has no quiet-hours rule; the seed sends only from 09:00 to 21:00, which delayed 2,613 sends and held 396 whose state ended first.",
+          "brief": "T5",
+          "cause": "PLAN.md section 20"
+        },
+        {
+          "id": "po-53",
+          "question": "The S2 emails at day 7, 21 and 82 when no email is on file",
+          "surface": "Admin tab",
+          "screen": "M10",
+          "answered": "no",
+          "gap": "The email is asked at P02, after S2, so most S2 people have no address: the seed held 1,619 of the day 7, 21 and 82 emails for no email on file.",
+          "brief": "T5",
+          "cause": "PLAN.md section 20"
+        },
+        {
+          "id": "po-54",
+          "question": "Whether a second no-show still creates its task when S11 or S13 shows",
+          "surface": "Admin tab",
+          "screen": "M05",
+          "answered": "no",
+          "gap": "N01 creates this task on entering S20, but S11 and S13 outrank S20 in the assumed precedence, so a second no-show in either state creates no task.",
+          "brief": "T5",
+          "cause": "PLAN.md section 20"
+        },
+        {
+          "id": "po-55",
+          "question": "Which event marks a missed call",
+          "surface": "Admin tab",
+          "screen": "M03",
+          "answered": "no",
+          "gap": "no_show (the CRM event list) and call_no_show (K01) name one moment; the seed logs both, 14 each.",
+          "brief": "T2",
+          "cause": "PLAN.md section 20"
+        }
+      ]
+    },
+    {
+      "id": "adviser",
+      "seat": "Adviser",
+      "questions": [
+        {
+          "id": "ad-01",
+          "question": "Who is this person",
+          "surface": "Admin tab",
+          "screen": "M03",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "ad-02",
+          "question": "Plan at a glance",
+          "surface": "Admin tab",
+          "screen": "M04",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "ad-03",
+          "question": "Actions done",
+          "surface": "Admin tab",
+          "screen": "M04",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "ad-04",
+          "question": "What they asked on K01",
+          "surface": "Admin tab",
+          "screen": "M04",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "ad-05",
+          "question": "What is missing",
+          "surface": "Admin tab",
+          "screen": "M04",
+          "answered": "no",
+          "gap": "M04 lists only not-sure or unknown records and an S19 task's fields, so a gate field never captured does not show: an S4 person with 5 records reads 'Nothing missing'.",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "ad-06",
+          "question": "Last call's input changes",
+          "surface": "Admin tab",
+          "screen": "M04",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "ad-07",
+          "question": "The script for their state",
+          "surface": "Admin tab",
+          "screen": "M04",
+          "answered": "no",
+          "gap": "No state in data/v02/states.json carries call script text; M04 shows the primary action and copy slot ids with 'to be decided: a call script per state'.",
+          "brief": "T5",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "ad-08",
+          "question": "Calls left this period",
+          "surface": "Admin tab",
+          "screen": "M04",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        }
+      ]
+    },
+    {
+      "id": "call-centre",
+      "seat": "Call centre",
+      "questions": [
+        {
+          "id": "cc-01",
+          "question": "Today's tasks (S2b, S19, S20) with state, missing fields, tier and a deep link",
+          "surface": "Zoho",
+          "screen": "Call centre today",
+          "answered": "no",
+          "gap": "Tasks carry State ID, Missing Fields and Tier but no Admin Link; the deep link sits on the Contact only.",
+          "brief": "T4",
+          "view": {
+            "object": "Tasks",
+            "name": "Call centre today",
+            "criteria": "Status is open; State ID is S2b, S19 or S20; Due is today or earlier; show State ID, Missing Fields, Tier"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "cc-02",
+          "question": "Outcome capture",
+          "surface": "Zoho",
+          "screen": "Call centre outcomes",
+          "answered": "no",
+          "gap": "Tasks carry Status only: the seed's tasks.outcome ('called; still S19', 'the state ended') and closed_at are not in the Tasks export, so the CRM has no field to capture an outcome.",
+          "brief": "T4",
+          "view": {
+            "object": "Tasks",
+            "name": "Call centre outcomes",
+            "criteria": "Status is done; State ID is S2b, S19 or S20; sort by Due"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "cc-03",
+          "question": "The a la carte offer for DIY",
+          "surface": "Admin tab",
+          "screen": "M04",
+          "answered": "no",
+          "gap": "M04 shows 0 included calls for a DIY person but not the a la carte offer (K04, Rs ___ per call) or their past purchases; no admin screen draws the a_la_carte table.",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "cc-04",
+          "question": "Who to offer the same adviser to",
+          "surface": "Zoho",
+          "screen": "Same adviser offer",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "Contacts",
+            "name": "Same adviser offer",
+            "criteria": "Last Adviser is not empty; show Last Adviser, Adviser Continuity, Adviser Owner"
+          },
+          "cause": "plan section 15"
+        }
+      ]
+    },
+    {
+      "id": "ops",
+      "seat": "Ops",
+      "questions": [
+        {
+          "id": "op-01",
+          "question": "The queue by type and age",
+          "surface": "Admin tab",
+          "screen": "M06",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "op-02",
+          "question": "AA failures needing follow-up",
+          "surface": "Admin tab",
+          "screen": "M06",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "op-03",
+          "question": "Unknown ISINs",
+          "surface": "Admin tab",
+          "screen": "M07",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "op-04",
+          "question": "Plausibility flags",
+          "surface": "Admin tab",
+          "screen": "M07",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "op-05",
+          "question": "Reassignments",
+          "surface": "Admin tab",
+          "screen": "M06",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "op-06",
+          "question": "DIFM assisted onboarding",
+          "surface": "Admin tab",
+          "screen": "M12",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "op-07",
+          "question": "Refund requests",
+          "surface": "Admin tab",
+          "screen": "M06",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "op-08",
+          "question": "Deletion requests with the retention override",
+          "surface": "Admin tab",
+          "screen": "M06",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "op-09",
+          "question": "Which queue items are past their SLA",
+          "surface": "Admin tab",
+          "screen": "M06",
+          "answered": "no",
+          "gap": "No SLA per item type is set and ops_queue items carry no due time, so M06 reads 'SLA per item type: to be decided'.",
+          "brief": "T1",
+          "cause": "M06 screen gap (seed/PROGRESS.md, 23 Sep 2026)"
+        },
+        {
+          "id": "op-10",
+          "question": "Which CAS source each upload came from",
+          "surface": "Admin tab",
+          "screen": "M09",
+          "answered": "no",
+          "gap": "cas_uploads.cas_source names a registrar and a depository source with no integrations row to cite, so M03 and M09 leave it off (to be decided: CAS source for V1, A10).",
+          "brief": "T1",
+          "cause": "M03 screen gap (seed/PROGRESS.md, 23 Sep 2026)"
+        }
+      ]
+    },
+    {
+      "id": "marketing",
+      "seat": "Marketing",
+      "questions": [
+        {
+          "id": "mk-01",
+          "question": "Lists by stage",
+          "surface": "Zoho",
+          "screen": "Stage lists",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "List",
+            "name": "Stage lists",
+            "criteria": "one list per Stage value (campaigns/<stage>.csv); show Stage, Tier, WhatsApp Opt-in"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "mk-02",
+          "question": "Who received which slot",
+          "surface": "Admin tab",
+          "screen": "M03",
+          "answered": "no",
+          "gap": "Nudge sends show one person at a time on M03 (Nudges sent); no screen lists who received a slot, and nudge_sent is not in the App Events export.",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "mk-03",
+          "question": "Template approval status",
+          "surface": "vendor console",
+          "screen": "I11",
+          "answered": "no",
+          "gap": "Template approval lives in the I11 console, which round one does not connect, and the seed's copy slots carry no approval status.",
+          "brief": "T5",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "mk-04",
+          "question": "The weekly cap",
+          "surface": "Admin tab",
+          "screen": "M10",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T5",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "mk-05",
+          "question": "Opt-in and DND",
+          "surface": "Zoho",
+          "screen": "Opt-in and DND",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "Contacts",
+            "name": "Opt-in and DND",
+            "criteria": "WhatsApp Opt-in is true; DND is false; show Journey Stage"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "mk-06",
+          "question": "Which S2 day-3 message converts",
+          "surface": "vendor console",
+          "screen": "I13",
+          "answered": "no",
+          "gap": "No report joins the N-S2-d3 sends to a later paid event (I13 is not decided and the sends show one person at a time on M03), and the step has one copy slot, so there is no second message to compare.",
+          "brief": "T6",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "mk-07",
+          "question": "The S8 first-action message performance",
+          "surface": "vendor console",
+          "screen": "I13",
+          "answered": "no",
+          "gap": "No report counts sent, delivered, opened and clicked for the S8 slots (N-S8-48h, N-S8-7d, N-S8-14d) against a later action_started; I13 is not decided and the sends show one person at a time on M03.",
+          "brief": "T6",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "mk-08",
+          "question": "Which videos, sample plan content, tooltips and FAQs are live, by screen",
+          "surface": "Admin tab",
+          "screen": "M10",
+          "answered": "no",
+          "gap": "The config table holds SKU cards, copy slots, flags and bands only; no content table stores videos, sample plan content, question wording, tooltips or FAQs keyed by screen.",
+          "brief": "T1",
+          "cause": "M13 screen gap (seed/PROGRESS.md, 23 Sep 2026)"
+        }
+      ]
+    },
+    {
+      "id": "compliance",
+      "seat": "Compliance",
+      "questions": [
+        {
+          "id": "co-01",
+          "question": "Grievance register export",
+          "surface": "Zoho",
+          "screen": "Grievance register",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "Tickets",
+            "name": "Grievance register",
+            "criteria": "Category is grievance; show Created At, Subject, Status, Resolved At, SCORES Ref; export"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "co-02",
+          "question": "Advice register per person (plan version, assumptions version, instrument set)",
+          "surface": "Admin tab",
+          "screen": "M03",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "co-03",
+          "question": "Agreement versions signed",
+          "surface": "Admin tab",
+          "screen": "M11",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "co-04",
+          "question": "RPQ refresh due list",
+          "surface": "Zoho",
+          "screen": "RPQ refresh due",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "App Events",
+            "name": "RPQ refresh due",
+            "criteria": "Event is rpq_due; show Contact External ID, At, Props (due_date)"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "co-05",
+          "question": "Audit trail",
+          "surface": "Admin tab",
+          "screen": "M11",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T3",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "co-06",
+          "question": "Deletion against retention",
+          "surface": "Admin tab",
+          "screen": "M11",
+          "answered": "no",
+          "gap": "M11 shows each deletion request with the record types retained, but no retention period per record type is stored (to be verified: DPDP deletion and retention text).",
+          "brief": "T1",
+          "cause": "plan section 15"
+        }
+      ]
+    },
+    {
+      "id": "support",
+      "seat": "Support",
+      "questions": [
+        {
+          "id": "su-01",
+          "question": "A ticket with context (stage, tier, last screen, that person's integration failures)",
+          "surface": "Zoho",
+          "screen": "Open tickets with context",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "Tickets",
+            "name": "Open tickets with context",
+            "criteria": "Status is open; show Category, Subject, Description, SLA Due"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "su-02",
+          "question": "SLA one business day",
+          "surface": "Zoho",
+          "screen": "Past SLA",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "Tickets",
+            "name": "Past SLA",
+            "criteria": "Status is open; SLA Due is before now; sort by SLA Due"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "su-03",
+          "question": "The reply landing in-app",
+          "surface": "Admin tab",
+          "screen": "M03",
+          "answered": "no",
+          "gap": "Tickets store status and resolved time only; no event or payload carries a support reply back to the app, and no v0.2 screen shows one.",
+          "brief": "T2",
+          "cause": "plan section 15"
+        }
+      ]
+    },
+    {
+      "id": "finance",
+      "seat": "Finance",
+      "questions": [
+        {
+          "id": "fi-01",
+          "question": "I09 payments against Deals reconciliation",
+          "surface": "Zoho",
+          "screen": "Payment reconciliation",
+          "answered": "no",
+          "gap": "Deals carry one I09 id per deal, but a deal charged per period holds several payments; no payment row (payment id, status, captured date, invoice number) reaches the CRM, and round one does not connect I09.",
+          "brief": "T4",
+          "view": {
+            "object": "Deals",
+            "name": "Payment reconciliation",
+            "criteria": "all deals; show Razorpay Customer Id, Razorpay Subscription or Txn Id, Status, Start, Next Billing"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "fi-02",
+          "question": "GST split by type",
+          "surface": "Zoho",
+          "screen": "GST split",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "Deals",
+            "name": "GST split",
+            "criteria": "group by GST Type; show SKU, Period, Start"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "fi-03",
+          "question": "Invoices",
+          "surface": "vendor console",
+          "screen": "I09",
+          "answered": "no",
+          "gap": "Invoices are issued in I09, which round one does not connect; the seed's invoice numbers sit on the payments table, shown one person at a time on M03, and none reach the CRM.",
+          "brief": "T4",
+          "cause": "plan section 15"
+        },
+        {
+          "id": "fi-04",
+          "question": "Refunds",
+          "surface": "Zoho",
+          "screen": "Refunds",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "Deals",
+            "name": "Refunds",
+            "criteria": "Refund Requested is true; show Refund Status, Cancel Reason, SKU, Start"
+          },
+          "cause": "plan section 15"
+        },
+        {
+          "id": "fi-05",
+          "question": "A la carte receipts",
+          "surface": "Zoho",
+          "screen": "A la carte receipts",
+          "answered": "yes",
+          "gap": "",
+          "brief": "T4",
+          "view": {
+            "object": "A la carte",
+            "name": "A la carte receipts",
+            "criteria": "all purchases; show Date, Amount, Receipt, Call Id"
+          },
+          "cause": "plan section 15"
+        }
+      ]
+    }
+  ]
+}

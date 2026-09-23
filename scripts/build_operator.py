@@ -133,6 +133,24 @@ def schema_index(schema):
     return {f["path"]: f for f in schema["files"]}
 
 
+SEATS_FILE = os.path.join(DATA, "seats.json")
+
+
+def load_seats(seats_path=None):
+    # Step 11's Zoho views per seat (PLAN_admin_seed_v01.md section 15). Minimal reading only; the seats page's own
+    # builder (scripts/build_seats.py) owns full contract validation.
+    path = seats_path or SEATS_FILE
+    if not os.path.exists(path):
+        raise SystemExit("build_operator: %s does not exist yet (step 11's Zoho views per seat)" % path)
+    with open(path) as fh:
+        raw = fh.read()
+    site.check_ascii(path, raw)
+    try:
+        return json.loads(raw)
+    except ValueError as e:
+        raise SystemExit("build_operator: %s is not valid JSON: %s" % (path, e))
+
+
 # seed/export_schema.json carries one shared entry for every campaigns list, keyed literally "campaigns/<stage>.csv"
 # (one column set for all stages); the actual per-stage files (one per Journey Stage value, so up to 29) only exist
 # on disk, so their names come from the export directories, unioned over both runs.
@@ -256,6 +274,19 @@ def s4_ladder_html(states):
     return '<div class="gen meta">S4 ladder (never activated):</div><ul class="gen">%s</ul>' % rows
 
 
+def seat_views_html(seats_by_id, seat_id):
+    # step 11: that seat's Zoho views from data/seats.json, "<view name>: <object>; <criteria>", one per line.
+    seat = seats_by_id.get(seat_id) or {}
+    lines = []
+    for q in seat.get("questions", []):
+        if q.get("surface") == "Zoho":
+            view = q.get("view") or {}
+            lines.append("%s: %s; %s" % (view.get("name", ""), view.get("object", ""), view.get("criteria", "")))
+    if not lines:
+        return '<p class="gen meta">No Zoho view: this seat\'s questions live on the admin tab or a vendor console.</p>'
+    return '<ul class="gen">%s</ul>' % "".join("<li>%s</li>" % esc(line) for line in lines)
+
+
 def import_item_html(schema_idx, schema_key, csv_path=None):
     # Plain text only: no file is copied into docs/ and no CSV is ever linked from the board (Vatsal, 23 Sep 2026).
     # schema_key is the key into seed/export_schema.json (the campaigns files all share one template entry,
@@ -293,6 +324,10 @@ BLOCK["campaigns/lists"] = lambda ctx: campaigns_lists_html()
 BLOCK["campaigns/journey"] = lambda ctx: s4_ladder_html(ctx["states"])
 for _stem, _path in IMPORT_FILES:
     BLOCK["import/%s" % _stem] = (lambda p: (lambda ctx: import_item_html(ctx["schema_idx"], p)))(_path)
+
+VIEW_SEAT_IDS = ["principal-officer", "adviser", "call-centre", "ops", "marketing", "compliance", "support", "finance"]
+for _sid in VIEW_SEAT_IDS:
+    BLOCK["views/%s" % _sid] = (lambda s: (lambda ctx: seat_views_html(ctx["seats_by_id"], s)))(_sid)
 
 
 def render_campaign_import_items(ctx):
@@ -412,8 +447,9 @@ JS = r"""
 """
 
 
-def build_page(doc, items, schema, schema_idx, integrations, states):
-    ctx = {"schema": schema, "schema_idx": schema_idx, "integ_by_id": {r["id"]: r for r in integrations["rows"]}, "states": states}
+def build_page(doc, items, schema, schema_idx, integrations, states, seats_doc):
+    ctx = {"schema": schema, "schema_idx": schema_idx, "integ_by_id": {r["id"]: r for r in integrations["rows"]}, "states": states,
+           "seats_by_id": {s["id"]: s for s in seats_doc.get("seats", [])}}
     who = '<div class="who">Editing as <select id="reviewer"></select></div>'
     intro = ('<section><h1>Operator checklist: the Zoho afternoon</h1>'
              '<p class="lead">Every person in these files is synthetic; nothing is ever sent.</p>'
@@ -422,13 +458,14 @@ def build_page(doc, items, schema, schema_idx, integrations, states):
     steps_html = "".join(render_step(step, ctx) for step in doc["steps"])
     blob = ('<script>var ITEMS=' + site.js_blob(items) + ';\nvar STEPS=' + site.js_blob([s["id"] for s in doc["steps"]]) +
             ';\nvar IDENTITIES=' + site.js_blob(IDENTITIES) + ';</script>\n')
-    return (site.head("yeslyf operator checklist", site.CSS + EXTRA_CSS, config="config.js") + '<body>\n' +
-            site.header(PAGE, "operator checklist, %d items" % len(items), who_html=who, show_export=False, tabs=None, setup_link=True) +
+    return (site.head("yeslyf operator checklist", site.CSS + site.SUBNAV_CSS + EXTRA_CSS, config="config.js") + '<body>\n' +
+            site.header("admin_wireframes.html", "operator checklist, %d items" % len(items), who_html=who, show_export=False, tabs=None, setup_link=True) +
+            site.seed_subnav(PAGE) +
             '<main class="main" style="max-width:none">' + intro + steps_html + '</main>\n' +
             blob + site.store_script() + '<script>' + JS + '</script>\n</body>\n</html>\n')
 
 
-def main():
+def main(seats_path=None):
     with open(DATA_FILE) as fh:
         raw = fh.read()
     site.check_ascii("data/operator.json", raw)
@@ -457,9 +494,10 @@ def main():
     states = site.load_optional("v02", "states.json")
     if states is None:
         raise SystemExit("build_operator: data/v02/states.json is required (step 8's S4 ladder)")
+    seats_doc = load_seats(seats_path)
 
     items = all_items(doc)
-    page = build_page(doc, items, schema, schema_idx, integrations, states)
+    page = build_page(doc, items, schema, schema_idx, integrations, states, seats_doc)
     site.check_ascii(PAGE, page)
     errors = []
     if 'name="robots" content="noindex' not in page:

@@ -311,8 +311,12 @@
     };
 
     ROW_FN["Active users"] = function(){
-      return {value: "not in the seed: an aggregate app-open event (the seed logs a screen-view event " +
-        "per person, kept in each person's own chunk, not aggregated)", pids: []};
+      // key_dates.last_activity is each person's last event (open_organic, nudge_opened, screen views included)
+      var users = people.filter(function(p){ return p.kind === "user"; });
+      var d7 = users.filter(function(p){ var d = ADMIN.days(p.key_dates.last_activity); return d !== null && d < 7; });
+      var d30 = users.filter(function(p){ var d = ADMIN.days(p.key_dates.last_activity); return d !== null && d < 30; });
+      return {value: "active in the 7 days before the anchor (last activity): " + H.num(d7.length) +
+        "; in the 30 days: " + H.num(d30.length) + " of " + H.num(users.length) + " users", pids: pidsOf(d30)};
     };
 
     ROW_FN["In onboarding"] = function(){
@@ -422,8 +426,8 @@
     };
 
     ROW_FN["Drop-offs by screen and stage"] = function(){
-      return {value: "not in the seed (aggregate): screen-view counts live only in each person's own event " +
-        "chunk, not summed anywhere; about 72,000 to 150,000 rows across a run", pids: []};
+      return {value: "in the event log, not on this tab: screen-view counts per screen (this tab reads the events " +
+        "one person at a time)", pids: []};
     };
 
     ROW_FN["Completion %, average completion time, stage-wise drop-off"] = function(){
@@ -433,15 +437,25 @@
       return {value: "reveal funnel (signed up to reveal seen): " + H.pct(reveal, signedUp) +
         "; paywall funnel (reveal seen to paid): " + H.pct(paidTotal, reveal) +
         "; data funnel (paid to data complete): " + H.pct(dataComplete, paidTotal) +
-        "; not in the seed: average completion time and a stage-wise (per-screen) drop-off",
+        "; in the event log, not on this tab: average completion time and a per-screen drop-off",
         pids: []};
     };
 
     ROW_FN["KYC failure rate"] = function(){
-      var users = people.filter(function(p){ return p.kind === "user"; });
-      var failed = users.filter(function(p){ return p.mirrors && p.mirrors.kyc_status === "failed"; });
-      return {value: H.num(failed.length) + " of " + H.num(users.length) + " (" + H.pct(failed.length, users.length) +
-        "); not in the seed: this generator never sets kyc_status to failed", pids: pidsOf(users)};
+      // the KYC fetch is the I06 integration; a failed fetch falls back to a typed address, so kyc_status stays verified
+      var calls = 0, failedCalls = 0, failedPids = [];
+      Object.keys(ADMIN.ievents || {}).forEach(function(pid){
+        var hit = false;
+        (ADMIN.ievents[pid] || []).forEach(function(e){
+          if(e.integration !== "I06") return;
+          calls++;
+          if(e.outcome !== "ok"){ failedCalls++; hit = true; }
+        });
+        if(hit) failedPids.push(pid);
+      });
+      return {value: ADMIN.integ("I06") + ": " + H.num(failedCalls) + " of " + H.num(calls) + " calls failed (" +
+        H.pct(failedCalls, calls) + "); " + H.num(failedPids.length) + " people had a failure and typed their address instead",
+        pids: failedPids};
     };
 
     ROW_FN["AA failure rate"] = function(){
@@ -469,7 +483,7 @@
       return {value: "checkout abandoned, esign incomplete (state S2b): " +
         H.link(H.num(s2b.length), "M02", {filter: "state=S2b"}) +
         "; esign done, not paid (state S2c): " + H.link(H.num(s2c.length), "M02", {filter: "state=S2c"}) +
-        "; not in the seed: an aggregate paywall-viewed count to use as the funnel's start",
+        "; in the event log, not on this tab: the paywall_viewed count that starts this funnel",
         pids: pidsOf(s2b).concat(pidsOf(s2c))};
     }
     ROW_FN["Payment conversion"] = paymentConversion;
@@ -515,8 +529,8 @@
     };
 
     ROW_FN["Time from data completion to plan"] = function(){
-      return {value: "not in the seed: data_complete is recorded to the day, not the second (plan_built " +
-        "has a full timestamp); a p95 build-time metric needs both to the second", pids: []};
+      return {value: "in the event log, not on this tab: the data_complete time to the second (the key date keeps " +
+        "the day; plan_built has a full timestamp)", pids: []};
     };
 
     ROW_FN["FP to IP conversion"] = function(){

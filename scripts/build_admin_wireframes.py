@@ -468,7 +468,7 @@ def build_page(admin_doc, states, admin_crm, anchor_text):
            '<label>Run <select id="arun"><option value="3000">3,000 people</option><option value="500">500 people</option></select></label>'
            '<label>Person <input id="aperson" list="apeople" placeholder="search a person" autocomplete="off"><datalist id="apeople"></datalist></label>'
            '<span class="a-note">Synthetic people, seed 20260922, anchor %s. M01, the bought stack, stays on the '
-           '<a href="wireframes_v02.html#M01">wireframes tab</a>.</span></div>\n'
+           '<a href="wireframes_v02.html#M01">wireframes tab</a>.</span>' + site.seed_subnav("admin_wireframes.html") + '</div>\n'
            '<div class="banner">Every person here is synthetic. Write actions are mock; only comments are recorded.</div>\n'
            ) % site.esc(anchor_text)
     layout = site.WIRE_LAYOUT
@@ -488,7 +488,7 @@ def build_page(admin_doc, states, admin_crm, anchor_text):
         path = os.path.join(SCRIPTS, name)
         if os.path.exists(path):
             scripts.append('<script>' + site.read_script(name) + '</script>\n')
-    page = (site.head("yeslyf admin wireframes v0.1", site.read_script("renderer_v02.css") + ADMIN_CSS) + '<body>\n' +
+    page = (site.head("yeslyf admin wireframes v0.1", site.read_script("renderer_v02.css") + site.SUBNAV_CSS + ADMIN_CSS) + '<body>\n' +
             site.header("admin_wireframes.html", "admin wireframes v0.1, 13 screens over the seed", who_html=who,
                         export_label="Export comments") +
             bar + layout + data + "".join(scripts) + '</body>\n</html>\n')

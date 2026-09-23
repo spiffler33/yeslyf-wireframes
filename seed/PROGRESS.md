@@ -39,11 +39,16 @@ Plan: PLAN_admin_seed_v01.md (the spec; CLAUDE.md wins on a conflict). Resume fr
   a publish rebuilds every plan pending acceptance); M13: no app-open or active-user event, kyc_status never
   failed, no one-time SKU, data_complete has day precision, no CMS content, no paywall_viewed aggregate, no
   per-D-screen completion flags, no week-N retention cohort.
-- Phase D in flight: scripts/build_seats.py (and step 11 of build_operator.py) and scripts/build_brief.py are
-  written and tested against a fixture; data/seats.json (the seat questions, answered or gap) is next. Until it
-  exists the full site build fails (build_operator and the new builders require it). seed/export_schema.json
-  columns carry an exact "field" path (T1's "where mirrored" matches on it). The Mixpanel JSONL (phase E) is in
-  seed_export.py already, uncommitted.
+- Phase D done ("admin brief skeleton"): data/seats.json (8 seats, 99 questions: 38 answered from the seed,
+  61 gaps: T1 5, T2 2, T3 3, T4 4, T5 42, T6 5; the principal officer seat carries the 35 N01 state pairs and
+  the six PLAN.md section 20 gaps), docs/admin_seats.html (answered select and a comment box per question,
+  board page admin_seats), docs/admin_brief.html (T1 399, T2 500, T3 13, T4 203, T5 25, T6 62 rows; gap rows
+  from the data and, live, from the seats page), operator step 11 lists each seat's Zoho views. The seats
+  judgment dropped four M13 "not in the seed" claims (the data exists); M13 now computes active users and the
+  KYC failure rate from the seed and says "in the event log, not on this tab" where only the event log holds
+  it. seed/export_schema.json columns carry an exact "field" path (T1's "where mirrored" matches on it).
+- Nav (landed with D): one "Admin seed" tab on every page and a sub-nav across its four pages (four tabs would
+  grow the header from 93 to 128 px at 1,512 px and cut into the wireframes layout).
 
 ## Vatsal's answers (23 Sep 2026, afternoon)
 

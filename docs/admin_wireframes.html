@@ -202,6 +202,11 @@
 .hist .t{color:var(--mute);margin-right:6px}
 .hist-empty{font-size:12px;color:var(--mute)}
 
+  .subtabs{display:flex;gap:12px;align-items:center;padding:6px 18px;font-size:12px;color:var(--mute);background:var(--panel);border-bottom:1px solid var(--line)}
+  .subtabs a{color:var(--mute);text-decoration:none}
+  .subtabs a.on{color:var(--ink);font-weight:600}
+  .bar .subtabs{padding:0;border:0;background:none;margin-left:auto}
+
   .abar select,.abar input{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff}
   .abar .a-note{color:var(--mute);font-size:12px}
   .a-top{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:0 0 14px;background:#FCFCFD}
@@ -216,8 +221,9 @@
 <script src="config.js"></script>
 </head>
 <body>
-<header class="top"><div class="brand">yeslyf <span>admin wireframes v0.1, 13 screens over the seed</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html">Wireframes v0.2</a><a href="tracker.html">Tracker</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="changelog.html">Changelog</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a><a href="setup.html">Setup</a></nav><div class="who">Reviewing as <select id="reviewer"></select></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a><button id="export" class="primary">Export comments</button></header>
-<div class="bar abar"><label>Run <select id="arun"><option value="3000">3,000 people</option><option value="500">500 people</option></select></label><label>Person <input id="aperson" list="apeople" placeholder="search a person" autocomplete="off"><datalist id="apeople"></datalist></label><span class="a-note">Synthetic people, seed 20260922, anchor 23 Sep 2026. M01, the bought stack, stays on the <a href="wireframes_v02.html#M01">wireframes tab</a>.</span></div>
+<header class="top"><div class="brand">yeslyf <span>admin wireframes v0.1, 13 screens over the seed</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html">Wireframes v0.2</a><a href="tracker.html">Tracker</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="admin_wireframes.html" class="on">Admin seed</a><a href="changelog.html">Changelog</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a><a href="setup.html">Setup</a></nav><div class="who">Reviewing as <select id="reviewer"></select></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a><button id="export" class="primary">Export comments</button></header>
+<div class="bar abar"><label>Run <select id="arun"><option value="3000">3,000 people</option><option value="500">500 people</option></select></label><label>Person <input id="aperson" list="apeople" placeholder="search a person" autocomplete="off"><datalist id="apeople"></datalist></label><span class="a-note">Synthetic people, seed 20260922, anchor 23 Sep 2026. M01, the bought stack, stays on the <a href="wireframes_v02.html#M01">wireframes tab</a>.</span><nav class="subtabs">Admin seed: <a href="admin_wireframes.html" class="on">Admin tab</a><a href="admin_seats.html">Seats</a><a href="admin_brief.html">Brief</a><a href="admin_operator.html">Operator</a></nav>
+</div>
 <div class="banner">Every person here is synthetic. Write actions are mock; only comments are recorded.</div>
 <div class="layout">
 <aside id="nav" class="nav"></aside>
@@ -2092,10 +2098,10 @@ var ADMIN_PLACEMENT=[{"sec": "Dashboard KPIs", "item": "Total users", "bucket": 
       scriptHtml = '<div class="w-note">to be decided: a call script per state</div>';
     }
 
-    // Calls left this period: from the active subscription.
+    // Calls left this period: from the current subscription (active, or paid with the UPI mandate still pending).
     var subs = (t.subscriptions && t.subscriptions[pid]) || [];
     var activeSub = null;
-    subs.forEach(function(sub){ if(sub.status === "active") activeSub = sub; });
+    subs.forEach(function(sub){ if(sub.status === "active" || sub.status === "pending_mandate") activeSub = sub; });
     var callsLeftHtml = activeSub
       ? ('<div class="w-p">' + H.esc(String(activeSub.calls_included_per_period)) + ' included, ' + H.num(activeSub.calls_used) + ' used</div>')
       : '<div class="w-note">No active subscription.</div>';
@@ -2983,8 +2989,12 @@ var ADMIN_PLACEMENT=[{"sec": "Dashboard KPIs", "item": "Total users", "bucket": 
     };
 
     ROW_FN["Active users"] = function(){
-      return {value: "not in the seed: an aggregate app-open event (the seed logs a screen-view event " +
-        "per person, kept in each person's own chunk, not aggregated)", pids: []};
+      // key_dates.last_activity is each person's last event (open_organic, nudge_opened, screen views included)
+      var users = people.filter(function(p){ return p.kind === "user"; });
+      var d7 = users.filter(function(p){ var d = ADMIN.days(p.key_dates.last_activity); return d !== null && d < 7; });
+      var d30 = users.filter(function(p){ var d = ADMIN.days(p.key_dates.last_activity); return d !== null && d < 30; });
+      return {value: "active in the 7 days before the anchor (last activity): " + H.num(d7.length) +
+        "; in the 30 days: " + H.num(d30.length) + " of " + H.num(users.length) + " users", pids: pidsOf(d30)};
     };
 
     ROW_FN["In onboarding"] = function(){
@@ -3094,8 +3104,8 @@ var ADMIN_PLACEMENT=[{"sec": "Dashboard KPIs", "item": "Total users", "bucket": 
     };
 
     ROW_FN["Drop-offs by screen and stage"] = function(){
-      return {value: "not in the seed (aggregate): screen-view counts live only in each person's own event " +
-        "chunk, not summed anywhere; about 72,000 to 150,000 rows across a run", pids: []};
+      return {value: "in the event log, not on this tab: screen-view counts per screen (this tab reads the events " +
+        "one person at a time)", pids: []};
     };
 
     ROW_FN["Completion %, average completion time, stage-wise drop-off"] = function(){
@@ -3105,15 +3115,25 @@ var ADMIN_PLACEMENT=[{"sec": "Dashboard KPIs", "item": "Total users", "bucket": 
       return {value: "reveal funnel (signed up to reveal seen): " + H.pct(reveal, signedUp) +
         "; paywall funnel (reveal seen to paid): " + H.pct(paidTotal, reveal) +
         "; data funnel (paid to data complete): " + H.pct(dataComplete, paidTotal) +
-        "; not in the seed: average completion time and a stage-wise (per-screen) drop-off",
+        "; in the event log, not on this tab: average completion time and a per-screen drop-off",
         pids: []};
     };
 
     ROW_FN["KYC failure rate"] = function(){
-      var users = people.filter(function(p){ return p.kind === "user"; });
-      var failed = users.filter(function(p){ return p.mirrors && p.mirrors.kyc_status === "failed"; });
-      return {value: H.num(failed.length) + " of " + H.num(users.length) + " (" + H.pct(failed.length, users.length) +
-        "); not in the seed: this generator never sets kyc_status to failed", pids: pidsOf(users)};
+      // the KYC fetch is the I06 integration; a failed fetch falls back to a typed address, so kyc_status stays verified
+      var calls = 0, failedCalls = 0, failedPids = [];
+      Object.keys(ADMIN.ievents || {}).forEach(function(pid){
+        var hit = false;
+        (ADMIN.ievents[pid] || []).forEach(function(e){
+          if(e.integration !== "I06") return;
+          calls++;
+          if(e.outcome !== "ok"){ failedCalls++; hit = true; }
+        });
+        if(hit) failedPids.push(pid);
+      });
+      return {value: ADMIN.integ("I06") + ": " + H.num(failedCalls) + " of " + H.num(calls) + " calls failed (" +
+        H.pct(failedCalls, calls) + "); " + H.num(failedPids.length) + " people had a failure and typed their address instead",
+        pids: failedPids};
     };
 
     ROW_FN["AA failure rate"] = function(){
@@ -3141,7 +3161,7 @@ var ADMIN_PLACEMENT=[{"sec": "Dashboard KPIs", "item": "Total users", "bucket": 
       return {value: "checkout abandoned, esign incomplete (state S2b): " +
         H.link(H.num(s2b.length), "M02", {filter: "state=S2b"}) +
         "; esign done, not paid (state S2c): " + H.link(H.num(s2c.length), "M02", {filter: "state=S2c"}) +
-        "; not in the seed: an aggregate paywall-viewed count to use as the funnel's start",
+        "; in the event log, not on this tab: the paywall_viewed count that starts this funnel",
         pids: pidsOf(s2b).concat(pidsOf(s2c))};
     }
     ROW_FN["Payment conversion"] = paymentConversion;
@@ -3187,8 +3207,8 @@ var ADMIN_PLACEMENT=[{"sec": "Dashboard KPIs", "item": "Total users", "bucket": 
     };
 
     ROW_FN["Time from data completion to plan"] = function(){
-      return {value: "not in the seed: data_complete is recorded to the day, not the second (plan_built " +
-        "has a full timestamp); a p95 build-time metric needs both to the second", pids: []};
+      return {value: "in the event log, not on this tab: the data_complete time to the second (the key date keeps " +
+        "the day; plan_built has a full timestamp)", pids: []};
     };
 
     ROW_FN["FP to IP conversion"] = function(){

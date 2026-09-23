@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>yeslyf seats</title>
+<style>
+  :root{--paper:#EEF0F3;--panel:#fff;--ink:#1B1F27;--mute:#5F6773;--line:#D3D7DE;--accent:#FFDA00;--accent-soft:#FFF4B8;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45;scroll-behavior:smooth}
+  button,select,input,textarea{font-family:inherit;font-size:13px}
+  a{color:inherit}
+  ::selection{background:var(--accent)}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:8px 18px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .brand{font-weight:700;font-size:16px;white-space:nowrap}
+  .brand span{font-weight:400;color:var(--mute);margin-left:8px;font-size:13px}
+  .tabs{display:flex;gap:2px;flex-wrap:wrap}
+  .tabs a{text-decoration:none;font-size:13px;padding:6px 10px;border-radius:6px;border:1px solid transparent;color:var(--mute)}
+  .tabs a:hover{background:#F5F6F8}
+  .tabs a.on{color:var(--ink);font-weight:600;border-color:var(--line);background:#fff}
+  .who{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mute);margin-left:auto}
+  .who input{padding:6px 8px;border:1px solid var(--line);border-radius:6px;width:170px}
+  .saved{font-size:12px;color:var(--mute);min-width:120px}
+  .pill{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--mute);text-decoration:none;white-space:nowrap}
+  .pill.on{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .pill.held{border-color:var(--ink);color:var(--ink)}
+  .top .primary{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
+  .top .ghost{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:6px;cursor:pointer}
+  .frozen{padding:6px 18px;background:#F1F2F4;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--mute)}
+  .decided-line{font-size:12.5px;margin:0 0 8px;padding:5px 10px;border-radius:6px;background:var(--accent-soft);border:1px solid #C9A800}
+  .layout{display:grid;grid-template-columns:240px minmax(0,1fr)}
+  .nav{position:sticky;top:49px;height:calc(100vh - 49px);overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:10px 0}
+  .nav a{display:block;padding:6px 14px 6px 11px;text-decoration:none;font-size:13px;border-left:3px solid transparent}
+  .nav a:hover{background:#F5F6F8}
+  .nav .sub{padding-left:24px;font-size:12px;color:var(--mute)}
+  .main{padding:18px 26px 120px;max-width:1150px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px;scroll-margin-top:60px}
+  h1{font-size:22px;margin:0 0 6px}
+  h2{font-size:17px;margin:0 0 4px}
+  h2 small{font-weight:400;color:var(--mute);font-size:13px;margin-left:8px}
+  h3{font-size:14px;margin:14px 0 4px}
+  .lead{color:var(--mute);margin:0 0 12px;max-width:860px}
+  .rule{padding-left:10px;border-left:3px solid var(--accent);margin:8px 0 12px;max-width:900px}
+  ul{margin:6px 0;padding-left:18px} li{margin:3px 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:8px 0 4px}
+  .stat{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#FCFCFD}
+  .stat b{display:block;font-size:22px} .stat span{font-size:12px;color:var(--mute)}
+  .item{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 12px;background:#FCFCFD;scroll-margin-top:60px}
+  .item.hi{border-color:#C9A800;box-shadow:0 0 0 3px var(--accent-soft)}
+  .item.done{border-color:#7A8797}
+  .item-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+  .item-h b{font-size:15px}
+  .tag{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;background:#fff;color:var(--mute);white-space:nowrap}
+  .tag.hi{border-color:#B2434F;color:#B2434F;font-weight:600}
+  .tag.team{border-color:var(--ink);color:var(--ink);font-weight:600}
+  .tag.done{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .tag.new{border-color:var(--ink);color:var(--ink)}
+  .tag.changed{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .screens a{font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;margin-right:3px;background:#fff}
+  .ctx{font-size:13px;margin:0 0 8px;color:#3B4250}
+  .pos{margin:0 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+  .pos li{font-size:12.5px} .pos b{font-weight:600}
+  .pos .ref{color:var(--mute);font-size:11.5px}
+  .cond{font-size:12.5px;margin:0 0 8px} .cond li{list-style:none;margin-left:-18px}
+  .dflt-line{font-size:12.5px;margin:6px 0 4px;color:#3B4250}
+  .opt{display:flex;gap:10px;align-items:flex-start;padding:7px 10px;border:1px solid var(--line);border-radius:8px;margin:5px 0;background:#fff;cursor:pointer}
+  .opt input{margin-top:3px}
+  .opt.dflt{border-color:#C9A800;background:#FFFDF2}
+  .opt .held{display:block;font-size:11.5px;color:var(--mute);margin-top:2px}
+  .dpill{display:inline-block;font-size:10.5px;font-weight:700;background:var(--accent);border-radius:4px;padding:1px 6px;margin-left:6px;white-space:nowrap}
+  .ppill{display:inline-block;font-size:10.5px;border:1px dashed var(--mute);border-radius:4px;padding:1px 6px;margin-left:6px;color:var(--mute);white-space:nowrap}
+  .dep{font-size:12.5px;color:#3B4250;margin:8px 0 0;padding:6px 10px;border:1px dashed var(--line);border-radius:6px;background:#fff}
+  .dep.on{border-style:solid;border-color:#C9A800;background:#FFFBEA}
+  .dep b{font-weight:600}
+  .meta{font-size:11.5px;color:var(--mute)}
+  .note{width:100%;min-height:40px;border:1px solid var(--line);border-radius:6px;padding:6px;resize:vertical;background:#fff;margin-top:6px}
+  .decided{display:flex;gap:8px;align-items:center;font-size:12.5px;margin-top:8px}
+  .qa{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:start;padding:7px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+  .qa:last-child{border-bottom:0}
+  .qa .t{white-space:pre-wrap} .qa .t b{white-space:nowrap}
+  .qa .c{display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  .qa button{border:1px solid var(--line);background:#fff;padding:4px 9px;border-radius:5px;cursor:pointer}
+  .qa button.on{background:var(--accent);border-color:#C9A800;font-weight:600}
+  .qa button.on.no{background:#F1F2F4;border-color:var(--ink)}
+  .qa input{padding:4px 6px;border:1px solid var(--line);border-radius:5px;width:180px}
+  .qa .decided-line{grid-column:1 / -1;margin:0}
+  .gap{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 8px;background:#FCFCFD;scroll-margin-top:60px}
+  .gap-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+  .gap .why{font-size:12.5px;color:#3B4250;margin:6px 0}
+  .gap .rec{font-size:12.5px;margin:6px 0;padding-left:10px;border-left:3px solid var(--accent)}
+  .gap-c{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:12px}
+  .gap-c select,.gap-c input{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  table{width:100%;border-collapse:collapse;font-size:12.5px} th{text-align:left;border-bottom:2px solid var(--ink);padding:6px 8px;font-size:12px;vertical-align:bottom} td{border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
+  td.n{font-variant-numeric:tabular-nums;color:var(--mute);white-space:nowrap}
+  td .raw{white-space:pre-wrap}
+  td .ans{margin-top:4px;padding-left:8px;border-left:3px solid var(--accent);font-size:12px}
+  td .basis{color:var(--mute);font-size:11.5px;margin-top:3px}
+  .status{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;white-space:nowrap;background:#fff}
+  .status.open{border-color:#C9A800;background:var(--accent-soft)}
+  .status.quick-accept{border-color:#7A8797}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:12px;align-items:center}
+  .filters select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  tr.hidden{display:none}
+  tr.hi td{background:var(--accent-soft)}
+  details{margin:8px 0} summary{cursor:pointer;font-weight:600;font-size:13px}
+  pre{background:#F5F6F8;border:1px solid var(--line);border-radius:6px;padding:10px;font-size:11.5px;overflow:auto;white-space:pre-wrap}
+  .setup input{width:100%;padding:7px;border:1px solid var(--line);border-radius:6px;margin:4px 0}
+  .frame-wrap{height:calc(100vh - 49px)} .frame-wrap iframe{width:100%;height:100%;border:0;background:#fff}
+  .frame-bar{display:flex;gap:10px;align-items:center;padding:6px 18px;background:var(--panel);border-bottom:1px solid var(--line);font-size:12px;color:var(--mute);flex-wrap:wrap}
+  .frame-bar select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff;max-width:360px}
+  .frame-wrap.with-bar{height:calc(100vh - 88px)}
+  .wrap{overflow-x:auto}
+  .sid{font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;background:#fff;white-space:nowrap}
+  .cause{color:var(--mute);font-size:11.5px}
+  .histwrap{margin-top:6px}
+  .hist-toggle{font-size:11px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:2px 8px;color:var(--mute);cursor:pointer}
+  .histbox{margin-top:6px}
+  .hist{list-style:none;margin:0;padding:0;font-size:12px;color:var(--ink)}
+  .hist li{padding:3px 0;border-top:1px solid var(--line)}
+  .hist .t{color:var(--mute);margin-right:6px}
+  .hist-empty{font-size:12px;color:var(--mute)}
+  @media (max-width:1000px){.layout{display:block}.nav{display:none}.main{padding:12px}.who{margin-left:0}.qa{grid-template-columns:1fr}.qa .c{justify-content:flex-start}}
+
+  .subtabs{display:flex;gap:12px;align-items:center;padding:6px 18px;font-size:12px;color:var(--mute);background:var(--panel);border-bottom:1px solid var(--line)}
+  .subtabs a{color:var(--mute);text-decoration:none}
+  .subtabs a.on{color:var(--ink);font-weight:600}
+  .bar .subtabs{padding:0;border:0;background:none;margin-left:auto}
+
+  .who select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;max-width:170px}
+  td select.ans{padding:4px 6px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  td textarea.seatnote{width:100%;min-height:36px;border:1px solid var(--line);border-radius:6px;padding:5px;resize:vertical;background:#fff;font-size:12px}
+  td.gaptext{font-size:12px;color:var(--mute);max-width:220px}
+</style>
+<script src="config.js"></script>
+</head>
+<body>
+<header class="top"><div class="brand">yeslyf <span>seats: what each seat asks</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html">Wireframes v0.2</a><a href="tracker.html">Tracker</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="admin_wireframes.html" class="on">Admin seed</a><a href="changelog.html">Changelog</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a><a href="setup.html">Setup</a></nav><div class="who">Editing as <select id="reviewer"></select></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a></header>
+<nav class="subtabs">Admin seed: <a href="admin_wireframes.html">Admin tab</a><a href="admin_seats.html" class="on">Seats</a><a href="admin_brief.html">Brief</a><a href="admin_operator.html">Operator</a></nav>
+<main class="main" style="max-width:none"><section><h1>Seats: what each operator seat asks</h1><p class="lead">Each seat's questions, where the answer lives (the admin tab, Zoho or a vendor console) and whether the seed answers it. A no is a gap; gaps land on the brief page (admin_brief.html).</p><p class="meta" id="summary">99 questions, 38 answered, 61 gaps</p></section><section id="seat-principal-officer"><h2>Principal officer</h2><div class="wrap"><table><thead><tr><th>Question id</th><th>Question</th><th>Surface</th><th>Screen</th><th>Answered</th><th>Gap</th><th>Comment</th></tr></thead><tbody><tr id="row-po-01"><td>po-01</td><td>Paid by SKU this week against last week</td><td>Zoho</td><td><a href="admin_operator.html">Paid by SKU, this week and last (Deals)</a></td><td><select class="ans" id="ans-po-01" data-id="po-01"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-po-01" data-id="po-01"></textarea></td></tr><tr id="row-po-02"><td>po-02</td><td>AUA by tier</td><td>Admin tab</td><td><a href="admin_wireframes.html#M13">M13</a></td><td><select class="ans" id="ans-po-02" data-id="po-02"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-po-02" data-id="po-02"></textarea></td></tr><tr id="row-po-03"><td>po-03</td><td>SIP book: executed through I02 against AA-detected</td><td>Admin tab</td><td><a href="admin_wireframes.html#M13">M13</a></td><td><select class="ans" id="ans-po-03" data-id="po-03"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-po-03" data-id="po-03"></textarea></td></tr><tr id="row-po-04"><td>po-04</td><td>DIFM prospects to call</td><td>Zoho</td><td><a href="admin_operator.html">DIFM prospects to call (Contacts)</a></td><td><select class="ans" id="ans-po-04" data-id="po-04"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-po-04" data-id="po-04"></textarea></td></tr><tr id="row-po-05"><td>po-05</td><td>Annual RPQ overdue</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-05" data-id="po-05"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-po-05" data-id="po-05"></textarea></td></tr><tr id="row-po-06"><td>po-06</td><td>Agreement renewals overdue</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-06" data-id="po-06"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-po-06" data-id="po-06"></textarea></td></tr><tr id="row-po-07"><td>po-07</td><td>Grievances past SLA</td><td>Zoho</td><td><a href="admin_operator.html">Grievances past SLA (Tickets)</a></td><td><select class="ans" id="ans-po-07" data-id="po-07"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-po-07" data-id="po-07"></textarea></td></tr><tr id="row-po-08"><td>po-08</td><td>Engine failures</td><td>Admin tab</td><td><a href="admin_wireframes.html#M06">M06</a></td><td><select class="ans" id="ans-po-08" data-id="po-08"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-po-08" data-id="po-08"></textarea></td></tr><tr id="row-po-09"><td>po-09</td><td>Refunds pending</td><td>Admin tab</td><td><a href="admin_wireframes.html#M06">M06</a></td><td><select class="ans" id="ans-po-09" data-id="po-09"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-po-09" data-id="po-09"></textarea></td></tr><tr id="row-po-10"><td>po-10</td><td>Who is on an old plan version (the S11 list)</td><td>Admin tab</td><td><a href="admin_wireframes.html#M08">M08</a></td><td><select class="ans" id="ans-po-10" data-id="po-10"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-po-10" data-id="po-10"></textarea></td></tr><tr id="row-po-11"><td>po-11</td><td>Financial data by source across every field (AA, CAS, manual)</td><td>Admin tab</td><td><a href="admin_wireframes.html#M13">M13</a></td><td><select class="ans" id="ans-po-11" data-id="po-11"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">M13 splits the source for current SIP records only; no surface aggregates financial_records.source across every field, and the CRM carries only Source Completeness per person.</td><td><textarea class="note seatnote" id="note-po-11" data-id="po-11"></textarea></td></tr><tr id="row-po-12"><td>po-12</td><td>Data capture not started, partial or complete, per data screen</td><td>Admin tab</td><td><a href="admin_wireframes.html#M13">M13</a></td><td><select class="ans" id="ans-po-12" data-id="po-12"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">No completion flag per data screen (D01 to D09) is stored although O02 reads them; data_progress events carry a section step and an overall percent only, so M13 falls back to profile_fulfilment_pct.</td><td><textarea class="note seatnote" id="note-po-12" data-id="po-12"></textarea></td></tr><tr id="row-po-13"><td>po-13</td><td>Week-N retention by paid cohort</td><td>Admin tab</td><td><a href="admin_wireframes.html#M13">M13</a></td><td><select class="ans" id="ans-po-13" data-id="po-13"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">M13 draws a 14-day recency proxy and no week-N cohort table exists; to be decided: cohort definition and retention window.</td><td><textarea class="note seatnote" id="note-po-13" data-id="po-13"></textarea></td></tr><tr id="row-po-14"><td>po-14</td><td>One-time buyers who start a membership (subscription and FP to IP conversion)</td><td>Admin tab</td><td><a href="admin_wireframes.html#M13">M13</a></td><td><select class="ans" id="ans-po-14" data-id="po-14"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">P01 has no one-time card in v0.2, so neither conversion has a starting purchase and both KPI rows have nothing to measure.</td><td><textarea class="note seatnote" id="note-po-14" data-id="po-14"></textarea></td></tr><tr id="row-po-15"><td>po-15</td><td>Which state shows when S23 (annual confirmation overdue) and S10 (all actions done) both hold, 6 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-15" data-id="po-15"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S23 and S10; the seed shows S23 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-15" data-id="po-15"></textarea></td></tr><tr id="row-po-16"><td>po-16</td><td>Which state shows when S18 (plan built on partial data) and S8 (plan read, no action done) both hold, 5 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-16" data-id="po-16"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S18 and S8; the seed shows S18 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-16" data-id="po-16"></textarea></td></tr><tr id="row-po-17"><td>po-17</td><td>Which state shows when S21 (call done, no action started) and S8 (plan read, no action done) both hold, 5 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-17" data-id="po-17"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S21 and S8; the seed shows S21 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-17" data-id="po-17"></textarea></td></tr><tr id="row-po-18"><td>po-18</td><td>Which state shows when S12 (payment failed) and S10 (all actions done) both hold, 4 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-18" data-id="po-18"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S12 and S10; the seed shows S12 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-18" data-id="po-18"></textarea></td></tr><tr id="row-po-19"><td>po-19</td><td>Which state shows when S17 (CAS awaited) and S4 (data partial) both hold, 4 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-19" data-id="po-19"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S17 and S4; the seed shows S17 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-19" data-id="po-19"></textarea></td></tr><tr id="row-po-20"><td>po-20</td><td>Which state shows when S22 (quarterly review ignored) and S9 (executing) both hold, 4 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-20" data-id="po-20"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S22 and S9; the seed shows S22 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-20" data-id="po-20"></textarea></td></tr><tr id="row-po-21"><td>po-21</td><td>Which state shows when S11 (plan updated, not accepted) and S10 (all actions done) both hold, 3 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-21" data-id="po-21"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S11 and S10; the seed shows S11 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-21" data-id="po-21"></textarea></td></tr><tr id="row-po-22"><td>po-22</td><td>Which state shows when S11 (plan updated, not accepted) and S8 (plan read, no action done) both hold, 3 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-22" data-id="po-22"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S11 and S8; the seed shows S11 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-22" data-id="po-22"></textarea></td></tr><tr id="row-po-23"><td>po-23</td><td>Which state shows when S13 (lapsed) and S9 (executing) both hold, 3 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-23" data-id="po-23"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S13 and S9; the seed shows S13 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-23" data-id="po-23"></textarea></td></tr><tr id="row-po-24"><td>po-24</td><td>Which state shows when S15 (AA consent expired) and S10 (all actions done) both hold, 3 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-24" data-id="po-24"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S15 and S10; the seed shows S15 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-24" data-id="po-24"></textarea></td></tr><tr id="row-po-25"><td>po-25</td><td>Which state shows when S21 (call done, no action started) and S6 (plan built, not read) both hold, 3 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-25" data-id="po-25"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S21 and S6; the seed shows S21 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-25" data-id="po-25"></textarea></td></tr><tr id="row-po-26"><td>po-26</td><td>Which state shows when S24 (refund requested) and S4 (data partial) both hold, 3 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-26" data-id="po-26"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S24 and S4; the seed shows S24 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-26" data-id="po-26"></textarea></td></tr><tr id="row-po-27"><td>po-27</td><td>Which state shows when S25 (deletion requested) and S6 (plan built, not read) both hold, 3 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-27" data-id="po-27"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S25 and S6; the seed shows S25 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-27" data-id="po-27"></textarea></td></tr><tr id="row-po-28"><td>po-28</td><td>Which state shows when S7 (call booked) and S8 (plan read, no action done) both hold, 3 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-28" data-id="po-28"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S7 and S8; the seed shows S7 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-28" data-id="po-28"></textarea></td></tr><tr id="row-po-29"><td>po-29</td><td>Which state shows when S11 (plan updated, not accepted) and S9 (executing) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-29" data-id="po-29"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S11 and S9; the seed shows S11 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-29" data-id="po-29"></textarea></td></tr><tr id="row-po-30"><td>po-30</td><td>Which state shows when S12 (payment failed) and S9 (executing) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-30" data-id="po-30"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S12 and S9; the seed shows S12 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-30" data-id="po-30"></textarea></td></tr><tr id="row-po-31"><td>po-31</td><td>Which state shows when S13 (lapsed) and S6 (plan built, not read) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-31" data-id="po-31"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S13 and S6; the seed shows S13 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-31" data-id="po-31"></textarea></td></tr><tr id="row-po-32"><td>po-32</td><td>Which state shows when S13 (lapsed) and S8 (plan read, no action done) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-32" data-id="po-32"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S13 and S8; the seed shows S13 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-32" data-id="po-32"></textarea></td></tr><tr id="row-po-33"><td>po-33</td><td>Which state shows when S15 (AA consent expired) and S9 (executing) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-33" data-id="po-33"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S15 and S9; the seed shows S15 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-33" data-id="po-33"></textarea></td></tr><tr id="row-po-34"><td>po-34</td><td>Which state shows when S17 (CAS awaited) and S3 (paid, nothing else) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-34" data-id="po-34"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S17 and S3; the seed shows S17 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-34" data-id="po-34"></textarea></td></tr><tr id="row-po-35"><td>po-35</td><td>Which state shows when S20 (call no-show) and S6 (plan built, not read) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-35" data-id="po-35"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S20 and S6; the seed shows S20 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-35" data-id="po-35"></textarea></td></tr><tr id="row-po-36"><td>po-36</td><td>Which state shows when S20 (call no-show) and S9 (executing) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-36" data-id="po-36"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S20 and S9; the seed shows S20 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-36" data-id="po-36"></textarea></td></tr><tr id="row-po-37"><td>po-37</td><td>Which state shows when S22 (quarterly review ignored) and S10 (all actions done) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-37" data-id="po-37"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S22 and S10; the seed shows S22 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-37" data-id="po-37"></textarea></td></tr><tr id="row-po-38"><td>po-38</td><td>Which state shows when S24 (refund requested) and S6 (plan built, not read) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-38" data-id="po-38"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S24 and S6; the seed shows S24 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-38" data-id="po-38"></textarea></td></tr><tr id="row-po-39"><td>po-39</td><td>Which state shows when S25 (deletion requested) and S9 (executing) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-39" data-id="po-39"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S25 and S9; the seed shows S25 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-39" data-id="po-39"></textarea></td></tr><tr id="row-po-40"><td>po-40</td><td>Which state shows when S7 (call booked) and S6 (plan built, not read) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-40" data-id="po-40"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S7 and S6; the seed shows S7 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-40" data-id="po-40"></textarea></td></tr><tr id="row-po-41"><td>po-41</td><td>Which state shows when S7 (call booked) and S9 (executing) both hold, 2 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-41" data-id="po-41"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S7 and S9; the seed shows S7 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-41" data-id="po-41"></textarea></td></tr><tr id="row-po-42"><td>po-42</td><td>Which state shows when S13 (lapsed) and S19 (stalled below the gate) both hold, 1 person</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-42" data-id="po-42"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S13 and S19; the seed shows S13 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-42" data-id="po-42"></textarea></td></tr><tr id="row-po-43"><td>po-43</td><td>Which state shows when S15 (AA consent expired) and S8 (plan read, no action done) both hold, 1 person</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-43" data-id="po-43"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S15 and S8; the seed shows S15 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-43" data-id="po-43"></textarea></td></tr><tr id="row-po-44"><td>po-44</td><td>Which state shows when S18 (plan built on partial data) and S9 (executing) both hold, 1 person</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-44" data-id="po-44"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S18 and S9; the seed shows S18 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-44" data-id="po-44"></textarea></td></tr><tr id="row-po-45"><td>po-45</td><td>Which state shows when S20 (call no-show) and S4 (data partial) both hold, 1 person</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-45" data-id="po-45"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S20 and S4; the seed shows S20 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-45" data-id="po-45"></textarea></td></tr><tr id="row-po-46"><td>po-46</td><td>Which state shows when S20 (call no-show) and S8 (plan read, no action done) both hold, 1 person</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-46" data-id="po-46"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S20 and S8; the seed shows S20 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-46" data-id="po-46"></textarea></td></tr><tr id="row-po-47"><td>po-47</td><td>Which state shows when S24 (refund requested) and S5 (gate met, D10 not confirmed) both hold, 1 person</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-47" data-id="po-47"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S24 and S5; the seed shows S24 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-47" data-id="po-47"></textarea></td></tr><tr id="row-po-48"><td>po-48</td><td>Which state shows when S25 (deletion requested) and S19 (stalled below the gate) both hold, 1 person</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-48" data-id="po-48"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S25 and S19; the seed shows S25 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-48" data-id="po-48"></textarea></td></tr><tr id="row-po-49"><td>po-49</td><td>Which state shows when S7 (call booked) and S19 (stalled below the gate) both hold, 1 person</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-49" data-id="po-49"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 sets no order between S7 and S19; the seed shows S7 by the assumed precedence of plan section 7.</td><td><textarea class="note seatnote" id="note-po-49" data-id="po-49"></textarea></td></tr><tr id="row-po-50"><td>po-50</td><td>Which state shows when D10 is confirmed and the engine fails, 3 people</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-50" data-id="po-50"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">No state covers D10 confirmed with no plan built, so no predicate holds and the seed keeps these people at S5.</td><td><textarea class="note seatnote" id="note-po-50" data-id="po-50"></textarea></td></tr><tr id="row-po-51"><td>po-51</td><td>Where someone lands when an overlay ends after they moved on during it</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-51" data-id="po-51"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">Exits to the previous state (S7, S11, S12, S15, S23) ignore progress made during the overlay; report.md logs 3 changes outside the states.json exits: S12 to S18, S13 to S10, S7 to S9.</td><td><textarea class="note seatnote" id="note-po-51" data-id="po-51"></textarea></td></tr><tr id="row-po-52"><td>po-52</td><td>Hours when a nudge may go out (quiet hours)</td><td>Admin tab</td><td><a href="admin_wireframes.html#M10">M10</a></td><td><select class="ans" id="ans-po-52" data-id="po-52"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 has no quiet-hours rule; the seed sends only from 09:00 to 21:00, which delayed 2,613 sends and held 396 whose state ended first.</td><td><textarea class="note seatnote" id="note-po-52" data-id="po-52"></textarea></td></tr><tr id="row-po-53"><td>po-53</td><td>The S2 emails at day 7, 21 and 82 when no email is on file</td><td>Admin tab</td><td><a href="admin_wireframes.html#M10">M10</a></td><td><select class="ans" id="ans-po-53" data-id="po-53"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">The email is asked at P02, after S2, so most S2 people have no address: the seed held 1,619 of the day 7, 21 and 82 emails for no email on file.</td><td><textarea class="note seatnote" id="note-po-53" data-id="po-53"></textarea></td></tr><tr id="row-po-54"><td>po-54</td><td>Whether a second no-show still creates its task when S11 or S13 shows</td><td>Admin tab</td><td><a href="admin_wireframes.html#M05">M05</a></td><td><select class="ans" id="ans-po-54" data-id="po-54"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">N01 creates this task on entering S20, but S11 and S13 outrank S20 in the assumed precedence, so a second no-show in either state creates no task.</td><td><textarea class="note seatnote" id="note-po-54" data-id="po-54"></textarea></td></tr><tr id="row-po-55"><td>po-55</td><td>Which event marks a missed call</td><td>Admin tab</td><td><a href="admin_wireframes.html#M03">M03</a></td><td><select class="ans" id="ans-po-55" data-id="po-55"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">no_show (the CRM event list) and call_no_show (K01) name one moment; the seed logs both, 14 each.</td><td><textarea class="note seatnote" id="note-po-55" data-id="po-55"></textarea></td></tr></tbody></table></div></section><section id="seat-adviser"><h2>Adviser</h2><div class="wrap"><table><thead><tr><th>Question id</th><th>Question</th><th>Surface</th><th>Screen</th><th>Answered</th><th>Gap</th><th>Comment</th></tr></thead><tbody><tr id="row-ad-01"><td>ad-01</td><td>Who is this person</td><td>Admin tab</td><td><a href="admin_wireframes.html#M03">M03</a></td><td><select class="ans" id="ans-ad-01" data-id="ad-01"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-ad-01" data-id="ad-01"></textarea></td></tr><tr id="row-ad-02"><td>ad-02</td><td>Plan at a glance</td><td>Admin tab</td><td><a href="admin_wireframes.html#M04">M04</a></td><td><select class="ans" id="ans-ad-02" data-id="ad-02"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-ad-02" data-id="ad-02"></textarea></td></tr><tr id="row-ad-03"><td>ad-03</td><td>Actions done</td><td>Admin tab</td><td><a href="admin_wireframes.html#M04">M04</a></td><td><select class="ans" id="ans-ad-03" data-id="ad-03"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-ad-03" data-id="ad-03"></textarea></td></tr><tr id="row-ad-04"><td>ad-04</td><td>What they asked on K01</td><td>Admin tab</td><td><a href="admin_wireframes.html#M04">M04</a></td><td><select class="ans" id="ans-ad-04" data-id="ad-04"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-ad-04" data-id="ad-04"></textarea></td></tr><tr id="row-ad-05"><td>ad-05</td><td>What is missing</td><td>Admin tab</td><td><a href="admin_wireframes.html#M04">M04</a></td><td><select class="ans" id="ans-ad-05" data-id="ad-05"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">M04 lists only not-sure or unknown records and an S19 task&#x27;s fields, so a gate field never captured does not show: an S4 person with 5 records reads &#x27;Nothing missing&#x27;.</td><td><textarea class="note seatnote" id="note-ad-05" data-id="ad-05"></textarea></td></tr><tr id="row-ad-06"><td>ad-06</td><td>Last call&#x27;s input changes</td><td>Admin tab</td><td><a href="admin_wireframes.html#M04">M04</a></td><td><select class="ans" id="ans-ad-06" data-id="ad-06"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-ad-06" data-id="ad-06"></textarea></td></tr><tr id="row-ad-07"><td>ad-07</td><td>The script for their state</td><td>Admin tab</td><td><a href="admin_wireframes.html#M04">M04</a></td><td><select class="ans" id="ans-ad-07" data-id="ad-07"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">No state in data/v02/states.json carries call script text; M04 shows the primary action and copy slot ids with &#x27;to be decided: a call script per state&#x27;.</td><td><textarea class="note seatnote" id="note-ad-07" data-id="ad-07"></textarea></td></tr><tr id="row-ad-08"><td>ad-08</td><td>Calls left this period</td><td>Admin tab</td><td><a href="admin_wireframes.html#M04">M04</a></td><td><select class="ans" id="ans-ad-08" data-id="ad-08"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-ad-08" data-id="ad-08"></textarea></td></tr></tbody></table></div></section><section id="seat-call-centre"><h2>Call centre</h2><div class="wrap"><table><thead><tr><th>Question id</th><th>Question</th><th>Surface</th><th>Screen</th><th>Answered</th><th>Gap</th><th>Comment</th></tr></thead><tbody><tr id="row-cc-01"><td>cc-01</td><td>Today&#x27;s tasks (S2b, S19, S20) with state, missing fields, tier and a deep link</td><td>Zoho</td><td><a href="admin_operator.html">Call centre today (Tasks)</a></td><td><select class="ans" id="ans-cc-01" data-id="cc-01"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">Tasks carry State ID, Missing Fields and Tier but no Admin Link; the deep link sits on the Contact only.</td><td><textarea class="note seatnote" id="note-cc-01" data-id="cc-01"></textarea></td></tr><tr id="row-cc-02"><td>cc-02</td><td>Outcome capture</td><td>Zoho</td><td><a href="admin_operator.html">Call centre outcomes (Tasks)</a></td><td><select class="ans" id="ans-cc-02" data-id="cc-02"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">Tasks carry Status only: the seed&#x27;s tasks.outcome (&#x27;called; still S19&#x27;, &#x27;the state ended&#x27;) and closed_at are not in the Tasks export, so the CRM has no field to capture an outcome.</td><td><textarea class="note seatnote" id="note-cc-02" data-id="cc-02"></textarea></td></tr><tr id="row-cc-03"><td>cc-03</td><td>The a la carte offer for DIY</td><td>Admin tab</td><td><a href="admin_wireframes.html#M04">M04</a></td><td><select class="ans" id="ans-cc-03" data-id="cc-03"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">M04 shows 0 included calls for a DIY person but not the a la carte offer (K04, Rs ___ per call) or their past purchases; no admin screen draws the a_la_carte table.</td><td><textarea class="note seatnote" id="note-cc-03" data-id="cc-03"></textarea></td></tr><tr id="row-cc-04"><td>cc-04</td><td>Who to offer the same adviser to</td><td>Zoho</td><td><a href="admin_operator.html">Same adviser offer (Contacts)</a></td><td><select class="ans" id="ans-cc-04" data-id="cc-04"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-cc-04" data-id="cc-04"></textarea></td></tr></tbody></table></div></section><section id="seat-ops"><h2>Ops</h2><div class="wrap"><table><thead><tr><th>Question id</th><th>Question</th><th>Surface</th><th>Screen</th><th>Answered</th><th>Gap</th><th>Comment</th></tr></thead><tbody><tr id="row-op-01"><td>op-01</td><td>The queue by type and age</td><td>Admin tab</td><td><a href="admin_wireframes.html#M06">M06</a></td><td><select class="ans" id="ans-op-01" data-id="op-01"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-op-01" data-id="op-01"></textarea></td></tr><tr id="row-op-02"><td>op-02</td><td>AA failures needing follow-up</td><td>Admin tab</td><td><a href="admin_wireframes.html#M06">M06</a></td><td><select class="ans" id="ans-op-02" data-id="op-02"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-op-02" data-id="op-02"></textarea></td></tr><tr id="row-op-03"><td>op-03</td><td>Unknown ISINs</td><td>Admin tab</td><td><a href="admin_wireframes.html#M07">M07</a></td><td><select class="ans" id="ans-op-03" data-id="op-03"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-op-03" data-id="op-03"></textarea></td></tr><tr id="row-op-04"><td>op-04</td><td>Plausibility flags</td><td>Admin tab</td><td><a href="admin_wireframes.html#M07">M07</a></td><td><select class="ans" id="ans-op-04" data-id="op-04"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-op-04" data-id="op-04"></textarea></td></tr><tr id="row-op-05"><td>op-05</td><td>Reassignments</td><td>Admin tab</td><td><a href="admin_wireframes.html#M06">M06</a></td><td><select class="ans" id="ans-op-05" data-id="op-05"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-op-05" data-id="op-05"></textarea></td></tr><tr id="row-op-06"><td>op-06</td><td>DIFM assisted onboarding</td><td>Admin tab</td><td><a href="admin_wireframes.html#M12">M12</a></td><td><select class="ans" id="ans-op-06" data-id="op-06"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-op-06" data-id="op-06"></textarea></td></tr><tr id="row-op-07"><td>op-07</td><td>Refund requests</td><td>Admin tab</td><td><a href="admin_wireframes.html#M06">M06</a></td><td><select class="ans" id="ans-op-07" data-id="op-07"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-op-07" data-id="op-07"></textarea></td></tr><tr id="row-op-08"><td>op-08</td><td>Deletion requests with the retention override</td><td>Admin tab</td><td><a href="admin_wireframes.html#M06">M06</a></td><td><select class="ans" id="ans-op-08" data-id="op-08"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-op-08" data-id="op-08"></textarea></td></tr><tr id="row-op-09"><td>op-09</td><td>Which queue items are past their SLA</td><td>Admin tab</td><td><a href="admin_wireframes.html#M06">M06</a></td><td><select class="ans" id="ans-op-09" data-id="op-09"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">No SLA per item type is set and ops_queue items carry no due time, so M06 reads &#x27;SLA per item type: to be decided&#x27;.</td><td><textarea class="note seatnote" id="note-op-09" data-id="op-09"></textarea></td></tr><tr id="row-op-10"><td>op-10</td><td>Which CAS source each upload came from</td><td>Admin tab</td><td><a href="admin_wireframes.html#M09">M09</a></td><td><select class="ans" id="ans-op-10" data-id="op-10"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">cas_uploads.cas_source names a registrar and a depository source with no integrations row to cite, so M03 and M09 leave it off (to be decided: CAS source for V1, A10).</td><td><textarea class="note seatnote" id="note-op-10" data-id="op-10"></textarea></td></tr></tbody></table></div></section><section id="seat-marketing"><h2>Marketing</h2><div class="wrap"><table><thead><tr><th>Question id</th><th>Question</th><th>Surface</th><th>Screen</th><th>Answered</th><th>Gap</th><th>Comment</th></tr></thead><tbody><tr id="row-mk-01"><td>mk-01</td><td>Lists by stage</td><td>Zoho</td><td><a href="admin_operator.html">Stage lists (List)</a></td><td><select class="ans" id="ans-mk-01" data-id="mk-01"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-mk-01" data-id="mk-01"></textarea></td></tr><tr id="row-mk-02"><td>mk-02</td><td>Who received which slot</td><td>Admin tab</td><td><a href="admin_wireframes.html#M03">M03</a></td><td><select class="ans" id="ans-mk-02" data-id="mk-02"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">Nudge sends show one person at a time on M03 (Nudges sent); no screen lists who received a slot, and nudge_sent is not in the App Events export.</td><td><textarea class="note seatnote" id="note-mk-02" data-id="mk-02"></textarea></td></tr><tr id="row-mk-03"><td>mk-03</td><td>Template approval status</td><td>vendor console</td><td>I11 (WATI)</td><td><select class="ans" id="ans-mk-03" data-id="mk-03"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">Template approval lives in the I11 console, which round one does not connect, and the seed&#x27;s copy slots carry no approval status.</td><td><textarea class="note seatnote" id="note-mk-03" data-id="mk-03"></textarea></td></tr><tr id="row-mk-04"><td>mk-04</td><td>The weekly cap</td><td>Admin tab</td><td><a href="admin_wireframes.html#M10">M10</a></td><td><select class="ans" id="ans-mk-04" data-id="mk-04"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-mk-04" data-id="mk-04"></textarea></td></tr><tr id="row-mk-05"><td>mk-05</td><td>Opt-in and DND</td><td>Zoho</td><td><a href="admin_operator.html">Opt-in and DND (Contacts)</a></td><td><select class="ans" id="ans-mk-05" data-id="mk-05"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-mk-05" data-id="mk-05"></textarea></td></tr><tr id="row-mk-06"><td>mk-06</td><td>Which S2 day-3 message converts</td><td>vendor console</td><td>I13 (not decided)</td><td><select class="ans" id="ans-mk-06" data-id="mk-06"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">No report joins the N-S2-d3 sends to a later paid event (I13 is not decided and the sends show one person at a time on M03), and the step has one copy slot, so there is no second message to compare.</td><td><textarea class="note seatnote" id="note-mk-06" data-id="mk-06"></textarea></td></tr><tr id="row-mk-07"><td>mk-07</td><td>The S8 first-action message performance</td><td>vendor console</td><td>I13 (not decided)</td><td><select class="ans" id="ans-mk-07" data-id="mk-07"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">No report counts sent, delivered, opened and clicked for the S8 slots (N-S8-48h, N-S8-7d, N-S8-14d) against a later action_started; I13 is not decided and the sends show one person at a time on M03.</td><td><textarea class="note seatnote" id="note-mk-07" data-id="mk-07"></textarea></td></tr><tr id="row-mk-08"><td>mk-08</td><td>Which videos, sample plan content, tooltips and FAQs are live, by screen</td><td>Admin tab</td><td><a href="admin_wireframes.html#M10">M10</a></td><td><select class="ans" id="ans-mk-08" data-id="mk-08"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">The config table holds SKU cards, copy slots, flags and bands only; no content table stores videos, sample plan content, question wording, tooltips or FAQs keyed by screen.</td><td><textarea class="note seatnote" id="note-mk-08" data-id="mk-08"></textarea></td></tr></tbody></table></div></section><section id="seat-compliance"><h2>Compliance</h2><div class="wrap"><table><thead><tr><th>Question id</th><th>Question</th><th>Surface</th><th>Screen</th><th>Answered</th><th>Gap</th><th>Comment</th></tr></thead><tbody><tr id="row-co-01"><td>co-01</td><td>Grievance register export</td><td>Zoho</td><td><a href="admin_operator.html">Grievance register (Tickets)</a></td><td><select class="ans" id="ans-co-01" data-id="co-01"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-co-01" data-id="co-01"></textarea></td></tr><tr id="row-co-02"><td>co-02</td><td>Advice register per person (plan version, assumptions version, instrument set)</td><td>Admin tab</td><td><a href="admin_wireframes.html#M03">M03</a></td><td><select class="ans" id="ans-co-02" data-id="co-02"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-co-02" data-id="co-02"></textarea></td></tr><tr id="row-co-03"><td>co-03</td><td>Agreement versions signed</td><td>Admin tab</td><td><a href="admin_wireframes.html#M11">M11</a></td><td><select class="ans" id="ans-co-03" data-id="co-03"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-co-03" data-id="co-03"></textarea></td></tr><tr id="row-co-04"><td>co-04</td><td>RPQ refresh due list</td><td>Zoho</td><td><a href="admin_operator.html">RPQ refresh due (App Events)</a></td><td><select class="ans" id="ans-co-04" data-id="co-04"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-co-04" data-id="co-04"></textarea></td></tr><tr id="row-co-05"><td>co-05</td><td>Audit trail</td><td>Admin tab</td><td><a href="admin_wireframes.html#M11">M11</a></td><td><select class="ans" id="ans-co-05" data-id="co-05"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-co-05" data-id="co-05"></textarea></td></tr><tr id="row-co-06"><td>co-06</td><td>Deletion against retention</td><td>Admin tab</td><td><a href="admin_wireframes.html#M11">M11</a></td><td><select class="ans" id="ans-co-06" data-id="co-06"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">M11 shows each deletion request with the record types retained, but no retention period per record type is stored (to be verified: DPDP deletion and retention text).</td><td><textarea class="note seatnote" id="note-co-06" data-id="co-06"></textarea></td></tr></tbody></table></div></section><section id="seat-support"><h2>Support</h2><div class="wrap"><table><thead><tr><th>Question id</th><th>Question</th><th>Surface</th><th>Screen</th><th>Answered</th><th>Gap</th><th>Comment</th></tr></thead><tbody><tr id="row-su-01"><td>su-01</td><td>A ticket with context (stage, tier, last screen, that person&#x27;s integration failures)</td><td>Zoho</td><td><a href="admin_operator.html">Open tickets with context (Tickets)</a></td><td><select class="ans" id="ans-su-01" data-id="su-01"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-su-01" data-id="su-01"></textarea></td></tr><tr id="row-su-02"><td>su-02</td><td>SLA one business day</td><td>Zoho</td><td><a href="admin_operator.html">Past SLA (Tickets)</a></td><td><select class="ans" id="ans-su-02" data-id="su-02"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-su-02" data-id="su-02"></textarea></td></tr><tr id="row-su-03"><td>su-03</td><td>The reply landing in-app</td><td>Admin tab</td><td><a href="admin_wireframes.html#M03">M03</a></td><td><select class="ans" id="ans-su-03" data-id="su-03"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">Tickets store status and resolved time only; no event or payload carries a support reply back to the app, and no v0.2 screen shows one.</td><td><textarea class="note seatnote" id="note-su-03" data-id="su-03"></textarea></td></tr></tbody></table></div></section><section id="seat-finance"><h2>Finance</h2><div class="wrap"><table><thead><tr><th>Question id</th><th>Question</th><th>Surface</th><th>Screen</th><th>Answered</th><th>Gap</th><th>Comment</th></tr></thead><tbody><tr id="row-fi-01"><td>fi-01</td><td>I09 payments against Deals reconciliation</td><td>Zoho</td><td><a href="admin_operator.html">Payment reconciliation (Deals)</a></td><td><select class="ans" id="ans-fi-01" data-id="fi-01"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">Deals carry one I09 id per deal, but a deal charged per period holds several payments; no payment row (payment id, status, captured date, invoice number) reaches the CRM, and round one does not connect I09.</td><td><textarea class="note seatnote" id="note-fi-01" data-id="fi-01"></textarea></td></tr><tr id="row-fi-02"><td>fi-02</td><td>GST split by type</td><td>Zoho</td><td><a href="admin_operator.html">GST split (Deals)</a></td><td><select class="ans" id="ans-fi-02" data-id="fi-02"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-fi-02" data-id="fi-02"></textarea></td></tr><tr id="row-fi-03"><td>fi-03</td><td>Invoices</td><td>vendor console</td><td>I09 (Razorpay)</td><td><select class="ans" id="ans-fi-03" data-id="fi-03"><option value="yes">yes</option><option value="no" selected>no</option></select></td><td class="gaptext">Invoices are issued in I09, which round one does not connect; the seed&#x27;s invoice numbers sit on the payments table, shown one person at a time on M03, and none reach the CRM.</td><td><textarea class="note seatnote" id="note-fi-03" data-id="fi-03"></textarea></td></tr><tr id="row-fi-04"><td>fi-04</td><td>Refunds</td><td>Zoho</td><td><a href="admin_operator.html">Refunds (Deals)</a></td><td><select class="ans" id="ans-fi-04" data-id="fi-04"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-fi-04" data-id="fi-04"></textarea></td></tr><tr id="row-fi-05"><td>fi-05</td><td>A la carte receipts</td><td>Zoho</td><td><a href="admin_operator.html">A la carte receipts (A la carte)</a></td><td><select class="ans" id="ans-fi-05" data-id="fi-05"><option value="yes" selected>yes</option><option value="no">no</option></select></td><td class="gaptext"></td><td><textarea class="note seatnote" id="note-fi-05" data-id="fi-05"></textarea></td></tr></tbody></table></div></section></main>
+<script>var QUESTIONS=[{"id": "po-01", "answered": "yes"}, {"id": "po-02", "answered": "yes"}, {"id": "po-03", "answered": "yes"}, {"id": "po-04", "answered": "yes"}, {"id": "po-05", "answered": "yes"}, {"id": "po-06", "answered": "yes"}, {"id": "po-07", "answered": "yes"}, {"id": "po-08", "answered": "yes"}, {"id": "po-09", "answered": "yes"}, {"id": "po-10", "answered": "yes"}, {"id": "po-11", "answered": "no"}, {"id": "po-12", "answered": "no"}, {"id": "po-13", "answered": "no"}, {"id": "po-14", "answered": "no"}, {"id": "po-15", "answered": "no"}, {"id": "po-16", "answered": "no"}, {"id": "po-17", "answered": "no"}, {"id": "po-18", "answered": "no"}, {"id": "po-19", "answered": "no"}, {"id": "po-20", "answered": "no"}, {"id": "po-21", "answered": "no"}, {"id": "po-22", "answered": "no"}, {"id": "po-23", "answered": "no"}, {"id": "po-24", "answered": "no"}, {"id": "po-25", "answered": "no"}, {"id": "po-26", "answered": "no"}, {"id": "po-27", "answered": "no"}, {"id": "po-28", "answered": "no"}, {"id": "po-29", "answered": "no"}, {"id": "po-30", "answered": "no"}, {"id": "po-31", "answered": "no"}, {"id": "po-32", "answered": "no"}, {"id": "po-33", "answered": "no"}, {"id": "po-34", "answered": "no"}, {"id": "po-35", "answered": "no"}, {"id": "po-36", "answered": "no"}, {"id": "po-37", "answered": "no"}, {"id": "po-38", "answered": "no"}, {"id": "po-39", "answered": "no"}, {"id": "po-40", "answered": "no"}, {"id": "po-41", "answered": "no"}, {"id": "po-42", "answered": "no"}, {"id": "po-43", "answered": "no"}, {"id": "po-44", "answered": "no"}, {"id": "po-45", "answered": "no"}, {"id": "po-46", "answered": "no"}, {"id": "po-47", "answered": "no"}, {"id": "po-48", "answered": "no"}, {"id": "po-49", "answered": "no"}, {"id": "po-50", "answered": "no"}, {"id": "po-51", "answered": "no"}, {"id": "po-52", "answered": "no"}, {"id": "po-53", "answered": "no"}, {"id": "po-54", "answered": "no"}, {"id": "po-55", "answered": "no"}, {"id": "ad-01", "answered": "yes"}, {"id": "ad-02", "answered": "yes"}, {"id": "ad-03", "answered": "yes"}, {"id": "ad-04", "answered": "yes"}, {"id": "ad-05", "answered": "no"}, {"id": "ad-06", "answered": "yes"}, {"id": "ad-07", "answered": "no"}, {"id": "ad-08", "answered": "yes"}, {"id": "cc-01", "answered": "no"}, {"id": "cc-02", "answered": "no"}, {"id": "cc-03", "answered": "no"}, {"id": "cc-04", "answered": "yes"}, {"id": "op-01", "answered": "yes"}, {"id": "op-02", "answered": "yes"}, {"id": "op-03", "answered": "yes"}, {"id": "op-04", "answered": "yes"}, {"id": "op-05", "answered": "yes"}, {"id": "op-06", "answered": "yes"}, {"id": "op-07", "answered": "yes"}, {"id": "op-08", "answered": "yes"}, {"id": "op-09", "answered": "no"}, {"id": "op-10", "answered": "no"}, {"id": "mk-01", "answered": "yes"}, {"id": "mk-02", "answered": "no"}, {"id": "mk-03", "answered": "no"}, {"id": "mk-04", "answered": "yes"}, {"id": "mk-05", "answered": "yes"}, {"id": "mk-06", "answered": "no"}, {"id": "mk-07", "answered": "no"}, {"id": "mk-08", "answered": "no"}, {"id": "co-01", "answered": "yes"}, {"id": "co-02", "answered": "yes"}, {"id": "co-03", "answered": "yes"}, {"id": "co-04", "answered": "yes"}, {"id": "co-05", "answered": "yes"}, {"id": "co-06", "answered": "no"}, {"id": "su-01", "answered": "yes"}, {"id": "su-02", "answered": "yes"}, {"id": "su-03", "answered": "no"}, {"id": "fi-01", "answered": "no"}, {"id": "fi-02", "answered": "yes"}, {"id": "fi-03", "answered": "no"}, {"id": "fi-04", "answered": "yes"}, {"id": "fi-05", "answered": "yes"}];
+var IDENTITIES=["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Vatsal", "Spinach", "Compliance"];</script>
+<script>var BOARD_IGNORE=[{"page": "setup", "item_id": "TEST", "minute": "2026-09-16T04:53"}, {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-16T04:55"}, {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-16T06:23"}, {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-17T05:50"}, {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W01", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W02", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W04", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W05", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W06", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W08", "minute": "2026-09-17T05:50"}];// yeslyf board store: the shared save layer of every page (phase 11, Vatsal, 16 Sep 2026).
+// Every comment, verdict and field edit on every page is one row in the Supabase table board_entries
+// (page, item_id, field, value, who, kind, created_at); rows are never updated or deleted. docs/config.js, loaded
+// in the head before this script, sets SUPABASE_URL and SUPABASE_ANON_KEY; both blank keeps the page local only.
+// Each page keeps its own localStorage store as before (that is the offline cache). This layer adds one key,
+// "yeslyf_entries_v1", holding per page the rows last fetched, the outbox (inserts that failed) and the last write.
+// On load it sends the outbox, fetches the page's rows (1000 at a time), hands the latest value per item and
+// field to the page (the apply callback; a queued local edit for the same field wins), and writes
+// "live, last write <time>" or "offline, saved locally" into the top bar pill. The history toggle under a comment
+// box lists every row of that item, newest first, queued rows on top.
+// Requests carry the key in the apikey header only (the publishable key is not a JWT and is refused in
+// Authorization; the legacy anon key works the same way in apikey alone).
+// Phase 12 (Vatsal, 17 Sep 2026): write() refuses a row with no identity and returns false (the page says so in
+// plain words; nothing is queued); rows in BOARD_IGNORE (data/board_ignore.json: page, item_id and the minute of
+// created_at) are test rows and are dropped from every fetch, so counts, exports and history never see them;
+// read({page, apply}) fetches another page's rows read-only (page "" is every page) for the pages that need them
+// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update); init({also})
+// names pages whose rows are read into this page's cache as well (the Tracker reads the W rows written under
+// page integrations before the move), so the latest value and the history are whole; writes stay on the page.
+// Held edits (Vatsal, 17 Sep 2026): a write without a name is not refused into thin air. The row waits in this
+// browser (the latest value per item and field), the pill says how many are waiting, and the moment the page picks
+// a name (named(who)) they go out stamped with it. init({who, local}) does the same on load: local() returns the
+// values the page shows ({item_id, field, value, kind}); any the table does not hold are sent too, so an edit typed
+// before the name was picked, or before this rule existed, is recorded once there is a name. While edits wait, the
+// page asks in words beside the name control ("Who is this? Pick your name to record your N edits.") until a name
+// is picked; the ask is the store's own element and style, so every page gets it (Vatsal, 17 Sep 2026).
+(function(){
+  var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
+  var NAME_TEXT = "Held until you pick your name at the top; recorded then.";
+  var ALL = {}, loaded = false;  // the latest value per item and field over every row fetched on load, test rows included
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var FIELDS = "id,page,item_id,field,value,who,kind,created_at";
+  var IGNORE = (typeof BOARD_IGNORE !== "undefined" && BOARD_IGNORE) ? BOARD_IGNORE : [];
+  function cfg(name){ try { var v = window[name]; return typeof v === "string" ? v.trim() : ""; } catch(e){ return ""; } }
+  var url = cfg("SUPABASE_URL"); while(url.length && url.charAt(url.length - 1) === "/") url = url.slice(0, -1);
+  var key = cfg("SUPABASE_ANON_KEY");
+  var configured = !!(url && key);
+  var cache = {};
+  try { cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ cache = {}; }
+  function saveCache(){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e){} }
+  var page = "", also = [], applyFn = null, localFn = null, WHO = "", live = false, checked = false, lastWrite = "", boxes = [];
+  function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; if(!c.held) c.held = []; return c; }
+  function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
+  function two(n){ return (n < 10 ? "0" : "") + n; }
+  function fmt(ts){
+    // created_at arrives as UTC from the database and as toISOString() from the outbox; the first 19 characters are
+    // the same shape in both, so the display never depends on how a browser parses fractional seconds or offsets.
+    var d = new Date(String(ts || "").slice(0, 19) + "Z");
+    if(isNaN(d.getTime())) return String(ts || "");
+    return d.getDate() + " " + MONTHS[d.getMonth()] + " " + two(d.getHours()) + ":" + two(d.getMinutes());
+  }
+  function ignored(r){
+    // a test row: same page and item, written in the minute the ignore list names (data/board_ignore.json)
+    var minute = String(r.created_at || "").slice(0, 16);
+    for(var i = 0; i < IGNORE.length; i++){ var g = IGNORE[i]; if(g.page === r.page && g.item_id === r.item_id && g.minute === minute) return true; }
+    return false;
+  }
+  function keep(rows){ var out = []; for(var i = 0; i < rows.length; i++) if(!ignored(rows[i])) out.push(rows[i]); return out; }
+  function control(){ return document.getElementById("reviewer") || document.getElementById("who"); }
+  var styled = false;
+  function askStyle(){
+    if(styled || !document.head || !document.head.appendChild) return; styled = true;
+    var st = document.createElement("style");
+    st.textContent = ".askname-note{font-weight:700;color:#1B1F27;background:#FFF4B8;border:1px solid #C9A800;border-radius:6px;padding:4px 8px;font-size:12px;line-height:1.3}" +
+                     "select.askname,input.askname{border:2px solid #1B1F27 !important}";
+    document.head.appendChild(st);
+  }
+  function ask(held){
+    // The ask beside the name control while edits wait for a name: words that stay, not a flash.
+    var c = control(); if(!c || !c.parentNode) return;
+    var el = document.getElementById("askname");
+    if(!held){ if(el && el.parentNode) el.parentNode.removeChild(el); if(c.classList) c.classList.remove("askname"); return; }
+    if(!el || !el.parentNode){ el = document.createElement("span"); el.id = "askname"; el.className = "askname-note"; c.parentNode.insertBefore(el, c.nextSibling); askStyle(); }
+    el.textContent = "Who is this? Pick your name to record your " + (held === 1 ? "edit." : held + " edits.");
+    if(c.classList) c.classList.add("askname");
+  }
+  function pill(){
+    var held = page ? pc().held.length : 0;
+    ask(held);
+    var p = document.getElementById("sheetpill"); if(!p) return;
+    var text, title, on = false;
+    if(held){ text = held + (held === 1 ? " edit" : " edits") + " waiting for a name"; title = NAME_TEXT; }
+    else if(!configured){ text = "offline, saved locally"; title = "docs/config.js has no Supabase URL and key: edits stay in this browser"; }
+    else if(!checked){ text = "connecting"; title = "reading board_entries"; }
+    else if(live){ text = "live" + (lastWrite ? ", last write " + fmt(lastWrite) : ""); title = "every edit is a row in board_entries; the time is the last write on this page by anyone"; on = true; }
+    else { text = "offline, saved locally"; title = "the last request to Supabase failed: edits stay in this browser and are sent on the next load"; }
+    p.textContent = text; p.title = title; p.className = "pill" + (on ? " on" : "") + (held ? " held" : "");
+  }
+  function strip(r){ return {page: r.page, item_id: r.item_id, field: r.field, value: r.value, who: r.who, kind: r.kind}; }
+  function request(method, query, body, cb){
+    // cb(status, json) exactly once; status is "ok", "rejected" (the server answered with an error) or "net".
+    var done = false;
+    function finish(s, j){ if(done) return; done = true; try { cb(s, j); } catch(e){} }
+    var headers = {"apikey": key};
+    if(body !== undefined){ headers["Content-Type"] = "application/json"; headers["Prefer"] = "return=representation"; }
+    var p;
+    try { p = fetch(url + "/rest/v1/board_entries" + query, {method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body)}); }
+    catch(e){ finish("net"); return; }
+    Promise.resolve(p).then(function(res){
+      if(!res || typeof res.ok !== "boolean") throw new Error("no response");
+      if(!res.ok){ finish("rejected", res.status); return; }
+      return res.json().then(function(j){ finish("ok", j); });
+    }).catch(function(){ finish("net"); });
+  }
+  function remember(j){
+    var r = (j && typeof j.length === "number" && j.length) ? j[0] : null; if(!r || !r.created_at) return;
+    var c = pc(); c.rows.push(r); c.last_write = r.created_at; lastWrite = c.last_write;
+  }
+  function flush(cb){
+    // Send every queued row in order; a row that fails stays queued; the caller learns whether all went through.
+    var c = pc(); var queue = c.outbox.slice(); var i = 0; var failed = 0;
+    (function next(){
+      if(i >= queue.length){ saveCache(); cb(failed === 0); return; }
+      var row = queue[i++];
+      request("POST", "", strip(row), function(s, j){
+        if(s === "ok"){ var at = c.outbox.indexOf(row); if(at >= 0) c.outbox.splice(at, 1); remember(j); } else failed++;
+        next();
+      });
+    })();
+  }
+  function fetchRows(pageName, offset, acc, cb, all){
+    // every row of one page (or of every page when pageName is ""), 1000 at a time, in id order; test rows dropped
+    // (all, when given, still records the latest value per item and field over every row, test rows included:
+    // the sync compares against it, so a local copy of a test row is never re-sent as a real one; 17 Sep 2026)
+    var filter = pageName ? "&page=eq." + encodeURIComponent(pageName) : "";
+    request("GET", "?select=" + FIELDS + filter + "&order=id.asc&limit=" + PAGE_SIZE + "&offset=" + offset, undefined, function(s, rows){
+      if(s !== "ok" || !rows || typeof rows.length !== "number"){ cb(false); return; }
+      if(all) rows.forEach(function(r){ var k = r.item_id + "|" + r.field; if(!all[k] || r.id > all[k].id) all[k] = {id: r.id, value: String(r.value === undefined || r.value === null ? "" : r.value)}; });
+      acc = acc.concat(keep(rows));
+      if(rows.length < PAGE_SIZE) cb(true, acc); else fetchRows(pageName, offset + PAGE_SIZE, acc, cb, all);
+    });
+  }
+  function latestOf(rows){ var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; }); var out = []; for(var k in latest) out.push(latest[k]); return out; }
+  function fetchPages(names, acc, cb){
+    // the rows of several pages, merged in id order (ids grow with time, so the latest row per field is the last one)
+    if(!names.length){ acc.sort(function(a, b){ return a.id - b.id; }); cb(true, acc); return; }
+    fetchRows(names[0], 0, [], function(ok, rows){ if(!ok){ cb(false); return; } fetchPages(names.slice(1), acc.concat(rows), cb); }, ALL);
+  }
+  function load(){
+    pill();
+    if(!configured || !page) return;
+    ALL = {}; loaded = false;
+    flush(function(sent){
+      fetchPages([page].concat(also), [], function(ok, rows){
+        checked = true; var c = pc();
+        if(ok){
+          loaded = true;
+          var own = rows.filter(function(r){ return r.page === page; });
+          c.rows = rows; c.last_write = own.length ? own[own.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
+          if(applyFn){
+            var pending = {}; c.outbox.forEach(function(r){ pending[r.item_id + "|" + r.field] = 1; });
+            var out = latestOf(rows).filter(function(r){ return !pending[r.item_id + "|" + r.field]; });
+            try { applyFn(out); } catch(e){}
+          }
+        }
+        live = ok && sent && !c.outbox.length; pill(); refreshHistory();
+        if(ok && WHO) sync(WHO);
+      });
+    });
+  }
+  function read(opts){
+    // Read-only: the rows of another page (or of every page when opts.page is ""); apply(latest, rows) once they arrive.
+    opts = opts || {};
+    if(!configured){ try { opts.apply([], [], false); } catch(e){} return; }
+    fetchRows(String(opts.page || ""), 0, [], function(ok, rows){
+      rows = ok ? rows : [];
+      try { opts.apply(latestOf(rows), rows, ok); } catch(e){}
+    });
+  }
+  function write(row){
+    // row: {item_id, field, value, who, kind}. Without a name the row is held (false: not recorded yet); every row
+    // names who wrote it (Vatsal, 17 Sep 2026) and the held rows go out through named(). With a name it is queued
+    // first, removed on success, so a tab closed mid-request sends the row on the next load (a duplicate row is
+    // harmless: same latest value).
+    if(!page) return false;
+    var who = String(row.who || "").trim();
+    var r = {page: page, item_id: String(row.item_id), field: String(row.field),
+             value: String(row.value === undefined || row.value === null ? "" : row.value),
+             who: who, kind: String(row.kind || "field_edit"), created_at: new Date().toISOString(), queued: true};
+    if(!who){ hold(r); return false; }
+    if(!configured){ pill(); return true; }
+    var c = pc(); c.outbox.push(r); saveCache();
+    request("POST", "", strip(r), function(s, j){
+      var at = c.outbox.indexOf(r);
+      if(s === "ok"){ if(at >= 0) c.outbox.splice(at, 1); remember(j); live = true; } else live = false;
+      checked = true; saveCache(); pill(); refreshHistory();
+    });
+    return true;
+  }
+  function hold(r){
+    // the latest value per item and field waits here, in first-edit order, until the page picks a name
+    var c = pc(); r.held = true;
+    for(var i = 0; i < c.held.length; i++){ if(c.held[i].item_id === r.item_id && c.held[i].field === r.field){ c.held[i] = r; saveCache(); pill(); refreshHistory(); return; } }
+    c.held.push(r); saveCache(); pill(); refreshHistory();
+  }
+  function latestValue(item_id, field){
+    // the table's latest value for one field over every row fetched on load (this page and the pages read with it,
+    // test rows included), or null when the table has none
+    var e = ALL[item_id + "|" + field]; return e ? e.value : null;
+  }
+  function sync(who){
+    // The page has a name: the held rows are stamped with it and sent, then, once the table has been read, every
+    // value the page shows that the table does not hold (local() minus the latest row per field) goes out as well.
+    // Returns how many were sent.
+    who = String(who || "").trim(); if(!page || !who) return 0;
+    var c = pc(), now = new Date().toISOString(), out = [], seen = {};
+    c.held.forEach(function(r){ r.who = who; r.created_at = now; delete r.held; out.push(r); seen[r.item_id + "|" + r.field] = 1; });
+    c.held = [];
+    c.outbox.forEach(function(r){ seen[r.item_id + "|" + r.field] = 1; });
+    var local = []; try { local = (loaded && localFn) ? (localFn() || []) : []; } catch(e){ local = []; }
+    local.forEach(function(e){
+      var item = String(e.item_id), field = String(e.field), value = String(e.value === undefined || e.value === null ? "" : e.value);
+      if(seen[item + "|" + field]) return;
+      var remote = latestValue(item, field);
+      if(remote === null ? value === "" : remote === value) return;
+      out.push({page: page, item_id: item, field: field, value: value, who: who, kind: String(e.kind || "field_edit"), created_at: now, queued: true});
+    });
+    if(!out.length){ saveCache(); pill(); return 0; }
+    if(!configured){ saveCache(); pill(); return out.length; }
+    out.forEach(function(r){ c.outbox.push(r); }); saveCache(); pill();
+    flush(function(sent){ checked = true; live = sent; pill(); refreshHistory(); });
+    return out.length;
+  }
+  function named(who){ WHO = String(who || "").trim(); return sync(WHO); }
+  function history(item_id){
+    var c = pc(); item_id = String(item_id);
+    var held = c.held.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    var queued = c.outbox.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    var rows = c.rows.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    return held.concat(queued, rows);
+  }
+  function historyHtml(item_id){
+    if(!configured) return '<div class="hist-empty">local only: docs/config.js has no Supabase URL and key</div>';
+    var rows = history(item_id);
+    if(!rows.length) return '<div class="hist-empty">' + (checked ? "no rows yet for " + esc(item_id) : "not loaded yet") + '</div>';
+    return '<ul class="hist">' + rows.map(function(r){
+      return '<li><span class="t">' + esc(fmt(r.created_at)) + '</span> <b>' + esc(r.who || (r.held ? "(no name yet)" : "(no identity)")) + '</b> ' + esc(r.field) + ': ' +
+             (r.value ? esc(r.value) : '<i>cleared</i>') + (r.held ? ' <i>waiting for a name</i>' : r.queued ? ' <i>queued, not sent yet</i>' : '') + '</li>';
+    }).join("") + '</ul>';
+  }
+  function refreshHistory(){ boxes.forEach(function(b){ if(!b.box.hidden) b.box.innerHTML = historyHtml(b.id()); }); }
+  function attach(el, idFn){
+    // Adds a "History" toggle right after a control; idFn is the item id or a function returning it.
+    if(!el || !el.parentNode) return;
+    var id = typeof idFn === "function" ? idFn : function(){ return idFn; };
+    var wrap = document.createElement("div"); wrap.className = "histwrap"; wrap.style.gridColumn = "1 / -1";  // a full row inside a grid form
+    var b = document.createElement("button"); b.type = "button"; b.className = "hist-toggle"; b.textContent = "History";
+    var box = document.createElement("div"); box.className = "histbox"; box.hidden = true;
+    b.addEventListener("click", function(){ box.hidden = !box.hidden; if(!box.hidden) box.innerHTML = historyHtml(id()); });
+    wrap.appendChild(b); wrap.appendChild(box);
+    el.parentNode.insertBefore(wrap, el.nextSibling);
+    boxes.push({box: box, id: id});
+  }
+  function init(opts){ opts = opts || {}; page = String(opts.page || ""); also = (opts.also || []).map(String).filter(function(p){ return p && p !== page; }); applyFn = opts.apply || null; localFn = opts.local || null; WHO = String(opts.who || "").trim(); load(); }
+  function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0, held: page ? pc().held.length : 0}; }
+  function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
+  window.yeslyfBoard = {init: init, write: write, named: named, read: read, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label, fmt: fmt,
+                        noIdentity: NAME_TEXT};
+})();
+</script><script>
+(function(){
+  var KEY="yeslyf_seats_v1";
+  var byId={}; QUESTIONS.forEach(function(q){ byId[q.id]=q; });
+  var S={}; try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
+  if(!S.rows) S.rows={}; if(!S.who) S.who="";
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  var ft; function flash(t){ var s=document.getElementById("saved"); if(!s) return; s.textContent=t||"Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1800); }
+  function esc(s){ return String(s===undefined||s===null?"":s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
+  function row(id){ if(!S.rows[id]) S.rows[id]={}; return S.rows[id]; }
+  function val(id){ var e=S.rows[id]; if(e&&e.answered!==undefined) return e.answered; var q=byId[id]; return q?q.answered:"no"; }
+  function noteVal(id){ var e=S.rows[id]; return (e&&e.note!==undefined)?e.note:""; }
+  function localRows(){ var out=[];
+    for(var id in S.rows){ if(!byId[id]) continue; var e=S.rows[id];
+      if(e.answered!==undefined) out.push({item_id:id,field:"answered",value:e.answered,kind:"field_edit"});
+      if(e.note!==undefined) out.push({item_id:id,field:"note",value:e.note,kind:"comment"}); }
+    return out; }
+  function put(id,field,value,kind){ if(!window.yeslyfBoard) return true; var ok=yeslyfBoard.write({item_id:id,field:field,value:value,who:S.who||"",kind:kind}); if(!ok) setTimeout(function(){ flash(yeslyfBoard.noIdentity); },0); return ok; }
+  function paintItem(id){ var el=document.getElementById("ans-"+id); var v=val(id); if(el&&el.value!==v) el.value=v; }
+  function paintNote(id){ var el=document.getElementById("note-"+id); if(el){ var v=noteVal(id); if(el.value!==v) el.value=v; } }
+  function paintSummary(){ var n=QUESTIONS.length,a=0; QUESTIONS.forEach(function(q){ if(val(q.id)==="yes") a++; }); var g=n-a;
+    var el=document.getElementById("summary"); if(el) el.textContent=n+" questions, "+a+" answered, "+g+" gaps"; }
+  function paintAll(){ QUESTIONS.forEach(function(q){ paintItem(q.id); paintNote(q.id); }); paintSummary(); var rv=document.getElementById("reviewer"); if(rv&&rv.value!==(S.who||"")) rv.value=S.who||""; }
+  function setAnswered(id,v){ if(!byId[id]) return; v=(v==="yes")?"yes":"no"; row(id).answered=v; save(); paintItem(id); paintSummary(); if(put(id,"answered",v,"field_edit")) flash(); }
+  function setNote(id,text){ if(!byId[id]) return; row(id).note=text; save(); paintNote(id); if(put(id,"note",text,"comment")) flash(); }
+  function applyRemote(rows){ rows.forEach(function(r){
+      if(r.field==="answered"&&byId[r.item_id]) row(r.item_id).answered=(r.value==="yes")?"yes":"no";
+      else if(r.field==="note"&&byId[r.item_id]) row(r.item_id).note=r.value||""; });
+    save(); paintAll(); }
+  var tmr={};
+  document.addEventListener("DOMContentLoaded",function(){
+    if(window.yeslyfBoard){
+      Array.prototype.forEach.call(document.querySelectorAll("textarea.seatnote"),function(t){ yeslyfBoard.attach(t,t.getAttribute("data-id")); });
+      yeslyfBoard.init({page:"admin_seats",apply:applyRemote,who:S.who||"",local:localRows});
+    }
+    var rv=document.getElementById("reviewer"); if(rv){ rv.innerHTML='<option value="">editing as</option>'+IDENTITIES.map(function(n){ return '<option value="'+esc(n)+'">'+esc(n)+'</option>'; }).join("");
+      rv.value=S.who||"";
+      rv.addEventListener("change",function(){ S.who=IDENTITIES.indexOf(rv.value)>=0?rv.value:""; save(); var n=(window.yeslyfBoard&&S.who)?yeslyfBoard.named(S.who):0;
+        flash(S.who?"Editing as "+S.who+(n?"; "+n+(n===1?" edit":" edits")+" recorded":""):""); }); }
+    paintAll();
+    document.body.addEventListener("change",function(e){ var t=e.target; if(!t||!t.classList||!t.classList.contains("ans")) return; var id=t.getAttribute("data-id"); if(!id||!byId[id]) return; setAnswered(id,t.value); });
+    document.body.addEventListener("input",function(e){ var t=e.target; if(!t||!t.classList||!t.classList.contains("seatnote")) return; var id=t.getAttribute("data-id"); if(!id||!byId[id]) return;
+      row(id).note=t.value; save(); flash("Saving...");
+      clearTimeout(tmr[id]); tmr[id]=setTimeout(function(){ if(put(id,"note",noteVal(id),"comment")) flash(); },1500); });
+  });
+  window.yeslyfSeats={
+    questions: function(){ return QUESTIONS.map(function(q){ return q.id; }); },
+    answered: function(id){ return val(id); },
+    setAnswered: function(id,v){ setAnswered(id,v); },
+    note: function(id){ return noteVal(id); },
+    setNote: function(id,text){ setNote(id,text); },
+    apply: applyRemote
+  };
+})();
+</script>
+</body>
+</html>

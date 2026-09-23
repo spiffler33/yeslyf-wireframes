@@ -716,10 +716,10 @@
       scriptHtml = '<div class="w-note">to be decided: a call script per state</div>';
     }
 
-    // Calls left this period: from the active subscription.
+    // Calls left this period: from the current subscription (active, or paid with the UPI mandate still pending).
     var subs = (t.subscriptions && t.subscriptions[pid]) || [];
     var activeSub = null;
-    subs.forEach(function(sub){ if(sub.status === "active") activeSub = sub; });
+    subs.forEach(function(sub){ if(sub.status === "active" || sub.status === "pending_mandate") activeSub = sub; });
     var callsLeftHtml = activeSub
       ? ('<div class="w-p">' + H.esc(String(activeSub.calls_included_per_period)) + ' included, ' + H.num(activeSub.calls_used) + ' used</div>')
       : '<div class="w-note">No active subscription.</div>';

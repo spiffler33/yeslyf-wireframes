@@ -13,37 +13,43 @@
     {
      "label": "Lead External ID",
      "type": "id",
-     "zoho_type": "single line"
+     "zoho_type": "single line",
+     "field": "people.person_id"
     },
     {
      "label": "First Name",
      "type": "text",
      "zoho_type": "single line",
-     "source": "people.first_name"
+     "source": "people.first_name",
+     "field": "people.first_name"
     },
     {
      "label": "Last Name",
      "type": "text",
      "zoho_type": "single line",
-     "source": "people.last_name"
+     "source": "people.last_name",
+     "field": "people.last_name"
     },
     {
      "label": "Phone",
      "type": "phone",
      "zoho_type": "phone",
-     "source": "people.phone"
+     "source": "people.phone",
+     "field": "people.phone"
     },
     {
      "label": "Email",
      "type": "email",
      "zoho_type": "email",
-     "source": "people.email (blank for most leads; only web_reveal and some community leads carry one)"
+     "source": "people.email (blank for most leads; only web_reveal and some community leads carry one)",
+     "field": "people.email"
     },
     {
      "label": "City",
      "type": "text",
      "zoho_type": "single line",
-     "source": "people.city"
+     "source": "people.city",
+     "field": "people.city"
     },
     {
      "label": "Lead Source",
@@ -56,7 +62,8 @@
       "organic",
       "referral"
      ],
-     "source": "people.source"
+     "source": "people.source",
+     "field": "people.source"
     },
     {
      "label": "Lead Stage",
@@ -66,26 +73,30 @@
       "lead",
       "verified lead"
      ],
-     "source": "people.lead_stage, mapped lead -> lead, verified_lead -> verified lead (plan spelling, W26)"
+     "source": "people.lead_stage, mapped lead -> lead, verified_lead -> verified lead (plan spelling, W26)",
+     "field": "people.lead_stage"
     },
     {
      "label": "WhatsApp Opt-in",
      "type": "bool",
      "zoho_type": "checkbox",
-     "source": "people.whatsapp_optin"
+     "source": "people.whatsapp_optin",
+     "field": "people.whatsapp_optin"
     },
     {
      "label": "DND",
      "type": "bool",
      "zoho_type": "checkbox",
-     "source": "people.dnd"
+     "source": "people.dnd",
+     "field": "people.dnd"
     },
     {
      "label": "Age Band",
      "type": "band",
      "zoho_type": "picklist",
      "band": "age_bands.bands (label, third element of each [min, max, label] entry)",
-     "source": "people.age_band"
+     "source": "people.age_band",
+     "field": "people.age_band"
     },
     {
      "label": "Top Concern",
@@ -99,7 +110,8 @@
       "Retiring early",
       "My children's education"
      ],
-     "source": "people.lead_details.top_concern"
+     "source": "people.lead_details.top_concern",
+     "field": "people.lead_details.top_concern"
     },
     {
      "label": "Keyword",
@@ -109,25 +121,29 @@
       "PLAN",
       "ALPHA"
      ],
-     "source": "people.lead_details.keyword"
+     "source": "people.lead_details.keyword",
+     "field": "people.lead_details.keyword"
     },
     {
      "label": "Community Joined",
      "type": "bool",
      "zoho_type": "checkbox",
-     "source": "people.lead_details.community_joined"
+     "source": "people.lead_details.community_joined",
+     "field": "people.lead_details.community_joined"
     },
     {
      "label": "Created Date",
      "type": "date",
      "zoho_type": "date",
-     "source": "people.created_at, date part only"
+     "source": "people.created_at, date part only",
+     "field": "people.created_at"
     },
     {
      "label": "Is Seed Topup",
      "type": "bool",
      "zoho_type": "checkbox",
-     "source": "people.is_topup"
+     "source": "people.is_topup",
+     "field": "people.is_topup"
     }
    ]
   },
@@ -141,45 +157,52 @@
     {
      "label": "Contact External ID",
      "type": "id",
-     "zoho_type": "single line"
+     "zoho_type": "single line",
+     "field": "people.person_id"
     },
     {
      "label": "First Name",
      "type": "text",
      "zoho_type": "single line",
-     "source": "people.first_name"
+     "source": "people.first_name",
+     "field": "people.first_name"
     },
     {
      "label": "Last Name",
      "type": "text",
      "zoho_type": "single line",
-     "source": "people.last_name"
+     "source": "people.last_name",
+     "field": "people.last_name"
     },
     {
      "label": "Phone",
      "type": "phone",
      "zoho_type": "phone",
      "source": "people.phone",
+     "field": "people.phone",
      "note": "the match key on re-import per plan section 12; the id column for this scan stays Contact External ID"
     },
     {
      "label": "Email",
      "type": "email",
      "zoho_type": "email",
-     "source": "people.email"
+     "source": "people.email",
+     "field": "people.email"
     },
     {
      "label": "City",
      "type": "text",
      "zoho_type": "single line",
-     "source": "people.city"
+     "source": "people.city",
+     "field": "people.city"
     },
     {
      "label": "Age Band",
      "type": "band",
      "zoho_type": "picklist",
      "band": "age_bands.bands (label, third element of each [min, max, label] entry)",
-     "source": "people.age_band"
+     "source": "people.age_band",
+     "field": "people.age_band"
     },
     {
      "label": "Source",
@@ -192,19 +215,22 @@
       "organic",
       "referral"
      ],
-     "source": "people.source"
+     "source": "people.source",
+     "field": "people.source"
     },
     {
      "label": "WhatsApp Opt-in",
      "type": "bool",
      "zoho_type": "checkbox",
-     "source": "people.whatsapp_optin"
+     "source": "people.whatsapp_optin",
+     "field": "people.whatsapp_optin"
     },
     {
      "label": "DND",
      "type": "bool",
      "zoho_type": "checkbox",
-     "source": "people.dnd"
+     "source": "people.dnd",
+     "field": "people.dnd"
     },
     {
      "label": "Journey Stage",
@@ -241,7 +267,8 @@
       "S24",
       "S25"
      ],
-     "source": "people.journey_stage; every state ID in data/v02/states.json in its order, plus S0 and S0w, whether or not people sit in it"
+     "source": "people.journey_stage; every state ID in data/v02/states.json in its order, plus S0 and S0w, whether or not people sit in it",
+     "field": "people.journey_stage"
     },
     {
      "label": "Tier",
@@ -253,7 +280,8 @@
       "diwm",
       "difm"
      ],
-     "source": "people.tier"
+     "source": "people.tier",
+     "field": "people.tier"
     },
     {
      "label": "SKU",
@@ -263,7 +291,8 @@
       "diy",
       "diwm"
      ],
-     "source": "people.sku"
+     "source": "people.sku",
+     "field": "people.sku"
     },
     {
      "label": "Subscription Status",
@@ -277,7 +306,8 @@
       "cancelled",
       "adviser relationship"
      ],
-     "source": "people.subscription_status"
+     "source": "people.subscription_status",
+     "field": "people.subscription_status"
     },
     {
      "label": "Adviser Owner",
@@ -295,28 +325,32 @@
       "Support 01",
       "Compliance 01"
      ],
-     "source": "people.adviser_id, resolved to the staff display name via staff.json"
+     "source": "people.adviser_id, resolved to the staff display name via staff.json",
+     "field": "people.adviser_id"
     },
     {
      "label": "Income Band",
      "type": "band",
      "zoho_type": "picklist",
      "band": "reveal_bands.income.labels",
-     "source": "reveal.income_band, blank without a reveal"
+     "source": "reveal.income_band, blank without a reveal",
+     "field": "reveal.income_band"
     },
     {
      "label": "Corpus Band",
      "type": "band",
      "zoho_type": "picklist",
      "band": "reveal_bands.corpus.labels",
-     "source": "reveal.corpus_band, blank without a reveal"
+     "source": "reveal.corpus_band, blank without a reveal",
+     "field": "reveal.corpus_band"
     },
     {
      "label": "Savings Band",
      "type": "band",
      "zoho_type": "picklist",
      "band": "reveal_bands.savings.labels",
-     "source": "reveal.savings_rate_band, blank without a reveal"
+     "source": "reveal.savings_rate_band, blank without a reveal",
+     "field": "reveal.savings_rate_band"
     },
     {
      "label": "Aspiration",
@@ -329,67 +363,78 @@
       "Security",
       "Legacy"
      ],
-     "source": "reveal.aspiration, blank without a reveal"
+     "source": "reveal.aspiration, blank without a reveal",
+     "field": "reveal.aspiration"
     },
     {
      "label": "Signed Up",
      "type": "date",
      "zoho_type": "date",
-     "source": "people.key_dates.signed_up"
+     "source": "people.key_dates.signed_up",
+     "field": "people.key_dates.signed_up"
     },
     {
      "label": "Reveal Seen",
      "type": "date",
      "zoho_type": "date",
-     "source": "people.key_dates.reveal_seen"
+     "source": "people.key_dates.reveal_seen",
+     "field": "people.key_dates.reveal_seen"
     },
     {
      "label": "Paid",
      "type": "date",
      "zoho_type": "date",
-     "source": "people.key_dates.paid"
+     "source": "people.key_dates.paid",
+     "field": "people.key_dates.paid"
     },
     {
      "label": "Data Complete",
      "type": "date",
      "zoho_type": "date",
-     "source": "people.key_dates.data_complete"
+     "source": "people.key_dates.data_complete",
+     "field": "people.key_dates.data_complete"
     },
     {
      "label": "Plan Built",
      "type": "date",
      "zoho_type": "date",
-     "source": "people.key_dates.plan_built"
+     "source": "people.key_dates.plan_built",
+     "field": "people.key_dates.plan_built"
     },
     {
      "label": "Plan Read",
      "type": "date",
      "zoho_type": "date",
-     "source": "people.key_dates.plan_read"
+     "source": "people.key_dates.plan_read",
+     "field": "people.key_dates.plan_read"
     },
     {
      "label": "Last Call",
      "type": "date",
      "zoho_type": "date",
-     "source": "people.key_dates.last_call"
+     "source": "people.key_dates.last_call",
+     "field": "people.key_dates.last_call"
     },
     {
      "label": "Next Review",
      "type": "date",
      "zoho_type": "date",
-     "source": "people.key_dates.next_review"
+     "source": "people.key_dates.next_review",
+     "field": "people.key_dates.next_review"
     },
     {
      "label": "Renewal Due",
      "type": "date",
      "zoho_type": "date",
-     "source": "people.key_dates.renewal_due"
+     "source": "people.key_dates.renewal_due",
+     "field": "people.key_dates.renewal_due"
     },
     {
      "label": "Last Activity",
      "type": "date",
      "zoho_type": "date",
-     "source": "people.key_dates.last_activity"
+     "source": "people.key_dates.last_activity",
+     "field": "people.key_dates.last_activity"
     },
     {
      "label": "Onboarding %",
@@ -397,7 +442,8 @@
      "zoho_type": "percent",
      "min": 0,
      "max": 100,
-     "source": "people.mirrors.onboarding_pct"
+     "source": "people.mirrors.onboarding_pct",
+     "field": "people.mirrors.onboarding_pct"
     },
     {
      "label": "KYC Status",
@@ -409,7 +455,8 @@
       "verified (address typed)",
       "verified (assisted onboarding, M12)"
      ],
-     "source": "people.mirrors.kyc_status"
+     "source": "people.mirrors.kyc_status",
+     "field": "people.mirrors.kyc_status"
     },
     {
      "label": "AA Status",
@@ -424,6 +471,7 @@
       "expired"
      ],
      "source": "people.mirrors.aa_status (equal to people.aa_status)",
+     "field": "people.aa_status",
      "note": "AA Status is both a mirror and a field in the plan's column list (section 12); this one column serves both, per Vatsal's phase B decision (23 Sep 2026)"
     },
     {
@@ -437,7 +485,8 @@
       "read",
       "not applicable (adviser relationship)"
      ],
-     "source": "people.mirrors.fp_status"
+     "source": "people.mirrors.fp_status",
+     "field": "people.mirrors.fp_status"
     },
     {
      "label": "IP Status",
@@ -449,7 +498,8 @@
       "executing",
       "done"
      ],
-     "source": "people.mirrors.ip_status"
+     "source": "people.mirrors.ip_status",
+     "field": "people.mirrors.ip_status"
     },
     {
      "label": "Actions Done",
@@ -457,7 +507,8 @@
      "zoho_type": "number",
      "min": 0,
      "max": 15,
-     "source": "people.mirrors.actions_done"
+     "source": "people.mirrors.actions_done",
+     "field": "people.mirrors.actions_done"
     },
     {
      "label": "Actions Total",
@@ -465,13 +516,15 @@
      "zoho_type": "number",
      "min": 0,
      "max": 15,
-     "source": "people.mirrors.actions_total"
+     "source": "people.mirrors.actions_total",
+     "field": "people.mirrors.actions_total"
     },
     {
      "label": "Consent Valid Till",
      "type": "date",
      "zoho_type": "date",
-     "source": "people.consent_valid_till"
+     "source": "people.consent_valid_till",
+     "field": "people.consent_valid_till"
     },
     {
      "label": "Source Completeness",
@@ -481,7 +534,8 @@
       "no",
       "yes"
      ],
-     "source": "people.source_completeness"
+     "source": "people.source_completeness",
+     "field": "people.source_completeness"
     },
     {
      "label": "Sharpen Count",
@@ -489,13 +543,15 @@
      "zoho_type": "number",
      "min": 0,
      "max": 10,
-     "source": "people.sharpen_count"
+     "source": "people.sharpen_count",
+     "field": "people.sharpen_count"
     },
     {
      "label": "Last Manual Update",
      "type": "datetime",
      "zoho_type": "date-time",
      "source": "people.last_manual_update",
+     "field": "people.last_manual_update",
      "note": "kept as a datetime, not a date, since the seed field carries full timestamp precision unlike the ten key dates"
     },
     {
@@ -506,7 +562,8 @@
       "manual",
       "rule"
      ],
-     "source": "people.difm_prospect_flag"
+     "source": "people.difm_prospect_flag",
+     "field": "people.difm_prospect_flag"
     },
     {
      "label": "Adviser Continuity",
@@ -516,6 +573,7 @@
       "off"
      ],
      "source": "people.adviser_continuity",
+     "field": "people.adviser_continuity",
      "note": "mirrors seed/config.json feature_flags.adviser_continuity; the feature is off for every person in this seed, so the picklist has one member until it ships"
     },
     {
@@ -534,7 +592,8 @@
       "Support 01",
       "Compliance 01"
      ],
-     "source": "people.last_adviser, resolved to the staff display name via staff.json"
+     "source": "people.last_adviser, resolved to the staff display name via staff.json",
+     "field": "people.last_adviser"
     },
     {
      "label": "Profile Fulfilment %",
@@ -542,19 +601,22 @@
      "zoho_type": "percent",
      "min": 0,
      "max": 100,
-     "source": "people.profile_fulfilment_pct"
+     "source": "people.profile_fulfilment_pct",
+     "field": "people.profile_fulfilment_pct"
     },
     {
      "label": "Admin Link",
      "type": "url",
      "zoho_type": "URL",
-     "source": "computed: admin_link_base + '?run=' + run number + '&screen=M03&person=' + person_id"
+     "source": "computed: admin_link_base + '?run=' + run number + '&screen=M03&person=' + person_id",
+     "field": null
     },
     {
      "label": "Is Seed Topup",
      "type": "bool",
      "zoho_type": "checkbox",
-     "source": "people.is_topup"
+     "source": "people.is_topup",
+     "field": "people.is_topup"
     }
    ]
   },
@@ -568,20 +630,23 @@
     {
      "label": "Deal External ID",
      "type": "id",
-     "zoho_type": "single line"
+     "zoho_type": "single line",
+     "field": "subscriptions.deal_id"
     },
     {
      "label": "Contact External ID",
      "type": "id",
      "zoho_type": "single line",
      "source": "subscriptions key (person_id)",
+     "field": "people.person_id",
      "note": "a reference to contacts.csv, not this file's own external id; format-checked only, not required to be unique here since one contact can hold several deals"
     },
     {
      "label": "Deal Name",
      "type": "text",
      "zoho_type": "single line",
-     "source": "computed: SKU upper-cased + ' ' + period + ', ' + people.first_name + ' ' + people.last_name"
+     "source": "computed: SKU upper-cased + ' ' + period + ', ' + people.first_name + ' ' + people.last_name",
+     "field": null
     },
     {
      "label": "SKU",
@@ -591,7 +656,8 @@
       "diy",
       "diwm"
      ],
-     "source": "subscriptions[].sku"
+     "source": "subscriptions[].sku",
+     "field": "subscriptions.sku"
     },
     {
      "label": "Period",
@@ -601,13 +667,15 @@
       "monthly",
       "quarterly"
      ],
-     "source": "subscriptions[].period"
+     "source": "subscriptions[].period",
+     "field": "subscriptions.period"
     },
     {
      "label": "Amount",
      "type": "money",
      "zoho_type": "single line",
      "source": "subscriptions[].amount",
+     "field": "subscriptions.amount",
      "note": "to be verified: whether the standard Amount currency field can stay blank on import; the seed carries Rs ___, so Amount is a text field until prices are set"
     },
     {
@@ -619,7 +687,8 @@
       "igst",
       "none"
      ],
-     "source": "subscriptions[].gst_type"
+     "source": "subscriptions[].gst_type",
+     "field": "subscriptions.gst_type"
     },
     {
      "label": "Payment Method",
@@ -629,19 +698,22 @@
       "upi",
       "netbanking"
      ],
-     "source": "subscriptions[].payment_method"
+     "source": "subscriptions[].payment_method",
+     "field": "subscriptions.payment_method"
     },
     {
      "label": "Coupon",
      "type": "text",
      "zoho_type": "single line",
-     "source": "subscriptions[].coupon"
+     "source": "subscriptions[].coupon",
+     "field": "subscriptions.coupon"
     },
     {
      "label": "Razorpay Customer Id",
      "type": "id",
      "zoho_type": "single line",
      "source": "subscriptions[].razorpay_customer_id",
+     "field": "subscriptions.razorpay_customer_id",
      "note": "a vendor reference code, not this file's own external id; not required to be unique"
     },
     {
@@ -649,6 +721,7 @@
      "type": "id",
      "zoho_type": "single line",
      "source": "subscriptions[].razorpay_subscription_or_txn_id",
+     "field": "subscriptions.razorpay_subscription_or_txn_id",
      "note": "a vendor reference code, not this file's own external id; not required to be unique"
     },
     {
@@ -660,19 +733,22 @@
       "pending",
       "none (charged per period)"
      ],
-     "source": "subscriptions[].mandate_status"
+     "source": "subscriptions[].mandate_status",
+     "field": "subscriptions.mandate_status"
     },
     {
      "label": "Start",
      "type": "date",
      "zoho_type": "date",
-     "source": "subscriptions[].start"
+     "source": "subscriptions[].start",
+     "field": "subscriptions.start"
     },
     {
      "label": "Next Billing",
      "type": "date",
      "zoho_type": "date",
-     "source": "subscriptions[].next_billing"
+     "source": "subscriptions[].next_billing",
+     "field": "subscriptions.next_billing"
     },
     {
      "label": "Status",
@@ -685,13 +761,15 @@
       "cancelled",
       "lapsed"
      ],
-     "source": "subscriptions[].status"
+     "source": "subscriptions[].status",
+     "field": "subscriptions.status"
     },
     {
      "label": "Grace Until",
      "type": "date",
      "zoho_type": "date",
-     "source": "subscriptions[].grace_until"
+     "source": "subscriptions[].grace_until",
+     "field": "subscriptions.grace_until"
     },
     {
      "label": "Retry Count",
@@ -699,7 +777,8 @@
      "zoho_type": "number",
      "min": 0,
      "max": 10,
-     "source": "subscriptions[].retry_count"
+     "source": "subscriptions[].retry_count",
+     "field": "subscriptions.retry_count"
     },
     {
      "label": "Calls Included Per Period",
@@ -709,7 +788,8 @@
       "0",
       "N"
      ],
-     "source": "subscriptions[].calls_included_per_period"
+     "source": "subscriptions[].calls_included_per_period",
+     "field": "subscriptions.calls_included_per_period"
     },
     {
      "label": "Calls Used",
@@ -717,25 +797,29 @@
      "zoho_type": "number",
      "min": 0,
      "max": 20,
-     "source": "subscriptions[].calls_used"
+     "source": "subscriptions[].calls_used",
+     "field": "subscriptions.calls_used"
     },
     {
      "label": "Cancel Reason",
      "type": "text",
      "zoho_type": "single line",
-     "source": "subscriptions[].cancel_reason"
+     "source": "subscriptions[].cancel_reason",
+     "field": "subscriptions.cancel_reason"
     },
     {
      "label": "Refund Requested",
      "type": "bool",
      "zoho_type": "checkbox",
-     "source": "subscriptions[].refund_requested"
+     "source": "subscriptions[].refund_requested",
+     "field": "subscriptions.refund_requested"
     },
     {
      "label": "Refund Status",
      "type": "text",
      "zoho_type": "single line",
      "source": "subscriptions[].refund_status",
+     "field": "subscriptions.refund_status",
      "note": "the one realised value is a to-be-decided placeholder sentence (brief H5), not a coded status, so this column is text rather than picklist"
     }
    ]
@@ -750,32 +834,37 @@
     {
      "label": "Purchase External ID",
      "type": "id",
-     "zoho_type": "single line"
+     "zoho_type": "single line",
+     "field": "a_la_carte.purchase_id"
     },
     {
      "label": "Contact External ID",
      "type": "id",
      "zoho_type": "single line",
      "source": "a_la_carte key (person_id)",
+     "field": "people.person_id",
      "note": "a reference to contacts.csv, not this file's own external id; not required to be unique"
     },
     {
      "label": "Date",
      "type": "datetime",
      "zoho_type": "date-time",
-     "source": "a_la_carte[].date"
+     "source": "a_la_carte[].date",
+     "field": "a_la_carte.date"
     },
     {
      "label": "Amount",
      "type": "money",
      "zoho_type": "single line",
-     "source": "a_la_carte[].amount"
+     "source": "a_la_carte[].amount",
+     "field": "a_la_carte.amount"
     },
     {
      "label": "Receipt",
      "type": "id",
      "zoho_type": "single line",
      "source": "a_la_carte[].receipt",
+     "field": "a_la_carte.receipt",
      "note": "a receipt code, not required to be unique here"
     },
     {
@@ -783,6 +872,7 @@
      "type": "id",
      "zoho_type": "single line",
      "source": "a_la_carte[].call_id, joins calls.csv Call External ID",
+     "field": "a_la_carte.call_id",
      "note": "a reference to calls.csv, not this file's own external id; not required to be unique"
     }
    ]
@@ -797,13 +887,15 @@
     {
      "label": "Call External ID",
      "type": "id",
-     "zoho_type": "single line"
+     "zoho_type": "single line",
+     "field": "calls.call_id"
     },
     {
      "label": "Contact External ID",
      "type": "id",
      "zoho_type": "single line",
      "source": "calls key (person_id)",
+     "field": "people.person_id",
      "note": "a reference to contacts.csv, not this file's own external id; not required to be unique"
     },
     {
@@ -822,19 +914,22 @@
       "Support 01",
       "Compliance 01"
      ],
-     "source": "calls[].adviser_id, resolved to the staff display name via staff.json"
+     "source": "calls[].adviser_id, resolved to the staff display name via staff.json",
+     "field": "calls.adviser_id"
     },
     {
      "label": "Booked At",
      "type": "datetime",
      "zoho_type": "date-time",
-     "source": "calls[].booked_at"
+     "source": "calls[].booked_at",
+     "field": "calls.booked_at"
     },
     {
      "label": "Slot",
      "type": "datetime",
      "zoho_type": "date-time",
-     "source": "calls[].slot"
+     "source": "calls[].slot",
+     "field": "calls.slot"
     },
     {
      "label": "Topic",
@@ -847,7 +942,8 @@
       "Something changed",
       "My numbers"
      ],
-     "source": "calls[].topic"
+     "source": "calls[].topic",
+     "field": "calls.topic"
     },
     {
      "label": "Status",
@@ -859,13 +955,15 @@
       "no_show",
       "cancelled"
      ],
-     "source": "calls[].status"
+     "source": "calls[].status",
+     "field": "calls.status"
     },
     {
      "label": "Notes",
      "type": "text",
      "zoho_type": "multi-line",
-     "source": "calls[].notes"
+     "source": "calls[].notes",
+     "field": "calls.notes"
     },
     {
      "label": "Input Changes",
@@ -920,7 +1018,8 @@
       "goals",
       "work_optional_age"
      ],
-     "source": "calls[].input_changes, spine field names joined with '; '"
+     "source": "calls[].input_changes, spine field names joined with '; '",
+     "field": "calls.input_changes"
     }
    ]
   },
@@ -934,20 +1033,23 @@
     {
      "label": "Task External ID",
      "type": "id",
-     "zoho_type": "single line"
+     "zoho_type": "single line",
+     "field": "tasks.task_id"
     },
     {
      "label": "Contact External ID",
      "type": "id",
      "zoho_type": "single line",
      "source": "tasks key (person_id)",
+     "field": "people.person_id",
      "note": "a reference to contacts.csv, not this file's own external id; not required to be unique"
     },
     {
      "label": "Subject",
      "type": "text",
      "zoho_type": "single line",
-     "source": "tasks[].subject (already 'state ID: primary action' in the seed)"
+     "source": "tasks[].subject (already 'state ID: primary action' in the seed)",
+     "field": "tasks.subject"
     },
     {
      "label": "State ID",
@@ -960,7 +1062,8 @@
       "S24",
       "S25"
      ],
-     "source": "tasks[].state_id; the states that have a crm_task in data/v02/states.json"
+     "source": "tasks[].state_id; the states that have a crm_task in data/v02/states.json",
+     "field": "tasks.state_id"
     },
     {
      "label": "Tier",
@@ -972,7 +1075,8 @@
       "diwm",
       "difm"
      ],
-     "source": "tasks[].fields.tier"
+     "source": "tasks[].fields.tier",
+     "field": "tasks.fields.tier"
     },
     {
      "label": "Days Unsigned",
@@ -981,6 +1085,7 @@
      "min": 0,
      "max": 1000,
      "source": "tasks[].fields.days_unsigned",
+     "field": "tasks.fields.days_unsigned",
      "note": "S2b only, blank otherwise. Plan section 12's tasks.csv column list left this out; section 11's tasks row and the S2b crm_task.fields in data/v02/states.json both carry it, so it is added here (Vatsal, 23 Sep 2026)"
     },
     {
@@ -1036,19 +1141,22 @@
       "goals",
       "work_optional_age"
      ],
-     "source": "tasks[].fields.missing_fields, spine field names joined with '; '; S19 only, blank otherwise"
+     "source": "tasks[].fields.missing_fields, spine field names joined with '; '; S19 only, blank otherwise",
+     "field": "tasks.fields.missing_fields"
     },
     {
      "label": "Last Screen",
      "type": "text",
      "zoho_type": "single line",
-     "source": "tasks[].fields.last_screen; S19 only, blank otherwise"
+     "source": "tasks[].fields.last_screen; S19 only, blank otherwise",
+     "field": "tasks.fields.last_screen"
     },
     {
      "label": "Minutes Left",
      "type": "text",
      "zoho_type": "single line",
-     "source": "tasks[].fields.minutes_left; S19 only, blank otherwise (CLAUDE.md: minutes are 'about N minutes')"
+     "source": "tasks[].fields.minutes_left; S19 only, blank otherwise (CLAUDE.md: minutes are 'about N minutes')",
+     "field": "tasks.fields.minutes_left"
     },
     {
      "label": "Call Topic",
@@ -1061,7 +1169,8 @@
       "Something changed",
       "My numbers"
      ],
-     "source": "tasks[].fields.call_topic; S20 only, blank otherwise"
+     "source": "tasks[].fields.call_topic; S20 only, blank otherwise",
+     "field": "tasks.fields.call_topic"
     },
     {
      "label": "No-show Count",
@@ -1070,6 +1179,7 @@
      "min": 0,
      "max": 10,
      "source": "tasks[].fields.no_show_count",
+     "field": "tasks.fields.no_show_count",
      "note": "S20 only, blank otherwise"
     },
     {
@@ -1077,19 +1187,22 @@
      "type": "text",
      "zoho_type": "single line",
      "source": "tasks[].fields.payment_reference; S24 only, blank otherwise",
+     "field": "tasks.fields.payment_reference",
      "note": "the deal's first payment_id (payments.json format PAY-NNNNN-N); text rather than id since the field is blank on every non-S24 task"
     },
     {
      "label": "Cancel Reason",
      "type": "text",
      "zoho_type": "single line",
-     "source": "tasks[].fields.cancel_reason; S24 only, blank otherwise"
+     "source": "tasks[].fields.cancel_reason; S24 only, blank otherwise",
+     "field": "tasks.fields.cancel_reason"
     },
     {
      "label": "Period Unexpired",
      "type": "bool",
      "zoho_type": "checkbox",
      "source": "tasks[].fields.period_unexpired",
+     "field": "tasks.fields.period_unexpired",
      "note": "S24 only, blank otherwise"
     },
     {
@@ -1103,13 +1216,15 @@
       "advice register",
       "fee records and invoices"
      ],
-     "source": "tasks[].fields.records_retained, joined with '; '; S25 only, blank otherwise"
+     "source": "tasks[].fields.records_retained, joined with '; '; S25 only, blank otherwise",
+     "field": "tasks.fields.records_retained"
     },
     {
      "label": "Requested At",
      "type": "datetime",
      "zoho_type": "date-time",
-     "source": "tasks[].fields.requested_at; S25 only, blank otherwise"
+     "source": "tasks[].fields.requested_at; S25 only, blank otherwise",
+     "field": "tasks.fields.requested_at"
     },
     {
      "label": "Assignee",
@@ -1127,13 +1242,15 @@
       "Support 01",
       "Compliance 01"
      ],
-     "source": "tasks[].assignee, resolved to the staff display name via staff.json"
+     "source": "tasks[].assignee, resolved to the staff display name via staff.json",
+     "field": "tasks.assignee"
     },
     {
      "label": "Due",
      "type": "datetime",
      "zoho_type": "date-time",
-     "source": "tasks[].due"
+     "source": "tasks[].due",
+     "field": "tasks.due"
     },
     {
      "label": "Status",
@@ -1143,7 +1260,8 @@
       "open",
       "done"
      ],
-     "source": "tasks[].status"
+     "source": "tasks[].status",
+     "field": "tasks.status"
     }
    ]
   },
@@ -1157,13 +1275,15 @@
     {
      "label": "Event External ID",
      "type": "id",
-     "zoho_type": "single line"
+     "zoho_type": "single line",
+     "field": "events.event_id"
     },
     {
      "label": "Contact External ID",
      "type": "id",
      "zoho_type": "single line",
      "source": "events.jsonl person_id",
+     "field": "people.person_id",
      "note": "a reference to contacts.csv, not this file's own external id; not required to be unique"
     },
     {
@@ -1228,25 +1348,29 @@
       "ticket_created",
       "update_accepted"
      ],
-     "source": "events.jsonl event"
+     "source": "events.jsonl event",
+     "field": "events.event"
     },
     {
      "label": "Screen",
      "type": "text",
      "zoho_type": "single line",
-     "source": "events.jsonl screen_id"
+     "source": "events.jsonl screen_id",
+     "field": "events.screen_id"
     },
     {
      "label": "At",
      "type": "datetime",
      "zoho_type": "date-time",
-     "source": "events.jsonl at"
+     "source": "events.jsonl at",
+     "field": "events.at"
     },
     {
      "label": "Props",
      "type": "json",
      "zoho_type": "multi-line",
-     "source": "events.jsonl props, compact JSON with sorted keys"
+     "source": "events.jsonl props, compact JSON with sorted keys",
+     "field": "events.props"
     }
    ]
   },
@@ -1260,19 +1384,22 @@
     {
      "label": "Ticket External ID",
      "type": "id",
-     "zoho_type": "single line"
+     "zoho_type": "single line",
+     "field": "tickets.ticket_id"
     },
     {
      "label": "Contact Email",
      "type": "email",
      "zoho_type": "email",
-     "source": "people.email for the ticket's person_id"
+     "source": "people.email for the ticket's person_id",
+     "field": "people.email"
     },
     {
      "label": "Contact Phone",
      "type": "phone",
      "zoho_type": "phone",
-     "source": "people.phone for the ticket's person_id"
+     "source": "people.phone for the ticket's person_id",
+     "field": "people.phone"
     },
     {
      "label": "Category",
@@ -1283,31 +1410,36 @@
       "adviser_message",
       "grievance"
      ],
-     "source": "tickets[].category"
+     "source": "tickets[].category",
+     "field": "tickets.category"
     },
     {
      "label": "Subject",
      "type": "text",
      "zoho_type": "single line",
-     "source": "tickets[].subject"
+     "source": "tickets[].subject",
+     "field": "tickets.subject"
     },
     {
      "label": "Description",
      "type": "text",
      "zoho_type": "multi-line",
-     "source": "tickets[].description, with a sentence appended: stage, tier, last screen and last integration failure as of the ticket's created_at (see script for the exact rule)"
+     "source": "tickets[].description, with a sentence appended: stage, tier, last screen and last integration failure as of the ticket's created_at (see script for the exact rule)",
+     "field": "tickets.description"
     },
     {
      "label": "Created At",
      "type": "datetime",
      "zoho_type": "date-time",
-     "source": "tickets[].created_at"
+     "source": "tickets[].created_at",
+     "field": "tickets.created_at"
     },
     {
      "label": "SLA Due",
      "type": "datetime",
      "zoho_type": "date-time",
-     "source": "tickets[].sla_due"
+     "source": "tickets[].sla_due",
+     "field": "tickets.sla_due"
     },
     {
      "label": "Status",
@@ -1317,19 +1449,22 @@
       "open",
       "resolved"
      ],
-     "source": "tickets[].status"
+     "source": "tickets[].status",
+     "field": "tickets.status"
     },
     {
      "label": "Resolved At",
      "type": "datetime",
      "zoho_type": "date-time",
-     "source": "tickets[].resolved_at"
+     "source": "tickets[].resolved_at",
+     "field": "tickets.resolved_at"
     },
     {
      "label": "SCORES Ref",
      "type": "text",
      "zoho_type": "single line",
      "source": "tickets[].scores_ref",
+     "field": "tickets.scores_ref",
      "note": "blank for most tickets (only escalated grievances get one); text rather than id since id disallows blank"
     }
    ]
@@ -1345,19 +1480,22 @@
      "label": "Email",
      "type": "email",
      "zoho_type": "email",
-     "source": "people.email"
+     "source": "people.email",
+     "field": "people.email"
     },
     {
      "label": "Phone",
      "type": "phone",
      "zoho_type": "phone",
-     "source": "people.phone"
+     "source": "people.phone",
+     "field": "people.phone"
     },
     {
      "label": "First Name",
      "type": "text",
      "zoho_type": "single line",
-     "source": "people.first_name"
+     "source": "people.first_name",
+     "field": "people.first_name"
     },
     {
      "label": "Stage",
@@ -1394,7 +1532,8 @@
       "S24",
       "S25"
      ],
-     "source": "people.journey_stage; constant within one file, named by the stage ID (campaigns/S2b.csv etc.)"
+     "source": "people.journey_stage; constant within one file, named by the stage ID (campaigns/S2b.csv etc.)",
+     "field": "people.journey_stage"
     },
     {
      "label": "Tier",
@@ -1406,13 +1545,15 @@
       "diwm",
       "difm"
      ],
-     "source": "people.tier, blank for leads"
+     "source": "people.tier, blank for leads",
+     "field": "people.tier"
     },
     {
      "label": "WhatsApp Opt-in",
      "type": "bool",
      "zoho_type": "checkbox",
-     "source": "people.whatsapp_optin"
+     "source": "people.whatsapp_optin",
+     "field": "people.whatsapp_optin"
     }
    ]
   },
@@ -1428,13 +1569,15 @@
      "label": "Timestamp",
      "type": "datetime",
      "zoho_type": "date-time",
-     "source": "people.lead_details.landing_at"
+     "source": "people.lead_details.landing_at",
+     "field": "people.lead_details.landing_at"
     },
     {
      "label": "Email",
      "type": "email",
      "zoho_type": "email",
-     "source": "people.email"
+     "source": "people.email",
+     "field": "people.email"
     },
     {
      "label": "Top Money Concern",
@@ -1448,7 +1591,8 @@
       "Retiring early",
       "My children's education"
      ],
-     "source": "people.lead_details.top_concern"
+     "source": "people.lead_details.top_concern",
+     "field": "people.lead_details.top_concern"
     },
     {
      "label": "Keyword",
@@ -1458,7 +1602,8 @@
       "PLAN",
       "ALPHA"
      ],
-     "source": "people.lead_details.keyword"
+     "source": "people.lead_details.keyword",
+     "field": "people.lead_details.keyword"
     },
     {
      "label": "Source",
@@ -1471,13 +1616,15 @@
       "organic",
       "referral"
      ],
-     "source": "people.source"
+     "source": "people.source",
+     "field": "people.source"
     },
     {
      "label": "Community Joined",
      "type": "bool",
      "zoho_type": "checkbox",
-     "source": "people.lead_details.community_joined"
+     "source": "people.lead_details.community_joined",
+     "field": "people.lead_details.community_joined"
     },
     {
      "label": "Resource Sent",
@@ -1488,9 +1635,11 @@
       "Reveal walkthrough video",
       "none"
      ],
-     "source": "people.lead_details.resource_sent"
+     "source": "people.lead_details.resource_sent",
+     "field": "people.lead_details.resource_sent"
     }
    ]
   }
- ]
+ ],
+ "field_note": "Each column's field is the exact seed path it mirrors (table.field, or table.field.sub one level into an object; events.* for events.jsonl), null when the value is computed; source stays the human note. The brief's T1 matches on field."
 }
