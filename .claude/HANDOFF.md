@@ -1,7 +1,7 @@
 # Handoff - 23 Sep 2026 (phase closed: seed plan phases B to E)
 
 State: PLAN_admin_seed_v01.md is done (phases A to E, pushed). The board has one "Admin seed" tab leading to four
-pages: admin_wireframes.html (M02 to M14 over a masked seed), admin_seats.html (99 questions: 38 answered, 61 gaps),
+pages: admin_wireframes.html (M02 to M14 over a masked seed), admin_seats.html (99 questions: 40 answered, 59 gaps; the 35 state pairs show a proposed winner),
 admin_brief.html (T1 to T6 plus the gap rows), admin_operator.html (the Zoho afternoon checklist).
 
 ## Read first
