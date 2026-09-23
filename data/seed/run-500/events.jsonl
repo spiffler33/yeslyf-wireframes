@@ -8555,7 +8555,7 @@
 {"event_id":"EV0008555","person_id":"P00168","event":"D01a_view","screen_id":"D01a","at":"2026-06-20T13:16:49+05:30","props":{}}
 {"event_id":"EV0008556","person_id":"P00168","event":"D01a_view","screen_id":"D01a","at":"2026-06-20T13:18:32+05:30","props":{}}
 {"event_id":"EV0008557","person_id":"P00168","event":"D12a_view","screen_id":"D12a","at":"2026-06-20T13:19:47+05:30","props":{}}
-{"event_id":"EV0008558","person_id":"P00168","event":"data_progress","screen_id":"D12a","at":"2026-06-20T13:19:49+05:30","props":{"step_id":"family","pct_complete":29}}
+{"event_id":"EV0008558","person_id":"P00168","event":"data_progress","screen_id":"D12a","at":"2026-06-20T13:19:49+05:30","props":{"step_id":"family","pct_complete":9}}
 {"event_id":"EV0008559","person_id":"P00168","event":"D08a_view","screen_id":"D08a","at":"2026-06-20T13:19:52+05:30","props":{}}
 {"event_id":"EV0008560","person_id":"P00168","event":"D08b_view","screen_id":"D08b","at":"2026-06-20T13:20:00+05:30","props":{}}
 {"event_id":"EV0008561","person_id":"P00168","event":"D08c_view","screen_id":"D08c","at":"2026-06-20T13:20:10+05:30","props":{}}
@@ -8566,7 +8566,7 @@
 {"event_id":"EV0008566","person_id":"P00168","event":"D08h_view","screen_id":"D08h","at":"2026-06-20T13:21:02+05:30","props":{}}
 {"event_id":"EV0008567","person_id":"P00168","event":"D09_view","screen_id":"D09","at":"2026-06-20T13:21:16+05:30","props":{}}
 {"event_id":"EV0008568","person_id":"P00168","event":"D12b_view","screen_id":"D12b","at":"2026-06-20T13:21:24+05:30","props":{}}
-{"event_id":"EV0008569","person_id":"P00168","event":"data_progress","screen_id":"D12b","at":"2026-06-20T13:21:26+05:30","props":{"step_id":"risk","pct_complete":37}}
+{"event_id":"EV0008569","person_id":"P00168","event":"data_progress","screen_id":"D12b","at":"2026-06-20T13:21:26+05:30","props":{"step_id":"risk","pct_complete":17}}
 {"event_id":"EV0008570","person_id":"P00168","event":"O03_view","screen_id":"O03","at":"2026-06-20T13:21:28+05:30","props":{}}
 {"event_id":"EV0008571","person_id":"P00168","event":"return_time_picked","screen_id":"O03","at":"2026-06-20T13:21:32+05:30","props":{"chip":"Tonight"}}
 {"event_id":"EV0008572","person_id":"P00168","event":"D05a_view","screen_id":"D05a","at":"2026-06-20T16:38:32+05:30","props":{}}
@@ -8579,7 +8579,7 @@
 {"event_id":"EV0008579","person_id":"P00168","event":"D05d_view","screen_id":"D05d","at":"2026-06-20T16:41:01+05:30","props":{}}
 {"event_id":"EV0008580","person_id":"P00168","event":"D05d_set","screen_id":"D05d","at":"2026-06-20T16:41:17+05:30","props":{"field":"other_income","source":"manual","precision":"exact","value":"none"}}
 {"event_id":"EV0008581","person_id":"P00168","event":"D12c_view","screen_id":"D12c","at":"2026-06-20T16:41:56+05:30","props":{}}
-{"event_id":"EV0008582","person_id":"P00168","event":"data_progress","screen_id":"D12c","at":"2026-06-20T16:41:58+05:30","props":{"step_id":"income","pct_complete":44}}
+{"event_id":"EV0008582","person_id":"P00168","event":"data_progress","screen_id":"D12c","at":"2026-06-20T16:41:58+05:30","props":{"step_id":"income","pct_complete":24}}
 {"event_id":"EV0008583","person_id":"P00168","event":"D06a_view","screen_id":"D06a","at":"2026-06-20T23:38:26+05:30","props":{}}
 {"event_id":"EV0008584","person_id":"P00168","event":"D06a_exact_entered","screen_id":"D06a","at":"2026-06-20T23:38:39+05:30","props":{"field":"total_outgoings"}}
 {"event_id":"EV0008585","person_id":"P00168","event":"D06a_set","screen_id":"D06a","at":"2026-06-20T23:38:40+05:30","props":{"field":"total_outgoings","source":"manual","precision":"exact"}}
@@ -8596,7 +8596,7 @@
 {"event_id":"EV0008596","person_id":"P00168","event":"D11a_view","screen_id":"D11a","at":"2026-06-20T23:42:09+05:30","props":{}}
 {"event_id":"EV0008597","person_id":"P00168","event":"D06d_set","screen_id":"D06d","at":"2026-06-20T23:42:27+05:30","props":{"field":"current_sip","source":"aa","precision":"exact","confirmed":true}}
 {"event_id":"EV0008598","person_id":"P00168","event":"D12d_view","screen_id":"D12d","at":"2026-06-20T23:43:27+05:30","props":{}}
-{"event_id":"EV0008599","person_id":"P00168","event":"data_progress","screen_id":"D12d","at":"2026-06-20T23:43:29+05:30","props":{"step_id":"expenses","pct_complete":52}}
+{"event_id":"EV0008599","person_id":"P00168","event":"data_progress","screen_id":"D12d","at":"2026-06-20T23:43:29+05:30","props":{"step_id":"expenses","pct_complete":32}}
 {"event_id":"EV0008600","person_id":"P00168","event":"D02_view","screen_id":"D02","at":"2026-06-22T21:07:16+05:30","props":{}}
 {"event_id":"EV0008601","person_id":"P00168","event":"D02a_view","screen_id":"D02a","at":"2026-06-22T21:07:31+05:30","props":{}}
 {"event_id":"EV0008602","person_id":"P00168","event":"D02a_set","screen_id":"D02a","at":"2026-06-22T21:07:49+05:30","props":{"field":"bank_and_deposits","source":"aa","precision":"exact","confirmed":true}}
@@ -8620,7 +8620,7 @@
 {"event_id":"EV0008620","person_id":"P00168","event":"D02j_view","screen_id":"D02j","at":"2026-06-22T21:14:53+05:30","props":{}}
 {"event_id":"EV0008621","person_id":"P00168","event":"D02j_skip","screen_id":"D02j","at":"2026-06-22T21:15:03+05:30","props":{"field":"other_assets"}}
 {"event_id":"EV0008622","person_id":"P00168","event":"D12e_view","screen_id":"D12e","at":"2026-06-22T21:15:40+05:30","props":{}}
-{"event_id":"EV0008623","person_id":"P00168","event":"data_progress","screen_id":"D12e","at":"2026-06-22T21:15:42+05:30","props":{"step_id":"investments","pct_complete":69}}
+{"event_id":"EV0008623","person_id":"P00168","event":"data_progress","screen_id":"D12e","at":"2026-06-22T21:15:42+05:30","props":{"step_id":"investments","pct_complete":49}}
 {"event_id":"EV0008624","person_id":"P00168","event":"D03_view","screen_id":"D03","at":"2026-06-22T21:15:45+05:30","props":{}}
 {"event_id":"EV0008625","person_id":"P00168","event":"D03a_view","screen_id":"D03a","at":"2026-06-22T21:15:57+05:30","props":{}}
 {"event_id":"EV0008626","person_id":"P00168","event":"D03a_exact_entered","screen_id":"D03a","at":"2026-06-22T21:16:12+05:30","props":{"field":"emi"}}
@@ -8629,7 +8629,7 @@
 {"event_id":"EV0008629","person_id":"P00168","event":"D03a_skip","screen_id":"D03a","at":"2026-06-22T21:16:15+05:30","props":{"field":"years_left"}}
 {"event_id":"EV0008630","person_id":"P00168","event":"D03a_set","screen_id":"D03a","at":"2026-06-22T21:16:16+05:30","props":{"field":"outstanding","source":"manual","precision":"approx"}}
 {"event_id":"EV0008631","person_id":"P00168","event":"D12f_view","screen_id":"D12f","at":"2026-06-22T21:18:00+05:30","props":{}}
-{"event_id":"EV0008632","person_id":"P00168","event":"data_progress","screen_id":"D12f","at":"2026-06-22T21:18:02+05:30","props":{"step_id":"loans","pct_complete":77}}
+{"event_id":"EV0008632","person_id":"P00168","event":"data_progress","screen_id":"D12f","at":"2026-06-22T21:18:02+05:30","props":{"step_id":"loans","pct_complete":57}}
 {"event_id":"EV0008633","person_id":"P00168","event":"D04_view","screen_id":"D04","at":"2026-06-22T21:18:07+05:30","props":{}}
 {"event_id":"EV0008634","person_id":"P00168","event":"D04a_view","screen_id":"D04a","at":"2026-06-22T21:18:17+05:30","props":{}}
 {"event_id":"EV0008635","person_id":"P00168","event":"D04a_exact_entered","screen_id":"D04a","at":"2026-06-22T21:18:28+05:30","props":{"field":"term_sum_assured"}}
@@ -8647,14 +8647,14 @@
 {"event_id":"EV0008647","person_id":"P00168","event":"D04b_set","screen_id":"D04b","at":"2026-06-22T21:20:34+05:30","props":{"field":"health_floater","source":"manual","precision":"exact"}}
 {"event_id":"EV0008648","person_id":"P00168","event":"D04b_set","screen_id":"D04b","at":"2026-06-22T21:20:34+05:30","props":{"field":"health_premium","source":"manual","precision":"exact","value":"none"}}
 {"event_id":"EV0008649","person_id":"P00168","event":"D12g_view","screen_id":"D12g","at":"2026-06-22T21:22:13+05:30","props":{}}
-{"event_id":"EV0008650","person_id":"P00168","event":"data_progress","screen_id":"D12g","at":"2026-06-22T21:22:15+05:30","props":{"step_id":"insurance","pct_complete":86}}
+{"event_id":"EV0008650","person_id":"P00168","event":"data_progress","screen_id":"D12g","at":"2026-06-22T21:22:15+05:30","props":{"step_id":"insurance","pct_complete":66}}
 {"event_id":"EV0008651","person_id":"P00168","event":"D07_view","screen_id":"D07","at":"2026-06-25T03:06:38+05:30","props":{}}
 {"event_id":"EV0008652","person_id":"P00168","event":"D07a_view","screen_id":"D07a","at":"2026-06-25T03:07:14+05:30","props":{}}
 {"event_id":"EV0008653","person_id":"P00168","event":"D07a_exact_entered","screen_id":"D07a","at":"2026-06-25T03:07:26+05:30","props":{"field":"cost_today"}}
 {"event_id":"EV0008654","person_id":"P00168","event":"D07a_set","screen_id":"D07a","at":"2026-06-25T03:07:27+05:30","props":{"field":"cost_today","source":"manual","precision":"exact"}}
 {"event_id":"EV0008655","person_id":"P00168","event":"D07b_view","screen_id":"D07b","at":"2026-06-25T03:08:46+05:30","props":{}}
 {"event_id":"EV0008656","person_id":"P00168","event":"D12h_view","screen_id":"D12h","at":"2026-06-25T03:08:52+05:30","props":{}}
-{"event_id":"EV0008657","person_id":"P00168","event":"data_progress","screen_id":"D12h","at":"2026-06-25T03:08:54+05:30","props":{"step_id":"goals","pct_complete":94}}
+{"event_id":"EV0008657","person_id":"P00168","event":"data_progress","screen_id":"D12h","at":"2026-06-25T03:08:54+05:30","props":{"step_id":"goals","pct_complete":74}}
 {"event_id":"EV0008658","person_id":"P00168","event":"open_organic","screen_id":null,"at":"2026-07-04T08:53:34+05:30","props":{}}
 {"event_id":"EV0008659","person_id":"P00168","event":"H01h_view","screen_id":"H01h","at":"2026-07-04T08:53:36+05:30","props":{}}
 {"event_id":"EV0008660","person_id":"P00168","event":"H07_view","screen_id":"H07","at":"2026-07-07T20:14:42+05:30","props":{}}
@@ -13277,7 +13277,7 @@
 {"event_id":"EV0013277","person_id":"P00350","event":"D01a_view","screen_id":"D01a","at":"2026-08-11T06:48:56+05:30","props":{}}
 {"event_id":"EV0013278","person_id":"P00350","event":"D01a_view","screen_id":"D01a","at":"2026-08-11T06:50:22+05:30","props":{}}
 {"event_id":"EV0013279","person_id":"P00350","event":"D12a_view","screen_id":"D12a","at":"2026-08-11T06:51:34+05:30","props":{}}
-{"event_id":"EV0013280","person_id":"P00350","event":"data_progress","screen_id":"D12a","at":"2026-08-11T06:51:36+05:30","props":{"step_id":"family","pct_complete":29}}
+{"event_id":"EV0013280","person_id":"P00350","event":"data_progress","screen_id":"D12a","at":"2026-08-11T06:51:36+05:30","props":{"step_id":"family","pct_complete":9}}
 {"event_id":"EV0013281","person_id":"P00350","event":"D08a_view","screen_id":"D08a","at":"2026-08-11T06:51:41+05:30","props":{}}
 {"event_id":"EV0013282","person_id":"P00350","event":"D08b_view","screen_id":"D08b","at":"2026-08-11T06:51:54+05:30","props":{}}
 {"event_id":"EV0013283","person_id":"P00350","event":"D08c_view","screen_id":"D08c","at":"2026-08-11T06:52:09+05:30","props":{}}
@@ -13288,7 +13288,7 @@
 {"event_id":"EV0013288","person_id":"P00350","event":"D08h_view","screen_id":"D08h","at":"2026-08-11T06:52:48+05:30","props":{}}
 {"event_id":"EV0013289","person_id":"P00350","event":"D09_view","screen_id":"D09","at":"2026-08-11T06:52:56+05:30","props":{}}
 {"event_id":"EV0013290","person_id":"P00350","event":"D12b_view","screen_id":"D12b","at":"2026-08-11T06:53:09+05:30","props":{}}
-{"event_id":"EV0013291","person_id":"P00350","event":"data_progress","screen_id":"D12b","at":"2026-08-11T06:53:11+05:30","props":{"step_id":"risk","pct_complete":37}}
+{"event_id":"EV0013291","person_id":"P00350","event":"data_progress","screen_id":"D12b","at":"2026-08-11T06:53:11+05:30","props":{"step_id":"risk","pct_complete":17}}
 {"event_id":"EV0013292","person_id":"P00350","event":"D05a_view","screen_id":"D05a","at":"2026-08-11T06:53:15+05:30","props":{}}
 {"event_id":"EV0013293","person_id":"P00350","event":"D05a_hesitation_45","screen_id":"D05a","at":"2026-08-11T06:54:00+05:30","props":{}}
 {"event_id":"EV0013294","person_id":"P00350","event":"D11a_view","screen_id":"D11a","at":"2026-08-11T06:54:01+05:30","props":{}}
@@ -13302,7 +13302,7 @@
 {"event_id":"EV0013302","person_id":"P00350","event":"D05d_view","screen_id":"D05d","at":"2026-08-11T06:56:14+05:30","props":{}}
 {"event_id":"EV0013303","person_id":"P00350","event":"D05d_set","screen_id":"D05d","at":"2026-08-11T06:56:29+05:30","props":{"field":"other_income","source":"manual","precision":"exact","value":"none"}}
 {"event_id":"EV0013304","person_id":"P00350","event":"D12c_view","screen_id":"D12c","at":"2026-08-11T06:57:31+05:30","props":{}}
-{"event_id":"EV0013305","person_id":"P00350","event":"data_progress","screen_id":"D12c","at":"2026-08-11T06:57:33+05:30","props":{"step_id":"income","pct_complete":42}}
+{"event_id":"EV0013305","person_id":"P00350","event":"data_progress","screen_id":"D12c","at":"2026-08-11T06:57:33+05:30","props":{"step_id":"income","pct_complete":22}}
 {"event_id":"EV0013306","person_id":"P00350","event":"D06a_view","screen_id":"D06a","at":"2026-08-11T06:57:38+05:30","props":{}}
 {"event_id":"EV0013307","person_id":"P00350","event":"D06a_hesitation_45","screen_id":"D06a","at":"2026-08-11T06:58:23+05:30","props":{}}
 {"event_id":"EV0013308","person_id":"P00350","event":"D11a_view","screen_id":"D11a","at":"2026-08-11T06:58:24+05:30","props":{}}
@@ -13322,7 +13322,7 @@
 {"event_id":"EV0013322","person_id":"P00350","event":"D06d_band_tapped","screen_id":"D06d","at":"2026-08-11T07:01:46+05:30","props":{"field":"current_sip"}}
 {"event_id":"EV0013323","person_id":"P00350","event":"D06d_set","screen_id":"D06d","at":"2026-08-11T07:01:47+05:30","props":{"field":"current_sip","source":"manual","precision":"approx"}}
 {"event_id":"EV0013324","person_id":"P00350","event":"D12d_view","screen_id":"D12d","at":"2026-08-11T07:02:14+05:30","props":{}}
-{"event_id":"EV0013325","person_id":"P00350","event":"data_progress","screen_id":"D12d","at":"2026-08-11T07:02:16+05:30","props":{"step_id":"expenses","pct_complete":51}}
+{"event_id":"EV0013325","person_id":"P00350","event":"data_progress","screen_id":"D12d","at":"2026-08-11T07:02:16+05:30","props":{"step_id":"expenses","pct_complete":31}}
 {"event_id":"EV0013326","person_id":"P00350","event":"D02_view","screen_id":"D02","at":"2026-08-11T07:02:21+05:30","props":{}}
 {"event_id":"EV0013327","person_id":"P00350","event":"D02a_view","screen_id":"D02a","at":"2026-08-11T07:02:58+05:30","props":{}}
 {"event_id":"EV0013328","person_id":"P00350","event":"D02a_skip","screen_id":"D02a","at":"2026-08-11T07:03:09+05:30","props":{"field":"bank_and_deposits"}}
@@ -13341,7 +13341,7 @@
 {"event_id":"EV0013341","person_id":"P00350","event":"D02h_band_tapped","screen_id":"D02h","at":"2026-08-11T07:08:37+05:30","props":{"field":"home_value"}}
 {"event_id":"EV0013342","person_id":"P00350","event":"D02h_set","screen_id":"D02h","at":"2026-08-11T07:08:38+05:30","props":{"field":"home_value","source":"manual","precision":"approx"}}
 {"event_id":"EV0013343","person_id":"P00350","event":"D12e_view","screen_id":"D12e","at":"2026-08-11T07:09:12+05:30","props":{}}
-{"event_id":"EV0013344","person_id":"P00350","event":"data_progress","screen_id":"D12e","at":"2026-08-11T07:09:14+05:30","props":{"step_id":"investments","pct_complete":63}}
+{"event_id":"EV0013344","person_id":"P00350","event":"data_progress","screen_id":"D12e","at":"2026-08-11T07:09:14+05:30","props":{"step_id":"investments","pct_complete":43}}
 {"event_id":"EV0013345","person_id":"P00350","event":"O03_view","screen_id":"O03","at":"2026-08-11T07:09:16+05:30","props":{}}
 {"event_id":"EV0013346","person_id":"P00350","event":"return_time_picked","screen_id":"O03","at":"2026-08-11T07:09:20+05:30","props":{"chip":"This weekend"}}
 {"event_id":"EV0013347","person_id":"P00350","event":"open_organic","screen_id":null,"at":"2026-08-15T16:24:08+05:30","props":{}}
@@ -13355,7 +13355,7 @@
 {"event_id":"EV0013355","person_id":"P00350","event":"D03a_set","screen_id":"D03a","at":"2026-08-21T15:58:37+05:30","props":{"field":"outstanding","source":"manual","precision":"approx"}}
 {"event_id":"EV0013356","person_id":"P00350","event":"D03a_set","screen_id":"D03a","at":"2026-08-21T15:58:37+05:30","props":{"field":"years_left","source":"manual","precision":"exact"}}
 {"event_id":"EV0013357","person_id":"P00350","event":"D12f_view","screen_id":"D12f","at":"2026-08-21T16:00:12+05:30","props":{}}
-{"event_id":"EV0013358","person_id":"P00350","event":"data_progress","screen_id":"D12f","at":"2026-08-21T16:00:14+05:30","props":{"step_id":"loans","pct_complete":71}}
+{"event_id":"EV0013358","person_id":"P00350","event":"data_progress","screen_id":"D12f","at":"2026-08-21T16:00:14+05:30","props":{"step_id":"loans","pct_complete":51}}
 {"event_id":"EV0013359","person_id":"P00350","event":"D04_view","screen_id":"D04","at":"2026-08-21T16:00:17+05:30","props":{}}
 {"event_id":"EV0013360","person_id":"P00350","event":"D04b_view","screen_id":"D04b","at":"2026-08-21T16:00:55+05:30","props":{}}
 {"event_id":"EV0013361","person_id":"P00350","event":"D04b_exact_entered","screen_id":"D04b","at":"2026-08-21T16:01:08+05:30","props":{"field":"health_type"}}
@@ -13367,14 +13367,14 @@
 {"event_id":"EV0013367","person_id":"P00350","event":"D04b_exact_entered","screen_id":"D04b","at":"2026-08-21T16:01:44+05:30","props":{"field":"health_premium"}}
 {"event_id":"EV0013368","person_id":"P00350","event":"D04b_set","screen_id":"D04b","at":"2026-08-21T16:01:45+05:30","props":{"field":"health_premium","source":"manual","precision":"exact"}}
 {"event_id":"EV0013369","person_id":"P00350","event":"D12g_view","screen_id":"D12g","at":"2026-08-21T16:02:36+05:30","props":{}}
-{"event_id":"EV0013370","person_id":"P00350","event":"data_progress","screen_id":"D12g","at":"2026-08-21T16:02:38+05:30","props":{"step_id":"insurance","pct_complete":80}}
+{"event_id":"EV0013370","person_id":"P00350","event":"data_progress","screen_id":"D12g","at":"2026-08-21T16:02:38+05:30","props":{"step_id":"insurance","pct_complete":60}}
 {"event_id":"EV0013371","person_id":"P00350","event":"D07_view","screen_id":"D07","at":"2026-08-21T16:02:42+05:30","props":{}}
 {"event_id":"EV0013372","person_id":"P00350","event":"D07a_view","screen_id":"D07a","at":"2026-08-21T16:02:56+05:30","props":{}}
 {"event_id":"EV0013373","person_id":"P00350","event":"D07a_band_tapped","screen_id":"D07a","at":"2026-08-21T16:03:05+05:30","props":{"field":"cost_today"}}
 {"event_id":"EV0013374","person_id":"P00350","event":"D07a_set","screen_id":"D07a","at":"2026-08-21T16:03:06+05:30","props":{"field":"cost_today","source":"manual","precision":"approx"}}
 {"event_id":"EV0013375","person_id":"P00350","event":"D07b_view","screen_id":"D07b","at":"2026-08-21T16:03:48+05:30","props":{}}
 {"event_id":"EV0013376","person_id":"P00350","event":"D12h_view","screen_id":"D12h","at":"2026-08-21T16:04:00+05:30","props":{}}
-{"event_id":"EV0013377","person_id":"P00350","event":"data_progress","screen_id":"D12h","at":"2026-08-21T16:04:02+05:30","props":{"step_id":"goals","pct_complete":87}}
+{"event_id":"EV0013377","person_id":"P00350","event":"data_progress","screen_id":"D12h","at":"2026-08-21T16:04:02+05:30","props":{"step_id":"goals","pct_complete":67}}
 {"event_id":"EV0013378","person_id":"P00350","event":"open_organic","screen_id":null,"at":"2026-09-02T22:29:05+05:30","props":{}}
 {"event_id":"EV0013379","person_id":"P00350","event":"H01h_view","screen_id":"H01h","at":"2026-09-02T22:29:07+05:30","props":{}}
 {"event_id":"EV0013380","person_id":"P00350","event":"open_organic","screen_id":null,"at":"2026-09-12T20:18:22+05:30","props":{}}

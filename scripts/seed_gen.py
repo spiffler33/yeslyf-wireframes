@@ -1975,7 +1975,10 @@ def progress_pct(p, ctx):
     if p.tl.get("built"):
         return 100
     total_other = max(1, len(others) + 8)
-    return int(min(99, 20 + 60 * done_gate / float(len(ctx.gate)) + 20 * done_other / float(total_other)))
+    # the ring starts after the reveal: the endowed 20 lands at reveal_seen (v0.2 O02 and plan_v2 4.3 rule 11;
+    # Vatsal, 23 Sep 2026), so S1 shows 0 and DIFM people, provisioned without a reveal, get no endowment
+    endowed = 20 if getattr(p, "reveal_upto", 0) == 7 else 0
+    return int(min(99, endowed + 60 * done_gate / float(len(ctx.gate)) + 20 * done_other / float(total_other)))
 
 
 # ---------------------------------------------------------------- the plan and after
