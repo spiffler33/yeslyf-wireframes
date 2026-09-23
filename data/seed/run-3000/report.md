@@ -29,11 +29,11 @@ Columns: lead (never OTP'd), free (OTP'd, not paid), DIY, DIWM, DIFM; natural = 
 | S3 | 0 | 0 | 6 | 6 | 0 | 12 | 12 | 6 | 0 | 4 |  |
 | S4 | 0 | 0 | 7 | 15 | 0 | 22 | 22 | 6 | 0 | 5 |  |
 | S5 | 0 | 0 | 5 | 3 | 0 | 8 | 8 | 6 | 0 | 3 |  |
-| S6 | 0 | 0 | 2 | 6 | 0 | 8 | 8 | 6 | 0 | 5 |  |
+| S6 | 0 | 0 | 1 | 7 | 0 | 8 | 8 | 6 | 0 | 5 |  |
 | S7 | 0 | 0 | 1 | 7 | 0 | 8 | 8 | 6 | 0 | 4 |  |
 | S8 | 0 | 0 | 5 | 11 | 0 | 16 | 16 | 6 | 0 | 6 |  |
 | S9 | 0 | 0 | 13 | 19 | 0 | 32 | 32 | 6 | 0 | 16 |  |
-| S10 | 0 | 0 | 3 | 7 | 0 | 10 | 10 | 6 | 0 | 3 |  |
+| S10 | 0 | 0 | 2 | 8 | 0 | 10 | 10 | 6 | 0 | 3 |  |
 | S11 | 0 | 0 | 4 | 4 | 0 | 8 | 8 | 6 | 0 | 0 |  |
 | S12 | 0 | 0 | 4 | 2 | 0 | 6 | 6 | 6 | 0 | 1 |  |
 | S13 | 0 | 0 | 5 | 3 | 0 | 8 | 8 | 6 | 0 | 1 |  |
@@ -44,7 +44,7 @@ Columns: lead (never OTP'd), free (OTP'd, not paid), DIY, DIWM, DIFM; natural = 
 | S19 | 0 | 0 | 2 | 6 | 0 | 8 | 8 | 6 | 0 | 4 |  |
 | S20 | 0 | 0 | 0 | 6 | 0 | 6 | 6 | 6 | 0 | 3 |  |
 | S21 | 0 | 0 | 4 | 4 | 0 | 8 | 8 | 6 | 0 | 6 |  |
-| S22 | 0 | 0 | 4 | 2 | 0 | 6 | 6 | 6 | 0 | 4 |  |
+| S22 | 0 | 0 | 3 | 3 | 0 | 6 | 6 | 6 | 0 | 4 |  |
 | S23 | 0 | 0 | 2 | 4 | 0 | 6 | 6 | 6 | 0 | 3 |  |
 | S24 | 0 | 0 | 4 | 2 | 0 | 6 | 6 | 6 | 0 | 3 |  |
 | S25 | 0 | 0 | 2 | 4 | 0 | 6 | 6 | 6 | 0 | 3 |  |
@@ -64,9 +64,9 @@ Paid-state allocation and topups bend some of these; none of them is a real rati
 | lead source: web_reveal | 15% | 16.0% (485) |
 | lead source: organic | 15% | 14.2% (430) |
 | lead source: referral | 5% | 4.8% (147) |
-| paid tier: diwm | 55% | 58.6% (123) |
-| paid tier: diy | 35% | 37.6% (79) |
-| paid tier: difm | 10% | 3.8% (8) |
+| paid tier: diwm | 60% | 60.0% (126) |
+| paid tier: diy | 36% | 36.2% (76) |
+| paid tier: difm | 4% | 3.8% (8) |
 | source path: aa | 50% | 50.0% (105) |
 | source path: cas | 20% | 20.0% (42) |
 | source path: manual | 30% | 30.0% (63) |
@@ -76,7 +76,7 @@ Paid-state allocation and topups bend some of these; none of them is a real rati
 | payment method: netbanking | 25% | 24.8% (50) |
 | GST type (first deal) | by state; none on a zeroing coupon (2%) | cgst_sgst 43, igst 156, none 3 |
 | renewals failing | 5% | 5.6% without the S12 and S13 people (15 of 267); 10.3% with them |
-| S16 flag among paid | about 30% | 37.1% (78) |
+| S16 flag among paid | S16 flag follows from the path mix: manual 30% plus AA-failed | 37.1% (78) |
 | archetypes (OTP'd people) | seed plan weights | A1 265, A2 225, A3 237, A4 233, A5 196, A6 128, A7 131, A8 124, tail 101 |
 | term cover missing among people with dependants | 40% | 39.7% (52 of 131) |
 | health employer-only | 50% | 51.4% (108 of 210) |
@@ -156,7 +156,7 @@ Generated target against the resolved state (should be none):
 
 None: every person resolves to the state the generator aimed at.
 
-State changes outside the states.json exits (3 of 3344 changes):
+State changes outside the states.json exits (3 of 3349 changes):
 
 | from | to | times |
 |---|---|---|
@@ -175,7 +175,7 @@ State changes outside the states.json exits (3 of 3344 changes):
 | built plans with an unknown gate field | 0 | zero wanted (the 16 gate fields) |
 | built plans with a not-sure React field | 0 | zero wanted (phase 9: the gate is every field the React reads; health_floater has no band) |
 | D13 rows (fields resolved as a range) | 238 | 0 without an earlier skip |
-| events | 72371 |  |
+| events | 72398 |  |
 | events before signed_up | 0 | zero wanted (A01 and A02 come before the OTP by design) |
 | plan_read before plan_built | 0 | zero wanted |
 | events after the anchor | 0 | zero wanted |
@@ -198,23 +198,23 @@ State changes outside the states.json exits (3 of 3344 changes):
 | holdings | 83 | 585 |
 | aa_consents | 101 | 133 |
 | cas_uploads | 41 | 41 |
-| plan_versions | 138 | 512 |
+| plan_versions | 138 | 514 |
 | actions | 138 | 639 |
 | subscriptions | 202 | 206 |
 | payments | 202 | 511 |
 | a_la_carte | 9 | 9 |
-| calls | 63 | 80 |
+| calls | 65 | 84 |
 | tickets | 73 | 73 |
 | ops_queue | 83 | 100 |
-| integration_events | 1640 | 12113 |
-| tasks | 106 | 112 |
-| nudges_sent | 1634 | 8762 |
+| integration_events | 1640 | 12115 |
+| tasks | 108 | 114 |
+| nudges_sent | 1634 | 8767 |
 | state_flags | 1640 | 1640 |
-| events.jsonl |  | 72371 |
+| events.jsonl |  | 72398 |
 
-Most frequent events: nudge_sent 5919, open_organic 2322, R01_view 1917, A01_view 1640, A02_view 1640, A03_view 1640, signed_up 1640, A04_view 1640, state_enter_S1 1632, P01_view 1569, R02_view 1565, nudge_opened 1509, R03_view 1507, R04_view 1449, R05_view 1397
+Most frequent events: nudge_sent 5919, open_organic 2320, R01_view 1917, A01_view 1640, A02_view 1640, A03_view 1640, signed_up 1640, A04_view 1640, state_enter_S1 1632, P01_view 1568, R02_view 1565, nudge_opened 1509, R03_view 1507, R04_view 1449, R05_view 1397
 
-Nudges (every ladder step that fell due): held: DND 168, held: no WhatsApp opt-in 440, held: no email on file 1619, held: quiet hours, state ended first 396, held: weekly cap 148, sent 5919, task 72. 2616 sent later than due because they fell between 21:00 and 09:00 (N01 has no quiet-hours rule; gap, to be decided).
+Nudges (every ladder step that fell due): held: DND 168, held: no WhatsApp opt-in 442, held: no email on file 1619, held: quiet hours, state ended first 396, held: weekly cap 149, sent 5919, task 74. 2613 sent later than due because they fell between 21:00 and 09:00 (N01 has no quiet-hours rule; gap, to be decided).
 
 ## 8. Decisions taken in phase A where the plan was silent
 
@@ -228,8 +228,8 @@ Each is a block in seed/config.json with added = phase A; Vatsal vetoes by reply
 | allocation | seed plan, 22 Sep 2026 | paid count times weight over the weight sum, largest remainder, ties in weight-table order; then floors; then any ugly case that needs more people in its state than the s |
 | no_predicate_rule | seed plan, 22 Sep 2026 | when no predicate holds the person keeps the last underlying state they were in (an ended overlay such as a past call is not kept); the report lists every such person |
 | day7_clock | seed plan, 22 Sep 2026 | ladder days count from the state's entry: S3 day 7 is 7 days after payment; S4 day 7 is 7 days after the first D screen saved; S5 day 7 is 7 days after the gate is met; S |
-| s16_flag | seed plan, 22 Sep 2026 | paid and AA never connected: the manual path plus the AA-failed fallback; the CAS path does not carry it |
-| difm_rule | seed plan, 22 Sep 2026 | every DIFM person resolves to S14 (S14 outranks every state but S25, S24, S12, S13), so DIFM count = the S14 count; the other paid states split DIWM:DIY 55:35 |
+| s16_flag | Vatsal, 23 Sep 2026 | S16 flag follows from the path mix: manual 30% plus AA-failed |
+| difm_rule | seed plan, 22 Sep 2026 | every DIFM person resolves to S14 (S14 outranks every state but S25, S24, S12, S13), so DIFM count = the S14 count; the other paid states split DIWM:DIY 60:36 (tier_mix) |
 | difm_archetypes | seed plan, 22 Sep 2026 | DIFM clients sit over the DIFM threshold (A8's signature); the plan does not say which archetypes they are |
 | mandate_pending_share | assumption | UPI mandates still pending bank approval among recent payers (P04 state) |
 | ugly_state_link | seed plan, 22 Sep 2026 | a case tied to a state is carried by people of that state; when the case needs more people than the state holds, the state is topped up |

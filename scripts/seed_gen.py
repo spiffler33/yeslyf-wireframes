@@ -1356,9 +1356,30 @@ def subscribe(p, ctx, t, first=False, resub=False):
     pay(p, ctx, sub, t, "captured")
     p.subs.append(sub)
     p.ev(t, "resubscribed" if resub else "paid", "P05" if not resub else "Q03", sku=p.tier, amount="Rs ___",
-         period=p.period, razorpay_ids="(the deal's Razorpay ids)", mandate_status=sub["mandate_status"],
+         period=p.period, razorpay_ids=sub["n"], mandate_status=sub["mandate_status"],
          **({"reason": "resubscribed after lapse"} if resub else {}))
     return sub
+
+
+def razorpay_ids(pid, s):
+    """A deal's Razorpay ids: the customer, and the subscription (UPI mandate) or the payment (netbanking)."""
+    return {"customer_id": "cust_SEED%s" % pid[1:],
+            "subscription_or_txn_id": ("sub_SEED%s%d" if s["payment_method"] == "upi" else "pay_SEED%s%d") % (pid[1:], s["n"])}
+
+
+def first_captured_payment_id(p, sub_n):
+    """The payment id (as the payments table numbers them) of a deal's first captured payment."""
+    for k, pay_ in enumerate(p.payments):
+        if pay_["sub_n"] == sub_n and pay_["status"] == "captured":
+            return "PAY-%s-%d" % (p.pid[1:], k + 1)
+    return None
+
+
+def task_fields(p, t):
+    out = dict((k, (iso(v) if isinstance(v, dt.datetime) else v)) for k, v in t["fields"].items())
+    if out.get("payment_reference") is not None:
+        out["payment_reference"] = first_captured_payment_id(p, out["payment_reference"])
+    return out
 
 
 def pay(p, ctx, sub, t, status, detail=None):
@@ -3293,7 +3314,7 @@ def tasks(p, ctx, episodes):
             fields["call_topic"] = p.calls[-1]["topic"] if p.calls else None
             fields["no_show_count"] = sum(1 for c in p.calls if c["outcome"] == "no_show" and c["slot"] <= created)
         if s == "S24":
-            fields["payment_reference"] = "(the deal's first payment id)"
+            fields["payment_reference"] = p.subs[0]["n"] if p.subs else None  # resolved to a payment id at write-out
             fields["cancel_reason"] = p.subs[0]["cancel_reason"] if p.subs else None
             fields["period_unexpired"] = True
         if s == "S25":
@@ -3652,8 +3673,8 @@ def build_tables(people, ctx):
                            and (c["slot"] >= A - DAYS(P)))
                 rows.append({"deal_id": deal, "sku": s["sku"], "period": s["period"], "price_key": s["price_key"],
                              "amount": s["amount"], "gst_type": s["gst_type"], "payment_method": s["payment_method"],
-                             "coupon": s["coupon"], "razorpay_customer_id": "cust_SEED%s" % pid[1:],
-                             "razorpay_subscription_or_txn_id": ("sub_SEED%s%d" % (pid[1:], s["n"])) if s["payment_method"] == "upi" else ("pay_SEED%s%d" % (pid[1:], s["n"])),
+                             "coupon": s["coupon"], "razorpay_customer_id": razorpay_ids(pid, s)["customer_id"],
+                             "razorpay_subscription_or_txn_id": razorpay_ids(pid, s)["subscription_or_txn_id"],
                              "mandate_status": s["mandate_status"], "start": ymd(s["start"]), "next_billing": nb,
                              "status": s["status"], "grace_until": ymd(s["grace_until"]), "retry_count": s["retry_count"],
                              "calls_included_per_period": ctx.cfg["app_config"]["calls_included"][s["sku"]][s["period"]],
@@ -3723,7 +3744,7 @@ def build_tables(people, ctx):
                                              "detail": e["detail"]} for e in sorted(p.integ, key=lambda e: e["at"]) if e["at"] <= A]
         if p.tasks:
             T["tasks"][pid] = [{"task_id": "%s-T%d" % (pid, j + 1), "state_id": t["state_id"], "subject": t["subject"],
-                                "fields": dict((k, (iso(v) if isinstance(v, dt.datetime) else v)) for k, v in t["fields"].items()),
+                                "fields": task_fields(p, t),
                                 "assignee": t["assignee"], "created_at": iso(t["created_at"]), "due": iso(t["due"]),
                                 "status": t["status"], "closed_at": iso(t["closed_at"]), "outcome": t["outcome"]}
                                for j, t in enumerate(p.tasks)]
@@ -3745,6 +3766,8 @@ def build_tables(people, ctx):
                 props["ticket_id"] = next(tickets, None)
             if e[2] == "signed_up":
                 props["phone"] = p.phone
+            if e[2] in ("paid", "resubscribed"):
+                props["razorpay_ids"] = razorpay_ids(p.pid, next(s for s in p.subs if s["n"] == props["razorpay_ids"]))
             n += 1
             events.append({"event_id": "EV%07d" % n, "person_id": p.pid, "event": e[2], "screen_id": e[3],
                            "at": iso(e[0]), "props": props})
@@ -4008,7 +4031,7 @@ def report(people, T, events, ctx, info, res, moved):
     rows.append(["renewals failing", "5%", "%.1f%% without the S12 and S13 people (%d of %d); %.1f%% with them" % (
         100.0 * (fails - tfail) / max(1, ren - tfail), fails - tfail, ren - tfail, 100.0 * fails / max(1, ren))])
     s16 = sum(1 for p in paid if getattr(p, "s16", False))
-    rows.append(["S16 flag among paid", "about 30%", "%.1f%% (%d)" % (100.0 * s16 / len(paid), s16)])
+    rows.append(["S16 flag among paid", cfg["s16_flag"]["rule"], "%.1f%% (%d)" % (100.0 * s16 / len(paid), s16)])
     arch = collections.Counter(p.arche for p in nonlead)
     rows.append(["archetypes (OTP'd people)", "seed plan weights", ", ".join("%s %d" % (k, arch[k]) for k in cfg["archetype_weights"]["weights"])])
     for k, (a, b, c) in res["ratios"].items():

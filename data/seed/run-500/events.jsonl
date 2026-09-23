@@ -24,7 +24,7 @@
 {"event_id":"EV0000024","person_id":"P00001","event":"esign_done","screen_id":"P03","at":"2025-08-24T19:02:44+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003518"}}
 {"event_id":"EV0000025","person_id":"P00001","event":"state_enter_S2c","screen_id":"P04","at":"2025-08-24T19:02:44+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0000026","person_id":"P00001","event":"P04_view","screen_id":"P04","at":"2025-08-24T19:07:27+05:30","props":{}}
-{"event_id":"EV0000027","person_id":"P00001","event":"paid","screen_id":"P05","at":"2025-08-24T19:08:07+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0000027","person_id":"P00001","event":"paid","screen_id":"P05","at":"2025-08-24T19:08:07+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00001","subscription_or_txn_id":"sub_SEED000011"},"mandate_status":"active"}}
 {"event_id":"EV0000028","person_id":"P00001","event":"state_enter_S3","screen_id":"O02","at":"2025-08-24T19:08:07+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0000029","person_id":"P00001","event":"P05_view","screen_id":"P05","at":"2025-08-24T19:08:12+05:30","props":{}}
 {"event_id":"EV0000030","person_id":"P00001","event":"O01_view","screen_id":"O01","at":"2025-08-24T19:09:13+05:30","props":{}}
@@ -415,7 +415,7 @@
 {"event_id":"EV0000415","person_id":"P00001","event":"nudge_sent","screen_id":"Q04","at":"2026-08-31T19:08:07+05:30","props":{"slot":"N-S23-7d-after","channel":"whatsapp","state":"S23","cap_check":"sent"}}
 {"event_id":"EV0000416","person_id":"P00001","event":"plan_updated","screen_id":"H05","at":"2026-09-11T14:38:04+05:30","props":{"from_version":"v6","to_version":"v7","reason":"publish"}}
 {"event_id":"EV0000417","person_id":"P00001","event":"Q02_view","screen_id":"Q02","at":"2026-09-14T16:04:24+05:30","props":{}}
-{"event_id":"EV0000418","person_id":"P00001","event":"resubscribed","screen_id":"Q03","at":"2026-09-14T16:06:24+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active","reason":"resubscribed after lapse"}}
+{"event_id":"EV0000418","person_id":"P00001","event":"resubscribed","screen_id":"Q03","at":"2026-09-14T16:06:24+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00001","subscription_or_txn_id":"sub_SEED000012"},"mandate_status":"active","reason":"resubscribed after lapse"}}
 {"event_id":"EV0000419","person_id":"P00001","event":"state_enter_S11","screen_id":"H01e","at":"2026-09-14T16:06:24+05:30","props":{"state":"S11","from_state":"S13"}}
 {"event_id":"EV0000420","person_id":"P00001","event":"open_organic","screen_id":null,"at":"2026-09-14T20:21:12+05:30","props":{}}
 {"event_id":"EV0000421","person_id":"P00001","event":"H01e_view","screen_id":"H01e","at":"2026-09-14T20:21:14+05:30","props":{}}
@@ -451,7 +451,7 @@
 {"event_id":"EV0000451","person_id":"P00002","event":"esign_done","screen_id":"P03","at":"2025-09-08T22:00:50+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003525"}}
 {"event_id":"EV0000452","person_id":"P00002","event":"state_enter_S2c","screen_id":"P04","at":"2025-09-08T22:00:50+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0000453","person_id":"P00002","event":"P04_view","screen_id":"P04","at":"2025-09-08T22:05:54+05:30","props":{}}
-{"event_id":"EV0000454","person_id":"P00002","event":"paid","screen_id":"P05","at":"2025-09-08T22:06:34+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0000454","person_id":"P00002","event":"paid","screen_id":"P05","at":"2025-09-08T22:06:34+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00002","subscription_or_txn_id":"pay_SEED000021"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0000455","person_id":"P00002","event":"state_enter_S3","screen_id":"O02","at":"2025-09-08T22:06:34+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0000456","person_id":"P00002","event":"P05_view","screen_id":"P05","at":"2025-09-08T22:06:39+05:30","props":{}}
 {"event_id":"EV0000457","person_id":"P00002","event":"O01_view","screen_id":"O01","at":"2025-09-08T22:07:17+05:30","props":{}}
@@ -1000,7 +1000,7 @@
 {"event_id":"EV0001000","person_id":"P00010","event":"esign_done","screen_id":"P03","at":"2026-04-07T11:28:37+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003343"}}
 {"event_id":"EV0001001","person_id":"P00010","event":"state_enter_S2c","screen_id":"P04","at":"2026-04-07T11:28:37+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0001002","person_id":"P00010","event":"P04_view","screen_id":"P04","at":"2026-04-07T11:32:13+05:30","props":{}}
-{"event_id":"EV0001003","person_id":"P00010","event":"paid","screen_id":"P05","at":"2026-04-07T11:32:53+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0001003","person_id":"P00010","event":"paid","screen_id":"P05","at":"2026-04-07T11:32:53+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00010","subscription_or_txn_id":"sub_SEED000101"},"mandate_status":"active"}}
 {"event_id":"EV0001004","person_id":"P00010","event":"state_enter_S3","screen_id":"O02","at":"2026-04-07T11:32:53+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0001005","person_id":"P00010","event":"P05_view","screen_id":"P05","at":"2026-04-07T11:32:58+05:30","props":{}}
 {"event_id":"EV0001006","person_id":"P00010","event":"O01_view","screen_id":"O01","at":"2026-04-07T11:33:14+05:30","props":{}}
@@ -1297,7 +1297,7 @@
 {"event_id":"EV0001297","person_id":"P00012","event":"esign_done","screen_id":"P03","at":"2026-04-04T20:18:17+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003385"}}
 {"event_id":"EV0001298","person_id":"P00012","event":"state_enter_S2c","screen_id":"P04","at":"2026-04-04T20:18:17+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0001299","person_id":"P00012","event":"P04_view","screen_id":"P04","at":"2026-04-04T20:22:31+05:30","props":{}}
-{"event_id":"EV0001300","person_id":"P00012","event":"paid","screen_id":"P05","at":"2026-04-04T20:23:11+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0001300","person_id":"P00012","event":"paid","screen_id":"P05","at":"2026-04-04T20:23:11+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00012","subscription_or_txn_id":"sub_SEED000121"},"mandate_status":"active"}}
 {"event_id":"EV0001301","person_id":"P00012","event":"state_enter_S3","screen_id":"O02","at":"2026-04-04T20:23:11+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0001302","person_id":"P00012","event":"P05_view","screen_id":"P05","at":"2026-04-04T20:23:16+05:30","props":{}}
 {"event_id":"EV0001303","person_id":"P00012","event":"O01_view","screen_id":"O01","at":"2026-04-04T20:24:22+05:30","props":{}}
@@ -1624,7 +1624,7 @@
 {"event_id":"EV0001624","person_id":"P00018","event":"esign_done","screen_id":"P03","at":"2026-04-12T11:08:22+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003336"}}
 {"event_id":"EV0001625","person_id":"P00018","event":"state_enter_S2c","screen_id":"P04","at":"2026-04-12T11:08:22+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0001626","person_id":"P00018","event":"P04_view","screen_id":"P04","at":"2026-04-12T11:10:41+05:30","props":{}}
-{"event_id":"EV0001627","person_id":"P00018","event":"paid","screen_id":"P05","at":"2026-04-12T11:11:21+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0001627","person_id":"P00018","event":"paid","screen_id":"P05","at":"2026-04-12T11:11:21+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00018","subscription_or_txn_id":"sub_SEED000181"},"mandate_status":"active"}}
 {"event_id":"EV0001628","person_id":"P00018","event":"state_enter_S3","screen_id":"O02","at":"2026-04-12T11:11:21+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0001629","person_id":"P00018","event":"P05_view","screen_id":"P05","at":"2026-04-12T11:11:26+05:30","props":{}}
 {"event_id":"EV0001630","person_id":"P00018","event":"O01_view","screen_id":"O01","at":"2026-04-12T11:12:21+05:30","props":{}}
@@ -1984,7 +1984,7 @@
 {"event_id":"EV0001984","person_id":"P00022","event":"esign_done","screen_id":"P03","at":"2026-05-21T15:53:27+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003294"}}
 {"event_id":"EV0001985","person_id":"P00022","event":"state_enter_S2c","screen_id":"P04","at":"2026-05-21T15:53:27+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0001986","person_id":"P00022","event":"P04_view","screen_id":"P04","at":"2026-05-21T15:55:26+05:30","props":{}}
-{"event_id":"EV0001987","person_id":"P00022","event":"paid","screen_id":"P05","at":"2026-05-21T15:56:06+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0001987","person_id":"P00022","event":"paid","screen_id":"P05","at":"2026-05-21T15:56:06+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00022","subscription_or_txn_id":"sub_SEED000221"},"mandate_status":"active"}}
 {"event_id":"EV0001988","person_id":"P00022","event":"state_enter_S3","screen_id":"O02","at":"2026-05-21T15:56:06+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0001989","person_id":"P00022","event":"P05_view","screen_id":"P05","at":"2026-05-21T15:56:11+05:30","props":{}}
 {"event_id":"EV0001990","person_id":"P00022","event":"O01_view","screen_id":"O01","at":"2026-05-21T15:56:38+05:30","props":{}}
@@ -2397,7 +2397,7 @@
 {"event_id":"EV0002397","person_id":"P00030","event":"esign_done","screen_id":"P03","at":"2026-04-18T19:16:35+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003511"}}
 {"event_id":"EV0002398","person_id":"P00030","event":"state_enter_S2c","screen_id":"P04","at":"2026-04-18T19:16:35+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0002399","person_id":"P00030","event":"P04_view","screen_id":"P04","at":"2026-04-18T19:20:34+05:30","props":{}}
-{"event_id":"EV0002400","person_id":"P00030","event":"paid","screen_id":"P05","at":"2026-04-18T19:21:14+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0002400","person_id":"P00030","event":"paid","screen_id":"P05","at":"2026-04-18T19:21:14+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00030","subscription_or_txn_id":"sub_SEED000301"},"mandate_status":"active"}}
 {"event_id":"EV0002401","person_id":"P00030","event":"state_enter_S3","screen_id":"O02","at":"2026-04-18T19:21:14+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0002402","person_id":"P00030","event":"P05_view","screen_id":"P05","at":"2026-04-18T19:21:19+05:30","props":{}}
 {"event_id":"EV0002403","person_id":"P00030","event":"O01_view","screen_id":"O01","at":"2026-04-18T19:21:55+05:30","props":{}}
@@ -2762,7 +2762,7 @@
 {"event_id":"EV0002762","person_id":"P00035","event":"esign_done","screen_id":"P03","at":"2026-04-30T20:17:36+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003322"}}
 {"event_id":"EV0002763","person_id":"P00035","event":"state_enter_S2c","screen_id":"P04","at":"2026-04-30T20:17:36+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0002764","person_id":"P00035","event":"P04_view","screen_id":"P04","at":"2026-04-30T20:21:14+05:30","props":{}}
-{"event_id":"EV0002765","person_id":"P00035","event":"paid","screen_id":"P05","at":"2026-04-30T20:21:54+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0002765","person_id":"P00035","event":"paid","screen_id":"P05","at":"2026-04-30T20:21:54+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00035","subscription_or_txn_id":"pay_SEED000351"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0002766","person_id":"P00035","event":"state_enter_S3","screen_id":"O02","at":"2026-04-30T20:21:54+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0002767","person_id":"P00035","event":"P05_view","screen_id":"P05","at":"2026-04-30T20:21:59+05:30","props":{}}
 {"event_id":"EV0002768","person_id":"P00035","event":"O01_view","screen_id":"O01","at":"2026-04-30T20:22:41+05:30","props":{}}
@@ -3111,7 +3111,7 @@
 {"event_id":"EV0003111","person_id":"P00038","event":"esign_done","screen_id":"P03","at":"2026-04-23T16:42:34+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003399"}}
 {"event_id":"EV0003112","person_id":"P00038","event":"state_enter_S2c","screen_id":"P04","at":"2026-04-23T16:42:34+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0003113","person_id":"P00038","event":"P04_view","screen_id":"P04","at":"2026-04-23T16:43:39+05:30","props":{}}
-{"event_id":"EV0003114","person_id":"P00038","event":"paid","screen_id":"P05","at":"2026-04-23T16:44:19+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0003114","person_id":"P00038","event":"paid","screen_id":"P05","at":"2026-04-23T16:44:19+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00038","subscription_or_txn_id":"pay_SEED000381"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0003115","person_id":"P00038","event":"state_enter_S3","screen_id":"O02","at":"2026-04-23T16:44:19+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0003116","person_id":"P00038","event":"P05_view","screen_id":"P05","at":"2026-04-23T16:44:24+05:30","props":{}}
 {"event_id":"EV0003117","person_id":"P00038","event":"O01_view","screen_id":"O01","at":"2026-04-23T16:44:47+05:30","props":{}}
@@ -3399,7 +3399,7 @@
 {"event_id":"EV0003399","person_id":"P00042","event":"esign_done","screen_id":"P03","at":"2026-05-18T13:58:49+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003497"}}
 {"event_id":"EV0003400","person_id":"P00042","event":"state_enter_S2c","screen_id":"P04","at":"2026-05-18T13:58:49+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0003401","person_id":"P00042","event":"P04_view","screen_id":"P04","at":"2026-05-18T14:00:11+05:30","props":{}}
-{"event_id":"EV0003402","person_id":"P00042","event":"paid","screen_id":"P05","at":"2026-05-18T14:00:51+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0003402","person_id":"P00042","event":"paid","screen_id":"P05","at":"2026-05-18T14:00:51+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00042","subscription_or_txn_id":"sub_SEED000421"},"mandate_status":"active"}}
 {"event_id":"EV0003403","person_id":"P00042","event":"state_enter_S3","screen_id":"O02","at":"2026-05-18T14:00:51+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0003404","person_id":"P00042","event":"P05_view","screen_id":"P05","at":"2026-05-18T14:00:56+05:30","props":{}}
 {"event_id":"EV0003405","person_id":"P00042","event":"O01_view","screen_id":"O01","at":"2026-05-18T14:02:01+05:30","props":{}}
@@ -3724,7 +3724,7 @@
 {"event_id":"EV0003724","person_id":"P00049","event":"esign_done","screen_id":"P03","at":"2026-06-24T23:20:53+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003371"}}
 {"event_id":"EV0003725","person_id":"P00049","event":"state_enter_S2c","screen_id":"P04","at":"2026-06-24T23:20:53+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0003726","person_id":"P00049","event":"P04_view","screen_id":"P04","at":"2026-06-24T23:24:25+05:30","props":{}}
-{"event_id":"EV0003727","person_id":"P00049","event":"paid","screen_id":"P05","at":"2026-06-24T23:25:05+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0003727","person_id":"P00049","event":"paid","screen_id":"P05","at":"2026-06-24T23:25:05+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00049","subscription_or_txn_id":"sub_SEED000491"},"mandate_status":"active"}}
 {"event_id":"EV0003728","person_id":"P00049","event":"state_enter_S3","screen_id":"O02","at":"2026-06-24T23:25:05+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0003729","person_id":"P00049","event":"P05_view","screen_id":"P05","at":"2026-06-24T23:25:10+05:30","props":{}}
 {"event_id":"EV0003730","person_id":"P00049","event":"O01_view","screen_id":"O01","at":"2026-06-24T23:25:33+05:30","props":{}}
@@ -4009,7 +4009,7 @@
 {"event_id":"EV0004009","person_id":"P00056","event":"esign_done","screen_id":"P03","at":"2026-05-22T15:46:36+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003504"}}
 {"event_id":"EV0004010","person_id":"P00056","event":"state_enter_S2c","screen_id":"P04","at":"2026-05-22T15:46:36+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0004011","person_id":"P00056","event":"P04_view","screen_id":"P04","at":"2026-05-22T15:51:46+05:30","props":{}}
-{"event_id":"EV0004012","person_id":"P00056","event":"paid","screen_id":"P05","at":"2026-05-22T15:52:26+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0004012","person_id":"P00056","event":"paid","screen_id":"P05","at":"2026-05-22T15:52:26+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00056","subscription_or_txn_id":"sub_SEED000561"},"mandate_status":"active"}}
 {"event_id":"EV0004013","person_id":"P00056","event":"state_enter_S3","screen_id":"O02","at":"2026-05-22T15:52:26+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0004014","person_id":"P00056","event":"P05_view","screen_id":"P05","at":"2026-05-22T15:52:31+05:30","props":{}}
 {"event_id":"EV0004015","person_id":"P00056","event":"O01_view","screen_id":"O01","at":"2026-05-22T15:53:04+05:30","props":{}}
@@ -4345,7 +4345,7 @@
 {"event_id":"EV0004345","person_id":"P00060","event":"esign_done","screen_id":"P03","at":"2026-05-10T08:32:22+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003329"}}
 {"event_id":"EV0004346","person_id":"P00060","event":"state_enter_S2c","screen_id":"P04","at":"2026-05-10T08:32:22+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0004347","person_id":"P00060","event":"P04_view","screen_id":"P04","at":"2026-05-10T08:34:53+05:30","props":{}}
-{"event_id":"EV0004348","person_id":"P00060","event":"paid","screen_id":"P05","at":"2026-05-10T08:35:33+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0004348","person_id":"P00060","event":"paid","screen_id":"P05","at":"2026-05-10T08:35:33+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00060","subscription_or_txn_id":"sub_SEED000601"},"mandate_status":"active"}}
 {"event_id":"EV0004349","person_id":"P00060","event":"state_enter_S3","screen_id":"O02","at":"2026-05-10T08:35:33+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0004350","person_id":"P00060","event":"P05_view","screen_id":"P05","at":"2026-05-10T08:35:38+05:30","props":{}}
 {"event_id":"EV0004351","person_id":"P00060","event":"O01_view","screen_id":"O01","at":"2026-05-10T08:35:53+05:30","props":{}}
@@ -4698,7 +4698,7 @@
 {"event_id":"EV0004698","person_id":"P00065","event":"esign_done","screen_id":"P03","at":"2026-05-07T19:41:17+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003280"}}
 {"event_id":"EV0004699","person_id":"P00065","event":"state_enter_S2c","screen_id":"P04","at":"2026-05-07T19:41:17+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0004700","person_id":"P00065","event":"P04_view","screen_id":"P04","at":"2026-05-07T19:44:34+05:30","props":{}}
-{"event_id":"EV0004701","person_id":"P00065","event":"paid","screen_id":"P05","at":"2026-05-07T19:45:14+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0004701","person_id":"P00065","event":"paid","screen_id":"P05","at":"2026-05-07T19:45:14+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00065","subscription_or_txn_id":"pay_SEED000651"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0004702","person_id":"P00065","event":"state_enter_S3","screen_id":"O02","at":"2026-05-07T19:45:14+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0004703","person_id":"P00065","event":"P05_view","screen_id":"P05","at":"2026-05-07T19:45:19+05:30","props":{}}
 {"event_id":"EV0004704","person_id":"P00065","event":"O01_view","screen_id":"O01","at":"2026-05-07T19:46:09+05:30","props":{}}
@@ -4985,7 +4985,7 @@
 {"event_id":"EV0004985","person_id":"P00068","event":"esign_done","screen_id":"P03","at":"2026-05-27T09:39:48+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003350"}}
 {"event_id":"EV0004986","person_id":"P00068","event":"state_enter_S2c","screen_id":"P04","at":"2026-05-27T09:39:48+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0004987","person_id":"P00068","event":"P04_view","screen_id":"P04","at":"2026-05-27T09:42:59+05:30","props":{}}
-{"event_id":"EV0004988","person_id":"P00068","event":"paid","screen_id":"P05","at":"2026-05-27T09:43:39+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0004988","person_id":"P00068","event":"paid","screen_id":"P05","at":"2026-05-27T09:43:39+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00068","subscription_or_txn_id":"sub_SEED000681"},"mandate_status":"active"}}
 {"event_id":"EV0004989","person_id":"P00068","event":"state_enter_S3","screen_id":"O02","at":"2026-05-27T09:43:39+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0004990","person_id":"P00068","event":"P05_view","screen_id":"P05","at":"2026-05-27T09:43:44+05:30","props":{}}
 {"event_id":"EV0004991","person_id":"P00068","event":"O01_view","screen_id":"O01","at":"2026-05-27T09:44:21+05:30","props":{}}
@@ -5308,7 +5308,7 @@
 {"event_id":"EV0005308","person_id":"P00071","event":"esign_done","screen_id":"P03","at":"2026-05-09T18:39:22+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003546"}}
 {"event_id":"EV0005309","person_id":"P00071","event":"state_enter_S2c","screen_id":"P04","at":"2026-05-09T18:39:22+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0005310","person_id":"P00071","event":"P04_view","screen_id":"P04","at":"2026-05-09T18:40:28+05:30","props":{}}
-{"event_id":"EV0005311","person_id":"P00071","event":"paid","screen_id":"P05","at":"2026-05-09T18:41:08+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0005311","person_id":"P00071","event":"paid","screen_id":"P05","at":"2026-05-09T18:41:08+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00071","subscription_or_txn_id":"pay_SEED000711"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0005312","person_id":"P00071","event":"state_enter_S3","screen_id":"O02","at":"2026-05-09T18:41:08+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0005313","person_id":"P00071","event":"P05_view","screen_id":"P05","at":"2026-05-09T18:41:13+05:30","props":{}}
 {"event_id":"EV0005314","person_id":"P00071","event":"O01_view","screen_id":"O01","at":"2026-05-09T18:41:36+05:30","props":{}}
@@ -5671,7 +5671,7 @@
 {"event_id":"EV0005671","person_id":"P00080","event":"esign_done","screen_id":"P03","at":"2026-06-08T08:33:20+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003420"}}
 {"event_id":"EV0005672","person_id":"P00080","event":"state_enter_S2c","screen_id":"P04","at":"2026-06-08T08:33:20+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0005673","person_id":"P00080","event":"P04_view","screen_id":"P04","at":"2026-06-08T08:38:10+05:30","props":{}}
-{"event_id":"EV0005674","person_id":"P00080","event":"paid","screen_id":"P05","at":"2026-06-08T08:38:50+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0005674","person_id":"P00080","event":"paid","screen_id":"P05","at":"2026-06-08T08:38:50+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00080","subscription_or_txn_id":"sub_SEED000801"},"mandate_status":"active"}}
 {"event_id":"EV0005675","person_id":"P00080","event":"state_enter_S3","screen_id":"O02","at":"2026-06-08T08:38:50+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0005676","person_id":"P00080","event":"P05_view","screen_id":"P05","at":"2026-06-08T08:38:55+05:30","props":{}}
 {"event_id":"EV0005677","person_id":"P00080","event":"O01_view","screen_id":"O01","at":"2026-06-08T08:39:57+05:30","props":{}}
@@ -5982,7 +5982,7 @@
 {"event_id":"EV0005982","person_id":"P00085","event":"esign_done","screen_id":"P03","at":"2026-05-23T07:13:10+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003357"}}
 {"event_id":"EV0005983","person_id":"P00085","event":"state_enter_S2c","screen_id":"P04","at":"2026-05-23T07:13:10+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0005984","person_id":"P00085","event":"P04_view","screen_id":"P04","at":"2026-05-23T07:15:09+05:30","props":{}}
-{"event_id":"EV0005985","person_id":"P00085","event":"paid","screen_id":"P05","at":"2026-05-23T07:15:49+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0005985","person_id":"P00085","event":"paid","screen_id":"P05","at":"2026-05-23T07:15:49+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00085","subscription_or_txn_id":"sub_SEED000851"},"mandate_status":"active"}}
 {"event_id":"EV0005986","person_id":"P00085","event":"state_enter_S3","screen_id":"O02","at":"2026-05-23T07:15:49+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0005987","person_id":"P00085","event":"P05_view","screen_id":"P05","at":"2026-05-23T07:15:54+05:30","props":{}}
 {"event_id":"EV0005988","person_id":"P00085","event":"O01_view","screen_id":"O01","at":"2026-05-23T07:17:18+05:30","props":{}}
@@ -6303,7 +6303,7 @@
 {"event_id":"EV0006303","person_id":"P00090","event":"esign_done","screen_id":"P03","at":"2026-05-18T13:34:17+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003483"}}
 {"event_id":"EV0006304","person_id":"P00090","event":"state_enter_S2c","screen_id":"P04","at":"2026-05-18T13:34:17+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0006305","person_id":"P00090","event":"P04_view","screen_id":"P04","at":"2026-05-18T13:35:24+05:30","props":{}}
-{"event_id":"EV0006306","person_id":"P00090","event":"paid","screen_id":"P05","at":"2026-05-18T13:36:04+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0006306","person_id":"P00090","event":"paid","screen_id":"P05","at":"2026-05-18T13:36:04+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00090","subscription_or_txn_id":"sub_SEED000901"},"mandate_status":"active"}}
 {"event_id":"EV0006307","person_id":"P00090","event":"state_enter_S3","screen_id":"O02","at":"2026-05-18T13:36:04+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0006308","person_id":"P00090","event":"P05_view","screen_id":"P05","at":"2026-05-18T13:36:09+05:30","props":{}}
 {"event_id":"EV0006309","person_id":"P00090","event":"O01_view","screen_id":"O01","at":"2026-05-18T13:36:49+05:30","props":{}}
@@ -6589,7 +6589,7 @@
 {"event_id":"EV0006589","person_id":"P00095","event":"esign_done","screen_id":"P03","at":"2026-06-02T21:29:45+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003287"}}
 {"event_id":"EV0006590","person_id":"P00095","event":"state_enter_S2c","screen_id":"P04","at":"2026-06-02T21:29:45+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0006591","person_id":"P00095","event":"P04_view","screen_id":"P04","at":"2026-06-02T21:33:29+05:30","props":{}}
-{"event_id":"EV0006592","person_id":"P00095","event":"paid","screen_id":"P05","at":"2026-06-02T21:34:09+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0006592","person_id":"P00095","event":"paid","screen_id":"P05","at":"2026-06-02T21:34:09+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00095","subscription_or_txn_id":"pay_SEED000951"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0006593","person_id":"P00095","event":"state_enter_S3","screen_id":"O02","at":"2026-06-02T21:34:09+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0006594","person_id":"P00095","event":"P05_view","screen_id":"P05","at":"2026-06-02T21:34:14+05:30","props":{}}
 {"event_id":"EV0006595","person_id":"P00095","event":"O01_view","screen_id":"O01","at":"2026-06-02T21:34:34+05:30","props":{}}
@@ -6889,7 +6889,7 @@
 {"event_id":"EV0006889","person_id":"P00098","event":"esign_done","screen_id":"P03","at":"2026-07-14T23:50:13+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003273"}}
 {"event_id":"EV0006890","person_id":"P00098","event":"state_enter_S2c","screen_id":"P04","at":"2026-07-14T23:50:13+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0006891","person_id":"P00098","event":"P04_view","screen_id":"P04","at":"2026-07-14T23:54:43+05:30","props":{}}
-{"event_id":"EV0006892","person_id":"P00098","event":"paid","screen_id":"P05","at":"2026-07-14T23:55:23+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0006892","person_id":"P00098","event":"paid","screen_id":"P05","at":"2026-07-14T23:55:23+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00098","subscription_or_txn_id":"sub_SEED000981"},"mandate_status":"active"}}
 {"event_id":"EV0006893","person_id":"P00098","event":"state_enter_S3","screen_id":"O02","at":"2026-07-14T23:55:23+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0006894","person_id":"P00098","event":"P05_view","screen_id":"P05","at":"2026-07-14T23:55:28+05:30","props":{}}
 {"event_id":"EV0006895","person_id":"P00098","event":"O01_view","screen_id":"O01","at":"2026-07-14T23:56:24+05:30","props":{}}
@@ -7682,7 +7682,7 @@
 {"event_id":"EV0007682","person_id":"P00156","event":"esign_done","screen_id":"P03","at":"2026-06-15T13:38:17+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003476"}}
 {"event_id":"EV0007683","person_id":"P00156","event":"state_enter_S2c","screen_id":"P04","at":"2026-06-15T13:38:17+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0007684","person_id":"P00156","event":"P04_view","screen_id":"P04","at":"2026-06-15T13:42:02+05:30","props":{}}
-{"event_id":"EV0007685","person_id":"P00156","event":"paid","screen_id":"P05","at":"2026-06-15T13:42:42+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0007685","person_id":"P00156","event":"paid","screen_id":"P05","at":"2026-06-15T13:42:42+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00156","subscription_or_txn_id":"sub_SEED001561"},"mandate_status":"active"}}
 {"event_id":"EV0007686","person_id":"P00156","event":"state_enter_S3","screen_id":"O02","at":"2026-06-15T13:42:42+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0007687","person_id":"P00156","event":"P05_view","screen_id":"P05","at":"2026-06-15T13:42:47+05:30","props":{}}
 {"event_id":"EV0007688","person_id":"P00156","event":"O01_view","screen_id":"O01","at":"2026-06-15T13:44:10+05:30","props":{}}
@@ -7927,7 +7927,7 @@
 {"event_id":"EV0007927","person_id":"P00156","event":"call_booked","screen_id":"K01","at":"2026-09-16T16:32:57+05:30","props":{"slot":"2026-09-19T18:00:00+05:30","adviser_id":"adv02","topic":"My numbers","tier":"diwm","summary":"call booked: my numbers"}}
 {"event_id":"EV0007928","person_id":"P00156","event":"K02_view","screen_id":"K02","at":"2026-09-16T16:33:00+05:30","props":{}}
 {"event_id":"EV0007929","person_id":"P00156","event":"Q02_view","screen_id":"Q02","at":"2026-09-16T18:42:32+05:30","props":{}}
-{"event_id":"EV0007930","person_id":"P00156","event":"resubscribed","screen_id":"Q03","at":"2026-09-16T18:44:32+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active","reason":"resubscribed after lapse"}}
+{"event_id":"EV0007930","person_id":"P00156","event":"resubscribed","screen_id":"Q03","at":"2026-09-16T18:44:32+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00156","subscription_or_txn_id":"sub_SEED001562"},"mandate_status":"active","reason":"resubscribed after lapse"}}
 {"event_id":"EV0007931","person_id":"P00156","event":"state_enter_S7","screen_id":"K02","at":"2026-09-16T18:44:32+05:30","props":{"state":"S7","from_state":"S13"}}
 {"event_id":"EV0007932","person_id":"P00156","event":"no_show","screen_id":"K01","at":"2026-09-19T18:20:00+05:30","props":{"slot":"2026-09-19T18:00:00+05:30","adviser_id":"adv02","summary":"client did not join"}}
 {"event_id":"EV0007933","person_id":"P00156","event":"call_no_show","screen_id":"K01","at":"2026-09-19T18:20:00+05:30","props":{"topic":"My numbers"}}
@@ -7990,7 +7990,7 @@
 {"event_id":"EV0007990","person_id":"P00158","event":"esign_done","screen_id":"P03","at":"2026-06-20T15:01:57+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003378"}}
 {"event_id":"EV0007991","person_id":"P00158","event":"state_enter_S2c","screen_id":"P04","at":"2026-06-20T15:01:57+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0007992","person_id":"P00158","event":"P04_view","screen_id":"P04","at":"2026-06-20T15:03:25+05:30","props":{}}
-{"event_id":"EV0007993","person_id":"P00158","event":"paid","screen_id":"P05","at":"2026-06-20T15:04:05+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0007993","person_id":"P00158","event":"paid","screen_id":"P05","at":"2026-06-20T15:04:05+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00158","subscription_or_txn_id":"pay_SEED001581"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0007994","person_id":"P00158","event":"state_enter_S3","screen_id":"O02","at":"2026-06-20T15:04:05+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0007995","person_id":"P00158","event":"P05_view","screen_id":"P05","at":"2026-06-20T15:04:10+05:30","props":{}}
 {"event_id":"EV0007996","person_id":"P00158","event":"O01_view","screen_id":"O01","at":"2026-06-20T15:05:20+05:30","props":{}}
@@ -8295,7 +8295,7 @@
 {"event_id":"EV0008295","person_id":"P00164","event":"esign_done","screen_id":"P03","at":"2026-06-17T07:55:39+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003427"}}
 {"event_id":"EV0008296","person_id":"P00164","event":"state_enter_S2c","screen_id":"P04","at":"2026-06-17T07:55:39+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0008297","person_id":"P00164","event":"P04_view","screen_id":"P04","at":"2026-06-17T08:00:25+05:30","props":{}}
-{"event_id":"EV0008298","person_id":"P00164","event":"paid","screen_id":"P05","at":"2026-06-17T08:01:05+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0008298","person_id":"P00164","event":"paid","screen_id":"P05","at":"2026-06-17T08:01:05+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00164","subscription_or_txn_id":"pay_SEED001641"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0008299","person_id":"P00164","event":"state_enter_S3","screen_id":"O02","at":"2026-06-17T08:01:05+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0008300","person_id":"P00164","event":"P05_view","screen_id":"P05","at":"2026-06-17T08:01:10+05:30","props":{}}
 {"event_id":"EV0008301","person_id":"P00164","event":"O01_view","screen_id":"O01","at":"2026-06-17T08:02:17+05:30","props":{}}
@@ -8786,7 +8786,7 @@
 {"event_id":"EV0008786","person_id":"P00177","event":"esign_done","screen_id":"P03","at":"2026-06-23T20:45:11+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003448"}}
 {"event_id":"EV0008787","person_id":"P00177","event":"state_enter_S2c","screen_id":"P04","at":"2026-06-23T20:45:11+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0008788","person_id":"P00177","event":"P04_view","screen_id":"P04","at":"2026-06-23T20:50:08+05:30","props":{}}
-{"event_id":"EV0008789","person_id":"P00177","event":"paid","screen_id":"P05","at":"2026-06-23T20:50:48+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0008789","person_id":"P00177","event":"paid","screen_id":"P05","at":"2026-06-23T20:50:48+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00177","subscription_or_txn_id":"sub_SEED001771"},"mandate_status":"active"}}
 {"event_id":"EV0008790","person_id":"P00177","event":"state_enter_S3","screen_id":"O02","at":"2026-06-23T20:50:48+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0008791","person_id":"P00177","event":"P05_view","screen_id":"P05","at":"2026-06-23T20:50:53+05:30","props":{}}
 {"event_id":"EV0008792","person_id":"P00177","event":"O01_view","screen_id":"O01","at":"2026-06-23T20:52:02+05:30","props":{}}
@@ -9099,7 +9099,7 @@
 {"event_id":"EV0009099","person_id":"P00194","event":"esign_done","screen_id":"P03","at":"2026-06-28T17:56:03+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003259"}}
 {"event_id":"EV0009100","person_id":"P00194","event":"state_enter_S2c","screen_id":"P04","at":"2026-06-28T17:56:03+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0009101","person_id":"P00194","event":"P04_view","screen_id":"P04","at":"2026-06-28T17:59:13+05:30","props":{}}
-{"event_id":"EV0009102","person_id":"P00194","event":"paid","screen_id":"P05","at":"2026-06-28T17:59:53+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0009102","person_id":"P00194","event":"paid","screen_id":"P05","at":"2026-06-28T17:59:53+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00194","subscription_or_txn_id":"sub_SEED001941"},"mandate_status":"active"}}
 {"event_id":"EV0009103","person_id":"P00194","event":"state_enter_S3","screen_id":"O02","at":"2026-06-28T17:59:53+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0009104","person_id":"P00194","event":"P05_view","screen_id":"P05","at":"2026-06-28T17:59:58+05:30","props":{}}
 {"event_id":"EV0009105","person_id":"P00194","event":"O01_view","screen_id":"O01","at":"2026-06-28T18:00:17+05:30","props":{}}
@@ -9370,7 +9370,7 @@
 {"event_id":"EV0009370","person_id":"P00199","event":"esign_done","screen_id":"P03","at":"2026-07-01T21:39:07+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003364"}}
 {"event_id":"EV0009371","person_id":"P00199","event":"state_enter_S2c","screen_id":"P04","at":"2026-07-01T21:39:07+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0009372","person_id":"P00199","event":"P04_view","screen_id":"P04","at":"2026-07-01T21:40:15+05:30","props":{}}
-{"event_id":"EV0009373","person_id":"P00199","event":"paid","screen_id":"P05","at":"2026-07-01T21:40:55+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0009373","person_id":"P00199","event":"paid","screen_id":"P05","at":"2026-07-01T21:40:55+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00199","subscription_or_txn_id":"sub_SEED001991"},"mandate_status":"active"}}
 {"event_id":"EV0009374","person_id":"P00199","event":"state_enter_S3","screen_id":"O02","at":"2026-07-01T21:40:55+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0009375","person_id":"P00199","event":"P05_view","screen_id":"P05","at":"2026-07-01T21:41:00+05:30","props":{}}
 {"event_id":"EV0009376","person_id":"P00199","event":"O01_view","screen_id":"O01","at":"2026-07-01T21:41:48+05:30","props":{}}
@@ -9661,7 +9661,7 @@
 {"event_id":"EV0009661","person_id":"P00202","event":"esign_done","screen_id":"P03","at":"2026-07-24T08:21:33+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003245"}}
 {"event_id":"EV0009662","person_id":"P00202","event":"state_enter_S2c","screen_id":"P04","at":"2026-07-24T08:21:33+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0009663","person_id":"P00202","event":"P04_view","screen_id":"P04","at":"2026-07-24T08:24:47+05:30","props":{}}
-{"event_id":"EV0009664","person_id":"P00202","event":"paid","screen_id":"P05","at":"2026-07-24T08:25:27+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0009664","person_id":"P00202","event":"paid","screen_id":"P05","at":"2026-07-24T08:25:27+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00202","subscription_or_txn_id":"pay_SEED002021"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0009665","person_id":"P00202","event":"state_enter_S3","screen_id":"O02","at":"2026-07-24T08:25:27+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0009666","person_id":"P00202","event":"P05_view","screen_id":"P05","at":"2026-07-24T08:25:32+05:30","props":{}}
 {"event_id":"EV0009667","person_id":"P00202","event":"O01_view","screen_id":"O01","at":"2026-07-24T08:26:35+05:30","props":{}}
@@ -10096,7 +10096,7 @@
 {"event_id":"EV0010096","person_id":"P00223","event":"esign_done","screen_id":"P03","at":"2026-07-07T09:16:04+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003462"}}
 {"event_id":"EV0010097","person_id":"P00223","event":"state_enter_S2c","screen_id":"P04","at":"2026-07-07T09:16:04+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0010098","person_id":"P00223","event":"P04_view","screen_id":"P04","at":"2026-07-07T09:20:58+05:30","props":{}}
-{"event_id":"EV0010099","person_id":"P00223","event":"paid","screen_id":"P05","at":"2026-07-07T09:21:38+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0010099","person_id":"P00223","event":"paid","screen_id":"P05","at":"2026-07-07T09:21:38+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00223","subscription_or_txn_id":"sub_SEED002231"},"mandate_status":"active"}}
 {"event_id":"EV0010100","person_id":"P00223","event":"state_enter_S3","screen_id":"O02","at":"2026-07-07T09:21:38+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0010101","person_id":"P00223","event":"P05_view","screen_id":"P05","at":"2026-07-07T09:21:43+05:30","props":{}}
 {"event_id":"EV0010102","person_id":"P00223","event":"O01_view","screen_id":"O01","at":"2026-07-07T09:22:58+05:30","props":{}}
@@ -10445,7 +10445,7 @@
 {"event_id":"EV0010445","person_id":"P00243","event":"esign_done","screen_id":"P03","at":"2026-07-12T20:15:58+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003308"}}
 {"event_id":"EV0010446","person_id":"P00243","event":"state_enter_S2c","screen_id":"P04","at":"2026-07-12T20:15:58+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0010447","person_id":"P00243","event":"P04_view","screen_id":"P04","at":"2026-07-12T20:18:23+05:30","props":{}}
-{"event_id":"EV0010448","person_id":"P00243","event":"paid","screen_id":"P05","at":"2026-07-12T20:19:03+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0010448","person_id":"P00243","event":"paid","screen_id":"P05","at":"2026-07-12T20:19:03+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00243","subscription_or_txn_id":"sub_SEED002431"},"mandate_status":"active"}}
 {"event_id":"EV0010449","person_id":"P00243","event":"state_enter_S3","screen_id":"O02","at":"2026-07-12T20:19:03+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0010450","person_id":"P00243","event":"P05_view","screen_id":"P05","at":"2026-07-12T20:19:08+05:30","props":{}}
 {"event_id":"EV0010451","person_id":"P00243","event":"O01_view","screen_id":"O01","at":"2026-07-12T20:20:28+05:30","props":{}}
@@ -10696,7 +10696,7 @@
 {"event_id":"EV0010696","person_id":"P00257","event":"esign_done","screen_id":"P03","at":"2026-07-20T23:13:58+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003392"}}
 {"event_id":"EV0010697","person_id":"P00257","event":"state_enter_S2c","screen_id":"P04","at":"2026-07-20T23:13:58+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0010698","person_id":"P00257","event":"P04_view","screen_id":"P04","at":"2026-07-20T23:15:17+05:30","props":{}}
-{"event_id":"EV0010699","person_id":"P00257","event":"paid","screen_id":"P05","at":"2026-07-20T23:15:57+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0010699","person_id":"P00257","event":"paid","screen_id":"P05","at":"2026-07-20T23:15:57+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00257","subscription_or_txn_id":"sub_SEED002571"},"mandate_status":"active"}}
 {"event_id":"EV0010700","person_id":"P00257","event":"state_enter_S3","screen_id":"O02","at":"2026-07-20T23:15:57+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0010701","person_id":"P00257","event":"P05_view","screen_id":"P05","at":"2026-07-20T23:16:02+05:30","props":{}}
 {"event_id":"EV0010702","person_id":"P00257","event":"O01_view","screen_id":"O01","at":"2026-07-20T23:16:54+05:30","props":{}}
@@ -11059,7 +11059,7 @@
 {"event_id":"EV0011059","person_id":"P00285","event":"esign_done","screen_id":"P03","at":"2026-09-13T12:36:39+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003196"}}
 {"event_id":"EV0011060","person_id":"P00285","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-13T12:36:39+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0011061","person_id":"P00285","event":"P04_view","screen_id":"P04","at":"2026-09-13T12:39:56+05:30","props":{}}
-{"event_id":"EV0011062","person_id":"P00285","event":"paid","screen_id":"P05","at":"2026-09-13T12:40:36+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0011062","person_id":"P00285","event":"paid","screen_id":"P05","at":"2026-09-13T12:40:36+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00285","subscription_or_txn_id":"pay_SEED002851"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0011063","person_id":"P00285","event":"state_enter_S3","screen_id":"O02","at":"2026-09-13T12:40:36+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0011064","person_id":"P00285","event":"P05_view","screen_id":"P05","at":"2026-09-13T12:40:41+05:30","props":{}}
 {"event_id":"EV0011065","person_id":"P00285","event":"O01_view","screen_id":"O01","at":"2026-09-13T12:41:50+05:30","props":{}}
@@ -11171,7 +11171,7 @@
 {"event_id":"EV0011171","person_id":"P00288","event":"esign_done","screen_id":"P03","at":"2026-07-26T16:22:18+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003315"}}
 {"event_id":"EV0011172","person_id":"P00288","event":"state_enter_S2c","screen_id":"P04","at":"2026-07-26T16:22:18+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0011173","person_id":"P00288","event":"P04_view","screen_id":"P04","at":"2026-07-26T16:26:49+05:30","props":{}}
-{"event_id":"EV0011174","person_id":"P00288","event":"paid","screen_id":"P05","at":"2026-07-26T16:27:29+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0011174","person_id":"P00288","event":"paid","screen_id":"P05","at":"2026-07-26T16:27:29+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00288","subscription_or_txn_id":"sub_SEED002881"},"mandate_status":"active"}}
 {"event_id":"EV0011175","person_id":"P00288","event":"state_enter_S3","screen_id":"O02","at":"2026-07-26T16:27:29+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0011176","person_id":"P00288","event":"P05_view","screen_id":"P05","at":"2026-07-26T16:27:34+05:30","props":{}}
 {"event_id":"EV0011177","person_id":"P00288","event":"O01_view","screen_id":"O01","at":"2026-07-26T16:27:55+05:30","props":{}}
@@ -11383,7 +11383,7 @@
 {"event_id":"EV0011383","person_id":"P00288","event":"lapsed","screen_id":"Q03c","at":"2026-09-01T16:27:29+05:30","props":{"reason":"payment not recovered in grace"}}
 {"event_id":"EV0011384","person_id":"P00288","event":"state_enter_S13","screen_id":"H01g","at":"2026-09-01T16:27:29+05:30","props":{"state":"S13","from_state":"S12"}}
 {"event_id":"EV0011385","person_id":"P00288","event":"Q02_view","screen_id":"Q02","at":"2026-09-07T08:14:14+05:30","props":{}}
-{"event_id":"EV0011386","person_id":"P00288","event":"resubscribed","screen_id":"Q03","at":"2026-09-07T08:16:14+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active","reason":"resubscribed after lapse"}}
+{"event_id":"EV0011386","person_id":"P00288","event":"resubscribed","screen_id":"Q03","at":"2026-09-07T08:16:14+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00288","subscription_or_txn_id":"sub_SEED002882"},"mandate_status":"active","reason":"resubscribed after lapse"}}
 {"event_id":"EV0011387","person_id":"P00288","event":"state_enter_S9","screen_id":"H01c","at":"2026-09-07T08:16:14+05:30","props":{"state":"S9","from_state":"S13"}}
 {"event_id":"EV0011388","person_id":"P00288","event":"open_organic","screen_id":null,"at":"2026-09-10T08:07:32+05:30","props":{}}
 {"event_id":"EV0011389","person_id":"P00288","event":"H01c_view","screen_id":"H01c","at":"2026-09-10T08:07:34+05:30","props":{}}
@@ -11482,7 +11482,7 @@
 {"event_id":"EV0011482","person_id":"P00296","event":"esign_done","screen_id":"P03","at":"2026-07-26T18:04:18+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003553"}}
 {"event_id":"EV0011483","person_id":"P00296","event":"state_enter_S2c","screen_id":"P04","at":"2026-07-26T18:04:18+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0011484","person_id":"P00296","event":"P04_view","screen_id":"P04","at":"2026-07-26T18:08:51+05:30","props":{}}
-{"event_id":"EV0011485","person_id":"P00296","event":"paid","screen_id":"P05","at":"2026-07-26T18:09:31+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0011485","person_id":"P00296","event":"paid","screen_id":"P05","at":"2026-07-26T18:09:31+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00296","subscription_or_txn_id":"sub_SEED002961"},"mandate_status":"active"}}
 {"event_id":"EV0011486","person_id":"P00296","event":"state_enter_S3","screen_id":"O02","at":"2026-07-26T18:09:31+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0011487","person_id":"P00296","event":"P05_view","screen_id":"P05","at":"2026-07-26T18:09:36+05:30","props":{}}
 {"event_id":"EV0011488","person_id":"P00296","event":"O01_view","screen_id":"O01","at":"2026-07-26T18:10:47+05:30","props":{}}
@@ -11870,7 +11870,7 @@
 {"event_id":"EV0011870","person_id":"P00315","event":"esign_done","screen_id":"P03","at":"2026-08-07T07:43:38+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003301"}}
 {"event_id":"EV0011871","person_id":"P00315","event":"state_enter_S2c","screen_id":"P04","at":"2026-08-07T07:43:38+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0011872","person_id":"P00315","event":"P04_view","screen_id":"P04","at":"2026-08-07T07:44:52+05:30","props":{}}
-{"event_id":"EV0011873","person_id":"P00315","event":"paid","screen_id":"P05","at":"2026-08-07T07:45:32+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0011873","person_id":"P00315","event":"paid","screen_id":"P05","at":"2026-08-07T07:45:32+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00315","subscription_or_txn_id":"sub_SEED003151"},"mandate_status":"active"}}
 {"event_id":"EV0011874","person_id":"P00315","event":"state_enter_S3","screen_id":"O02","at":"2026-08-07T07:45:32+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0011875","person_id":"P00315","event":"P05_view","screen_id":"P05","at":"2026-08-07T07:45:37+05:30","props":{}}
 {"event_id":"EV0011876","person_id":"P00315","event":"O01_view","screen_id":"O01","at":"2026-08-07T07:46:21+05:30","props":{}}
@@ -12094,7 +12094,7 @@
 {"event_id":"EV0012094","person_id":"P00317","event":"esign_done","screen_id":"P03","at":"2026-08-08T22:11:46+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003266"}}
 {"event_id":"EV0012095","person_id":"P00317","event":"state_enter_S2c","screen_id":"P04","at":"2026-08-08T22:11:46+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0012096","person_id":"P00317","event":"P04_view","screen_id":"P04","at":"2026-08-08T22:15:53+05:30","props":{}}
-{"event_id":"EV0012097","person_id":"P00317","event":"paid","screen_id":"P05","at":"2026-08-08T22:16:33+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0012097","person_id":"P00317","event":"paid","screen_id":"P05","at":"2026-08-08T22:16:33+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00317","subscription_or_txn_id":"sub_SEED003171"},"mandate_status":"active"}}
 {"event_id":"EV0012098","person_id":"P00317","event":"state_enter_S3","screen_id":"O02","at":"2026-08-08T22:16:33+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0012099","person_id":"P00317","event":"P05_view","screen_id":"P05","at":"2026-08-08T22:16:38+05:30","props":{}}
 {"event_id":"EV0012100","person_id":"P00317","event":"O01_view","screen_id":"O01","at":"2026-08-08T22:16:57+05:30","props":{}}
@@ -12307,7 +12307,7 @@
 {"event_id":"EV0012307","person_id":"P00318","event":"esign_done","screen_id":"P03","at":"2026-08-04T09:11:27+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003455"}}
 {"event_id":"EV0012308","person_id":"P00318","event":"state_enter_S2c","screen_id":"P04","at":"2026-08-04T09:11:27+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0012309","person_id":"P00318","event":"P04_view","screen_id":"P04","at":"2026-08-04T09:16:23+05:30","props":{}}
-{"event_id":"EV0012310","person_id":"P00318","event":"paid","screen_id":"P05","at":"2026-08-04T09:17:03+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0012310","person_id":"P00318","event":"paid","screen_id":"P05","at":"2026-08-04T09:17:03+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00318","subscription_or_txn_id":"sub_SEED003181"},"mandate_status":"active"}}
 {"event_id":"EV0012311","person_id":"P00318","event":"state_enter_S3","screen_id":"O02","at":"2026-08-04T09:17:03+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0012312","person_id":"P00318","event":"P05_view","screen_id":"P05","at":"2026-08-04T09:17:08+05:30","props":{}}
 {"event_id":"EV0012313","person_id":"P00318","event":"O01_view","screen_id":"O01","at":"2026-08-04T09:18:32+05:30","props":{}}
@@ -12583,7 +12583,7 @@
 {"event_id":"EV0012583","person_id":"P00325","event":"esign_done","screen_id":"P03","at":"2026-08-05T11:59:41+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003238"}}
 {"event_id":"EV0012584","person_id":"P00325","event":"state_enter_S2c","screen_id":"P04","at":"2026-08-05T11:59:41+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0012585","person_id":"P00325","event":"P04_view","screen_id":"P04","at":"2026-08-05T12:01:51+05:30","props":{}}
-{"event_id":"EV0012586","person_id":"P00325","event":"paid","screen_id":"P05","at":"2026-08-05T12:02:31+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0012586","person_id":"P00325","event":"paid","screen_id":"P05","at":"2026-08-05T12:02:31+05:30","props":{"sku":"diy","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00325","subscription_or_txn_id":"sub_SEED003251"},"mandate_status":"active"}}
 {"event_id":"EV0012587","person_id":"P00325","event":"state_enter_S3","screen_id":"O02","at":"2026-08-05T12:02:31+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0012588","person_id":"P00325","event":"P05_view","screen_id":"P05","at":"2026-08-05T12:02:36+05:30","props":{}}
 {"event_id":"EV0012589","person_id":"P00325","event":"O01_view","screen_id":"O01","at":"2026-08-05T12:03:13+05:30","props":{}}
@@ -12828,7 +12828,7 @@
 {"event_id":"EV0012828","person_id":"P00332","event":"esign_done","screen_id":"P03","at":"2026-08-08T09:16:42+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003469"}}
 {"event_id":"EV0012829","person_id":"P00332","event":"state_enter_S2c","screen_id":"P04","at":"2026-08-08T09:16:42+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0012830","person_id":"P00332","event":"P04_view","screen_id":"P04","at":"2026-08-08T09:18:01+05:30","props":{}}
-{"event_id":"EV0012831","person_id":"P00332","event":"paid","screen_id":"P05","at":"2026-08-08T09:18:41+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0012831","person_id":"P00332","event":"paid","screen_id":"P05","at":"2026-08-08T09:18:41+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00332","subscription_or_txn_id":"sub_SEED003321"},"mandate_status":"active"}}
 {"event_id":"EV0012832","person_id":"P00332","event":"state_enter_S3","screen_id":"O02","at":"2026-08-08T09:18:41+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0012833","person_id":"P00332","event":"P05_view","screen_id":"P05","at":"2026-08-08T09:18:46+05:30","props":{}}
 {"event_id":"EV0012834","person_id":"P00332","event":"O01_view","screen_id":"O01","at":"2026-08-08T09:19:30+05:30","props":{}}
@@ -13012,7 +13012,7 @@
 {"event_id":"EV0013012","person_id":"P00340","event":"esign_done","screen_id":"P03","at":"2026-09-07T10:11:56+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003252"}}
 {"event_id":"EV0013013","person_id":"P00340","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-07T10:11:56+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0013014","person_id":"P00340","event":"P04_view","screen_id":"P04","at":"2026-09-07T10:17:11+05:30","props":{}}
-{"event_id":"EV0013015","person_id":"P00340","event":"paid","screen_id":"P05","at":"2026-09-07T10:17:51+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0013015","person_id":"P00340","event":"paid","screen_id":"P05","at":"2026-09-07T10:17:51+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00340","subscription_or_txn_id":"sub_SEED003401"},"mandate_status":"active"}}
 {"event_id":"EV0013016","person_id":"P00340","event":"state_enter_S3","screen_id":"O02","at":"2026-09-07T10:17:51+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0013017","person_id":"P00340","event":"P05_view","screen_id":"P05","at":"2026-09-07T10:17:56+05:30","props":{}}
 {"event_id":"EV0013018","person_id":"P00340","event":"O01_view","screen_id":"O01","at":"2026-09-07T10:18:14+05:30","props":{}}
@@ -13523,7 +13523,7 @@
 {"event_id":"EV0013523","person_id":"P00361","event":"esign_done","screen_id":"P03","at":"2026-08-11T13:25:20+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003231"}}
 {"event_id":"EV0013524","person_id":"P00361","event":"state_enter_S2c","screen_id":"P04","at":"2026-08-11T13:25:20+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0013525","person_id":"P00361","event":"P04_view","screen_id":"P04","at":"2026-08-11T13:28:45+05:30","props":{}}
-{"event_id":"EV0013526","person_id":"P00361","event":"paid","screen_id":"P05","at":"2026-08-11T13:29:25+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0013526","person_id":"P00361","event":"paid","screen_id":"P05","at":"2026-08-11T13:29:25+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00361","subscription_or_txn_id":"sub_SEED003611"},"mandate_status":"active"}}
 {"event_id":"EV0013527","person_id":"P00361","event":"state_enter_S3","screen_id":"O02","at":"2026-08-11T13:29:25+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0013528","person_id":"P00361","event":"P05_view","screen_id":"P05","at":"2026-08-11T13:29:30+05:30","props":{}}
 {"event_id":"EV0013529","person_id":"P00361","event":"O01_view","screen_id":"O01","at":"2026-08-11T13:30:52+05:30","props":{}}
@@ -13742,7 +13742,7 @@
 {"event_id":"EV0013742","person_id":"P00364","event":"esign_done","screen_id":"P03","at":"2026-09-20T09:48:18+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003175"}}
 {"event_id":"EV0013743","person_id":"P00364","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-20T09:48:18+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0013744","person_id":"P00364","event":"P04_view","screen_id":"P04","at":"2026-09-20T09:52:33+05:30","props":{}}
-{"event_id":"EV0013745","person_id":"P00364","event":"paid","screen_id":"P05","at":"2026-09-20T09:53:13+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0013745","person_id":"P00364","event":"paid","screen_id":"P05","at":"2026-09-20T09:53:13+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00364","subscription_or_txn_id":"sub_SEED003641"},"mandate_status":"active"}}
 {"event_id":"EV0013746","person_id":"P00364","event":"state_enter_S3","screen_id":"O02","at":"2026-09-20T09:53:13+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0013747","person_id":"P00364","event":"P05_view","screen_id":"P05","at":"2026-09-20T09:53:18+05:30","props":{}}
 {"event_id":"EV0013748","person_id":"P00364","event":"O01_view","screen_id":"O01","at":"2026-09-20T09:54:26+05:30","props":{}}
@@ -13907,7 +13907,7 @@
 {"event_id":"EV0013907","person_id":"P00377","event":"esign_done","screen_id":"P03","at":"2026-09-15T07:50:48+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003182"}}
 {"event_id":"EV0013908","person_id":"P00377","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-15T07:50:48+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0013909","person_id":"P00377","event":"P04_view","screen_id":"P04","at":"2026-09-15T07:53:12+05:30","props":{}}
-{"event_id":"EV0013910","person_id":"P00377","event":"paid","screen_id":"P05","at":"2026-09-15T07:53:52+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0013910","person_id":"P00377","event":"paid","screen_id":"P05","at":"2026-09-15T07:53:52+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00377","subscription_or_txn_id":"sub_SEED003771"},"mandate_status":"active"}}
 {"event_id":"EV0013911","person_id":"P00377","event":"state_enter_S3","screen_id":"O02","at":"2026-09-15T07:53:52+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0013912","person_id":"P00377","event":"P05_view","screen_id":"P05","at":"2026-09-15T07:53:57+05:30","props":{}}
 {"event_id":"EV0013913","person_id":"P00377","event":"O01_view","screen_id":"O01","at":"2026-09-15T07:54:44+05:30","props":{}}
@@ -14104,7 +14104,7 @@
 {"event_id":"EV0014104","person_id":"P00397","event":"esign_done","screen_id":"P03","at":"2026-09-11T20:37:40+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003539"}}
 {"event_id":"EV0014105","person_id":"P00397","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-11T20:37:40+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0014106","person_id":"P00397","event":"P04_view","screen_id":"P04","at":"2026-09-11T20:40:38+05:30","props":{}}
-{"event_id":"EV0014107","person_id":"P00397","event":"paid","screen_id":"P05","at":"2026-09-11T20:41:18+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0014107","person_id":"P00397","event":"paid","screen_id":"P05","at":"2026-09-11T20:41:18+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00397","subscription_or_txn_id":"sub_SEED003971"},"mandate_status":"active"}}
 {"event_id":"EV0014108","person_id":"P00397","event":"state_enter_S3","screen_id":"O02","at":"2026-09-11T20:41:18+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0014109","person_id":"P00397","event":"P05_view","screen_id":"P05","at":"2026-09-11T20:41:23+05:30","props":{}}
 {"event_id":"EV0014110","person_id":"P00397","event":"O01_view","screen_id":"O01","at":"2026-09-11T20:41:40+05:30","props":{}}
@@ -14429,7 +14429,7 @@
 {"event_id":"EV0014429","person_id":"P00410","event":"esign_done","screen_id":"P03","at":"2026-09-19T13:28:00+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003532"}}
 {"event_id":"EV0014430","person_id":"P00410","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-19T13:28:00+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0014431","person_id":"P00410","event":"P04_view","screen_id":"P04","at":"2026-09-19T13:31:02+05:30","props":{}}
-{"event_id":"EV0014432","person_id":"P00410","event":"paid","screen_id":"P05","at":"2026-09-19T13:31:42+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0014432","person_id":"P00410","event":"paid","screen_id":"P05","at":"2026-09-19T13:31:42+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00410","subscription_or_txn_id":"sub_SEED004101"},"mandate_status":"active"}}
 {"event_id":"EV0014433","person_id":"P00410","event":"state_enter_S3","screen_id":"O02","at":"2026-09-19T13:31:42+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0014434","person_id":"P00410","event":"P05_view","screen_id":"P05","at":"2026-09-19T13:31:47+05:30","props":{}}
 {"event_id":"EV0014435","person_id":"P00410","event":"O01_view","screen_id":"O01","at":"2026-09-19T13:32:17+05:30","props":{}}
@@ -14470,7 +14470,7 @@
 {"event_id":"EV0014470","person_id":"P00411","event":"esign_done","screen_id":"P03","at":"2026-08-26T09:05:33+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003490"}}
 {"event_id":"EV0014471","person_id":"P00411","event":"state_enter_S2c","screen_id":"P04","at":"2026-08-26T09:05:33+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0014472","person_id":"P00411","event":"P04_view","screen_id":"P04","at":"2026-08-26T09:08:22+05:30","props":{}}
-{"event_id":"EV0014473","person_id":"P00411","event":"paid","screen_id":"P05","at":"2026-08-26T09:09:02+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0014473","person_id":"P00411","event":"paid","screen_id":"P05","at":"2026-08-26T09:09:02+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00411","subscription_or_txn_id":"sub_SEED004111"},"mandate_status":"active"}}
 {"event_id":"EV0014474","person_id":"P00411","event":"state_enter_S3","screen_id":"O02","at":"2026-08-26T09:09:02+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0014475","person_id":"P00411","event":"P05_view","screen_id":"P05","at":"2026-08-26T09:09:07+05:30","props":{}}
 {"event_id":"EV0014476","person_id":"P00411","event":"O01_view","screen_id":"O01","at":"2026-08-26T09:10:03+05:30","props":{}}
@@ -14808,7 +14808,7 @@
 {"event_id":"EV0014808","person_id":"P00428","event":"esign_done","screen_id":"P03","at":"2026-09-09T19:08:18+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003217"}}
 {"event_id":"EV0014809","person_id":"P00428","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-09T19:08:18+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0014810","person_id":"P00428","event":"P04_view","screen_id":"P04","at":"2026-09-09T19:10:10+05:30","props":{}}
-{"event_id":"EV0014811","person_id":"P00428","event":"paid","screen_id":"P05","at":"2026-09-09T19:10:50+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0014811","person_id":"P00428","event":"paid","screen_id":"P05","at":"2026-09-09T19:10:50+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00428","subscription_or_txn_id":"sub_SEED004281"},"mandate_status":"active"}}
 {"event_id":"EV0014812","person_id":"P00428","event":"state_enter_S3","screen_id":"O02","at":"2026-09-09T19:10:50+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0014813","person_id":"P00428","event":"P05_view","screen_id":"P05","at":"2026-09-09T19:10:55+05:30","props":{}}
 {"event_id":"EV0014814","person_id":"P00428","event":"O01_view","screen_id":"O01","at":"2026-09-09T19:11:35+05:30","props":{}}
@@ -15027,7 +15027,7 @@
 {"event_id":"EV0015027","person_id":"P00432","event":"esign_done","screen_id":"P03","at":"2026-09-03T18:34:58+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003224"}}
 {"event_id":"EV0015028","person_id":"P00432","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-03T18:34:58+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0015029","person_id":"P00432","event":"P04_view","screen_id":"P04","at":"2026-09-03T18:37:50+05:30","props":{}}
-{"event_id":"EV0015030","person_id":"P00432","event":"paid","screen_id":"P05","at":"2026-09-03T18:38:30+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0015030","person_id":"P00432","event":"paid","screen_id":"P05","at":"2026-09-03T18:38:30+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00432","subscription_or_txn_id":"pay_SEED004321"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0015031","person_id":"P00432","event":"state_enter_S3","screen_id":"O02","at":"2026-09-03T18:38:30+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0015032","person_id":"P00432","event":"P05_view","screen_id":"P05","at":"2026-09-03T18:38:35+05:30","props":{}}
 {"event_id":"EV0015033","person_id":"P00432","event":"O01_view","screen_id":"O01","at":"2026-09-03T18:38:56+05:30","props":{}}
@@ -15238,7 +15238,7 @@
 {"event_id":"EV0015238","person_id":"P00441","event":"esign_done","screen_id":"P03","at":"2026-09-15T20:16:59+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003210"}}
 {"event_id":"EV0015239","person_id":"P00441","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-15T20:16:59+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0015240","person_id":"P00441","event":"P04_view","screen_id":"P04","at":"2026-09-15T20:19:33+05:30","props":{}}
-{"event_id":"EV0015241","person_id":"P00441","event":"paid","screen_id":"P05","at":"2026-09-15T20:20:13+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0015241","person_id":"P00441","event":"paid","screen_id":"P05","at":"2026-09-15T20:20:13+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00441","subscription_or_txn_id":"sub_SEED004411"},"mandate_status":"active"}}
 {"event_id":"EV0015242","person_id":"P00441","event":"state_enter_S3","screen_id":"O02","at":"2026-09-15T20:20:13+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0015243","person_id":"P00441","event":"P05_view","screen_id":"P05","at":"2026-09-15T20:20:18+05:30","props":{}}
 {"event_id":"EV0015244","person_id":"P00441","event":"O01_view","screen_id":"O01","at":"2026-09-15T20:21:22+05:30","props":{}}
@@ -15282,7 +15282,7 @@
 {"event_id":"EV0015282","person_id":"P00444","event":"esign_done","screen_id":"P03","at":"2026-09-21T07:06:52+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003168"}}
 {"event_id":"EV0015283","person_id":"P00444","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-21T07:06:52+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0015284","person_id":"P00444","event":"P04_view","screen_id":"P04","at":"2026-09-21T07:07:56+05:30","props":{}}
-{"event_id":"EV0015285","person_id":"P00444","event":"paid","screen_id":"P05","at":"2026-09-21T07:08:36+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0015285","person_id":"P00444","event":"paid","screen_id":"P05","at":"2026-09-21T07:08:36+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00444","subscription_or_txn_id":"sub_SEED004441"},"mandate_status":"active"}}
 {"event_id":"EV0015286","person_id":"P00444","event":"state_enter_S3","screen_id":"O02","at":"2026-09-21T07:08:36+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0015287","person_id":"P00444","event":"P05_view","screen_id":"P05","at":"2026-09-21T07:08:41+05:30","props":{}}
 {"event_id":"EV0015288","person_id":"P00444","event":"O01_view","screen_id":"O01","at":"2026-09-21T07:09:15+05:30","props":{}}
@@ -15612,7 +15612,7 @@
 {"event_id":"EV0015612","person_id":"P00466","event":"esign_done","screen_id":"P03","at":"2026-09-20T14:39:50+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003434"}}
 {"event_id":"EV0015613","person_id":"P00466","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-20T14:39:50+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0015614","person_id":"P00466","event":"P04_view","screen_id":"P04","at":"2026-09-20T14:44:20+05:30","props":{}}
-{"event_id":"EV0015615","person_id":"P00466","event":"paid","screen_id":"P05","at":"2026-09-20T14:45:00+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0015615","person_id":"P00466","event":"paid","screen_id":"P05","at":"2026-09-20T14:45:00+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00466","subscription_or_txn_id":"pay_SEED004661"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0015616","person_id":"P00466","event":"state_enter_S3","screen_id":"O02","at":"2026-09-20T14:45:00+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0015617","person_id":"P00466","event":"P05_view","screen_id":"P05","at":"2026-09-20T14:45:05+05:30","props":{}}
 {"event_id":"EV0015618","person_id":"P00466","event":"O01_view","screen_id":"O01","at":"2026-09-20T14:46:14+05:30","props":{}}
@@ -15787,7 +15787,7 @@
 {"event_id":"EV0015787","person_id":"P00474","event":"esign_done","screen_id":"P03","at":"2026-09-17T14:47:32+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003441"}}
 {"event_id":"EV0015788","person_id":"P00474","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-17T14:47:32+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0015789","person_id":"P00474","event":"P04_view","screen_id":"P04","at":"2026-09-17T14:48:45+05:30","props":{}}
-{"event_id":"EV0015790","person_id":"P00474","event":"paid","screen_id":"P05","at":"2026-09-17T14:49:25+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0015790","person_id":"P00474","event":"paid","screen_id":"P05","at":"2026-09-17T14:49:25+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00474","subscription_or_txn_id":"pay_SEED004741"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0015791","person_id":"P00474","event":"state_enter_S3","screen_id":"O02","at":"2026-09-17T14:49:25+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0015792","person_id":"P00474","event":"P05_view","screen_id":"P05","at":"2026-09-17T14:49:30+05:30","props":{}}
 {"event_id":"EV0015793","person_id":"P00474","event":"O01_view","screen_id":"O01","at":"2026-09-17T14:50:09+05:30","props":{}}
@@ -15917,7 +15917,7 @@
 {"event_id":"EV0015917","person_id":"P00481","event":"esign_done","screen_id":"P03","at":"2026-09-19T11:56:22+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003189"}}
 {"event_id":"EV0015918","person_id":"P00481","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-19T11:56:22+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0015919","person_id":"P00481","event":"P04_view","screen_id":"P04","at":"2026-09-19T12:01:07+05:30","props":{}}
-{"event_id":"EV0015920","person_id":"P00481","event":"paid","screen_id":"P05","at":"2026-09-19T12:01:47+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0015920","person_id":"P00481","event":"paid","screen_id":"P05","at":"2026-09-19T12:01:47+05:30","props":{"sku":"diy","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00481","subscription_or_txn_id":"sub_SEED004811"},"mandate_status":"active"}}
 {"event_id":"EV0015921","person_id":"P00481","event":"state_enter_S3","screen_id":"O02","at":"2026-09-19T12:01:47+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0015922","person_id":"P00481","event":"P05_view","screen_id":"P05","at":"2026-09-19T12:01:52+05:30","props":{}}
 {"event_id":"EV0015923","person_id":"P00481","event":"O01_view","screen_id":"O01","at":"2026-09-19T12:02:15+05:30","props":{}}
@@ -16063,7 +16063,7 @@
 {"event_id":"EV0016063","person_id":"P00489","event":"esign_done","screen_id":"P03","at":"2026-09-19T15:32:05+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003203"}}
 {"event_id":"EV0016064","person_id":"P00489","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-19T15:32:05+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0016065","person_id":"P00489","event":"P04_view","screen_id":"P04","at":"2026-09-19T15:33:42+05:30","props":{}}
-{"event_id":"EV0016066","person_id":"P00489","event":"paid","screen_id":"P05","at":"2026-09-19T15:34:22+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"active"}}
+{"event_id":"EV0016066","person_id":"P00489","event":"paid","screen_id":"P05","at":"2026-09-19T15:34:22+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"quarterly","razorpay_ids":{"customer_id":"cust_SEED00489","subscription_or_txn_id":"sub_SEED004891"},"mandate_status":"active"}}
 {"event_id":"EV0016067","person_id":"P00489","event":"state_enter_S3","screen_id":"O02","at":"2026-09-19T15:34:22+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0016068","person_id":"P00489","event":"P05_view","screen_id":"P05","at":"2026-09-19T15:34:27+05:30","props":{}}
 {"event_id":"EV0016069","person_id":"P00489","event":"O01_view","screen_id":"O01","at":"2026-09-19T15:35:48+05:30","props":{}}
@@ -16116,7 +16116,7 @@
 {"event_id":"EV0016116","person_id":"P00491","event":"esign_done","screen_id":"P03","at":"2026-09-20T08:03:33+05:30","props":{"agreement_version":"AGR v1 (to be verified: agreement template versions)","esign_ref":"ESIGN-SEED-003161"}}
 {"event_id":"EV0016117","person_id":"P00491","event":"state_enter_S2c","screen_id":"P04","at":"2026-09-20T08:03:33+05:30","props":{"state":"S2c","from_state":"S2b"}}
 {"event_id":"EV0016118","person_id":"P00491","event":"P04_view","screen_id":"P04","at":"2026-09-20T08:08:09+05:30","props":{}}
-{"event_id":"EV0016119","person_id":"P00491","event":"paid","screen_id":"P05","at":"2026-09-20T08:08:49+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":"(the deal's Razorpay ids)","mandate_status":"none (charged per period)"}}
+{"event_id":"EV0016119","person_id":"P00491","event":"paid","screen_id":"P05","at":"2026-09-20T08:08:49+05:30","props":{"sku":"diwm","amount":"Rs ___","period":"monthly","razorpay_ids":{"customer_id":"cust_SEED00491","subscription_or_txn_id":"pay_SEED004911"},"mandate_status":"none (charged per period)"}}
 {"event_id":"EV0016120","person_id":"P00491","event":"state_enter_S3","screen_id":"O02","at":"2026-09-20T08:08:49+05:30","props":{"state":"S3","from_state":"S2c"}}
 {"event_id":"EV0016121","person_id":"P00491","event":"P05_view","screen_id":"P05","at":"2026-09-20T08:08:54+05:30","props":{}}
 {"event_id":"EV0016122","person_id":"P00491","event":"O01_view","screen_id":"O01","at":"2026-09-20T08:09:16+05:30","props":{}}

@@ -64,9 +64,9 @@ Paid-state allocation and topups bend some of these; none of them is a real rati
 | lead source: web_reveal | 15% | 14.9% (75) |
 | lead source: organic | 15% | 14.5% (73) |
 | lead source: referral | 5% | 4.0% (20) |
-| paid tier: diwm | 55% | 59.6% (34) |
-| paid tier: diy | 35% | 36.8% (21) |
-| paid tier: difm | 10% | 3.5% (2) |
+| paid tier: diwm | 60% | 59.6% (34) |
+| paid tier: diy | 36% | 36.8% (21) |
+| paid tier: difm | 4% | 3.5% (2) |
 | source path: aa | 50% | 50.9% (29) |
 | source path: cas | 20% | 19.3% (11) |
 | source path: manual | 30% | 29.8% (17) |
@@ -76,7 +76,7 @@ Paid-state allocation and topups bend some of these; none of them is a real rati
 | payment method: netbanking | 25% | 25.5% (14) |
 | GST type (first deal) | by state; none on a zeroing coupon (2%) | cgst_sgst 13, igst 40, none 2 |
 | renewals failing | 5% | 7.0% without the S12 and S13 people (6 of 86); 12.1% with them |
-| S16 flag among paid | about 30% | 38.6% (22) |
+| S16 flag among paid | S16 flag follows from the path mix: manual 30% plus AA-failed | 38.6% (22) |
 | archetypes (OTP'd people) | seed plan weights | A1 51, A2 37, A3 39, A4 40, A5 35, A6 15, A7 27, A8 22, tail 11 |
 | term cover missing among people with dependants | 40% | 51.4% (18 of 35) |
 | health employer-only | 50% | 61.4% (35 of 57) |
@@ -211,8 +211,8 @@ Each is a block in seed/config.json with added = phase A; Vatsal vetoes by reply
 | allocation | seed plan, 22 Sep 2026 | paid count times weight over the weight sum, largest remainder, ties in weight-table order; then floors; then any ugly case that needs more people in its state than the s |
 | no_predicate_rule | seed plan, 22 Sep 2026 | when no predicate holds the person keeps the last underlying state they were in (an ended overlay such as a past call is not kept); the report lists every such person |
 | day7_clock | seed plan, 22 Sep 2026 | ladder days count from the state's entry: S3 day 7 is 7 days after payment; S4 day 7 is 7 days after the first D screen saved; S5 day 7 is 7 days after the gate is met; S |
-| s16_flag | seed plan, 22 Sep 2026 | paid and AA never connected: the manual path plus the AA-failed fallback; the CAS path does not carry it |
-| difm_rule | seed plan, 22 Sep 2026 | every DIFM person resolves to S14 (S14 outranks every state but S25, S24, S12, S13), so DIFM count = the S14 count; the other paid states split DIWM:DIY 55:35 |
+| s16_flag | Vatsal, 23 Sep 2026 | S16 flag follows from the path mix: manual 30% plus AA-failed |
+| difm_rule | seed plan, 22 Sep 2026 | every DIFM person resolves to S14 (S14 outranks every state but S25, S24, S12, S13), so DIFM count = the S14 count; the other paid states split DIWM:DIY 60:36 (tier_mix) |
 | difm_archetypes | seed plan, 22 Sep 2026 | DIFM clients sit over the DIFM threshold (A8's signature); the plan does not say which archetypes they are |
 | mandate_pending_share | assumption | UPI mandates still pending bank approval among recent payers (P04 state) |
 | ugly_state_link | seed plan, 22 Sep 2026 | a case tied to a state is carried by people of that state; when the case needs more people than the state holds, the state is topped up |
