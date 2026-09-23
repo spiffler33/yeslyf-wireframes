@@ -1,0 +1,1188 @@
+{
+  "about": "The spec of screens M02 to M14, hand-authored from PLAN_admin_seed_v01.md section 14 (phase C part 1, 23 Sep 2026).",
+  "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+  "sections": [
+    [
+      "M",
+      "Admin (built, over the seed)"
+    ]
+  ],
+  "screens": [
+    {
+      "id": "M02",
+      "sec": "M",
+      "title": "People: search and list",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Search and list every person in the seed, filtered by state, tier, path, adviser, flags, DIFM prospect or topup. Opens a person's full record.",
+      "seat": [
+        "Ops",
+        "Adviser"
+      ],
+      "role": {
+        "Ops": "act",
+        "Adviser": "read, own people",
+        "Call centre": "read, own people",
+        "Principal officer": "read"
+      },
+      "built": "built",
+      "writes": [
+        {
+          "action": "assign adviser",
+          "event": "M02_assign_adviser",
+          "roles": [
+            "Ops"
+          ]
+        },
+        {
+          "action": "export list",
+          "event": "M02_export_list",
+          "roles": [
+            "Ops"
+          ]
+        }
+      ],
+      "zoho_instead": "Contact list view; no financial record",
+      "events": [
+        "M02_view",
+        "M02_assign_adviser",
+        "M02_export_list"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "people",
+          "state",
+          "filters by state, tier, path, adviser, flags, DIFM prospect, topup"
+        ],
+        "logic": [],
+        "branches": [
+          [
+            "open a person",
+            "M03"
+          ]
+        ],
+        "states": [],
+        "dev": [
+          "The app must expose a people list endpoint with server-side filters for state, tier, path, adviser, flags, DIFM prospect and topup, and pagination for 3,000-plus rows.",
+          "Assign adviser and export list are mock; a real build wires them to the adviser roster and a CSV or CRM sync job."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "People: search and list"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    },
+    {
+      "id": "M03",
+      "sec": "M",
+      "title": "Person record",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Everything known about one person: identity, timeline, financial record, plan versions, consents, holdings, calls, tickets, tasks, actions, subscriptions and the audit trail for that person.",
+      "seat": [
+        "All seats"
+      ],
+      "role": {
+        "Ops": "act",
+        "Adviser": "read, own people",
+        "Call centre": "read, own people",
+        "Compliance": "read",
+        "Marketing": "read",
+        "Support": "read",
+        "Finance": "read",
+        "Principal officer": "read"
+      },
+      "built": "built",
+      "writes": [
+        {
+          "action": "edit inputs on behalf (opens the D screen, re-runs the engine)",
+          "event": "M03_edit_on_behalf",
+          "roles": [
+            "Ops"
+          ]
+        },
+        {
+          "action": "force re-run",
+          "event": "M03_force_rerun",
+          "roles": [
+            "Ops"
+          ]
+        },
+        {
+          "action": "refund flag",
+          "event": "M03_refund_flag",
+          "roles": [
+            "Ops"
+          ]
+        },
+        {
+          "action": "reassign",
+          "event": "M03_reassign",
+          "roles": [
+            "Ops"
+          ]
+        },
+        {
+          "action": "provision DIFM",
+          "event": "M03_provision_difm",
+          "roles": [
+            "Ops"
+          ]
+        },
+        {
+          "action": "handle deletion request",
+          "event": "M03_handle_deletion",
+          "roles": [
+            "Ops"
+          ]
+        }
+      ],
+      "zoho_instead": "Contact with mirrors only; the record itself cannot live in {I14}",
+      "events": [
+        "M03_view",
+        "M03_edit_on_behalf",
+        "M03_force_rerun",
+        "M03_refund_flag",
+        "M03_reassign",
+        "M03_provision_difm",
+        "M03_handle_deletion"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "identity strip",
+          "timeline from events",
+          "financial record with source and precision badges and lock",
+          "plan versions",
+          "AA consents",
+          "CAS",
+          "holdings",
+          "calls",
+          "tickets",
+          "tasks",
+          "actions",
+          "subscriptions",
+          "audit"
+        ],
+        "logic": [],
+        "branches": [
+          [
+            "pre-call view",
+            "M04"
+          ]
+        ],
+        "states": [],
+        "dev": [
+          "The app must expose a single person read endpoint joining every table by person_id, plus the events feed for the timeline.",
+          "On-behalf edits, force re-run, refund flag, reassign, provision DIFM and deletion handling are mock; a real build wires each to its own service call and writes an audit row."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "Person record"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    },
+    {
+      "id": "M04",
+      "sec": "M",
+      "title": "Pre-call view",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "What an adviser or call-centre agent needs before a call: the plan snapshot, missing fields, the last call, the topic and note from K01, the script for the person's state, and calls left this period.",
+      "seat": [
+        "Adviser",
+        "Call centre"
+      ],
+      "role": {
+        "Adviser": "act",
+        "Call centre": "act",
+        "Principal officer": "read"
+      },
+      "built": "built",
+      "writes": [
+        {
+          "action": "capture K03 notes and input changes",
+          "event": "M04_capture_notes",
+          "roles": [
+            "Adviser",
+            "Call centre"
+          ]
+        },
+        {
+          "action": "mark no-show",
+          "event": "M04_mark_no_show",
+          "roles": [
+            "Adviser",
+            "Call centre"
+          ]
+        }
+      ],
+      "zoho_instead": "Contact plus a {I15}-style deep link; the walkthrough decides",
+      "events": [
+        "M04_view",
+        "M04_capture_notes",
+        "M04_mark_no_show"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "G03 snapshot",
+          "missing fields",
+          "last call",
+          "K01 topic and note",
+          "script by state",
+          "calls left"
+        ],
+        "logic": [],
+        "branches": [
+          [
+            "full record",
+            "M03"
+          ]
+        ],
+        "states": [],
+        "dev": [
+          "The app must expose a pre-call bundle for one person: G03 summary, gate gaps, the K01 note, and calls_included versus calls_used.",
+          "Capturing notes and marking no-show are mock; a real build writes a calls row and updates state_flags."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "Pre-call view"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    },
+    {
+      "id": "M05",
+      "sec": "M",
+      "title": "States board",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Counts of people per returning-user state, by tier, with the S2 ladder-day spread. Click through to the filtered people list.",
+      "seat": [
+        "Principal officer",
+        "Ops"
+      ],
+      "role": {
+        "Principal officer": "read",
+        "Ops": "read"
+      },
+      "built": "built",
+      "writes": [],
+      "zoho_instead": "{I14} report on Journey Stage; no ladder days",
+      "events": [
+        "M05_view"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "counts per state by tier",
+          "S2 ladder-day histogram",
+          "click-through to M02"
+        ],
+        "logic": [],
+        "branches": [
+          [
+            "a state count",
+            "M02"
+          ]
+        ],
+        "states": [],
+        "dev": [
+          "The app must expose state counts by tier and the S2 day-1/3/7/21/82-plus histogram, computed server-side once volumes grow past what the browser can sum live."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "States board"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    },
+    {
+      "id": "M06",
+      "sec": "M",
+      "title": "Ops queue",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The operations queue: unknown ISINs, data-quality flags, AA failures, refund and reassignment requests, DIFM provisioning and deletion requests, each with its age, SLA and the person it is linked to.",
+      "seat": [
+        "Ops"
+      ],
+      "role": {
+        "Ops": "act",
+        "Principal officer": "read"
+      },
+      "built": "built",
+      "writes": [
+        {
+          "action": "assign",
+          "event": "M06_assign",
+          "roles": [
+            "Ops"
+          ]
+        },
+        {
+          "action": "resolve",
+          "event": "M06_resolve",
+          "roles": [
+            "Ops"
+          ]
+        },
+        {
+          "action": "escalate",
+          "event": "M06_escalate",
+          "roles": [
+            "Ops"
+          ]
+        }
+      ],
+      "zoho_instead": "{I14} Tasks could hold it; data-work items argue for built",
+      "events": [
+        "M06_view",
+        "M06_assign",
+        "M06_resolve",
+        "M06_escalate"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "item type",
+          "owner",
+          "age",
+          "SLA",
+          "linked person"
+        ],
+        "logic": [],
+        "branches": [
+          [
+            "linked person",
+            "M03"
+          ]
+        ],
+        "states": [],
+        "dev": [
+          "The app must expose the ops_queue table with type, owner, age against an SLA clock, and status.",
+          "Assign, resolve and escalate are mock; a real build writes owner and status changes and appends an audit row."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "Ops queue"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    },
+    {
+      "id": "M07",
+      "sec": "M",
+      "title": "Data quality and integrations",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Plausibility flags and unknown ISINs from the data-capture screens, and the health of every vendor integration: last success, failures and latency by vendor.",
+      "seat": [
+        "Ops",
+        "Devs"
+      ],
+      "role": {
+        "Ops": "act",
+        "Principal officer": "read"
+      },
+      "built": "built",
+      "writes": [
+        {
+          "action": "acknowledge",
+          "event": "M07_acknowledge",
+          "roles": [
+            "Ops"
+          ]
+        },
+        {
+          "action": "retry (mock)",
+          "event": "M07_retry",
+          "roles": [
+            "Ops"
+          ]
+        }
+      ],
+      "zoho_instead": "none",
+      "events": [
+        "M07_view",
+        "M07_acknowledge",
+        "M07_retry"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "plausibility flags",
+          "unknown ISINs",
+          "integration_events by vendor: last success, failures, latency"
+        ],
+        "logic": [],
+        "branches": [],
+        "states": [],
+        "dev": [
+          "The app must expose integration_events grouped by vendor with rolling success and latency stats, and the plausibility and unknown-ISIN flags from financial_records and holdings.",
+          "Acknowledge and retry are mock; retry has no real endpoint to call yet."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "Data quality and integrations"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    },
+    {
+      "id": "M08",
+      "sec": "M",
+      "title": "Plan versions and publish impact",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Who is on which plan version, which updates are still unaccepted, and links to the staging, publish and audit screens for a version.",
+      "seat": [
+        "Principal officer"
+      ],
+      "role": {
+        "Principal officer": "read"
+      },
+      "built": "built",
+      "writes": [],
+      "zoho_instead": "none",
+      "events": [
+        "M08_view"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "who is on which version",
+          "unaccepted updates (S11)",
+          "links to L05, L06, L08"
+        ],
+        "logic": [],
+        "branches": [
+          [
+            "staging and impact preview",
+            "L05"
+          ],
+          [
+            "publish",
+            "L06"
+          ],
+          [
+            "audit and versions",
+            "L08"
+          ]
+        ],
+        "states": [],
+        "dev": [
+          "The app must expose plan_versions with accepted_at nullable (unaccepted = S11); L05, L06 and L08 need the same version ids to link correctly."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "Plan versions and publish impact"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    },
+    {
+      "id": "M09",
+      "sec": "M",
+      "title": "AA and CAS",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Consent statuses and their expiry calendar, FIP failures, and CAS uploads awaiting, uploaded or parsed.",
+      "seat": [
+        "Ops"
+      ],
+      "role": {
+        "Ops": "act",
+        "Principal officer": "read"
+      },
+      "built": "built",
+      "writes": [
+        {
+          "action": "resend CAS reminder (mock)",
+          "event": "M09_resend_reminder",
+          "roles": [
+            "Ops"
+          ]
+        }
+      ],
+      "zoho_instead": "Contact field mirror only",
+      "events": [
+        "M09_view",
+        "M09_resend_reminder"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "consent statuses",
+          "expiry calendar",
+          "FIP failures",
+          "CAS awaiting, uploaded, parsed"
+        ],
+        "logic": [],
+        "branches": [],
+        "states": [],
+        "dev": [
+          "The app must expose aa_consents and cas_uploads with status, expiry and the FIP-level ok or failed institutions list."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "AA and CAS"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    },
+    {
+      "id": "M10",
+      "sec": "M",
+      "title": "Config",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The runtime configuration the app reads: SKU cards, copy slots, feature flags, the calls-included matrix, band placeholders and the DIFM threshold.",
+      "seat": [
+        "Ops",
+        "Marketing",
+        "Principal officer"
+      ],
+      "role": {
+        "Ops": "act",
+        "Marketing": "act",
+        "Principal officer": "act"
+      },
+      "built": "built",
+      "writes": [
+        {
+          "action": "edit (mock)",
+          "event": "M10_edit",
+          "roles": [
+            "Ops",
+            "Marketing",
+            "Principal officer"
+          ]
+        }
+      ],
+      "zoho_instead": "three columns: built, {I14} Creator, {I15}; this is {I15} made visible",
+      "events": [
+        "M10_view",
+        "M10_edit"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "SKU cards",
+          "copy slots N-* and W-* with current text",
+          "feature flags",
+          "calls_included matrix",
+          "bands (placeholder)",
+          "DIFM threshold"
+        ],
+        "logic": [],
+        "branches": [],
+        "states": [],
+        "dev": [
+          "This is I15 made visible: the app must read sku_cards, copy_slots, feature_flags, calls_included, bands and difm_threshold from one config store, keyed the same way as the seed's app config table.",
+          "Edit is mock; a real build needs a config write path with an audit trail, since these values are compliance-relevant (fees, thresholds, copy)."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "Config"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    },
+    {
+      "id": "M11",
+      "sec": "M",
+      "title": "Audit log",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Every change to a regulated record for every person: who changed what, and when.",
+      "seat": [
+        "Compliance"
+      ],
+      "role": {
+        "Compliance": "act",
+        "Principal officer": "read"
+      },
+      "built": "built",
+      "writes": [
+        {
+          "action": "export",
+          "event": "M11_export",
+          "roles": [
+            "Compliance"
+          ]
+        }
+      ],
+      "zoho_instead": "{I14} audit covers it only",
+      "events": [
+        "M11_view",
+        "M11_export"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "who changed what and when on regulated records"
+        ],
+        "logic": [],
+        "branches": [],
+        "states": [],
+        "dev": [
+          "The app must expose an audit table (or compute it from event and table history) with one row per regulated change: agreements, risk profile, plan versions, payments, AA consents, calls with input changes, deletion requests and resolved ops-queue items."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "Audit log"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    },
+    {
+      "id": "M12",
+      "sec": "M",
+      "title": "Assisted onboarding and DIFM provisioning",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Create a DIFM household from the admin side; the client claims it later by OTP.",
+      "seat": [
+        "Ops"
+      ],
+      "role": {
+        "Ops": "act",
+        "Principal officer": "read"
+      },
+      "built": "built",
+      "writes": [
+        {
+          "action": "create",
+          "event": "M12_create",
+          "roles": [
+            "Ops"
+          ]
+        },
+        {
+          "action": "invite",
+          "event": "M12_invite",
+          "roles": [
+            "Ops"
+          ]
+        }
+      ],
+      "zoho_instead": "none",
+      "events": [
+        "M12_view",
+        "M12_create",
+        "M12_invite"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "a DIFM household created from admin, claimed later by OTP"
+        ],
+        "logic": [],
+        "branches": [],
+        "states": [],
+        "dev": [
+          "The app must expose a household-creation endpoint that seeds a person and household record in state S14 without an S1 or S2 history, and an invite flow tied to phone or email verification."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "Assisted onboarding and DIFM provisioning"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    },
+    {
+      "id": "M13",
+      "sec": "M",
+      "title": "KPI page",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The Placement rows from the admin and CRM spec, computed from the seed: users, states, paid by SKU, plans, actions, AUA, SIP book, AA and KYC rates, revenue mirror, with topup counts in every footer.",
+      "seat": [
+        "Principal officer"
+      ],
+      "role": {
+        "Principal officer": "read"
+      },
+      "built": "built",
+      "writes": [],
+      "zoho_instead": "{I14} Analytics for CRM-side rows; the DB-side rows need the built tool or a reporting tool over the database (to be decided)",
+      "events": [
+        "M13_view"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "total users",
+          "new users",
+          "in onboarding per state",
+          "paid by SKU",
+          "plans built and read",
+          "pending actions",
+          "AUA by tier",
+          "SIP book (StAR vs AA-detected)",
+          "AA availed",
+          "KYC and AA failure rates",
+          "revenue mirror",
+          "topup footers"
+        ],
+        "logic": [],
+        "branches": [],
+        "states": [],
+        "dev": [
+          "The app must expose the same aggregate counts as the admin and CRM spec's Placement rows, computed server-side once the browser can no longer sum 3,000-plus people live.",
+          "Topup counts must ship with every chart footer so no seed ratio is read as a real one (plan section 3)."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "KPI page"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    },
+    {
+      "id": "M14",
+      "sec": "M",
+      "title": "Roles and permissions",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The access matrix: which seat can act, read, or read only their own people, on which screen.",
+      "seat": [
+        "Principal officer"
+      ],
+      "role": {
+        "Principal officer": "read"
+      },
+      "built": "built",
+      "writes": [],
+      "zoho_instead": "{I14} profiles cover it only",
+      "events": [
+        "M14_view"
+      ],
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "23 Sep 2026",
+        "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
+        "reason": [
+          "to be decided: the tool over the app database (admin brief, W12)"
+        ]
+      },
+      "v02": {
+        "status": "new",
+        "causes": [
+          "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)"
+        ]
+      },
+      "spec": {
+        "fields": [
+          "matrix seat by screen by action"
+        ],
+        "logic": [],
+        "branches": [],
+        "states": [],
+        "dev": [
+          "The app must expose the same role table this page reads from data/admin_screens.json (role per screen), so the matrix and the app's real access control never drift apart."
+        ]
+      },
+      "ui": [
+        [
+          "h",
+          "Roles and permissions"
+        ],
+        [
+          "note",
+          "Loading the seed..."
+        ]
+      ]
+    }
+  ]
+}

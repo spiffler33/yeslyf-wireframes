@@ -1019,6 +1019,8 @@ def main():
     build_tracker.main()
     import build_operator  # docs/admin_operator.html from data/operator.json (seed plan D5, phase B part 2)
     build_operator.main()
+    import build_admin_wireframes  # docs/admin_wireframes.html and the docs/seed/<run>/admin/ bundles (phase C part 1)
+    build_admin_wireframes.main()
 
 
 if __name__ == "__main__":

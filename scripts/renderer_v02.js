@@ -10,6 +10,8 @@
 // WIRE_OPTS (optional, set by the audience files of phase 9): identities (list), lock (one identity, fixed),
 // key (storage key), spec ("full" | "design" | "compliance"), compFilter (false hides the compliance walk),
 // exportTitle, exportFile. Absent: the full site behaviour.
+// Also (phase C, admin wireframes): page, version (label shown in place of "v0.2", e.g. "admin v0.1"),
+// specTop(s) (HTML placed after the purpose), drawScreen(s, frame) (called after the frame is drawn).
 (function(){
   var OPTS = (typeof WIRE_OPTS !== "undefined" && WIRE_OPTS) ? WIRE_OPTS : {};
   var TIERS = ["ALL","DIY","DIWM","DIFM"];
@@ -23,6 +25,7 @@
   var VERDICTS = ["Keep","Change","Drop","Question"];
   var KEY = OPTS.key || "yeslyf_wire_v02";
   var PAGE = OPTS.page || "wireframes_v02";
+  var VERSION = OPTS.version || "v0.2";
   var state = { idx:0, tier:"ALL", path:"both", st:"", comp:"all", tpl:"all", fz:"all", map:false };
   var FREEZES = ["all","frozen","open"];
   var INTEG = (typeof INTEGRATIONS !== "undefined" && INTEGRATIONS) ? INTEGRATIONS : {as_of:"", rows:[]};
@@ -165,11 +168,12 @@
     frame.innerHTML = '<div class="frame-top"><span>'+esc(s.id)+'</span><span>'+esc(s.title)+'</span><span>'+esc(s.template)+'</span>'+fz+'</div><div class="frame-body">'+hidden+body+'</div>';
     document.getElementById("crumb").textContent = secName[s.sec] + "  /  " + s.id + "  " + s.title;
     var w = walkList(); var pos = w.indexOf(state.idx);
-    document.getElementById("counter").textContent = (pos >= 0 ? (pos+1) + " of " + w.length : "outside the current filter") + "  /  " + SCREENS.length + " screens in v0.2";
+    document.getElementById("counter").textContent = (pos >= 0 ? (pos+1) + " of " + w.length : "outside the current filter") + "  /  " + SCREENS.length + " screens in " + VERSION;
     Array.prototype.forEach.call(frame.querySelectorAll("[data-go]"), function(b){
       b.addEventListener("click", function(ev){ ev.preventDefault(); var t = b.getAttribute("data-go"); if(t && byId[t] !== undefined){ ensureScope(byId[t]); go(byId[t]); } });
     });
     renderStrip();
+    if(OPTS.drawScreen) OPTS.drawScreen(s, frame);
   }
 
   // ---------- the spec panel ----------
@@ -235,7 +239,7 @@
   function marker(s){
     var v = s.v02 || {status:"kept", causes:[]};
     var st = v.status;
-    var label = st === "new" ? "New in v0.2" : (st === "changed" || st === "rebuilt") ? "Changed in v0.2" + (st === "rebuilt" ? " (rebuilt)" : "") : "Kept from v0.1";
+    var label = st === "new" ? "New in " + VERSION : (st === "changed" || st === "rebuilt") ? "Changed in " + VERSION + (st === "rebuilt" ? " (rebuilt)" : "") : "Kept from v0.1";
     var cls = st === "new" ? " new" : (st === "changed" || st === "rebuilt") ? " changed" : "";
     var causes = '';
     if(SPEC === "full" && v.causes && v.causes.length){
@@ -274,6 +278,7 @@
     var c = s.compliance || {review:false, reasons:[], checks:[]};
     var html = marker(s);
     html += '<div class="spec-purpose">'+esc(s.purpose)+'</div>';
+    if(OPTS.specTop) html += OPTS.specTop(s) || "";
     if(SPEC === "compliance"){
       html += '<div class="spec-block"><div class="spec-t">Compliance flag</div><div class="tiers">reasons: ' + esc((c.reasons || []).join(", ")) + (c.note ? '; ' + esc(c.note) : '') + '</div></div>';
       if(c.checks && c.checks.length){

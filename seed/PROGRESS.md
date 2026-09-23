@@ -24,8 +24,26 @@ Plan: PLAN_admin_seed_v01.md (the spec; CLAUDE.md wins on a conflict). Resume fr
   app_events 12,464 (plan guessed about 20,000; not padded), tickets 73, landing 940, 27 campaign lists.
   Regenerate: `python3 scripts/seed_gen.py --anchor 2026-09-23`, then `python3 scripts/seed_export.py`, then
   `python3 scripts/build_site.py` (it runs the scan and fails on a breach).
-- Phase C foundation runs in a separate git worktree (renderer hooks, the masked seed bundle, the page,
-  admin_core.js); the three screen files follow in the main checkout.
+- Phase B pushed (e16701f). Phase C foundation merged from its worktree into the main checkout (not yet
+  committed): renderer hooks (five pages render identically, checked screen by screen), data/admin_screens.json,
+  scripts/admin_core.js, scripts/build_admin_wireframes.py (masked bundles in docs/seed/<run>/admin/: run-3000
+  35 files, 18.8 MB; run-500 10 files, 3.9 MB; no PAN, no full phone; plus a sip table for M13).
+- Phase C done ("admin wireframes v0.1"): docs/admin_wireframes.html draws M02 to M14 over the masked bundle
+  with the run switch (500 or 3,000) and the Admin Link deep link; scripts/admin_screens_1.js (M02 to M04),
+  _2.js (M05 to M09), _3.js (M10 to M14). Checks: the screen agents' own counts against the bundle (170, 97
+  and all of M10 to M14), a smoke test drawing every screen on both runs (42 draws, 0 problems), a visual pass
+  on an offline copy; admin_core's dates read the IST clock face with UTC getters (a +08:00 viewer saw times
+  2.5 hours late).
+- Gaps the screens found (for data/seats.json): no SLA per ops item type (M06); no call script text in any state
+  (M04); the CAS source has no integrations row (M03); "who is on an old version" is always the S11 list (M08:
+  a publish rebuilds every plan pending acceptance); M13: no app-open or active-user event, kyc_status never
+  failed, no one-time SKU, data_complete has day precision, no CMS content, no paywall_viewed aggregate, no
+  per-D-screen completion flags, no week-N retention cohort.
+- Phase D in flight: scripts/build_seats.py (and step 11 of build_operator.py) and scripts/build_brief.py are
+  written and tested against a fixture; data/seats.json (the seat questions, answered or gap) is next. Until it
+  exists the full site build fails (build_operator and the new builders require it). seed/export_schema.json
+  columns carry an exact "field" path (T1's "where mirrored" matches on it). The Mixpanel JSONL (phase E) is in
+  seed_export.py already, uncommitted.
 
 ## Vatsal's answers (23 Sep 2026, afternoon)
 
@@ -35,10 +53,10 @@ Plan: PLAN_admin_seed_v01.md (the spec; CLAUDE.md wins on a conflict). Resume fr
 2. Fixtures ship as a private zip named by run date and run size (yeslyf_seed_<anchor>_<run>.zip, gitignored,
    built by seed_export.py). Nothing seed-related on the board beyond the masked admin bundle.
 3. The operator page gets one notes box per step (board_entries, like the checkboxes).
-4. Progress ring: "keep sign-up; v0.2 governs where it conflicts with plan_v2", plus a gaps row. Held: the v0.2
-   O02 logic line says "the ring starts at 20 percent after the reveal" (O02 is frozen), so v0.2 and plan_v2
-   agree and only the seed starts at sign-up. Asked Vatsal which way; the seed keeps sign-up until he answers;
-   the gaps row waits for his answer.
+4. Progress ring (settled after one round: the v0.2 O02 logic line, frozen, also says "the ring starts at 20
+   percent after the reveal"): follow v0.2. The ring starts after the reveal; S1 people show 0; the endowed 20
+   lands at reveal_seen. Item 4's gaps row is dropped; nothing frozen changes. DIFM people, provisioned without a
+   reveal, get no endowment (their ring reads 68 to 75 instead of 88 to 95).
 5. DIFM stays 8. seed/config.json tier_mix becomes DIWM 60, DIY 36, DIFM 4 (cause "Vatsal, 23 Sep 2026"); the
    mix drives the DIWM:DIY quota, so the seed regenerates (DIWM 123 -> 126, DIY 79 -> 76). DIFM prospects stay
    15; run-500 keeps its floor of 2.
