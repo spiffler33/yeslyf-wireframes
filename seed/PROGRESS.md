@@ -5,7 +5,11 @@ Plan: PLAN_admin_seed_v01.md (the spec; CLAUDE.md wins on a conflict). Resume fr
 ## State (23 Sep 2026)
 
 - Phase A done: config, generator, run-500 and run-3000, report.md per run. Committed as "seed A: generator and
-  two runs". Stopped for Vatsal's go before phase B (his instruction, 23 Sep 2026).
+  two runs" (446099f); closed at a phase boundary the same day (dead code swept, PLAN.md section 20, handoff,
+  pushed). Stopped for Vatsal's go before phase B (his instruction, 23 Sep 2026).
+- The phase A summary went to Vatsal in chat on 23 Sep 2026: layers, the state by tier grid, topups, the N01
+  multi-predicate list, every phase A assumption, the CLAUDE.md conflicts and the three questions below. Silence
+  after it is consent for the seed plan decisions (plan, cause labels); his go starts phase B.
 - Phases B to E: not started. After the go they run in sequence without stopping, one commit per phase (plan
   section 18 messages), the one-line tracker update at the end of each phase.
 

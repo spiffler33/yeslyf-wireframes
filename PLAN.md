@@ -505,3 +505,24 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
 - Somil asked why D02c is open. Not because it is new: it is open since 17 Sep 2026 with the CAS decision (minutes
   16 Sep 2026, item 6), reasons "to be decided: CAS source for V1" and "to be verified: parsing effort", the same
   block as A10, A10c and G12a. It freezes when W11 closes (the CAS source, I23).
+
+## 20. Status, 23 Sep 2026 (seed phase A: generator and two runs)
+
+- PLAN_admin_seed_v01.md phase A is closed: seed/config.json (every count, ratio, floor, placeholder band ladder,
+  archetype and rule, each with its cause; the decisions taken where the plan was silent carry "added": "phase A"),
+  seed/names.json, scripts/seed_gen.py, and data/seed/run-500 (507 people, 7 topups) and data/seed/run-3000 (3,040
+  people, no topups), each with report.md. Progress, results and open questions: seed/PROGRESS.md.
+- State is never an input label: the generator writes timestamped flags (state_flags.json) and the resolver derives
+  the state and the state_enter history with the precedence of plan section 7. Every person resolves to the state
+  the generator aimed at; 0 coherence violations; 0 unknown gate or React fields on a built plan; every ugly case
+  at its count; the output is fixed by the seed (20260922) and the anchor (the run date).
+- Firm, carried forward: every amount is "Rs ___" with a price key and included calls read "N" (CLAUDE.md wins over
+  the plan's Amount columns); vendor names live in the data only, screens cite I-numbers; no seed ratio leaks into
+  product logic (Vatsal, 11 Sep 2026).
+- N01 gaps the seed surfaced (for the seats page): 86 people with more than one predicate; no state for D10
+  confirmed with the engine failed (3, kept at S5); "the previous state" exits miss progress made during an overlay;
+  no quiet-hours rule (the seed sends from 09:00 to 21:00); the S2 emails at day 7, 21 and 82 have no address
+  before P02; the S20 task on a second no-show can be masked by S11 or S13; no_show and call_no_show name one moment.
+- Open with Vatsal: where the progress ring starts (at OTP per the seed plan, after the reveal per plan_v2 4.3
+  rule 11); DIFM is 8 people (S14) not 10 percent; the S16 flag covers the manual path and the AA-failed fallback
+  (37 percent). Phases B to E wait for his go, then run without stopping, one commit per phase.

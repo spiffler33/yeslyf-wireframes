@@ -167,9 +167,6 @@ EXITS = {
 }
 OVERLAY_ENTRY = {"S7", "S11", "S12", "S13", "S15", "S17", "S20", "S21", "S22", "S23", "S24", "S25"}
 
-SECTION_CARD = {"family": "D12a", "risk": "D12b", "income": "D12c", "expenses": "D12d", "investments": "D12e",
-                "loans": "D12f", "insurance": "D12g", "goals": "D12h"}
-SECTIONS = ["family", "risk", "income", "expenses", "investments", "loans", "insurance", "goals"]
 D02_TYPES = [("D02a", ["bank_and_deposits"]), ("D02b", ["mutual_funds"]), ("D02c", ["stocks"]), ("D02d", ["nps"]),
              ("D02e", ["epf"]), ("D02f", ["ppf"]), ("D02g", ["gold"]),
              ("D02h", ["home_value", "investment_property_value", "investment_property_rent"]),
@@ -186,7 +183,6 @@ SHARPEN_SCREEN = {"partner_take_home": "G06", "rental_income": "G06", "other_inc
                   "investment_property_value": "G09", "ulip_surrender_value": "G03", "ulip_premium": "G03",
                   "ulip_years_completed": "G05", "other_assets": "G09", "term_sum_assured": "G05",
                   "health_sum_insured": "G05", "other_policies": "G05"}
-PLAN_SCREENS = ["G03", "G04", "G05", "G06", "G07", "G09", "G10", "G11", "G12", "G13", "G14"]
 STATE_H01 = {"S6": "H01a", "S8": "H01b", "S9": "H01c", "S10": "H01d", "S11": "H01e", "S12": "H01f", "S13": "H01g",
              "S14": "H01h", "S16": "H01i", "S18": "H01j", "S22": "H01k"}
 
@@ -504,7 +500,7 @@ def plan_population(ctx, R):
 
 # ---------------------------------------------------------------- identity and the synthetic truth
 
-def make_identity(p, ctx, spec):
+def make_identity(p, ctx):
     r, cfg, N = p.r, ctx.cfg, ctx.names
     arche = pick(r, cfg["difm_archetypes"]["weights"]) if p.tier == "difm" else pick(r, cfg["archetype_weights"]["weights"])
     p.arche = arche
@@ -2153,7 +2149,7 @@ def run_actions(p, ctx, starts, dones):
         p.tl["all_done"] = max(a["done_at"] for a in p.actions)
 
 
-def book_call(p, ctx, bk, slot, outcome, topic=None, rebook_of=None, background=False):
+def book_call(p, ctx, bk, slot, outcome, topic=None, rebook_of=None):
     r = p.r
     adv = r.choice(ctx.advisers)
     topic = topic or r.choice(ctx.cfg["calls"]["topics"])
@@ -2470,7 +2466,7 @@ def background_calls(p, ctx):
         bk = p.tl["first_d"] + DAYS(r.uniform(0.2, 4))
         slot = call_slot(ctx, r, bk, 1, 5)
         if slot + MINS(60) < lim and slot + MINS(60) < A:
-            book_call(p, ctx, bk, slot, "completed", background=True)
+            book_call(p, ctx, bk, slot, "completed")
     if not built or base not in ("S9", "S10"):
         return
     p1 = cc["first_call"]["diwm"] if p.tier == "diwm" else cc["first_call"]["diy"]
@@ -2479,13 +2475,12 @@ def background_calls(p, ctx):
         slot = call_slot(ctx, r, bk, tm["slot_after_booking_days"][0], tm["slot_after_booking_days"][1])
         if slot + MINS(60) < A and (fa is None or slot < fa + DAYS(60)):
             out = pick(r, cc["outcome"])
-            call = book_call(p, ctx, bk, slot, out, background=True)
+            call = book_call(p, ctx, bk, slot, out)
             if out == "no_show":
                 rb = slot + DAYS(r.uniform(0.1, 2))
                 s2 = call_slot(ctx, r, rb, 1, 5)
                 if s2 + MINS(60) < A:
-                    call2 = book_call(p, ctx, rb, s2, "completed", topic=call["topic"], rebook_of=len(p.calls) - 1,
-                                      background=True)
+                    call2 = book_call(p, ctx, rb, s2, "completed", topic=call["topic"], rebook_of=len(p.calls) - 1)
                     input_changes(p, ctx, call2)
                 else:
                     p.calls.pop()
@@ -2496,7 +2491,7 @@ def background_calls(p, ctx):
                 bk2 = slot + DAYS(r.uniform(14, 60))
                 s3 = call_slot(ctx, r, bk2, 1, 7)
                 if s3 + MINS(60) < A:
-                    call3 = book_call(p, ctx, bk2, s3, "completed", background=True)
+                    call3 = book_call(p, ctx, bk2, s3, "completed")
                     input_changes(p, ctx, call3)
 
 
@@ -3485,7 +3480,7 @@ def fulfilment(p, ctx):
     return int(round(100.0 * have / max(total, have)))
 
 
-def build_tables(people, ctx, info):
+def build_tables(people, ctx):
     A = ctx.A
     T = collections.OrderedDict()
     for name in ("people", "households", "reveal", "financial_records", "loans", "covers", "goals", "rpq", "holdings",
@@ -3799,7 +3794,7 @@ def config_table(ctx):
 
 # ---------------------------------------------------------------- validation and the report
 
-def validate(people, T, events, ctx, info):
+def validate(people, events, ctx):
     A = ctx.A
     res = collections.OrderedDict()
     co = ctx.cfg["coherence"]
@@ -4135,7 +4130,7 @@ def build_run(cfg, board, names, anchor, run):
         p.period = spec.get("period")
         p.method = spec.get("method")
         p.s19_ranges = False
-        make_identity(p, ctx, spec)
+        make_identity(p, ctx)
         if p.layer != "lead":
             make_truth(p, ctx)
         people.append(p)
@@ -4183,8 +4178,8 @@ def build_run(cfg, board, names, anchor, run):
         p.fulfilment = fulfilment(p, ctx)
     for p in people:
         decorate(p, ctx)
-    T, events = build_tables(people, ctx, info)
-    res = validate(people, T, events, ctx, info)
+    T, events = build_tables(people, ctx)
+    res = validate(people, events, ctx)
     out = os.path.join(ROOT, "data", "seed", run)
     os.makedirs(out, exist_ok=True)
     for name, table in T.items():
