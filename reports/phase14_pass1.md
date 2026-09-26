@@ -1,16 +1,17 @@
-# Phase 14, pass 1: data/questions.json (24 Sep 2026) - blocked on 11 quote mismatches
+# Phase 14, pass 1: data/questions.json (24 to 26 Sep 2026)
 
 Source: yeslyf_phase14_brief.md, pass 1. Phase 14 is free (PLAN.md numbers phases up to 13, the admin session).
 
 ## State
 
-scripts/import_sq.py is written and its dry run is complete. data/questions.json is NOT written: the brief (1.2) says
-a journey row whose quote in the answer set does not open the sheet row stops the import, and 11 rows do. The
-importer matched every one of the 231 ids to exactly one sheet row and every sheet row that carries a question to
-exactly one id, and every ref resolves (24 wait on the Part F tracker rows of pass 2). Nothing in the answer set was
-changed.
+scripts/import_sq.py reads the three files and the answer set and wrote data/questions.json: 231 rows, every id on
+exactly one sheet row and every sheet row that carries a question on exactly one id, every ref resolving (24 waited
+on the Part F tracker rows until pass 2). The write happened on 26 Sep 2026 after Vatsal's decision to match the
+journey rows by order (below); on 24 Sep 2026 the dry run had stopped on 11 quotes, as the brief's rule said.
+Nothing in the answer set was changed. Rebuild: no page changed (nothing reads questions.json before pass 3);
+check_phase9 19 PASS, check_site 3 PASS.
 
-## The block: quote mismatches (brief 1.2, "the sheet row begins with the same first three words")
+## Quotes that differ from the sheet (brief 1.2; matched by order, Vatsal, 26 Sep 2026)
 
 The check: lower case, every character that is not a letter or a digit separates words, the first three words of
 the answer set's "row" cell against the sheet row's cells joined (for the M row the Recommendation cell; for the
@@ -38,11 +39,10 @@ DIY then immediately switches to DIWM/DIFM"; the quote reads "Selects DIY then s
 journey row passes the check: Login 16 of 16, Reveal 14 of 15, Paywall 20 of 20, Account Aggreviator 16 of 17,
 Onboarding 5 of 14.
 
-Two ways to clear the block, either of which makes the dry run clean without touching an answer:
-1. Match the 11 rows by their position and label (the M row by its label, H1 by its bounds, the Onboarding rows by
-   order within their block), and keep the quote check as a report line for them.
-2. Edit the "row" cells of those 11 rows in SQ1_answers.md to the sheet's opening words (inputs/ is read-only for
-   the build; Vatsal edits it).
+Decision (Vatsal, 26 Sep 2026): match by order. The importer matches every journey row by its position within its
+block (the M row by its label, H1 by its bounds) and reports a differing quote as a note instead of stopping; the
+11 rows above are those notes. Their answers were read against the sheet rows: each names the row's content (W1
+corrects O01 as built, E1 says a tier change is Q02, the M rows decline the merges the Recommendation cells propose).
 
 ## What the dry run found
 
@@ -128,10 +128,10 @@ Part E: 4 route groups, stored as written (its screen lists are text, not valida
 - Every due date is a proposal (the answer set's header), so due_about is true on every open and owed row with a
   date; "no date" gives an empty due with due_about true.
 
-## Not done in this pass
+## Committed
 
-- data/questions.json (blocked as above). Passes 2 to 4 wait on it.
-- No rebuild, no commit of data; the importer and this report are committed so the next run starts from them.
+- scripts/import_sq.py (dry run by default; --write after a clean run), data/questions.json (231 rows, ASCII,
+  278 KB), this report. The importer runs again after pass 2 to confirm that no W ref is pending.
 
 ## Notes for passes 2 to 4 (from a read of the build scripts, 24 Sep 2026)
 

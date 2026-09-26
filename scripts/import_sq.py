@@ -17,10 +17,11 @@ row order; JD-SUM-1 to JD-SUM-5 the journey rows of the summary sheet (the answe
 cell); JD-<journey>-<block><n> per journey sheet, the blocks being W (the rows after the "Screen / Step" header up
 to "Detailed Edge Cases"), E (after the "Edge Case" header up to the screen-sequence or API block), API (after
 "API ID"), M (the "Recommendation" row of the screen-sequence block) and H1 (the Onboarding header block, Entry
-criteria to Source status, as one item). A journey row's quote in the answer set's row column must open the sheet
-row (the first three words, case-insensitive, punctuation as separators); a mismatch is a problem and stops the
-import. The M row is found by its label and the H1 block by its bounds; their quotes are checked the same way and
-a mismatch there is also a problem.
+criteria to Source status, as one item). Journey rows match by their order within the block (Vatsal, 26 Sep 2026:
+match by order); the M row is found by its label and the H1 block by its bounds. The answer set's row column quotes
+the sheet row, and the importer compares its first three words with the sheet row's (case-insensitive, punctuation
+as separators): a quote that differs is reported as a note for the pass report, not a problem, since the position
+is the match.
 
 Refs resolve against data/screens_v02.json (live screens), data/v02/states.json, data/integrations.json,
 data/tracker.json, the answer set's own ids and a short list of literals. A W ref that is not on the Tracker yet
@@ -548,11 +549,11 @@ def build():
     for rid in aset["order"]:
         if rid not in have:
             problems.append("%s: in the answer set but no sheet row lands on it" % rid)
-    # the journey quotes open their sheet rows
+    # the journey quotes against their sheet rows (rows match by order; a differing quote is reported, not fatal)
     for r in sheet_rows:
         a = answers.get(r["id"])
         if a and a["row"] and not opens_with(r["sheet_text"], a["row"]):
-            problems.append("quote mismatch %s: sheet %r row %d begins %r; the answer set quotes %r" % (
+            notes.append("quote differs %s: sheet %r row %d begins %r; the answer set quotes %r" % (
                 r["id"], r["sheet"], r["row_no"], " ".join(words(r["sheet_text"])[:6]), a["row"]))
     # board data for the refs
     screens = {s["id"]: s["template"] for s in load("screens_v02.json")["screens"] if s["v02"]["status"] not in ("dropped", "split")}
