@@ -184,7 +184,8 @@ JS = r"""
   function pageLink(r){ var p=r.page; var id=r.item_id;
     if(p==="wireframes_v02") return REVIEW?'index.html#'+encodeURIComponent(id):'wireframes_v02.html#'+encodeURIComponent(id);
     if(p==="integrations") return 'integrations.html#row/'+encodeURIComponent(id);
-    if(p==="tracker") return '#row/'+encodeURIComponent(id); return ''; }
+    if(p==="tracker") return '#row/'+encodeURIComponent(id);
+    if(p==="spinach_questions"&&!REVIEW) return 'spinach_questions.html#'+encodeURIComponent(id); return ''; }
   function paintQuestions(){ var el=document.getElementById("qs"); if(!el) return; var qs=questions();
     var c=document.getElementById("qcount"); var open=qs.filter(function(q){ return !q.answered; }).length;
     if(c) c.textContent=ALL?(qs.length+" questions, "+open+" open, "+(qs.length-open)+" answered"):"reading the board";
@@ -204,6 +205,9 @@ JS = r"""
     L.push("Frozen: "+COUNTS.frozen+" screens, "+COUNTS.templates+" templates. Open: "+COUNTS.open+", reasons on the Changelog"+(unfrozen.length?". Unfrozen: "+unfrozen.join(", "):""));
     var qs=questions(); var newQ=qs.filter(function(q){ return recent(q.row); }); var ans=qs.filter(function(q){ return q.answers.some(recent); });
     if(newQ.length||ans.length) L.push("Spinach questions: "+newQ.length+" new"+(newQ.length?" ("+newQ.map(function(q){ return q.row.item_id; }).join(", ")+")":"")+"; "+ans.length+" answered"+(ans.length?" ("+ans.map(function(q){ return q.row.item_id; }).join(", ")+")":""));
+    if(SQ&&SQ.batch){ var changed=[]; SQ.rows.forEach(function(r){ var d=daysBetween(r.changed,t); if(d>=0&&d<=1) changed.push(r.id); });
+      rows.forEach(function(r){ if(r.page==="spinach_questions"&&recent(r)&&changed.indexOf(r.item_id)<0) changed.push(r.item_id); });
+      L.push("Spinach questions "+SQ.batch+": "+SQ.frozen+" frozen, "+SQ.open+" open, "+SQ.owed+" owed; changed since yesterday: "+(changed.length?changed.join(", "):"none")); }
     var late=ROWS.filter(function(r){ return overdue(r)>0; }).map(function(r){ var n=overdue(r); return r.id+" ("+(val(r.id,"owner")||"no owner")+", "+n+(n===1?" day":" days")+")"; });
     L.push("Overdue: "+(late.length?late.join("; "):"none"));
     var next=null; MILESTONES.forEach(function(m){ var d=m.final_by?FINAL_BY:m.date; if(d&&d>=t&&(!next||d<next.d)) next={d:d, label:m.final_by?"every integrations row final":m.label, about:!!m.about}; });
@@ -281,6 +285,16 @@ def render_row(row, review=False):
     return '<tbody id="row-%s" data-id="%s">%s%s</tbody>' % (rid, rid, line, panel)
 
 
+def sq_blob():
+    """The Spinach Questions counts and changed dates for the daily update (phase 14, pass 3); an empty batch when absent."""
+    q = site.load_optional("questions.json")
+    if not q or not q.get("rows"):
+        return {"batch": "", "frozen": 0, "open": 0, "owed": 0, "rows": []}
+    rows = q["rows"]
+    return {"batch": q["batches"][0]["id"], "frozen": sum(1 for r in rows if r["status"] == "frozen"), "open": sum(1 for r in rows if r["status"] == "open"),
+            "owed": sum(1 for r in rows if r["status"] == "owed"), "rows": [{"id": r["id"], "changed": r["changed"]} for r in rows]}
+
+
 def build_page(doc, counts, integ_rows, review=False):
     rows = live_rows(doc)
     dropped = [r for r in doc["rows"] if r.get("status") == "dropped"]
@@ -290,7 +304,8 @@ def build_page(doc, counts, integ_rows, review=False):
     intro = ('<section><h1>Tracker</h1>'
              '<p class="lead">What HoA owes Spinach, what Spinach owes HoA, and what HoA settles inside. One row per item, the W series; '
              'open a row to set owner, due date, status, blocked by and notes. Every edit is recorded as it happens and shows on every device; '
-             'overdue rows say so in words. Copy today\'s update composes the WhatsApp text from the last 24 hours of the board.</p>'
+             'overdue rows say so in words. Copy today\'s update composes the WhatsApp text from the last 24 hours of the board.' +
+             ('' if review else ' Spinach\'s questionnaire rows, their answers and the approvals are on the <a href="spinach_questions.html">Spinach Questions</a> tab.') + '</p>'
              '<div class="strip" id="strip"></div><div class="counts" id="counts"></div>' + folded +
              '<div class="updrow"><button id="update" type="button">Copy today\'s update</button><span class="meta">plain text, about 15 lines, first names, no costs; anyone can press it</span></div>'
              '<div class="upd" id="upd"><pre></pre></div></section>')
@@ -306,7 +321,8 @@ def build_page(doc, counts, integ_rows, review=False):
             '<div class="counts"><span class="k" id="qcount">reading the board</span></div><div class="qs" id="qs"></div></section>')
     blob = ('<script>var ROWS=' + site.js_blob(rows) + ';\nvar MILESTONES=' + site.js_blob(doc["milestones"]) + ';\nvar BOARD_LINK=' + site.js_blob(doc["board_link"]) +
             ';\nvar COUNTS=' + site.js_blob(counts) + ';\nvar INTEG=' + site.js_blob(integ_rows) + ';\nvar INTEG_ITEM=' + site.js_blob(integ.PAGE_ITEM) +
-            ';\nvar IDENTITIES=' + site.js_blob(IDENTITIES) + ';\nvar STATUSES=' + site.js_blob(STATUSES) + ';\nvar REVIEW=' + site.js_blob(bool(review)) + ';</script>\n')
+            ';\nvar IDENTITIES=' + site.js_blob(IDENTITIES) + ';\nvar STATUSES=' + site.js_blob(STATUSES) + ';\nvar REVIEW=' + site.js_blob(bool(review)) +
+            ';\nvar SQ=' + site.js_blob(sq_blob()) + ';</script>\n')
     return (site.head("yeslyf tracker", site.CSS + EXTRA_CSS, config="../config.js" if review else "config.js") + '<body>\n' +
             site.header(PAGE, "tracker, %d items" % len(rows), who_html=who, show_export=False, tabs=site.REVIEW_TABS if review else None, setup_link=not review) +
             '<main class="main" style="max-width:none">' + intro + '<section>' + toolbar + table + '</section>' + qsec + '</main>\n' +

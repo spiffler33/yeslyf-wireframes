@@ -192,8 +192,8 @@ CSS = """
 
 TABS = [("index.html", "Meeting"), ("gaps.html", "Gaps"), ("inputs.html", "Inputs"),
         ("wireframes.html", "Wireframes v0.1"), ("admin.html", "Admin and CRM v0.1"),
-        ("wireframes_v02.html", "Wireframes v0.2"), ("tracker.html", "Tracker"), ("admin_v02.html", "Admin and CRM v0.2"),
-        ("admin_wireframes.html", "Admin seed"), ("changelog.html", "Changelog"), ("integrations.html", "Integrations"), ("events.html", "Events"), ("setup.html", "Setup")]
+        ("wireframes_v02.html", "Wireframes v0.2"), ("tracker.html", "Tracker"), ("spinach_questions.html", "Spinach Questions"),
+        ("admin_v02.html", "Admin and CRM v0.2"), ("admin_wireframes.html", "Admin seed"), ("changelog.html", "Changelog"), ("integrations.html", "Integrations"), ("events.html", "Events"), ("setup.html", "Setup")]
 # Admin seed added 23 Sep 2026 (PLAN_admin_seed_v01.md D9): one tab for the four seed pages, which link each other through
 # seed_subnav(); four tabs would push the header to a third row at laptop width and cut into the wireframes layout.
 SEED_PAGES = [("admin_wireframes.html", "Admin tab"), ("admin_seats.html", "Seats"), ("admin_brief.html", "Brief"),
@@ -207,6 +207,8 @@ SUBNAV_CSS = """
 # The review link (docs/review/): the v0.2 pages with only their tabs (Vatsal, 11 Sep 2026); Integrations added 16 Sep 2026;
 # Events added 16 Sep 2026 (phase 10b-2).
 # Tracker added 17 Sep 2026 (phase 12, pass 3): the daily update and Spinach's questions live there.
+# The Spinach Questions tab (26 Sep 2026, phase 14) is HoA's working view and is not on the review link: Spinach receives the
+# filled questionnaire files, never the tab (Vatsal, 26 Sep 2026).
 REVIEW_TABS = [("index.html", "Wireframes v0.2"), ("tracker.html", "Tracker"), ("admin_v02.html", "Admin and CRM v0.2"), ("integrations.html", "Integrations"),
                ("events.html", "Events")]
 
@@ -371,6 +373,21 @@ def build_data_blob(items, inputs, gaps):
         d["gaps"][gp["id"]] = {"title": gp["title"]}
         d["gap_order"].append(gp["id"])
     return json.dumps(d, ensure_ascii=True)
+
+
+def sq_refs_blob():
+    """{screen id: [question ids]}: the Spinach Questions rows whose refs name a live screen, for the spec panel's back-link
+    line (phase 14, pass 3); {} when data/questions.json is absent. Rendered by renderer_v02.js, no comment rows."""
+    doc = load_optional("questions.json")
+    if not doc:
+        return {}
+    live = {s["id"] for s in load("screens_v02.json")["screens"] if s["v02"]["status"] not in ("dropped", "split")}
+    out = {}
+    for r in doc["rows"]:
+        for ref in r["refs"]:
+            if ref in live and r["id"] not in out.setdefault(ref, []):
+                out[ref].append(r["id"])
+    return out
 
 
 def screen_links(ids):
@@ -669,7 +686,8 @@ def build_wire_v02(v02, states, reasons, review=False):
     layout = WIRE_LAYOUT
     data = ('<script>var SECTIONS=' + js_blob(v02["sections"]) + ';\nvar SCREENS=' + js_blob(live) + ';\nvar DROPPED=' + js_blob(dropped) +
             ';\nvar SPLIT=' + js_blob(split) + ';\nvar STATES=' + js_blob(states["states"] if states else []) + ';\nvar REASONS=' + js_blob(reasons) +
-            ';\nvar INTEGRATIONS=' + js_blob(integrations_blob()) + ';\nvar FREEZE=' + js_blob(freeze_blob(load("changelog.json"))) + ';</script>\n')
+            ';\nvar INTEGRATIONS=' + js_blob(integrations_blob()) + ';\nvar FREEZE=' + js_blob(freeze_blob(load("changelog.json"))) +
+            ';\nvar SQ_REFS=' + js_blob({} if review else sq_refs_blob()) + ';</script>\n')  # the back-links stay off Spinach's copy
     page = (head("yeslyf wireframes v0.2", read_script("renderer_v02.css"), config="../config.js" if review else "config.js") + '<body>\n' +
             header("index.html" if review else "wireframes_v02.html", "wireframes v0.2, " + str(len(live)) + " screens", who_html=who,
                    export_label="Export comments", tabs=REVIEW_TABS if review else None, setup_link=not review) +
@@ -1048,6 +1066,8 @@ def main():
     build_events.main()
     import build_tracker  # docs/tracker.html and docs/review/tracker.html from data/tracker.json (phase 12, pass 3)
     build_tracker.main()
+    import build_questions  # docs/spinach_questions.html and its review copy from data/questions.json (phase 14, pass 3)
+    build_questions.main()
     import build_operator  # docs/admin_operator.html from data/operator.json (seed plan D5, phase B part 2)
     build_operator.main()
     import build_admin_wireframes  # docs/admin_wireframes.html and the docs/seed/<run>/admin/ bundles (phase C part 1)

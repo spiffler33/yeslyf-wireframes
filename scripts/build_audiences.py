@@ -25,6 +25,11 @@ import build_site as site  # noqa: E402
 
 TEAM_IDENTITIES = ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Spinach", "Compliance"]
 BANNER = "All copy is placeholder pending compliance review; comment on language on any screen."
+# The Spinach Questions tab (phase 14, pass 3), linked from the team and compliance files' header line on the open rows.
+# Relative: the files live in docs/audiences/ and may not carry an absolute URL.
+SQ_LINKS = {"spinach": [],  # Spinach never sees the tab (Vatsal, 26 Sep 2026); it receives the filled questionnaire files
+            "team": [("../spinach_questions.html#open", "Spinach Questions, open rows")],
+            "compliance": [("../spinach_questions.html#open", "Spinach Questions, open rows")]}
 FILES = [("yeslyf_v02_team.html", "team"), ("yeslyf_v02_spinach.html", "Spinach"), ("yeslyf_v02_compliance.html", "compliance")]
 
 VIEW_JS = r"""
@@ -43,8 +48,11 @@ VIEW_JS = r"""
 """
 
 
-def header(subtitle, views, export_label):
+def header(subtitle, views, export_label, links=()):
+    """links: (href, label) pairs rendered after the view tabs as plain links (VIEW_JS binds only a[data-view], so they
+    navigate); the Spinach Questions tab, relative, since an audience file may not carry an absolute URL."""
     tabs = "".join('<a data-view="%s"%s>%s</a>' % (vid, ' class="on"' if i == 0 else "", site.esc(label)) for i, (vid, label) in enumerate(views))
+    tabs += "".join('<a href="%s" class="ext">%s</a>' % (site.esc(href), site.esc(label)) for href, label in links)
     return ('<header class="top"><div class="brand">yeslyf <span>' + site.esc(subtitle) + '</span></div>'
             '<nav class="tabs views">' + tabs + '</nav>'
             '<div class="who">Reviewing as <select id="reviewer"></select></div>'
@@ -123,8 +131,8 @@ def counts_doc(chg):
                 open_rows))
 
 
-def page(title, head_subtitle, views, export_label, bar_html, panes, data, opts_js=True):
-    return (site.head(title, site.read_script("renderer_v02.css"), config=None) + '<body>\n' + header(head_subtitle, views, export_label) +
+def page(title, head_subtitle, views, export_label, bar_html, panes, data, opts_js=True, links=()):
+    return (site.head(title, site.read_script("renderer_v02.css"), config=None) + '<body>\n' + header(head_subtitle, views, export_label, links) +
             '<div data-viewpane="wire">' + bar_html + site.WIRE_LAYOUT + '</div>\n' + panes + data +
             site.store_script() + '<script>' + site.read_script("renderer_v02.js") + '</script>\n<script>' + VIEW_JS + '</script>\n</body>\n</html>\n')
 
@@ -148,7 +156,8 @@ def build_all(v02, states, reasons, admin, changelog):
     out["yeslyf_v02_team.html"] = (page(
         "yeslyf wireframes v0.2, team file", "wireframes v0.2 for the team, %d screens" % len(live),
         [("wire", "Wireframes v0.2"), ("admin", "Admin and CRM v0.2"), ("changelog", "Changelog")], "Export comments",
-        bar(banner=True), panes, blob(v02["sections"], prep(live, "team"), dropped, split, state_list, reasons, opts, integ, freeze)), "team")
+        bar(banner=True), panes, blob(v02["sections"], prep(live, "team"), dropped, split, state_list, reasons, opts, integ, freeze),
+        links=SQ_LINKS["team"]), "team")
 
     # Spinach: the wireframes and the counts; identity locked; no compliance, no causes
     opts = {"identities": ["Spinach"], "lock": "Spinach", "key": "yeslyf_wire_v02_spinach", "spec": "design", "compFilter": False,
@@ -157,7 +166,8 @@ def build_all(v02, states, reasons, admin, changelog):
     out["yeslyf_v02_spinach.html"] = (page(
         "yeslyf wireframes v0.2, Spinach file", "wireframes v0.2 for Spinach, %d screens, %d templates" % (len(live), changelog["counts"]["unique_templates"]),
         [("wire", "Wireframes v0.2"), ("counts", "Counts")], "Export comments",
-        bar(comp=False), panes, blob(v02["sections"], prep(live, "spinach"), dropped, split, state_list, {}, opts, integ, freeze)), "Spinach")
+        bar(comp=False), panes, blob(v02["sections"], prep(live, "spinach"), dropped, split, state_list, {}, opts, integ, freeze),
+        links=SQ_LINKS["spinach"]), "Spinach")
 
     # compliance: flagged screens only, in flow order; identity locked; the review reasons only
     flagged = [s for s in live if s["compliance"]["review"]]
@@ -167,7 +177,8 @@ def build_all(v02, states, reasons, admin, changelog):
     out["yeslyf_v02_compliance.html"] = (page(
         "yeslyf wireframes v0.2, compliance file", "wireframes v0.2 for compliance review, %d screens flagged" % len(flagged),
         [("wire", "Screens for review")], "Export comments",
-        bar(tiers=False, path=False, state=False, tpl=False, banner=True, freeze=False), "", blob(v02["sections"], prep(flagged, "compliance"), dropped, split, [], review_reasons, opts)), "compliance")
+        bar(tiers=False, path=False, state=False, tpl=False, banner=True, freeze=False), "", blob(v02["sections"], prep(flagged, "compliance"), dropped, split, [], review_reasons, opts),
+        links=SQ_LINKS["compliance"]), "compliance")
     return out
 
 

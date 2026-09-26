@@ -30,6 +30,7 @@
   var FREEZES = ["all","frozen","open"];
   var INTEG = (typeof INTEGRATIONS !== "undefined" && INTEGRATIONS) ? INTEGRATIONS : {as_of:"", rows:[]};
   var TFZ = (typeof FREEZE !== "undefined" && FREEZE) ? FREEZE : null;
+  var SQREFS = (typeof SQ_REFS !== "undefined" && SQ_REFS) ? SQ_REFS : {};  // screen id -> Spinach Questions rows that cite it (phase 14)
   var liveChoices = null;  // final or open per integrations row, read from the board table once the page is live
   var byId = {}; SCREENS.forEach(function(s,i){ byId[s.id]=i; });
   var secName = {}; SECTIONS.forEach(function(s){ secName[s[0]]=s[1]; });
@@ -273,6 +274,14 @@
       return '<li>'+esc(r.id)+' '+esc(r.vendor)+', '+esc(ch)+slip+'</li>'; }).join("")+'</ul>');
   }
 
+  function sqBlock(s){
+    // The Spinach Questions rows whose refs name this screen, as links to their anchors (phase 14, pass 3; rendered
+    // from data/questions.json at build time, no comment rows). Absent blob, or no row: nothing.
+    var ids = SQREFS[s.id]; if(!ids || !ids.length) return '';
+    var base = OPTS.sqPage || "spinach_questions.html";
+    return block("sq", "Spinach questions", ids.length, '<div class="tiers">'+ids.map(function(id){ return '<a href="'+base+'#'+esc(id)+'">'+esc(id)+'</a>'; }).join(", ")+'</div>');
+  }
+
   function renderSpec(){
     var s = SCREENS[state.idx]; var n = noteFor(s.id);
     var c = s.compliance || {review:false, reasons:[], checks:[]};
@@ -307,6 +316,7 @@
     html += list("states", "States", s.spec.states);
     html += list("dev", "Dev notes", s.spec.dev);
     html += integrationsBlock(s);
+    html += sqBlock(s);
     html += list("events", "Events", s.events);
     if(SPEC === "full"){
       var inner = '<div class="tiers">reasons: ' + esc((c.reasons || []).join(", ")) + (c.note ? '; ' + esc(c.note) : '') + '</div>';
