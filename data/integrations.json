@@ -12,13 +12,13 @@
       "gates": "launch",
       "fallback": "none",
       "owner": "Harish",
-      "status": "not started",
+      "status": "production",
       "agreement_date": "",
       "sandbox_date": "",
       "production_date": "",
       "docs_url": "",
       "cost": "",
-      "notes": "About a week away as of 16 Sep 2026. Public documentation does not wait for it; contracts and most sandboxes do. to be verified: which rows need the registration document before a sandbox. SEBI is named on the screens as the regulator (the registration line, the risk questions), never as an integration, so the vendor cross-check skips this row.",
+      "notes": "Registration granted (Vatsal, 24 Sep 2026). About a week away as of 16 Sep 2026. Public documentation does not wait for it; contracts and most sandboxes do. to be verified: which rows need the registration document before a sandbox. SEBI is named on the screens as the regulator (the registration line, the risk questions), never as an integration, so the vendor cross-check skips this row.",
       "cause": "minutes 16 Sep 2026, items 11 and 14",
       "to_be_verified": "",
       "cross_check": false,
@@ -196,10 +196,10 @@
       "docs_url": "",
       "cost": "",
       "notes": "",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Vatsal, 17 Sep 2026 (vendor choices final); recorded 24 Sep 2026 (SQ1)",
       "to_be_verified": "",
-      "choice": "open",
-      "final_since": ""
+      "choice": "final",
+      "final_since": "2026-09-17"
     },
     {
       "id": "I06",
@@ -277,10 +277,10 @@
       "docs_url": "",
       "cost": "",
       "notes": "Entry is always mobile plus OTP. A person is registered the moment the OTP is right; email is never the login.",
-      "cause": "Vatsal, 16 Sep 2026 (entry is always mobile OTP); minutes 16 Sep 2026, items 1 and 2; final: minutes 16 Sep 2026, item 3; open: Kajal, 18 Sep 2026 (supersedes the final of minutes 16 Sep 2026, item 3)",
+      "cause": "Vatsal, 16 Sep 2026 (entry is always mobile OTP); minutes 16 Sep 2026, items 1 and 2; final: minutes 16 Sep 2026, item 3; open: Kajal, 18 Sep 2026 (supersedes the final of minutes 16 Sep 2026, item 3); Vatsal, 17 Sep 2026 (vendor choices final); recorded 24 Sep 2026 (SQ1)",
       "to_be_verified": "",
-      "choice": "open",
-      "final_since": ""
+      "choice": "final",
+      "final_since": "2026-09-17"
     },
     {
       "id": "I09",
@@ -307,13 +307,13 @@
       "docs_url": "",
       "cost": "",
       "notes": "To be verified: subscriptions and e-mandate enablement. Refund rule from compliance (brief H5).",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Vatsal, 17 Sep 2026",
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Vatsal, 17 Sep 2026; Vatsal, 17 Sep 2026 (vendor choices final); recorded 24 Sep 2026 (SQ1)",
       "to_be_verified": "",
       "mentions": [
         "M01"
       ],
-      "choice": "open",
-      "final_since": ""
+      "choice": "final",
+      "final_since": "2026-09-17"
     },
     {
       "id": "I10",
@@ -392,20 +392,20 @@
       "docs_url": "",
       "cost": "",
       "notes": "",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Vatsal, 17 Sep 2026 (vendor choices final); recorded 24 Sep 2026 (SQ1)",
       "to_be_verified": "",
       "mentions": [
         "M01"
       ],
-      "choice": "open",
-      "final_since": ""
+      "choice": "final",
+      "final_since": "2026-09-17"
     },
     {
       "id": "I13",
       "category": "Journey and analytics",
-      "vendor": "not decided",
-      "alternatives": "CleverTap, MoEngage, WebEngage; Mixpanel named in M01 for analytics",
-      "role": "Journey orchestration and product analytics over the event schema (plan_v2.md appendix D)",
+      "vendor": "Mixpanel",
+      "alternatives": "considered: CleverTap, MoEngage, WebEngage",
+      "role": "Journey orchestration and product analytics over the event schema (plan_v2.md appendix D); product analytics; journeys and nudges stay in Zoho Campaigns and Flow, FCM and WATI",
       "screens": [
         "N01",
         "N02",
@@ -449,10 +449,13 @@
       "docs_url": "",
       "cost": "",
       "notes": "Decision by 19 Sep 2026.",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Vatsal, 24 Sep 2026 (SQ1 FE-60)",
       "to_be_verified": "",
-      "choice": "open",
-      "final_since": ""
+      "mentions": [
+        "M01"
+      ],
+      "choice": "final",
+      "final_since": "2026-09-24"
     },
     {
       "id": "I14",

@@ -515,8 +515,8 @@ def check_part_d(templates, live, screens, notes):
                 notes.append("Part D %s lists %s, whose board template is %s" % (t["template"], sid, board))
     for t in templates:
         if t["template"].startswith(TABS_ROW_TEMPLATES[0]):
-            t["screen_ids"] = [sid for sid in live if screens[sid] in TABS_ROW_TEMPLATES]
-    missing = [sid for sid in live if sid not in seen and screens[sid] not in TABS_ROW_TEMPLATES]
+            t["screen_ids"] = [sid for sid in screens if screens[sid] in TABS_ROW_TEMPLATES]  # board order
+    missing = [sid for sid in screens if sid not in seen and screens[sid] not in TABS_ROW_TEMPLATES]
     return problems, missing
 
 

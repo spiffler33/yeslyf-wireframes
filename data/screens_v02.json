@@ -183,7 +183,8 @@
       "1. Every step is saved on the server as it is written. A half-typed number is a draft: it is never read by the engine and never shown as an answer. A value counts once the person moves forward, taps That's about right, or taps a chip.",
       "2. Reopening the app after a kill, a restart or a session timeout returns to the exact screen that was left, with its draft.",
       "3. A state landing (section N) applies when the state has changed since the last visit or when the person arrives from a nudge link. Otherwise rule 2 wins.",
-      "4. to be decided: client-side storage and the session timeout rule, by Spinach's data lifecycle map (W21)."
+      "4. to be decided: client-side storage and the session timeout rule, by Spinach's data lifecycle map (W21).",
+      "W21: the Open Decisions row 1 of SQ1 (FE-O1) is the map; posted here when Spinach shares it."
      ]
     ],
     [
@@ -219,6 +220,16 @@
       "Questions go in the comment box of the screen, under the identity Spinach.",
       "Answers appear under the question on the screen and in the Tracker's question list.",
       "The daily update is posted from the Tracker."
+     ]
+    ],
+    [
+     "card",
+     "Spinach Questions tab",
+     [
+      "Every questionnaire Spinach sends lands on the Spinach Questions tab, one sub-tab per file, with its answer and one of three words: frozen, open (to be decided), owed (to be verified).",
+      "An open row is approved on the page by a comment; a commit freezes it.",
+      "The tab exports the files back in Spinach's own layout with the Yesly Comments column filled.",
+      "The next questionnaire takes the same route."
      ]
     ],
     [
@@ -267,7 +278,8 @@
      "Vatsal, 17 Sep 2026",
      "minutes 16 Sep 2026, items 1 and 2; Gaurav, 16 Sep 2026; Vatsal, 17 Sep 2026",
      "minutes 16 Sep 2026, item 4; Vatsal, 17 Sep 2026",
-     "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026"
+     "minutes 16 Sep 2026, item 19; Vatsal, 17 Sep 2026",
+     "Vatsal, 24 Sep 2026"
     ]
    },
    "freeze": {
@@ -25032,7 +25044,7 @@
       ],
       [
        "Analytics",
-       "I13 not decided",
+       "I13 Mixpanel",
        "Funnel: reveal, paywall, paid, data done, plan read, first action"
       ]
      ]

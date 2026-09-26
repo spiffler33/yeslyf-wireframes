@@ -7,6 +7,53 @@
    "change": "Spinach questionnaire SQ1, received 22 Sep 2026, three files, answered 24 Sep 2026",
    "pages": [],
    "cause": "Vatsal, 24 Sep 2026"
+  },
+  {
+   "date": "26 Sep 2026",
+   "change": "Integrations: I05 Accord, I08 Gupshup, I09 Razorpay and I12 FCM are final since 17 Sep 2026 (the choices never reached the data)",
+   "pages": [
+    "integrations.html"
+   ],
+   "cause": "Vatsal, 17 Sep 2026 (vendor choices final); recorded 24 Sep 2026 (SQ1)"
+  },
+  {
+   "date": "26 Sep 2026",
+   "change": "Integrations: I13 is Mixpanel, final since 24 Sep 2026; journeys and nudges stay in Zoho Campaigns and Flow, FCM and WATI",
+   "pages": [
+    "integrations.html"
+   ],
+   "cause": "Vatsal, 24 Sep 2026 (SQ1 FE-60)"
+  },
+  {
+   "date": "26 Sep 2026",
+   "change": "Integrations: I00 SEBI, the corporate RIA registration is granted; status production; W19 delivered",
+   "pages": [
+    "integrations.html",
+    "tracker.html"
+   ],
+   "cause": "Vatsal, 24 Sep 2026"
+  },
+  {
+   "date": "26 Sep 2026",
+   "change": "Tracker: W30 to W40 added from SQ1 Part F; W05, W06, W11, W27 and W29 note the SQ1 rows that link to them; W07, W19 and W24 delivered; W21 and W22 in progress; milestones 28 Sep 2026 (Spinach owed items) and about 1 Oct 2026 (SQ1 batch 2 export)",
+   "pages": [
+    "tracker.html"
+   ],
+   "cause": "Vatsal, 24 Sep 2026"
+  },
+  {
+   "date": "26 Sep 2026",
+   "change": "X00: the card \"Spinach Questions tab\"; the W21 line under the data-lifecycle line",
+   "pages": [
+    "wireframes_v02.html"
+   ],
+   "cause": "Vatsal, 24 Sep 2026"
+  },
+  {
+   "date": "26 Sep 2026",
+   "change": "SQ1 answered: 231 rows, frozen 222, open 6, owed 3 (frontend 129: 124, 3, 2; backend 15: 14, 1, 0; journey 87: 84, 2, 1)",
+   "pages": [],
+   "cause": "Vatsal, 24 Sep 2026"
   }
  ]
 }

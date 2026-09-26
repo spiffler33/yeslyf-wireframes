@@ -1,0 +1,30 @@
+{
+ "source": "Phase 14, pass 2 (yeslyf_phase14_brief.md, 2.3): the X00 card for the Spinach Questions tab and the W21 line under the data-lifecycle line. Sorts after spinach_markers_edits.json; applies after generation. Cards are copy, which the freeze does not cover.",
+ "groups": [
+  {
+   "id": "phase14-x00-sq",
+   "kind": "override",
+   "cause": "Vatsal, 24 Sep 2026",
+   "stage": "after_generation",
+   "edits": [
+    {
+     "op": "ui_insert",
+     "screen": "X00",
+     "after": ["card", "How Spinach works from this board"],
+     "value": ["card", "Spinach Questions tab", [
+      "Every questionnaire Spinach sends lands on the Spinach Questions tab, one sub-tab per file, with its answer and one of three words: frozen, open (to be decided), owed (to be verified).",
+      "An open row is approved on the page by a comment; a commit freezes it.",
+      "The tab exports the files back in Spinach's own layout with the Yesly Comments column filled.",
+      "The next questionnaire takes the same route."
+     ]]
+    },
+    {
+     "op": "card_add",
+     "screen": "X00",
+     "match": ["card", "Saving and coming back"],
+     "value": ["W21: the Open Decisions row 1 of SQ1 (FE-O1) is the map; posted here when Spinach shares it."]
+    }
+   ]
+  }
+ ]
+}
