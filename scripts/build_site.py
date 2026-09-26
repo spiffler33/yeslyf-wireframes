@@ -1066,7 +1066,9 @@ def main():
     build_events.main()
     import build_tracker  # docs/tracker.html and docs/review/tracker.html from data/tracker.json (phase 12, pass 3)
     build_tracker.main()
-    import build_questions  # docs/spinach_questions.html and its review copy from data/questions.json (phase 14, pass 3)
+    import export_sq  # docs/exports/SQ1_*.xlsx: the questionnaires back in Spinach's layout, comments filled (phase 14, pass 4)
+    export_sq.main()
+    import build_questions  # docs/spinach_questions.html from data/questions.json (phase 14, pass 3); reads the export date
     build_questions.main()
     import build_operator  # docs/admin_operator.html from data/operator.json (seed plan D5, phase B part 2)
     build_operator.main()

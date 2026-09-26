@@ -558,3 +558,15 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
 - Firm, carried forward: CLAUDE.md wins over the plan; no regex in shipped checks; on screens a vendor name is only
   rendered from data beside its I-number; money "Rs ___"; nothing seed-related on the board beyond the masked admin
   bundle.
+
+## 22. Status, 26 Sep 2026 (phase 14: the Spinach Questions tab, SQ1)
+
+- Spinach's three questionnaires of 22 Sep 2026 and Vatsal's answer set (SQ1_answers.md, 24 Sep 2026) sit in
+  inputs/spinach/2026-09-22/. scripts/import_sq.py reads them into data/questions.json: 231 rows (frozen 222, open 6,
+  owed 3), Part D as templates, Part E as route groups; journey rows match by order within their block (Vatsal,
+  26 Sep 2026), a differing quote is a report note.
+- Pass 2: I05, I08, I09, I12 final since 17 Sep 2026; I13 Mixpanel final since 24 Sep 2026; I00 production; W30 to
+  W40; the X00 card (data/v02/sq1_edits.json). Pass 3: docs/spinach_questions.html (scripts/build_questions.py),
+  HoA's working view, not on the review link; back-links on the v0.2 spec panels; the Tracker's SQ1 update line.
+  Pass 4: scripts/export_sq.py, docs/exports/SQ1_*.xlsx, batch 1 stamped 26 Sep 2026.
+- Reports: reports/phase14_pass0.md to phase14_pass4.md. Pass 5 (scripts/apply_sq_approvals.py) runs on instruction.

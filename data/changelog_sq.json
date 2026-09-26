@@ -56,6 +56,14 @@
    "change": "SQ1 answered: 231 rows, frozen 222, open 6, owed 3 (frontend 129: 124, 3, 2; backend 15: 14, 1, 0; journey 87: 84, 2, 1)",
    "pages": [],
    "cause": "Vatsal, 24 Sep 2026"
+  },
+  {
+   "date": "26 Sep 2026",
+   "change": "SQ1 export, batch 1: the three questionnaires back in Spinach's layout with the Yesly Comments column filled, plus Status, Board ref and Changed since columns (docs/exports/SQ1_*.xlsx, rebuilt on every build; the export date moves only when a row changed)",
+   "pages": [
+    "spinach_questions.html"
+   ],
+   "cause": "Vatsal, 24 Sep 2026 (brief, decision 6)"
   }
  ]
 }
