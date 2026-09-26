@@ -36,7 +36,7 @@
       "blocked_by": "",
       "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7",
       "lands_at": "Integrations, rows I17 (cloud) and I10 (email)",
-      "notes": ""
+      "notes": "Raafiya, 26 Sep 2026: the Azure VM credentials are already with Spinach and they can start on it; infra is not a blocker for development. AWS: onboarding with the DevOps vendor first, then the dev environment, about 2 weeks after onboarding. Vatsal, 26 Sep 2026: the DevOps vendor is finalised at the Monday 29 Sep 2026, 11:30 IST meeting. Spinach ops report, 25 Sep 2026: DevOps and infra setup listed as pending from HoA, needed by 28 Sep 2026."
     },
     {
       "id": "W03",
@@ -49,7 +49,7 @@
       "blocked_by": "",
       "source": "Vatsal, 16 Sep 2026, Spinach agenda item 7; minutes 16 Sep 2026, item 17 (W18 folded in: Kajal, 18 Sep 2026)",
       "lands_at": "Integrations, row I04 (engine)",
-      "notes": "Due 19 Sep 2026: the repo access and the inputs file. The output contract, version fields and the data-in APIs (from W18): date to be given."
+      "notes": "Due 19 Sep 2026: the repo access and the inputs file. The output contract, version fields and the data-in APIs (from W18): date to be given. Raafiya, 26 Sep 2026: Spinach asked for their availability to discuss the API signature. Spinach ops report, 25 Sep 2026: the HoA Core Platform API listed as pending from HoA, needed by 28 Sep 2026."
     },
     {
       "id": "W04",
@@ -153,7 +153,7 @@
       "blocked_by": "",
       "source": "minutes 16 Sep 2026, item 6",
       "lands_at": "A10, I23",
-      "notes": "Linked from SQ1 FE-D2, FE-X2 and JD-AA-W5; still open."
+      "notes": "Linked from SQ1 FE-D2, FE-X2 and JD-AA-W5; still open. Raafiya, 26 Sep 2026: depository CAS confirmed; a CDSL sample file to be shared, the NSDL one asked of Kajal. Spinach ops report, 25 Sep 2026: CAS details and the NSDL versus CAMS statement listed as pending, needed by 28 Sep 2026."
     },
     {
       "id": "W12",
@@ -218,7 +218,7 @@
       "blocked_by": "",
       "source": "minutes 16 Sep 2026, item 14",
       "lands_at": "the docs field on Integrations",
-      "notes": "Spinach called this their most important item."
+      "notes": "Spinach called this their most important item. Raafiya, 26 Sep 2026: the public API documentation was shared; sandbox access comes after vendor onboarding. Spinach ops report, 25 Sep 2026: sandbox access and vendor documentation listed as pending, needed by 28 Sep 2026; Spinach's repository setup waits on the sandbox details; CAMS KRA details also listed as not yet shared."
     },
     {
       "id": "W17",
@@ -323,7 +323,7 @@
       "blocked_by": "",
       "source": "minutes 16 Sep 2026, items 19, 21",
       "lands_at": "the screens' comment boxes",
-      "notes": "SQ1 received 22 Sep 2026, answered 24 Sep 2026."
+      "notes": "SQ1 received 22 Sep 2026, answered 24 Sep 2026. Spinach ops report, 25 Sep 2026: Spinach expects the completed questionnaire responses at the Zoom meeting of 28 Sep 2026; the batch 1 export is ready since 26 Sep 2026."
     },
     {
       "id": "W25",
@@ -466,7 +466,7 @@
       "blocked_by": "",
       "source": "SQ1 FE-73, FE-74, FE-75, FE-08, FE-N4",
       "lands_at": "I17, I21",
-      "notes": ""
+      "notes": "Raafiya, 26 Sep 2026: the AWS account follows the DevOps vendor onboarding (W02)."
     },
     {
       "id": "W36",
