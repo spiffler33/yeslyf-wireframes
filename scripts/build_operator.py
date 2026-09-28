@@ -19,7 +19,8 @@ CSVs under data/seed/<run>/exports/ (never copied, never served).
 Steps 3, 4, 5, 8 and 10 read seed/export_schema.json and the export CSVs to fill in columns, picklist values and
 row counts; step 2 reads data/integrations.json for the WhatsApp, SMS/OTP and email vendor names (I11, I08, I10);
 step 8's Marketing Automation journey reads the S4 ladder from data/v02/states.json. Everything else is the
-hand-authored text in data/operator.json.
+hand-authored text in data/operator.json. Items the phase F provisioning script finished (data/zoho_provision.json,
+written by seed/zoho/provision.py) carry a "done by script" line with its timestamp; the rest render unchanged.
 
 Called at the end of scripts/build_site.py (after build_tracker.main()); also runs on its own.
 """
@@ -43,6 +44,7 @@ with open(os.path.join(SEED_DIR, "config.json")) as _fh:
 
 PAGE = "admin_operator.html"
 DATA_FILE = os.path.join(DATA, "operator.json")
+SCRIPT_FILE = os.path.join(DATA, "zoho_provision.json")
 SCHEMA_FILE = os.path.join(SEED_DIR, "export_schema.json")
 SEED_EXPORT_SCRIPT = os.path.join(SCRIPTS, "seed_export.py")
 RUNS = ["run-500", "run-3000"]
@@ -335,8 +337,25 @@ def render_campaign_import_items(ctx):
     for stage in campaign_stage_names():
         iid = campaign_import_id(stage)
         text = "Import the %s campaigns list." % stage
-        out.append(citem(iid, text, import_item_html(ctx["schema_idx"], CAMPAIGNS_TEMPLATE_PATH, csv_path=campaign_path(stage))))
+        out.append(citem(iid, text, script_mark(ctx, iid) +
+                         import_item_html(ctx["schema_idx"], CAMPAIGNS_TEMPLATE_PATH, csv_path=campaign_path(stage))))
     return "".join(out)
+
+
+def load_script_done():
+    # phase F: the items seed/zoho/provision.py finished, item id -> timestamp; no file yet means no marks
+    if not os.path.exists(SCRIPT_FILE):
+        return {}
+    with open(SCRIPT_FILE) as fh:
+        raw = fh.read()
+    site.check_ascii("data/zoho_provision.json", raw)
+    items = json.loads(raw).get("items") or {}
+    return {iid: it["at"] for iid, it in items.items() if it.get("status") == "done"}
+
+
+def script_mark(ctx, item_id):
+    at = ctx["script_done"].get(item_id)
+    return '<div class="gen meta">done by script, %s</div>' % esc(at) if at else ""
 
 
 STEP_EXTRA_ITEMS = {"import": render_campaign_import_items}
@@ -356,7 +375,7 @@ def render_item(it, ctx):
     if suffix:
         text = text + suffix(ctx)
     block = BLOCK.get(iid)
-    return citem(iid, text, block(ctx) if block else "")
+    return citem(iid, text, script_mark(ctx, iid) + (block(ctx) if block else ""))
 
 
 def notes_box(step_id):
@@ -447,9 +466,9 @@ JS = r"""
 """
 
 
-def build_page(doc, items, schema, schema_idx, integrations, states, seats_doc):
+def build_page(doc, items, schema, schema_idx, integrations, states, seats_doc, script_done):
     ctx = {"schema": schema, "schema_idx": schema_idx, "integ_by_id": {r["id"]: r for r in integrations["rows"]}, "states": states,
-           "seats_by_id": {s["id"]: s for s in seats_doc.get("seats", [])}}
+           "seats_by_id": {s["id"]: s for s in seats_doc.get("seats", [])}, "script_done": script_done}
     who = '<div class="who">Editing as <select id="reviewer"></select></div>'
     intro = ('<section><h1>Operator checklist: the Zoho afternoon</h1>'
              '<p class="lead">Every person in these files is synthetic; nothing is ever sent.</p>'
@@ -497,7 +516,7 @@ def main():
     seats_doc = load_seats()
 
     items = all_items(doc)
-    page = build_page(doc, items, schema, schema_idx, integrations, states, seats_doc)
+    page = build_page(doc, items, schema, schema_idx, integrations, states, seats_doc, load_script_done())
     site.check_ascii(PAGE, page)
     errors = []
     if 'name="robots" content="noindex' not in page:

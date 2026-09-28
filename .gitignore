@@ -9,3 +9,6 @@ inputs/hoa/*.pdf
 .local/
 # the fixtures zip is derived and delivered privately, never on the board; never committed
 data/seed/*/exports/fixtures/*.zip
+# Zoho provisioning (phase F): client id and secret, never committed; the refresh token and run logs live in
+# seed/zoho/.local/, already covered by .local/ above
+.env

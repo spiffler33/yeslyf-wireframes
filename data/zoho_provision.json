@@ -1,0 +1,425 @@
+{
+ "about": "Written by seed/zoho/provision.py (phase F): per operator item, done by script with a timestamp, or left with the reason and the manual fallback. scripts/build_operator.py reads the done items; seed/zoho/verify.py writes seed/zoho/leftovers.md from it.",
+ "cause": "Vatsal, 24 Sep 2026 (phase F)",
+ "run": "run-3000",
+ "last_run": "28 Sep 2026, 13:39 IST",
+ "created_time": {
+  "module": "Leads",
+  "record": "P00010",
+  "sent": "2026-03-27T00:00:00+05:30",
+  "at": "28 Sep 2026, 13:09 IST",
+  "read_back": "2026-09-28T13:09:35+05:30",
+  "answer": "ignored"
+ },
+ "observed": {
+  "crm_org": {
+   "type": "production",
+   "edition": "free",
+   "trial": "zohooneenterprise",
+   "trial_expiry": null
+  },
+  "crm_user_time_zone": "Asia/Kolkata",
+  "accounts_placeholder": "Individual",
+  "deal_stage_fill": "Closed Won",
+  "bookings_service": {
+   "name": "Talk to an adviser",
+   "duration": "45 mins"
+  }
+ },
+ "items": {
+  "bookings/service": {
+   "status": "left",
+   "note": "a handful of appointments"
+  },
+  "desk/categories": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:24 IST",
+   "note": ""
+  },
+  "desk/department": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:13 IST",
+   "note": "every ticket goes to Plan2prosper"
+  },
+  "desk/scores-ref": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:13 IST",
+   "note": ""
+  },
+  "desk/sla": {
+   "status": "left",
+   "note": "SLA of one business day"
+  },
+  "fields/a_la_carte": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": "6 columns, 0 created"
+  },
+  "fields/calls": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:33 IST",
+   "note": "9 columns, 0 created"
+  },
+  "fields/contacts": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": "46 columns, 0 created"
+  },
+  "fields/deals": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": "22 columns, 0 created"
+  },
+  "fields/leads": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:19 IST",
+   "note": "16 columns, 0 created"
+  },
+  "fields/tasks": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:19 IST",
+   "note": "21 columns, 0 created"
+  },
+  "import/a_la_carte": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:11 IST",
+   "note": "9 rows"
+  },
+  "import/app_events": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:13 IST",
+   "note": "12464 rows"
+  },
+  "import/calls": {
+   "status": "left",
+   "note": "23 of 84 Calls rows not written"
+  },
+  "import/campaigns-s0": {
+   "status": "left",
+   "note": "the S0 list, 205 of 1170 rows with an email"
+  },
+  "import/campaigns-s0w": {
+   "status": "left",
+   "note": "the S0w list, 230 of 230 rows with an email"
+  },
+  "import/campaigns-s1": {
+   "status": "left",
+   "note": "the S1 list, 131 of 400 rows with an email"
+  },
+  "import/campaigns-s2": {
+   "status": "left",
+   "note": "the S2 list, 284 of 990 rows with an email"
+  },
+  "import/contacts": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:10 IST",
+   "note": "1640 rows"
+  },
+  "import/deals": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:29 IST",
+   "note": "206 rows"
+  },
+  "import/leads": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:20 IST",
+   "note": "1400 rows"
+  },
+  "import/tasks": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:11 IST",
+   "note": "114 rows"
+  },
+  "import/tickets": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:18 IST",
+   "note": "73 tickets"
+  },
+  "module/app-events": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:19 IST",
+   "note": "6 columns, 0 created"
+  },
+  "picklist/aa-status": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "picklist/journey-stage": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "picklist/lead-stage": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "picklist/sku": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "picklist/source": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "picklist/subscription-status": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "picklist/task-state-id": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "picklist/tier": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "roles/adviser": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "roles/call-centre": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "roles/compliance": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "roles/finance": {
+   "status": "left",
+   "note": "make the Finance seat read only"
+  },
+  "roles/marketing": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "roles/ops": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "roles/principal-officer": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "roles/support": {
+   "status": "done",
+   "at": "28 Sep 2026, 13:09 IST",
+   "note": ""
+  },
+  "views/call-centre": {
+   "status": "left",
+   "note": "saved view Same adviser offer (Contacts)"
+  },
+  "views/compliance": {
+   "status": "left",
+   "note": "saved view RPQ refresh due (App Events)"
+  },
+  "views/finance": {
+   "status": "left",
+   "note": "saved view A la carte receipts (A la carte)"
+  },
+  "views/marketing": {
+   "status": "left",
+   "note": "saved view Opt-in and DND (Contacts)"
+  },
+  "views/principal-officer": {
+   "status": "left",
+   "note": "saved view Grievances past SLA (Tickets)"
+  },
+  "views/support": {
+   "status": "left",
+   "note": "saved view Past SLA (Tickets)"
+  }
+ },
+ "left": [
+  {
+   "item": "roles/finance",
+   "what": "make the Finance seat read only",
+   "why": "read only is a profile in Zoho, not a role; the role exists",
+   "code": "",
+   "fallback": "When a Finance user is added, give them a profile with view permissions only (clone Standard, untick create, edit and delete)."
+  },
+  {
+   "item": "views/principal-officer",
+   "what": "saved view Paid by SKU, this week and last (Deals)",
+   "why": "no create endpoint: CRM API v8 has Get Custom View Metadata and Change Sort Order only",
+   "code": "",
+   "fallback": "Create it by hand on Deals: Start in the last 14 days; group by SKU and by week of Start."
+  },
+  {
+   "item": "views/principal-officer",
+   "what": "saved view DIFM prospects to call (Contacts)",
+   "why": "no create endpoint: CRM API v8 has Get Custom View Metadata and Change Sort Order only",
+   "code": "",
+   "fallback": "Create it by hand on Contacts: DIFM Prospect Flag is rule or manual; show Phone, Tier, Adviser Owner, Last Call."
+  },
+  {
+   "item": "views/principal-officer",
+   "what": "saved view Grievances past SLA (Tickets)",
+   "why": "no create endpoint: the Desk API lists views but has no create call",
+   "code": "",
+   "fallback": "Create it by hand on Tickets: Category is grievance; Status is open; SLA Due is before now."
+  },
+  {
+   "item": "views/call-centre",
+   "what": "saved view Call centre today (Tasks)",
+   "why": "no create endpoint: CRM API v8 has Get Custom View Metadata and Change Sort Order only",
+   "code": "",
+   "fallback": "Create it by hand on Tasks: Status is open; State ID is S2b, S19 or S20; Due is today or earlier; show State ID, Missing Fields, Tier."
+  },
+  {
+   "item": "views/call-centre",
+   "what": "saved view Call centre outcomes (Tasks)",
+   "why": "no create endpoint: CRM API v8 has Get Custom View Metadata and Change Sort Order only",
+   "code": "",
+   "fallback": "Create it by hand on Tasks: Outcome is not pending; State ID is S2b, S19 or S20; group by Outcome."
+  },
+  {
+   "item": "views/call-centre",
+   "what": "saved view Same adviser offer (Contacts)",
+   "why": "no create endpoint: CRM API v8 has Get Custom View Metadata and Change Sort Order only",
+   "code": "",
+   "fallback": "Create it by hand on Contacts: Last Adviser is not empty; show Last Adviser, Adviser Continuity, Adviser Owner."
+  },
+  {
+   "item": "views/marketing",
+   "what": "saved view Opt-in and DND (Contacts)",
+   "why": "no create endpoint: CRM API v8 has Get Custom View Metadata and Change Sort Order only",
+   "code": "",
+   "fallback": "Create it by hand on Contacts: WhatsApp Opt-in is true; DND is false; show Journey Stage."
+  },
+  {
+   "item": "views/compliance",
+   "what": "saved view Grievance register (Tickets)",
+   "why": "no create endpoint: the Desk API lists views but has no create call",
+   "code": "",
+   "fallback": "Create it by hand on Tickets: Category is grievance; show Created At, Subject, Status, Resolved At, SCORES Ref; export."
+  },
+  {
+   "item": "views/compliance",
+   "what": "saved view RPQ refresh due (App Events)",
+   "why": "no create endpoint: CRM API v8 has Get Custom View Metadata and Change Sort Order only",
+   "code": "",
+   "fallback": "Create it by hand on App Events: Event is rpq_due; show Contact External ID, At, Props (due_date)."
+  },
+  {
+   "item": "views/support",
+   "what": "saved view Open tickets with context (Tickets)",
+   "why": "no create endpoint: the Desk API lists views but has no create call",
+   "code": "",
+   "fallback": "Create it by hand on Tickets: Status is open; show Category, Subject, Description, SLA Due."
+  },
+  {
+   "item": "views/support",
+   "what": "saved view Past SLA (Tickets)",
+   "why": "no create endpoint: the Desk API lists views but has no create call",
+   "code": "",
+   "fallback": "Create it by hand on Tickets: Status is open; SLA Due is before now; sort by SLA Due."
+  },
+  {
+   "item": "views/finance",
+   "what": "saved view Payment reconciliation (Deals)",
+   "why": "no create endpoint: CRM API v8 has Get Custom View Metadata and Change Sort Order only",
+   "code": "",
+   "fallback": "Create it by hand on Deals: all deals; show Razorpay Customer Id, Razorpay Subscription or Txn Id, Status, Start, Next Billing."
+  },
+  {
+   "item": "views/finance",
+   "what": "saved view GST split (Deals)",
+   "why": "no create endpoint: CRM API v8 has Get Custom View Metadata and Change Sort Order only",
+   "code": "",
+   "fallback": "Create it by hand on Deals: group by GST Type; show SKU, Period, Start."
+  },
+  {
+   "item": "views/finance",
+   "what": "saved view Refunds (Deals)",
+   "why": "no create endpoint: CRM API v8 has Get Custom View Metadata and Change Sort Order only",
+   "code": "",
+   "fallback": "Create it by hand on Deals: Refund Requested is true; show Refund Status, Cancel Reason, SKU, Start."
+  },
+  {
+   "item": "views/finance",
+   "what": "saved view A la carte receipts (A la carte)",
+   "why": "no create endpoint: CRM API v8 has Get Custom View Metadata and Change Sort Order only",
+   "code": "",
+   "fallback": "Create it by hand on A la carte: all purchases; show Date, Amount, Receipt, Call Id."
+  },
+  {
+   "item": "import/deals",
+   "what": "column Amount not imported",
+   "why": "the Deals field with that label cannot hold this column (the column carries only placeholder values)",
+   "code": "",
+   "fallback": "Map it once the field can hold the values (for Amount: when prices are set).",
+   "kind": "note"
+  },
+  {
+   "item": "import/calls",
+   "what": "23 of 84 Calls rows not written",
+   "why": "DEPENDENT_FIELD_MISSING-Call_Duration (cancelled): 1 rows; DEPENDENT_FIELD_MISSING-Call_Duration (no_show): 14 rows; INVALID_DATA-Call_Start_Time (booked): 8 rows",
+   "code": "DEPENDENT_FIELD_MISSING,INVALID_DATA",
+   "fallback": "to be decided: how a no-show, a cancelled call and a booked slot already past are logged in Zoho Calls; then re-run (upsert)."
+  },
+  {
+   "item": "desk/sla",
+   "what": "SLA of one business day",
+   "why": "no create endpoint: the Desk API lists SLAs but cannot create or edit one",
+   "code": "",
+   "fallback": "Set it by hand: Setup, SLAs, one business day."
+  },
+  {
+   "item": "import/campaigns-s0",
+   "what": "the S0 list, 205 of 1170 rows with an email",
+   "why": "not called: every Campaigns call that adds contacts can send (listsubscribe mails a confirmation to lists with a signup form; addlistandcontacts and addlistsubscribersinbulk document their list key as 'to send a subscription mail'), and they take email addresses only",
+   "code": "",
+   "fallback": "Import campaigns/S0.csv by hand into a list named S0 (Contacts, Import, from file); map Phone, First Name, Stage, Tier and WhatsApp Opt-in; rows without an email are skipped by Campaigns."
+  },
+  {
+   "item": "import/campaigns-s0w",
+   "what": "the S0w list, 230 of 230 rows with an email",
+   "why": "not called: every Campaigns call that adds contacts can send (listsubscribe mails a confirmation to lists with a signup form; addlistandcontacts and addlistsubscribersinbulk document their list key as 'to send a subscription mail'), and they take email addresses only",
+   "code": "",
+   "fallback": "Import campaigns/S0w.csv by hand into a list named S0w (Contacts, Import, from file); map Phone, First Name, Stage, Tier and WhatsApp Opt-in; rows without an email are skipped by Campaigns."
+  },
+  {
+   "item": "import/campaigns-s1",
+   "what": "the S1 list, 131 of 400 rows with an email",
+   "why": "not called: every Campaigns call that adds contacts can send (listsubscribe mails a confirmation to lists with a signup form; addlistandcontacts and addlistsubscribersinbulk document their list key as 'to send a subscription mail'), and they take email addresses only",
+   "code": "",
+   "fallback": "Import campaigns/S1.csv by hand into a list named S1 (Contacts, Import, from file); map Phone, First Name, Stage, Tier and WhatsApp Opt-in; rows without an email are skipped by Campaigns."
+  },
+  {
+   "item": "import/campaigns-s2",
+   "what": "the S2 list, 284 of 990 rows with an email",
+   "why": "not called: every Campaigns call that adds contacts can send (listsubscribe mails a confirmation to lists with a signup form; addlistandcontacts and addlistsubscribersinbulk document their list key as 'to send a subscription mail'), and they take email addresses only",
+   "code": "",
+   "fallback": "Import campaigns/S2.csv by hand into a list named S2 (Contacts, Import, from file); map Phone, First Name, Stage, Tier and WhatsApp Opt-in; rows without an email are skipped by Campaigns."
+  },
+  {
+   "item": "bookings/service",
+   "what": "the staff Adviser 01, Adviser 02, Adviser 03, Adviser 04, Adviser 05, Adviser 06",
+   "why": "not called: the add staff API requires an email and does not say whether it sends an invitation; the seed has no staff emails",
+   "code": "",
+   "fallback": "Add them by hand in Bookings with invitations off, then assign them to Talk to an adviser."
+  },
+  {
+   "item": "bookings/service",
+   "what": "a handful of appointments",
+   "why": "not called: booking notifications to customer and staff are a workspace setting the book appointment API cannot switch off",
+   "code": "",
+   "fallback": "Turn off customer and staff notifications in the workspace, then book them by hand."
+  }
+ ]
+}

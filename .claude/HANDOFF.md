@@ -3,7 +3,7 @@
 State: phase 14 is closed and pushed (bfe5a3a to the closure commit on main). SQ1 is answered on the board:
 data/questions.json, 231 rows (221 frozen, 7 open, 3 owed); docs/spinach_questions.html is HoA's working view, off the
 review link; docs/exports/SQ1_*.xlsx are Spinach's copy, stamped 28 Sep 2026, carrying Vatsal's comments of 28 Sep 2026.
-Phase F (Zoho provisioning) is a separate, uncommitted effort in this checkout; its handoff section is carried below.
+Phase F (Zoho provisioning) closed on 28 Sep 2026 in its own commit ("zoho provisioning F"); its section is below.
 
 ## Read first
 1. reports/phase14_pass4.md (the export, the cover-note counts) and reports/phase14_pass3.md (the tab and its controls).
@@ -11,8 +11,7 @@ Phase F (Zoho provisioning) is a separate, uncommitted effort in this checkout; 
 3. Memory project_state.md (the rules: overrides file, pull before build).
 
 ## Verify before coding
-- `git status --short`: only phase F's files (M .gitignore, M scripts/build_operator.py, M docs/admin_operator.html,
-  ?? seed/zoho/, ?? data/zoho_provision.json) and the untracked inputs kept out on purpose (two inputs/meeting/ files,
+- `git status --short`: clean apart from the untracked inputs kept out on purpose (two inputs/meeting/ files,
   inputs/spinach/2026-09-25/ with Spinach's ops report pdf, marked confidential).
 - `python3 scripts/pull_board.py`, then `python3 scripts/build_site.py`: docs/ changes only where the board moved;
   `python3 scripts/check_phase9.py` 19 PASS, `python3 scripts/check_site.py` 3 PASS, `python3 scripts/validate_v02.py` 7 PASS.
@@ -39,100 +38,70 @@ Phase F (Zoho provisioning) is a separate, uncommitted effort in this checkout; 
   check skips their cells). No regex; stdlib only.
 - Comments reach the export only after a board pull: pull_board.py, then build_site.py. The export restamps only when
   a row or a comment is newer than the last stamp.
-- Never stage phase F's files with board work; phase F lands as its own single commit.
+- Phase F landed as its own single commit on 28 Sep 2026; board work and Zoho work stay in separate commits.
 
 ---
 
-# Phase F (Zoho provisioning), carried unchanged from the 24 Sep 2026 handoff
+# Phase F (Zoho provisioning): closed 28 Sep 2026, one commit "zoho provisioning F"
 
-Note added 28 Sep 2026: data/zoho_provision.json now exists in the tree (untracked), so step 2 of the run order below
-has run at least once since; the git facts in "Verify before coding" below are as of 24 Sep 2026 (phase 14 has since
-been pushed in full). The phase F session's own notes rule.
+State: the seed is in the Zoho One trial "Plan2prosper" (India datacentre, Kajal's Zoho login; spiff confirmed on
+24 Sep 2026 that it is the yeslyf trial, not a live business org). Four idempotent passes of seed/zoho/provision.py on
+28 Sep 2026 (13:08 to 13:39 IST; each pass fixed what the one before it surfaced), then seed/zoho/verify.py: 32
+operator items done by script, 24 leftovers, every one of them "no API" or "the API may send" or the 23 refused calls.
+docs/admin_operator.html carries "done by script, <time>" on the finished items; Kajal's other steps are unchanged.
+Setup: seed/zoho/.env (client id and secret) and seed/zoho/.local/token.json (refresh token), both gitignored; the Self
+Client sits under Kajal's login at api-console.zoho.in.
 
-State: seed/zoho/ is built and reviewed (zoho.py, provision.py, verify.py) and scripts/build_operator.py reads
-data/zoho_provision.json for "done by script" marks. Setup is done and the read-only check passed; nothing has been
-written to Zoho and nothing is committed: the phase lands as ONE commit, "zoho provisioning F", after the live run
-(Vatsal, 24 Sep 2026). spiff paused at 24 Sep 2026 evening ("i need to step away").
+## Counts (verify.py, 28 Sep 2026, 13:40 IST)
+Leads 1400/1400, Contacts 1640/1640, Deals 206/206, A la carte 9/9, Tasks 114/114, App Events 12464/12464, Tickets
+73/73, Calls 61/84. The 23 calls Zoho refused: 14 no-shows and 1 cancellation (a logged call needs a Call_Duration)
+and 8 booked slots already past (a scheduled call needs a future Call_Start_Time); "to be decided" in leftovers.md.
+Campaigns lists 0 (left for the manual import). Bookings service 'Talk to an adviser', 45 minutes, found. Ten people
+end to end: 8 ok, 2 differ only by those refused calls.
 
-## Done this session (24 Sep 2026, evening)
-- The org: Zoho One trial "Plan2prosper", India datacentre, owned by Kajal's Zoho login; spiff confirmed it is the
-  yeslyf trial, not a live business org, and added CRM to it from crm.zoho.in (the console had refused CRM scopes
-  until CRM existed). The Self Client was created under that login, 24 Sep 2026.
-- seed/zoho/.env written (ZOHO_CLIENT_ID, ZOHO_CLIENT_SECRET; git ignores it) and the grant code exchanged:
-  seed/zoho/.local/token.json exists. On the Generate Code tab the console asked for a portal per service (Desk,
-  Campaigns, CRM), each set to Plan2prosper.
-- `python3 seed/zoho/zoho.py check`: CRM org Plan2prosper, type production, edition free, trial zohooneenterprise;
-  Desk portal id 60089105539; Bookings workspaces: none.
-- Decisions 1 and 2 taken as recommended (Vatsal, 24 Sep 2026: "go with your recommendations"): the MANDATORY_FILL
-  and CALL_STATUS_FIELDS rules stand, and provision.py got VALUE_MAP (zoho/tasks.csv Status: done -> Completed,
-  open -> Not Started), applied in read_csv and Data.values so the picklist check, the bulk file and the records
-  API see the same values; `--plan` prints "translated: ..." on that column. Verified: 94 Completed, 20 Not
-  Started; calls.csv Status untouched.
+## Design calls made during the run (each sits in provision.py with its cause)
+- Leads Company is layout-mandatory: every lead carries the placeholder "Individual" (MANDATORY_FILL).
+- Deals Account_Name is layout-mandatory: one placeholder Accounts record "Individual" holds all 206 deals, and Deals
+  go through the records API upsert (import_records) because a bulk write lookup column needs a find_by mapping.
+  Kajal can make Account Name optional on the Deals layout and clear the lookup later; the record is one row.
+- Deals Stage: the org has no pipelines (GET settings/pipeline answers 204), so the won stage is read off the Stage
+  field's own picklist (forecast_type Closed Won): "Closed Won".
+- Labels Zoho refuses (LABEL_MAP; the file column keeps its name): Leads Keyword -> "Keyword Sent" (reserved word);
+  Calls Status -> "Slot Status" and Tasks Contact External ID -> "Task Contact External ID" (Tasks, Calls and Events
+  share one label namespace); Calls Notes -> the built-in Description field (any label holding "Notes" is refused
+  on Calls). Leads City maps to the built-in field labelled "Address - City" (label_index also matches api_name).
+- Multi-line fields need "textarea": {"type": "small"} on create. Tasks Status is translated done -> Completed,
+  open -> Not Started (VALUE_MAP).
+- Calls are not an upsert module ("the given module is not supported for this api"): insert, or update by id for
+  rows an earlier run wrote; this org's status field is Outgoing_Call_Status (CALL_STATUS_APIS covers both names).
+- Created_Time sent on the first record insert was ignored (Zoho stamped its own time); recorded in
+  data/zoho_provision.json.
+- Desk: the notification rules were read in Chrome before the run (28 Sep 2026): every contact, department and
+  agent rule off except the four "Mentioning in ..." rules, which the script never triggers (no comments, no
+  mentions). Category values support, adviser_message, grievance were added (the layout had none). Tickets are
+  closed with disableClosureNotification.
+- Bookings: the workspace came from adding the Bookings app to the Zoho One org (28 Sep 2026, from Chrome); the
+  service was created; staff and appointments are left (those APIs may send).
 
-## When spiff is back
-1. Decision 3 is still open and required before the run: in the trial's Desk, Setup > Customization > Notifications
-   (per department, the Desk KB path), every rule for customers and agents off? Ask for a yes or no; offer to look
-   in Chrome if he is signed in to Desk.
-2. Bookings has no workspace, so the "bookings/service" item would be left. Ask him to open Bookings once in the
-   trial (Zoho One app list, or bookings.zoho.in) to create the workspace; then re-run `zoho.py check` and expect
-   one workspace. Not a blocker for the rest of the run.
-3. Then the run order below, from step 2 (`provision.py`); step 1 has run.
+## Leftovers (seed/zoho/leftovers.md, 24 rows)
+15 saved views (no create endpoint), the Desk SLA (no endpoint), Finance read only (a profile, not a role), the 4
+Campaigns lists (every adding call may send), Bookings staff and appointments (may send), and the 23 refused calls
+(to be decided: how a no-show, a cancelled call and a past booked slot are logged in Zoho Calls).
 
-Scope line used (the console accepted it as is, including Desk.fields.CREATE):
-ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.bulk.ALL,ZohoFiles.files.ALL,ZohoCRM.org.READ,ZohoCRM.users.READ,ZohoCRM.coql.READ,Desk.basic.READ,Desk.layouts.READ,Desk.layouts.UPDATE,Desk.fields.CREATE,Desk.tickets.ALL,Desk.contacts.READ,Desk.contacts.CREATE,Desk.search.READ,ZohoCampaigns.contact.READ,zohobookings.data.CREATE
-
-## Read first
-1. seed/zoho/provision.py: the docstring and the constants (MANDATORY_FILL, CALL_STATUS_FIELDS, DESK_STATUS,
-   CAMPAIGN_LISTS, READ_ONLY_SEATS) hold every design call.
-2. seed/zoho/.local/docs/docs_*.md: the Zoho doc research with verbatim quotes (local, gitignored). Read the
-   relevant one before changing any request shape; the docs rule applies (Context7 first).
-
-## Verify before coding
-- `git status --short`: M .gitignore, M .claude/HANDOFF.md, M scripts/build_operator.py, ?? seed/zoho/, and the two
-  untracked inputs/meeting/ files (untracked on purpose). inputs/spinach/ and yeslyf_phase14_brief.md were committed
-  by the parallel Phase 14 session (below) and are not phase F.
-- A second session ran Phase 14 in this same checkout on 24 Sep 2026 and committed bfe5a3a and bbabf36 at 19:16
-  (changelog data, scripts/build_site.py, scripts/import_sq.py, reports/phase14_*.md; none of the phase F files).
-  main is ahead of origin by those two commits; the phase F commit goes on top and the push carries all three. If that
-  session wrote its own .claude/HANDOFF.md since, merge this phase F section into it rather than replacing it.
-- `python3 seed/zoho/provision.py --plan`: no network; the last line names the service 'Talk to an adviser', 45 minutes.
-- `python3 scripts/build_site.py`, then `python3 scripts/check_phase9.py` (19 PASS) and `python3 scripts/check_site.py`
-  (3 PASS); docs/ stays unchanged while data/zoho_provision.json does not exist.
-
-## Run order, after the answers
-1. `python3 seed/zoho/zoho.py check`: read only; prints the CRM org, the Desk portal id and the Bookings workspaces.
-2. `python3 seed/zoho/provision.py`: writes data/zoho_provision.json; run log in seed/zoho/.local/run-*.log. Re-runs are
-   idempotent (check before create; bulk write upserts on each file's external ID). Read the log, fix, re-run, until
-   what is left is only what the API refuses or no API covers.
-3. `python3 seed/zoho/verify.py`: counts per object (whole sets of external IDs), ten people end to end, writes
-   seed/zoho/leftovers.md.
-4. `python3 scripts/build_site.py`: the operator page gets "done by script, <timestamp>" on finished items; Kajal's
-   other steps unchanged. Both check scripts pass.
-5. One commit "zoho provisioning F" (no AI attribution trailer), then push: .gitignore, .claude/HANDOFF.md,
-   scripts/build_operator.py, docs/admin_operator.html, data/zoho_provision.json, seed/zoho/zoho.py, provision.py,
-   verify.py, leftovers.md. Never stage seed/zoho/.env or seed/zoho/.local/.
-
-## What the Zoho docs changed in the brief (already told to spiff)
-- Left, no API: all 15 saved views (CRM v8 has only Get Custom View Metadata and Change Sort Order; Desk lists
-  views only), the Desk SLA, Finance read only (a profile in Zoho, not a role).
-- Left, the API may send: Campaigns lists S0, S0w, S1, S2 (listsubscribe mails a confirmation; the two bulk calls
-  document their list key "to send a subscription mail"; email only) and Bookings staff and appointments.
-- Calls are not a bulk write module: the records API upsert, each call linked to its contact (Who_Id).
-- Created_Time is tested on the run's first record insert and logged in data/zoho_provision.json; docs suggest it
-  is read-only.
-
-## Watch on the first live run (docs silent or ambiguous)
-- The check reports the CRM edition as "free" under the zohooneenterprise trial. If a create call (custom module,
-  field, role, bulk write) is refused on edition grounds, stop and say so: the trial may need CRM Enterprise
-  switched on in the Zoho One admin panel.
-- Leads Company may be layout-mandatory: MANDATORY_NOT_FOUND-Company in the bulk result.
-- Deals Pipeline is filled only if Zoho marks it mandatory and the org has one pipeline.
-- Bulk write: header row = field API names (auto-map); date-times as 'YYYY-MM-DD HH:MM:SS' in the CRM user's zone.
-- Call_Duration is sent as HH:mm ("00:45"); check the record reads 2700 seconds.
-- Desk: custom field type "DateTime"; Category values are PATCHed only after the current list was read.
-- Bookings createservice: a form-data field "data" holding JSON; Bookings reports refusals inside a 200.
+## Verify (after this commit)
+- `git status --short`: clean apart from the untracked inputs kept out on purpose.
+- `python3 seed/zoho/zoho.py check`: CRM org Plan2prosper, Desk portal id 60089105539, Bookings workspaces: Plan2prosper.
+- `python3 seed/zoho/provision.py --plan`: no network. A re-run of provision.py is idempotent (about 6 minutes) and
+  rewrites data/zoho_provision.json; verify.py rewrites seed/zoho/leftovers.md; then build_site.py.
+- `python3 scripts/build_site.py`, `python3 scripts/check_phase9.py` 19 PASS, `python3 scripts/check_site.py` 3 PASS.
 
 ## Constraints carried forward
 - Never call anything that connects a channel, verifies a sender or domain, or sends.
-- No regex or phrase rules; stdlib only; ASCII; tokens and secrets never printed or committed.
-- Kajal's remaining operator steps stay unchanged; only items the script finished get the "done by script" line.
+- No regex or phrase rules; stdlib only; ASCII; tokens and secrets never printed or committed (seed/zoho/.env and
+  seed/zoho/.local/ are gitignored).
+- Kajal's remaining operator steps stay unchanged; only items the script finished carry the "done by script" line.
+- seed/zoho/.local/docs/docs_*.md holds the Zoho doc research (local, gitignored): read the relevant one before
+  changing a request shape; the docs rule applies (Context7 first).
+
+Scope line of the Self Client (the console accepted it as is):
+ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.bulk.ALL,ZohoFiles.files.ALL,ZohoCRM.org.READ,ZohoCRM.users.READ,ZohoCRM.coql.READ,Desk.basic.READ,Desk.layouts.READ,Desk.layouts.UPDATE,Desk.fields.CREATE,Desk.tickets.ALL,Desk.contacts.READ,Desk.contacts.CREATE,Desk.search.READ,ZohoCampaigns.contact.READ,zohobookings.data.CREATE
