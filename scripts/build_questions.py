@@ -117,6 +117,9 @@ def render_row(r, ctx):
         body.append('<div class="cause">cause: %s</div>' % esc("; ".join(r["cause"])))
     else:
         body.append('<div class="cause">cause: none until the row is frozen; the freezing commit writes approved by (first name), (date)</div>')
+    for entry in r.get("log", []):
+        body.append('<div class="cause">%s: %s to %s; %s%s</div>' % (esc(dmy(entry["date"])), esc(entry["from"]), esc(entry["to"]), esc(entry["cause"]),
+                                                                    (" (%s)" % esc(entry["note"])) if entry.get("note") else ""))
     ctl = []
     if st != "frozen":
         ctl.append('<button type="button" class="ok" data-approve="approved" data-id="%s">Approve</button>' % esc(rid))

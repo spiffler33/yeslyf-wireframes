@@ -46,6 +46,7 @@ from import_questions import read_sheet, NS  # noqa: E402
 INPUT_DIR = os.path.join(ROOT, "inputs", "spinach", "2026-09-22")
 ANSWERS = "SQ1_answers.md"
 OUT = os.path.join(ROOT, "data", "questions.json")
+OVERRIDES = os.path.join(ROOT, "data", "sq_overrides.json")  # status changes by commit after the answer set
 BATCH = {"id": "SQ1", "received": "2026-09-22", "answered": "2026-09-24"}
 CHANGED = "2026-09-24"
 # original file name, export file name (brief 4.1), id family
@@ -107,6 +108,14 @@ TABS_ROW_TEMPLATES = ("T-table", "T-msg")
 
 def load(name):
     with open(os.path.join(ROOT, "data", name)) as fh:
+        return json.load(fh)
+
+
+def load_optional_out():
+    """The questions.json written last time, for the export stamps; None when there is none yet."""
+    if not os.path.exists(OUT):
+        return None
+    with open(OUT) as fh:
         return json.load(fh)
 
 
@@ -577,11 +586,23 @@ def build():
         if a["status"] != "frozen" and not a["item"]:
             notes.append("%s: an %s row whose answer does not open with %r" % (r["id"], a["status"], MARKERS[a["status"]]))
         rows.append(rec)
+    for rec in rows:
+        rec["log"] = []
+    apply_overrides(rows, problems, notes)
     ref_problems, pending = check_refs(rows, live, states, integrations, trackers, pending_w, set(answers))
     problems.extend(ref_problems)
     templates = [dict(t) for t in aset["templates"]]
     d_problems, missing = check_part_d(templates, live, screens, notes)
     problems.extend(d_problems)
+    # the export stamps (scripts/export_sq.py, pass 4) live in the written file only: carry them over on a rewrite
+    previous = load_optional_out()
+    batch = dict(BATCH, files=files, exported="", exported_previous="")
+    if previous:
+        pb = previous["batches"][0]
+        batch["exported"], batch["exported_previous"] = pb.get("exported", ""), pb.get("exported_previous", "")
+        stamped = {r["id"]: r.get("exported", "") for r in previous["rows"]}
+        for rec in rows:
+            rec["exported"] = stamped.get(rec["id"], "")
     data = {"source": "scripts/import_sq.py over inputs/spinach/2026-09-22/ (the three questionnaire files and SQ1_answers.md); phase 14, pass 1",
             "note": "One row per question Spinach asked; the answer is the Yesly comment, verbatim from the answer set. Fields: id, batch, "
                     "file and sheet (original names), sheet_order, block (main, W, E, API, M, H), row_no and header_row (1-based rows in "
@@ -589,11 +610,51 @@ def build():
                     "answer set's quote of the sheet row, journey rows), area, question, proposal and link (their text), answer, status "
                     "(frozen, open, owed), item (the to be decided or to be verified item of an open or owed row), refs, owner and due "
                     "(open and owed rows; due_about true while the date is a proposal), cause (frozen rows), tracker (the W ids among "
-                    "the refs), changed, exported. templates is Part D of the answer set, route_groups Part E. Statuses change only by "
-                    "a commit (approvals are board rows; scripts/apply_sq_approvals.py, pass 5).",
-            "batches": [dict(BATCH, files=files, exported="")],
+                    "the refs), changed, exported, log (status changes after the answer set, from data/sq_overrides.json: date, from, to, "
+                    "cause, note). templates is Part D of the answer set, route_groups Part E. Statuses change only by a commit "
+                    "(approvals are board rows; scripts/apply_sq_approvals.py, pass 5).",
+            "batches": [batch],
             "rows": rows, "templates": templates, "route_groups": aset["route_groups"]}
     return data, problems, notes, pending, missing, files
+
+
+def apply_overrides(rows, problems, notes):
+    """data/sq_overrides.json: a status change per row, by commit, after the answer set. The row's status, item, owner,
+    due and changed date follow the override; the change is written into the row's log with its cause; the answer
+    text is untouched. A frozen result gets the cause appended to the row's causes; an open or owed result keeps the
+    causes it had (the header rule: no cause until frozen)."""
+    if not os.path.exists(OVERRIDES):
+        return
+    with open(OVERRIDES) as fh:
+        doc = json.load(fh)
+    by_id = {r["id"]: r for r in rows}
+    for o in doc.get("rows", []):
+        r = by_id.get(o.get("id"))
+        if r is None:
+            problems.append("override for %r: no such row" % o.get("id"))
+            continue
+        if o.get("status") not in STATUSES:
+            problems.append("override %s: status %r is not one of frozen, open, owed" % (o["id"], o.get("status")))
+            continue
+        if o["status"] != "frozen":
+            for part in str(o.get("owner", "")).split(" and "):
+                if part not in OWNER_LABELS:
+                    problems.append("override %s: owner %r is not a function label" % (o["id"], part))
+        try:
+            datetime.date.fromisoformat(o.get("date", ""))
+        except ValueError:
+            problems.append("override %s: date %r is not yyyy-mm-dd" % (o["id"], o.get("date")))
+            continue
+        r["log"].append({"date": o["date"], "from": r["status"], "to": o["status"], "cause": o.get("cause", ""), "note": o.get("note", "")})
+        r["status"] = o["status"]
+        r["item"] = o.get("item", "") if o["status"] != "frozen" else ""
+        r["owner"] = o.get("owner", "") if o["status"] != "frozen" else ""
+        r["due"] = o.get("due", "") if o["status"] != "frozen" else ""
+        r["due_about"] = bool(o.get("due_about", False)) if o["status"] != "frozen" else False
+        if o["status"] == "frozen" and o.get("cause") and o["cause"] not in r["cause"]:
+            r["cause"].append(o["cause"])
+        r["changed"] = o["date"]
+        notes.append("override applied: %s %s to %s (%s)" % (o["id"], r["log"][-1]["from"], o["status"], o.get("cause", "")))
 
 
 def counts(rows):

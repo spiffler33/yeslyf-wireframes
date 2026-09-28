@@ -1,0 +1,17 @@
+{
+ "source": "Status changes to Spinach Questions rows after the answer set, each by a commit (yeslyf_phase14_brief.md: the status word changes only by a commit). scripts/import_sq.py applies them after reading the answer set and writes each one into the row's log; the answer text never changes here.",
+ "note": "Fields: id; status (frozen, open, owed); item (the to be decided or to be verified item; empty until given); owner and due (open and owed rows; due_about true while the date is a proposal); date (yyyy-mm-dd; becomes the row's changed date); cause; note (what happened, in a few words).",
+ "rows": [
+  {
+   "id": "BE-04",
+   "status": "open",
+   "item": "",
+   "owner": "Product",
+   "due": "",
+   "due_about": true,
+   "date": "2026-09-28",
+   "cause": "Vatsal, 28 Sep 2026",
+   "note": "unfrozen: an open point"
+  }
+ ]
+}

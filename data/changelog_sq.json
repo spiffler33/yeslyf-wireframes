@@ -64,6 +64,14 @@
     "spinach_questions.html"
    ],
    "cause": "Vatsal, 24 Sep 2026 (brief, decision 6)"
+  },
+  {
+   "date": "28 Sep 2026",
+   "change": "BE-04 unfrozen: frozen to open, an open point; owner Product, no date; the item to follow (data/sq_overrides.json)",
+   "pages": [
+    "spinach_questions.html"
+   ],
+   "cause": "Vatsal, 28 Sep 2026"
   }
  ]
 }

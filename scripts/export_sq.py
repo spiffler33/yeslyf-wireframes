@@ -76,7 +76,12 @@ def sheet_grid(rows, qrows, previous, today):
     """The output grid of one sheet: the original rows, the comments filled, the added columns; plus the style per cell
     (header rows bold, comment cells wrapped) and which cells were written for the read-back check."""
     grid = [list(r) for r in rows]
-    ncol = max(len(r) for r in rows) if rows else 0
+    # the sheet's content width: the last cell with text, not Excel's empty trailing cells (the backend sheet carries 24)
+    ncol = 0
+    for r in rows:
+        for j, c in enumerate(r):
+            if c and j + 1 > ncol:
+                ncol = j + 1
     styles = {}
     written = []
     header_rows = sorted({q["header_row"] for q in qrows if q["block"] != "H"})
