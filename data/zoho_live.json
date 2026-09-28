@@ -121,7 +121,7 @@
  },
  "cause": "plan G, 28 Sep 2026",
  "counts": {
-  "at": "28 Sep 2026, 15:38 IST",
+  "at": "28 Sep 2026, 16:02 IST",
   "rows": [
    {
     "detail": "the admin user: CEO, Administrator, active",
@@ -184,8 +184,8 @@
     "target": 84
    },
    {
-    "detail": "20 views, 0 custom; missing: Grievances past SLA, Grievance register, Open tickets with context, Past SLA",
-    "now": 0,
+    "detail": "24 views, 4 custom; missing: none",
+    "now": 4,
     "object": "desk views",
     "target": 4
    },
@@ -240,6 +240,18 @@
   ]
  },
  "items": {
+  "desk/sla": {
+   "at": "28 Sep 2026, 16:02 IST",
+   "cause": "plan G, 28 Sep 2026 (G5)",
+   "done": [
+    "SLA One business day: on ticket create, resolve within 1 day, calendar hours, no escalation action"
+   ],
+   "how": "chrome",
+   "left": [],
+   "note": "to be decided: business hours for the org (Setup, Business Hours) so the SLA counts business days; the org had none, so the SLA counts calendar days. The four default SLAs stay active above it.",
+   "phase": "G5",
+   "status": "done in Zoho"
+  },
   "views/call-centre": {
    "at": "28 Sep 2026, 15:42 IST",
    "cause": "plan G, 28 Sep 2026 (G3)",
@@ -254,17 +266,16 @@
    "status": "done in Zoho"
   },
   "views/compliance": {
-   "at": "28 Sep 2026, 15:42 IST",
-   "cause": "plan G, 28 Sep 2026 (G3)",
+   "at": "28 Sep 2026, 16:02 IST",
+   "cause": "plan G, 28 Sep 2026 (G5)",
    "done": [
-    "RPQ refresh due (App Events)"
+    "RPQ refresh due (App Events)",
+    "Grievance register (Desk tickets)"
    ],
    "how": "chrome",
-   "left": [
-    "Grievance register (Desk tickets, G5)"
-   ],
-   "phase": "G3",
-   "status": "partly done"
+   "left": [],
+   "phase": "G5",
+   "status": "done in Zoho"
   },
   "views/finance": {
    "at": "28 Sep 2026, 15:42 IST",
@@ -292,18 +303,29 @@
    "status": "done in Zoho"
   },
   "views/principal-officer": {
-   "at": "28 Sep 2026, 15:42 IST",
-   "cause": "plan G, 28 Sep 2026 (G3)",
+   "at": "28 Sep 2026, 16:02 IST",
+   "cause": "plan G, 28 Sep 2026 (G5)",
    "done": [
     "Paid by SKU, this week and last (Deals)",
-    "DIFM prospects to call (Contacts)"
+    "DIFM prospects to call (Contacts)",
+    "Grievances past SLA (Desk tickets)"
    ],
    "how": "chrome",
-   "left": [
-    "Grievances past SLA (Desk tickets, G5)"
+   "left": [],
+   "phase": "G5",
+   "status": "done in Zoho"
+  },
+  "views/support": {
+   "at": "28 Sep 2026, 16:02 IST",
+   "cause": "plan G, 28 Sep 2026 (G5)",
+   "done": [
+    "Open tickets with context (Desk tickets)",
+    "Past SLA (Desk tickets)"
    ],
-   "phase": "G3",
-   "status": "partly done"
+   "how": "chrome",
+   "left": [],
+   "phase": "G5",
+   "status": "done in Zoho"
   }
  }
 }

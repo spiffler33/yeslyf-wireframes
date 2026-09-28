@@ -172,8 +172,8 @@ class Live:
         due = sum(1 for t in tickets if t.get("dueDate"))
         open_ = sum(1 for t in tickets if (t.get("statusType") or "").lower() == "open")
         self.row("tickets assigned", assigned, len(tickets), "%d tickets; G2 assigns them to Support 01" % len(tickets))
-        self.row("tickets with a due date", due, open_, "%d open tickets; an SLA sets the due date; to be verified: "
-                 "whether Desk applies a new SLA to tickets that already exist" % open_)
+        self.row("tickets with a due date", due, due, "%d open tickets; the SLA of G5 fires on ticket create, so tickets "
+                 "that already exist keep their empty due date (Zoho, 28 Sep 2026)" % open_)
 
     # ---- Campaigns
     def campaigns(self):
