@@ -578,3 +578,42 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   the stamp carries the next day; the header has 19 px to spare at 1,512 px before the tabs wrap to a third row.
 - Open: BE-04's item line; the CAS clash on W11 (Raafiya, 26 Sep 2026: depository CAS; JD-AA-W5: registrar CAS first);
   batch 2 export once the open rows are frozen (about 1 Oct 2026).
+
+## 23. Status, 28 Sep 2026 (phase F: Zoho provisioning by API)
+
+- seed/zoho/ (zoho.py, provision.py, verify.py; commit e93d9b8) put the run-3000 seed into the Zoho One trial
+  "Plan2prosper" (India datacentre, Kajal's login; spiff confirmed on 24 Sep 2026 that it is the yeslyf trial). Four
+  idempotent passes on 28 Sep 2026: fields, picklists, the two custom modules, roles, records (bulk write upsert;
+  Deals and Calls through the records API), Desk fields, categories and 73 tickets, the Bookings service. 32 operator
+  items are marked "done by script" on docs/admin_operator.html; Kajal's other steps are unchanged.
+- Counts (verify.py): Leads 1400, Contacts 1640, Deals 206, A la carte 9, Tasks 114, App Events 12464, Tickets 73,
+  Calls 61 of 84 (14 no-shows and 1 cancellation need a duration; 8 booked slots already past need a future start).
+- Design calls the live run forced, each in provision.py with its cause: Leads Company and Deals Account_Name are
+  layout-mandatory (placeholder "Individual"; one Accounts record holds all deals); no pipelines in the org (won stage
+  read off the Stage picklist); Zoho refuses the labels Keyword and Notes and shares one label namespace across Tasks,
+  Calls and Events (LABEL_MAP: Keyword Sent, Slot Status, Task Contact External ID, Calls Notes into Description);
+  Calls take insert or update, never upsert; Tasks Status translated done -> Completed, open -> Not Started.
+- Before the run the Desk notification rules were read in Chrome: every contact, department and agent rule off except
+  the four "Mentioning in ..." rules, which the script never triggers. Nothing was sent.
+- Known limits: 24 leftovers in seed/zoho/leftovers.md (15 saved views, the Desk SLA and the Finance profile have no
+  API; the 4 Campaigns lists and the Bookings staff and appointments were not called because those APIs may send;
+  the 23 refused calls are "to be decided"). Deals Amount is not imported (prices are "Rs ___").
+- Open: the placeholders stay unless Vatsal says otherwise; phase G (section 24) takes the leftovers.
+
+## 24. Status, 28 Sep 2026 (phase G planned: Zoho as if live; not started)
+
+- PLAN_zoho_live_v01.md: the trial built as if the seed were the live book, with no message ever reaching a
+  contact (Vatsal, 28 Sep 2026). Phases G0 to G9, in order, one commit each, one browser: staff users with
+  plus-addresses on Kajal's mailbox, record ownership by API, the 12 CRM views and 5 seat dashboards in the UI, the
+  Desk SLA and 4 views, the Campaigns lists by UI import with confirmation mails confirmed off, Bookings staff and
+  appointments with notifications off, the 23 calls logged as Missed (provisional), a live verifier and
+  data/zoho_live.json for the operator page.
+- Decisions taken (Vatsal, 28 Sep 2026): plus-addresses for the 10 staff; Campaigns import only after double opt-in
+  and welcome mail are confirmed off; Bookings notifications off before staff and appointments.
+- Open from Vatsal's four points on the Admin + CRM v2 tab (28 Sep 2026): Directus is out (all to Zoho, Mixpanel or
+  a Spinach build; the homes for admin-over-app-tables, app content and config to confirm; 13 placement rows and
+  decisions D1 and D5 to rewrite); data flows app to Zoho only (adviser owner and consent mastered in the app,
+  Zoho fields read-only; H07 pulls Desk on open or changes); the tab needs a one-line legend for Console, Fold and
+  Change; revenue read in Zoho (Zoho Books as ledger, Razorpay as the source of money movement; Metabase's 13 rows
+  raise the Zoho Analytics question). These land as their own commit once Vatsal confirms the homes.
+- Phase 14 pass 5 (the approvals script) still runs only on Vatsal's word (section 22).
