@@ -25,8 +25,11 @@ person-only steps below are not blockers for G4; restate them once in the first 
 - `python3 scripts/check_phase9.py` 19 PASS, `python3 scripts/check_site.py` 3 PASS.
 
 ## Waiting on spiff (asked in the G0 report reply; recommended answer first)
-- (a) Homes for what Directus held: the admin panel Spinach builds over the app's database; Metabase's 13 rows to
-  Zoho Analytics. Lands as its own commit on the Admin + CRM tab, never mixed into phase G.
+- (a) Answered (Vatsal, 28 Sep 2026): only the Directus parts that must sit on the app's own database (admin over
+  app tables, client data edits) are built by Spinach as the admin panel; every other Directus item goes to Zoho
+  (Creator or a CRM custom module for non-sensitive content and config). Still to confirm: Metabase's 13 rows to
+  Zoho Analytics. The Admin + CRM tab rewrite (13 Directus rows sorted by that test, D1 and D5, INBOUND rows, the
+  Console/Fold/Change legend) is its own commit, never mixed into phase G; do it after G4 or when spiff asks.
 - (b) Plan section 4 provisional calls: consent by silence (Missed for the 23 refused calls; past booked slots at the
   same weekday and time in the first future week; marketing and finance built under the admin user).
 - (c) A wider grant with Desk.agents.READ before G2 (else the Support 01 agent id is read off Desk, Setup, Agents in
