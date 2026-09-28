@@ -1,9 +1,9 @@
 {
- "pulled_at": "2026-09-17T03:43:40+00:00",
+ "pulled_at": "2026-09-28T07:37:05+00:00",
  "source": "docs/config.js, https://ltafulnzsetxtdpimihs.supabase.co/rest/v1/board_entries",
  "note": "Every row of board_entries, unchanged, in id order. latest holds the last row per page, item_id and field; that is the current value. Written by scripts/pull_board.py; run it before any v0.3 build. Rows carrying ignored true are the test rows of data/board_ignore.json; they are kept here and left out of latest.",
- "count": 12,
- "ignored": 4,
+ "count": 188,
+ "ignored": 16,
  "latest": {
   "integrations": {
    "W02": {
@@ -94,6 +94,860 @@
      "who": "",
      "kind": "field_edit",
      "created_at": "2026-09-16T05:28:38.4621+00:00"
+    }
+   },
+   "W01": {
+    "status": {
+     "id": 14,
+     "page": "integrations",
+     "item_id": "W01",
+     "field": "status",
+     "value": "in progress",
+     "who": "",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T04:03:49.28094+00:00"
+    }
+   },
+   "I00": {
+    "status": {
+     "id": 15,
+     "page": "integrations",
+     "item_id": "I00",
+     "field": "status",
+     "value": "in talks",
+     "who": "Vatsal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T05:50:09.458002+00:00"
+    },
+    "choice": {
+     "id": 16,
+     "page": "integrations",
+     "item_id": "I00",
+     "field": "choice",
+     "value": "final",
+     "who": "Vatsal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T05:50:09.893108+00:00"
+    }
+   },
+   "I01": {
+    "status": {
+     "id": 17,
+     "page": "integrations",
+     "item_id": "I01",
+     "field": "status",
+     "value": "in talks",
+     "who": "Vatsal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T05:50:10.287442+00:00"
+    },
+    "agreement_date": {
+     "id": 32,
+     "page": "integrations",
+     "item_id": "I01",
+     "field": "agreement_date",
+     "value": "2026-10-07",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T06:11:24.280381+00:00"
+    },
+    "sandbox_date": {
+     "id": 33,
+     "page": "integrations",
+     "item_id": "I01",
+     "field": "sandbox_date",
+     "value": "2026-10-10",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T06:11:24.798566+00:00"
+    },
+    "comment": {
+     "id": 131,
+     "page": "integrations",
+     "item_id": "I01",
+     "field": "comment",
+     "value": "Raafiya (23/09) - Onboarding post receiving HOA RIA license",
+     "who": "Raafiya",
+     "kind": "comment",
+     "created_at": "2026-09-23T07:26:45.510864+00:00"
+    }
+   },
+   "I02": {
+    "status": {
+     "id": 34,
+     "page": "integrations",
+     "item_id": "I02",
+     "field": "status",
+     "value": "in talks",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T06:11:25.00405+00:00"
+    },
+    "agreement_date": {
+     "id": 35,
+     "page": "integrations",
+     "item_id": "I02",
+     "field": "agreement_date",
+     "value": "2026-10-07",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T06:11:25.516842+00:00"
+    },
+    "sandbox_date": {
+     "id": 36,
+     "page": "integrations",
+     "item_id": "I02",
+     "field": "sandbox_date",
+     "value": "2026-10-10",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T06:11:25.706306+00:00"
+    },
+    "comment": {
+     "id": 122,
+     "page": "integrations",
+     "item_id": "I02",
+     "field": "comment",
+     "value": "https://starmfv2wrapper.bseindia.com/home\nRaafiya (23/09) - In talks with Harsheel from BSE star MF team",
+     "who": "Raafiya",
+     "kind": "comment",
+     "created_at": "2026-09-23T07:26:26.459733+00:00"
+    }
+   },
+   "I03": {
+    "status": {
+     "id": 37,
+     "page": "integrations",
+     "item_id": "I03",
+     "field": "status",
+     "value": "in talks",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T06:11:25.908153+00:00"
+    },
+    "agreement_date": {
+     "id": 38,
+     "page": "integrations",
+     "item_id": "I03",
+     "field": "agreement_date",
+     "value": "2026-10-07",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T06:11:26.109405+00:00"
+    },
+    "sandbox_date": {
+     "id": 39,
+     "page": "integrations",
+     "item_id": "I03",
+     "field": "sandbox_date",
+     "value": "2026-10-10",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T06:11:26.310075+00:00"
+    }
+   },
+   "I05": {
+    "status": {
+     "id": 40,
+     "page": "integrations",
+     "item_id": "I05",
+     "field": "status",
+     "value": "in talks",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T06:19:02.402145+00:00"
+    },
+    "notes": {
+     "id": 41,
+     "page": "integrations",
+     "item_id": "I05",
+     "field": "notes",
+     "value": "Somil and harish to decide",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T06:29:42.06855+00:00"
+    }
+   },
+   "I08": {
+    "comment": {
+     "id": 130,
+     "page": "integrations",
+     "item_id": "I08",
+     "field": "comment",
+     "value": "we currently used Twilio . comapring this with Gupshup and will update\nRaafiya (23/09) - Commercials received, comaprison pending",
+     "who": "Raafiya",
+     "kind": "comment",
+     "created_at": "2026-09-23T07:26:45.302163+00:00"
+    }
+   },
+   "I17": {
+    "owner": {
+     "id": 44,
+     "page": "integrations",
+     "item_id": "I17",
+     "field": "owner",
+     "value": "Gaurav, Raafiya",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T06:35:13.958634+00:00"
+    },
+    "comment": {
+     "id": 127,
+     "page": "integrations",
+     "item_id": "I17",
+     "field": "comment",
+     "value": "",
+     "who": "Raafiya",
+     "kind": "comment",
+     "created_at": "2026-09-23T07:26:28.400573+00:00"
+    }
+   },
+   "I10": {
+    "owner": {
+     "id": 46,
+     "page": "integrations",
+     "item_id": "I10",
+     "field": "owner",
+     "value": "Raafiya",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T06:40:41.986833+00:00"
+    }
+   },
+   "I11": {
+    "comment": {
+     "id": 48,
+     "page": "integrations",
+     "item_id": "I11",
+     "field": "comment",
+     "value": "Awating new number to be mapped to Wati",
+     "who": "Kajal",
+     "kind": "comment",
+     "created_at": "2026-09-17T07:52:38.975492+00:00"
+    }
+   },
+   "I06": {
+    "choice": {
+     "id": 123,
+     "page": "integrations",
+     "item_id": "I06",
+     "field": "choice",
+     "value": "open",
+     "who": "Raafiya",
+     "kind": "field_edit",
+     "created_at": "2026-09-23T07:26:27.091772+00:00"
+    },
+    "comment": {
+     "id": 124,
+     "page": "integrations",
+     "item_id": "I06",
+     "field": "comment",
+     "value": "Raafiya (23/09) - Have sent an inquiry to their official email ID",
+     "who": "Raafiya",
+     "kind": "comment",
+     "created_at": "2026-09-23T07:26:27.686103+00:00"
+    }
+   },
+   "I07": {
+    "comment": {
+     "id": 135,
+     "page": "integrations",
+     "item_id": "I07",
+     "field": "comment",
+     "value": "Raafiya (23/09) - Commercials for esign received today.. They also shared their service doc.",
+     "who": "Raafiya",
+     "kind": "comment",
+     "created_at": "2026-09-23T07:57:54.635682+00:00"
+    }
+   },
+   "I20": {
+    "comment": {
+     "id": 128,
+     "page": "integrations",
+     "item_id": "I20",
+     "field": "comment",
+     "value": "from all the vendors, we think Cloudstok is cheap and competent. Hence, we are planning to go ahead with them for DevOps. \nIf we finalize them then their process includes\nSign SOW (NDA as well if HOA wants) -> Onboarding call with their DevOps team -> Discovery Call -> Setup -> Managed Services",
+     "who": "Raafiya",
+     "kind": "comment",
+     "created_at": "2026-09-23T07:26:28.966599+00:00"
+    }
+   },
+   "I16": {
+    "comment": {
+     "id": 132,
+     "page": "integrations",
+     "item_id": "I16",
+     "field": "comment",
+     "value": "Raafiya (23/09) - Digilocker has request HOA details, we will share it today. Also, their partner onboarding(requestor in our case) is DIY.",
+     "who": "Raafiya",
+     "kind": "comment",
+     "created_at": "2026-09-23T07:26:45.725487+00:00"
+    }
+   }
+  },
+  "wireframes_v02": {
+   "A03": {
+    "verdict": {
+     "id": 105,
+     "page": "wireframes_v02",
+     "item_id": "A03",
+     "field": "verdict",
+     "value": "Change",
+     "who": "Spinach",
+     "kind": "verdict",
+     "created_at": "2026-09-23T05:29:48.62266+00:00"
+    },
+    "text": {
+     "id": 75,
+     "page": "wireframes_v02",
+     "item_id": "A03",
+     "field": "text",
+     "value": "Failed OTP should not be saved ",
+     "who": "Kajal",
+     "kind": "comment",
+     "created_at": "2026-09-18T09:24:41.6223+00:00"
+    }
+   },
+   "R06": {
+    "text": {
+     "id": 31,
+     "page": "wireframes_v02",
+     "item_id": "R06",
+     "field": "text",
+     "value": "",
+     "who": "Vatsal",
+     "kind": "comment",
+     "created_at": "2026-09-17T06:10:15.940065+00:00"
+    }
+   },
+   "A02": {
+    "verdict": {
+     "id": 104,
+     "page": "wireframes_v02",
+     "item_id": "A02",
+     "field": "verdict",
+     "value": "Keep",
+     "who": "Vatsal",
+     "kind": "verdict",
+     "created_at": "2026-09-23T05:27:37.051515+00:00"
+    },
+    "text": {
+     "id": 59,
+     "page": "wireframes_v02",
+     "item_id": "A02",
+     "field": "text",
+     "value": "Mobile number and OTP are always one screen. ",
+     "who": "Spinach",
+     "kind": "comment",
+     "created_at": "2026-09-17T12:30:02.309601+00:00"
+    }
+   },
+   "A01": {
+    "verdict": {
+     "id": 107,
+     "page": "wireframes_v02",
+     "item_id": "A01",
+     "field": "verdict",
+     "value": "Change",
+     "who": "Spinach",
+     "kind": "verdict",
+     "created_at": "2026-09-23T06:06:59.789378+00:00"
+    },
+    "text": {
+     "id": 56,
+     "page": "wireframes_v02",
+     "item_id": "A01",
+     "field": "text",
+     "value": "Change the name of this screen to feature walkthrough",
+     "who": "Spinach",
+     "kind": "comment",
+     "created_at": "2026-09-17T12:29:28.15337+00:00"
+    }
+   },
+   "A04": {
+    "verdict": {
+     "id": 106,
+     "page": "wireframes_v02",
+     "item_id": "A04",
+     "field": "verdict",
+     "value": "Keep",
+     "who": "Spinach",
+     "kind": "verdict",
+     "created_at": "2026-09-23T05:34:39.950287+00:00"
+    },
+    "text": {
+     "id": 62,
+     "page": "wireframes_v02",
+     "item_id": "A04",
+     "field": "text",
+     "value": "Why is the welcome video after taking the mobile number?",
+     "who": "Spinach",
+     "kind": "comment",
+     "created_at": "2026-09-17T12:30:37.647232+00:00"
+    },
+    "answer": {
+     "id": 77,
+     "page": "wireframes_v02",
+     "item_id": "A04",
+     "field": "answer",
+     "value": "The user will typically come to the app after learning about YELYF through the community, WhatsApp channel, or YELYF webpage. This means the user is already aware of the YELYF app and its purpose before downloading it. Video is just to reiterate the purpose \n\nTherefore, if a user registers on the app but does not proceed further, this can be an important nudge point for us to engage with the user and encourage them to take the next step.",
+     "who": "Kajal",
+     "kind": "comment",
+     "created_at": "2026-09-18T09:51:04.943166+00:00"
+    }
+   },
+   "R09": {
+    "verdict": {
+     "id": 63,
+     "page": "wireframes_v02",
+     "item_id": "R09",
+     "field": "verdict",
+     "value": "Change",
+     "who": "Spinach",
+     "kind": "verdict",
+     "created_at": "2026-09-17T12:31:54.278761+00:00"
+    },
+    "text": {
+     "id": 65,
+     "page": "wireframes_v02",
+     "item_id": "R09",
+     "field": "text",
+     "value": "What is the idea behind saving the reveal?\n\nHow many reveals can be saved per mobile number?",
+     "who": "Spinach",
+     "kind": "comment",
+     "created_at": "2026-09-17T12:32:21.245969+00:00"
+    }
+   },
+   "R08": {
+    "text": {
+     "id": 68,
+     "page": "wireframes_v02",
+     "item_id": "R08",
+     "field": "text",
+     "value": "This is a kind of loader, not a screen",
+     "who": "Spinach",
+     "kind": "comment",
+     "created_at": "2026-09-17T12:35:10.732158+00:00"
+    },
+    "verdict": {
+     "id": 84,
+     "page": "wireframes_v02",
+     "item_id": "R08",
+     "field": "verdict",
+     "value": "Keep",
+     "who": "Spinach",
+     "kind": "verdict",
+     "created_at": "2026-09-21T08:14:31.856858+00:00"
+    }
+   },
+   "X01": {
+    "verdict": {
+     "id": 69,
+     "page": "wireframes_v02",
+     "item_id": "X01",
+     "field": "verdict",
+     "value": "Change",
+     "who": "Spinach",
+     "kind": "verdict",
+     "created_at": "2026-09-17T12:36:58.896368+00:00"
+    },
+    "text": {
+     "id": 70,
+     "page": "wireframes_v02",
+     "item_id": "X01",
+     "field": "text",
+     "value": "Merge with R12",
+     "who": "Spinach",
+     "kind": "comment",
+     "created_at": "2026-09-17T12:37:04.344529+00:00"
+    }
+   },
+   "O01": {
+    "text": {
+     "id": 71,
+     "page": "wireframes_v02",
+     "item_id": "O01",
+     "field": "text",
+     "value": "",
+     "who": "Spinach",
+     "kind": "comment",
+     "created_at": "2026-09-17T14:53:13.577109+00:00"
+    }
+   },
+   "R02": {
+    "verdict": {
+     "id": 73,
+     "page": "wireframes_v02",
+     "item_id": "R02",
+     "field": "verdict",
+     "value": "",
+     "who": "Vatsal",
+     "kind": "verdict",
+     "created_at": "2026-09-17T23:57:00.691791+00:00"
+    }
+   },
+   "P04": {
+    "text": {
+     "id": 78,
+     "page": "wireframes_v02",
+     "item_id": "P04",
+     "field": "text",
+     "value": "Initiating call with payment gateways. This would be answered by the gateways. ",
+     "who": "Kajal",
+     "kind": "comment",
+     "created_at": "2026-09-18T09:52:56.487906+00:00"
+    }
+   },
+   "K02": {
+    "text": {
+     "id": 79,
+     "page": "wireframes_v02",
+     "item_id": "K02",
+     "field": "text",
+     "value": "We can check the recording on Zoho. ",
+     "who": "Kajal",
+     "kind": "comment",
+     "created_at": "2026-09-18T09:57:36.102332+00:00"
+    }
+   },
+   "H06": {
+    "text": {
+     "id": 81,
+     "page": "wireframes_v02",
+     "item_id": "H06",
+     "field": "text",
+     "value": "",
+     "who": "Kajal",
+     "kind": "comment",
+     "created_at": "2026-09-18T09:59:30.023469+00:00"
+    }
+   },
+   "Q04": {
+    "text": {
+     "id": 82,
+     "page": "wireframes_v02",
+     "item_id": "Q04",
+     "field": "text",
+     "value": "",
+     "who": "Kajal",
+     "kind": "comment",
+     "created_at": "2026-09-18T10:00:58.518678+00:00"
+    }
+   },
+   "X00": {
+    "verdict": {
+     "id": 86,
+     "page": "wireframes_v02",
+     "item_id": "X00",
+     "field": "verdict",
+     "value": "Change",
+     "who": "Spinach",
+     "kind": "verdict",
+     "created_at": "2026-09-22T05:20:36.025336+00:00"
+    }
+   },
+   "N15": {
+    "verdict": {
+     "id": 89,
+     "page": "wireframes_v02",
+     "item_id": "N15",
+     "field": "verdict",
+     "value": "Change",
+     "who": "Spinach",
+     "kind": "verdict",
+     "created_at": "2026-09-23T05:22:49.109354+00:00"
+    }
+   }
+  },
+  "tracker": {
+   "W05": {
+    "status": {
+     "id": 49,
+     "page": "tracker",
+     "item_id": "W05",
+     "field": "status",
+     "value": "in progress",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T11:12:20.017641+00:00"
+    },
+    "due_date": {
+     "id": 50,
+     "page": "tracker",
+     "item_id": "W05",
+     "field": "due_date",
+     "value": "2026-09-24",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T11:12:20.255399+00:00"
+    }
+   },
+   "W16": {
+    "status": {
+     "id": 51,
+     "page": "tracker",
+     "item_id": "W16",
+     "field": "status",
+     "value": "in progress",
+     "who": "Kajal",
+     "kind": "field_edit",
+     "created_at": "2026-09-17T11:12:20.767936+00:00"
+    }
+   },
+   "W24": {
+    "status": {
+     "id": 116,
+     "page": "tracker",
+     "item_id": "W24",
+     "field": "status",
+     "value": "delivered",
+     "who": "Spinach",
+     "kind": "field_edit",
+     "created_at": "2026-09-23T06:33:59.973374+00:00"
+    },
+    "notes": {
+     "id": 117,
+     "page": "tracker",
+     "item_id": "W24",
+     "field": "notes",
+     "value": "Spinach has sent a set of questions in Excel format; waiting for the answers to all those questions",
+     "who": "Spinach",
+     "kind": "field_edit",
+     "created_at": "2026-09-23T06:34:00.656207+00:00"
+    }
+   },
+   "W09": {
+    "status": {
+     "id": 121,
+     "page": "tracker",
+     "item_id": "W09",
+     "field": "status",
+     "value": "not started",
+     "who": "Spinach",
+     "kind": "field_edit",
+     "created_at": "2026-09-23T06:38:17.826908+00:00"
+    },
+    "notes": {
+     "id": 120,
+     "page": "tracker",
+     "item_id": "W09",
+     "field": "notes",
+     "value": "",
+     "who": "Spinach",
+     "kind": "field_edit",
+     "created_at": "2026-09-23T06:38:15.112143+00:00"
+    }
+   }
+  },
+  "spinach_questions": {
+   "FE-01": {
+    "approve": {
+     "id": 189,
+     "page": "spinach_questions",
+     "item_id": "FE-01",
+     "field": "approve",
+     "value": "approved",
+     "who": "Vatsal",
+     "kind": "verdict",
+     "created_at": "2026-09-28T07:34:35.639746+00:00"
+    },
+    "comment": {
+     "id": 137,
+     "page": "spinach_questions",
+     "item_id": "FE-01",
+     "field": "comment",
+     "value": "go as per Spinach's proposal",
+     "who": "Vatsal",
+     "kind": "comment",
+     "created_at": "2026-09-28T06:31:30.285443+00:00"
+    }
+   },
+   "FE-74": {
+    "comment": {
+     "id": 143,
+     "page": "spinach_questions",
+     "item_id": "FE-74",
+     "field": "comment",
+     "value": "we will revert with this week Thursday",
+     "who": "Vatsal",
+     "kind": "comment",
+     "created_at": "2026-09-28T06:33:35.903544+00:00"
+    },
+    "approve": {
+     "id": 144,
+     "page": "spinach_questions",
+     "item_id": "FE-74",
+     "field": "approve",
+     "value": "approved",
+     "who": "Vatsal",
+     "kind": "verdict",
+     "created_at": "2026-09-28T06:33:56.376579+00:00"
+    }
+   },
+   "FE-75": {
+    "comment": {
+     "id": 182,
+     "page": "spinach_questions",
+     "item_id": "FE-75",
+     "field": "comment",
+     "value": "With Raafiya to open the account - will be ready after next 2 weeks",
+     "who": "Vatsal",
+     "kind": "comment",
+     "created_at": "2026-09-28T06:43:58.352545+00:00"
+    },
+    "approve": {
+     "id": 152,
+     "page": "spinach_questions",
+     "item_id": "FE-75",
+     "field": "approve",
+     "value": "approved",
+     "who": "Vatsal",
+     "kind": "verdict",
+     "created_at": "2026-09-28T06:36:38.32873+00:00"
+    }
+   },
+   "FE-78": {
+    "comment": {
+     "id": 151,
+     "page": "spinach_questions",
+     "item_id": "FE-78",
+     "field": "comment",
+     "value": "With Raafiya to open the account - will be ready after next 6 weeks",
+     "who": "Vatsal",
+     "kind": "comment",
+     "created_at": "2026-09-28T06:36:26.869225+00:00"
+    },
+    "approve": {
+     "id": 153,
+     "page": "spinach_questions",
+     "item_id": "FE-78",
+     "field": "approve",
+     "value": "approved",
+     "who": "Vatsal",
+     "kind": "verdict",
+     "created_at": "2026-09-28T06:36:41.496751+00:00"
+    }
+   },
+   "BE-04": {
+    "comment": {
+     "id": 183,
+     "page": "spinach_questions",
+     "item_id": "BE-04",
+     "field": "comment",
+     "value": "Finvu, CAS. Execution will be done inside the app itself - using BSE StAR + Smallcase Gateway. Info to be displayed will be shared in 2 weeks ",
+     "who": "Vatsal",
+     "kind": "comment",
+     "created_at": "2026-09-28T06:43:58.517662+00:00"
+    },
+    "approve": {
+     "id": 165,
+     "page": "spinach_questions",
+     "item_id": "BE-04",
+     "field": "approve",
+     "value": "approved",
+     "who": "Vatsal",
+     "kind": "verdict",
+     "created_at": "2026-09-28T06:39:41.46185+00:00"
+    }
+   },
+   "BE-14": {
+    "approve": {
+     "id": 167,
+     "page": "spinach_questions",
+     "item_id": "BE-14",
+     "field": "approve",
+     "value": "approved",
+     "who": "Vatsal",
+     "kind": "verdict",
+     "created_at": "2026-09-28T06:40:42.907999+00:00"
+    },
+    "comment": {
+     "id": 177,
+     "page": "spinach_questions",
+     "item_id": "BE-14",
+     "field": "comment",
+     "value": "With compliance - will revert in 2 weeks?",
+     "who": "Vatsal",
+     "kind": "comment",
+     "created_at": "2026-09-28T06:43:57.311652+00:00"
+    }
+   },
+   "JD-LOGIN-E12": {
+    "comment": {
+     "id": 178,
+     "page": "spinach_questions",
+     "item_id": "JD-LOGIN-E12",
+     "field": "comment",
+     "value": "With compliance - will revert in 2 weeks. Ideally on the LOGIN page itself there is a tick box for consent (pre-ticked) which the user may untick to release consent at this stage. ",
+     "who": "Vatsal",
+     "kind": "comment",
+     "created_at": "2026-09-28T06:43:57.48611+00:00"
+    },
+    "approve": {
+     "id": 184,
+     "page": "spinach_questions",
+     "item_id": "JD-LOGIN-E12",
+     "field": "approve",
+     "value": "approved",
+     "who": "Vatsal",
+     "kind": "verdict",
+     "created_at": "2026-09-28T06:44:13.98668+00:00"
+    }
+   },
+   "FE-17": {
+    "comment": {
+     "id": 172,
+     "page": "spinach_questions",
+     "item_id": "FE-17",
+     "field": "comment",
+     "value": "Spinach to give Figma and apply",
+     "who": "Vatsal",
+     "kind": "comment",
+     "created_at": "2026-09-28T06:43:56.199288+00:00"
+    },
+    "approve": {
+     "id": 171,
+     "page": "spinach_questions",
+     "item_id": "FE-17",
+     "field": "approve",
+     "value": "approved",
+     "who": "Vatsal",
+     "kind": "verdict",
+     "created_at": "2026-09-28T06:43:55.771479+00:00"
+    }
+   },
+   "JD-LOGIN-M1": {
+    "comment": {
+     "id": 185,
+     "page": "spinach_questions",
+     "item_id": "JD-LOGIN-M1",
+     "field": "comment",
+     "value": "agreed \n",
+     "who": "Vatsal",
+     "kind": "comment",
+     "created_at": "2026-09-28T06:44:24.777853+00:00"
+    }
+   },
+   "JD-PAY-E14": {
+    "comment": {
+     "id": 188,
+     "page": "spinach_questions",
+     "item_id": "JD-PAY-E14",
+     "field": "comment",
+     "value": "with compliance - will revert in 2 weeks ",
+     "who": "Vatsal",
+     "kind": "comment",
+     "created_at": "2026-09-28T06:44:59.291462+00:00"
+    },
+    "approve": {
+     "id": 187,
+     "page": "spinach_questions",
+     "item_id": "JD-PAY-E14",
+     "field": "approve",
+     "value": "approved",
+     "who": "Vatsal",
+     "kind": "verdict",
+     "created_at": "2026-09-28T06:44:59.121078+00:00"
     }
    }
   }
@@ -222,6 +1076,1778 @@
    "kind": "comment",
    "created_at": "2026-09-16T06:23:46.14186+00:00",
    "ignored": true
+  },
+  {
+   "id": 14,
+   "page": "integrations",
+   "item_id": "W01",
+   "field": "status",
+   "value": "in progress",
+   "who": "",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T04:03:49.28094+00:00"
+  },
+  {
+   "id": 15,
+   "page": "integrations",
+   "item_id": "I00",
+   "field": "status",
+   "value": "in talks",
+   "who": "Vatsal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T05:50:09.458002+00:00"
+  },
+  {
+   "id": 16,
+   "page": "integrations",
+   "item_id": "I00",
+   "field": "choice",
+   "value": "final",
+   "who": "Vatsal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T05:50:09.893108+00:00"
+  },
+  {
+   "id": 17,
+   "page": "integrations",
+   "item_id": "I01",
+   "field": "status",
+   "value": "in talks",
+   "who": "Vatsal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T05:50:10.287442+00:00"
+  },
+  {
+   "id": 18,
+   "page": "tracker",
+   "item_id": "W02",
+   "field": "status",
+   "value": "delivered",
+   "who": "Vatsal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T05:50:25.131019+00:00",
+   "ignored": true
+  },
+  {
+   "id": 19,
+   "page": "tracker",
+   "item_id": "W02",
+   "field": "notes",
+   "value": "AWS and SES",
+   "who": "Vatsal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T05:50:25.528546+00:00",
+   "ignored": true
+  },
+  {
+   "id": 20,
+   "page": "tracker",
+   "item_id": "W08",
+   "field": "owner",
+   "value": "Vatsal",
+   "who": "Vatsal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T05:50:25.688907+00:00",
+   "ignored": true
+  },
+  {
+   "id": 21,
+   "page": "tracker",
+   "item_id": "W08",
+   "field": "status",
+   "value": "delivered",
+   "who": "Vatsal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T05:50:25.867554+00:00",
+   "ignored": true
+  },
+  {
+   "id": 22,
+   "page": "tracker",
+   "item_id": "W08",
+   "field": "notes",
+   "value": "https://spiffler33.github.io/yeslyf-wireframes/review/events.html",
+   "who": "Vatsal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T05:50:26.049285+00:00",
+   "ignored": true
+  },
+  {
+   "id": 23,
+   "page": "tracker",
+   "item_id": "W04",
+   "field": "status",
+   "value": "in progress",
+   "who": "Vatsal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T05:50:26.233682+00:00",
+   "ignored": true
+  },
+  {
+   "id": 24,
+   "page": "tracker",
+   "item_id": "W06",
+   "field": "owner",
+   "value": "Compliance, Kajal",
+   "who": "Vatsal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T05:50:26.469227+00:00",
+   "ignored": true
+  },
+  {
+   "id": 25,
+   "page": "tracker",
+   "item_id": "W05",
+   "field": "owner",
+   "value": "Compliance,  Kajal",
+   "who": "Vatsal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T05:50:26.649078+00:00",
+   "ignored": true
+  },
+  {
+   "id": 26,
+   "page": "tracker",
+   "item_id": "W01",
+   "field": "status",
+   "value": "in progress",
+   "who": "Vatsal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T05:50:26.866939+00:00",
+   "ignored": true
+  },
+  {
+   "id": 27,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-17T05:50:32.526075+00:00",
+   "ignored": true
+  },
+  {
+   "id": 28,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "text",
+   "value": "live check from the review link",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-17T05:50:32.714001+00:00",
+   "ignored": true
+  },
+  {
+   "id": 29,
+   "page": "wireframes_v02",
+   "item_id": "O01",
+   "field": "text",
+   "value": "somil:example",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-17T05:50:33.088149+00:00",
+   "ignored": true
+  },
+  {
+   "id": 30,
+   "page": "wireframes_v02",
+   "item_id": "A03",
+   "field": "verdict",
+   "value": "Question",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-17T06:01:28.728278+00:00"
+  },
+  {
+   "id": 31,
+   "page": "wireframes_v02",
+   "item_id": "R06",
+   "field": "text",
+   "value": "",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-17T06:10:15.940065+00:00"
+  },
+  {
+   "id": 32,
+   "page": "integrations",
+   "item_id": "I01",
+   "field": "agreement_date",
+   "value": "2026-10-07",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:11:24.280381+00:00"
+  },
+  {
+   "id": 33,
+   "page": "integrations",
+   "item_id": "I01",
+   "field": "sandbox_date",
+   "value": "2026-10-10",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:11:24.798566+00:00"
+  },
+  {
+   "id": 34,
+   "page": "integrations",
+   "item_id": "I02",
+   "field": "status",
+   "value": "in talks",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:11:25.00405+00:00"
+  },
+  {
+   "id": 35,
+   "page": "integrations",
+   "item_id": "I02",
+   "field": "agreement_date",
+   "value": "2026-10-07",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:11:25.516842+00:00"
+  },
+  {
+   "id": 36,
+   "page": "integrations",
+   "item_id": "I02",
+   "field": "sandbox_date",
+   "value": "2026-10-10",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:11:25.706306+00:00"
+  },
+  {
+   "id": 37,
+   "page": "integrations",
+   "item_id": "I03",
+   "field": "status",
+   "value": "in talks",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:11:25.908153+00:00"
+  },
+  {
+   "id": 38,
+   "page": "integrations",
+   "item_id": "I03",
+   "field": "agreement_date",
+   "value": "2026-10-07",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:11:26.109405+00:00"
+  },
+  {
+   "id": 39,
+   "page": "integrations",
+   "item_id": "I03",
+   "field": "sandbox_date",
+   "value": "2026-10-10",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:11:26.310075+00:00"
+  },
+  {
+   "id": 40,
+   "page": "integrations",
+   "item_id": "I05",
+   "field": "status",
+   "value": "in talks",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:19:02.402145+00:00"
+  },
+  {
+   "id": 41,
+   "page": "integrations",
+   "item_id": "I05",
+   "field": "notes",
+   "value": "Somil and harish to decide",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:29:42.06855+00:00"
+  },
+  {
+   "id": 42,
+   "page": "integrations",
+   "item_id": "I08",
+   "field": "comment",
+   "value": "we currently used ",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-17T06:31:21.129819+00:00"
+  },
+  {
+   "id": 43,
+   "page": "integrations",
+   "item_id": "I08",
+   "field": "comment",
+   "value": "we currently used Twilio . comapring this with Gupshup and will update",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-17T06:31:54.555797+00:00"
+  },
+  {
+   "id": 44,
+   "page": "integrations",
+   "item_id": "I17",
+   "field": "owner",
+   "value": "Gaurav, Raafiya",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:35:13.958634+00:00"
+  },
+  {
+   "id": 45,
+   "page": "integrations",
+   "item_id": "I10",
+   "field": "owner",
+   "value": "Raafiya",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:40:38.539808+00:00"
+  },
+  {
+   "id": 46,
+   "page": "integrations",
+   "item_id": "I10",
+   "field": "owner",
+   "value": "Raafiya",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T06:40:41.986833+00:00"
+  },
+  {
+   "id": 47,
+   "page": "integrations",
+   "item_id": "I11",
+   "field": "comment",
+   "value": "Awating new number",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-17T07:52:31.780452+00:00"
+  },
+  {
+   "id": 48,
+   "page": "integrations",
+   "item_id": "I11",
+   "field": "comment",
+   "value": "Awating new number to be mapped to Wati",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-17T07:52:38.975492+00:00"
+  },
+  {
+   "id": 49,
+   "page": "tracker",
+   "item_id": "W05",
+   "field": "status",
+   "value": "in progress",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T11:12:20.017641+00:00"
+  },
+  {
+   "id": 50,
+   "page": "tracker",
+   "item_id": "W05",
+   "field": "due_date",
+   "value": "2026-09-24",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T11:12:20.255399+00:00"
+  },
+  {
+   "id": 51,
+   "page": "tracker",
+   "item_id": "W16",
+   "field": "status",
+   "value": "in progress",
+   "who": "Kajal",
+   "kind": "field_edit",
+   "created_at": "2026-09-17T11:12:20.767936+00:00"
+  },
+  {
+   "id": 52,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-17T11:34:37.088939+00:00"
+  },
+  {
+   "id": 53,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "text",
+   "value": "",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T11:34:37.306964+00:00"
+  },
+  {
+   "id": 54,
+   "page": "wireframes_v02",
+   "item_id": "A01",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-17T12:29:18.256038+00:00"
+  },
+  {
+   "id": 55,
+   "page": "wireframes_v02",
+   "item_id": "A01",
+   "field": "text",
+   "value": "Change the ",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T12:29:18.256038+00:00"
+  },
+  {
+   "id": 56,
+   "page": "wireframes_v02",
+   "item_id": "A01",
+   "field": "text",
+   "value": "Change the name of this screen to feature walkthrough",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T12:29:28.15337+00:00"
+  },
+  {
+   "id": 57,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-17T12:29:45.458051+00:00"
+  },
+  {
+   "id": 58,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "text",
+   "value": "Mobile number and OTP are always one screen",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T12:29:57.360093+00:00"
+  },
+  {
+   "id": 59,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "text",
+   "value": "Mobile number and OTP are always one screen. ",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T12:30:02.309601+00:00"
+  },
+  {
+   "id": 60,
+   "page": "wireframes_v02",
+   "item_id": "A04",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-17T12:30:25.06769+00:00"
+  },
+  {
+   "id": 61,
+   "page": "wireframes_v02",
+   "item_id": "A04",
+   "field": "text",
+   "value": "Why is the welcome video after ",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T12:30:31.702628+00:00"
+  },
+  {
+   "id": 62,
+   "page": "wireframes_v02",
+   "item_id": "A04",
+   "field": "text",
+   "value": "Why is the welcome video after taking the mobile number?",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T12:30:37.647232+00:00"
+  },
+  {
+   "id": 63,
+   "page": "wireframes_v02",
+   "item_id": "R09",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-17T12:31:54.278761+00:00"
+  },
+  {
+   "id": 64,
+   "page": "wireframes_v02",
+   "item_id": "R09",
+   "field": "text",
+   "value": "What is the idea behind saving the reveal?",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T12:32:06.238904+00:00"
+  },
+  {
+   "id": 65,
+   "page": "wireframes_v02",
+   "item_id": "R09",
+   "field": "text",
+   "value": "What is the idea behind saving the reveal?\n\nHow many reveals can be saved per mobile number?",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T12:32:21.245969+00:00"
+  },
+  {
+   "id": 66,
+   "page": "wireframes_v02",
+   "item_id": "R08",
+   "field": "text",
+   "value": "This is a kind of loader, not a scteen",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T12:35:08.697702+00:00"
+  },
+  {
+   "id": 67,
+   "page": "wireframes_v02",
+   "item_id": "R08",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-17T12:35:10.2434+00:00"
+  },
+  {
+   "id": 68,
+   "page": "wireframes_v02",
+   "item_id": "R08",
+   "field": "text",
+   "value": "This is a kind of loader, not a screen",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T12:35:10.732158+00:00"
+  },
+  {
+   "id": 69,
+   "page": "wireframes_v02",
+   "item_id": "X01",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-17T12:36:58.896368+00:00"
+  },
+  {
+   "id": 70,
+   "page": "wireframes_v02",
+   "item_id": "X01",
+   "field": "text",
+   "value": "Merge with R12",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T12:37:04.344529+00:00"
+  },
+  {
+   "id": 71,
+   "page": "wireframes_v02",
+   "item_id": "O01",
+   "field": "text",
+   "value": "",
+   "who": "Spinach",
+   "kind": "comment",
+   "created_at": "2026-09-17T14:53:13.577109+00:00"
+  },
+  {
+   "id": 72,
+   "page": "wireframes_v02",
+   "item_id": "R02",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-17T23:56:59.748431+00:00"
+  },
+  {
+   "id": 73,
+   "page": "wireframes_v02",
+   "item_id": "R02",
+   "field": "verdict",
+   "value": "",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-17T23:57:00.691791+00:00"
+  },
+  {
+   "id": 74,
+   "page": "wireframes_v02",
+   "item_id": "A03",
+   "field": "text",
+   "value": "Failed OTP should ",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-18T09:24:36.279876+00:00"
+  },
+  {
+   "id": 75,
+   "page": "wireframes_v02",
+   "item_id": "A03",
+   "field": "text",
+   "value": "Failed OTP should not be saved ",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-18T09:24:41.6223+00:00"
+  },
+  {
+   "id": 76,
+   "page": "wireframes_v02",
+   "item_id": "A03",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Kajal",
+   "kind": "verdict",
+   "created_at": "2026-09-18T09:24:43.730286+00:00"
+  },
+  {
+   "id": 77,
+   "page": "wireframes_v02",
+   "item_id": "A04",
+   "field": "answer",
+   "value": "The user will typically come to the app after learning about YELYF through the community, WhatsApp channel, or YELYF webpage. This means the user is already aware of the YELYF app and its purpose before downloading it. Video is just to reiterate the purpose \n\nTherefore, if a user registers on the app but does not proceed further, this can be an important nudge point for us to engage with the user and encourage them to take the next step.",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-18T09:51:04.943166+00:00"
+  },
+  {
+   "id": 78,
+   "page": "wireframes_v02",
+   "item_id": "P04",
+   "field": "text",
+   "value": "Initiating call with payment gateways. This would be answered by the gateways. ",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-18T09:52:56.487906+00:00"
+  },
+  {
+   "id": 79,
+   "page": "wireframes_v02",
+   "item_id": "K02",
+   "field": "text",
+   "value": "We can check the recording on Zoho. ",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-18T09:57:36.102332+00:00"
+  },
+  {
+   "id": 80,
+   "page": "wireframes_v02",
+   "item_id": "H06",
+   "field": "text",
+   "value": "AWS",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-18T09:59:26.910431+00:00"
+  },
+  {
+   "id": 81,
+   "page": "wireframes_v02",
+   "item_id": "H06",
+   "field": "text",
+   "value": "",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-18T09:59:30.023469+00:00"
+  },
+  {
+   "id": 82,
+   "page": "wireframes_v02",
+   "item_id": "Q04",
+   "field": "text",
+   "value": "",
+   "who": "Kajal",
+   "kind": "comment",
+   "created_at": "2026-09-18T10:00:58.518678+00:00"
+  },
+  {
+   "id": 83,
+   "page": "wireframes_v02",
+   "item_id": "A03",
+   "field": "verdict",
+   "value": "Question",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-21T08:14:31.506833+00:00"
+  },
+  {
+   "id": 84,
+   "page": "wireframes_v02",
+   "item_id": "R08",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-21T08:14:31.856858+00:00"
+  },
+  {
+   "id": 85,
+   "page": "wireframes_v02",
+   "item_id": "X00",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-22T05:20:34.854475+00:00"
+  },
+  {
+   "id": 86,
+   "page": "wireframes_v02",
+   "item_id": "X00",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-22T05:20:36.025336+00:00"
+  },
+  {
+   "id": 87,
+   "page": "wireframes_v02",
+   "item_id": "A03",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-22T06:00:42.890591+00:00"
+  },
+  {
+   "id": 88,
+   "page": "wireframes_v02",
+   "item_id": "N15",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:22:48.715155+00:00"
+  },
+  {
+   "id": 89,
+   "page": "wireframes_v02",
+   "item_id": "N15",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:22:49.109354+00:00"
+  },
+  {
+   "id": 90,
+   "page": "wireframes_v02",
+   "item_id": "A01",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:23:36.003534+00:00"
+  },
+  {
+   "id": 91,
+   "page": "wireframes_v02",
+   "item_id": "A03",
+   "field": "verdict",
+   "value": "Question",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:25:17.311097+00:00"
+  },
+  {
+   "id": 92,
+   "page": "wireframes_v02",
+   "item_id": "A03",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:25:19.235383+00:00"
+  },
+  {
+   "id": 93,
+   "page": "wireframes_v02",
+   "item_id": "A01",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:25:36.249436+00:00"
+  },
+  {
+   "id": 94,
+   "page": "wireframes_v02",
+   "item_id": "A01",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:25:39.03718+00:00"
+  },
+  {
+   "id": 95,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:25:40.642475+00:00"
+  },
+  {
+   "id": 96,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Raafiya",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:25:56.440203+00:00"
+  },
+  {
+   "id": 97,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Raafiya",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:26:23.423168+00:00"
+  },
+  {
+   "id": 98,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Drop",
+   "who": "Raafiya",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:26:28.854277+00:00"
+  },
+  {
+   "id": 99,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Question",
+   "who": "Raafiya",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:26:30.394038+00:00"
+  },
+  {
+   "id": 100,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Question",
+   "who": "Bhuvanaa",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:26:42.886862+00:00"
+  },
+  {
+   "id": 101,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Question",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:27:13.916261+00:00"
+  },
+  {
+   "id": 102,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:27:32.116215+00:00"
+  },
+  {
+   "id": 103,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:27:33.72845+00:00"
+  },
+  {
+   "id": 104,
+   "page": "wireframes_v02",
+   "item_id": "A02",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:27:37.051515+00:00"
+  },
+  {
+   "id": 105,
+   "page": "wireframes_v02",
+   "item_id": "A03",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:29:48.62266+00:00"
+  },
+  {
+   "id": 106,
+   "page": "wireframes_v02",
+   "item_id": "A04",
+   "field": "verdict",
+   "value": "Keep",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-23T05:34:39.950287+00:00"
+  },
+  {
+   "id": 107,
+   "page": "wireframes_v02",
+   "item_id": "A01",
+   "field": "verdict",
+   "value": "Change",
+   "who": "Spinach",
+   "kind": "verdict",
+   "created_at": "2026-09-23T06:06:59.789378+00:00"
+  },
+  {
+   "id": 108,
+   "page": "tracker",
+   "item_id": "W24",
+   "field": "status",
+   "value": "delivered",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:32:48.551993+00:00"
+  },
+  {
+   "id": 109,
+   "page": "tracker",
+   "item_id": "W24",
+   "field": "notes",
+   "value": "Shared the ",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:32:58.904478+00:00"
+  },
+  {
+   "id": 110,
+   "page": "tracker",
+   "item_id": "W24",
+   "field": "notes",
+   "value": "Shared the Technical questionaire and ",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:33:05.732118+00:00"
+  },
+  {
+   "id": 111,
+   "page": "tracker",
+   "item_id": "W24",
+   "field": "notes",
+   "value": "Shared the Technical questionaire and Journey based",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:33:10.400502+00:00"
+  },
+  {
+   "id": 112,
+   "page": "tracker",
+   "item_id": "W24",
+   "field": "notes",
+   "value": "Shared the Technical questionaire and Journey till Account aggreviator on 22nd sep",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:33:25.716002+00:00"
+  },
+  {
+   "id": 113,
+   "page": "tracker",
+   "item_id": "W24",
+   "field": "notes",
+   "value": "Shared the Technical questionnaire and Journey till Account aggreviator on 22nd sep",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:33:30.802422+00:00"
+  },
+  {
+   "id": 114,
+   "page": "tracker",
+   "item_id": "W24",
+   "field": "notes",
+   "value": "Shared the Technical questionnaire and Journey till Account aggregator on 22nd sep",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:33:32.94546+00:00"
+  },
+  {
+   "id": 115,
+   "page": "tracker",
+   "item_id": "W24",
+   "field": "notes",
+   "value": "Shared the Technical questionnaire and Journey till Account aggregator on 22nd Sep",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:33:35.410338+00:00"
+  },
+  {
+   "id": 116,
+   "page": "tracker",
+   "item_id": "W24",
+   "field": "status",
+   "value": "delivered",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:33:59.973374+00:00"
+  },
+  {
+   "id": 117,
+   "page": "tracker",
+   "item_id": "W24",
+   "field": "notes",
+   "value": "Spinach has sent a set of questions in Excel format; waiting for the answers to all those questions",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:34:00.656207+00:00"
+  },
+  {
+   "id": 118,
+   "page": "tracker",
+   "item_id": "W09",
+   "field": "status",
+   "value": "in progress",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:37:49.8598+00:00"
+  },
+  {
+   "id": 119,
+   "page": "tracker",
+   "item_id": "W09",
+   "field": "notes",
+   "value": "Spinach has sent ",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:37:58.139805+00:00"
+  },
+  {
+   "id": 120,
+   "page": "tracker",
+   "item_id": "W09",
+   "field": "notes",
+   "value": "",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:38:15.112143+00:00"
+  },
+  {
+   "id": 121,
+   "page": "tracker",
+   "item_id": "W09",
+   "field": "status",
+   "value": "not started",
+   "who": "Spinach",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T06:38:17.826908+00:00"
+  },
+  {
+   "id": 122,
+   "page": "integrations",
+   "item_id": "I02",
+   "field": "comment",
+   "value": "https://starmfv2wrapper.bseindia.com/home\nRaafiya (23/09) - In talks with Harsheel from BSE star MF team",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:26:26.459733+00:00"
+  },
+  {
+   "id": 123,
+   "page": "integrations",
+   "item_id": "I06",
+   "field": "choice",
+   "value": "open",
+   "who": "Raafiya",
+   "kind": "field_edit",
+   "created_at": "2026-09-23T07:26:27.091772+00:00"
+  },
+  {
+   "id": 124,
+   "page": "integrations",
+   "item_id": "I06",
+   "field": "comment",
+   "value": "Raafiya (23/09) - Have sent an inquiry to their official email ID",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:26:27.686103+00:00"
+  },
+  {
+   "id": 125,
+   "page": "integrations",
+   "item_id": "I07",
+   "field": "comment",
+   "value": "Raafiya (23/09) - They will be sharing a list having services they provide and they will assign a sales person for further discussion(commercials)",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:26:27.904438+00:00"
+  },
+  {
+   "id": 126,
+   "page": "integrations",
+   "item_id": "I08",
+   "field": "comment",
+   "value": "we currently used Twilio . comapring this with Gupshup and will update\nRaafiya (23/09) - Commercials received, comaprison pending",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:26:27.946133+00:00"
+  },
+  {
+   "id": 127,
+   "page": "integrations",
+   "item_id": "I17",
+   "field": "comment",
+   "value": "",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:26:28.400573+00:00"
+  },
+  {
+   "id": 128,
+   "page": "integrations",
+   "item_id": "I20",
+   "field": "comment",
+   "value": "from all the vendors, we think Cloudstok is cheap and competent. Hence, we are planning to go ahead with them for DevOps. \nIf we finalize them then their process includes\nSign SOW (NDA as well if HOA wants) -> Onboarding call with their DevOps team -> Discovery Call -> Setup -> Managed Services",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:26:28.966599+00:00"
+  },
+  {
+   "id": 129,
+   "page": "integrations",
+   "item_id": "I07",
+   "field": "comment",
+   "value": "Raafiya (23/09) - They will be sharing a list having services they provide and they will assign a sales person for further discussion(commercials)",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:26:45.06926+00:00"
+  },
+  {
+   "id": 130,
+   "page": "integrations",
+   "item_id": "I08",
+   "field": "comment",
+   "value": "we currently used Twilio . comapring this with Gupshup and will update\nRaafiya (23/09) - Commercials received, comaprison pending",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:26:45.302163+00:00"
+  },
+  {
+   "id": 131,
+   "page": "integrations",
+   "item_id": "I01",
+   "field": "comment",
+   "value": "Raafiya (23/09) - Onboarding post receiving HOA RIA license",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:26:45.510864+00:00"
+  },
+  {
+   "id": 132,
+   "page": "integrations",
+   "item_id": "I16",
+   "field": "comment",
+   "value": "Raafiya (23/09) - Digilocker has request HOA details, we will share it today. Also, their partner onboarding(requestor in our case) is DIY.",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:26:45.725487+00:00"
+  },
+  {
+   "id": 133,
+   "page": "integrations",
+   "item_id": "I07",
+   "field": "comment",
+   "value": "Raafiya (23/09) - Commercials for esign and ",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:57:01.784945+00:00"
+  },
+  {
+   "id": 134,
+   "page": "integrations",
+   "item_id": "I07",
+   "field": "comment",
+   "value": "Raafiya (23/09) - Commercials for esign received today.. They also shared ",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:57:46.845115+00:00"
+  },
+  {
+   "id": 135,
+   "page": "integrations",
+   "item_id": "I07",
+   "field": "comment",
+   "value": "Raafiya (23/09) - Commercials for esign received today.. They also shared their service doc.",
+   "who": "Raafiya",
+   "kind": "comment",
+   "created_at": "2026-09-23T07:57:54.635682+00:00"
+  },
+  {
+   "id": 136,
+   "page": "spinach_questions",
+   "item_id": "FE-01",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:31:29.81349+00:00"
+  },
+  {
+   "id": 137,
+   "page": "spinach_questions",
+   "item_id": "FE-01",
+   "field": "comment",
+   "value": "go as per Spinach's proposal",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:31:30.285443+00:00"
+  },
+  {
+   "id": 138,
+   "page": "spinach_questions",
+   "item_id": "FE-74",
+   "field": "comment",
+   "value": "we will revert with this ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:32:53.418351+00:00"
+  },
+  {
+   "id": 139,
+   "page": "spinach_questions",
+   "item_id": "FE-74",
+   "field": "comment",
+   "value": "we will revert with this in ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:32:55.368659+00:00"
+  },
+  {
+   "id": 140,
+   "page": "spinach_questions",
+   "item_id": "FE-74",
+   "field": "comment",
+   "value": "we will revert with this next week",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:33:00.195184+00:00"
+  },
+  {
+   "id": 141,
+   "page": "spinach_questions",
+   "item_id": "FE-74",
+   "field": "comment",
+   "value": "we will revert with this next week Thursday ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:33:12.538421+00:00"
+  },
+  {
+   "id": 142,
+   "page": "spinach_questions",
+   "item_id": "FE-74",
+   "field": "comment",
+   "value": "we will revert with this week Thursday ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:33:33.58935+00:00"
+  },
+  {
+   "id": 143,
+   "page": "spinach_questions",
+   "item_id": "FE-74",
+   "field": "comment",
+   "value": "we will revert with this week Thursday",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:33:35.903544+00:00"
+  },
+  {
+   "id": 144,
+   "page": "spinach_questions",
+   "item_id": "FE-74",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:33:56.376579+00:00"
+  },
+  {
+   "id": 145,
+   "page": "spinach_questions",
+   "item_id": "FE-75",
+   "field": "comment",
+   "value": "With Raafiya - ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:34:13.758174+00:00"
+  },
+  {
+   "id": 146,
+   "page": "spinach_questions",
+   "item_id": "FE-75",
+   "field": "comment",
+   "value": "With Raafiya + Compliance ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:34:27.337494+00:00"
+  },
+  {
+   "id": 147,
+   "page": "spinach_questions",
+   "item_id": "FE-75",
+   "field": "comment",
+   "value": "With Raafiya + Compliance : ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:34:29.319996+00:00"
+  },
+  {
+   "id": 148,
+   "page": "spinach_questions",
+   "item_id": "FE-75",
+   "field": "comment",
+   "value": "With Raafiya to open the account - will be ready after next 2 weeks",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:35:43.450006+00:00"
+  },
+  {
+   "id": 149,
+   "page": "spinach_questions",
+   "item_id": "FE-75",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:35:43.467041+00:00"
+  },
+  {
+   "id": 150,
+   "page": "spinach_questions",
+   "item_id": "FE-78",
+   "field": "comment",
+   "value": "With Raafiya to open the account - will be ready after next 2 weeks",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:36:07.610977+00:00"
+  },
+  {
+   "id": 151,
+   "page": "spinach_questions",
+   "item_id": "FE-78",
+   "field": "comment",
+   "value": "With Raafiya to open the account - will be ready after next 6 weeks",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:36:26.869225+00:00"
+  },
+  {
+   "id": 152,
+   "page": "spinach_questions",
+   "item_id": "FE-75",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:36:38.32873+00:00"
+  },
+  {
+   "id": 153,
+   "page": "spinach_questions",
+   "item_id": "FE-78",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:36:41.496751+00:00"
+  },
+  {
+   "id": 154,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:37:46.382944+00:00"
+  },
+  {
+   "id": 155,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "Will revert ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:38:05.361575+00:00"
+  },
+  {
+   "id": 156,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "Will revert in 2 week",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:38:16.662775+00:00"
+  },
+  {
+   "id": 157,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:38:41.213378+00:00"
+  },
+  {
+   "id": 158,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "Finvu, ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:38:52.969682+00:00"
+  },
+  {
+   "id": 159,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "Finvu, CAS, ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:38:57.020555+00:00"
+  },
+  {
+   "id": 160,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "Finvu, CAS",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:39:00.96924+00:00"
+  },
+  {
+   "id": 161,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "Finvu, CAS. ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:39:02.792322+00:00"
+  },
+  {
+   "id": 162,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "Finvu, CAS. Execution will be done inside the app itself - using BSE StAR ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:39:26.34835+00:00"
+  },
+  {
+   "id": 163,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "Finvu, CAS. Execution will be done inside the app itself - using BSE StAR + SmallcaseGateway. ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:39:31.060971+00:00"
+  },
+  {
+   "id": 164,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "Finvu, CAS. Execution will be done inside the app itself - using BSE StAR + Smallcase Gateway. ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:39:33.522851+00:00"
+  },
+  {
+   "id": 165,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:39:41.46185+00:00"
+  },
+  {
+   "id": 166,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "Finvu, CAS. Execution will be done inside the app itself - using BSE StAR + Smallcase Gateway. Info to be displayed will be shared in 2 weeks ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:39:41.575045+00:00"
+  },
+  {
+   "id": 167,
+   "page": "spinach_questions",
+   "item_id": "BE-14",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:40:42.907999+00:00"
+  },
+  {
+   "id": 168,
+   "page": "spinach_questions",
+   "item_id": "JD-LOGIN-E12",
+   "field": "comment",
+   "value": "With compliance - will revert in 2 weeks ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:41:46.060978+00:00"
+  },
+  {
+   "id": 169,
+   "page": "spinach_questions",
+   "item_id": "JD-LOGIN-E12",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:41:46.090387+00:00"
+  },
+  {
+   "id": 170,
+   "page": "spinach_questions",
+   "item_id": "FE-17",
+   "field": "comment",
+   "value": "Spinach to give Figma",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:43:55.588601+00:00"
+  },
+  {
+   "id": 171,
+   "page": "spinach_questions",
+   "item_id": "FE-17",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:43:55.771479+00:00"
+  },
+  {
+   "id": 172,
+   "page": "spinach_questions",
+   "item_id": "FE-17",
+   "field": "comment",
+   "value": "Spinach to give Figma and apply",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:43:56.199288+00:00"
+  },
+  {
+   "id": 173,
+   "page": "spinach_questions",
+   "item_id": "FE-75",
+   "field": "comment",
+   "value": "With Raafiya to open the account - ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:43:56.432442+00:00"
+  },
+  {
+   "id": 174,
+   "page": "spinach_questions",
+   "item_id": "FE-75",
+   "field": "comment",
+   "value": "With Raafiya to open the account - will be ready ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:43:56.581235+00:00"
+  },
+  {
+   "id": 175,
+   "page": "spinach_questions",
+   "item_id": "FE-75",
+   "field": "comment",
+   "value": "With Raafiya to open the account - will be ready next ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:43:56.962306+00:00"
+  },
+  {
+   "id": 176,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "Above ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:43:57.154483+00:00"
+  },
+  {
+   "id": 177,
+   "page": "spinach_questions",
+   "item_id": "BE-14",
+   "field": "comment",
+   "value": "With compliance - will revert in 2 weeks?",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:43:57.311652+00:00"
+  },
+  {
+   "id": 178,
+   "page": "spinach_questions",
+   "item_id": "JD-LOGIN-E12",
+   "field": "comment",
+   "value": "With compliance - will revert in 2 weeks. Ideally on the LOGIN page itself there is a tick box for consent (pre-ticked) which the user may untick to release consent at this stage. ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:43:57.48611+00:00"
+  },
+  {
+   "id": 179,
+   "page": "spinach_questions",
+   "item_id": "JD-LOGIN-E12",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:43:57.672203+00:00"
+  },
+  {
+   "id": 180,
+   "page": "spinach_questions",
+   "item_id": "JD-LOGIN-E12",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:43:57.840035+00:00"
+  },
+  {
+   "id": 181,
+   "page": "spinach_questions",
+   "item_id": "JD-LOGIN-E12",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:43:58.012581+00:00"
+  },
+  {
+   "id": 182,
+   "page": "spinach_questions",
+   "item_id": "FE-75",
+   "field": "comment",
+   "value": "With Raafiya to open the account - will be ready after next 2 weeks",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:43:58.352545+00:00"
+  },
+  {
+   "id": 183,
+   "page": "spinach_questions",
+   "item_id": "BE-04",
+   "field": "comment",
+   "value": "Finvu, CAS. Execution will be done inside the app itself - using BSE StAR + Smallcase Gateway. Info to be displayed will be shared in 2 weeks ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:43:58.517662+00:00"
+  },
+  {
+   "id": 184,
+   "page": "spinach_questions",
+   "item_id": "JD-LOGIN-E12",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:44:13.98668+00:00"
+  },
+  {
+   "id": 185,
+   "page": "spinach_questions",
+   "item_id": "JD-LOGIN-M1",
+   "field": "comment",
+   "value": "agreed \n",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:44:24.777853+00:00"
+  },
+  {
+   "id": 186,
+   "page": "spinach_questions",
+   "item_id": "JD-PAY-E14",
+   "field": "comment",
+   "value": "with compliance - ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:44:52.754597+00:00"
+  },
+  {
+   "id": 187,
+   "page": "spinach_questions",
+   "item_id": "JD-PAY-E14",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T06:44:59.121078+00:00"
+  },
+  {
+   "id": 188,
+   "page": "spinach_questions",
+   "item_id": "JD-PAY-E14",
+   "field": "comment",
+   "value": "with compliance - will revert in 2 weeks ",
+   "who": "Vatsal",
+   "kind": "comment",
+   "created_at": "2026-09-28T06:44:59.291462+00:00"
+  },
+  {
+   "id": 189,
+   "page": "spinach_questions",
+   "item_id": "FE-01",
+   "field": "approve",
+   "value": "approved",
+   "who": "Vatsal",
+   "kind": "verdict",
+   "created_at": "2026-09-28T07:34:35.639746+00:00"
   }
  ]
 }

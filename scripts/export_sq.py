@@ -16,6 +16,11 @@ font for header rows and wrapped text for the comment column, the rels and conte
 read back with import_questions.read_sheet and compared with the data: sheet names, row counts, every answer and
 status cell; a mismatch fails the build.
 
+Comments written on the tab carry into the files (Vatsal, 28 Sep 2026): the latest comment per row in the board table
+(data/board_entries.json, page spinach_questions, field comment; run scripts/pull_board.py before the build to fetch
+new ones) is appended to the row's Yesly Comments cell after the answer as "Update, <first name>, <date>: <text>". The
+answer text itself is unchanged. A comment newer than the last stamp counts as a change for the stamp and the marks.
+
 The export date: the files are rebuilt on every build, but the date stamped on the batch and on every row (exported)
 moves only when a row changed since the last stamp (a row's changed date later than the batch's exported date), so a
 rebuild on a quiet day keeps the previous export date and its "changed since" marks. On a new stamp the previous
@@ -36,6 +41,8 @@ from import_questions import read_sheet  # noqa: E402
 from import_sq import workbook_sheets, INPUT_DIR  # noqa: E402
 
 DATA_FILE = os.path.join(ROOT, "data", "questions.json")
+BOARD_FILE = os.path.join(ROOT, "data", "board_entries.json")
+BOARD_PAGE = "spinach_questions"
 OUT_DIR = os.path.join(ROOT, "docs", "exports")
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 COMMENT_HEADER = "Yesly Comments"
@@ -68,11 +75,32 @@ def status_text(r):
     return "%s - %s%s" % (r["status"], MARKERS[r["status"]], (": " + item) if item else "")
 
 
+def board_comments():
+    """{row id: {who, date, text}}: the latest non-empty comment per row written on the tab, from the last board pull."""
+    if not os.path.exists(BOARD_FILE):
+        return {}
+    with open(BOARD_FILE) as fh:
+        rows = json.load(fh)["rows"]
+    out = {}
+    for r in sorted(rows, key=lambda x: x["id"]):
+        if r.get("ignored") or r["page"] != BOARD_PAGE or r["field"] != "comment" or r["kind"] != "comment" or not str(r.get("value") or "").strip():
+            continue
+        out[r["item_id"]] = {"who": r.get("who") or "(no name)", "date": str(r["created_at"])[:10], "text": str(r["value"]).strip()}
+    return out
+
+
+def comment_cell(q, comment):
+    """The Yesly Comments cell: the answer, then the latest board comment as an update line."""
+    if not comment:
+        return q["answer"]
+    return "%s\n\nUpdate, %s, %s: %s" % (q["answer"], comment["who"], dmy(comment["date"]), comment["text"])
+
+
 def changed_header(previous, today):
     return "Changed since %s" % dmy(previous) if previous else "Changed since previous export (first export %s)" % dmy(today)
 
 
-def sheet_grid(rows, qrows, previous, today):
+def sheet_grid(rows, qrows, previous, today, comments):
     """The output grid of one sheet: the original rows, the comments filled, the added columns; plus the style per cell
     (header rows bold, comment cells wrapped) and which cells were written for the read-back check."""
     grid = [list(r) for r in rows]
@@ -107,11 +135,14 @@ def sheet_grid(rows, qrows, previous, today):
                 styles[(hr, c)] = HEADER_STYLE
     for q in qrows:
         ccol = q["comment_col"] if q["comment_col"] >= 0 else ncol
-        put(q["row_no"], ccol, q["answer"], WRAP_STYLE)
+        c = comments.get(q["id"])
+        text = comment_cell(q, c)
+        put(q["row_no"], ccol, text, WRAP_STYLE)
         put(q["row_no"], add_at, status_text(q), WRAP_STYLE)
         put(q["row_no"], add_at + 1, ", ".join(q["refs"]))
-        put(q["row_no"], add_at + 2, "yes" if (previous and q["changed"] > previous) else "")
-        written.append((q["id"], q["row_no"], ccol, q["answer"], add_at, status_text(q)))
+        changed = bool(previous) and (q["changed"] > previous or (c is not None and c["date"] > previous))
+        put(q["row_no"], add_at + 2, "yes" if changed else "")
+        written.append((q["id"], q["row_no"], ccol, text, add_at, status_text(q)))
     widths = {}
     for q in qrows:
         widths[q["comment_col"] if q["comment_col"] >= 0 else ncol] = 60
@@ -213,8 +244,9 @@ def main(argv=()):
         doc = json.load(fh)
     batch = doc["batches"][0]
     rows = doc["rows"]
+    comments = board_comments()
     previous_stamp = batch.get("exported", "")
-    restamp = (not previous_stamp) or any(r["changed"] > previous_stamp for r in rows)
+    restamp = (not previous_stamp) or any(r["changed"] > previous_stamp for r in rows) or any(c["date"] > previous_stamp for c in comments.values())
     if restamp:
         batch["exported_previous"] = previous_stamp
         batch["exported"] = today
@@ -231,7 +263,7 @@ def main(argv=()):
         for name, n in original_sheets:
             orig_rows = read_sheet(src, n)
             qrows = sorted([r for r in rows if r["file"] == f["name"] and r["sheet"] == name], key=lambda r: r["row_no"])
-            grid, styles, written, widths = sheet_grid(orig_rows, qrows, previous, exported)
+            grid, styles, written, widths = sheet_grid(orig_rows, qrows, previous, exported, comments)
             sheets.append((name, sheet_xml(grid, styles, widths)))
             written_by_sheet[name] = (len(orig_rows), written)
             filled += len(written)
@@ -250,7 +282,9 @@ def main(argv=()):
         fh.write(json.dumps(doc, indent=1, ensure_ascii=True) + "\n")
     for name, n_sheets, filled, size in summary:
         print("wrote docs/exports/%s (%d bytes, %d sheets, %d comments filled)" % (name, size, n_sheets, filled))
-    print("export date %s%s; changed since: %s" % (exported, " (new stamp)" if restamp else " (unchanged since the last stamp)", dmy(previous) if previous else "first export, no marks"))
+    print("export date %s%s; changed since: %s; %d rows carry a board comment (latest per row, %s)" % (
+        exported, " (new stamp)" if restamp else " (unchanged since the last stamp)", dmy(previous) if previous else "first export, no marks",
+        len(comments), "board pulled" if os.path.exists(BOARD_FILE) else "no board file"))
 
 
 if __name__ == "__main__":
