@@ -569,4 +569,12 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   W40; the X00 card (data/v02/sq1_edits.json). Pass 3: docs/spinach_questions.html (scripts/build_questions.py),
   HoA's working view, not on the review link; back-links on the v0.2 spec panels; the Tracker's SQ1 update line.
   Pass 4: scripts/export_sq.py, docs/exports/SQ1_*.xlsx, batch 1 stamped 26 Sep 2026.
-- Reports: reports/phase14_pass0.md to phase14_pass4.md. Pass 5 (scripts/apply_sq_approvals.py) runs on instruction.
+- Reports: reports/phase14_pass0.md to phase14_pass4.md. Pass 5 (the approvals script; not written yet) runs on instruction.
+- 28 Sep 2026: BE-04 unfrozen (open, owner Product, the item to come) through data/sq_overrides.json, the importer's
+  status changes by commit, logged on the row; the export appends the latest board comment per row to the Yesly
+  Comments cell ("Update, name, date: text") after scripts/pull_board.py, and restamps when a row or a comment is newer
+  than the last stamp (stamped 28 Sep 2026; 10 rows commented and approved by Vatsal on the tab). Phase closed 28 Sep 2026.
+- Known limits: the exports are built, not live (pull the board, then build); a comment written on the export day after
+  the stamp carries the next day; the header has 19 px to spare at 1,512 px before the tabs wrap to a third row.
+- Open: BE-04's item line; the CAS clash on W11 (Raafiya, 26 Sep 2026: depository CAS; JD-AA-W5: registrar CAS first);
+  batch 2 export once the open rows are frozen (about 1 Oct 2026).

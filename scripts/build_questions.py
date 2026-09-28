@@ -60,7 +60,7 @@ def dmy(iso):
 
 
 def ref_link(ref, ctx):
-    wire = "index.html" if ctx["review"] else WIRE
+    wire = WIRE
     title = ""
     if ref in ctx["questions"]:
         href = "#" + ref
@@ -166,14 +166,14 @@ def parts_tables(doc):
             '<section id="part-e" class="part"><h2>Part E: route-access map<small>FE-05, FE-06; %d groups</small></h2>%s</section>' % (len(doc["templates"]), d, len(doc["route_groups"]), e))
 
 
-def export_line(batch, f, review):
+def export_line(batch, f):
     """The download link of a file's export and the export date, once pass 4 has written it."""
     if not batch.get("exported"):
         return ""
     path = os.path.join(DOCS, EXPORT_DIR, f["export"])
     if not os.path.exists(path):
         return ""
-    href = ("../" if review else "") + EXPORT_DIR + "/" + f["export"]
+    href = EXPORT_DIR + "/" + f["export"]
     return '<p class="meta exp">Export of %s: <a href="%s">%s</a> (xlsx, Spinach\'s layout, the Yesly Comments column filled)</p>' % (esc(dmy(batch["exported"])), esc(href), esc(f["export"]))
 
 
@@ -276,8 +276,8 @@ JS = r"""
 """
 
 
-def build_page(doc, ctx, review=False, redact=False):
-    ctx = dict(ctx, review=review, their=(lambda s: "") if redact else escx)
+def build_page(doc, ctx, redact=False):
+    ctx = dict(ctx, their=(lambda s: "") if redact else escx)
     rows = doc["rows"]
     batch = doc["batches"][0]
     total = counts(rows)
@@ -307,15 +307,14 @@ def build_page(doc, ctx, review=False, redact=False):
     panes = []
     for i, (vid, label, fam) in enumerate(SUBTABS):
         fctx = dict(ctx, family=fam)
-        inner = export_line(batch, files[fam], review) if fam in files else ""
+        inner = export_line(batch, files[fam]) if fam in files else ""
         if fam == "FE":
             inner += parts_tables(doc)
         inner += sheet_sections(by_family[fam], fctx, journey=(fam == "JD"))
         panes.append('<div data-viewpane="%s"%s>%s</div>' % (vid, "" if i == 0 else " hidden", inner))
-    blob = '<script>var IDENTITIES=%s;\nvar PAGE_ID=%s;\nvar REVIEW=%s;</script>\n' % (site.js_blob(IDENTITIES), site.js_blob(BOARD_PAGE), site.js_blob(bool(review)))
-    return (site.head("yeslyf Spinach questions", site.CSS + EXTRA_CSS, config="../config.js" if review else "config.js") + '<body>\n' +
-            site.header(PAGE, "Spinach questions, %s: %d rows" % (batch["id"], total["all"]), who_html=who, show_export=False,
-                        tabs=site.REVIEW_TABS if review else None, setup_link=not review) +
+    blob = '<script>var IDENTITIES=%s;\nvar PAGE_ID=%s;</script>\n' % (site.js_blob(IDENTITIES), site.js_blob(BOARD_PAGE))
+    return (site.head("yeslyf Spinach questions", site.CSS + EXTRA_CSS) + '<body>\n' +
+            site.header(PAGE, "Spinach questions, %s: %d rows" % (batch["id"], total["all"]), who_html=who, show_export=False) +
             '<main class="main" style="max-width:none">' + lead + '<nav class="tabs views qtabs">' + tabs + '</nav>' + "".join(panes) + '</main>\n' +
             blob + site.store_script() + '<script>' + JS + '</script>\n</body>\n</html>\n')
 
@@ -341,11 +340,9 @@ def main():
             errors.append("%s: status %r" % (r["id"], r["status"]))
         if r["status"] != "frozen" and not r["owner"]:
             errors.append("%s: no owner on an %s row" % (r["id"], r["status"]))
-    pages, checks = {}, {}
-    for review in (False,):  # one copy: the tab is HoA's and is not on the review link (Vatsal, 26 Sep 2026)
-        name = ("review/" if review else "") + PAGE
-        pages[name] = build_page(doc, ctx, review=review)
-        checks[name] = build_page(doc, ctx, review=review, redact=True)  # Spinach's cells blanked: the banned words are checked over HoA's text
+    # one copy: the tab is HoA's and is not on the review link (Vatsal, 26 Sep 2026)
+    pages = {PAGE: build_page(doc, ctx)}
+    checks = {PAGE: build_page(doc, ctx, redact=True)}  # Spinach's cells blanked: the banned words are checked over HoA's text
     for name, page in pages.items():
         site.check_ascii(name, page)
         if 'name="robots" content="noindex' not in page:
@@ -361,7 +358,6 @@ def main():
         for e in errors:
             print("ERROR: " + e)
         sys.exit(1)
-    os.makedirs(os.path.join(DOCS, "review"), exist_ok=True)
     c = counts(doc["rows"])
     for name, page in pages.items():
         with open(os.path.join(DOCS, name), "w") as fh:

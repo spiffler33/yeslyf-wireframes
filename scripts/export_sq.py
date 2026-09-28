@@ -235,11 +235,8 @@ def verify(path, original_sheets, written_by_sheet, problems):
                 problems.append("%s: the status cell of %s (row %d) reads back %r" % (os.path.basename(path), rid, row_no, got_s))
 
 
-def main(argv=()):
+def main():
     today = datetime.date.today().isoformat()
-    for i, a in enumerate(argv):
-        if a == "--date" and i + 1 < len(argv):
-            today = argv[i + 1]
     with open(DATA_FILE) as fh:
         doc = json.load(fh)
     batch = doc["batches"][0]
@@ -288,4 +285,4 @@ def main(argv=()):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    main()

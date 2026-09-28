@@ -560,8 +560,7 @@ var SQ={"batch": "SQ1", "frozen": 221, "open": 7, "owed": 3, "rows": [{"id": "FE
   function pageLink(r){ var p=r.page; var id=r.item_id;
     if(p==="wireframes_v02") return REVIEW?'index.html#'+encodeURIComponent(id):'wireframes_v02.html#'+encodeURIComponent(id);
     if(p==="integrations") return 'integrations.html#row/'+encodeURIComponent(id);
-    if(p==="tracker") return '#row/'+encodeURIComponent(id);
-    if(p==="spinach_questions"&&!REVIEW) return 'spinach_questions.html#'+encodeURIComponent(id); return ''; }
+    if(p==="tracker") return '#row/'+encodeURIComponent(id); return ''; }
   function paintQuestions(){ var el=document.getElementById("qs"); if(!el) return; var qs=questions();
     var c=document.getElementById("qcount"); var open=qs.filter(function(q){ return !q.answered; }).length;
     if(c) c.textContent=ALL?(qs.length+" questions, "+open+" open, "+(qs.length-open)+" answered"):"reading the board";
