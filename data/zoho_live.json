@@ -121,7 +121,7 @@
  },
  "cause": "plan G, 28 Sep 2026",
  "counts": {
-  "at": "28 Sep 2026, 14:47 IST",
+  "at": "28 Sep 2026, 15:38 IST",
   "rows": [
    {
     "detail": "the admin user: CEO, Administrator, active",
@@ -142,32 +142,32 @@
     "target": 3
    },
    {
-    "detail": "11 views on the module; missing: Paid by SKU, this week and last, Payment reconciliation, GST split, Refunds",
-    "now": 0,
+    "detail": "15 views on the module; present (records): Paid by SKU, this week and last 12; Payment reconciliation 206; GST split 206; Refunds 6; missing: none",
+    "now": 4,
     "object": "views Deals",
     "target": 4
    },
    {
-    "detail": "10 views on the module; missing: DIFM prospects to call, Same adviser offer, Opt-in and DND",
-    "now": 0,
+    "detail": "13 views on the module; present (records): DIFM prospects to call 20; Same adviser offer 50; Opt-in and DND 1203; missing: none",
+    "now": 3,
     "object": "views Contacts",
     "target": 3
    },
    {
-    "detail": "17 views on the module; missing: Call centre today, Call centre outcomes",
-    "now": 0,
+    "detail": "19 views on the module; present (records): Call centre today 8; Call centre outcomes 94; missing: none",
+    "now": 2,
     "object": "views Tasks",
     "target": 2
    },
    {
-    "detail": "6 views on the module; missing: RPQ refresh due",
-    "now": 0,
+    "detail": "7 views on the module; present (records): RPQ refresh due 6; missing: none",
+    "now": 1,
     "object": "views App Events",
     "target": 1
    },
    {
-    "detail": "6 views on the module; missing: A la carte receipts",
-    "now": 0,
+    "detail": "7 views on the module; present (records): A la carte receipts 9; missing: none",
+    "now": 1,
     "object": "views A la carte",
     "target": 1
    },
@@ -239,5 +239,71 @@
    }
   ]
  },
- "items": {}
+ "items": {
+  "views/call-centre": {
+   "at": "28 Sep 2026, 15:42 IST",
+   "cause": "plan G, 28 Sep 2026 (G3)",
+   "done": [
+    "Call centre today (Tasks)",
+    "Call centre outcomes (Tasks)",
+    "Same adviser offer (Contacts)"
+   ],
+   "how": "chrome",
+   "left": [],
+   "phase": "G3",
+   "status": "done in Zoho"
+  },
+  "views/compliance": {
+   "at": "28 Sep 2026, 15:42 IST",
+   "cause": "plan G, 28 Sep 2026 (G3)",
+   "done": [
+    "RPQ refresh due (App Events)"
+   ],
+   "how": "chrome",
+   "left": [
+    "Grievance register (Desk tickets, G5)"
+   ],
+   "phase": "G3",
+   "status": "partly done"
+  },
+  "views/finance": {
+   "at": "28 Sep 2026, 15:42 IST",
+   "cause": "plan G, 28 Sep 2026 (G3)",
+   "done": [
+    "Payment reconciliation (Deals)",
+    "GST split (Deals)",
+    "Refunds (Deals)",
+    "A la carte receipts (A la carte)"
+   ],
+   "how": "chrome",
+   "left": [],
+   "phase": "G3",
+   "status": "done in Zoho"
+  },
+  "views/marketing": {
+   "at": "28 Sep 2026, 15:42 IST",
+   "cause": "plan G, 28 Sep 2026 (G3)",
+   "done": [
+    "Opt-in and DND (Contacts)"
+   ],
+   "how": "chrome",
+   "left": [],
+   "phase": "G3",
+   "status": "done in Zoho"
+  },
+  "views/principal-officer": {
+   "at": "28 Sep 2026, 15:42 IST",
+   "cause": "plan G, 28 Sep 2026 (G3)",
+   "done": [
+    "Paid by SKU, this week and last (Deals)",
+    "DIFM prospects to call (Contacts)"
+   ],
+   "how": "chrome",
+   "left": [
+    "Grievances past SLA (Desk tickets, G5)"
+   ],
+   "phase": "G3",
+   "status": "partly done"
+  }
+ }
 }

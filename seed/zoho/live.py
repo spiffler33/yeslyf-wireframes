@@ -86,6 +86,17 @@ class Live:
         self.row("profiles", len(profiles), target, ", ".join(names) + ("" if FINANCE_PROFILE in names else
                                                                         "; %s not yet" % FINANCE_PROFILE))
 
+    def view_count(self, api, view_id):
+        """Records in a custom view: the records API paged by cvid (info.count is the page's count, so the pages
+        are summed until more_records is false)."""
+        n, page = 0, 1
+        while True:
+            resp = self.c.crm("GET", "/" + api, params={"cvid": view_id, "fields": "id", "per_page": 200, "page": page}) or {}
+            n += len(resp.get("data") or [])
+            if not (resp.get("info") or {}).get("more_records"):
+                return n
+            page += 1
+
     def crm_views(self):
         mods = {m.get("plural_label"): m["api_name"] for m in self.c.crm("GET", "/settings/modules")["modules"]}
         for label, wanted in CRM_VIEWS.items():
@@ -94,11 +105,18 @@ class Live:
                 self.row("views %s" % label, "-", len(wanted), "no module with that label")
                 continue
             views = (self.c.crm("GET", "/settings/custom_views", params={"module": api}) or {}).get("custom_views") or []
-            names = {v.get("name") for v in views} | {v.get("display_value") for v in views}
-            have = [w for w in wanted if w in names]
-            missing = [w for w in wanted if w not in names]
-            self.row("views %s" % label, len(have), len(wanted), "%d views on the module; missing: %s" %
-                     (len(views), ", ".join(missing) or "none"))
+            by_name = {}
+            for v in views:
+                by_name.setdefault(v.get("name"), v)
+                by_name.setdefault(v.get("display_value"), v)
+            have, missing = [], []
+            for w in wanted:
+                if w in by_name:
+                    have.append("%s %d" % (w, self.view_count(api, by_name[w]["id"])))
+                else:
+                    missing.append(w)
+            self.row("views %s" % label, len(have), len(wanted), "%d views on the module; present (records): %s; missing: %s" %
+                     (len(views), "; ".join(have) or "none", ", ".join(missing) or "none"))
 
     def apis(self):
         resp = self.c.crm("GET", "/__apis") or {}
