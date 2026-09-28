@@ -1,7 +1,8 @@
 # PLAN: Zoho as if live (phase G), v0.1
 
-Status, 28 Sep 2026: written after phase F closed (commit e93d9b8). Not started. It runs in a fresh session when Vatsal
-says "go", phase by phase, in order, with a commit at each phase boundary.
+Status, 28 Sep 2026: written after phase F closed (commit e93d9b8). G0 done on 28 Sep 2026 on Vatsal's "go"
+(reports/phaseG_pass0.md: the baseline, seed/zoho/live.py, data/zoho_live.json). G1 to G9 run phase by phase, in
+order, with a commit at each phase boundary.
 
 Date: 28 Sep 2026. For Claude Code in the yeslyf-wireframes repo. CLAUDE.md rules apply throughout (ASCII, Rs, first
 names, a cause on every change, "to be verified: <item>" and "to be decided: <item>" with no name attached, no regex,
@@ -53,7 +54,7 @@ the phase report with its screen path so Kajal can repeat or reverse it.
 |---|---|---|---|
 | G-D1 | 10 staff users in Zoho One with CRM access, roles per seat; Support 01 and Compliance 01 as Desk agents; the Finance read-only profile | the trial org | G1 |
 | G-D2 | record ownership: Tasks to their Assignee, Contacts and Leads to their adviser field, Calls to their Adviser, Deals to the contact's owner, tickets to Support 01 | the trial org | G2 |
-| G-D3 | the 12 CRM saved views, shared with all users | the trial org | G3 |
+| G-D3 | the 11 CRM saved views (G0, 28 Sep 2026: counted from leftovers.md; the plan said 12), shared with all users | the trial org | G3 |
 | G-D4 | one dashboard per seat that has Zoho questions: principal officer, call centre, marketing, compliance, finance | the trial org | G4 |
 | G-D5 | Desk: SLA of one business day; the 4 ticket views; agents in place | the trial org | G5 |
 | G-D6 | Campaigns: lists S0, S0w, S1, S2 filled by UI import with no confirmation mail | the trial org | G6 |
@@ -132,8 +133,9 @@ org, so they never run in parallel.
 - Done when: a COQL count per Owner per module matches the export's counts per Assignee / Adviser Owner / Adviser
   (own.py prints both tables; they agree); tickets show assignee Support 01 on GET. Report: pass2.
 
-### G3. CRM saved views (Chrome), 12 views
-- For each of the 12 CRM rows in leftovers.md (Deals 5, Contacts 4, Tasks 2, App Events 1): module, list view, Create
+### G3. CRM saved views (Chrome), 11 views
+- For each of the 11 CRM rows in leftovers.md (Deals 4, Contacts 3, Tasks 2, App Events 1, A la carte 1; G0, 28 Sep
+  2026: counted from leftovers.md, the plan said 12): module, list view, Create
   Custom View, name exactly as the leftover says, criteria as written, columns as written, shared with all users.
   Where the UI lacks a criterion (for example "group by week of Start" is a report or dashboard notion, not a view
   filter), the view carries the filter part and the grouping moves to the seat's dashboard component; the report says
@@ -203,7 +205,7 @@ org, so they never run in parallel.
 | users | GET /users?type=AllUsers | Kajal + 10 (or the cap, written) |
 | Finance read only | GET /settings/profiles | present |
 | ownership | own.py tables (COQL per Owner vs export per Assignee / Adviser Owner / Adviser) | equal |
-| CRM views | GET /settings/custom_views per module | 12 names present |
+| CRM views | GET /settings/custom_views per module | 11 names present |
 | dashboards | Analytics dropdown screenshot; API if one exists | 5 names |
 | Desk SLA and views | Desk list SLAs, list views | 1 SLA, 4 views |
 | Campaigns | verify.py campaign_counts | 205, 230, 131, 284 (differences listed) |
@@ -220,5 +222,9 @@ org, so they never run in parallel.
 - to be verified: whether Zoho Campaigns' UI import offers a "send confirmation" switch or sends nothing by design;
   the phase stops if it cannot be confirmed off.
 - to be decided: how a no-show, a cancelled call and a booked slot already past are logged (section 4 proposes Missed).
+- to be decided: a wider grant with Desk.agents.READ before G2 (the agents list gives Support 01's agent id for the
+  ticket assignee and the G5 agents check), or the agent id read off the Desk agents page in Chrome (G0, 28 Sep 2026).
+- to be verified: the scope the v8 API list call (GET /crm/v8/__apis) needs; the grant's 17 scopes were refused
+  (G0, 28 Sep 2026). Desk holds Zoho's sample ticket beside the 73 seed tickets; it stays as it is.
 - The Account "Individual" placeholder on Deals and the Company "Individual" on Leads stay unless Vatsal says
   otherwise; making Account Name optional on the Deals layout is a Kajal step outside this phase.

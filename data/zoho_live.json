@@ -1,0 +1,243 @@
+{
+ "about": "Written by seed/zoho/live.py (phase G): the Zoho org's counts before the phase (baseline, G0) and after each run (counts), plus the operator items the phase finished by hand or by API (items: status, at, how, phase). scripts/build_operator.py reads the items.",
+ "baseline": {
+  "at": "28 Sep 2026, 14:47 IST",
+  "rows": [
+   {
+    "detail": "the admin user: CEO, Administrator, active",
+    "now": 1,
+    "object": "users",
+    "target": 11
+   },
+   {
+    "detail": "CEO, Manager, Adviser, Finance, Principal officer, Marketing, Ops, Support, Call centre, Compliance",
+    "now": 10,
+    "object": "roles",
+    "target": 10
+   },
+   {
+    "detail": "Administrator, Standard; Finance read only not yet",
+    "now": 2,
+    "object": "profiles",
+    "target": 3
+   },
+   {
+    "detail": "11 views on the module; missing: Paid by SKU, this week and last, Payment reconciliation, GST split, Refunds",
+    "now": 0,
+    "object": "views Deals",
+    "target": 4
+   },
+   {
+    "detail": "10 views on the module; missing: DIFM prospects to call, Same adviser offer, Opt-in and DND",
+    "now": 0,
+    "object": "views Contacts",
+    "target": 3
+   },
+   {
+    "detail": "17 views on the module; missing: Call centre today, Call centre outcomes",
+    "now": 0,
+    "object": "views Tasks",
+    "target": 2
+   },
+   {
+    "detail": "6 views on the module; missing: RPQ refresh due",
+    "now": 0,
+    "object": "views App Events",
+    "target": 1
+   },
+   {
+    "detail": "6 views on the module; missing: A la carte receipts",
+    "now": 0,
+    "object": "views A la carte",
+    "target": 1
+   },
+   {
+    "detail": "not read: OAUTH_SCOPE_MISMATCH",
+    "now": "-",
+    "object": "v8 api paths listed",
+    "target": "-"
+   },
+   {
+    "detail": "export rows by status: booked 8, cancelled 1, completed 61, no_show 14",
+    "now": 61,
+    "object": "calls",
+    "target": 84
+   },
+   {
+    "detail": "20 views, 0 custom; missing: Grievances past SLA, Grievance register, Open tickets with context, Past SLA",
+    "now": 0,
+    "object": "desk views",
+    "target": 4
+   },
+   {
+    "detail": "74 tickets; G2 assigns them to Support 01",
+    "now": 1,
+    "object": "tickets assigned",
+    "target": 74
+   },
+   {
+    "detail": "13 open tickets; an SLA sets the due date; to be verified: whether Desk applies a new SLA to tickets that already exist",
+    "now": 1,
+    "object": "tickets with a due date",
+    "target": 13
+   },
+   {
+    "detail": "no list yet",
+    "now": 0,
+    "object": "campaigns S0",
+    "target": 205
+   },
+   {
+    "detail": "no list yet",
+    "now": 0,
+    "object": "campaigns S0w",
+    "target": 230
+   },
+   {
+    "detail": "no list yet",
+    "now": 0,
+    "object": "campaigns S1",
+    "target": 131
+   },
+   {
+    "detail": "no list yet",
+    "now": 0,
+    "object": "campaigns S2",
+    "target": 284
+   },
+   {
+    "detail": "1 staff in the workspace; service Talk to an adviser found",
+    "now": 0,
+    "object": "bookings staff on the service",
+    "target": 6
+   },
+   {
+    "detail": "window 01-Jan-2026 00:00:00 to 31-Dec-2027 23:59:59; target is the export's booked rows",
+    "now": 0,
+    "object": "bookings appointments",
+    "target": 8
+   }
+  ]
+ },
+ "cause": "plan G, 28 Sep 2026",
+ "counts": {
+  "at": "28 Sep 2026, 14:47 IST",
+  "rows": [
+   {
+    "detail": "the admin user: CEO, Administrator, active",
+    "now": 1,
+    "object": "users",
+    "target": 11
+   },
+   {
+    "detail": "CEO, Manager, Adviser, Finance, Principal officer, Marketing, Ops, Support, Call centre, Compliance",
+    "now": 10,
+    "object": "roles",
+    "target": 10
+   },
+   {
+    "detail": "Administrator, Standard; Finance read only not yet",
+    "now": 2,
+    "object": "profiles",
+    "target": 3
+   },
+   {
+    "detail": "11 views on the module; missing: Paid by SKU, this week and last, Payment reconciliation, GST split, Refunds",
+    "now": 0,
+    "object": "views Deals",
+    "target": 4
+   },
+   {
+    "detail": "10 views on the module; missing: DIFM prospects to call, Same adviser offer, Opt-in and DND",
+    "now": 0,
+    "object": "views Contacts",
+    "target": 3
+   },
+   {
+    "detail": "17 views on the module; missing: Call centre today, Call centre outcomes",
+    "now": 0,
+    "object": "views Tasks",
+    "target": 2
+   },
+   {
+    "detail": "6 views on the module; missing: RPQ refresh due",
+    "now": 0,
+    "object": "views App Events",
+    "target": 1
+   },
+   {
+    "detail": "6 views on the module; missing: A la carte receipts",
+    "now": 0,
+    "object": "views A la carte",
+    "target": 1
+   },
+   {
+    "detail": "not read: OAUTH_SCOPE_MISMATCH",
+    "now": "-",
+    "object": "v8 api paths listed",
+    "target": "-"
+   },
+   {
+    "detail": "export rows by status: booked 8, cancelled 1, completed 61, no_show 14",
+    "now": 61,
+    "object": "calls",
+    "target": 84
+   },
+   {
+    "detail": "20 views, 0 custom; missing: Grievances past SLA, Grievance register, Open tickets with context, Past SLA",
+    "now": 0,
+    "object": "desk views",
+    "target": 4
+   },
+   {
+    "detail": "74 tickets; G2 assigns them to Support 01",
+    "now": 1,
+    "object": "tickets assigned",
+    "target": 74
+   },
+   {
+    "detail": "13 open tickets; an SLA sets the due date; to be verified: whether Desk applies a new SLA to tickets that already exist",
+    "now": 1,
+    "object": "tickets with a due date",
+    "target": 13
+   },
+   {
+    "detail": "no list yet",
+    "now": 0,
+    "object": "campaigns S0",
+    "target": 205
+   },
+   {
+    "detail": "no list yet",
+    "now": 0,
+    "object": "campaigns S0w",
+    "target": 230
+   },
+   {
+    "detail": "no list yet",
+    "now": 0,
+    "object": "campaigns S1",
+    "target": 131
+   },
+   {
+    "detail": "no list yet",
+    "now": 0,
+    "object": "campaigns S2",
+    "target": 284
+   },
+   {
+    "detail": "1 staff in the workspace; service Talk to an adviser found",
+    "now": 0,
+    "object": "bookings staff on the service",
+    "target": 6
+   },
+   {
+    "detail": "window 01-Jan-2026 00:00:00 to 31-Dec-2027 23:59:59; target is the export's booked rows",
+    "now": 0,
+    "object": "bookings appointments",
+    "target": 8
+   }
+  ]
+ },
+ "items": {}
+}
