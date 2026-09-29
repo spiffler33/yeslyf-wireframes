@@ -491,8 +491,8 @@
     {
       "id": "I15",
       "category": "App runtime config",
-      "vendor": "Directus",
-      "alternatives": "a config screen inside the logic panel; Zoho Creator tables via API",
+      "vendor": "Zoho Creator or a CRM custom module",
+      "alternatives": "a config screen inside the logic panel",
       "role": "Where the app reads runtime config (SKU cards, bank chips, copy, reminders, relief cards) and who edits it without a release",
       "screens": [
         "P01",
@@ -522,8 +522,8 @@
       "production_date": "",
       "docs_url": "",
       "cost": "",
-      "notes": "Choice open. Question for Spinach on 16 Sep 2026: where the app reads runtime config and who edits it without a release. A05: the bank chips.",
-      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026",
+      "notes": "Choice open. Question for Spinach on 16 Sep 2026: where the app reads runtime config and who edits it without a release. A05: the bank chips. Vatsal, 28 Sep 2026: Directus is out; the config lives in Zoho, read by the app by API; to be decided: Creator or a CRM custom module.",
+      "cause": "Kajal's integration list and admin/CRM v0.2, 16 Sep 2026; Vatsal, 28 Sep 2026 (supersedes D1)",
       "to_be_verified": "",
       "choice": "open",
       "final_since": ""

@@ -53,13 +53,44 @@
    "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
   },
   {
+   "id": "zoho-books",
+   "name": "Zoho Books",
+   "kind": "Bought (in Zoho One)",
+   "cost": "to be verified: included in the Zoho One licence",
+   "does": "The ledger: every payment, refund and invoice. Revenue by SKU and month is read here and, once prices exist, on CRM Deals Amount. Razorpay stays the source of money movement.",
+   "login": "Principal officer, finance",
+   "notes": "Nothing is built. to be verified: how Razorpay payments reach Books.",
+   "cause": "Vatsal, 28 Sep 2026 (revenue read in Zoho)"
+  },
+  {
    "id": "directus",
-   "name": "Directus",
-   "kind": "Low-code over the database",
-   "cost": "Free, self-hosted",
-   "does": "Admin over the app tables (users, journey state, financial record, plan versions, AA consents, ops queue) with roles, permissions and an activity log. Also the CMS: videos, FAQs, tooltips, disclaimers, sample plans, agreements templates, app config and SKU cards.",
+   "name": "Directus (out)",
+   "kind": "Out (v0.1: low-code over the database)",
+   "cost": "",
+   "does": "Out. The admin over the app tables (users, journey state, financial record, plan versions, AA consents, ops queue) with roles, permissions and an activity log is the admin panel, next row. The CMS and the config (videos, FAQs, tooltips, disclaimers, sample plans, agreement template versions, app config, SKU cards) go to Zoho Creator or a CRM custom module.",
+   "login": "",
+   "notes": "Kept as a record of the v0.1 choice (D1). No Directus, Appsmith or Retool anywhere.",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
+  },
+  {
+   "id": "admin-panel",
+   "name": "Admin panel (built by Spinach)",
+   "kind": "Built by Spinach",
+   "cost": "Build time",
+   "does": "Only what must sit on the app's own database: admin over the app tables (users, journey state, financial record, plan versions, AA consents, ops queue) with roles, permissions and an activity log; edits to client data; the record the pre-call view links to. The adviser owner is mastered here and mirrored to Zoho.",
    "login": "Principal officer, advisers (scoped), ops",
-   "notes": "One tool for two of the doc's sections (Financial Data views and CMS). Appsmith or Retool if composed screens like the pre-call view need more than Directus gives; decide after a two-day trial."
+   "notes": "Content and config are not here; they live in Zoho (next row).",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
+  },
+  {
+   "id": "zoho-creator",
+   "name": "Zoho Creator or a CRM custom module",
+   "kind": "Bought (in Zoho One)",
+   "cost": "to be verified: included in the Zoho One licence",
+   "does": "Non-sensitive content and config the app reads at run time (I15): videos, sample plan content, tooltips, disclaimers, FAQs, in-app and push copy, agreement template versions, app config and feature flags, SKU cards.",
+   "login": "Principal officer, ops",
+   "notes": "to be decided: Creator or a CRM custom module. The app reads by API; nothing is built.",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "id": "metabase",
@@ -68,7 +99,9 @@
    "cost": "Free, self-hosted",
    "does": "The KPI dashboard and every count in the doc that comes from the database: users, paid, plans, AUA, SIP book, AA availed, integration failures. Scheduled email of the dashboard.",
    "login": "Principal officer",
-   "notes": "SQL questions saved once; nobody builds a dashboard screen."
+   "notes": "SQL questions saved once; nobody builds a dashboard screen.",
+   "note_v02": "to be decided: Metabase's 13 placement rows to Zoho Analytics; the rows stay as written until then.",
+   "cause": "Vatsal, 28 Sep 2026 (to be decided: Metabase rows to Zoho Analytics)"
   },
   {
    "id": "mixpanel",
@@ -187,7 +220,8 @@
    "tool": "Metabase",
    "def": "Count by sku from the paid event.",
    "wire": "P01",
-   "note": "SKU set is config in Directus; the query reads it."
+   "note": "SKU set is config in Zoho (the Fee structure row); the query reads it.",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "Dashboard KPIs",
@@ -211,11 +245,12 @@
    "sec": "Dashboard KPIs",
    "item": "Pending actions (admin / adviser / customer service)",
    "bucket": "Fold",
-   "tool": "Zoho Desk (customer conversations) + ops queue in Directus (data work)",
+   "tool": "Zoho Desk (customer conversations) + ops queue in the admin panel (data work)",
    "def": "Two numbers: open tickets in Desk; open items in the ops queue: unknown ISINs to classify (L04), data-quality flags, AA failures needing follow-up, refund requests, adviser reassignments.",
    "wire": "H07",
-   "note": "One queue table in the database, surfaced in Directus; Desk for anything the user sees.",
-   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
+   "note": "One queue table in the database, surfaced in the admin panel; Desk for anything the user sees.",
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "Dashboard KPIs",
@@ -319,11 +354,12 @@
   {
    "sec": "Commercial analytics",
    "item": "Revenue",
-   "bucket": "Console",
-   "tool": "Razorpay dashboard; Metabase mirror",
-   "def": "Gross, refunds, net, by SKU and month. Razorpay is the truth; Metabase shows it next to users.",
+   "bucket": "Zoho",
+   "tool": "Zoho Books (the ledger); CRM Deals Amount by SKU and month once prices exist; Razorpay dashboard for money movement",
+   "def": "Gross, refunds, net, by SKU and month. Razorpay is the source of money movement; Zoho Books is the ledger; Metabase shows it next to users until the Zoho Analytics question is decided.",
    "wire": "P04",
-   "note": ""
+   "note": "",
+   "cause": "Vatsal, 28 Sep 2026 (revenue read in Zoho)"
   },
   {
    "sec": "Commercial analytics",
@@ -364,29 +400,32 @@
   {
    "sec": "Financial data",
    "item": "Not started / partially completed / completed",
-   "bucket": "Directus",
-   "tool": "Directus user record + Metabase counts",
+   "bucket": "Admin panel",
+   "tool": "Admin panel over the user record + Metabase counts",
    "def": "Completion flags per data screen (D01 to D09) as in the M2 completion rules; O02 reads the same flags.",
    "wire": "O02",
-   "note": ""
+   "note": "",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "Financial data",
    "item": "System generated / AA sourced / manually entered",
-   "bucket": "Directus",
-   "tool": "Directus user record",
+   "bucket": "Admin panel",
+   "tool": "Admin panel, user record",
    "def": "Every field carries a source: AA-fed, CAS-verified, manual, derived. Same badges the user sees on A08.",
    "wire": "A08",
-   "note": ""
+   "note": "",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "Financial data",
    "item": "Needs verification",
-   "bucket": "Directus",
-   "tool": "Directus ops queue",
+   "bucket": "Admin panel",
+   "tool": "Admin panel, ops queue",
    "def": "Data-quality flags (implausible values from M2), unknown ISINs (L04 queue), AA fetch failures with manual fallback. Each is a queue item with an owner.",
    "wire": "L04",
-   "note": ""
+   "note": "",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "Payment dashboard",
@@ -428,20 +467,22 @@
   {
    "sec": "Notifications",
    "item": "Templates: push",
-   "bucket": "Directus",
-   "tool": "App config table in Directus, sent by Firebase",
+   "bucket": "Zoho",
+   "tool": "App config in Zoho Creator or a CRM custom module, read by the app, sent by Firebase",
    "def": "Push text per nudge row, editable without a release.",
    "wire": "N01",
-   "note": ""
+   "note": "",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "Notifications",
    "item": "Templates: in-app",
-   "bucket": "Directus",
-   "tool": "Directus CMS",
+   "bucket": "Zoho",
+   "tool": "Zoho Creator or a CRM custom module (content)",
    "def": "Banner and hub copy (H01, O02, X01).",
    "wire": "H01",
-   "note": ""
+   "note": "",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "Notifications",
@@ -456,85 +497,94 @@
   {
    "sec": "CMS",
    "item": "Intro and transition videos",
-   "bucket": "Directus",
-   "tool": "Directus CMS (files + collection)",
-   "def": "A04, R10, R11, O02 video slots reference a CMS entry; swap without a release.",
+   "bucket": "Zoho",
+   "tool": "Zoho Creator or a CRM custom module (files + collection)",
+   "def": "A04, R10, R11, O02 video slots reference a content entry; swap without a release.",
    "wire": "A04",
-   "note": ""
+   "note": "",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "CMS",
    "item": "Sample plan content",
-   "bucket": "Directus",
-   "tool": "Directus CMS",
+   "bucket": "Zoho",
+   "tool": "Zoho Creator or a CRM custom module (content)",
    "def": "Persona sample data sets rendered by the plan component (R12). Content, not code.",
    "wire": "R12",
-   "note": ""
+   "note": "",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "CMS",
    "item": "Questions and answer options",
    "bucket": "Change",
-   "tool": "Wording in Directus; structure in a release",
+   "tool": "Wording in Zoho Creator or a CRM custom module; structure in a release",
    "def": "Wording of questions and options is editable. Adding, removing or reordering options is not: the reveal maths (R03 to R07), persona mapping and engine input schema depend on the option set. Structural changes are versioned releases.",
    "wire": "R03",
-   "note": "The doc treats these as content; half of them are logic."
+   "note": "The doc treats these as content; half of them are logic.",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1; D5 rewritten)"
   },
   {
    "sec": "CMS",
    "item": "Tooltips, disclaimers, educational content, general content, FAQs",
-   "bucket": "Directus",
-   "tool": "Directus CMS",
+   "bucket": "Zoho",
+   "tool": "Zoho Creator or a CRM custom module (content)",
    "def": "Keyed by screen ID so a tooltip on D04 is found under D04.",
    "wire": "H07",
-   "note": ""
+   "note": "",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "CMS",
    "item": "Agreements",
    "bucket": "Change",
-   "tool": "Template versions in Directus; signed copies in the vault",
-   "def": "Agreement template versions (fixed-fee, DIFM AUA) with effective dates live in the CMS. Signed copies never do; they sit in the vault (H06) via Digio.",
+   "tool": "Template versions in Zoho Creator or a CRM custom module; signed copies in the vault",
+   "def": "Agreement template versions (fixed-fee, DIFM AUA) with effective dates live in Zoho Creator or a CRM custom module. Signed copies never do; they sit in the vault (H06) via Digio.",
    "wire": "P03",
-   "note": "Counsel owns template text; ops uploads versions."
+   "note": "Counsel owns template text; ops uploads versions.",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "Admin and settings",
    "item": "Admin users, roles and permissions",
-   "bucket": "Directus",
-   "tool": "Directus roles; Zoho profiles; logic panel roles (L01)",
+   "bucket": "Admin panel",
+   "tool": "Admin panel roles; Zoho profiles; logic panel roles (L01)",
    "def": "Three systems, three role sets, one principle: advisers see their own clients; ops sees records; the principal officer sees everything; the principal officer publishes.",
    "wire": "L01",
    "note": "Not one login. Accept it.",
-   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "Admin and settings",
    "item": "Audit logs",
-   "bucket": "Directus",
-   "tool": "Directus activity log; logic panel audit (L08); Zoho audit",
+   "bucket": "Admin panel",
+   "tool": "Admin panel activity log; logic panel audit (L08); Zoho audit",
    "def": "Who changed what, when, on regulated records. Exportable.",
    "wire": "L08",
    "note": "",
-   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "Admin and settings",
    "item": "System settings",
-   "bucket": "Directus",
-   "tool": "App config table in Directus",
+   "bucket": "Zoho",
+   "tool": "App config in Zoho Creator or a CRM custom module, read by the app",
    "def": "Feature flags: tiers live, artificial wait on G01, nudge cap, AA required or optional, trial period.",
    "wire": "G01",
-   "note": ""
+   "note": "",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "Admin and settings",
    "item": "Fee structure",
-   "bucket": "Directus",
-   "tool": "SKU config in Directus, mapped to Razorpay plan IDs",
+   "bucket": "Zoho",
+   "tool": "SKU config in Zoho Creator or a CRM custom module, mapped to Razorpay plan IDs",
    "def": "P01 cards: name, price, period, bullets, tier flag, credit rule, included calls. Assumptions are not fees; they are in the logic panel (L02).",
    "wire": "P01",
-   "note": ""
+   "note": "",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "User details (CRM)",
@@ -559,22 +609,24 @@
   {
    "sec": "User details (CRM)",
    "item": "Onboarding %, KYC status, AA status, financial plan status, investment plan status",
-   "bucket": "Directus",
-   "tool": "Directus record; mirrored to Zoho as read-only fields",
-   "def": "Truth in the database; mirror in Zoho so the adviser sees it on the Contact without opening Directus.",
+   "bucket": "Admin panel",
+   "tool": "Admin panel record; mirrored to Zoho as read-only fields",
+   "def": "Truth in the app's database; mirror in Zoho so the adviser sees it on the Contact without opening the admin panel.",
    "wire": "O02",
    "note": "",
-   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "sec": "User details (CRM)",
    "item": "Assigned adviser / RM",
-   "bucket": "Zoho",
-   "tool": "Zoho Contact owner, synced to the app",
-   "def": "Owner set by round robin or manually; owner_changed webhook updates the app so O01 and K01 know the adviser.",
+   "bucket": "Admin panel",
+   "tool": "Admin panel (the owner is mastered there), mirrored to the Zoho Contact owner, read-only in Zoho",
+   "def": "Owner set in the admin panel, by round robin or manually; the app mirrors it to Zoho so the adviser's views show their clients and O01 and K01 know the adviser. No webhook from Zoho.",
    "wire": "O01",
    "note": "RM is not a role in this model; the adviser is the owner.",
-   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)"
+   "note_v02": "(Zoho One (I14); the object model and the matrix are platform-neutral)",
+   "cause": "Vatsal, 28 Sep 2026 (one way, app to Zoho)"
   }
  ],
  "CONTACT_FIELDS": [
@@ -600,7 +652,7 @@
   ],
   [
    "WhatsApp opt-in, DND flag",
-   "A02 consent; Zoho respects both"
+   "A02 consent, mastered in the app; every opt-out flows app to Zoho; DND read-only in Zoho; Zoho respects both"
   ],
   [
    "Journey stage",
@@ -616,7 +668,7 @@
   ],
   [
    "Adviser owner",
-   "Record owner; synced to the app"
+   "Record owner; mastered in the admin panel and mirrored to Zoho, read-only there"
   ],
   [
    "Reveal bands",
@@ -631,8 +683,8 @@
    "onboarding %, KYC status, AA status, FP status, IP status, actions done / total"
   ],
   [
-   "Directus link",
-   "Deep link to the user's record for the pre-call view"
+   "Admin panel link",
+   "Deep link to the user's record in the admin panel for the pre-call view"
   ]
  ],
  "DEAL_FIELDS": [
@@ -754,18 +806,21 @@
  "INBOUND": [
   [
    "owner_changed",
-   "Zoho -> app",
-   "adviser_id; drives O01, K01 slots"
+   "app -> Zoho",
+   "adviser_id; the owner is mastered in the admin panel and mirrored to the Zoho Contact owner (read-only in Zoho); drives O01, K01 slots",
+   "Vatsal, 28 Sep 2026 (one way, app to Zoho)"
   ],
   [
    "consent_changed",
-   "Zoho -> app",
-   "whatsapp_optin, dnd"
+   "app -> Zoho",
+   "whatsapp_optin, dnd; consent is mastered in the app and every opt-out flows to Zoho; Zoho DND read-only",
+   "Vatsal, 28 Sep 2026 (one way, app to Zoho)"
   ],
   [
    "ticket_replied",
-   "Desk -> app",
-   "ticket_id, text; in-app notification"
+   "none (the app pulls)",
+   "ticket_id, text; no push from Desk; to be decided: H07 pulls the Desk thread on open, or H07 changes to say we replied by email",
+   "Vatsal, 28 Sep 2026 (one way, app to Zoho)"
   ]
  ],
  "NUDGES": [
@@ -1085,23 +1140,23 @@
  "COMPLIANCE": [
   [
    "Client agreement (signed, versioned)",
-   "App vault (H06) via Digio; template versions in Directus CMS",
-   "Export from Directus"
+   "App vault (H06) via Digio; template versions in Zoho Creator or a CRM custom module",
+   "Admin panel export (signed copies); Zoho (template versions)"
   ],
   [
    "KYC record",
    "App database (P02) via Digio; KRA reference",
-   "Directus"
+   "Admin panel"
   ],
   [
    "Risk profile and suitability",
    "App database (D08, D09) with questionnaire version and the advice version it applied to",
-   "Directus; annual refresh via Q04"
+   "Admin panel; annual refresh via Q04"
   ],
   [
    "Advice register: dated advice and rationale",
    "App database: plan versions, assumptions and instrument-set versions, per user (G01, L08)",
-   "Directus export; logic panel audit"
+   "Admin panel export; logic panel audit"
   ],
   [
    "Fee records and invoices",
@@ -1120,7 +1175,7 @@
   ],
   [
    "Audit trail on regulated records",
-   "Directus activity log; logic panel audit (L08)",
+   "Admin panel activity log; logic panel audit (L08)",
    "Export"
   ],
   [
@@ -1133,9 +1188,11 @@
   {
    "id": "D1",
    "q": "Directus, or Appsmith / Retool, as the tool over the database",
-   "position": "Directus first: it covers the Financial Data views, the CMS, roles, and the activity log in one free tool. Trial for two days against the real schema; add Appsmith only if the pre-call view needs a composed screen Directus cannot show.",
+   "position": "Neither. Directus is out. What must sit on the app's own database (admin over the app tables, edits to client data) is built by Spinach as the admin panel. Every other item Directus held (content, templates, app config, SKU cards) goes to Zoho: Creator or a CRM custom module for non-sensitive content and config. No Directus, Appsmith or Retool anywhere.",
    "owner_v01": "Dev owner + spiff",
-   "stated_by": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1"
+   "position_v01": "Directus first: it covers the Financial Data views, the CMS, roles, and the activity log in one free tool. Trial for two days against the real schema; add Appsmith only if the pre-call view needs a composed screen Directus cannot show.",
+   "stated_by_v01": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1 of the v0.1 spec)"
   },
   {
    "id": "D2",
@@ -1161,9 +1218,11 @@
   {
    "id": "D5",
    "q": "Question-set editing: content or release",
-   "position": "Wording editable in Directus; adding, removing or reordering options is a versioned release because the maths depends on it.",
+   "position": "Wording editable in Zoho Creator or a CRM custom module; adding, removing or reordering options is a versioned release because the maths depends on it.",
    "owner_v01": "spiff, Harish",
-   "stated_by": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1"
+   "position_v01": "Wording editable in Directus; adding, removing or reordering options is a versioned release because the maths depends on it.",
+   "stated_by_v01": "Vatsal and Kajal (crm-and-nudges workstream), admin/CRM spec v0.1",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
   },
   {
    "id": "D6",
@@ -1282,7 +1341,7 @@
    "adviser id of the last call; used only when adviser_continuity is on"
   ]
  ],
- "COMPLIANCE_NOTE": "unchanged; to be verified: record formats (brief H6)",
+ "COMPLIANCE_NOTE": "The nine records keep their list. Five rows that named Directus read admin panel or Zoho (Vatsal, 28 Sep 2026, supersedes D1); AUA statements stay on Metabase until the Zoho Analytics question is decided. to be verified: record formats (brief H6)",
  "CRM_BACKLOG": [
   {
    "item": "DIFM prospect flag",
@@ -1374,7 +1433,29 @@
   {
    "what": "The platform reads Zoho One (I14) wherever the page read to be decided (one platform): the five bought-tool stack notes, the nine placement notes, the placement note, the intro line and the note on v0.2. Nothing else changes before the admin session (Phase 13).",
    "cause": "minutes 16 Sep 2026, item 20"
+  },
+  {
+   "what": "Directus is out. STACK: the Directus row is kept as a record pointing to where each part went; rows added for the admin panel (built by Spinach) and for Zoho Creator or a CRM custom module. PLACEMENT: the 13 Directus rows sorted by one test, 6 to the admin panel (the three Financial data rows, Admin users and roles, Audit logs, the User details mirror row) and 7 to Zoho (push, in-app, videos, sample plan content, tooltips and FAQs, System settings, Fee structure); 4 rows that named Directus in the tool or note reworded (Plan opted by SKU, Pending actions, Questions and answer options, Agreements). DECISIONS D1 and D5 rewritten; the v0.1 position and who stated it are kept as position_v01 and stated_by_v01 and not rendered. CONTACT_FIELDS: Directus link reads Admin panel link. COMPLIANCE: five rows that named Directus read admin panel or Zoho. data/integrations.json I15 (app runtime config): the vendor reads Zoho Creator or a CRM custom module.",
+   "cause": "Vatsal, 28 Sep 2026 (supersedes D1)"
+  },
+  {
+   "what": "One way, app to Zoho: the three INBOUND rows rerouted (the owner mastered in the admin panel and mirrored; consent mastered in the app, every opt-out flows to Zoho; H07 pulls the Desk thread on open, or changes to say we replied by email) with a rule line above the table; PLACEMENT row Assigned adviser / RM and CONTACT_FIELDS rows WhatsApp opt-in, DND flag and Adviser owner reworded; the Zoho fields are read-only.",
+   "cause": "Vatsal, 28 Sep 2026 (one way, app to Zoho)"
+  },
+  {
+   "what": "Bucket legend above PLACEMENT: Console, Fold, Change, and the tool buckets.",
+   "cause": "Vatsal, 28 Sep 2026 (bucket legend)"
+  },
+  {
+   "what": "Revenue read in Zoho: PLACEMENT row Revenue (Zoho Books the ledger, CRM Deals Amount by SKU and month once prices exist, Razorpay the source of money movement) and a Zoho Books STACK row.",
+   "cause": "Vatsal, 28 Sep 2026 (revenue read in Zoho)"
+  },
+  {
+   "what": "Metabase's 13 PLACEMENT rows stay as written; to be decided: Metabase's 13 rows to Zoho Analytics (a note on the Metabase STACK row and in the legend).",
+   "cause": "Vatsal, 28 Sep 2026 (to be decided: Metabase rows to Zoho Analytics)"
   }
  ],
- "note_v02": "v0.2 additions sit beside the v0.1 keys, which are unchanged because the v0.1 admin page is frozen and served from docs/v01/. The v0.2 NUDGES matrix is rendered by the site from data/v02/states.json (one row per state per ladder step: state, day, channel, copy slot, deep link, tier rule, CRM task); v0.2 EVENTS are rendered from data/screens_v02.json (every screen's events plus state_enter events). The CRM platform is Zoho One (I14)."
+ "note_v02": "v0.2 additions sit beside the v0.1 keys; the v0.1 admin page is frozen and served from docs/v01/, and a v0.1 key on this page changes only with a cause listed under Changes in v0.2. The v0.2 NUDGES matrix is rendered by the site from data/v02/states.json (one row per state per ladder step: state, day, channel, copy slot, deep link, tier rule, CRM task); v0.2 EVENTS are rendered from data/screens_v02.json (every screen's events plus state_enter events). The CRM platform is Zoho One (I14).",
+ "PLACEMENT_NOTE_V02": "Bucket legend (Vatsal, 28 Sep 2026): Zoho, Mixpanel, Metabase and Admin panel name the tool that holds the item. Console: read in the vendor's own console, nothing built. Fold: folds into another item or tool. Change: the item's meaning changed with the product. Directus is out; its 13 rows are sorted by one test: what must sit on the app's own database (admin over the app tables, edits to client data) goes to the admin panel Spinach builds, everything else to Zoho Creator or a CRM custom module. to be decided: Metabase's 13 rows to Zoho Analytics; they stay as written until then.",
+ "INBOUND_NOTE_V02": "One way, app to Zoho (Vatsal, 28 Sep 2026): Zoho never writes into the app; no webhook and no Flow into the app. The three v0.1 inbound events are rerouted below under three conditions: the adviser owner is mastered in the admin panel and mirrored to Zoho (the Zoho field read-only); consent is mastered in the app and every opt-out flows app to Zoho (Zoho DND read-only); H07 pulls the Desk thread on open, or changes to say we replied by email."
 }

@@ -616,4 +616,9 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   Zoho fields read-only; H07 pulls Desk on open or changes); the tab needs a one-line legend for Console, Fold and
   Change; revenue read in Zoho (Zoho Books as ledger, Razorpay as the source of money movement; Metabase's 13 rows
   raise the Zoho Analytics question). These land as their own commit once Vatsal confirms the homes.
+- Landed, 29 Sep 2026 (commit "board: Admin + CRM tab"): the homes confirmed (Vatsal, 28 Sep 2026, evening), so the tab
+  reads Directus out, the 13 rows sorted by one test (6 to the Spinach admin panel, 7 to Zoho Creator or a CRM custom
+  module), D1 and D5 rewritten, INBOUND one way with the three conditions, the bucket legend, revenue in Zoho Books, I15
+  in data/integrations.json to match. Still to be decided: Metabase's 13 rows to Zoho Analytics (the rows stay as
+  written).
 - Phase 14 pass 5 (the approvals script) still runs only on Vatsal's word (section 22).

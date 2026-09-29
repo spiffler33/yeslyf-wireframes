@@ -751,7 +751,7 @@ V01_ADMIN_SECTIONS = [
     ("CONTACT_FIELDS", "Contact fields", ["Field", "Source and use"]),
     ("DEAL_FIELDS", "Deal fields", ["Field", "Detail"]),
     ("EVENTS", "Events: app to CRM", ["Event", "Screen", "Fields"]),
-    ("INBOUND", "Inbound: CRM to app", ["Event", "Direction", "Fields"]),
+    ("INBOUND", "Inbound: CRM to app (none in v0.2: one way, app to Zoho)", ["Event", "Direction", "Fields", "Cause"]),
     ("NUDGES", "Nudges (v0.1 matrix)", None),
     ("NUDGE_EXAMPLES", "Nudge examples", None),
     ("COMPLIANCE", "Compliance records", ["Record", "Where it lives", "Export"]),
@@ -804,8 +804,9 @@ def admin_parts(admin, v02, states):
         note = admin.get(key + "_NOTE_V02") or admin.get(key.lower() + "_note_v02")
         value = admin[key]
         if key == "DECISIONS":
-            # owner_v01 is a v0.1 record kept in the data; the v0.2 page shows the question, the position and who stated it
-            value = [{k: v for k, v in d.items() if k != "owner_v01"} for d in value]
+            # the _v01 keys (owner_v01; position_v01 and stated_by_v01 on D1 and D5) are v0.1 records kept in the data;
+            # the v0.2 page shows the question, the position, who stated it or the cause
+            value = [{k: v for k, v in d.items() if not k.endswith("_v01")} for d in value]
         body.append('<section id="%s"><h2>%s</h2>%s%s</section>' % (sec_id, esc(title), ('<p class="rule">%s</p>' % esc(note)) if note else "", generic(value, headers)))
     body.append('<section id="a-v02"><h2>v0.2 additions</h2><p class="meta">Cause on every row where the data carries one.</p></section>')
     nav.append('<a href="#a-v02">v0.2 additions</a>')
