@@ -121,7 +121,7 @@
  },
  "cause": "plan G, 28 Sep 2026",
  "counts": {
-  "at": "28 Sep 2026, 16:02 IST",
+  "at": "28 Sep 2026, 18:48 IST",
   "rows": [
    {
     "detail": "the admin user: CEO, Administrator, active",
@@ -196,10 +196,10 @@
     "target": 74
    },
    {
-    "detail": "13 open tickets; an SLA sets the due date; to be verified: whether Desk applies a new SLA to tickets that already exist",
+    "detail": "13 open tickets; the SLA of G5 fires on ticket create, so tickets that already exist keep their empty due date (Zoho, 28 Sep 2026)",
     "now": 1,
     "object": "tickets with a due date",
-    "target": 13
+    "target": 1
    },
    {
     "detail": "no list yet",
@@ -240,6 +240,85 @@
   ]
  },
  "items": {
+  "dashboards/call-centre": {
+   "at": "29 Sep 2026, 06:20 IST",
+   "cause": "plan G, 28 Sep 2026 (G4); Vatsal, 28 Sep 2026 (beautiful dashboards, not a KPI per view)",
+   "done": [
+    "Call centre today (KPI, 8)",
+    "Same adviser offer (KPI, 50)",
+    "Call centre outcomes (bar, done 94, pending 8)",
+    "Outcomes by State ID (stacked column)",
+    "Same adviser offer by Last Adviser (bar, 50)"
+   ],
+   "how": "chrome",
+   "left": [],
+   "note": "dashboard id 1438206000000650361; sharing to be verified after G1 (no sharing control in this org's Analytics); report reports/phaseG_pass4.md",
+   "phase": "G4",
+   "status": "done in Zoho"
+  },
+  "dashboards/compliance": {
+   "at": "29 Sep 2026, 06:50 IST",
+   "cause": "plan G, 28 Sep 2026 (G4); Vatsal, 28 Sep 2026 (beautiful dashboards, not a KPI per view)",
+   "done": [
+    "RPQ refresh due (KPI, 6)",
+    "RPQ refresh due by month (column)",
+    "App events, top 10 types (bar)",
+    "App events by month (column)"
+   ],
+   "how": "chrome",
+   "left": [],
+   "note": "dashboard id 1438206000000650386; sharing to be verified after G1 (no sharing control in this org's Analytics); report reports/phaseG_pass4.md",
+   "phase": "G4",
+   "status": "done in Zoho"
+  },
+  "dashboards/finance": {
+   "at": "29 Sep 2026, 07:10 IST",
+   "cause": "plan G, 28 Sep 2026 (G4); Vatsal, 28 Sep 2026 (beautiful dashboards, not a KPI per view)",
+   "done": [
+    "Refunds (KPI, 6)",
+    "A la carte receipts (KPI, 9)",
+    "Payment reconciliation by Status (bar, 206)",
+    "GST split by GST Type (bar, 206)",
+    "Refunds by Refund Status (bar, 6)",
+    "A la carte receipts by month (column, 9)",
+    "Mandates by Mandate Status (bar, 206)"
+   ],
+   "how": "chrome",
+   "left": [],
+   "note": "dashboard id 1438206000000650394; sharing to be verified after G1 (no sharing control in this org's Analytics); report reports/phaseG_pass4.md",
+   "phase": "G4",
+   "status": "done in Zoho"
+  },
+  "dashboards/marketing": {
+   "at": "29 Sep 2026, 06:35 IST",
+   "cause": "plan G, 28 Sep 2026 (G4); Vatsal, 28 Sep 2026 (beautiful dashboards, not a KPI per view)",
+   "done": [
+    "Opted in (KPI, 1203)",
+    "DND (KPI, 139)",
+    "Opted in by Journey Stage (column)",
+    "Opt-in by Source (stacked column, 1640)"
+   ],
+   "how": "chrome",
+   "left": [],
+   "note": "dashboard id 1438206000000650377; sharing to be verified after G1 (no sharing control in this org's Analytics); report reports/phaseG_pass4.md",
+   "phase": "G4",
+   "status": "done in Zoho"
+  },
+  "dashboards/principal-officer": {
+   "at": "28 Sep 2026, 19:20 IST",
+   "cause": "plan G, 28 Sep 2026 (G4); Vatsal, 28 Sep 2026 (beautiful dashboards, not a KPI per view)",
+   "done": [
+    "DIFM prospects to call (KPI, 20)",
+    "Paid deals this week (KPI, 0 against last week 12)",
+    "Paid deals by week and SKU (stacked column, 12)",
+    "DIFM prospects by Tier (bar, 20)"
+   ],
+   "how": "chrome",
+   "left": [],
+   "note": "dashboard id 1438206000000650349; sharing to be verified after G1 (no sharing control in this org's Analytics); report reports/phaseG_pass4.md",
+   "phase": "G4",
+   "status": "done in Zoho"
+  },
   "desk/sla": {
    "at": "28 Sep 2026, 16:02 IST",
    "cause": "plan G, 28 Sep 2026 (G5)",
