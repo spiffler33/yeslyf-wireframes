@@ -20,7 +20,9 @@ Steps 3, 4, 5, 8 and 10 read seed/export_schema.json and the export CSVs to fill
 row counts; step 2 reads data/integrations.json for the WhatsApp, SMS/OTP and email vendor names (I11, I08, I10);
 step 8's Marketing Automation journey reads the S4 ladder from data/v02/states.json. Everything else is the
 hand-authored text in data/operator.json. Items the phase F provisioning script finished (data/zoho_provision.json,
-written by seed/zoho/provision.py) carry a "done by script" line with its timestamp; the rest render unchanged.
+written by seed/zoho/provision.py) carry a "done by script" line with its timestamp; items done by hand in the Zoho org
+during phase G (data/zoho_live.json items with status "done in Zoho") carry a "done in Zoho" line with the date and what
+was built; the rest render unchanged.
 
 Called at the end of scripts/build_site.py (after build_tracker.main()); also runs on its own.
 """
@@ -45,6 +47,7 @@ with open(os.path.join(SEED_DIR, "config.json")) as _fh:
 PAGE = "admin_operator.html"
 DATA_FILE = os.path.join(DATA, "operator.json")
 SCRIPT_FILE = os.path.join(DATA, "zoho_provision.json")
+LIVE_FILE = os.path.join(DATA, "zoho_live.json")
 SCHEMA_FILE = os.path.join(SEED_DIR, "export_schema.json")
 SEED_EXPORT_SCRIPT = os.path.join(SCRIPTS, "seed_export.py")
 RUNS = ["run-500", "run-3000"]
@@ -353,9 +356,31 @@ def load_script_done():
     return {iid: it["at"] for iid, it in items.items() if it.get("status") == "done"}
 
 
+def load_live_done():
+    # phase G: the items done by hand in the Zoho org (data/zoho_live.json items, status "done in Zoho"); no file, no marks
+    if not os.path.exists(LIVE_FILE):
+        return {}
+    with open(LIVE_FILE) as fh:
+        raw = fh.read()
+    site.check_ascii("data/zoho_live.json", raw)
+    items = json.loads(raw).get("items") or {}
+    return {iid: it for iid, it in items.items() if it.get("status") == "done in Zoho"}
+
+
 def script_mark(ctx, item_id):
+    out = []
     at = ctx["script_done"].get(item_id)
-    return '<div class="gen meta">done by script, %s</div>' % esc(at) if at else ""
+    if at:
+        out.append('<div class="gen meta">done by script, %s</div>' % esc(at))
+    live = ctx["live_done"].get(item_id)
+    if live:
+        done = "; ".join(live.get("done") or [])
+        out.append('<div class="gen meta">done in Zoho, %s%s</div>' % (esc(live.get("at", "")), (": " + esc(done)) if done else ""))
+        for key in ("left", "note"):
+            val = live.get(key)
+            if val:
+                out.append('<div class="gen meta">%s: %s</div>' % (key, esc("; ".join(val) if isinstance(val, list) else val)))
+    return "".join(out)
 
 
 STEP_EXTRA_ITEMS = {"import": render_campaign_import_items}
@@ -466,9 +491,9 @@ JS = r"""
 """
 
 
-def build_page(doc, items, schema, schema_idx, integrations, states, seats_doc, script_done):
+def build_page(doc, items, schema, schema_idx, integrations, states, seats_doc, script_done, live_done):
     ctx = {"schema": schema, "schema_idx": schema_idx, "integ_by_id": {r["id"]: r for r in integrations["rows"]}, "states": states,
-           "seats_by_id": {s["id"]: s for s in seats_doc.get("seats", [])}, "script_done": script_done}
+           "seats_by_id": {s["id"]: s for s in seats_doc.get("seats", [])}, "script_done": script_done, "live_done": live_done}
     who = '<div class="who">Editing as <select id="reviewer"></select></div>'
     intro = ('<section><h1>Operator checklist: the Zoho afternoon</h1>'
              '<p class="lead">Every person in these files is synthetic; nothing is ever sent.</p>'
@@ -516,7 +541,11 @@ def main():
     seats_doc = load_seats()
 
     items = all_items(doc)
-    page = build_page(doc, items, schema, schema_idx, integrations, states, seats_doc, load_script_done())
+    live_done = load_live_done()
+    unmatched = sorted(k for k in live_done if k not in {it["id"] for it in items})
+    if unmatched:
+        print("build_operator: done in Zoho but not an operator item (no mark rendered): " + ", ".join(unmatched))
+    page = build_page(doc, items, schema, schema_idx, integrations, states, seats_doc, load_script_done(), live_done)
     site.check_ascii(PAGE, page)
     errors = []
     if 'name="robots" content="noindex' not in page:

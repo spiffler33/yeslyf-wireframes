@@ -1,44 +1,41 @@
-# Handoff - 29 Sep 2026 (checkpoint mid-phase G: G4 closed; G0, G3, G4 and G5 done; G1 and G6 need a person)
+# Handoff - 29 Sep 2026 (checkpoint mid-phase G: G0, G3, G4, G5 done; the Admin + CRM tab rewrite landed; G9 prep done; G1 and G6 need a person)
 
-State: phase G ("Zoho as if live", PLAN_zoho_live_v01.md) has G0 (baseline, seed/zoho/live.py, commit 2a7d191), G3
-(the 11 CRM saved views, 00fb249), G5 (the Desk SLA and 4 ticket views, 91cc847) and G4 (the 5 CRM dashboards,
-56963f7, reports/phaseG_pass4.md) in Zoho. G4 was built in Chrome on 28 and 29 Sep 2026 to spiff's brief (beautiful,
-not a KPI per view): one dashboard per seat, 24 components, every rendered number equal to its G3 view count; the
-ids and the component lists are in data/zoho_live.json (items dashboards/*). G1 (users) and G6 (Campaigns) need a
-person (below); G2, G7, G8 wait on them and on spiff's answers; G9 closes the phase.
+State: phase G ("Zoho as if live", PLAN_zoho_live_v01.md) has G0 (baseline, 2a7d191), G3 (the 11 CRM saved views,
+00fb249), G5 (the Desk SLA and 4 ticket views, 91cc847) and G4 (the 5 CRM dashboards, 56963f7) in Zoho; nothing in
+Zoho changed this session. The waiting time went to two things on this machine: (1) the Admin + CRM tab rewrite,
+its own commit 21018b4 (Directus out; 13 placement rows sorted, 6 to the Spinach admin panel and 7 to Zoho Creator or
+a CRM custom module; D1 and D5 rewritten; INBOUND one way, app to Zoho, under the three conditions; the bucket
+legend; revenue in Zoho Books; I15 in data/integrations.json to match); (2) G9 prep as this wip commit
+(docs/admin_operator.html marks the 12 data/zoho_live.json items "done in Zoho, <date>" with what was built, the
+five dashboards are operator step 13, PLAN.md section 25 is a draft that G9 completes). G1 (users) and G6
+(Campaigns) still need a person; G2, G7, G8 wait on them and on spiff's answers; G9 closes the phase.
 
-When spiff says "go": nothing in Zoho can move until a person does G1 (users) and the G6 onboarding form, so the
-session does the unattended work that was queued for "after G4" (Vatsal's answer (a), G0 report reply): the Admin +
-CRM tab rewrite in data/admin_crm.json, its own commit, never mixed with phase G. Sort the 13 Directus rows by the
-test in memory admin-crm-direction (app-bound: Spinach admin panel; the rest: Zoho Creator or a CRM custom module),
-rewrite decisions D1 and D5, write the three one-way conditions on the INBOUND rows, add the Console/Fold/Change
-legend, leave Metabase's 13 rows as "to be confirmed: Metabase rows to Zoho Analytics" (not moved), cause on every
-changed row "Vatsal, 28 Sep 2026 (supersedes D1)". Then build_site.py, the checks, one commit "board: Admin + CRM
-tab ..." and push. The first reply restates, once and briefly, the person-only steps and the answers owed below, then
-carries on without waiting. After that commit, if there is still session left: G9 prep that needs no users
-(build_operator.py marks from data/zoho_live.json items, a PLAN.md section 25 draft), as a "wip:" commit.
+When spiff says "go": if G1 is still not done, nothing unattended is queued; say so in one line and ask for G1 and
+G6 (below) or an answer to the open items. If the users exist: G2 (seed/zoho/own.py, ownership by API), then G7,
+G8 (once (b) is consented), then G9 (live.py as the verifier, reports/phaseG_pass9.md, PLAN.md section 25 completed,
+handoff, memory, one commit "zoho live G9: close", push). Board work (phase 14 pass 5) runs only on Vatsal's word.
 
 ## Read first
 1. reports/phaseG_pass0.md (the baseline table, the grant's gaps, the 74th ticket), reports/phaseG_pass3.md (how
    the CRM view forms behave), reports/phaseG_pass4.md (the dashboards, the editor's behaviour, the sharing gap),
    reports/phaseG_pass5.md (Desk).
-2. PLAN_zoho_live_v01.md sections 4 to 6; data/zoho_live.json (baseline, counts, items done in Zoho).
-3. Memory zoho-trial (org, credentials, re-run recipe) and admin-crm-direction (the Admin + CRM tab answers owed).
+2. PLAN_zoho_live_v01.md sections 4 to 6; data/zoho_live.json (baseline, counts, the 12 items done in Zoho); PLAN.md
+   section 25 (the draft status).
+3. Memory zoho-trial (org, credentials, re-run recipe) and admin-crm-direction (what landed on the tab, what is open).
 
 ## Verify before coding
 - `git status --short`: clean apart from the untracked inputs kept out on purpose (two inputs/meeting/ files,
   inputs/spinach/2026-09-25/).
-- `python3 seed/zoho/live.py` (read only, about 1 minute): users 1 of 11, profiles 2 of 3, views Deals 4 of 4,
-  Contacts 3 of 3, Tasks 2 of 2, App Events 1 of 1, A la carte 1 of 1, desk views 4 of 4, calls 61 of 84, campaigns
-  0, bookings staff 0 of 6, appointments 0 of 8.
-- `python3 scripts/check_phase9.py` 19 PASS, `python3 scripts/check_site.py` 3 PASS.
+- `python3 seed/zoho/live.py` (read only, about 1 minute; not run this session, nothing in Zoho moved): users 1 of 11,
+  profiles 2 of 3, views Deals 4 of 4, Contacts 3 of 3, Tasks 2 of 2, App Events 1 of 1, A la carte 1 of 1, desk
+  views 4 of 4, calls 61 of 84, campaigns 0, bookings staff 0 of 6, appointments 0 of 8.
+- `python3 scripts/check_phase9.py` 19 PASS, `python3 scripts/check_site.py` 3 PASS; docs/admin_operator.html carries
+  12 "done in Zoho" lines and 32 "done by script" lines.
 
-## Waiting on spiff (asked in the G0 report reply; recommended answer first)
-- (a) Answered (Vatsal, 28 Sep 2026): only the Directus parts that must sit on the app's own database (admin over
-  app tables, client data edits) are built by Spinach as the admin panel; every other Directus item goes to Zoho
-  (Creator or a CRM custom module for non-sensitive content and config). Still to confirm: Metabase's 13 rows to
-  Zoho Analytics. The Admin + CRM tab rewrite (13 Directus rows sorted by that test, D1 and D5, INBOUND rows, the
-  Console/Fold/Change legend) is its own commit, never mixed into phase G; do it after G4 or when spiff asks.
+## Waiting on spiff (recommended answer first)
+- (a) Answered and landed (21018b4). Two items stay open on the tab, written as "to be decided": Metabase's 13
+  placement rows to Zoho Analytics (the rows stay as written; when answered, move them with cause "Vatsal, <date>"
+  and a changes_v02 entry), and Creator or a CRM custom module as the content and config home.
 - (b) Plan section 4 provisional calls: consent by silence (Missed for the 23 refused calls; past booked slots at the
   same weekday and time in the first future week; marketing and finance built under the admin user).
 - (c) A wider grant with Desk.agents.READ before G2 (else the Support 01 agent id is read off Desk, Setup, Agents in
@@ -59,14 +56,20 @@ carries on without waiting. After that commit, if there is still session left: G
   mail confirmed off first).
 
 ## Next in this repo (in order)
-1. G4 is done (56963f7). If a dashboard needs a change: Analytics, the picker, the dashboard, hover the tile,
-   the three dots, Edit; or Manage Dashboards for Rename, Clone, Delete. Sharing is "to be verified after G1": no
-   sharing control exists in this org's Analytics (details in reports/phaseG_pass4.md).
+1. If a dashboard needs a change: Analytics, the picker, the dashboard, hover the tile, the three dots, Edit; or
+   Manage Dashboards for Rename, Clone, Delete. Sharing is "to be verified after G1" (no sharing control exists in
+   this org's Analytics; reports/phaseG_pass4.md).
 2. When the users exist: G2 (seed/zoho/own.py, ownership by API), G7 (Bookings notifications off first, then staff
-   and appointments), then G8 (provision.py rule for the 23 calls) once (b) is consented, then G9 (live.py as the
-   verifier, build_operator.py marks from data/zoho_live.json, PLAN.md section 25, handoff, memory, push).
+   and appointments), then G8 (provision.py rule for the 23 calls) once (b) is consented, then G9. For G9 the
+   operator marks and PLAN.md section 25 already exist: live.py grows into the verifier and writes the "Live build"
+   section of seed/zoho/leftovers.md; section 25 gets what closed and what is open.
 
-## Gotchas found this session
+## Gotchas found so far
+- data/operator.json is hand-formatted (one item per line, a step's id, n and title on one line): edit it as text,
+  never by json.dump; build_operator.validate() requires every item id to start with its step's id plus "/", so a
+  live key like dashboards/<seat> needs its own step (step 13 now). data/admin_crm.json round-trips with
+  json.dumps(indent=1) plus a newline, data/integrations.json with indent=2. build_site.py runs build_operator at
+  the end; it strips every key ending in _v01 from the rendered DECISIONS (owner_v01, position_v01, stated_by_v01).
 - CRM view form: type into a dropdown's search, screenshot, then click the match; clicking in the same batch picks
   the first unfiltered item. Any JavaScript run against the page closes an open dropdown.
 - CRM column picker: the row's plus icon appears on hover and takes the click only some of the time; the working
@@ -92,5 +95,6 @@ carries on without waiting. After that commit, if there is still session left: G
   contact. Staff invitations, if ever sent, go only to plus-addresses on the admin mailbox.
 - No regex or phrase rules; stdlib only; ASCII; Rs; first names; a cause on every change; "to be verified: <item>"
   and "to be decided: <item>" with no name attached. Secrets never in the repo; the admin address never in a file.
-- One commit per phase, "zoho live G<N>: <what>", no AI attribution trailer. Board work (phase 14 pass 5) stays in
-  separate commits and runs only on Vatsal's word. The Admin + CRM tab rewrite waits for (a) and is its own commit.
+- One commit per phase, "zoho live G<N>: <what>", no AI attribution trailer. Board work stays in separate commits and
+  runs only on Vatsal's word. No Directus, Appsmith or Retool anywhere new; a v0.1 key on the Admin + CRM tab changes
+  only with a cause listed under changes_v02.

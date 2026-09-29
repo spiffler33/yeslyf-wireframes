@@ -1,6 +1,6 @@
 {
  "about": "Operator checklist for the Zoho One afternoon: every step to set up the trial org, its fields, picklists, roles, Desk, Campaigns and Bookings, then import the seed exports in order (PLAN_admin_seed_v01.md section 13). Checking an item off writes to board_entries so the team sees progress live. Every person in these files is synthetic; nothing is ever sent.",
- "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 13)",
+ "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 13); plan G, 28 Sep 2026 (G4: the dashboards step)",
  "steps": [
   {
    "id": "org", "n": 1, "title": "Org",
@@ -145,6 +145,17 @@
     {"id": "screenshots/compliance", "text": "Screenshot the Compliance seat view."},
     {"id": "screenshots/support", "text": "Screenshot the Support seat view."},
     {"id": "screenshots/finance", "text": "Screenshot the Finance seat view."}
+   ]
+  },
+  {
+   "id": "dashboards", "n": 13, "title": "Dashboards per seat",
+   "intro": "One dashboard per seat in Analytics, built by hand after the views (plan G4); the components are listed in data/zoho_live.json.",
+   "items": [
+    {"id": "dashboards/principal-officer", "text": "Dashboard for the Principal officer seat in Analytics (plan G4)."},
+    {"id": "dashboards/call-centre", "text": "Dashboard for the Call centre seat in Analytics (plan G4)."},
+    {"id": "dashboards/marketing", "text": "Dashboard for the Marketing seat in Analytics (plan G4)."},
+    {"id": "dashboards/compliance", "text": "Dashboard for the Compliance seat in Analytics (plan G4)."},
+    {"id": "dashboards/finance", "text": "Dashboard for the Finance seat in Analytics (plan G4)."}
    ]
   }
  ]

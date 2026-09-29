@@ -622,3 +622,17 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   in data/integrations.json to match. Still to be decided: Metabase's 13 rows to Zoho Analytics (the rows stay as
   written).
 - Phase 14 pass 5 (the approvals script) still runs only on Vatsal's word (section 22).
+
+## 25. Status, 29 Sep 2026 (phase G half done; the Admin + CRM tab rewritten; G9 completes this section)
+
+- Phase G (PLAN_zoho_live_v01.md), in Zoho as of 29 Sep 2026: G0 the baseline (2a7d191, reports/phaseG_pass0.md), G3
+  the 11 CRM saved views (00fb249, pass3), G5 the Desk SLA and the 4 ticket views (91cc847, pass5), G4 the 5
+  dashboards, one per seat, built in Chrome (56963f7, pass4). data/zoho_live.json holds the baseline, the counts and
+  the 12 items done by hand; docs/admin_operator.html marks them "done in Zoho, <date>" with what was built, and the
+  five dashboards are items of step 11 (G9 prep, 29 Sep 2026).
+- Waiting on a person: G1 (9 users in the Zoho One admin panel; the browser rules hand account creation to a person)
+  and G6 (the Campaigns first-time onboarding form). G2, G7 and G8 follow them; G8 also waits on the plan section 4
+  provisional calls; a wider grant with Desk.agents.READ is asked for before G2. G9 closes the phase and completes
+  this section (what closed, what is open).
+- Board, its own commit (21018b4, 29 Sep 2026): the Admin + CRM tab rewrite of section 24's four points landed; still
+  to be decided: Metabase's 13 rows to Zoho Analytics.
