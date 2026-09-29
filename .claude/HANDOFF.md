@@ -1,4 +1,4 @@
-# Handoff - 29 Sep 2026 (G4 closed; G0, G3, G4 and G5 done; G1 and G6 need a person)
+# Handoff - 29 Sep 2026 (checkpoint mid-phase G: G4 closed; G0, G3, G4 and G5 done; G1 and G6 need a person)
 
 State: phase G ("Zoho as if live", PLAN_zoho_live_v01.md) has G0 (baseline, seed/zoho/live.py, commit 2a7d191), G3
 (the 11 CRM saved views, 00fb249), G5 (the Desk SLA and 4 ticket views, 91cc847) and G4 (the 5 CRM dashboards,
@@ -7,10 +7,16 @@ not a KPI per view): one dashboard per seat, 24 components, every rendered numbe
 ids and the component lists are in data/zoho_live.json (items dashboards/*). G1 (users) and G6 (Campaigns) need a
 person (below); G2, G7, G8 wait on them and on spiff's answers; G9 closes the phase.
 
-When spiff says "go" next: nothing in Zoho can move until G1 is done by a person (users), except G6's imports, which
-also need a person for the Campaigns onboarding form. So the next unattended work is either the Admin + CRM tab
-rewrite (its own commit, needs (a) below confirmed for Metabase) or G9's verifier work that does not need users
-(build_operator.py marks from data/zoho_live.json items, PLAN.md section 25 draft). Ask which, in one bullet.
+When spiff says "go": nothing in Zoho can move until a person does G1 (users) and the G6 onboarding form, so the
+session does the unattended work that was queued for "after G4" (Vatsal's answer (a), G0 report reply): the Admin +
+CRM tab rewrite in data/admin_crm.json, its own commit, never mixed with phase G. Sort the 13 Directus rows by the
+test in memory admin-crm-direction (app-bound: Spinach admin panel; the rest: Zoho Creator or a CRM custom module),
+rewrite decisions D1 and D5, write the three one-way conditions on the INBOUND rows, add the Console/Fold/Change
+legend, leave Metabase's 13 rows as "to be confirmed: Metabase rows to Zoho Analytics" (not moved), cause on every
+changed row "Vatsal, 28 Sep 2026 (supersedes D1)". Then build_site.py, the checks, one commit "board: Admin + CRM
+tab ..." and push. The first reply restates, once and briefly, the person-only steps and the answers owed below, then
+carries on without waiting. After that commit, if there is still session left: G9 prep that needs no users
+(build_operator.py marks from data/zoho_live.json items, a PLAN.md section 25 draft), as a "wip:" commit.
 
 ## Read first
 1. reports/phaseG_pass0.md (the baseline table, the grant's gaps, the 74th ticket), reports/phaseG_pass3.md (how
