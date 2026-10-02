@@ -1,5 +1,5 @@
 {
- "about": "The admin split: Spinach's admin panel feature matrix (9 Jul 2026, 12 features in four versions) reproduced with one column added, the version picked for launch and who provides it (Spinach or Zoho), the explanation under each row; then the admin items of yeslyf's own that the sheet does not carry, each as its best version with the pick of who provides it; then the 13 sketches of 19 Aug 2026 against what Zoho holds. Picks are proposed on 2 Oct 2026 in answer to the question of 2 Oct 2026 and stay 'to be decided: confirm the pick' until confirmed; nothing on the board changes until then.",
+ "about": "What Spinach builds for the admin side, in one page: Spinach's own feature matrix (9 Jul 2026) with one column added, the version picked for launch and who provides it, one line why; then the five things Spinach builds; then what Zoho and the consoles hold (the details are doc 2); then the five open items. The sheet is not the universal set: what sits outside it is in the folded notes and reaches Spinach only as B1 to B5. Picks proposed 2 Oct 2026; to be decided: confirm the picks.",
  "cause": "Vatsal, 2 Oct 2026 (the question: is the sheet the universal set; per row, which version and who)",
  "rules": [
   "One way, app to Zoho: Zoho never writes into the app; the app may pull from Zoho when it opens something (H07 pulls the Desk thread).",
@@ -76,7 +76,10 @@
     "to be decided: whether a user account can be suspended, and by whom (gap G20)",
     "to be decided: a devices and sessions tab (gap G24)"
    ],
-   "sketches": "pages 11 to 14"
+   "sketches": "pages 11 to 14",
+   "pick": "V1.5",
+   "who": "Zoho",
+   "line": "A user is a Zoho Contact fed by the app; list, profile and timeline are CRM views. V2's account actions do not exist in an OTP-only app."
   },
   {
    "n": 2,
@@ -107,7 +110,10 @@
     "Campaigns is not set up in the trial (G6 waits on a person): the journeys and the weekly cap are unproven"
    ],
    "decide": [],
-   "sketches": "pages 6 to 7"
+   "sketches": "pages 6 to 7",
+   "pick": "V2",
+   "who": "Zoho",
+   "line": "Queues are CRM views by journey stage; resends are Campaigns journeys and call tasks; funnels are Mixpanel."
   },
   {
    "n": 3,
@@ -142,7 +148,10 @@
    "decide": [
     "to be decided: AUA and SIP book numbers per Contact in Zoho (the bands-only rule), or AUA read from a database export only"
    ],
-   "sketches": "pages 2 to 3"
+   "sketches": "pages 2 to 3",
+   "pick": "V2",
+   "who": "Zoho",
+   "line": "Five seat dashboards exist in Zoho Analytics already (G4); the twelve database KPIs follow the feed, to be verified."
   },
   {
    "n": 4,
@@ -176,7 +185,10 @@
    "decide": [
     "to be decided: resend of a failed push (gap G23)"
    ],
-   "sketches": "pages 4 to 5"
+   "sketches": "pages 4 to 5",
+   "pick": "V2",
+   "who": "Zoho",
+   "line": "Campaigns for email and WhatsApp; push and in-app copy sit in I15 and the app sends them (B5)."
   },
   {
    "n": 5,
@@ -209,7 +221,10 @@
    "decide": [
     "to be decided: Creator or a CRM custom module (I15)"
    ],
-   "sketches": "none drawn"
+   "sketches": "none drawn",
+   "pick": "V2",
+   "who": "Zoho",
+   "line": "The app reads content from I15 with published and effective-from fields; wording is content, structure is a release (D5)."
   },
   {
    "n": 6,
@@ -240,7 +255,10 @@
    "decide": [
     "to be decided: Creator or a CRM custom module (I15)"
    ],
-   "sketches": "none drawn"
+   "sketches": "none drawn",
+   "pick": "V2",
+   "who": "Zoho",
+   "line": "App config in I15; the engine's master data is the logic panel, Spinach's build from the wireframes (B2)."
   },
   {
    "n": 7,
@@ -275,7 +293,10 @@
     "to be decided: who cancels, extends or comps a subscription, and where (gap G19)",
     "to be decided: refund policy (D12)"
    ],
-   "sketches": "navigation only (All subscriptions, Trials, Payment issues)"
+   "sketches": "navigation only (All subscriptions, Trials, Payment issues)",
+   "pick": "V1.5",
+   "who": "Zoho",
+   "line": "Razorpay moves the money; Deals and Books hold the record; renewal reminders are Campaigns journeys. Extend or comp: to be decided (G19)."
   },
   {
    "n": 8,
@@ -306,7 +327,10 @@
    "decide": [
     "to be decided: the admin panel login method and MFA (gap G21)"
    ],
-   "sketches": "navigation only (Audit Log under Monitoring)"
+   "sketches": "navigation only (Audit Log under Monitoring)",
+   "pick": "V2",
+   "who": "Zoho",
+   "line": "The app writes the trail and pushes it as App Events (field names, not values); views and export in Zoho."
   },
   {
    "n": 9,
@@ -337,7 +361,10 @@
     "record formats (brief H6)"
    ],
    "decide": [],
-   "sketches": "pages 8 to 10"
+   "sketches": "pages 8 to 10",
+   "pick": "V2",
+   "who": "Zoho",
+   "line": "Analytics reports, schedules and exports; the compliance record exports are a job the app runs (B5)."
   },
   {
    "n": 10,
@@ -368,7 +395,10 @@
    "decide": [
     "to be decided: the admin panel login method and MFA (gap G21)"
    ],
-   "sketches": "navigation only (Administration: Admin users, Roles and permissions)"
+   "sketches": "navigation only (Administration: Admin users, Roles and permissions)",
+   "pick": "V2",
+   "who": "Zoho",
+   "line": "Zoho users, roles and profiles; the staff view keeps an allowlist as part of its own build (B1)."
   },
   {
    "n": 11,
@@ -396,7 +426,10 @@
    "decide": [
     "to be decided: maintenance mode and the minimum app version as I15 flags (gap G22)"
    ],
-   "sketches": "navigation only (System / Settings)"
+   "sketches": "navigation only (System / Settings)",
+   "pick": "V2",
+   "who": "Zoho",
+   "line": "Flags and legal versions in I15; Campaigns and Desk keep their own defaults; maintenance mode is one more flag (G22)."
   },
   {
    "n": 12,
@@ -426,7 +459,10 @@
     "how integration_events reach Zoho Analytics (the database feed)"
    ],
    "decide": [],
-   "sketches": "pages 2 to 3 (the system health tiles)"
+   "sketches": "pages 2 to 3 (the system health tiles)",
+   "pick": "V1.5",
+   "who": "Consoles",
+   "line": "Sentry and an uptime monitor plus each vendor's console; no status page is built; retries live inside the app."
   }
  ],
  "own_note": "yeslyf's own admin items the sheet does not carry, from Kajal's list of 8 Sep 2026 and the admin screens of 23 Sep 2026. No ladder here: the ladder is how the sheet was pitched; for our own items the scope is the best version, and the pick says who provides it.",
@@ -760,5 +796,50 @@
    "record formats (brief H6); DPDP notice, deletion and retention text (gap G03)",
    "the trial's user cap (11) and plus-addresses for staff invitations"
   ]
- }
+ },
+ "pick_rule": "A pick is the level reached at launch; the levels below it are included. Who names the one party that provides the row.",
+ "builds": [
+  {
+   "id": "B1",
+   "what": "The staff view of a client, the only admin screen",
+   "detail": "Lookup by phone; the client's own screens in staff mode, read-only by seat scope; edit on behalf with the engine re-run (ops); actions: deletion done, DIFM tier, refund flag, force re-run; an audit row per action; a staff allowlist on the sign-in."
+  },
+  {
+   "id": "B2",
+   "what": "The logic panel L00 to L09",
+   "detail": "Already in the wireframes: assumptions, cohorts, the instrument universe, market inputs, staging, publish, audit."
+  },
+  {
+   "id": "B3",
+   "what": "The feed into Zoho",
+   "detail": "Contacts and the mirrored fields; Deals from the Razorpay webhooks; Tasks for the ops queue; App Events (timeline, audit, failures); Desk tickets from H07; Bookings slots."
+  },
+  {
+   "id": "B4",
+   "what": "Reads from Zoho",
+   "detail": "I15 content, copy and flags, with caching; the Desk thread on H07; the adviser owner if it is mastered in Zoho (open item 1)."
+  },
+  {
+   "id": "B5",
+   "what": "Senders and jobs",
+   "detail": "Push from state changes (I12); the compliance record export job; the monthly AUA and SIP snapshot if accepted (open item 2)."
+  }
+ ],
+ "holds": [
+  {
+   "who": "Zoho",
+   "what": "CRM (Contacts, views, Deals, Tasks, App Events, users and roles); Analytics (dashboards, reports, exports); Campaigns (templates, journeys, sends); Desk (tickets, the SLA, the grievance register); Bookings; Books (the ledger); I15, Creator or a CRM custom module (content, copy, flags, SKU cards, agreement versions)."
+  },
+  {
+   "who": "Consoles",
+   "what": "Razorpay (I09); the KYC and eSign provider; the AA provider (I01); BSE StAR MF (I02); the WhatsApp provider (I08); Firebase (I12); Sentry and an uptime monitor; Mixpanel (I13)."
+  }
+ ],
+ "open": [
+  "The adviser owner: mastered in Zoho with the app pulling it, or set on the staff view and mirrored.",
+  "AUA and SIP book numbers per Contact in Zoho, or from a database export only (the bands-only rule).",
+  "I15: Creator or a CRM custom module; it fixes the API Spinach codes against.",
+  "The staff view's sign-in and MFA (gap G21).",
+  "Subscription extend or comp, and account suspension: wanted or not (gaps G19, G20)."
+ ]
 }

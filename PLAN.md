@@ -666,7 +666,7 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
 - Next: send the brief (docs/admin_brief.html, T3 and T7) to Spinach on Vatsal's word; W12 then reads delivered.
 - Added the same day, its own commit: docs/admin_split.html from data/admin_split.json (scripts/build_admin_split.py; the
   Split link in the admin seed subnav). Spinach's feature matrix with a pick per row (the version for launch and who
-  provides it) and the explanation under each row; nine admin items of our own outside the sheet, each as its best
+  provides it) and one line why, then the five things Spinach builds (B1 to B5), what the bought tools hold and five open items; folded as working notes for doc 2: the full reasoning, nine admin items of our own outside the sheet, each as its best
   version with the pick; the 13 sketches against Zoho; the outcome if confirmed: one built surface (the staff view of
   a client, M03 reduced to a mode of the app) plus the logic panel, everything else Zoho or a console. The sheet is
   not the universal set (the page says what sits outside it). Every pick stays "to be decided: confirm the pick"; the
