@@ -664,3 +664,11 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   Creator or a CRM custom module (I15), which blocks the API shape the app reads config by; Books and Creator licence
   inclusion; dashboard sharing after G1. Not in the repo: notes of the 1 Oct meeting and any Spinach estimate.
 - Next: send the brief (docs/admin_brief.html, T3 and T7) to Spinach on Vatsal's word; W12 then reads delivered.
+- Added the same day, its own commit: docs/admin_split.html from data/admin_split.json (scripts/build_admin_split.py; the
+  Split link in the admin seed subnav). Spinach's feature matrix with a pick per row (the version for launch and who
+  provides it) and the explanation under each row; nine admin items of our own outside the sheet, each as its best
+  version with the pick; the 13 sketches against Zoho; the outcome if confirmed: one built surface (the staff view of
+  a client, M03 reduced to a mode of the app) plus the logic panel, everything else Zoho or a console. The sheet is
+  not the universal set (the page says what sits outside it). Every pick stays "to be decided: confirm the pick"; the
+  committed split (nine screens) stands until Vatsal confirms, then admin_screens.json, admin_crm.json and the brief
+  change in one commit with that cause.

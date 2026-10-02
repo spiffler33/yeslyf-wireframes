@@ -197,7 +197,7 @@ TABS = [("index.html", "Meeting"), ("gaps.html", "Gaps"), ("inputs.html", "Input
 # Admin seed added 23 Sep 2026 (PLAN_admin_seed_v01.md D9): one tab for the four seed pages, which link each other through
 # seed_subnav(); four tabs would push the header to a third row at laptop width and cut into the wireframes layout.
 SEED_PAGES = [("admin_wireframes.html", "Admin tab"), ("admin_seats.html", "Seats"), ("admin_brief.html", "Brief"),
-              ("admin_operator.html", "Operator")]
+              ("admin_operator.html", "Operator"), ("admin_split.html", "Split")]
 SUBNAV_CSS = """
   .subtabs{display:flex;gap:12px;align-items:center;padding:6px 18px;font-size:12px;color:var(--mute);background:var(--panel);border-bottom:1px solid var(--line)}
   .subtabs a{color:var(--mute);text-decoration:none}
@@ -1081,6 +1081,8 @@ def main():
     build_seats.main()
     import build_brief  # docs/admin_brief.html: T1 to T7 and the seats page's gap rows (seed plan D8, phase D; T7 is W12)
     build_brief.main()
+    import build_admin_split  # docs/admin_split.html: Spinach's sheet with a pick per row, our own items, the sketches (W12, 2 Oct 2026)
+    build_admin_split.main()
 
 
 if __name__ == "__main__":

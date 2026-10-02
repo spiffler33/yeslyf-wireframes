@@ -12,7 +12,11 @@ five dashboards are operator step 13, PLAN.md section 25 is a draft that G9 comp
 closed on 2 Oct 2026: W12, the admin panel brief, as its own board commit (PLAN.md section 26): Spinach's admin work
 (inputs/spinach/admin panel/, untracked on purpose) read against the 28 Sep split; Spinach builds M02, M03, M04, M06,
 M08, M09, M11, M12, M14; M05, M07, M10, M13 moved to Zoho; Metabase out, Zoho only; the brief page carries T7. The
-brief is not yet sent to Spinach; the 1 Oct meeting notes and any Spinach estimate are not in the repo.
+brief is not yet sent to Spinach; the 1 Oct meeting notes and any Spinach estimate are not in the repo. A second page
+followed the same day (docs/admin_split.html from data/admin_split.json; PLAN.md section 26, last bullet): Spinach's
+sheet with a pick per row, our own admin items, the sketches against Zoho; it proposes one built surface (the staff
+view of a client) instead of nine screens. The picks wait for spiff's confirmation; then admin_screens.json,
+admin_crm.json and the brief change in one commit with cause "Vatsal, <date>".
 
 Untracked on purpose in the tree: inputs/spinach/admin panel/ and inputs/spinach/kajal-admin panel/ (the latter is
 byte-identical to inputs/hoa/Admin Panel - Yeslyf.docx), the two inputs/meeting/ files, inputs/spinach/2026-09-25/,
@@ -52,6 +56,9 @@ push). Board work (phase 14 pass 5) runs only on Vatsal's word.
   Chrome). The v8 API list call also needs a scope the docs do not name.
 - (d) Done on 2 Oct 2026: the admin panel inputs were read into W12 (docs/admin_brief.html T7, the Admin + CRM tab,
   PLAN.md section 26). Open: send the brief to Spinach (then tracker W12 reads delivered); the seven gaps G18 to G24.
+- (e) Confirm the picks on docs/admin_split.html (one built surface, the staff view, instead of nine screens; the
+  decisions it lists: the adviser owner mastered in Zoho or on the staff view; AUA and SIP numbers per Contact or not;
+  Creator or a CRM custom module). On a yes the board changes in one commit; on a no the committed split stands.
 
 ## Steps only a person can do (the browser rules hand account creation and org setup back to a person)
 - G1: Zoho One admin panel, User Management, Users, Add User, 9 users (the trial has 9 licenses left; order from plan
