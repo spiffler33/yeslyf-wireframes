@@ -802,7 +802,7 @@
   {
    "id": "B1",
    "what": "The staff view of a client, the only admin screen",
-   "detail": "Lookup by phone; the client's own screens in staff mode, read-only by seat scope; edit on behalf with the engine re-run (ops); actions: deletion done, DIFM tier, refund flag, force re-run; an audit row per action; a staff allowlist on the sign-in."
+   "detail": "Lookup by phone; the client's own screens in staff mode (the financial record with its source and completion badges, the plan, the vault), read-only by seat scope; edit on behalf with the engine re-run (ops); actions: deletion done, DIFM tier, refund flag, force re-run; an audit row per action; a staff allowlist on the sign-in."
   },
   {
    "id": "B2",
@@ -832,7 +832,7 @@
   },
   {
    "who": "Consoles",
-   "what": "Razorpay (I09); the KYC and eSign provider; the AA provider (I01); BSE StAR MF (I02); the WhatsApp provider (I08); Firebase (I12); Sentry and an uptime monitor; Mixpanel (I13)."
+   "what": "Razorpay (I09); the KYC and eSign provider; the AA provider (I01); BSE StAR MF (I02); the WhatsApp provider (I08); Firebase (I12); Sentry and an uptime monitor; Mixpanel (I13) for behaviour: funnels, retention, drop-offs, plan reads and downloads."
   }
  ],
  "open": [
