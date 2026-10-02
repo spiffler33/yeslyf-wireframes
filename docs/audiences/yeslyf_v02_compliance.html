@@ -612,8 +612,9 @@ var WIRE_OPTS={"identities": ["Compliance"], "lock": "Compliance", "key": "yesly
         var i = byId[s.id]; var n = store.notes[s.id];
         var cls = (i === state.idx ? ' on' : '') + (tierOk(s) ? '' : ' dim');
         var dot = n && (n.text || n.verdict) ? '<i class="dot"></i>' : '';
-        var mark = s.v02 && s.v02.status === "new" ? '<i class="mk new">new</i>' : (s.v02 && (s.v02.status === "changed" || s.v02.status === "rebuilt") ? '<i class="mk">changed</i>' : '');
-        if(s.freeze && s.freeze.status === "open") mark += '<i class="mk open">open</i>';
+        var dropped = !!(s.v02 && s.v02.status === "dropped");
+        var mark = s.v02 && s.v02.status === "new" ? '<i class="mk new">new</i>' : (s.v02 && (s.v02.status === "changed" || s.v02.status === "rebuilt") ? '<i class="mk">changed</i>' : (dropped ? '<i class="mk">moved</i>' : ''));
+        if(s.freeze && s.freeze.status === "open" && !dropped) mark += '<i class="mk open">open</i>';
         html += '<a class="nav-item'+cls+'" href="#'+s.id+'"><span class="nav-id">'+s.id+'</span><span>'+esc(s.title)+mark+'</span>'+dot+'</a>';
       });
       html += '</div>';
@@ -649,7 +650,7 @@ var WIRE_OPTS={"identities": ["Compliance"], "lock": "Compliance", "key": "yesly
     frame.className = "frame " + (s.frame === "desktop" ? "desktop" : "phone");
     var body = s.ui.map(el).join("");
     var hidden = !tierOk(s) ? '<div class="w-hidden">Not shown to a '+esc(state.tier)+' user</div>' : '';
-    var fz = s.freeze ? '<span class="fz">'+esc(s.freeze.status)+'</span>' : '';
+    var fz = (s.v02 && s.v02.status === "dropped") ? '<span class="fz">moved</span>' : (s.freeze ? '<span class="fz">'+esc(s.freeze.status)+'</span>' : '');
     frame.innerHTML = '<div class="frame-top"><span>'+esc(s.id)+'</span><span>'+esc(s.title)+'</span><span>'+esc(s.template)+'</span>'+fz+'</div><div class="frame-body">'+hidden+body+'</div>';
     document.getElementById("crumb").textContent = secName[s.sec] + "  /  " + s.id + "  " + s.title;
     var w = walkList(); var pos = w.indexOf(state.idx);
@@ -724,13 +725,15 @@ var WIRE_OPTS={"identities": ["Compliance"], "lock": "Compliance", "key": "yesly
   function marker(s){
     var v = s.v02 || {status:"kept", causes:[]};
     var st = v.status;
-    var label = st === "new" ? "New in " + VERSION : (st === "changed" || st === "rebuilt") ? "Changed in " + VERSION + (st === "rebuilt" ? " (rebuilt)" : "") : "Kept from v0.1";
+    var label = st === "new" ? "New in " + VERSION : (st === "changed" || st === "rebuilt") ? "Changed in " + VERSION + (st === "rebuilt" ? " (rebuilt)" : "") : st === "dropped" ? "Dropped from " + VERSION + " (moved; the pointer says where)" : "Kept from v0.1";
     var cls = st === "new" ? " new" : (st === "changed" || st === "rebuilt") ? " changed" : "";
     var causes = '';
     if(SPEC === "full" && v.causes && v.causes.length){
       var n = v.causes.length;
       causes = block("causes", n + (n === 1 ? " cause" : " causes"), null, '<ul>'+v.causes.map(function(c){ return '<li>'+esc(c)+'</li>'; }).join("")+'</ul>');
     }
+    // A dropped screen that still renders (the admin page keeps its id with a pointer, W12) is neither open nor frozen.
+    if(st === "dropped") return '<div class="marker'+cls+'"><div class="fz-line"><b class="lbl">'+label+'</b></div>'+causes+'</div>';
     return '<div class="marker'+cls+'">'+freezeLine(s, '<b class="lbl">'+label+'</b>')+causes+'</div>';
   }
   function freezeLine(s, label){

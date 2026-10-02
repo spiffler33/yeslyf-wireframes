@@ -162,11 +162,11 @@
       "owner": "Vatsal, Kajal",
       "due_date": "2026-09-30",
       "due_about": true,
-      "status": "not started",
+      "status": "in progress",
       "blocked_by": "",
       "source": "minutes 16 Sep 2026, item 20",
       "lands_at": "admin_brief.html",
-      "notes": ""
+      "notes": "Landed on the board on 2 Oct 2026: Spinach's 12 admin modules read against the 28 Sep split (T7 on admin_brief.html and the Admin + CRM tab); Spinach builds M02, M03, M04, M06, M08, M09, M11, M12 and M14; M05, M07, M10 and M13 moved to Zoho; Metabase out, Zoho only; the open items are gaps G18 to G24 (Vatsal, 2 Oct 2026). Reads delivered once the brief is sent to Spinach."
     },
     {
       "id": "W13",
@@ -306,11 +306,12 @@
       "owner": "Spinach",
       "due_date": "",
       "due_about": false,
-      "status": "not started",
+      "status": "dropped",
+      "folded_into": "W12",
       "blocked_by": "",
       "source": "minutes 16 Sep 2026, item 20",
       "lands_at": "",
-      "notes": ""
+      "notes": "The sketches of 19 Aug 2026 and the feature matrix of 9 Jul 2026 were read straight into W12 on 2 Oct 2026; Kajal's list of 8 Sep 2026 was already the source of the placement rows (Vatsal, 2 Oct 2026)."
     },
     {
       "id": "W24",

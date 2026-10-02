@@ -634,5 +634,33 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   and G6 (the Campaigns first-time onboarding form). G2, G7 and G8 follow them; G8 also waits on the plan section 4
   provisional calls; a wider grant with Desk.agents.READ is asked for before G2. G9 closes the phase and completes
   this section (what closed, what is open).
-- Board, its own commit (21018b4, 29 Sep 2026): the Admin + CRM tab rewrite of section 24's four points landed; still
-  to be decided: Metabase's 13 rows to Zoho Analytics.
+- Board, its own commit (21018b4, 29 Sep 2026): the Admin + CRM tab rewrite of section 24's four points landed; the
+  Metabase question was decided on 2 Oct 2026 (section 26).
+
+## 26. Status, 2 Oct 2026 (W12: the admin panel brief; Spinach's admin work read in; Metabase out)
+
+- Why: Spinach's meeting of 1 Oct 2026 made three points: Spinach need not build the admin panel because most of it
+  comes from Zoho; the residual Zoho cannot do is Spinach's, but nobody had said what it is; HoA had never gone
+  through Spinach's own admin panel work. That work (inputs/spinach/admin panel/: a feature matrix of 9 Jul 2026 with
+  12 modules in four versions, and 13 sketches of 19 Aug 2026) predates the v0.1 admin spec of 8 Sep 2026, which never
+  cited it. Kajal's admin list (inputs/spinach/kajal-admin panel/, the same file as inputs/hoa/Admin Panel -
+  Yeslyf.docx of 8 Sep 2026) is the source of the 48 PLACEMENT rows and needed nothing.
+- Decisions (Vatsal, 2 Oct 2026): Metabase is out, Zoho only: the 13 Metabase rows read Zoho Analytics (bucket Zoho),
+  the Metabase STACK row is kept as a record, a Zoho Analytics row is added, "to be verified: how the app database
+  reaches Zoho Analytics". The split follows the 28 Sep test: Spinach builds M02, M03, M04 (opened from the Contact's
+  admin panel link), M06 (with M07's data-quality flags), M08, M09, M11, M12 and M14 (grown to admin users: create,
+  assign a seat, revoke, reset); M05, M07, M10 and M13 are dropped from the admin panel with a pointer each (Zoho
+  Analytics; Sentry and the consoles; I15; Zoho Analytics). The IDs stay; the screens render as moved.
+- Landed, 2 Oct 2026 (this commit): data/admin_crm.json (the rows, STACK, COMPLIANCE, the legend, SPINACH_MODULES with
+  the 12 modules, their homes and what Spinach builds, two changes_v02 entries); data/admin_screens.json (the file
+  bans names, so its causes read "W12, 2 Oct 2026"); data/seats.json (seven rows repointed, four of them gaps until
+  the Zoho side is built or verified); data/gaps.json G18 to G24; data/tracker.json (W12 in progress until sent, W23
+  folded into W12); the renderers (a dropped admin screen shows its pointer instead of a seed view; the brief's T3
+  lists built screens only; T7 is the module table, also on the Admin + CRM tab); docs rebuilt.
+  PLAN_admin_seed_v01.md section 14 is superseded by data/admin_screens.json.
+- Open, to be decided (gaps G18 to G24): where the adviser writes the call note (M04, or the CRM per BE-15);
+  subscription cancel, extend or comp, and where; account suspension; the admin panel login and MFA; maintenance mode
+  and the minimum app version as I15 flags; resend of a failed push; a devices and sessions tab. Open from before:
+  Creator or a CRM custom module (I15), which blocks the API shape the app reads config by; Books and Creator licence
+  inclusion; dashboard sharing after G1. Not in the repo: notes of the 1 Oct meeting and any Spinach estimate.
+- Next: send the brief (docs/admin_brief.html, T3 and T7) to Spinach on Vatsal's word; W12 then reads delivered.

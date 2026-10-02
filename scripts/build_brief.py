@@ -86,7 +86,7 @@ ROLE_SLUG_NAME = {
     "marketing": "Marketing", "compliance": "Compliance", "support": "Support", "finance": "Finance",
 }
 
-VALID_BRIEF = {"T1", "T2", "T3", "T4", "T5", "T6"}
+VALID_BRIEF = {"T1", "T2", "T3", "T4", "T5", "T6", "T7"}
 VALID_SURFACE = {"Admin tab", "Zoho", "vendor console"}
 VALID_ANSWERED = {"yes", "no"}
 
@@ -322,11 +322,25 @@ def build_t2(admin_crm, screens_doc, admin_screens, states_doc, props_by_event):
 def build_t3(admin_screens):
     rows = []
     for s in admin_screens["screens"]:
+        if s["v02"].get("status") == "dropped":
+            continue  # moved out of the admin panel (W12, 2 Oct 2026); T7 says where
         reads = "; ".join(str(x) for x in s["spec"]["fields"])
         writes = "; ".join("%s (%s)" % (w["action"], ", ".join(w["roles"])) for w in s.get("writes", []) or [])
         role = "; ".join("%s: %s" % (k, v) for k, v in s["role"].items())
         cause = "; ".join(s["v02"]["causes"]) or CAUSE_T3_DEFAULT
         rows.append([s["id"], s["title"], ", ".join(s["seat"]), reads, writes or "-", role, cause])
+    return rows
+
+
+# ---- T7: Spinach's admin modules and their homes (W12) ---------------------------------------------------------
+
+CAUSE_T7 = "Vatsal, 2 Oct 2026 (W12)"
+
+
+def build_t7(admin_crm):
+    rows = []
+    for m in admin_crm.get("SPINACH_MODULES", []):
+        rows.append([m["module"], m["source"], m["home"], m["builds"], m.get("notes") or "-", CAUSE_T7])
     return rows
 
 
@@ -511,6 +525,7 @@ TABLES = [
     ("T4", "T4 Zoho configuration", ["object", "field", "detail", "cause"]),
     ("T5", "T5 Nudge rules", ["item", "detail", "cause"]),
     ("T6", "T6 Analytics", ["item", "detail", "cause"]),
+    ("T7", "T7 Spinach's admin modules and their homes", ["module", "source", "home", "Spinach builds", "notes", "cause"]),
 ]
 
 
@@ -571,8 +586,10 @@ def build_page(table_rows, questions):
     sections = "".join(render_table_section(tid, title, cols, table_rows[tid], by_gap[tid]) for tid, title, cols in TABLES)
 
     intro = ('<section><h1>Admin brief skeleton: what the built tool, the CRM, the database and the event feed '
-             'must hold</h1><p class="lead">Tables T1 to T6 are pre-filled from the board\'s data; rows marked '
-             'gap come from the seats page.</p></section>')
+             'must hold</h1><p class="lead">Tables T1 to T7 are pre-filled from the board\'s data; rows marked '
+             'gap come from the seats page. T3 lists the screens Spinach builds; M05, M07, M10 and M13 moved to Zoho '
+             'and are off it. T7 reads Spinach\'s own admin panel work (the feature matrix of 9 Jul 2026 and the '
+             'sketches of 19 Aug 2026) against the split (W12, 2 Oct 2026).</p></section>')
 
     questions_blob = [
         {"id": q["id"], "brief": q.get("brief"), "question": q.get("question"), "gap": q.get("gap") or "", "proposed": q.get("proposed") or "",
@@ -644,7 +661,8 @@ def main():
     t4 = build_t4(src["schema"], src["schema_idx"], questions, src["states_doc"], src["operator_doc"])
     t5 = build_t5(partial["config_doc"], src["states_doc"], src["admin_crm"], src["integrations_by_id"])
     t6 = build_t6(src["screens_doc"], src["flow_order"], src["admin_crm"], src["integrations_by_id"])
-    table_rows = {"T1": partial["T1"], "T2": partial["T2"], "T3": partial["T3"], "T4": t4, "T5": t5, "T6": t6}
+    t7 = build_t7(src["admin_crm"])
+    table_rows = {"T1": partial["T1"], "T2": partial["T2"], "T3": partial["T3"], "T4": t4, "T5": t5, "T6": t6, "T7": t7}
 
     page = build_page(table_rows, questions)
     site.check_ascii(PAGE, page)

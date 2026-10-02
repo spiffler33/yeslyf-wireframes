@@ -1,5 +1,5 @@
 {
-  "about": "The seats page content (PLAN_admin_seed_v01.md section 15, deliverable D7): for each question an operator seat asks, the surface where the answer lives (the admin tab, the CRM or a vendor console), the screen, saved view or integrations row, and whether the seed (run-3000, anchor 23 Sep 2026) plus that surface answers it. A no carries a one-sentence gap and the brief table it lands in (T1 to T6 on the admin brief); a yes names the table the question belongs to. Section 15's items come first on each seat, in order, one per item; screen gaps found while the admin tab was drawn and the N01 gap list follow on the seat that asks them, each with its own cause.",
+  "about": "The seats page content (PLAN_admin_seed_v01.md section 15, deliverable D7): for each question an operator seat asks, the surface where the answer lives (the admin tab, the CRM or a vendor console), the screen, saved view or integrations row, and whether the seed (run-3000, anchor 23 Sep 2026) plus that surface answers it. A no carries a one-sentence gap and the brief table it lands in (T1 to T6 on the admin brief); a yes names the table the question belongs to. Section 15's items come first on each seat, in order, one per item; screen gaps found while the admin tab was drawn and the N01 gap list follow on the seat that asks them, each with its own cause. W12, 2 Oct 2026: seven answered rows that pointed at M05, M07, M10 or M13 now point at Zoho or M06; four of them became gaps until the Zoho side is built or verified.",
   "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 15)",
   "seats": [
     {
@@ -24,22 +24,32 @@
         {
           "id": "po-02",
           "question": "AUA by tier",
-          "surface": "Admin tab",
-          "screen": "M13",
-          "answered": "yes",
-          "gap": "",
+          "surface": "Zoho",
+          "screen": "Zoho Analytics, the database rows",
+          "answered": "no",
+          "gap": "M13 moved to Zoho Analytics (W12, 2 Oct 2026); AUA by tier is a database row and needs the feed. to be verified: how the app database reaches Zoho Analytics",
           "brief": "T6",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Analytics",
+            "name": "Principal officer dashboard, database rows",
+            "criteria": "AUA by tier from the monthly holdings snapshots"
+          }
         },
         {
           "id": "po-03",
           "question": "SIP book: executed through I02 against AA-detected",
-          "surface": "Admin tab",
-          "screen": "M13",
-          "answered": "yes",
-          "gap": "",
+          "surface": "Zoho",
+          "screen": "Zoho Analytics, the database rows",
+          "answered": "no",
+          "gap": "M13 moved to Zoho Analytics (W12, 2 Oct 2026); the SIP book is a database row and needs the feed. to be verified: how the app database reaches Zoho Analytics",
           "brief": "T6",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Analytics",
+            "name": "Principal officer dashboard, database rows",
+            "criteria": "SIP mandates through I02 against SIPs detected via AA, shown apart"
+          }
         },
         {
           "id": "po-04",
@@ -59,22 +69,32 @@
         {
           "id": "po-05",
           "question": "Annual RPQ overdue",
-          "surface": "Admin tab",
-          "screen": "M05",
+          "surface": "Zoho",
+          "screen": "RPQ refresh due",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "App Events",
+            "name": "RPQ refresh due",
+            "criteria": "type = rpq_due, open; the compliance view built in the trial (phase G3)"
+          }
         },
         {
           "id": "po-06",
           "question": "Agreement renewals overdue",
-          "surface": "Admin tab",
-          "screen": "M05",
-          "answered": "yes",
-          "gap": "",
+          "surface": "Zoho",
+          "screen": "Agreement renewals due",
+          "answered": "no",
+          "gap": "M05 moved to Zoho (W12, 2 Oct 2026); an App Events view on agreement_due is not built yet (the RPQ one is, phase G3).",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "App Events",
+            "name": "Agreement renewals due",
+            "criteria": "type = agreement_due, open; to be built like RPQ refresh due"
+          }
         },
         {
           "id": "po-07",
@@ -888,7 +908,7 @@
           "id": "op-03",
           "question": "Unknown ISINs",
           "surface": "Admin tab",
-          "screen": "M07",
+          "screen": "M06",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
@@ -898,7 +918,7 @@
           "id": "op-04",
           "question": "Plausibility flags",
           "surface": "Admin tab",
-          "screen": "M07",
+          "screen": "M06",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
@@ -1008,12 +1028,17 @@
         {
           "id": "mk-04",
           "question": "The weekly cap",
-          "surface": "Admin tab",
-          "screen": "M10",
-          "answered": "yes",
-          "gap": "",
+          "surface": "Zoho",
+          "screen": "Campaigns frequency cap",
+          "answered": "no",
+          "gap": "M10 moved to I15 (W12, 2 Oct 2026); the cap value is an I15 flag and the cap is enforced in Campaigns, not set up yet (phase G6).",
           "brief": "T5",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Campaigns",
+            "name": "Frequency cap",
+            "criteria": "one nudge per week per contact (the STACK rule)"
+          }
         },
         {
           "id": "mk-05",

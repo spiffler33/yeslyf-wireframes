@@ -200,10 +200,12 @@
     var writes = s.writes || [];
     var writeParts = writes.map(function(w){ return w.action + " (" + w.roles.join(", ") + ")"; });
     var vendorLabel = ADMIN.integ("I14") + " instead?";
+    var dropped = !!(s.v02 && s.v02.status === "dropped"); // moved out of the admin panel (W12, 2 Oct 2026)
     return '<div class="spec-block a-top"><div class="spec-t">Seat and actions</div>' +
       '<div class="a-line"><b>Seat</b> ' + esc((s.seat || []).join(", ")) + '</div>' +
       '<div class="a-line"><b>Role</b> ' + esc(roleParts.join("; ")) + '</div>' +
-      '<div class="a-line"><b>Built, not bought</b></div>' +
+      (dropped ? '<div class="a-line"><b>Moved, not built</b> ' + esc(replaceTokens(s.v02.pointer || s.zoho_instead)) + '</div>'
+               : '<div class="a-line"><b>Built, not bought</b></div>') +
       '<div class="a-line"><b>Write actions (mock)</b> ' + (writeParts.length ? esc(writeParts.join("; ")) : "none") + '</div>' +
       '<div class="a-line"><b>' + esc(vendorLabel) + '</b> ' + esc(replaceTokens(s.zoho_instead)) + '</div>' +
       '</div>';
@@ -241,6 +243,10 @@
     var body = frame.querySelector(".frame-body");
     if(!body) return;
     wireFrame(frame);
+    if(s.v02 && s.v02.status === "dropped"){
+      body.innerHTML = '<div class="w-note">' + esc(s.id) + ' moved out of the admin panel: ' + esc(replaceTokens(s.v02.pointer || "")) + '</div>';
+      return;
+    }
     var fn = ADMIN.draw[s.id];
     if(!fn) return; // no draw function registered yet (the static "Loading the seed..." fallback stays up)
     if(!loaded){

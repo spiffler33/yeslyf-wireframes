@@ -413,6 +413,8 @@ def validate_admin_screens(doc, wireframe_ids, vendor_names):
         v = s.get("v02") or {}
         if not v.get("causes"):
             p.append("%s: v02 has no causes" % sid)
+        if v.get("status") == "dropped" and not v.get("pointer"):
+            p.append("%s: dropped without a v02 pointer to where its content went" % sid)
         spec = s.get("spec") or {}
         for key in ("fields", "logic", "branches", "states", "dev"):
             if key not in spec:

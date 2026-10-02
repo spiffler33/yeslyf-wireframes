@@ -764,6 +764,8 @@ V02_ADMIN_SECTIONS = [
     ("DEAL_FIELDS_V02", "Deal fields added in v0.2"),
     ("CONTACT_FIELDS_V02", "Contact fields added in v0.2"),
     ("COMPLIANCE_NOTE", "Compliance records note (v0.2)"),
+    ("SPINACH_MODULES_NOTE", "Spinach's admin modules, note (W12)"),
+    ("SPINACH_MODULES", "Spinach's admin modules and their homes (W12)"),
 ]
 
 
@@ -1077,7 +1079,7 @@ def main():
     build_admin_wireframes.main()
     import build_seats  # docs/admin_seats.html from data/seats.json (seed plan D7, phase D)
     build_seats.main()
-    import build_brief  # docs/admin_brief.html: T1 to T6 and the seats page's gap rows (seed plan D8, phase D)
+    import build_brief  # docs/admin_brief.html: T1 to T7 and the seats page's gap rows (seed plan D8, phase D; T7 is W12)
     build_brief.main()
 
 

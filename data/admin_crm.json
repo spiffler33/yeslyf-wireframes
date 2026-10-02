@@ -94,14 +94,23 @@
   },
   {
    "id": "metabase",
-   "name": "Metabase",
-   "kind": "Low-code over the database",
-   "cost": "Free, self-hosted",
-   "does": "The KPI dashboard and every count in the doc that comes from the database: users, paid, plans, AUA, SIP book, AA availed, integration failures. Scheduled email of the dashboard.",
+   "name": "Metabase (out)",
+   "kind": "Out (v0.1: low-code over the database)",
+   "cost": "",
+   "does": "Out. The KPI dashboard and every count that comes from the database go to Zoho Analytics, next row. Nothing is self-hosted.",
+   "login": "",
+   "notes": "Kept as a record of the v0.1 choice. No Metabase anywhere.",
+   "cause": "Vatsal, 2 Oct 2026 (Metabase out, Zoho only)"
+  },
+  {
+   "id": "zoho-analytics",
+   "name": "Zoho Analytics",
+   "kind": "Bought (in Zoho One)",
+   "cost": "to be verified: included in the Zoho One licence",
+   "does": "The KPI dashboards and every count that comes from the database: users, paid, plans, AUA, SIP book, AA availed, integration failures. Five dashboards, one per seat, over the CRM data exist in the trial already (phase G4).",
    "login": "Principal officer",
-   "notes": "SQL questions saved once; nobody builds a dashboard screen.",
-   "note_v02": "to be decided: Metabase's 13 placement rows to Zoho Analytics; the rows stay as written until then.",
-   "cause": "Vatsal, 28 Sep 2026 (to be decided: Metabase rows to Zoho Analytics)"
+   "notes": "to be verified: how the app database reaches Zoho Analytics; to be verified: scheduled email of a dashboard. Nobody builds a dashboard screen.",
+   "cause": "Vatsal, 2 Oct 2026 (Metabase out, Zoho only)"
   },
   {
    "id": "mixpanel",
@@ -110,7 +119,7 @@
    "cost": "Free tier, then paid",
    "does": "Behaviour: funnels, retention, drop-off by screen. Every wireframe screen ID is an event.",
    "login": "Principal officer, product",
-   "notes": "If the free tier is outgrown, the same events can be stored in the database and read in Metabase with less convenience."
+   "notes": "If the free tier is outgrown, the same events can be stored in the database and read in Zoho Analytics with less convenience."
   },
   {
    "id": "razorpay",
@@ -119,7 +128,7 @@
    "cost": "Transaction fees",
    "does": "Payments, subscriptions, mandates, refunds, invoices. Source of truth for money.",
    "login": "Principal officer, finance",
-   "notes": "Webhooks update tier and billing state in the app; Metabase mirrors counts."
+   "notes": "Webhooks update tier and billing state in the app; Zoho Analytics mirrors counts."
   },
   {
    "id": "digio",
@@ -171,8 +180,8 @@
   {
    "sec": "Dashboard KPIs",
    "item": "Total users",
-   "bucket": "Metabase",
-   "tool": "Metabase over users table",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics, from the users table",
    "def": "Contacts with a verified OTP (A03).",
    "wire": "A03",
    "note": ""
@@ -180,8 +189,8 @@
   {
    "sec": "Dashboard KPIs",
    "item": "New users, today / week / month",
-   "bucket": "Metabase",
-   "tool": "Metabase",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics",
    "def": "Same table, created_at buckets.",
    "wire": "A03",
    "note": ""
@@ -191,15 +200,15 @@
    "item": "Active users",
    "bucket": "Mixpanel",
    "tool": "Mixpanel DAU / WAU / MAU",
-   "def": "Opened the app; app_open event. Metabase can approximate from last_active.",
+   "def": "Opened the app; app_open event. Zoho Analytics can approximate from last_active.",
    "wire": "H01",
    "note": ""
   },
   {
    "sec": "Dashboard KPIs",
    "item": "In onboarding",
-   "bucket": "Metabase",
-   "tool": "Metabase",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics",
    "def": "Users in states S1 to S5 of the returning-user table.",
    "wire": "N01",
    "note": "Counted per state, not as one number, or you cannot act on it."
@@ -207,8 +216,8 @@
   {
    "sec": "Dashboard KPIs",
    "item": "Paid users",
-   "bucket": "Metabase",
-   "tool": "Metabase, reconciled to Razorpay monthly",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics, reconciled to Razorpay monthly",
    "def": "tier in (DIY, DIWM) with an active subscription or a one-time payment.",
    "wire": "P05",
    "note": ""
@@ -216,8 +225,8 @@
   {
    "sec": "Dashboard KPIs",
    "item": "Plan opted, by SKU",
-   "bucket": "Metabase",
-   "tool": "Metabase",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics",
    "def": "Count by sku from the paid event.",
    "wire": "P01",
    "note": "SKU set is config in Zoho (the Fee structure row); the query reads it.",
@@ -227,7 +236,7 @@
    "sec": "Dashboard KPIs",
    "item": "Plans in progress (being prepared)",
    "bucket": "Change",
-   "tool": "Metabase",
+   "tool": "Zoho Analytics",
    "def": "Plans build instantly (G01), so this is near zero by design. Replace with two numbers: data complete but plan not built (engine failures, should be zero) and plans built in the last 24 hours.",
    "wire": "G01",
    "note": "Conflicts with the no-review-gate decision; redefined."
@@ -235,8 +244,8 @@
   {
    "sec": "Dashboard KPIs",
    "item": "Plans completed (delivered)",
-   "bucket": "Metabase",
-   "tool": "Metabase for built; Mixpanel for read",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics for built; Mixpanel for read",
    "def": "plan_built count; plan_read count; the gap is the unread plans (state S6).",
    "wire": "G03",
    "note": ""
@@ -255,8 +264,8 @@
   {
    "sec": "Dashboard KPIs",
    "item": "AUA (assets under advisory)",
-   "bucket": "Metabase",
-   "tool": "Metabase, monthly snapshots",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics, monthly snapshots",
    "def": "Sum of AA- or CAS-verified holdings for users with an active plan. Split DIY / DIWM / DIFM.",
    "wire": "A08",
    "note": "For DIY and DIWM this is a business metric only (fixed-fee mode). For DIFM it is the fee base (AUA mode) and SEBI requires it to be demonstrable with statements: snapshot monthly and keep the statements."
@@ -264,8 +273,8 @@
   {
    "sec": "Dashboard KPIs",
    "item": "SIP book (ongoing monthly investments)",
-   "bucket": "Metabase",
-   "tool": "Metabase",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics",
    "def": "Sum of active SIP mandates placed through BSE StAR (E03) plus SIPs detected via AA (D06) for users who execute elsewhere. Show the two separately.",
    "wire": "E03",
    "note": ""
@@ -273,8 +282,8 @@
   {
    "sec": "Dashboard KPIs",
    "item": "AA availed",
-   "bucket": "Metabase",
-   "tool": "Metabase",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics",
    "def": "Consents active / declined / expired / failed, as counts and as a share of paid users.",
    "wire": "A06",
    "note": ""
@@ -309,8 +318,8 @@
   {
    "sec": "Onboarding analytics",
    "item": "KYC failure rate",
-   "bucket": "Metabase",
-   "tool": "Metabase over integration_events",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics, from integration_events",
    "def": "kyc_failed / kyc_attempted from the app's integration log (P02).",
    "wire": "P02",
    "note": "Same log feeds the Integrations question below."
@@ -318,8 +327,8 @@
   {
    "sec": "Onboarding analytics",
    "item": "AA failure rate",
-   "bucket": "Metabase",
-   "tool": "Metabase over integration_events; TSP console for FIP detail",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics, from integration_events; TSP console for FIP detail",
    "def": "aa_failed / aa_attempted, by institution (A07, A09).",
    "wire": "A09",
    "note": ""
@@ -345,8 +354,8 @@
   {
    "sec": "Commercial analytics",
    "item": "Subscription conversion",
-   "bucket": "Metabase",
-   "tool": "Metabase",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics",
    "def": "One-time buyers who started the membership within 60 days (credit rule on P01). Only exists if the one-time SKU survives.",
    "wire": "P01",
    "note": "Depends on the SKU decision."
@@ -356,7 +365,7 @@
    "item": "Revenue",
    "bucket": "Zoho",
    "tool": "Zoho Books (the ledger); CRM Deals Amount by SKU and month once prices exist; Razorpay dashboard for money movement",
-   "def": "Gross, refunds, net, by SKU and month. Razorpay is the source of money movement; Zoho Books is the ledger; Metabase shows it next to users until the Zoho Analytics question is decided.",
+   "def": "Gross, refunds, net, by SKU and month. Razorpay is the source of money movement; Zoho Books is the ledger; Zoho Analytics shows it next to users.",
    "wire": "P04",
    "note": "",
    "cause": "Vatsal, 28 Sep 2026 (revenue read in Zoho)"
@@ -364,8 +373,8 @@
   {
    "sec": "Commercial analytics",
    "item": "Plan type mix",
-   "bucket": "Metabase",
-   "tool": "Metabase",
+   "bucket": "Zoho",
+   "tool": "Zoho Analytics",
    "def": "Same as plan opted by SKU.",
    "wire": "P01",
    "note": "Duplicate of a KPI; folded."
@@ -383,7 +392,7 @@
    "sec": "Plan analytics",
    "item": "Time from data completion to plan",
    "bucket": "Fold",
-   "tool": "Metabase",
+   "tool": "Zoho Analytics",
    "def": "Seconds, by design. Keep as an engine health check (p95 build time), not a business metric.",
    "wire": "G01",
    "note": ""
@@ -401,7 +410,7 @@
    "sec": "Financial data",
    "item": "Not started / partially completed / completed",
    "bucket": "Admin panel",
-   "tool": "Admin panel over the user record + Metabase counts",
+   "tool": "Admin panel over the user record + Zoho Analytics counts",
    "def": "Completion flags per data screen (D01 to D09) as in the M2 completion rules; O02 reads the same flags.",
    "wire": "O02",
    "note": "",
@@ -432,7 +441,7 @@
    "item": "Total paid, pending, failed, refunded, revenue",
    "bucket": "Console",
    "tool": "Razorpay dashboard",
-   "def": "Native reports. Metabase mirrors counts via webhooks for the KPI page.",
+   "def": "Native reports. Zoho Analytics mirrors counts via webhooks for the KPI dashboards.",
    "wire": "Q03",
    "note": ""
   },
@@ -449,8 +458,8 @@
    "sec": "Integrations",
    "item": "Last sync and failures: KYC, AA, payment gateway, email, WhatsApp, push",
    "bucket": "Console",
-   "tool": "Sentry alerts + Metabase over integration_events; each vendor's console for detail",
-   "def": "The app writes one row per integration call (vendor, outcome, latency). Metabase shows last success and failure counts; Sentry pages someone when a threshold trips.",
+   "tool": "Sentry alerts + Zoho Analytics over integration_events; each vendor's console for detail",
+   "def": "The app writes one row per integration call (vendor, outcome, latency). Zoho Analytics shows last success and failure counts; Sentry pages someone when a threshold trips.",
    "wire": "A07",
    "note": "No status page is built."
   },
@@ -1171,7 +1180,7 @@
   [
    "AUA statements (DIFM, AUA fee mode)",
    "Monthly AA or CAS snapshots per client",
-   "Metabase snapshot table"
+   "Snapshot table in the app database, read in Zoho Analytics"
   ],
   [
    "Audit trail on regulated records",
@@ -1341,7 +1350,7 @@
    "adviser id of the last call; used only when adviser_continuity is on"
   ]
  ],
- "COMPLIANCE_NOTE": "The nine records keep their list. Five rows that named Directus read admin panel or Zoho (Vatsal, 28 Sep 2026, supersedes D1); AUA statements stay on Metabase until the Zoho Analytics question is decided. to be verified: record formats (brief H6)",
+ "COMPLIANCE_NOTE": "The nine records keep their list. Five rows that named Directus read admin panel or Zoho (Vatsal, 28 Sep 2026, supersedes D1); the AUA statements row reads Zoho Analytics (Vatsal, 2 Oct 2026). to be verified: record formats (brief H6)",
  "CRM_BACKLOG": [
   {
    "item": "DIFM prospect flag",
@@ -1453,9 +1462,104 @@
   {
    "what": "Metabase's 13 PLACEMENT rows stay as written; to be decided: Metabase's 13 rows to Zoho Analytics (a note on the Metabase STACK row and in the legend).",
    "cause": "Vatsal, 28 Sep 2026 (to be decided: Metabase rows to Zoho Analytics)"
+  },
+  {
+   "what": "Metabase is out. PLACEMENT: the 13 Metabase rows read Zoho Analytics (bucket Zoho); seven more rows that named Metabase in the tool or definition reworded (Active users, Plans in progress, Revenue, Time from data completion to plan, the Financial data completion row, the Payment dashboard row, the Integrations row). STACK: the Metabase row is kept as a record of the v0.1 choice; a Zoho Analytics row added; the Mixpanel fallback reads Zoho Analytics. COMPLIANCE: the AUA statements row reads Zoho Analytics. The legend no longer lists Metabase.",
+   "cause": "Vatsal, 2 Oct 2026 (Metabase out, Zoho only)"
+  },
+  {
+   "what": "W12, the admin panel brief: Spinach's admin panel work (the feature matrix of 9 Jul 2026 and the sketches of 19 Aug 2026) read against the 28 Sep split; SPINACH_MODULES lists the 12 modules, their homes and what Spinach builds, rendered on the brief page. Admin screens M05, M07, M10 and M13 moved to Zoho (data/admin_screens.json); M14 grew admin-user writes; M06 took M07's data-quality flags; M04 is opened from the Contact's admin panel link. Seven gaps appended to data/gaps.json (G18 to G24); seven seat rows repointed. Kajal's admin list of 8 Sep 2026 is the source of the 48 PLACEMENT rows and needed no change.",
+   "cause": "Vatsal, 2 Oct 2026 (W12)"
   }
  ],
  "note_v02": "v0.2 additions sit beside the v0.1 keys; the v0.1 admin page is frozen and served from docs/v01/, and a v0.1 key on this page changes only with a cause listed under Changes in v0.2. The v0.2 NUDGES matrix is rendered by the site from data/v02/states.json (one row per state per ladder step: state, day, channel, copy slot, deep link, tier rule, CRM task); v0.2 EVENTS are rendered from data/screens_v02.json (every screen's events plus state_enter events). The CRM platform is Zoho One (I14).",
- "PLACEMENT_NOTE_V02": "Bucket legend (Vatsal, 28 Sep 2026): Zoho, Mixpanel, Metabase and Admin panel name the tool that holds the item. Console: read in the vendor's own console, nothing built. Fold: folds into another item or tool. Change: the item's meaning changed with the product. Directus is out; its 13 rows are sorted by one test: what must sit on the app's own database (admin over the app tables, edits to client data) goes to the admin panel Spinach builds, everything else to Zoho Creator or a CRM custom module. to be decided: Metabase's 13 rows to Zoho Analytics; they stay as written until then.",
- "INBOUND_NOTE_V02": "One way, app to Zoho (Vatsal, 28 Sep 2026): Zoho never writes into the app; no webhook and no Flow into the app. The three v0.1 inbound events are rerouted below under three conditions: the adviser owner is mastered in the admin panel and mirrored to Zoho (the Zoho field read-only); consent is mastered in the app and every opt-out flows app to Zoho (Zoho DND read-only); H07 pulls the Desk thread on open, or changes to say we replied by email."
+ "PLACEMENT_NOTE_V02": "Bucket legend (Vatsal, 28 Sep 2026): Zoho, Mixpanel and Admin panel name the tool that holds the item. Console: read in the vendor's own console, nothing built. Fold: folds into another item or tool. Change: the item's meaning changed with the product. Directus is out; its 13 rows are sorted by one test: what must sit on the app's own database (admin over the app tables, edits to client data) goes to the admin panel Spinach builds, everything else to Zoho Creator or a CRM custom module. Metabase is out (Vatsal, 2 Oct 2026): its 13 rows read Zoho Analytics; to be verified: how the app database reaches Zoho Analytics.",
+ "INBOUND_NOTE_V02": "One way, app to Zoho (Vatsal, 28 Sep 2026): Zoho never writes into the app; no webhook and no Flow into the app. The three v0.1 inbound events are rerouted below under three conditions: the adviser owner is mastered in the admin panel and mirrored to Zoho (the Zoho field read-only); consent is mastered in the app and every opt-out flows app to Zoho (Zoho DND read-only); H07 pulls the Desk thread on open, or changes to say we replied by email.",
+ "SPINACH_MODULES_NOTE": "Spinach's admin panel work (a feature matrix of 9 Jul 2026, 12 modules in four versions, and 13 sketches of 19 Aug 2026) read against the 28 Sep 2026 split (Vatsal, 2 Oct 2026, W12). Home names the tool that holds the module; Spinach builds names what Spinach builds for it, screens by their M id. The nine admin screens Spinach builds are M02, M03, M04, M06, M08, M09, M11, M12 and M14; M05, M07, M10 and M13 moved to Zoho. The app work Spinach does regardless: the event feed to Zoho, the mirror fields on the Contact, config and content reads from I15, push from state changes (I12), Desk ticket creation and the H07 pull, Bookings slots, Razorpay webhooks, the endpoints behind each M screen, and the logic panel L00 to L09 from the wireframes.",
+ "SPINACH_MODULES": [
+  {
+   "module": "User management: list, profile, actions",
+   "source": "matrix rows 4 to 5; sketches 11 to 14",
+   "home": "Admin panel: M02 people list, M03 person record",
+   "builds": "M02, M03",
+   "notes": "The sketches' stages (registration, KYC, AA consent, profile setup) are replaced by the journey stages S1 to S25 (N01). The app is OTP only: no passwords, unlock or resend OTP. User types individual and business do not exist. to be decided: a devices and sessions tab on M03."
+  },
+  {
+   "module": "Onboarding: queues, funnel, resends",
+   "source": "matrix row 6; sketches 6 to 7",
+   "home": "Zoho CRM saved views by journey stage (built in the trial, G3); Mixpanel funnels; failures in M06 and M09; resends are Zoho Campaigns journeys",
+   "builds": "M06, M09",
+   "notes": "Queues are the states, not a funnel of four stages."
+  },
+  {
+   "module": "Dashboard: KPIs, trends, filters",
+   "source": "matrix row 7; sketches 2 to 3",
+   "home": "Zoho Analytics: five seat dashboards over the CRM data (built in the trial, G4) and the database rows; to be verified: how the app database reaches Zoho Analytics",
+   "builds": "none",
+   "notes": "The system health tiles go with the Integration status row."
+  },
+  {
+   "module": "Notifications: templates, scheduling, resends",
+   "source": "matrix row 8; sketches 4 to 5",
+   "home": "Zoho Campaigns for email and WhatsApp; push and in-app copy in I15; rules are Zoho journeys keyed on journey stage",
+   "builds": "none; the app reads I15 and sends push through I12",
+   "notes": "to be decided: resend of a failed push."
+  },
+  {
+   "module": "Content: FAQs, banners, announcements, legal documents, help",
+   "source": "matrix row 9",
+   "home": "I15 (Zoho Creator or a CRM custom module)",
+   "builds": "none; the app reads I15",
+   "notes": "Agreement template versions in I15; signed copies in the vault (H06)."
+  },
+  {
+   "module": "Configuration and master data",
+   "source": "matrix rows 10 to 11",
+   "home": "I15 for app config (SKU cards, copy slots, feature flags, calls included, bands, DIFM threshold); the logic panel L00 to L09 for assumptions, cohorts, the instrument universe and market inputs",
+   "builds": "the logic panel, from the wireframes",
+   "notes": "M10 moved to I15."
+  },
+  {
+   "module": "Subscription: views and actions",
+   "source": "matrix row 12; sketch navigation",
+   "home": "Razorpay console for money; CRM Deals and Zoho Books for the record and revenue; Zoho Campaigns for renewal nudges",
+   "builds": "none",
+   "notes": "to be decided: who cancels or extends a subscription, and where (M03)."
+  },
+  {
+   "module": "Audit logs",
+   "source": "matrix rows 13 to 14; sketch navigation",
+   "home": "Admin panel M11 for regulated records; Zoho's own audit; the logic panel L08",
+   "builds": "M11",
+   "notes": ""
+  },
+  {
+   "module": "Reports and exports",
+   "source": "matrix rows 15 to 16; sketches 8 to 10",
+   "home": "Zoho Analytics; the admin panel only for exports: the M02 list, the M11 audit log, the nine compliance records",
+   "builds": "the exports on M02 and M11",
+   "notes": "No report repository, scheduler or archive is built."
+  },
+  {
+   "module": "Roles, permissions, admin users",
+   "source": "matrix rows 17 to 18; sketch navigation",
+   "home": "Admin panel M14; Zoho profiles for Zoho; L01 for the logic panel",
+   "builds": "M14, grown to admin users: create, assign a role, revoke, reset",
+   "notes": "to be decided: the admin panel login method and MFA. Not one login across the three systems."
+  },
+  {
+   "module": "System settings: toggles, legal versions, maintenance mode",
+   "source": "matrix rows 19 to 20",
+   "home": "I15",
+   "builds": "none",
+   "notes": "to be decided: maintenance mode and the minimum app version (FE-71) as I15 flags."
+  },
+  {
+   "module": "Integration status: health, logs, retries",
+   "source": "matrix row 21; sketch dashboard tiles",
+   "home": "Sentry and an uptime monitor; each vendor's console; no status page is built",
+   "builds": "none; the data-quality flags of M07 fold into M06",
+   "notes": "M07 moved."
+  }
+ ]
 }

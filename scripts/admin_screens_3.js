@@ -754,7 +754,8 @@
 
   // ================================================================== M14: Roles and permissions
   ADMIN.draw.M14 = function(body, s){
-    var screens = (typeof SCREENS !== "undefined" ? SCREENS : []).filter(function(sc){ return sc.sec === "M"; });
+    // Screens moved out of the admin panel (v02 status dropped, W12, 2 Oct 2026) are not in the matrix.
+    var screens = (typeof SCREENS !== "undefined" ? SCREENS : []).filter(function(sc){ return sc.sec === "M" && !(sc.v02 && sc.v02.status === "dropped"); });
 
     var html = '<div class="w-h">Roles and permissions</div>' +
       '<div class="w-note">The access matrix: which seat can act, read, or read only their own people, on which screen.</div>';
