@@ -1,5 +1,5 @@
 {
- "about": "What Spinach builds for the admin side, in one page: Spinach's own feature matrix (9 Jul 2026) with one column added, the version picked for launch and who provides it, one line why; then the five things Spinach builds; then what Zoho and the consoles hold (the details are doc 2); then the five open items; then Kajal's list of 8 Sep 2026 line by line, with where each line lands. The sheet is not the universal set: what sits outside it is in the folded notes and reaches Spinach only as B1 to B5. Picks proposed 2 Oct 2026; to be decided: confirm the picks.",
+ "about": "What Spinach builds for the admin side, in one page: Spinach's own feature matrix (9 Jul 2026) with one column added, the version picked for launch and who provides it, one line why; then the six things Spinach builds; then what Zoho and the consoles hold (the details are doc 2); then the five open items; then Kajal's list of 8 Sep 2026 line by line, with where each line lands. The sheet is not the universal set: what sits outside it is in the folded notes and reaches Spinach only as B1 to B5. Picks proposed 2 Oct 2026; to be decided: confirm the picks.",
  "cause": "Vatsal, 2 Oct 2026 (the question: is the sheet the universal set; per row, which version and who)",
  "rules": [
   "One way, app to Zoho: Zoho never writes into the app; the app may pull from Zoho when it opens something (H07 pulls the Desk thread).",
@@ -59,13 +59,11 @@
    "v3": [
     "As an admin, I can analyse user growth, retention, churn, onboarding drop-offs, subscription conversions and user segmentation trends through dashboards."
    ],
-   "pick_level": "V1.5, without device and login history; from V2 only the deletion request, the DIFM tier and the export",
-   "pick_who": "Zoho CRM for the list and the profile; Spinach for the two writes into the app (the staff view); Mixpanel and Zoho Analytics for V3",
    "why": [
-    "A yeslyf user is a Contact in Zoho CRM: one per phone number, written at signed_up and updated by the event feed, app to Zoho. The Contact already carries what the V1 profile asks for: registration details, the journey stage (the onboarding stage), tier and SKU, subscription status, account dates, last activity, source. The list with search and filters is the CRM list view; eleven saved views by seat exist in the trial (phase G3). Nothing is built for V1.",
-    "V1.5 falls out of the same feed: last activity and registration source are mirrored fields, the lifecycle timeline is the Contact's App Events, linked accounts come from the aa_connected event (the institutions). Device and login history are not in the model and would put more personal data into a processor for no decision anyone takes; dropped.",
-    "V2 as written assumes passwords and account states the app does not have: sign-in is OTP only (A02), there is no unlock, no reset and no resend (the person retries). Export is the CRM's own export. Two V2 actions are real and are writes into the app: handling a deletion request (H09, state S25) and setting the DIFM tier. Writes into the app never come from Zoho, so they sit on the one built surface, the staff view of a client (own row 1).",
-    "V3 is bought twice over: Mixpanel for retention, churn and drop-off by screen (every screen ID is an event), Zoho Analytics for growth and segments over Contacts; the five seat dashboards exist in the trial (phase G4)."
+    "A yeslyf user is a Contact in Zoho CRM: one per phone number, written at signed_up and updated by the event feed, app to Zoho. The Contact already carries what the profile asks for: registration details, the journey stage (the onboarding stage), tier and SKU, subscription status, account dates, last activity, source. The list with search and filters is the CRM list view; eleven saved views by seat exist in the trial (phase G3). Nothing is built for the views.",
+    "The enhanced views fall out of the same feed: last activity and registration source are mirrored fields, the lifecycle timeline is the Contact's App Events, linked accounts come from the aa_connected event (the institutions). Device and login history are not in the model and would put more personal data into a processor for no decision anyone takes; dropped.",
+    "The actions as written assume passwords and account states the app does not have: sign-in is OTP only (A02), there is no unlock, no reset and no resend (the person retries). Export is the CRM's own export. Two of the actions are real and are writes into the app: handling a deletion request (H09, state S25) and setting the DIFM tier. Writes into the app never come from Zoho, so they sit on the one built surface, the staff view of a client (own row 1).",
+    "The analytics are bought twice over: Mixpanel for retention, churn and drop-off by screen (every screen ID is an event), Zoho Analytics for growth and segments over Contacts; the five seat dashboards exist in the trial (phase G4)."
    ],
    "zoho": "Contacts with the mirrored fields (CONTACT_FIELDS on the Admin and CRM tab), saved views by journey stage and status, the CRM export, the App Events timeline, the Analytics dashboards.",
    "spinach": "The staff view of a client for the two writes (own row 1); the feed: signed_up with source and device, every state change, the mirrors.",
@@ -96,13 +94,11 @@
    "v3": [
     "As an admin, I can analyse onboarding funnel performance, conversion rates, abandonment reasons and onboarding SLA metrics."
    ],
-   "pick_level": "V2",
-   "pick_who": "Zoho: CRM views for V1, Campaigns journeys and CRM tasks for V2; Mixpanel for V1.5 and V3",
    "why": [
     "Onboarding in yeslyf is not a four-stage funnel (registration, KYC, AA consent, profile setup) but the returning-user states S1 to S5, with KYC at P02 and AA at A06 to A09. The state is computed in the app and mirrored to the Contact as the journey stage; KYC and AA statuses are mirrored fields. So 'pending onboarding, incomplete registration, failed KYC, pending AA consent' are four saved views in the CRM, made by hand like the eleven in the trial.",
-    "Progress by stage and drop-off points (V1.5) are Mixpanel funnels: reveal (R01 to R09), paywall (R12 to P05), data (O02 to D10), with the time between first and last step. Counts per state are an Analytics tile over the journey stage.",
-    "The V2 'resend' actions are the nudge matrix: Campaigns journeys keyed on the journey stage send the reminders on the ladder (S1a to S5a), and a human call is a CRM task (brief V2). A KYC or AA request is not resent by an admin; the nudge sends the person back to P02 or A06 in the app. A one-off send is a Campaigns send. Nothing is built.",
-    "V3 (funnel performance, abandonment, conversion) is Mixpanel. An onboarding SLA is not defined; nothing to measure yet."
+    "Progress by stage and drop-off points (the enhanced views) are Mixpanel funnels: reveal (R01 to R09), paywall (R12 to P05), data (O02 to D10), with the time between first and last step. Counts per state are an Analytics tile over the journey stage.",
+    "The 'resend' actions are the nudge matrix: Campaigns journeys keyed on the journey stage send the reminders on the ladder (S1a to S5a), and a human call is a CRM task (brief V2). A KYC or AA request is not resent by an admin; the nudge sends the person back to P02 or A06 in the app. A one-off send is a Campaigns send. Nothing is built.",
+    "The analytics (funnel performance, abandonment, conversion) is Mixpanel. An onboarding SLA is not defined; nothing to measure yet."
    ],
    "zoho": "Four CRM saved views (journey stage S1 to S5, KYC status, AA status), Campaigns journeys by journey stage, CRM tasks for calls, Analytics counts per state.",
    "spinach": "Nothing on the admin side; the app keeps mirroring the state and the two statuses.",
@@ -130,13 +126,11 @@
    "v3": [
     "As an admin, I can view trend analysis, user behaviour insights, subscription forecasting and platform growth metrics."
    ],
-   "pick_level": "V2 now; V3 as history accrues",
-   "pick_who": "Zoho Analytics; Mixpanel for active users and behaviour",
    "why": [
-    "Five dashboards, one per seat, exist in the trial over the CRM data (phase G4): principal officer, call centre, compliance, finance, marketing. They cover the V1 KPIs that come from the CRM (users, paid by SKU, states, opt-ins, tickets, refunds); filters by date and SKU (V1.5) are dashboard configuration; per-role widgets (V2) are one dashboard per seat, done.",
+    "Five dashboards, one per seat, exist in the trial over the CRM data (phase G4): principal officer, call centre, compliance, finance, marketing. They cover the KPIs that come from the CRM (users, paid by SKU, states, opt-ins, tickets, refunds); filters by date and SKU (the enhanced views) are dashboard configuration; per-role widgets are one dashboard per seat, done.",
     "Twelve of Kajal's KPI rows come from the app's database, not the CRM: AUA, SIP book, AA availed, plans built and read, KYC and AA failure rates and the like. On 2 Oct 2026 they moved from Metabase to Zoho Analytics. Most can be fed as App Events or mirrored fields (plan_built, aa_connected and kyc_failed are events already); AUA and the SIP book need a monthly snapshot per Contact, which puts numbers, not bands, into Zoho.",
-    "Active users is Mixpanel (DAU, WAU, MAU from app_open); Analytics can approximate from last activity. V3 (trends, forecasting) is the same tool once there is history; forecasting is not a launch need.",
-    "The sketches' dashboard (pages 2 and 3) is the principal officer dashboard plus three CRM views for the attention tiles plus the uptime monitor's page for system health. Nothing is built."
+    "Active users is Mixpanel (DAU, WAU, MAU from app_open); Analytics can approximate from last activity. The analytics (trends, forecasting) is the same tool once there is history; forecasting is not a launch need.",
+    "The sketches' dashboard (pages 2 and 3) is the principal officer dashboard plus three CRM views for the attention tiles plus the health page (B6) for system health. Nothing is built."
    ],
    "zoho": "Analytics (the five dashboards, G4), CRM views for the attention counts.",
    "spinach": "The feed: events and mirrors; the monthly AUA and SIP snapshot push if accepted.",
@@ -168,12 +162,10 @@
    "v3": [
     "As an admin, I can analyse notification delivery, open rates, click-through rates, engagement and campaign effectiveness."
    ],
-   "pick_level": "V2",
-   "pick_who": "Zoho Campaigns for email and WhatsApp; I15 plus Firebase (I12) for push and in-app; the vendors' reports for V3",
    "why": [
-    "Templates and journeys for email and WhatsApp are Zoho Campaigns (bought), with the nudge matrix as their content; WhatsApp templates go through Meta approval. Scheduling (V1.5) is the ladder inside a state, segments are lists by journey stage, manual sends, resends and cancels (V2) are Campaigns actions. Nothing is built.",
+    "Templates and journeys for email and WhatsApp are Zoho Campaigns (bought), with the nudge matrix as their content; WhatsApp templates go through Meta approval. Scheduling is the ladder inside a state, segments are lists by journey stage, manual sends, resends and cancels are Campaigns actions. Nothing is built.",
     "Push and in-app are different: no Zoho product sends into the app. Push text and in-app copy live in I15 and are read by the app; the app sends push through Firebase when the state changes. That is app plumbing Spinach builds anyway, not an admin screen. The sketches' template editor (pages 4 and 5) with Email, Push and In-App tabs is therefore two tools: Campaigns for email, an I15 form for push and in-app copy keyed by the slot ID (N-S4-72h).",
-    "V3: Campaigns reports for email (delivery, opens, clicks), the WhatsApp provider's reports (I08), the Firebase console for push delivery, Mixpanel for what people did after the nudge."
+    "The analytics: Campaigns reports for email (delivery, opens, clicks), the WhatsApp provider's reports (I08), the Firebase console for push delivery, Mixpanel for what people did after the nudge."
    ],
    "zoho": "Campaigns templates, lists by journey stage, journeys, manual sends, reports; I15 entries for push and in-app copy.",
    "spinach": "The push sender from state changes; the I15 reader for copy; every opt-out flows app to Zoho (consent is mastered in the app).",
@@ -205,13 +197,11 @@
    "v3": [
     "As an admin, I can analyse content engagement, banner performance, search trends and frequently accessed help articles."
    ],
-   "pick_level": "V2",
-   "pick_who": "Zoho (I15: Creator or a CRM custom module); Mixpanel for V3",
    "why": [
-    "FAQs, tooltips, disclaimers, educational content, videos, sample plan content, question wording, agreement template versions, banners and in-app copy are content the app reads at run time from I15 (Vatsal, 28 Sep 2026). V1 is a set of I15 forms keyed by screen ID, so a tooltip on D04 is found under D04.",
-    "V1.5 and V2 (preview, versions, scheduled publication, publish and archive, approval) are a published flag and an effective date per entry, which the app respects, plus a review step before a flagged screen's copy changes (appendix G, compliance review). Creator and the CRM both offer approval flows; to be verified in the trial, since no Creator form has been built yet. The choice between Creator and a CRM custom module blocks the API shape the app reads by.",
+    "FAQs, tooltips, disclaimers, educational content, videos, sample plan content, question wording, agreement template versions, banners and in-app copy are content the app reads at run time from I15 (Vatsal, 28 Sep 2026). The views are a set of I15 forms keyed by screen ID, so a tooltip on D04 is found under D04.",
+    "The enhanced views and the actions (preview, versions, scheduled publication, publish and archive, approval) are a published flag and an effective date per entry, which the app respects, plus a review step before a flagged screen's copy changes (appendix G, compliance review). Creator and the CRM both offer approval flows; to be verified in the trial, since no Creator form has been built yet. The choice between Creator and a CRM custom module blocks the API shape the app reads by.",
     "Half of the sheet's 'content' is logic: adding, removing or reordering answer options changes the reveal maths, so structure is a versioned release (D5); only wording is content.",
-    "V3 (what gets read) is Mixpanel: every screen ID is an event; FAQ and help opens are events too."
+    "The analytics (what gets read) is Mixpanel: every screen ID is an event; FAQ and help opens are events too."
    ],
    "zoho": "I15 forms per content type with published and effective-from fields; an approval step for flagged screens.",
    "spinach": "The app reads I15 by API, with caching; nothing else.",
@@ -240,12 +230,10 @@
    "v3": [
     "As an admin, I can analyse configuration usage, feature adoption and operational impact of configuration changes."
    ],
-   "pick_level": "V2",
-   "pick_who": "Zoho (I15) for app configuration; Spinach for the engine's master data, as the logic panel from the wireframes",
    "why": [
-    "Two different things hide in this row. App configuration (SKU cards and the fee structure mapped to Razorpay plan IDs, feature flags, the calls-included matrix per SKU and period, band placeholders, the DIFM threshold, copy slots) is I15: the app reads it, the principal officer edits it, Zoho keeps the history. V1.5 and V2 are I15 forms with roles.",
-    "Master data for the engine (assumptions, cohort grid, instrument universe and financial categories, market inputs, staging, publish, impact preview, audit) is the logic panel L00 to L09, already in the wireframes and built by Spinach as part of the app. It never goes to Zoho: it is the maths, and publishing writes into every plan.",
-    "V3 (feature adoption, impact) is Mixpanel and the logic panel's own impact preview (L05). M10, the config screen of 23 Sep, is therefore not built; it was I15 made visible."
+    "Two different things hide in this row. App configuration (SKU cards and the fee structure mapped to Razorpay plan IDs, feature flags, the calls-included matrix per SKU and period, band placeholders, the DIFM threshold, copy slots) is I15: the app reads it, the principal officer edits it, Zoho keeps the history. The enhanced views and the actions are I15 forms with roles.",
+    "Master data for the engine (assumptions, the band tables and plausibility thresholds, cohorts and risk bands, the instrument universe and financial categories, market inputs, constraints, staging, publish, impact preview, audit) is the logic panel L00 to L09, already in the wireframes and built by Spinach as part of the app. It never goes to Zoho: it is the maths, and publishing writes into every plan. L02 already says the bands are fixed per field from the M2 tables, so they are the panel's, not I15's.",
+    "The analytics (feature adoption, impact) is Mixpanel and the logic panel's own impact preview (L05). M10, the config screen of 23 Sep, is therefore not built; it was I15 made visible."
    ],
    "zoho": "I15 forms: sku_cards, copy_slots, feature_flags, calls_included, bands, difm_threshold, with a change history.",
    "spinach": "The app reads I15; the logic panel L00 to L09.",
@@ -258,7 +246,7 @@
    "sketches": "none drawn",
    "pick": "V2",
    "who": "Zoho",
-   "line": "App config in I15; the engine's master data is the logic panel, Spinach's build from the wireframes (B2)."
+   "line": "App config in I15; the engine's master data, the band tables and the plausibility thresholds are the logic panel, Spinach's build from the wireframes (B2)."
   },
   {
    "n": 7,
@@ -275,13 +263,11 @@
    "v3": [
     "As an admin, I can analyse subscription revenue, churn, renewals, plan adoption and lifetime value metrics."
    ],
-   "pick_level": "V1.5, plus the V2 reminders and cancellation; the other V2 writes to be decided",
-   "pick_who": "Razorpay (I09) for money; Zoho CRM Deals and Zoho Books for the record; Campaigns for reminders; Zoho Analytics for V3",
    "why": [
-    "Money moves in Razorpay: payments, mandates, refunds, invoices; its console is the V1 view of payment status. The app's Razorpay webhooks update the tier and billing state and write one Deal per payment into the CRM (SKU, amount, period, Razorpay ids, start, next billing, status), so plans, active subscriptions and renewal dates are CRM views; the finance seat's views exist in the trial (payment reconciliation, GST split, refunds, a la carte receipts).",
-    "V1.5 is the same data: history is the Deals per Contact, upgrades and downgrades are new Deals, trial users are a journey stage, payment failures are state S12 and the payment_failed event.",
-    "V2: renewal reminders are Campaigns journeys (SV7, the S12 ladder). Cancelling a subscription is a Razorpay action that webhooks back into the app. Manually activating, extending or comping a subscription is a write into the app's billing state: to be decided whether it is wanted at all, and if so it is an action on the staff view (gap G19).",
-    "V3: revenue by SKU and month is read in Zoho Books (the ledger) and on Deals Amount in Analytics; churn and renewals over Deals; lifetime value later."
+    "Money moves in Razorpay: payments, mandates, refunds, invoices; its console is the view of payment status. The app's Razorpay webhooks update the tier and billing state and write one Deal per payment into the CRM (SKU, amount, period, Razorpay ids, start, next billing, status), so plans, active subscriptions and renewal dates are CRM views; the finance seat's views exist in the trial (payment reconciliation, GST split, refunds, a la carte receipts).",
+    "The enhanced views are the same data: history is the Deals per Contact, upgrades and downgrades are new Deals, trial users are a journey stage, payment failures are state S12 and the payment_failed event.",
+    "The actions: renewal reminders are Campaigns journeys (SV7, the S12 ladder). Cancelling a subscription is a Razorpay action that webhooks back into the app. Manually activating, extending or comping a subscription is a write into the app's billing state: to be decided whether it is wanted at all, and if so it is an action on the staff view (gap G19).",
+    "The analytics: revenue by SKU and month is read in Zoho Books (the ledger) and on Deals Amount in Analytics; churn and renewals over Deals; lifetime value later."
    ],
    "zoho": "Deals per payment, the finance views (G3), Books, Campaigns renewal journeys, Analytics over Deals.",
    "spinach": "Razorpay webhooks into the app and the Deal per payment (plumbing).",
@@ -312,12 +298,10 @@
    "v3": [
     "As an admin, I can analyse unusual activity, security events and operational trends through audit dashboards."
    ],
-   "pick_level": "V2",
-   "pick_who": "Zoho (an App Events view and export) for the compliance seat; the app keeps the trail (Spinach, plumbing) and the staff view shows it per person",
    "why": [
     "The regulated records live in the app's database (agreements, risk profile, plan versions, payments, AA consents, calls with input changes, deletion requests, resolved ops items), so the trail of changes to them is written there, one row per change, by the app and by the staff view's actions. That is the record of truth; it is exported by a job or on request (own row 6), in formats brief H6 still has to settle.",
-    "The compliance seat's day-to-day view (V1.5: by module, by person, by date) needs no built screen: the app pushes each audit row to Zoho as an App Event carrying who, when, the record and the field names, not the values, so nothing beyond bands reaches the processor; CRM views and the export (V2) do the rest. Zoho's own audit log covers actions taken in Zoho; the logic panel's audit (L08) covers the engine.",
-    "Administrator activities on the admin side are the staff view's writes, audited the same way. Login attempts depend on the sign-in choice (gap G21). V3 (unusual activity, security events) is later; Sentry and Zoho's audit cover the operational half."
+    "The compliance seat's day-to-day view (by module, by person, by date) needs no built screen: the app pushes each audit row to Zoho as an App Event carrying who, when, the record and the field names, not the values, so nothing beyond bands reaches the processor; CRM views and the export do the rest. Zoho's own audit log covers actions taken in Zoho; the logic panel's audit (L08) covers the engine.",
+    "Administrator activities on the admin side are the staff view's writes, audited the same way. Login attempts depend on the sign-in choice (gap G21). The analytics (unusual activity, security events) is later; Sentry and Zoho's audit cover the operational half."
    ],
    "zoho": "App Events of type audit with field names; views by record type and person; export.",
    "spinach": "Audit rows on every regulated change and every staff-view action; the push; the export job of the full trail.",
@@ -346,13 +330,11 @@
    "v3": [
     "As an admin, I can view business intelligence dashboards and compare operational performance across time periods."
    ],
-   "pick_level": "V2 (V3 is the same dashboards)",
-   "pick_who": "Zoho Analytics and CRM exports; the compliance record exports from the app are a job (Spinach, plumbing)",
    "why": [
-    "Operational reports on users, onboarding and subscriptions (V1.5) are Analytics reports over the CRM data, exported from there; CRM views export too. Scheduling and sharing (V2) are Analytics features: to be verified in the trial (the org showed no sharing control; after G1 the seats exist to share with).",
+    "Operational reports on users, onboarding and subscriptions are Analytics reports over the CRM data, exported from there; CRM views export too. Scheduling and sharing are Analytics features: to be verified in the trial (the org showed no sharing control; after G1 the seats exist to share with).",
     "The sketches (pages 8 to 10) imagine a report repository with archives, export history and 'monthly transaction summary' PDFs per user. The repository is the saved reports in Analytics; a per-client statement is the app's own PDF (G10), not an admin report.",
     "What Zoho cannot export is what it does not hold: the compliance records (signed agreements from the vault, KYC records, risk profiles, the advice register, AUA statements, the full audit trail). Those are exports from the app's database, run as a job to a store compliance can reach, in the formats brief H6 settles. No screen.",
-    "V3 (BI dashboards, period comparison) is the five dashboards with date ranges."
+    "The analytics (BI dashboards, period comparison) is the five dashboards with date ranges."
    ],
    "zoho": "Analytics reports and dashboards, scheduled email and sharing (to be verified), CRM view export, Desk export (the grievance register), Books export.",
    "spinach": "The compliance record export job; the Razorpay export is Razorpay's.",
@@ -380,12 +362,10 @@
    "v3": [
     "As an admin, I can analyse permission usage, inactive accounts and security compliance across administrator roles."
    ],
-   "pick_level": "V2",
-   "pick_who": "Zoho for Zoho (users, roles, profiles); the logic panel's L01 for the engine; an allowlist on the staff view's sign-in (Spinach, small)",
    "why": [
     "Three systems, three role sets, one principle: advisers see their own clients, ops sees records, the principal officer sees everything and publishes. Zoho users, roles (Principal officer, Adviser, Ops, Support, Compliance) and profiles (Standard, Finance read only) are Zoho One administration (G1 waits on a person). The logic panel has its own roles (L01).",
-    "The staff view needs only who may open it and in which mode (read, edit on behalf, scope to own clients): an allowlist of staff accounts with a seat each, revoked by removing the account. V1.5 and V2 (create, assign, revoke, reset) are that allowlist. A roles screen with module-level permissions (M14 of 23 Sep) is not needed, because the surface has one module.",
-    "Zoho's own MFA covers Zoho. V3 is Zoho's user reports; not needed."
+    "The staff view needs only who may open it and in which mode (read, edit on behalf, scope to own clients): an allowlist of staff accounts with a seat each, revoked by removing the account. The enhanced views and the actions (create, assign, revoke, reset) are that allowlist. A roles screen with module-level permissions (M14 of 23 Sep) is not needed, because the surface has one module.",
+    "Zoho's own MFA covers Zoho. The analytics are Zoho's user reports; not needed."
    ],
    "zoho": "Users, roles, profiles and MFA in Zoho One.",
    "spinach": "A staff allowlist with seats on the staff view's sign-in; changes to it audited.",
@@ -414,11 +394,9 @@
    "v3": [
     "As an admin, I can review operational trends and identify configuration changes affecting platform performance."
    ],
-   "pick_level": "V2",
-   "pick_who": "Zoho: I15 for flags and legal versions; Campaigns and Desk for their own defaults",
    "why": [
-    "Feature toggles (tiers live, the artificial wait on G01, the nudge cap, AA required or optional, the trial period), legal document versions (agreement templates with effective dates) and operational parameters are I15 entries the app reads at launch and on a timer; V1.5 and V2 are the same forms with the principal officer's role. Notification defaults are Campaigns settings; support settings (SLA, categories) are Desk setup, done in the trial (G5).",
-    "Maintenance mode and the minimum app version (Spinach asked for a configurable minimum version, FE-71) are two more I15 flags; to be decided whether to add them (gap G22). Nothing is built; the app honours the flags. V3 is not a launch need."
+    "Feature toggles (tiers live, the artificial wait on G01, the nudge cap, AA required or optional, the trial period), legal document versions (agreement templates with effective dates) and operational parameters are I15 entries the app reads at launch and on a timer; The enhanced views and the actions are the same forms with the principal officer's role. Notification defaults are Campaigns settings; support settings (SLA, categories) are Desk setup, done in the trial (G5).",
+    "Maintenance mode and the minimum app version (Spinach asked for a configurable minimum version, FE-71) are two more I15 flags; to be decided whether to add them (gap G22). Nothing is built; the app honours the flags. The analytics are not a launch need."
    ],
    "zoho": "I15 flags with effective dates; Campaigns and Desk settings.",
    "spinach": "The app reads the flags, including maintenance mode and the minimum version if added.",
@@ -446,23 +424,22 @@
    "v3": [
     "As an admin, I can analyse API success rates, integration latency, failure trends and third-party service reliability."
    ],
-   "pick_level": "V1.5 now; V3 from the feed later",
-   "pick_who": "Sentry and an uptime monitor plus each vendor's console; Zoho Analytics for failure counts; no status page is built",
    "why": [
-    "The app writes one row per integration call (vendor, outcome, latency) into integration_events; Sentry pages someone when a threshold trips and the uptime monitor shows connection status (V1). Request history and logs (V1.5) are read in Sentry and in each vendor's console: the KYC and eSign provider for KYC fetches and signatures, the AA provider (I01) for consents and FIP health, Razorpay (I09) for payments, BSE StAR MF (I02) for orders, the WhatsApp provider (I08), Firebase (I12) for push. No status page is built (Vatsal, 28 Sep 2026).",
-    "V2 'retry failed syncs' is the app's own retry logic, not an admin button: M07's retry had no endpoint to call. A failed AA fetch has a manual fallback in the app (the person is sent to CAS or manual entry); a failed KYC is retried by the person at P02.",
-    "V3 (success rates, latency, failure trends) is Analytics over kyc_failed and aa_failed events pushed as App Events, or over integration_events once the database feed is verified; the KYC and AA failure rates on the dashboard come from there. The sketches' system health tiles (pages 2 and 3) are the uptime monitor's page."
+    "The app already writes one row per integration call (vendor, outcome, latency). Reading that table in six vendor consoles plus Sentry scatters the one question ops asks, is everything up, across six logins. One built page over integration_events answers it in one place: connection status and last success per vendor, failures and latency, the error log as an export, and a link out to each console where the detail lives (the KYC and eSign provider, the AA provider for FIP health, Razorpay, BSE StAR MF, the WhatsApp provider, Firebase).",
+    "Retry stays honest: a button only where the vendor call can be repeated without side effects (a KYC fetch or an AA fetch can, a payment cannot); where it cannot, the page shows the state and the person retries in the app. to be decided: the vendors with a retry.",
+    "Engine health sits on the same page, since it is the same question: data complete but no plan built (should be zero), build time, the plan-upgrade job after a publish. Kajal's 'plans in progress' and 'time from data completion to plan' land here.",
+    "Sentry keeps paging on thresholds; the failure rates for the dashboard still come from the failure events in Zoho Analytics. The sketches' system health tiles (pages 2 and 3) become this page."
    ],
-   "zoho": "App Events for failures; Analytics tiles for failure rates.",
-   "spinach": "integration_events, the Sentry hook, retries inside the app, failure events in the feed.",
-   "verify": [
-    "how integration_events reach Zoho Analytics (the database feed)"
+   "zoho": "Failure events for the dashboard's KYC and AA failure rates.",
+   "spinach": "The health page (B6) over integration_events, with engine health; the Sentry hook; retries inside the app.",
+   "verify": [],
+   "decide": [
+    "to be decided: the vendors whose call can be retried from the page"
    ],
-   "decide": [],
    "sketches": "pages 2 to 3 (the system health tiles)",
-   "pick": "V1.5",
-   "who": "Consoles",
-   "line": "Sentry and an uptime monitor plus each vendor's console; no status page is built; retries live inside the app."
+   "pick": "V2",
+   "who": "Spinach",
+   "line": "One page over integration_events brings the consoles together: status, last success, failures and latency per vendor, error log export, retry where a vendor call allows it; Sentry still pages (B6)."
   }
  ],
  "own_note": "yeslyf's own admin items the sheet does not carry, from Kajal's list of 8 Sep 2026 and the admin screens of 23 Sep 2026. No ladder here: the ladder is how the sheet was pitched; for our own items the scope is the best version, and the pick says who provides it.",
@@ -499,19 +476,19 @@
    "feature": "Data-quality and ops queue",
    "source": "Kajal's list: Needs verification, Pending actions; screen M06",
    "scope": [
-    "The queue: unknown ISINs, implausible values, AA fetch failures with a manual fallback, refund requests, reassignment requests, DIFM provisioning, deletion requests, each with age, SLA and the person.",
+    "The queue: implausible values, AA fetch failures with a manual fallback, refund requests, reassignment requests, DIFM provisioning, deletion requests, each with age, SLA and the person. Unknown ISINs do not come here: they queue in L04, the logic panel, which already holds them.",
     "Filters by type and owner; SLA clocks; one named ops owner (D6).",
     "Assign, resolve, escalate; the fix itself.",
     "Queue volumes and ageing."
    ],
-   "pick": "Zoho CRM Tasks created by the app, worked in Zoho; the fix itself in the staff view (data) or the logic panel L04 (ISINs); Analytics for V3",
+   "pick": "Zoho CRM Tasks created by the app, worked in Zoho; the fix itself in the staff view (data) or the logic panel (ISINs in L04); Analytics for the volumes",
    "why": [
     "The queue is a list of work items with owners, ages and due dates, which is what CRM Tasks are, and the app may create them (app to Zoho); a refund request already creates a CRM task (BE-14). Tasks views by type and owner exist in the trial for the call centre, and the same pattern serves ops.",
-    "What Zoho cannot do is the fix: classify an ISIN into the instrument universe (L04, the logic panel), correct a client's value (the staff view), delete a person (the app, H09). So the queue lives in Zoho and each fix lives where the data lives; the Task carries the link to the person's staff view. M06 as a built screen is not needed.",
+    "What Zoho cannot do is the fix: classify an ISIN into the instrument universe (L04 queues the unknown ones already), correct a client's value (the staff view), delete a person (the app, H09). So the queue lives in Zoho and each fix lives where the data lives; the Task carries the link to the person's staff view. M06 as a built screen is not needed.",
     "Pending actions on the dashboard become two Zoho numbers: open tickets in Desk and open ops tasks."
    ],
    "zoho": "Tasks with type, person link, owner and due date; views by type and owner; Analytics over Tasks.",
-   "spinach": "The app creates a Task per queue item; the fixes in the staff view and L04.",
+   "spinach": "The app creates a Task per queue item; the fixes in the staff view; L04 for the ISINs.",
    "verify": [
     "Task fields for type, SLA and the person link (the trial's Tasks views are the pattern)"
    ],
@@ -561,22 +538,26 @@
   },
   {
    "n": 5,
-   "feature": "Plan versions and the engine's master data",
+   "feature": "Plan versions, the engine's master data and the logic panel's edge",
    "source": "screen M08; the logic panel L00 to L09",
    "scope": [
-    "Who is on which plan version; unaccepted updates (S11); assumptions, the cohort grid, the instrument universe and market inputs as they stand.",
-    "Staging and the impact preview of a change (L05).",
-    "Publish a version (L06), classify instruments (L04), the audit (L08).",
+    "Who is on which plan version; unaccepted updates (S11); assumptions, the band tables and plausibility thresholds, the cohort grid, the instrument universe and market inputs as they stand.",
+    "Staging and the impact preview of a change (L05); who is on which version after a publish and who has not accepted the update (M08, as L08's versions-in-use view).",
+    "Publish a version (L06), classify instruments (L04), the audit and the advice register export (L08), the portfolio constraints (L09).",
     "Publish impact across the base: how many plans change, and by how much."
    ],
-   "pick": "Spinach, as the logic panel L00 to L09 from the wireframes (already in scope); Zoho Analytics for the per-person counts (M08) over plan_built, plan_updated and update_accepted",
+   "pick": "Spinach, as the logic panel L00 to L09 from the wireframes; M08 joins it as L08's versions-in-use view; the band tables and plausibility thresholds sit in L02; the RPQ score-to-band thresholds in L03, to be decided",
    "why": [
-    "The engine's inputs are the maths; publishing re-runs plans and writes into the app at scale, so this cannot live in Zoho and is already drawn as the L screens. The counts per version and the unaccepted updates are events the feed carries, so the M08 screen is a report, not a build."
+    "The engine's inputs are the maths; publishing re-runs plans and writes into the app at scale, so this cannot live in Zoho and is already drawn as the L screens. The things that sit at the panel's edge belong with it, versioned with effective dates like every assumption: the band tables (L02 says they are fixed per field from the M2 tables; the 28 Sep placement had them under app config, which was wrong), the plausibility thresholds that raise the data-quality flags, and the RPQ score-to-band thresholds, since the risk profile stores a questionnaire version and the band feeds the cohort grid in L03.",
+    "M08 (who is on which version, who has not accepted an update) is the view after a publish; L05 shows the impact before it and L08 the audit. Keeping the three in one tool keeps the loop in one place, and the counts per version are a trivial read for a tool that already has the plans; Zoho Analytics only has the events.",
+    "L04 already queues unknown ISINs for classification and L08 already exports the advice register, so neither needs a Zoho task or a separate job."
    ],
-   "zoho": "Analytics over the plan events.",
-   "spinach": "The logic panel L00 to L09.",
+   "zoho": "Nothing; Analytics may still count plan events for the dashboard.",
+   "spinach": "The logic panel L00 to L09 with M08 as L08's versions-in-use view, the band and plausibility tables in L02, the RPQ thresholds in L03 if decided.",
    "verify": [],
-   "decide": [],
+   "decide": [
+    "to be decided: the RPQ score-to-band thresholds in L03, versioned with the questionnaire, or fixed in code"
+   ],
    "sketches": "none"
   },
   {
@@ -588,12 +569,12 @@
     "Filters by record type and period; retention clocks (five years after the relationship ends); deletion requests (H09, S25) honoured for everything else.",
     "Export a record set for an inspection or a complaint; execute a deletion request."
    ],
-   "pick": "Split: Zoho holds and exports the grievance register (Desk) and the audit view (App Events); Razorpay exports fee records; the rest stays in the app, read per person in the staff view and exported by a job (Spinach, plumbing); deletion is executed by the app with ops confirming in the staff view",
+   "pick": "Split: Zoho holds and exports the grievance register (Desk) and the audit view (App Events); Razorpay exports fee records; the advice register is L08's export (the logic panel); the rest stays in the app, read per person in the staff view and exported by a job (Spinach, plumbing); deletion is executed by the app with ops confirming in the staff view",
    "why": [
-    "The record of truth for SEBI is the system that produced it; copies in Zoho are views. The grievance register is Desk by design (category grievance, the SCORES field) and the fee records are Razorpay's. Everything else (agreements, KYC, risk profiles, the advice register, AUA statements, the full trail) is the app's, exported by a job to a store compliance can reach. Retention is policy enforced in the app; a deletion request leaves the regulated records in place."
+    "The record of truth for SEBI is the system that produced it; copies in Zoho are views. The grievance register is Desk by design (category grievance, the SCORES field) and the fee records are Razorpay's. The advice register (every plan with the versions it was built on) is L08's export, already drawn. Everything else (agreements, KYC, risk profiles, AUA statements, the full trail) is the app's, exported by a job to a store compliance can reach. Retention is policy enforced in the app; a deletion request leaves the regulated records in place."
    ],
    "zoho": "Desk export of the grievance register; App Events audit view and export.",
-   "spinach": "The export job; the deletion flow (H09) with the ops confirmation on the staff view.",
+   "spinach": "The export job for agreements, KYC, risk profiles, AUA statements and the trail; L08 for the advice register; the deletion flow (H09) with the ops confirmation on the staff view.",
    "verify": [
     "record formats (brief H6)",
     "DPDP notice, deletion and retention text (gap G03)"
@@ -676,14 +657,14 @@
    "page": 2,
    "title": "Dashboard, option 1 (action-focused)",
    "imagined": "KPI tiles (total users, active users, active subscriptions, onboarding completion), an onboarding funnel table, attention required (incomplete registrations, failed KYC, pending AA consent), user and subscription trends, system health.",
-   "zoho": "The principal officer dashboard (Analytics) for tiles and trends; three CRM saved views for the attention counts; Mixpanel for active users and the funnel; the uptime monitor's page for system health.",
+   "zoho": "The principal officer dashboard (Analytics) for tiles and trends; three CRM saved views for the attention counts; Mixpanel for active users and the funnel; the health page (B6) for system health.",
    "status": "dashboards built in the trial (G4); the views are configuration; sharing to be verified after G1"
   },
   {
    "page": 3,
    "title": "Dashboard, option 2 (insight-focused)",
    "imagined": "The same tiles, a needs-attention strip, an analytics snapshot (onboarding donut, subscription summary, integration health), quick actions.",
-   "zoho": "The same; quick actions are the CRM's own navigation; integration health is Sentry and the uptime monitor.",
+   "zoho": "The same; quick actions are the CRM's own navigation; integration health is the health page (B6).",
    "status": "as page 2"
   },
   {
@@ -767,8 +748,9 @@
  "outcome": {
   "spinach": [
    "The staff view of a client (own row 1): lookup by phone; the client's own screens in staff mode, read-only for every seat with scope; edit on behalf with the engine re-run for ops; the actions deletion done, DIFM tier, refund flag, force re-run (and reassign, if the owner stays mastered here); an audit row per action; a staff allowlist with seats on the sign-in (sheet row 10).",
+   "The health page (B6): integrations and engine health over integration_events, in one place, with links out to the consoles.",
    "App plumbing already owed: the event feed and the mirrors (plus the state-entered date, the CAS state, the AA institutions), I15 reads with published flags, push from state changes, audit rows as App Events with field names, integration_events and the failure events, the Deal per payment from the Razorpay webhooks, the ops Tasks, Desk ticket creation and the H07 pull, Bookings slots, the compliance record export job, the monthly AUA and SIP snapshot if accepted.",
-   "The logic panel L00 to L09 from the wireframes (own row 5)."
+   "The logic panel L00 to L09 from the wireframes (own row 5), with M08 as L08's versions-in-use view, the band and plausibility tables in L02, and the RPQ thresholds in L03 if decided."
   ],
   "zoho": [
    "CRM: Contacts with the mirrors, saved views (users, onboarding, AA and CAS, finance, compliance, DIFM prospects), Deals per payment, Tasks for the ops queue and calls, App Events (timeline, audit, failures), users, roles, profiles, MFA.",
@@ -776,8 +758,8 @@
    "Campaigns: email and WhatsApp templates, lists by journey stage, journeys, manual sends, reports. Desk: tickets, the SLA, the grievance register. Bookings: slots and appointments. Books: the ledger.",
    "I15 (Creator or a CRM custom module): content, copy, flags, SKU cards, agreement template versions, with published and effective-from fields and an approval step."
   ],
-  "consoles": "Razorpay (I09) for money; the KYC and eSign provider; the AA provider (I01); BSE StAR MF (I02); the WhatsApp provider (I08); Firebase (I12); Sentry and an uptime monitor; Mixpanel (I13).",
-  "changes": "Against the board of 2 Oct 2026 (commit 469d73b): M02, M04, M06, M08, M09, M11, M12 and M14 leave the built list (M04 becomes the Contact plus the staff view link; M06 the ops Tasks; M08 an Analytics report; M09 CRM views plus one mirror; M11 the App Events audit view plus the export job; M12 and M14 fold into the staff view and its allowlist), and M03 becomes the staff view. If the picks are confirmed, the board is updated with that cause; until then the committed split stands.",
+  "consoles": "Razorpay (I09) for money; the KYC and eSign provider; the AA provider (I01); BSE StAR MF (I02); the WhatsApp provider (I08); Firebase (I12); Sentry; Mixpanel (I13). Their status is read together on B6.",
+  "changes": "Against the board of 2 Oct 2026 (commit 469d73b): M02, M04, M06, M09, M11, M12 and M14 leave the built list (M04 becomes the Contact plus the staff view link; M06 the ops Tasks; M09 CRM views plus one mirror; M11 the App Events audit view plus the export job; M12 and M14 fold into the staff view and its allowlist); M03 becomes the staff view; M07 returns as the health page (B6); M08 joins the logic panel as L08's versions-in-use view. If the picks are confirmed, the board is updated with that cause; until then the committed split stands.",
   "decide": [
    "to be decided: confirm the picks (every row above)",
    "to be decided: the adviser owner mastered in Zoho with the app pulling it, or set on the staff view and mirrored (the 28 Sep INBOUND wording)",
@@ -807,7 +789,7 @@
   {
    "id": "B2",
    "what": "The logic panel L00 to L09",
-   "detail": "Already in the wireframes: assumptions, cohorts, the instrument universe, market inputs, staging, publish, audit."
+   "detail": "Already in the wireframes: assumptions with the band tables (L02), cohorts and risk bands (L03), the instrument universe with the unknown-ISIN queue (L04), market inputs (L07), constraints (L09), staging (L05), publish (L06), audit and the advice register export (L08); plus M08, who is on which version and who has not accepted an update, as L08's versions-in-use view."
   },
   {
    "id": "B3",
@@ -822,7 +804,12 @@
   {
    "id": "B5",
    "what": "Senders and jobs",
-   "detail": "Push from state changes (I12); the compliance record export job; the monthly AUA and SIP snapshot if accepted (open item 2)."
+   "detail": "Push from state changes (I12); the export job for agreements, KYC records, risk profiles, AUA statements and the audit trail; the monthly AUA and SIP snapshot if accepted (open item 2)."
+  },
+  {
+   "id": "B6",
+   "what": "The health page: integrations and the engine, in one place",
+   "detail": "One page over integration_events: status, last success, failures and latency per vendor, the error log as an export, retry where a vendor call allows it, a link out to each console for the detail; engine health beside it: data complete but no plan built, build time, the plan-upgrade job. Sentry still pages on thresholds."
   }
  ],
  "holds": [
@@ -832,7 +819,7 @@
   },
   {
    "who": "Consoles",
-   "what": "Razorpay (I09); the KYC and eSign provider; the AA provider (I01); BSE StAR MF (I02); the WhatsApp provider (I08); Firebase (I12); Sentry and an uptime monitor; Mixpanel (I13) for behaviour: funnels, retention, drop-offs, plan reads and downloads."
+   "what": "Each console keeps its deep functions: refunds and invoices in Razorpay (I09); KYC records at the KYC and eSign provider; consents and FIP detail at the AA provider (I01); orders at BSE StAR MF (I02); templates at the WhatsApp provider (I08); push delivery in Firebase (I12); alerts in Sentry; behaviour in Mixpanel (I13): funnels, retention, drop-offs, plan reads and downloads. Their status is read together on B6."
   }
  ],
  "open": [
@@ -840,7 +827,8 @@
   "AUA and SIP book numbers per Contact in Zoho, or from a database export only (the bands-only rule).",
   "I15: Creator or a CRM custom module; it fixes the API Spinach codes against.",
   "The staff view's sign-in and MFA (gap G21).",
-  "Subscription extend or comp, and account suspension: wanted or not (gaps G19, G20)."
+  "Subscription extend or comp, and account suspension: wanted or not (gaps G19, G20).",
+  "The logic panel's edge: the band tables and plausibility thresholds in L02 rather than I15, and the RPQ score-to-band thresholds in L03, versioned with the maths."
  ],
  "kajal_note": "Kajal's admin list of 8 Sep 2026 (the admin panel docx in inputs/hoa/, the same file as the one in inputs/spinach/kajal-admin panel/), line by line in her own grouping, with where each line lands on this page and who holds it. The 48 lines are the placement rows of the Admin and CRM tab; the build checks that none is missing.",
  "kajal": [
@@ -883,8 +871,8 @@
   {
    "sec": "Dashboard KPIs",
    "item": "Plans in progress (being prepared)",
-   "lands": "Row 3",
-   "who": "Zoho Analytics; redefined: plans build instantly, so it reads engine failures and plans built in the last 24 hours"
+   "lands": "B6 and Row 3",
+   "who": "B6 for data complete but no plan built (engine failures); Zoho Analytics for plans built in the last 24 hours"
   },
   {
    "sec": "Dashboard KPIs",
@@ -985,8 +973,8 @@
   {
    "sec": "Plan analytics",
    "item": "Time from data completion to plan",
-   "lands": "Row 12",
-   "who": "Consoles (Sentry); an engine health check, seconds by design"
+   "lands": "B6",
+   "who": "Spinach: engine health on the health page"
   },
   {
    "sec": "Plan analytics",
@@ -1009,8 +997,8 @@
   {
    "sec": "Financial data",
    "item": "Needs verification",
-   "lands": "B3",
-   "who": "Zoho tasks created by the app; the fix in B1 or the logic panel (B2)"
+   "lands": "B3 and B2",
+   "who": "Unknown ISINs queue in L04; implausible values and AA failures are Zoho tasks created by the app, fixed in B1"
   },
   {
    "sec": "Payment dashboard",
@@ -1027,8 +1015,8 @@
   {
    "sec": "Integrations",
    "item": "Last sync and failures: KYC, AA, payment gateway, email, WhatsApp, push",
-   "lands": "Row 12",
-   "who": "Consoles"
+   "lands": "B6",
+   "who": "Spinach: the health page brings the consoles together; Sentry still pages"
   },
   {
    "sec": "Notifications",

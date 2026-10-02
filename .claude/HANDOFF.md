@@ -56,9 +56,11 @@ push). Board work (phase 14 pass 5) runs only on Vatsal's word.
   Chrome). The v8 API list call also needs a scope the docs do not name.
 - (d) Done on 2 Oct 2026: the admin panel inputs were read into W12 (docs/admin_brief.html T7, the Admin + CRM tab,
   PLAN.md section 26). Open: send the brief to Spinach (then tracker W12 reads delivered); the seven gaps G18 to G24.
-- (e) Confirm the picks on docs/admin_split.html (one built surface, the staff view, instead of nine screens; the
-  decisions it lists: the adviser owner mastered in Zoho or on the staff view; AUA and SIP numbers per Contact or not;
-  Creator or a CRM custom module). On a yes the board changes in one commit; on a no the committed split stands.
+- (e) Confirm the picks on docs/admin_split.html (two built surfaces, the staff view and the health page, plus the
+  logic panel with its edge, instead of nine screens; the open items it lists: the adviser owner mastered in Zoho or
+  on the staff view; AUA and SIP numbers per Contact or not; Creator or a CRM custom module; sign-in and MFA;
+  subscription writes and suspension; the band and RPQ tables in the logic panel). On a yes the board changes in one
+  commit; on a no the committed split stands.
 
 ## Steps only a person can do (the browser rules hand account creation and org setup back to a person)
 - G1: Zoho One admin panel, User Management, Users, Add User, 9 users (the trial has 9 licenses left; order from plan

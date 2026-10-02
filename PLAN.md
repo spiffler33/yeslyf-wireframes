@@ -667,8 +667,10 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
 - Added the same day, its own commit: docs/admin_split.html from data/admin_split.json (scripts/build_admin_split.py; the
   Split link in the admin seed subnav). Spinach's feature matrix with a pick per row (the version for launch and who
   provides it) and one line why, then the five things Spinach builds (B1 to B5), what the bought tools hold and five open items; folded as working notes for doc 2: the full reasoning, nine admin items of our own outside the sheet, each as its best
-  version with the pick; the 13 sketches against Zoho; the outcome if confirmed: one built surface (the staff view of
-  a client, M03 reduced to a mode of the app) plus the logic panel, everything else Zoho or a console. The sheet is
+  version with the pick; the 13 sketches against Zoho; the outcome if confirmed: two built surfaces (the staff view of
+  a client, M03 reduced to a mode of the app; the health page, integrations and engine health in one place) plus the
+  logic panel with its edge (M08 as L08's versions-in-use view, the band and plausibility tables in L02, the RPQ
+  thresholds in L03 to be decided), everything else Zoho or a console; Kajal's 48 lines mapped line by line. The sheet is
   not the universal set (the page says what sits outside it). Every pick stays "to be decided: confirm the pick"; the
   committed split (nine screens) stands until Vatsal confirms, then admin_screens.json, admin_crm.json and the brief
   change in one commit with that cause.

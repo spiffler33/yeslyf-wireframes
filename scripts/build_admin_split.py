@@ -95,8 +95,8 @@ def notes_sheet(doc):
     head = "<tr><th>Admin feature</th><th>Pick, who</th><th>The full reasoning</th></tr>"
     rows = []
     for r in doc["features"]:
-        rows.append('<tr id="n%d"><td class="f">%d. %s</td><td class="pick"><b>%s, %s</b><br>%s<br><span class="meta">%s</span></td><td>%s%s</td></tr>' %
-                    (r["n"], r["n"], esc(r["feature"]), esc(r["pick"]), esc(r["who"]), esc(r["pick_level"]), esc(r["pick_who"]),
+        rows.append('<tr id="n%d"><td class="f">%d. %s</td><td class="pick"><b>%s, %s</b><br>%s</td><td>%s%s</td></tr>' %
+                    (r["n"], r["n"], esc(r["feature"]), esc(r["pick"]), esc(r["who"]), esc(r["line"]),
                      paras(r["why"]), ("<p><b>Zoho holds</b> %s</p><p><b>Spinach does</b> %s</p>" % (esc(r["zoho"]), esc(r["spinach"]))) +
                      (("<p><b>To be verified</b></p>" + ul(r["verify"])) if r.get("verify") else "") +
                      (('<p class="tbd"><b>Open</b></p>' + ul(r["decide"], "tbd")) if r.get("decide") else "") +
@@ -177,8 +177,7 @@ def validate(doc):
     if ns != list(range(1, 13)):
         problems.append("features are not numbered 1 to 12: %s" % ns)
     for r in doc.get("features", []):
-        for key in ("feature", "v1", "v1_5", "v2", "v3", "pick", "who", "line", "pick_level", "pick_who", "why", "zoho", "spinach",
-                    "verify", "decide", "sketches"):
+        for key in ("feature", "v1", "v1_5", "v2", "v3", "pick", "who", "line", "why", "zoho", "spinach", "verify", "decide", "sketches"):
             if key not in r:
                 problems.append("feature %s: missing %s" % (r.get("n"), key))
         if r.get("pick") not in ("V1", "V1.5", "V2", "V3"):
