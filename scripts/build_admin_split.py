@@ -135,6 +135,18 @@ def notes(doc):
     return '<details class="notes" id="notes"><summary>Working notes for doc 2 (the reasoning, our own items, the sketches)</summary>' + body + '</details>'
 
 
+def kajal_table(doc):
+    head = "<tr><th>Her section</th><th>Her line</th><th>Lands at</th><th>Who holds it</th></tr>"
+    rows = []
+    last = None
+    for k in doc["kajal"]:
+        sec = esc(k["sec"]) if k["sec"] != last else ""
+        last = k["sec"]
+        rows.append('<tr><td class="f">%s</td><td>%s</td><td class="pick"><b>%s</b></td><td>%s</td></tr>' %
+                    (sec, esc(k["item"]), esc(k["lands"]), esc(k["who"])))
+    return '<table class="split">' + head + "".join(rows) + "</table>"
+
+
 def build_page(doc):
     intro = ('<section><h1>The admin split: what Spinach builds</h1><p class="lead">%s</p><p class="meta">Cause: %s</p></section>'
              % (esc(doc["about"]), esc(doc["cause"])))
@@ -144,7 +156,9 @@ def build_page(doc):
     builds = '<section id="builds" class="builds"><h2>2. What Spinach builds</h2>' + builds_table(doc) + '</section>'
     holds = '<section id="holds"><h2>3. What the bought tools hold</h2>' + holds_table(doc) + '</section>'
     open_ = '<section id="open" class="open"><h2>4. Open before Spinach plans</h2>' + ul(doc["open"], "tbd") + '</section>'
-    body = intro + sheet + builds + holds + open_ + notes(doc)
+    kajal = ('<section id="kajal"><h2>5. Kajal\'s list of 8 Sep 2026, line by line</h2><p class="meta">%s</p>%s</section>'
+             % (esc(doc["kajal_note"]), kajal_table(doc)))
+    body = intro + sheet + builds + holds + open_ + kajal + notes(doc)
     return (site.head("yeslyf admin split", site.CSS + site.SUBNAV_CSS + EXTRA_CSS) + '<body>\n' +
             site.header("admin_wireframes.html", "admin split: what Spinach builds", who_html="", show_export=False,
                         tabs=None, setup_link=True) +
@@ -177,6 +191,15 @@ def validate(doc):
                 problems.append("own %s: missing %s" % (r.get("n"), key))
     if len(doc.get("sketches", [])) != 13:
         problems.append("sketches: %d rows, expected 13" % len(doc.get("sketches", [])))
+    # Kajal's 48 lines are the placement rows of the Admin and CRM tab: every one must land somewhere on this page.
+    placement = site.load("admin_crm.json").get("PLACEMENT", [])
+    want = set(r["item"] for r in placement)
+    have = set(k.get("item") for k in doc.get("kajal", []))
+    if want != have:
+        problems.append("kajal lines do not match the placement rows: missing %s, extra %s" % (sorted(want - have), sorted(have - want)))
+    for k in doc.get("kajal", []):
+        if not k.get("lands") or not k.get("who"):
+            problems.append("kajal line %r has no landing row or owner" % k.get("item"))
     text = json.dumps(doc)
     for word in site.FORBIDDEN:
         if word in text:

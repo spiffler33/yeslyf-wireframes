@@ -1,5 +1,5 @@
 {
- "about": "What Spinach builds for the admin side, in one page: Spinach's own feature matrix (9 Jul 2026) with one column added, the version picked for launch and who provides it, one line why; then the five things Spinach builds; then what Zoho and the consoles hold (the details are doc 2); then the five open items. The sheet is not the universal set: what sits outside it is in the folded notes and reaches Spinach only as B1 to B5. Picks proposed 2 Oct 2026; to be decided: confirm the picks.",
+ "about": "What Spinach builds for the admin side, in one page: Spinach's own feature matrix (9 Jul 2026) with one column added, the version picked for launch and who provides it, one line why; then the five things Spinach builds; then what Zoho and the consoles hold (the details are doc 2); then the five open items; then Kajal's list of 8 Sep 2026 line by line, with where each line lands. The sheet is not the universal set: what sits outside it is in the folded notes and reaches Spinach only as B1 to B5. Picks proposed 2 Oct 2026; to be decided: confirm the picks.",
  "cause": "Vatsal, 2 Oct 2026 (the question: is the sheet the universal set; per row, which version and who)",
  "rules": [
   "One way, app to Zoho: Zoho never writes into the app; the app may pull from Zoho when it opens something (H07 pulls the Desk thread).",
@@ -841,5 +841,296 @@
   "I15: Creator or a CRM custom module; it fixes the API Spinach codes against.",
   "The staff view's sign-in and MFA (gap G21).",
   "Subscription extend or comp, and account suspension: wanted or not (gaps G19, G20)."
+ ],
+ "kajal_note": "Kajal's admin list of 8 Sep 2026 (the admin panel docx in inputs/hoa/, the same file as the one in inputs/spinach/kajal-admin panel/), line by line in her own grouping, with where each line lands on this page and who holds it. The 48 lines are the placement rows of the Admin and CRM tab; the build checks that none is missing.",
+ "kajal": [
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Total users",
+   "lands": "Row 3",
+   "who": "Zoho Analytics"
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "New users, today / week / month",
+   "lands": "Row 3",
+   "who": "Zoho Analytics"
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Active users",
+   "lands": "Row 3",
+   "who": "Consoles (Mixpanel)"
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "In onboarding",
+   "lands": "Rows 2 and 3",
+   "who": "Zoho: CRM views per state, Analytics counts"
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Paid users",
+   "lands": "Row 3",
+   "who": "Zoho Analytics"
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Plan opted, by SKU",
+   "lands": "Row 3",
+   "who": "Zoho Analytics over Deals"
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Plans in progress (being prepared)",
+   "lands": "Row 3",
+   "who": "Zoho Analytics; redefined: plans build instantly, so it reads engine failures and plans built in the last 24 hours"
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Plans completed (delivered)",
+   "lands": "Row 3",
+   "who": "Zoho Analytics for built; Mixpanel for read"
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "Pending actions (admin / adviser / customer service)",
+   "lands": "B3",
+   "who": "Zoho: open Desk tickets and open ops tasks, the tasks created by the app"
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "AUA (assets under advisory)",
+   "lands": "Row 3",
+   "who": "Zoho Analytics; open item 2 (numbers per Contact)"
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "SIP book (ongoing monthly investments)",
+   "lands": "Row 3",
+   "who": "Zoho Analytics; open item 2"
+  },
+  {
+   "sec": "Dashboard KPIs",
+   "item": "AA availed",
+   "lands": "Row 3",
+   "who": "Zoho Analytics"
+  },
+  {
+   "sec": "User analytics",
+   "item": "Active users, retention",
+   "lands": "Row 1",
+   "who": "Consoles (Mixpanel)"
+  },
+  {
+   "sec": "User analytics",
+   "item": "Drop-offs by screen and stage",
+   "lands": "Row 2",
+   "who": "Consoles (Mixpanel)"
+  },
+  {
+   "sec": "Onboarding analytics",
+   "item": "Completion %, average completion time, stage-wise drop-off",
+   "lands": "Row 2",
+   "who": "Consoles (Mixpanel)"
+  },
+  {
+   "sec": "Onboarding analytics",
+   "item": "KYC failure rate",
+   "lands": "Row 12",
+   "who": "Zoho Analytics from the failure events"
+  },
+  {
+   "sec": "Onboarding analytics",
+   "item": "AA failure rate",
+   "lands": "Row 12",
+   "who": "Zoho Analytics from the failure events; the AA provider's console for FIP detail"
+  },
+  {
+   "sec": "Commercial analytics",
+   "item": "Sample plan to paid conversion",
+   "lands": "Row 2",
+   "who": "Consoles (Mixpanel)"
+  },
+  {
+   "sec": "Commercial analytics",
+   "item": "Payment conversion",
+   "lands": "Row 7",
+   "who": "Consoles (Mixpanel)"
+  },
+  {
+   "sec": "Commercial analytics",
+   "item": "Subscription conversion",
+   "lands": "Row 7",
+   "who": "Zoho Analytics; only if a one-time SKU survives"
+  },
+  {
+   "sec": "Commercial analytics",
+   "item": "Revenue",
+   "lands": "Row 7",
+   "who": "Zoho Books and Analytics; Razorpay for money movement"
+  },
+  {
+   "sec": "Commercial analytics",
+   "item": "Plan type mix",
+   "lands": "Row 3",
+   "who": "Zoho Analytics; the same as plan opted by SKU"
+  },
+  {
+   "sec": "Plan analytics",
+   "item": "Plans generated, viewed, downloaded",
+   "lands": "Row 3",
+   "who": "Consoles (Mixpanel events)"
+  },
+  {
+   "sec": "Plan analytics",
+   "item": "Time from data completion to plan",
+   "lands": "Row 12",
+   "who": "Consoles (Sentry); an engine health check, seconds by design"
+  },
+  {
+   "sec": "Plan analytics",
+   "item": "FP to IP conversion",
+   "lands": "Row 7",
+   "who": "Nothing to measure under the current tiers; only if a one-time SKU survives"
+  },
+  {
+   "sec": "Financial data",
+   "item": "Not started / partially completed / completed",
+   "lands": "B1",
+   "who": "Spinach: the staff view; the counts in Zoho Analytics"
+  },
+  {
+   "sec": "Financial data",
+   "item": "System generated / AA sourced / manually entered",
+   "lands": "B1",
+   "who": "Spinach: the staff view's source badges"
+  },
+  {
+   "sec": "Financial data",
+   "item": "Needs verification",
+   "lands": "B3",
+   "who": "Zoho tasks created by the app; the fix in B1 or the logic panel (B2)"
+  },
+  {
+   "sec": "Payment dashboard",
+   "item": "Total paid, pending, failed, refunded, revenue",
+   "lands": "Row 7",
+   "who": "Consoles (Razorpay); Zoho Deals for the record"
+  },
+  {
+   "sec": "Payment dashboard",
+   "item": "Conversion rate",
+   "lands": "Row 7",
+   "who": "Consoles (Mixpanel)"
+  },
+  {
+   "sec": "Integrations",
+   "item": "Last sync and failures: KYC, AA, payment gateway, email, WhatsApp, push",
+   "lands": "Row 12",
+   "who": "Consoles"
+  },
+  {
+   "sec": "Notifications",
+   "item": "Templates: email, WhatsApp",
+   "lands": "Row 4",
+   "who": "Zoho Campaigns"
+  },
+  {
+   "sec": "Notifications",
+   "item": "Templates: push",
+   "lands": "Row 4",
+   "who": "Zoho (I15); the app sends (B5)"
+  },
+  {
+   "sec": "Notifications",
+   "item": "Templates: in-app",
+   "lands": "Row 4",
+   "who": "Zoho (I15)"
+  },
+  {
+   "sec": "Notifications",
+   "item": "Trigger-based rules",
+   "lands": "Row 4",
+   "who": "Zoho Campaigns journeys keyed on journey stage; push rules in the app (B5)"
+  },
+  {
+   "sec": "CMS",
+   "item": "Intro and transition videos",
+   "lands": "Row 5",
+   "who": "Zoho (I15)"
+  },
+  {
+   "sec": "CMS",
+   "item": "Sample plan content",
+   "lands": "Row 5",
+   "who": "Zoho (I15)"
+  },
+  {
+   "sec": "CMS",
+   "item": "Questions and answer options",
+   "lands": "Row 5",
+   "who": "Zoho (I15) for wording; structure is a release (D5)"
+  },
+  {
+   "sec": "CMS",
+   "item": "Tooltips, disclaimers, educational content, general content, FAQs",
+   "lands": "Row 5",
+   "who": "Zoho (I15)"
+  },
+  {
+   "sec": "CMS",
+   "item": "Agreements",
+   "lands": "Row 5",
+   "who": "Zoho (I15) for template versions; signed copies in the vault, read in B1"
+  },
+  {
+   "sec": "Admin and settings",
+   "item": "Admin users, roles and permissions",
+   "lands": "Row 10",
+   "who": "Zoho for Zoho; the staff view's allowlist (B1)"
+  },
+  {
+   "sec": "Admin and settings",
+   "item": "Audit logs",
+   "lands": "Row 8",
+   "who": "Zoho (App Events views and export); the trail written by the app (B3)"
+  },
+  {
+   "sec": "Admin and settings",
+   "item": "System settings",
+   "lands": "Row 11",
+   "who": "Zoho (I15 flags)"
+  },
+  {
+   "sec": "Admin and settings",
+   "item": "Fee structure",
+   "lands": "Row 6",
+   "who": "Zoho (I15 SKU config mapped to Razorpay plan IDs)"
+  },
+  {
+   "sec": "User details (CRM)",
+   "item": "Name, email, mobile, signed-in date, last activity",
+   "lands": "Row 1",
+   "who": "Zoho Contact, fed by B3"
+  },
+  {
+   "sec": "User details (CRM)",
+   "item": "Paid user, subscription, current journey stage",
+   "lands": "Row 1",
+   "who": "Zoho Contact mirrors (B3)"
+  },
+  {
+   "sec": "User details (CRM)",
+   "item": "Onboarding %, KYC status, AA status, financial plan status, investment plan status",
+   "lands": "Row 1",
+   "who": "Zoho Contact mirrors (B3); the truth in the app (B1)"
+  },
+  {
+   "sec": "User details (CRM)",
+   "item": "Assigned adviser / RM",
+   "lands": "Row 1",
+   "who": "Open item 1: mastered in Zoho, or on the staff view and mirrored"
+  }
  ]
 }
