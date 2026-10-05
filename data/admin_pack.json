@@ -1,0 +1,44 @@
+{
+ "about": "The narrative of the admin brief for Spinach (docs/admin_brief.html): the read-me, the plumbing contract, the sketch each built screen matches, the exports. Everything else on that page is generated from data/admin_screens.json, data/admin_split.json, data/admin_crm.json, data/screens_v02.json, data/integrations.json and data/gaps.json, so the pack cannot drift from the board.",
+ "cause": "Vatsal, 5 Oct 2026 (W12: the pack for Spinach, after the Split page picks were confirmed)",
+ "title": "Admin brief for Spinach",
+ "lead": "What Spinach develops for the admin side, what HoA retains in Zoho and the consoles, and the contract between the two. Generated from the board, so it matches the admin screens, the Split page and the Admin and CRM tab. Picks confirmed 5 Oct 2026.",
+ "read_me": [
+  "Three admin screens are built: M03 the staff view of a client, M07 the health page, M10 the config screen. The logic panel L00 to L09 is built from the wireframes. Everything else on Spinach's July sheet and August sketches is read in Zoho or a console, fed by the app.",
+  "The rules behind every row: one way, app to Zoho (Zoho never writes into the app; the app may pull when it opens something, as H07 pulls the Desk thread); writes into the app by staff stay in the app; bands only in Zoho, no PAN, no financial numbers; the journey state is computed in the app and mirrored, Zoho never computes a state.",
+  "IDs: M screens are admin screens (the admin wireframes page), L screens the logic panel and A to X the app (the wireframes v0.2 tab), S1 to S25 the returning-user states (N01), I-numbers the integrations tab, T1 to T7 the annex tables at the end, G-numbers the gaps register, BE and FE the questionnaire answers of 24 Sep 2026.",
+  "Status: proposed 2 Oct 2026, reviewed by Kajal and confirmed by Vatsal on 5 Oct 2026. The open items in section 5 change details, not ownership."
+ ],
+ "links": [
+  ["admin_wireframes.html", "the three screens, drawn over the seed (M03, M07, M10)"],
+  ["admin_split.html", "the Split page: Spinach's sheet with a pick per row, Kajal's list, the sketches"],
+  ["admin_v02.html", "the Admin and CRM tab: placement, stack, events, fields, compliance"],
+  ["wireframes_v02.html#L00", "the logic panel L00 to L09 and the app screens"],
+  ["integrations.html", "the integrations I00 to I24"],
+  ["events.html", "the event names per screen"]
+ ],
+ "sketch_match": {
+  "M03": "Their page 12 (user profile), the app-held half: personal details with PAN and address, the KYC detail, the linked accounts, plus the client's own screens. The CRM half of that page (activity, subscription, timeline) is the Zoho Contact. The Devices and Sessions tab is open item G24.",
+  "M07": "Their pages 2 and 3, the system health tiles, grown into a page; their row 12 Integration Status at V2, with retry only where a vendor call can be repeated.",
+  "M10": "Nothing drawn. Their rows 6 Configuration and 11 System Settings at V2, in the app by Kajal's point of 5 Oct 2026; the pattern is L02 (values with effective dates, staged, published, audited)."
+ },
+ "plumbing_intro": "The app work Spinach does regardless of the screens: the feed into Zoho, the reads from Zoho, the senders and the jobs. Each line points at the annex table or the section that holds the detail.",
+ "plumbing": [
+  {"item": "The event feed, app to Zoho", "detail": "Every event in T2 with its payload, at the moment it happens; one Contact per phone, created at signed_up; the journey state goes with every change.", "see": "T2; section 4.1"},
+  {"item": "The Contact mirrors", "detail": "The fields in section 4.2, written by the feed, read-only in Zoho; the admin panel link on the Contact opens M03 for the person.", "see": "section 4.2; T4"},
+  {"item": "Deals", "detail": "One per payment from the Razorpay webhook (I09): SKU, amount, period, Razorpay ids, start, next billing, status, plus the v0.2 fields; the webhook also sets the tier and billing state in the app.", "see": "section 4.3; T4"},
+  {"item": "Tasks for the ops queue", "detail": "Created by the app with a type, the person link and a due date: plausibility flag, AA failure, refund request (BE-14), reassignment, deletion request; worked in Zoho; the fix on M03. Unknown ISINs queue in L04, not here.", "see": "T4"},
+  {"item": "App Events", "detail": "The timeline (every T2 event), the audit rows (who, when, the record, field names, never values), the failure events (kyc_failed, aa_failed with the institutions).", "see": "T2; T4"},
+  {"item": "Desk", "detail": "H07 creates a ticket (category support, adviser message or grievance); the app pulls the thread when H07 opens; nothing is pushed back from Desk.", "see": "section 4.4"},
+  {"item": "Bookings", "detail": "K01 and K04 read slots and book; the appointment carries the K01 topic and note (BE-12, BE-13); how the app learns a no-show is an open item.", "see": "T4; section 5"},
+  {"item": "I15 reads", "detail": "Content and copy by API, cached, with a published flag and an effective date: videos, sample plan content, tooltips, disclaimers, FAQs, question wording, in-app and push copy, agreement template versions. Configuration is never read from Zoho; it is M10's.", "see": "I15; section 2.3"},
+  {"item": "Push", "detail": "Sent by the app through I12 on state changes, the copy from I15, the ladder offsets from T5; Campaigns enforces the weekly cap for email and WhatsApp, the app for push.", "see": "T5"},
+  {"item": "Consent", "detail": "Mastered in the app (A02); every opt-out flows app to Zoho; DND is read-only in Zoho.", "see": "section 4.4"},
+  {"item": "integration_events", "detail": "One row per integration call: vendor, outcome, latency; M07 reads it; Sentry pages on thresholds.", "see": "section 2.2"},
+  {"item": "The exports job", "detail": "To a store compliance can reach: signed agreements from the vault, KYC records, risk profiles with the questionnaire version, AUA statements, the full audit trail; the advice register is L08's export. Formats to be verified (brief H6).", "see": "section 5"},
+  {"item": "The staff sign-in", "detail": "An allowlist with a seat per account for M03, M07, M10 and the logic panel, managed on M03 by the principal officer; the method and MFA are open (G21).", "see": "section 2.1; section 5"},
+  {"item": "The AUA and SIP snapshot", "detail": "Monthly, per Contact, if accepted; it puts numbers into Zoho (open item).", "see": "section 5"}
+ ],
+ "retain_intro": "What HoA retains, row by row of Spinach's own sheet and page by page of the sketches. Where it says Zoho or Consoles, Spinach builds nothing for it; the feed in section 4 is what makes it work.",
+ "contract_intro": "What the app must send, hold and honour so that the retained half works. The annex tables carry the full detail: T1 the data model, T2 every event with its payload, T4 the Zoho objects, fields, picklists and views."
+}

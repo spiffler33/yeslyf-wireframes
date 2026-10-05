@@ -174,10 +174,15 @@ def render_question(q, ctx):
 
 
 def render_seat(seat, ctx):
-    rows = "".join(render_question(q, ctx) for q in seat["questions"])
-    return ('<section id="seat-%s"><h2>%s</h2><div class="wrap"><table><thead><tr>'
-            '<th>Question id</th><th>Question</th><th>Surface</th><th>Screen</th><th>Answered</th><th>Gap</th><th>Comment</th>'
-            '</tr></thead><tbody>%s</tbody></table></div></section>' % (esc(seat["id"]), esc(seat["seat"]), rows))
+    # The N01 precedence pairs (rows that carry a "pair") fold under one line with their count (Vatsal, 5 Oct 2026: less noise).
+    plain = [q for q in seat["questions"] if "pair" not in q]
+    pairs = [q for q in seat["questions"] if "pair" in q]
+    head = ('<thead><tr><th>Question id</th><th>Question</th><th>Surface</th><th>Screen</th><th>Answered</th><th>Gap</th><th>Comment</th></tr></thead>')
+    html = '<div class="wrap"><table>%s<tbody>%s</tbody></table></div>' % (head, "".join(render_question(q, ctx) for q in plain))
+    if pairs:
+        html += ('<details><summary>N01 precedence pairs: which state shows when two hold <span class="meta">(%d)</span></summary>'
+                 '<div class="wrap"><table>%s<tbody>%s</tbody></table></div></details>' % (len(pairs), head, "".join(render_question(q, ctx) for q in pairs)))
+    return '<section id="seat-%s"><h2>%s</h2>%s</section>' % (esc(seat["id"]), esc(seat["seat"]), html)
 
 
 EXTRA_CSS = """

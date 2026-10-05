@@ -1475,6 +1475,10 @@
   {
    "what": "The Split page picks confirmed (docs/admin_split.html). Admin screens: M03 is the staff view of a client, M07 the health page, M10 the config screen (configuration in the app, not Zoho: Kajal, 5 Oct 2026); M02, M04, M06, M08, M09, M11, M12 and M14 dropped with pointers (M08 to L08; M12 and M14 into M03). PLACEMENT: the Integrations, System settings and Fee structure rows read Admin panel; the Financial data, Pending actions, Admin users, Audit logs and User details mirror rows name M03 or Zoho tasks; the Assigned adviser row reads to be decided. STACK: the Admin panel, Zoho Creator and Logic panel rows reworded. COMPLIANCE: five rows read M03, the export job, L08 or I15. SPINACH_MODULES: builds per row. Seat rows repointed; gap G22 closed; I15 reads content and copy.",
    "cause": "Vatsal, 5 Oct 2026 (the Split page picks confirmed; Kajal, 5 Oct 2026 on configuration and system settings)"
+  },
+  {
+   "what": "The page shows the current truth first and folds its history (no data key changed): a split section from the Admin panel stack row; the retired tools (Directus, Metabase) folded under the stack; the v0.1 and v0.2 contact and deal fields in one table each; the decided decisions folded under the open ones; the per-screen events and this change log folded with counts; the Spinach module table shown on the Split page and the brief only.",
+   "cause": "Vatsal, 5 Oct 2026 (less noise on the admin and CRM pages)"
   }
  ],
  "note_v02": "v0.2 additions sit beside the v0.1 keys; the v0.1 admin page is frozen and served from docs/v01/, and a v0.1 key on this page changes only with a cause listed under Changes in v0.2. The v0.2 NUDGES matrix is rendered by the site from data/v02/states.json (one row per state per ladder step: state, day, channel, copy slot, deep link, tier rule, CRM task); v0.2 EVENTS are rendered from data/screens_v02.json (every screen's events plus state_enter events). The CRM platform is Zoho One (I14).",

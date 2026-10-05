@@ -683,3 +683,11 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   placement, stack, compliance and SPINACH_MODULES rows read the same; data/seats.json gained the surface "Logic
   panel" (L04, L08) and 18 answered rows repointed; gap G22 closed; I15 in data/integrations.json reads content and
   copy; the brief's T3 lists the three screens. B1 is detailed on the Split page for Kajal's look.
+- The pack for Spinach, 5 Oct 2026: docs/admin_brief.html is the brief proper, generated from the board (data/admin_pack.json
+  holds only the narrative): 1 read me, 2 what Spinach develops (B1 to B7, the three screens in full with the sketch each
+  matches, the logic panel, the plumbing), 3 what HoA retains (the sheet with the pick per row, the sketches against
+  Zoho, the holds), 4 the contract (events, Contact mirrors, Deals, one way, the integrations), 5 open items and to be
+  verified, then the annex tables T1 to T7 folded. Less noise the same day (Vatsal): the Admin and CRM v0.2 tab shows
+  the current truth first and folds its history (retired tools, decided decisions, per-screen events, the change log;
+  the module table lives on the Split page and the brief), the admin wireframes nav groups the ten moved screens, the
+  seats page folds the N01 precedence pairs.

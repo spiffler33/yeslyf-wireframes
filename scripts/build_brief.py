@@ -543,14 +543,109 @@ def render_table_section(table_id, title, cols, rows, gap_questions):
     total = len(rows) + len(gap_questions)
     summary = ('%s <span class="meta" id="count-%s">, %d rows, %d gaps</span>' %
                (esc(title), table_id, total, len(gap_questions)))
-    return ('<details open><summary>%s</summary><div class="wrap"><table><thead>%s</thead>'
+    # Folded by default since the pack (W12, 5 Oct 2026): the annex tables are the devs' reference, not the read.
+    return ('<details><summary>%s</summary><div class="wrap"><table><thead>%s</thead>'
             '<tbody id="tbody-%s">%s%s</tbody></table></div></details>' %
             (summary, thead, table_id, body, gaps_html))
+
+
+# ---- the pack: the cover sections before the annex tables (W12, 5 Oct 2026) ------------------------------------
+
+def tokens(text, integrations_by_id):
+    """{Ixx} tokens in the admin screens' text become 'Ixx vendor', as the admin wireframes page renders them."""
+    out = str(text or "")
+    for iid, row in integrations_by_id.items():
+        out = out.replace("{%s}" % iid, "%s %s" % (iid, row.get("vendor", "")))
+    return out
+
+
+def ul(items):
+    return "<ul>" + "".join("<li>%s</li>" % esc(x) for x in items) + "</ul>" if items else ""
+
+
+def screen_spec(s, bid, match, num, integ):
+    tk = lambda t: esc(tokens(t, integ))
+    roles = "; ".join("%s: %s" % (k, v) for k, v in s["role"].items())
+    writes = [("%s (%s), event %s" % (w["action"], ", ".join(w["roles"]), w["event"])) for w in s.get("writes", [])]
+    branches = ["%s: %s" % (label, target) for label, target in s["spec"].get("branches", [])]
+    open_items = [x for x in s["freeze"].get("reason", []) if x.startswith("to be decided")]
+    rows = [
+        ["Purpose", tk(s["purpose"])],
+        ["Seats", esc(", ".join(s["seat"]))],
+        ["Roles", esc(roles)],
+        ["Reads", ul(s["spec"]["fields"])],
+        ["Write actions", ul(writes) or '<span class="meta">none</span>'],
+        ["Opens", ul(branches) or '<span class="meta">none</span>'],
+        ["Dev lines", "<ul>" + "".join("<li>%s</li>" % tk(x) for x in s["spec"]["dev"]) + "</ul>"],
+        ["Open items", ul([tokens(x, integ) for x in open_items]) or '<span class="meta">none</span>'],
+        ["Zoho instead", tk(s["zoho_instead"])],
+        ["Their sketch", esc(match)],
+        ["Draft", '<a href="admin_wireframes.html#%s">admin_wireframes.html#%s</a>, drawn over the seed; the write actions are mock' % (esc(s["id"]), esc(s["id"]))],
+    ]
+    return ('<h3 id="p%s">%s %s %s: %s</h3>' % (num.replace(".", "-"), esc(num), esc(bid), esc(s["id"]), esc(s["title"])) +
+            '<div class="wrap"><table class="spec"><tbody>' + "".join('<tr><th>%s</th><td>%s</td></tr>' % (esc(k), v) for k, v in rows) + '</tbody></table></div>')
+
+
+def build_cover(src):
+    import build_admin_split as sp
+    split, pack, crm, gaps = src["split"], src["pack"], src["admin_crm"], src["gaps"]
+    screens = src["admin_screens"]["screens"]
+    integ = src["integrations_by_id"]
+    wire = src["screens_doc"]["screens"]
+    T = site.table_html
+    H = []
+    H.append('<section id="p1"><h2>1. Read me</h2>' + "".join("<p>%s</p>" % esc(p) for p in pack["read_me"]) +
+             '<p><b>On the board</b></p><ul>' + "".join('<li><a href="%s">%s</a>: %s</li>' % (esc(h), esc(h), esc(t)) for h, t in pack["links"]) + "</ul></section>")
+    by_id = {s["id"]: s for s in screens}
+    parts = ['<section id="p2"><h2>2. What Spinach develops</h2><p class="meta">The build list B1 to B7 from the Split page, then the three screens in full, the logic panel and the plumbing.</p>']
+    parts.append(T(["Build", "What it holds"], [[esc(b["id"] + " " + b["what"]), esc(b["detail"])] for b in split["builds"]]))
+    for n, (bid, sid) in enumerate((("B1", "M03"), ("B6", "M07"), ("B7", "M10")), 1):
+        parts.append(screen_spec(by_id[sid], bid, pack["sketch_match"].get(sid, ""), "2.%d" % n, integ))
+    logic = [x for x in wire if x.get("sec") == "L"]
+    parts.append('<h3 id="p2-4">2.4 B2 The logic panel L00 to L09</h3><p class="meta">From the wireframes v0.2 tab; built as part of the app. '
+                 'M08 (who is on which plan version, unaccepted updates) joins L08 as its versions-in-use view; the band tables and plausibility thresholds sit in L02.</p>' +
+                 T(["Screen", "Title", "Purpose"], [[esc(x["id"]), esc(x["title"]), esc(x.get("purpose") or "")] for x in logic]))
+    parts.append('<h3 id="p2-5">2.5 B3 to B5, and the reads of B4 and B7: the plumbing</h3><p class="meta">%s</p>' % esc(pack["plumbing_intro"]) +
+                 T(["Item", "Detail", "See"], [[esc(p["item"]), esc(p["detail"]), esc(p["see"])] for p in pack["plumbing"]]) + "</section>")
+    H.append("".join(parts))
+    H.append('<section id="p3"><h2>3. What HoA retains</h2><p class="meta">%s</p>' % esc(pack["retain_intro"]) +
+             '<h3>3.1 Their sheet, with the pick per row</h3>' + sp.sheet_table(split) +
+             '<h3>3.2 Their sketches against Zoho</h3>' + sp.sketches_table(split) +
+             '<h3>3.3 Zoho and the consoles</h3>' + sp.holds_table(split) + "</section>")
+    contact = [[esc(a), esc(b)] for a, b in crm["CONTACT_FIELDS"]] + [[esc(a), esc(b)] for a, b in crm["CONTACT_FIELDS_V02"]]
+    deals = [[esc(a), esc(b)] for a, b in crm["DEAL_FIELDS"]] + [[esc(a), esc(b)] for a, b in crm["DEAL_FIELDS_V02"]]
+    inbound = [[esc(x) for x in row] for row in crm["INBOUND"]]
+    irows = [[esc(r["id"]), esc(r["vendor"]), esc(r["category"]), esc(r.get("choice", "")), esc(r.get("status", ""))] for r in sorted(integ.values(), key=lambda r: r["id"])]
+    H.append('<section id="p4"><h2>4. The contract</h2><p class="meta">%s</p>' % esc(pack["contract_intro"]) +
+             '<h3>4.1 The events, app to Zoho</h3>' + T(["Event", "Screen", "Payload"], [[esc(x) for x in row] for row in crm["EVENTS"]]) +
+             '<h3>4.2 The Contact mirrors</h3>' + T(["Field", "Detail"], contact) +
+             '<h3>4.3 Deals</h3>' + T(["Field", "Detail"], deals) +
+             '<h3>4.4 One way</h3><p>%s</p>' % esc(crm["INBOUND_NOTE_V02"]) + T(["Event", "Direction", "Detail", "Cause"], inbound) +
+             '<h3>4.5 The integrations</h3>' + T(["I", "Vendor", "Category", "Choice", "Status"], irows) + "</section>")
+    open_gaps = [[esc(g["id"]), esc(g["title"]), esc(g["screen"])] for g in gaps["v02"] if g.get("status") == "gap, to be decided"]
+    decisions = [[esc(d["id"]), esc(d["q"]), esc(d["position"])] for d in crm["DECISIONS"] if "to be decided" in d["position"]]
+    H.append('<section id="p5"><h2>5. Open items and to be verified</h2>' +
+             '<p><b>To be decided</b></p>' + ul(split["outcome"]["decide"]) +
+             '<p><b>To be verified in the Zoho trial</b></p>' + ul(split["outcome"]["verify"]) +
+             '<p><b>Open gaps</b></p>' + T(["Gap", "Title", "Screen"], open_gaps) +
+             '<p><b>Open decisions on the Admin and CRM tab</b></p>' + T(["Decision", "Question", "Position"], decisions) + "</section>")
+    return "".join(H)
 
 
 EXTRA_CSS = """
   .gaprow td{border-left:3px solid #B2434F;background:#FFF8F6}
   .gaprow b{font-weight:600}
+  table.spec th{width:140px;text-align:left;vertical-align:top;font-weight:600}
+  table.spec ul{margin:2px 0 2px 16px;padding:0}
+  .split{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0 22px}
+  .split th,.split td{border:1px solid var(--line);padding:7px 9px;vertical-align:top;text-align:left}
+  .split th{background:var(--panel);font-weight:600}
+  .split td.f{font-weight:600;white-space:nowrap}
+  .split td.v{font-size:11.5px;color:var(--mute)}
+  .split td.pick{background:#FFF8DC;min-width:220px}
+  .split td.pick b{font-size:14px}
+  .split ul{margin:2px 0 2px 16px;padding:0}
+  h3{font-size:14px;margin:18px 0 6px}
 """
 
 JS = r"""
@@ -580,16 +675,18 @@ JS = r"""
 """
 
 
-def build_page(table_rows, questions):
+def build_page(table_rows, questions, src):
     by_gap = {tid: [q for q in questions if q.get("brief") == tid and q.get("answered") == "no"] for tid, _, _ in TABLES}
     base_counts = {tid: len(table_rows[tid]) for tid, _, _ in TABLES}
     sections = "".join(render_table_section(tid, title, cols, table_rows[tid], by_gap[tid]) for tid, title, cols in TABLES)
-
-    intro = ('<section><h1>Admin brief skeleton: what the built tool, the CRM, the database and the event feed '
-             'must hold</h1><p class="lead">Tables T1 to T7 are pre-filled from the board\'s data; rows marked '
-             'gap come from the seats page. T3 lists the screens Spinach builds; M05, M07, M10 and M13 moved to Zoho '
-             'and are off it. T7 reads Spinach\'s own admin panel work (the feature matrix of 9 Jul 2026 and the '
-             'sketches of 19 Aug 2026) against the split (W12, 2 Oct 2026).</p></section>')
+    pack = src["pack"]
+    intro = ('<section><h1>%s</h1><p class="lead">%s</p><p class="meta">Cause: %s</p></section>' %
+             (esc(pack["title"]), esc(pack["lead"]), esc(pack["cause"])))
+    cover = build_cover(src)
+    annex = ('<section id="annex"><h2>Annexes T1 to T7</h2><p class="meta">The contract tables, folded; rows marked gap come from the '
+             'seats page. T1 the data model, T2 every event with its payload, T3 the built screens, T4 the Zoho objects, fields, '
+             'picklists and views, T5 the nudge rules, T6 analytics, T7 Spinach\'s modules and their homes.</p>' + sections + '</section>')
+    sections = cover + annex
 
     questions_blob = [
         {"id": q["id"], "brief": q.get("brief"), "question": q.get("question"), "gap": q.get("gap") or "", "proposed": q.get("proposed") or "",
@@ -599,8 +696,8 @@ def build_page(table_rows, questions):
     total_rows = sum(base_counts.values()) + sum(len(v) for v in by_gap.values())
     blob = ('<script>var QUESTIONS=' + site.js_blob(questions_blob) + ';\nvar BASE_COUNTS=' + site.js_blob(base_counts) + ';</script>\n')
 
-    return (site.head("yeslyf admin brief skeleton", site.CSS + site.SUBNAV_CSS + EXTRA_CSS) + '<body>\n' +
-            site.header("admin_wireframes.html", "admin brief skeleton, %d rows" % total_rows, who_html="", show_export=False, tabs=None, setup_link=True) +
+    return (site.head("yeslyf admin brief for Spinach", site.CSS + site.SUBNAV_CSS + EXTRA_CSS) + '<body>\n' +
+            site.header("admin_wireframes.html", "admin brief for Spinach, %d annex rows" % total_rows, who_html="", show_export=False, tabs=None, setup_link=True) +
             site.seed_subnav(PAGE) +
             '<main class="main">' + intro + sections + '</main>\n' +
             blob + site.store_script() + '<script>' + site.js_pill("admin_brief") + JS + '</script>\n</body>\n</html>\n')
@@ -627,6 +724,7 @@ def load_sources():
         "schema": schema, "schema_idx": schema_idx, "screens_doc": screens_doc, "admin_crm": admin_crm,
         "admin_screens": admin_screens, "operator_doc": operator_doc, "integrations_by_id": integrations_by_id,
         "states_doc": states_doc, "flow_order": flow_doc["order"],
+        "split": site.load("admin_split.json"), "pack": site.load("admin_pack.json"), "gaps": site.load("gaps.json"),
     }
 
 
@@ -664,7 +762,7 @@ def main():
     t7 = build_t7(src["admin_crm"])
     table_rows = {"T1": partial["T1"], "T2": partial["T2"], "T3": partial["T3"], "T4": t4, "T5": t5, "T6": t6, "T7": t7}
 
-    page = build_page(table_rows, questions)
+    page = build_page(table_rows, questions, src)
     site.check_ascii(PAGE, page)
     errors = []
     if 'name="robots" content="noindex' not in page:

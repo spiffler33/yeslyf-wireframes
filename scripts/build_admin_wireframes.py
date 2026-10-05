@@ -493,7 +493,10 @@ def build_page(admin_doc, states, admin_crm, anchor_text):
                  "exportTitle": "# yeslyf admin wireframes v0.1 - review comments",
                  "exportFile": "yeslyf_admin_wireframes_review_v01.md"}
     admin_runs = {"3000": "seed/run-3000/admin/", "500": "seed/run-500/admin/"}
-    data = ('<script>var SECTIONS=' + site.js_blob(admin_doc["sections"]) + ';\nvar SCREENS=' + site.js_blob(admin_doc["screens"]) +
+    # The page groups the moved screens under their own nav heading (Vatsal, 5 Oct 2026: less noise); the data keeps sec M.
+    page_screens = [dict(s, sec="MZ") if (s.get("v02") or {}).get("status") == "dropped" else s for s in admin_doc["screens"]]
+    page_sections = list(admin_doc["sections"]) + [["MZ", "Moved to Zoho or the logic panel"]]
+    data = ('<script>var SECTIONS=' + site.js_blob(page_sections) + ';\nvar SCREENS=' + site.js_blob(page_screens) +
             ';\nvar DROPPED=' + site.js_blob([]) + ';\nvar SPLIT=' + site.js_blob([]) + ';\nvar STATES=' + site.js_blob([]) +
             ';\nvar REASONS=' + site.js_blob({}) + ';\nvar INTEGRATIONS=' + site.js_blob(site.integrations_blob()) +
             ';\nvar FREEZE=' + site.js_blob(None) + ';\nvar WIRE_OPTS=' + site.js_blob(wire_opts) +
@@ -506,7 +509,7 @@ def build_page(admin_doc, states, admin_crm, anchor_text):
         if os.path.exists(path):
             scripts.append('<script>' + site.read_script(name) + '</script>\n')
     page = (site.head("yeslyf admin wireframes v0.1", site.read_script("renderer_v02.css") + site.SUBNAV_CSS + ADMIN_CSS) + '<body>\n' +
-            site.header("admin_wireframes.html", "admin wireframes v0.1, 13 screens over the seed", who_html=who,
+            site.header("admin_wireframes.html", "admin wireframes v0.1, 3 screens built over the seed, 10 moved", who_html=who,
                         export_label="Export comments") +
             bar + layout + data + "".join(scripts) + '</body>\n</html>\n')
     return page

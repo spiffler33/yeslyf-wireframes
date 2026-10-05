@@ -64,8 +64,11 @@ push). Board work (phase 14 pass 5) runs only on Vatsal's word.
   (B7, the config screen; I15 content and copy only; agreed by Vatsal); she wants to look at B1 once. Done on 5 Oct
   2026: the picks confirmed and the board reconciled (PLAN.md section 26, last bullet): built screens M03 the staff
   view, M07 the health page, M10 the config screen; the other ten moved with pointers; seats, gaps (G22 closed),
-  I15 and the brief follow. Still owed: Kajal's look at B1 (M03 on docs/admin_wireframes.html), the message to her
-  drafted on 5 Oct 2026; the page sent to Spinach, then tracker W12 reads delivered.
+  I15 and the brief follow. Then the pack: docs/admin_brief.html is the brief for Spinach (sections 1 to 5 from the
+  board, data/admin_pack.json the narrative, the annex tables folded), and the admin pages were cleaned up (the tab's
+  history folded, the moved screens grouped, the precedence pairs folded; PLAN.md section 26, last bullet). Still
+  owed: Kajal's answers to the six M03 questions (sent to her on WhatsApp on 5 Oct 2026); the brief sent to Spinach,
+  then tracker W12 reads delivered.
 
 ## Steps only a person can do (the browser rules hand account creation and org setup back to a person)
 - G1: Zoho One admin panel, User Management, Users, Add User, 9 users (the trial has 9 licenses left; order from plan

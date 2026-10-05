@@ -745,28 +745,7 @@ def generic(value, headers=None):
     return '<p>%s</p>' % esc(value)
 
 
-V01_ADMIN_SECTIONS = [
-    ("STACK", "Stack: bought tools", None),
-    ("PLACEMENT", "Placement: where each need lives", None),
-    ("CONTACT_FIELDS", "Contact fields", ["Field", "Source and use"]),
-    ("DEAL_FIELDS", "Deal fields", ["Field", "Detail"]),
-    ("EVENTS", "Events: app to CRM", ["Event", "Screen", "Fields"]),
-    ("INBOUND", "Inbound: CRM to app (none in v0.2: one way, app to Zoho)", ["Event", "Direction", "Fields", "Cause"]),
-    ("NUDGES", "Nudges (v0.1 matrix)", None),
-    ("NUDGE_EXAMPLES", "Nudge examples", None),
-    ("COMPLIANCE", "Compliance records", ["Record", "Where it lives", "Export"]),
-    ("DECISIONS", "Decisions in the admin spec", None),
-]
-V02_ADMIN_SECTIONS = [
-    ("note_v02", "Note on v0.2"),
-    ("changes_v02", "Changes in v0.2"),
-    ("PLACEMENT_NOTE", "Placement note (v0.2)"),
-    ("DEAL_FIELDS_V02", "Deal fields added in v0.2"),
-    ("CONTACT_FIELDS_V02", "Contact fields added in v0.2"),
-    ("COMPLIANCE_NOTE", "Compliance records note (v0.2)"),
-    ("SPINACH_MODULES_NOTE", "Spinach's admin modules, note (W12)"),
-    ("SPINACH_MODULES", "Spinach's admin modules and their homes (W12)"),
-]
+# The section lists of the first Admin and CRM v0.2 page lived here until 5 Oct 2026; admin_parts() now names its sections.
 
 
 def nudge_matrix(states):
@@ -793,44 +772,57 @@ def nudge_matrix(states):
 
 def admin_parts(admin, v02, states):
     """(nav links html, body html) of the Admin and CRM v0.2 page; shared with the team audience file."""
+    # Current truth first, history folded (Vatsal, 5 Oct 2026: less noise). The data keys are unchanged; the v0.1 and
+    # v0.2 field tables render merged, the retired tools, the decided decisions, the per-screen events and the change log
+    # sit behind folds with counts, and the Spinach module table lives on the Split page and the brief.
     live = live_screens(v02)
-    body = ['<section><h1>Admin and CRM v0.2</h1><p class="lead">The v0.1 admin and CRM spec carried forward, then the v0.2 additions from plan_v2.md section 6: '
-            'the platform is Zoho One (I14); the nudge matrix covers states S1 to S25 (S2b and S2c included); the CRM backlog holds what the team said to remember for the CRM planning session.</p>'
-            '<p class="meta">Source: data/admin_crm.json and data/v02/states.json. The v0.1 spec is also served as-is on the Admin and CRM v0.1 tab.</p></section>']
+    stack = admin.get("STACK", [])
+    retired = [s for s in stack if str(s.get("kind", "")).startswith("Out")]
+    current = [s for s in stack if s not in retired]
+    panel = next((s for s in stack if s.get("id") == "admin-panel"), None)
+    body = ['<section><h1>Admin and CRM v0.2</h1><p class="lead">The platform is Zoho One (I14), fed one way by the app. The admin split was '
+            'confirmed on 5 Oct 2026: three admin screens are built (M03 the staff view of a client, M07 the health page, M10 the config '
+            'screen) and the logic panel; everything else is read in Zoho or a console. The nudge matrix covers states S1 to S25; the CRM '
+            'backlog holds what the team said to remember.</p>'
+            '<p class="meta">Source: data/admin_crm.json and data/v02/states.json. The split: <a href="admin_split.html">Split page</a>; the brief '
+            'for Spinach: <a href="admin_brief.html">admin brief</a>; the screens: <a href="admin_wireframes.html">admin wireframes</a>. The v0.1 '
+            'spec is served as-is on the Admin and CRM v0.1 tab; this page\'s own history is folded at the end.</p></section>']
     nav = []
-    for key, title, headers in V01_ADMIN_SECTIONS:
-        if key not in admin:
-            continue
-        sec_id = "a-" + key.lower()
-        nav.append('<a href="#%s">%s</a>' % (sec_id, esc(title)))
-        note = admin.get(key + "_NOTE_V02") or admin.get(key.lower() + "_note_v02")
-        value = admin[key]
-        if key == "DECISIONS":
-            # the _v01 keys (owner_v01; position_v01 and stated_by_v01 on D1 and D5) are v0.1 records kept in the data;
-            # the v0.2 page shows the question, the position, who stated it or the cause
-            value = [{k: v for k, v in d.items() if not k.endswith("_v01")} for d in value]
-        body.append('<section id="%s"><h2>%s</h2>%s%s</section>' % (sec_id, esc(title), ('<p class="rule">%s</p>' % esc(note)) if note else "", generic(value, headers)))
-    body.append('<section id="a-v02"><h2>v0.2 additions</h2><p class="meta">Cause on every row where the data carries one.</p></section>')
-    nav.append('<a href="#a-v02">v0.2 additions</a>')
-    for key, title in V02_ADMIN_SECTIONS:
-        if key in admin:
-            sec_id = "a-" + key.lower()
-            nav.append('<a class="sub" href="#%s">%s</a>' % (sec_id, esc(title)))
-            body.append('<section id="%s"><h3>%s</h3>%s</section>' % (sec_id, esc(title), generic(admin[key])))
-    v02_dec = [d for d in admin.get("DECISIONS", []) if d.get("id") not in ("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8")]
-    if v02_dec:
-        nav.append('<a class="sub" href="#a-decisions-v02">Decisions added in v0.2</a>')
-        body.append('<section id="a-decisions-v02"><h3>Decisions added in v0.2</h3>%s</section>' % generic(v02_dec))
-    nav.append('<a class="sub" href="#a-events-v02">Events v0.2</a>')
-    body.append('<section id="a-events-v02"><h3>Events v0.2 (every live screen, appendix D)</h3>%s</section>' % table_html(
-        ["Screen", "Template", "Events"], [[sid_link(s["id"], {x["id"] for x in live}), esc(s["template"]), esc(", ".join(s.get("events", [])))] for s in live]))
-    nav.append('<a class="sub" href="#a-nudges-v02">Nudges matrix v0.2</a>')
-    body.append('<section id="a-nudges-v02"><h3>Nudges matrix v0.2 (one row per state per ladder step)</h3>%s%s</section>' % (
-        ('<ul>' + "".join('<li>%s</li>' % esc(r) for r in states.get("rules", [])) + '</ul>') if states and states.get("rules") else "", nudge_matrix(states)))
-    nav.append('<a href="#a-backlog">CRM backlog</a>')
+
+    def section(sec_id, title, html, sub=False):
+        nav.append('<a%s href="#%s">%s</a>' % (' class="sub"' if sub else "", sec_id, esc(title)))
+        body.append('<section id="%s"><%s>%s</%s>%s</section>' % (sec_id, "h3" if sub else "h2", esc(title), "h3" if sub else "h2", html))
+
+    def fold(title, html, n):
+        return '<details><summary>%s <span class="meta">(%d)</span></summary>%s</details>' % (esc(title), n, html)
+
+    def rule(text):
+        return ('<p class="rule">%s</p>' % esc(text)) if text else ""
+
+    if panel:
+        section("a-split", "The split", '<p>%s</p><p class="meta">%s</p>' % (esc(panel.get("does", "")), esc(panel.get("notes", ""))))
+    section("a-stack", "Stack: bought tools", generic(current, None) + (fold("Retired tools", generic(retired, None), len(retired)) if retired else ""))
+    section("a-placement", "Placement: where each need lives", rule(admin.get("PLACEMENT_NOTE_V02")) + generic(admin.get("PLACEMENT", []), None))
+    section("a-contact_fields", "Contact fields", generic(admin.get("CONTACT_FIELDS", []) + admin.get("CONTACT_FIELDS_V02", []), ["Field", "Source and use"]))
+    section("a-deal_fields", "Deal fields", generic(admin.get("DEAL_FIELDS", []) + admin.get("DEAL_FIELDS_V02", []), ["Field", "Detail"]))
+    section("a-events", "Events: app to CRM", generic(admin.get("EVENTS", []), ["Event", "Screen", "Fields"]))
+    section("a-inbound", "One way: app to Zoho", rule(admin.get("INBOUND_NOTE_V02")) + generic(admin.get("INBOUND", []), ["Event", "Direction", "Fields", "Cause"]))
+    section("a-compliance", "Compliance records", rule(admin.get("COMPLIANCE_NOTE")) + generic(admin.get("COMPLIANCE", []), ["Record", "Where it lives", "Export"]))
+    section("a-nudges-v02", "Nudges matrix v0.2 (one row per state per ladder step)", (
+        ('<ul>' + "".join('<li>%s</li>' % esc(r) for r in states.get("rules", [])) + '</ul>') if states and states.get("rules") else "") + nudge_matrix(states))
+    # the _v01 keys (owner_v01; position_v01 and stated_by_v01 on D1 and D5) are v0.1 records kept in the data and not rendered
+    decisions = [{k: v for k, v in d.items() if not k.endswith("_v01")} for d in admin.get("DECISIONS", [])]
+    open_dec = [d for d in decisions if "to be decided" in str(d.get("position", "")) or "to be verified" in str(d.get("position", ""))]
+    done_dec = [d for d in decisions if d not in open_dec]
+    section("a-decisions", "Decisions in the admin spec", '<p class="meta">Open first; the decided ones folded.</p>' + generic(open_dec, None) +
+            (fold("Decided", generic(done_dec, None), len(done_dec)) if done_dec else ""))
     backlog = admin.get("CRM_BACKLOG")
-    body.append('<section id="a-backlog"><h2>CRM backlog</h2><p class="lead">Items the team said to remember for the CRM planning session.</p>%s</section>' % (
+    section("a-backlog", "CRM backlog", '<p class="lead">Items the team said to remember for the CRM planning session.</p>' + (
         generic(backlog) if backlog else '<p class="meta">arrives with phase 6 (CRM_BACKLOG in data/admin_crm.json)</p>'))
+    events_rows = [[sid_link(s["id"], {x["id"] for x in live}), esc(s["template"]), esc(", ".join(s.get("events", [])))] for s in live]
+    section("a-events-v02", "Events v0.2 (every live screen, appendix D)", fold("Screens and their events", table_html(["Screen", "Template", "Events"], events_rows), len(events_rows)), sub=True)
+    hist = "".join('<p>%s</p>' % esc(admin[k]) for k in ("note_v02", "PLACEMENT_NOTE") if admin.get(k)) + generic(admin.get("changes_v02", []))
+    section("a-history", "History: changes in v0.2", fold("Changes, oldest first", hist, len(admin.get("changes_v02", []))), sub=True)
     return "".join(nav), "\n".join(body)
 
 
