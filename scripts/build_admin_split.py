@@ -148,8 +148,8 @@ def kajal_table(doc):
 
 
 def build_page(doc):
-    intro = ('<section><h1>The admin split: what Spinach builds</h1><p class="lead">%s</p><p class="meta">Cause: %s</p></section>'
-             % (esc(doc["about"]), esc(doc["cause"])))
+    intro = ('<section><h1>The admin split: what Spinach builds</h1><p class="lead">%s</p><p class="meta">Cause: %s</p>%s</section>'
+             % (esc(doc["about"]), esc(doc["cause"]), ('<p><b>%s</b></p>' % esc(doc["confirmed"])) if doc.get("confirmed") else ""))
     levels = '<div class="levels">' + "".join('<span><b>%s</b> %s</span>' % (esc(a), esc(b)) for a, b in doc["levels"]) + '</div>'
     sheet = ('<section id="sheet"><h2>1. Spinach\'s sheet, with the pick</h2><p class="meta">%s The four version columns are the sheet\'s own words.</p>'
              % esc(doc["pick_rule"]) + levels + sheet_table(doc) + '</section>')

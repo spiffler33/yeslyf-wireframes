@@ -87,7 +87,7 @@ ROLE_SLUG_NAME = {
 }
 
 VALID_BRIEF = {"T1", "T2", "T3", "T4", "T5", "T6", "T7"}
-VALID_SURFACE = {"Admin tab", "Zoho", "vendor console"}
+VALID_SURFACE = {"Admin tab", "Zoho", "vendor console", "Logic panel"}
 VALID_ANSWERED = {"yes", "no"}
 
 

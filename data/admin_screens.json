@@ -1,5 +1,5 @@
 {
-  "about": "The spec of screens M02 to M14, hand-authored from PLAN_admin_seed_v01.md section 14 (phase C part 1, 23 Sep 2026). W12, 2 Oct 2026: M05, M07, M10 and M13 dropped (moved to Zoho; the pointer on each says where); M14 grown to admin users; M06 took M07's data-quality flags; M04 is opened from the Contact.",
+  "about": "The spec of screens M02 to M14, hand-authored from PLAN_admin_seed_v01.md section 14 (phase C part 1, 23 Sep 2026). W12, 5 Oct 2026 (the Split page picks confirmed): three screens are built, M03 the staff view of a client, M07 the health page and M10 the config screen; the other ten are dropped with a pointer each (M08 to the logic panel's L08; M12 and M14 into M03).",
   "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
   "sections": [
     [
@@ -29,28 +29,11 @@
         "Call centre": "read, own people",
         "Principal officer": "read"
       },
-      "built": "built",
-      "writes": [
-        {
-          "action": "assign adviser",
-          "event": "M02_assign_adviser",
-          "roles": [
-            "Ops"
-          ]
-        },
-        {
-          "action": "export list",
-          "event": "M02_export_list",
-          "roles": [
-            "Ops"
-          ]
-        }
-      ],
-      "zoho_instead": "Contact list view; no financial record",
+      "built": "moved",
+      "writes": [],
+      "zoho_instead": "{I14} CRM list views over the Contact and its mirrored fields; assign adviser is the Contact owner (to be decided: mastered in {I14} or on M03); export is the CRM's (W12, 5 Oct 2026).",
       "events": [
-        "M02_view",
-        "M02_assign_adviser",
-        "M02_export_list"
+        "M02_view"
       ],
       "compliance": {
         "review": false,
@@ -64,17 +47,19 @@
       "freeze": {
         "status": "open",
         "since": "23 Sep 2026",
-        "cause": "W12, 2 Oct 2026",
+        "cause": "W12, 5 Oct 2026",
         "reason": [
-          "open until the brief is accepted (W12, 2 Oct 2026)"
+          "dropped: moved out of the admin panel, see the pointer (W12, 5 Oct 2026)"
         ]
       },
       "v02": {
-        "status": "new",
+        "status": "dropped",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
-        ]
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026"
+        ],
+        "pointer": "{I14} CRM list views over the Contact and its mirrored fields; assign adviser is the Contact owner (to be decided: mastered in {I14} or on M03); export is the CRM's (W12, 5 Oct 2026)."
       },
       "spec": {
         "fields": [
@@ -109,14 +94,14 @@
     {
       "id": "M03",
       "sec": "M",
-      "title": "Person record",
+      "title": "Staff view of a client",
       "tier": [
         "ALL"
       ],
       "frame": "desktop",
       "template": "T-table",
       "path": "both",
-      "purpose": "Everything known about one person: identity, timeline, financial record, plan versions, consents, holdings, calls, tickets, tasks, actions, subscriptions and the audit trail for that person.",
+      "purpose": "The admin screen over client data, the one place staff write into the app: find a person by phone, open their own screens in staff mode (the record with its source and completion badges, the data screens, the plan, the vault), read-only by seat scope, edit on behalf for ops with the engine re-run, the actions (deletion done, DIFM tier, refund flag, force re-run, reassign), an audit row per action, a staff allowlist with seats on the sign-in.",
       "seat": [
         "All seats"
       ],
@@ -128,12 +113,12 @@
         "Marketing": "read",
         "Support": "read",
         "Finance": "read",
-        "Principal officer": "read"
+        "Principal officer": "act"
       },
       "built": "built",
       "writes": [
         {
-          "action": "edit inputs on behalf (opens the D screen, re-runs the engine)",
+          "action": "edit inputs on behalf (opens the client's screen in staff mode, re-runs the engine)",
           "event": "M03_edit_on_behalf",
           "roles": [
             "Ops"
@@ -154,14 +139,14 @@
           ]
         },
         {
-          "action": "reassign",
+          "action": "reassign (if the owner is mastered here)",
           "event": "M03_reassign",
           "roles": [
             "Ops"
           ]
         },
         {
-          "action": "provision DIFM",
+          "action": "set the DIFM tier and enter data on behalf (from M12)",
           "event": "M03_provision_difm",
           "roles": [
             "Ops"
@@ -173,9 +158,16 @@
           "roles": [
             "Ops"
           ]
+        },
+        {
+          "action": "staff allowlist: add a seat, revoke, reset credentials (from M14)",
+          "event": "M03_allowlist",
+          "roles": [
+            "Principal officer"
+          ]
         }
       ],
-      "zoho_instead": "Contact with mirrors only; the record itself cannot live in {I14}",
+      "zoho_instead": "The Contact's mirrors (onboarding percent, statuses, source completeness) serve every seat that does not need the numbers; the Contact's admin panel link opens this view. The record itself never lives in {I14} (W12).",
       "events": [
         "M03_view",
         "M03_edit_on_behalf",
@@ -183,7 +175,8 @@
         "M03_refund_flag",
         "M03_reassign",
         "M03_provision_difm",
-        "M03_handle_deletion"
+        "M03_handle_deletion",
+        "M03_allowlist"
       ],
       "compliance": {
         "review": false,
@@ -197,55 +190,65 @@
       "freeze": {
         "status": "open",
         "since": "23 Sep 2026",
-        "cause": "W12, 2 Oct 2026",
+        "cause": "W12, 5 Oct 2026",
         "reason": [
           "to be decided: who cancels, extends or comps a subscription, and where",
           "to be decided: whether a user account can be suspended, and by whom",
           "to be decided: a devices and sessions tab",
-          "open until the brief is accepted (W12, 2 Oct 2026)"
+          "to be decided: the sign-in method and MFA",
+          "to be decided: the adviser owner mastered in {I14} or here",
+          "open until the brief is accepted (W12, 5 Oct 2026)"
         ]
       },
       "v02": {
-        "status": "new",
+        "status": "rebuilt",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026 (the staff view; M12 and M14 fold in)"
         ]
       },
       "spec": {
         "fields": [
+          "lookup by phone",
           "identity strip",
+          "the client's screens in staff mode: the record with source and completion badges, the data screens, the plan, the vault",
           "timeline from events",
-          "financial record with source and precision badges and lock",
           "plan versions",
-          "AA consents",
-          "CAS",
+          "AA consents and CAS",
           "holdings",
           "calls",
           "tickets",
           "tasks",
           "actions",
           "subscriptions",
-          "audit"
+          "audit trail per person",
+          "the staff allowlist with seats (principal officer)"
         ],
         "logic": [],
         "branches": [
           [
-            "pre-call view",
-            "M04"
+            "the record in staff mode",
+            "A08"
+          ],
+          [
+            "the plan in staff mode",
+            "G03"
           ]
         ],
         "states": [],
         "dev": [
           "The app must expose a single person read endpoint joining every table by person_id, plus the events feed for the timeline.",
-          "On-behalf edits, force re-run, refund flag, reassign, provision DIFM and deletion handling are mock; a real build wires each to its own service call and writes an audit row.",
+          "Staff mode: the app serves its own client screens to an allowlisted staff account with a seat and a scope (advisers and the call centre their own clients); every write goes through the same services as the client's own actions and appends an audit row (W12, 5 Oct 2026).",
+          "On-behalf edits, force re-run, refund flag, reassign, the DIFM tier and deletion handling are mock here; a real build wires each to its own service call.",
+          "The staff allowlist with seats: create, assign a seat, revoke, reset credentials; to be decided: the sign-in method and MFA (gap G21).",
           "to be decided: who cancels, extends or comps a subscription and where; whether an account can be suspended; a devices and sessions tab (W12, 2 Oct 2026)."
         ]
       },
       "ui": [
         [
           "h",
-          "Person record"
+          "Staff view of a client"
         ],
         [
           "note",
@@ -273,30 +276,11 @@
         "Call centre": "act",
         "Principal officer": "read"
       },
-      "built": "built",
-      "writes": [
-        {
-          "action": "capture K03 notes and input changes",
-          "event": "M04_capture_notes",
-          "roles": [
-            "Adviser",
-            "Call centre"
-          ]
-        },
-        {
-          "action": "mark no-show",
-          "event": "M04_mark_no_show",
-          "roles": [
-            "Adviser",
-            "Call centre"
-          ]
-        }
-      ],
-      "zoho_instead": "Contact mirror fields plus the admin panel link; the view itself is built here, because a call can change the client's numbers and {I14} never writes into the app (W12)",
+      "built": "moved",
+      "writes": [],
+      "zoho_instead": "The Contact in {I14}: the mirrors, calls left on the Deal, the booking, the call note (BE-15), plus the admin panel link that opens M03 for the plan itself; input changes a call produces go through M03 (W12, 5 Oct 2026).",
       "events": [
-        "M04_view",
-        "M04_capture_notes",
-        "M04_mark_no_show"
+        "M04_view"
       ],
       "compliance": {
         "review": false,
@@ -310,18 +294,19 @@
       "freeze": {
         "status": "open",
         "since": "23 Sep 2026",
-        "cause": "W12, 2 Oct 2026",
+        "cause": "W12, 5 Oct 2026",
         "reason": [
-          "to be decided: where the adviser writes the call note (the CRM per BE-15, or here)",
-          "open until the brief is accepted (W12, 2 Oct 2026)"
+          "dropped: moved out of the admin panel, see the pointer (W12, 5 Oct 2026)"
         ]
       },
       "v02": {
-        "status": "new",
+        "status": "dropped",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
-        ]
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026"
+        ],
+        "pointer": "The Contact in {I14}: the mirrors, calls left on the Deal, the booking, the call note (BE-15), plus the admin panel link that opens M03 for the plan itself; input changes a call produces go through M03 (W12, 5 Oct 2026)."
       },
       "spec": {
         "fields": [
@@ -403,7 +388,8 @@
         "status": "dropped",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026"
         ],
         "pointer": "Zoho Analytics (W12, 2 Oct 2026): a report over the Contact's mirrored journey stage, by tier; the S2 ladder-day spread needs the state-entered date mirrored to the Contact first."
       },
@@ -454,36 +440,11 @@
         "Ops": "act",
         "Principal officer": "read"
       },
-      "built": "built",
-      "writes": [
-        {
-          "action": "assign",
-          "event": "M06_assign",
-          "roles": [
-            "Ops"
-          ]
-        },
-        {
-          "action": "resolve",
-          "event": "M06_resolve",
-          "roles": [
-            "Ops"
-          ]
-        },
-        {
-          "action": "escalate",
-          "event": "M06_escalate",
-          "roles": [
-            "Ops"
-          ]
-        }
-      ],
-      "zoho_instead": "{I14} Tasks could hold it; data-work items argue for built",
+      "built": "moved",
+      "writes": [],
+      "zoho_instead": "{I14} Tasks created by the app, worked in {I14}; the fix in M03 (client data) or L04 (ISINs) (W12, 5 Oct 2026).",
       "events": [
-        "M06_view",
-        "M06_assign",
-        "M06_resolve",
-        "M06_escalate"
+        "M06_view"
       ],
       "compliance": {
         "review": false,
@@ -497,17 +458,19 @@
       "freeze": {
         "status": "open",
         "since": "23 Sep 2026",
-        "cause": "W12, 2 Oct 2026",
+        "cause": "W12, 5 Oct 2026",
         "reason": [
-          "open until the brief is accepted (W12, 2 Oct 2026)"
+          "dropped: moved out of the admin panel, see the pointer (W12, 5 Oct 2026)"
         ]
       },
       "v02": {
-        "status": "new",
+        "status": "dropped",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
-        ]
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026"
+        ],
+        "pointer": "{I14} Tasks created by the app, worked in {I14}; the fix in M03 (client data) or L04 (ISINs) (W12, 5 Oct 2026)."
       },
       "spec": {
         "fields": [
@@ -546,14 +509,14 @@
     {
       "id": "M07",
       "sec": "M",
-      "title": "Data quality and integrations",
+      "title": "Health page: integrations and the engine",
       "tier": [
         "ALL"
       ],
       "frame": "desktop",
       "template": "T-table",
       "path": "both",
-      "purpose": "Plausibility flags and unknown ISINs from the data-capture screens, and the health of every vendor integration: last success, failures and latency by vendor.",
+      "purpose": "One page over integration_events: status, last success, failures and latency per vendor, the error log as an export, retry where a vendor call allows it, a link out to each console for the detail; engine health beside it: data complete but no plan built, build time, the plan-upgrade job. Sentry still pages on thresholds.",
       "seat": [
         "Ops",
         "Devs"
@@ -562,11 +525,36 @@
         "Ops": "act",
         "Principal officer": "read"
       },
-      "built": "moved",
-      "writes": [],
-      "zoho_instead": "Sentry and an uptime monitor plus each vendor's console for integration health, nothing built; the plausibility flags and unknown ISINs are M06 queue items (W12, 2 Oct 2026).",
+      "built": "built",
+      "writes": [
+        {
+          "action": "acknowledge",
+          "event": "M07_acknowledge",
+          "roles": [
+            "Ops"
+          ]
+        },
+        {
+          "action": "retry, where the vendor call can be repeated",
+          "event": "M07_retry",
+          "roles": [
+            "Ops"
+          ]
+        },
+        {
+          "action": "export the error log",
+          "event": "M07_export",
+          "roles": [
+            "Ops"
+          ]
+        }
+      ],
+      "zoho_instead": "{I14} holds the failure events for the dashboard's failure rates only; the page is built so the consoles are read in one place (W12).",
       "events": [
-        "M07_view"
+        "M07_view",
+        "M07_acknowledge",
+        "M07_retry",
+        "M07_export"
       ],
       "compliance": {
         "review": false,
@@ -580,37 +568,41 @@
       "freeze": {
         "status": "open",
         "since": "23 Sep 2026",
-        "cause": "W12, 2 Oct 2026",
+        "cause": "W12, 5 Oct 2026",
         "reason": [
-          "dropped: moved out of the admin panel, see the pointer (W12, 2 Oct 2026)"
+          "to be decided: the vendors whose call can be retried from the page",
+          "open until the brief is accepted (W12, 5 Oct 2026)"
         ]
       },
       "v02": {
-        "status": "dropped",
+        "status": "rebuilt",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
-        ],
-        "pointer": "Sentry and an uptime monitor plus each vendor's console for integration health, nothing built; the plausibility flags and unknown ISINs are M06 queue items (W12, 2 Oct 2026)."
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026 (the health page, back from the consoles)"
+        ]
       },
       "spec": {
         "fields": [
-          "plausibility flags",
-          "unknown ISINs",
-          "integration_events by vendor: last success, failures, latency"
+          "integration_events by vendor: status, last success, failures, latency",
+          "error log export",
+          "retry where the vendor call can be repeated",
+          "links out to each console",
+          "engine health: data complete but no plan built, build time, the plan-upgrade job"
         ],
         "logic": [],
         "branches": [],
         "states": [],
         "dev": [
-          "The app must expose integration_events grouped by vendor with rolling success and latency stats, and the plausibility and unknown-ISIN flags from financial_records and holdings.",
-          "Acknowledge and retry are mock; retry has no real endpoint to call yet."
+          "The app must expose integration_events grouped by vendor with rolling success and latency stats, and the engine's build outcomes.",
+          "Retry only where the vendor call is idempotent; to be decided: the vendors with a retry (W12, 5 Oct 2026).",
+          "The plausibility flags and unknown ISINs that sat here are {I14} tasks and L04 now."
         ]
       },
       "ui": [
         [
           "h",
-          "Data quality and integrations"
+          "Health page: integrations and the engine"
         ],
         [
           "note",
@@ -635,9 +627,9 @@
       "role": {
         "Principal officer": "read"
       },
-      "built": "built",
+      "built": "moved",
       "writes": [],
-      "zoho_instead": "none",
+      "zoho_instead": "The logic panel: L08's versions-in-use view (who is on which version, unaccepted updates), beside L05's impact preview (W12, 5 Oct 2026).",
       "events": [
         "M08_view"
       ],
@@ -653,17 +645,19 @@
       "freeze": {
         "status": "open",
         "since": "23 Sep 2026",
-        "cause": "W12, 2 Oct 2026",
+        "cause": "W12, 5 Oct 2026",
         "reason": [
-          "open until the brief is accepted (W12, 2 Oct 2026)"
+          "dropped: moved out of the admin panel, see the pointer (W12, 5 Oct 2026)"
         ]
       },
       "v02": {
-        "status": "new",
+        "status": "dropped",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
-        ]
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026"
+        ],
+        "pointer": "The logic panel: L08's versions-in-use view (who is on which version, unaccepted updates), beside L05's impact preview (W12, 5 Oct 2026)."
       },
       "spec": {
         "fields": [
@@ -720,20 +714,11 @@
         "Ops": "act",
         "Principal officer": "read"
       },
-      "built": "built",
-      "writes": [
-        {
-          "action": "resend CAS reminder (mock)",
-          "event": "M09_resend_reminder",
-          "roles": [
-            "Ops"
-          ]
-        }
-      ],
-      "zoho_instead": "Contact field mirror only",
+      "built": "moved",
+      "writes": [],
+      "zoho_instead": "{I14} views on aa_status, consent_valid_till and the CAS state (one more mirror); the AA provider's console for FIP detail; the S15 and S17 nudges (W12, 5 Oct 2026).",
       "events": [
-        "M09_view",
-        "M09_resend_reminder"
+        "M09_view"
       ],
       "compliance": {
         "review": false,
@@ -747,17 +732,19 @@
       "freeze": {
         "status": "open",
         "since": "23 Sep 2026",
-        "cause": "W12, 2 Oct 2026",
+        "cause": "W12, 5 Oct 2026",
         "reason": [
-          "open until the brief is accepted (W12, 2 Oct 2026)"
+          "dropped: moved out of the admin panel, see the pointer (W12, 5 Oct 2026)"
         ]
       },
       "v02": {
-        "status": "new",
+        "status": "dropped",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
-        ]
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026"
+        ],
+        "pointer": "{I14} views on aa_status, consent_valid_till and the CAS state (one more mirror); the AA provider's console for FIP detail; the S15 and S17 nudges (W12, 5 Oct 2026)."
       },
       "spec": {
         "fields": [
@@ -787,14 +774,14 @@
     {
       "id": "M10",
       "sec": "M",
-      "title": "Config",
+      "title": "Config screen",
       "tier": [
         "ALL"
       ],
       "frame": "desktop",
       "template": "T-table",
       "path": "both",
-      "purpose": "The runtime configuration the app reads: SKU cards, copy slots, feature flags, the calls-included matrix, band placeholders and the DIFM threshold.",
+      "purpose": "The app's own configuration, edited here and read by the app from its own database: feature flags, SKU cards and prices mapped to the payment plan IDs, the calls-included matrix per SKU and period, the DIFM threshold, maintenance mode, the minimum app version, operational parameters; values with effective dates, staged, published and audited like L02. Content and copy are not here; they live in {I15}.",
       "seat": [
         "Ops",
         "Marketing",
@@ -802,14 +789,32 @@
       ],
       "role": {
         "Ops": "act",
-        "Marketing": "act",
-        "Principal officer": "act"
+        "Principal officer": "act",
+        "Marketing": "read"
       },
-      "built": "moved",
-      "writes": [],
-      "zoho_instead": "{I15} (W12, 2 Oct 2026): SKU cards, copy slots, feature flags, the calls-included matrix, bands and the DIFM threshold are read by the app from {I15}; nothing is built.",
+      "built": "built",
+      "writes": [
+        {
+          "action": "stage a value with an effective date",
+          "event": "M10_stage",
+          "roles": [
+            "Ops",
+            "Principal officer"
+          ]
+        },
+        {
+          "action": "publish",
+          "event": "M10_publish",
+          "roles": [
+            "Principal officer"
+          ]
+        }
+      ],
+      "zoho_instead": "{I15} keeps content and copy only; the configuration the app runs on never depends on {I14} at run time (W12, 5 Oct 2026).",
       "events": [
-        "M10_view"
+        "M10_view",
+        "M10_stage",
+        "M10_publish"
       ],
       "compliance": {
         "review": false,
@@ -823,40 +828,41 @@
       "freeze": {
         "status": "open",
         "since": "23 Sep 2026",
-        "cause": "W12, 2 Oct 2026",
+        "cause": "W12, 5 Oct 2026",
         "reason": [
-          "dropped: moved out of the admin panel, see the pointer (W12, 2 Oct 2026)"
+          "open until the brief is accepted (W12, 5 Oct 2026)"
         ]
       },
       "v02": {
-        "status": "dropped",
+        "status": "rebuilt",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
-        ],
-        "pointer": "{I15} (W12, 2 Oct 2026): SKU cards, copy slots, feature flags, the calls-included matrix, bands and the DIFM threshold are read by the app from {I15}; nothing is built."
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026 (the config screen, back from I15)"
+        ]
       },
       "spec": {
         "fields": [
-          "SKU cards",
-          "copy slots N-* and W-* with current text",
           "feature flags",
+          "SKU cards and prices mapped to the payment plan IDs",
           "calls_included matrix",
-          "bands (placeholder)",
-          "DIFM threshold"
+          "DIFM threshold",
+          "maintenance mode and the minimum app version",
+          "operational parameters",
+          "effective dates, staging, publish, audit"
         ],
         "logic": [],
         "branches": [],
         "states": [],
         "dev": [
-          "This is I15 made visible: the app must read sku_cards, copy_slots, feature_flags, calls_included, bands and difm_threshold from one config store, keyed the same way as the seed's app config table.",
-          "Edit is mock; a real build needs a config write path with an audit trail, since these values are compliance-relevant (fees, thresholds, copy)."
+          "The app reads its configuration from its own database with effective dates; a staged value goes live on publish and writes an audit row (W12, 5 Oct 2026).",
+          "Band placeholders and plausibility thresholds are not here: they are L02's, the logic panel."
         ]
       },
       "ui": [
         [
           "h",
-          "Config"
+          "Config screen"
         ],
         [
           "note",
@@ -882,20 +888,11 @@
         "Compliance": "act",
         "Principal officer": "read"
       },
-      "built": "built",
-      "writes": [
-        {
-          "action": "export",
-          "event": "M11_export",
-          "roles": [
-            "Compliance"
-          ]
-        }
-      ],
-      "zoho_instead": "{I14} audit covers it only",
+      "built": "moved",
+      "writes": [],
+      "zoho_instead": "{I14} App Events audit view and export (field names, not values); the trail stays in the app, read per person on M03 and exported by a job (W12, 5 Oct 2026).",
       "events": [
-        "M11_view",
-        "M11_export"
+        "M11_view"
       ],
       "compliance": {
         "review": false,
@@ -909,17 +906,19 @@
       "freeze": {
         "status": "open",
         "since": "23 Sep 2026",
-        "cause": "W12, 2 Oct 2026",
+        "cause": "W12, 5 Oct 2026",
         "reason": [
-          "open until the brief is accepted (W12, 2 Oct 2026)"
+          "dropped: moved out of the admin panel, see the pointer (W12, 5 Oct 2026)"
         ]
       },
       "v02": {
-        "status": "new",
+        "status": "dropped",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
-        ]
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026"
+        ],
+        "pointer": "{I14} App Events audit view and export (field names, not values); the trail stays in the app, read per person on M03 and exported by a job (W12, 5 Oct 2026)."
       },
       "spec": {
         "fields": [
@@ -961,28 +960,11 @@
         "Ops": "act",
         "Principal officer": "read"
       },
-      "built": "built",
-      "writes": [
-        {
-          "action": "create",
-          "event": "M12_create",
-          "roles": [
-            "Ops"
-          ]
-        },
-        {
-          "action": "invite",
-          "event": "M12_invite",
-          "roles": [
-            "Ops"
-          ]
-        }
-      ],
-      "zoho_instead": "none",
+      "built": "moved",
+      "writes": [],
+      "zoho_instead": "Folded into M03: the client signs up by OTP, ops sets the DIFM tier and enters the data on behalf (W12, 5 Oct 2026).",
       "events": [
-        "M12_view",
-        "M12_create",
-        "M12_invite"
+        "M12_view"
       ],
       "compliance": {
         "review": false,
@@ -996,17 +978,19 @@
       "freeze": {
         "status": "open",
         "since": "23 Sep 2026",
-        "cause": "W12, 2 Oct 2026",
+        "cause": "W12, 5 Oct 2026",
         "reason": [
-          "open until the brief is accepted (W12, 2 Oct 2026)"
+          "dropped: moved out of the admin panel, see the pointer (W12, 5 Oct 2026)"
         ]
       },
       "v02": {
-        "status": "new",
+        "status": "dropped",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
-        ]
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026"
+        ],
+        "pointer": "Folded into M03: the client signs up by OTP, ops sets the DIFM tier and enters the data on behalf (W12, 5 Oct 2026)."
       },
       "spec": {
         "fields": [
@@ -1074,7 +1058,8 @@
         "status": "dropped",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026"
         ],
         "pointer": "Zoho Analytics (W12, 2 Oct 2026): the five seat dashboards over the CRM data exist in the trial (phase G4); the database rows follow the feed. to be verified: how the app database reaches Zoho Analytics."
       },
@@ -1129,44 +1114,11 @@
       "role": {
         "Principal officer": "act"
       },
-      "built": "built",
-      "writes": [
-        {
-          "action": "create admin user",
-          "event": "M14_create_user",
-          "roles": [
-            "Principal officer"
-          ]
-        },
-        {
-          "action": "assign a seat",
-          "event": "M14_assign_seat",
-          "roles": [
-            "Principal officer"
-          ]
-        },
-        {
-          "action": "revoke access",
-          "event": "M14_revoke",
-          "roles": [
-            "Principal officer"
-          ]
-        },
-        {
-          "action": "reset credentials",
-          "event": "M14_reset",
-          "roles": [
-            "Principal officer"
-          ]
-        }
-      ],
-      "zoho_instead": "{I14} profiles cover {I14} only; the admin panel's users and seats are built here (W12)",
+      "built": "moved",
+      "writes": [],
+      "zoho_instead": "Folded into M03's staff allowlist with seats; {I14} profiles cover {I14}; L01 the logic panel (W12, 5 Oct 2026).",
       "events": [
-        "M14_view",
-        "M14_create_user",
-        "M14_assign_seat",
-        "M14_revoke",
-        "M14_reset"
+        "M14_view"
       ],
       "compliance": {
         "review": false,
@@ -1180,18 +1132,19 @@
       "freeze": {
         "status": "open",
         "since": "23 Sep 2026",
-        "cause": "W12, 2 Oct 2026",
+        "cause": "W12, 5 Oct 2026",
         "reason": [
-          "to be decided: the admin panel login method and MFA",
-          "open until the brief is accepted (W12, 2 Oct 2026)"
+          "dropped: moved out of the admin panel, see the pointer (W12, 5 Oct 2026)"
         ]
       },
       "v02": {
-        "status": "new",
+        "status": "dropped",
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
-          "W12, 2 Oct 2026"
-        ]
+          "W12, 2 Oct 2026",
+          "W12, 5 Oct 2026"
+        ],
+        "pointer": "Folded into M03's staff allowlist with seats; {I14} profiles cover {I14}; L01 the logic panel (W12, 5 Oct 2026)."
       },
       "spec": {
         "fields": [

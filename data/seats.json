@@ -1,5 +1,5 @@
 {
-  "about": "The seats page content (PLAN_admin_seed_v01.md section 15, deliverable D7): for each question an operator seat asks, the surface where the answer lives (the admin tab, the CRM or a vendor console), the screen, saved view or integrations row, and whether the seed (run-3000, anchor 23 Sep 2026) plus that surface answers it. A no carries a one-sentence gap and the brief table it lands in (T1 to T6 on the admin brief); a yes names the table the question belongs to. Section 15's items come first on each seat, in order, one per item; screen gaps found while the admin tab was drawn and the N01 gap list follow on the seat that asks them, each with its own cause. W12, 2 Oct 2026: seven answered rows that pointed at M05, M07, M10 or M13 now point at Zoho or M06; four of them became gaps until the Zoho side is built or verified.",
+  "about": "The seats page content (PLAN_admin_seed_v01.md section 15, deliverable D7): for each question an operator seat asks, the surface where the answer lives (the admin tab, the CRM or a vendor console), the screen, saved view or integrations row, and whether the seed (run-3000, anchor 23 Sep 2026) plus that surface answers it. A no carries a one-sentence gap and the brief table it lands in (T1 to T6 on the admin brief); a yes names the table the question belongs to. Section 15's items come first on each seat, in order, one per item; screen gaps found while the admin tab was drawn and the N01 gap list follow on the seat that asks them, each with its own cause. W12, 2 Oct 2026: seven answered rows that pointed at M05, M07, M10 or M13 now point at Zoho or M06; four of them became gaps until the Zoho side is built or verified. W12, 5 Oct 2026: eighteen answered rows that pointed at M04, M06, M08, M11 or M12 now point at M03, M07, Zoho or the logic panel (a new surface, L04 and L08).",
   "cause": "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 15)",
   "seats": [
     {
@@ -115,7 +115,7 @@
           "id": "po-08",
           "question": "Engine failures",
           "surface": "Admin tab",
-          "screen": "M06",
+          "screen": "M07",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
@@ -124,18 +124,23 @@
         {
           "id": "po-09",
           "question": "Refunds pending",
-          "surface": "Admin tab",
-          "screen": "M06",
+          "surface": "Zoho",
+          "screen": "Ops queue: refund requests",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Tasks",
+            "name": "Ops queue: refund requests",
+            "criteria": "type = refund, open; created by the app (BE-14)"
+          }
         },
         {
           "id": "po-10",
           "question": "Who is on an old plan version (the S11 list)",
-          "surface": "Admin tab",
-          "screen": "M08",
+          "surface": "Logic panel",
+          "screen": "L08",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
@@ -751,7 +756,7 @@
           "id": "ad-02",
           "question": "Plan at a glance",
           "surface": "Admin tab",
-          "screen": "M04",
+          "screen": "M03",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
@@ -760,22 +765,32 @@
         {
           "id": "ad-03",
           "question": "Actions done",
-          "surface": "Admin tab",
-          "screen": "M04",
+          "surface": "Zoho",
+          "screen": "The Contact's mirrored fields",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Contacts",
+            "name": "Mirrored fields",
+            "criteria": "actions done / total"
+          }
         },
         {
           "id": "ad-04",
           "question": "What they asked on K01",
-          "surface": "Admin tab",
-          "screen": "M04",
+          "surface": "Zoho",
+          "screen": "The booking's topic and note",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Bookings",
+            "name": "Appointment",
+            "criteria": "the K01 booking's topic and note"
+          }
         },
         {
           "id": "ad-05",
@@ -791,7 +806,7 @@
           "id": "ad-06",
           "question": "Last call's input changes",
           "surface": "Admin tab",
-          "screen": "M04",
+          "screen": "M03",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
@@ -810,12 +825,17 @@
         {
           "id": "ad-08",
           "question": "Calls left this period",
-          "surface": "Admin tab",
-          "screen": "M04",
+          "surface": "Zoho",
+          "screen": "The Deal's call fields",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Deals",
+            "name": "Active deal",
+            "criteria": "calls_included_per_period and calls_used"
+          }
         }
       ]
     },
@@ -887,28 +907,38 @@
         {
           "id": "op-01",
           "question": "The queue by type and age",
-          "surface": "Admin tab",
-          "screen": "M06",
+          "surface": "Zoho",
+          "screen": "Ops queue by type and age",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Tasks",
+            "name": "Ops queue",
+            "criteria": "open; group by type; sort by created"
+          }
         },
         {
           "id": "op-02",
           "question": "AA failures needing follow-up",
-          "surface": "Admin tab",
-          "screen": "M06",
+          "surface": "Zoho",
+          "screen": "Ops queue: AA failures",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Tasks",
+            "name": "Ops queue: AA failures",
+            "criteria": "type = aa_failure, open"
+          }
         },
         {
           "id": "op-03",
           "question": "Unknown ISINs",
-          "surface": "Admin tab",
-          "screen": "M06",
+          "surface": "Logic panel",
+          "screen": "L04",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
@@ -917,28 +947,38 @@
         {
           "id": "op-04",
           "question": "Plausibility flags",
-          "surface": "Admin tab",
-          "screen": "M06",
+          "surface": "Zoho",
+          "screen": "Ops queue: plausibility flags",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Tasks",
+            "name": "Ops queue: plausibility flags",
+            "criteria": "type = plausibility, open; the fix on M03"
+          }
         },
         {
           "id": "op-05",
           "question": "Reassignments",
-          "surface": "Admin tab",
-          "screen": "M06",
+          "surface": "Zoho",
+          "screen": "Ops queue: reassignment requests",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Tasks",
+            "name": "Ops queue: reassignments",
+            "criteria": "type = reassign, open; the owner change in Zoho or on M03 (open item 1)"
+          }
         },
         {
           "id": "op-06",
           "question": "DIFM assisted onboarding",
           "surface": "Admin tab",
-          "screen": "M12",
+          "screen": "M03",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
@@ -947,22 +987,32 @@
         {
           "id": "op-07",
           "question": "Refund requests",
-          "surface": "Admin tab",
-          "screen": "M06",
+          "surface": "Zoho",
+          "screen": "Ops queue: refund requests",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Tasks",
+            "name": "Ops queue: refund requests",
+            "criteria": "type = refund, open; created by the app (BE-14)"
+          }
         },
         {
           "id": "op-08",
           "question": "Deletion requests with the retention override",
-          "surface": "Admin tab",
-          "screen": "M06",
+          "surface": "Zoho",
+          "screen": "Ops queue: deletion requests",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "Tasks",
+            "name": "Ops queue: deletion requests",
+            "criteria": "type = deletion, open; executed on M03"
+          }
         },
         {
           "id": "op-09",
@@ -1119,12 +1169,17 @@
         {
           "id": "co-03",
           "question": "Agreement versions signed",
-          "surface": "Admin tab",
-          "screen": "M11",
+          "surface": "Zoho",
+          "screen": "Agreements signed by version",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "App Events",
+            "name": "Agreements signed by version",
+            "criteria": "type = esign_done; group by agreement_version"
+          }
         },
         {
           "id": "co-04",
@@ -1144,12 +1199,17 @@
         {
           "id": "co-05",
           "question": "Audit trail",
-          "surface": "Admin tab",
-          "screen": "M11",
+          "surface": "Zoho",
+          "screen": "Audit",
           "answered": "yes",
           "gap": "",
           "brief": "T3",
-          "cause": "plan section 15"
+          "cause": "plan section 15",
+          "view": {
+            "object": "App Events",
+            "name": "Audit",
+            "criteria": "type = audit; field names, not values"
+          }
         },
         {
           "id": "co-06",

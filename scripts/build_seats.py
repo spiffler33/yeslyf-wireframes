@@ -38,7 +38,12 @@ DATA_FILE = os.path.join(DATA, "seats.json")
 esc = site.esc
 
 IDENTITIES = ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Vatsal", "Spinach", "Compliance"]
-SURFACES = ["Admin tab", "Zoho", "vendor console"]
+SURFACES = ["Admin tab", "Zoho", "vendor console", "Logic panel"]
+
+
+def logic_ids():
+    """The logic panel's screens (section L of the wireframes); a seat question may land on one since W12, 5 Oct 2026."""
+    return set(s["id"] for s in site.load("screens_v02.json")["screens"] if s.get("sec") == "L")
 ANSWERED = ["yes", "no"]
 BRIEFS = ["T1", "T2", "T3", "T4", "T5", "T6"]
 
@@ -117,6 +122,9 @@ def validate(doc, screen_ids, integration_ids, order):
             elif surface == "Admin tab":
                 if screen not in screen_ids:
                     problems.append("question %r: screen %r is not a screen in data/admin_screens.json" % (qid, screen))
+            elif surface == "Logic panel":
+                if screen not in logic_ids():
+                    problems.append("question %r: screen %r is not a logic panel screen in data/screens_v02.json" % (qid, screen))
             elif surface == "vendor console":
                 inum = screen.split(" ")[0] if screen else ""
                 if inum not in integration_ids:
@@ -133,6 +141,8 @@ def screen_html(q, ctx):
         view = q.get("view") or {}
         label = "%s (%s)" % (view.get("name", ""), view.get("object", ""))
         return '<a href="admin_operator.html">%s</a>' % esc(label)
+    if surface == "Logic panel":
+        return '<a href="wireframes_v02.html#%s">%s</a>' % (esc(screen), esc(screen))
     inum = screen.split(" ")[0] if screen else ""
     vendor = ctx["integ_by_id"].get(inum, {}).get("vendor", inum)
     return esc("%s (%s)" % (inum, vendor))

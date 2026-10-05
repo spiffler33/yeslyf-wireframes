@@ -673,4 +673,13 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   thresholds in L03 to be decided), everything else Zoho or a console; Kajal's 48 lines mapped line by line. The sheet is
   not the universal set (the page says what sits outside it). Every pick stays "to be decided: confirm the pick"; the
   committed split (nine screens) stands until Vatsal confirms, then admin_screens.json, admin_crm.json and the brief
-  change in one commit with that cause.
+  change in one commit with that cause. Kajal, 5 Oct 2026, on the page: configuration and system settings belong in
+  the app, not Zoho (agreed by Vatsal the same day): rows 6 and 11 read Spinach, B7 is the config screen in the
+  logic panel family (flags, SKU cards and prices, the calls-included matrix, the DIFM threshold, maintenance mode,
+  the minimum app version), I15 shrinks to content and copy; B1, the staff view, is to be walked through with Kajal
+  on M03 of the admin wireframes page. Confirmed and landed, Vatsal, 5 Oct 2026: data/admin_screens.json has M03
+  the staff view of a client, M07 the health page and M10 the config screen as the built screens (status rebuilt)
+  and M02, M04, M06, M08, M09, M11, M12, M14 dropped with pointers (M05 and M13 already were); data/admin_crm.json
+  placement, stack, compliance and SPINACH_MODULES rows read the same; data/seats.json gained the surface "Logic
+  panel" (L04, L08) and 18 answered rows repointed; gap G22 closed; I15 in data/integrations.json reads content and
+  copy; the brief's T3 lists the three screens. B1 is detailed on the Split page for Kajal's look.

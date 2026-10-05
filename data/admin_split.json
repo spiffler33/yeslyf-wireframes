@@ -1,6 +1,6 @@
 {
- "about": "What Spinach builds for the admin side, in one page: Spinach's own feature matrix (9 Jul 2026) with one column added, the version picked for launch and who provides it, one line why; then the six things Spinach builds; then what Zoho and the consoles hold (the details are doc 2); then the five open items; then Kajal's list of 8 Sep 2026 line by line, with where each line lands. The sheet is not the universal set: what sits outside it is in the folded notes and reaches Spinach only as B1 to B5. Picks proposed 2 Oct 2026; to be decided: confirm the picks.",
- "cause": "Vatsal, 2 Oct 2026 (the question: is the sheet the universal set; per row, which version and who)",
+ "about": "What Spinach builds for the admin side, in one page: Spinach's own feature matrix (9 Jul 2026) with one column added, the version picked for launch and who provides it, one line why; then the seven things Spinach builds; then what Zoho and the consoles hold (the details are doc 2); then the open items; then Kajal's list of 8 Sep 2026 line by line, with where each line lands. The sheet is not the universal set: what sits outside it is in the folded notes and reaches Spinach only as B1 to B7. Picks proposed 2 Oct 2026, confirmed 5 Oct 2026 with Kajal's two points taken; B1 detailed for her review.",
+ "cause": "Vatsal, 2 Oct 2026 (the question: is the sheet the universal set; per row, which version and who); Kajal, 5 Oct 2026 (configuration and system settings in the app, rows 6 and 11; B1 to be looked at); Vatsal, 5 Oct 2026 (confirmed)",
  "rules": [
   "One way, app to Zoho: Zoho never writes into the app; the app may pull from Zoho when it opens something (H07 pulls the Desk thread).",
   "Writes into the app by staff (edits to client data, flags, deletions, publishing) stay in the app; that is the whole reason a built surface exists.",
@@ -231,22 +231,18 @@
     "As an admin, I can analyse configuration usage, feature adoption and operational impact of configuration changes."
    ],
    "why": [
-    "Two different things hide in this row. App configuration (SKU cards and the fee structure mapped to Razorpay plan IDs, feature flags, the calls-included matrix per SKU and period, band placeholders, the DIFM threshold, copy slots) is I15: the app reads it, the principal officer edits it, Zoho keeps the history. The enhanced views and the actions are I15 forms with roles.",
+    "App configuration is what the app cannot run without: feature flags (tiers live, the artificial wait on G01, the nudge cap, AA required or optional, the trial period), SKU cards and prices mapped to Razorpay plan IDs, the calls-included matrix per SKU and period, the DIFM threshold. Reading them from a processor at run time makes the app's behaviour depend on Zoho's API and on the still-open Creator choice (Kajal, 5 Oct 2026; taken). They sit in the app's own database, edited on a config screen in the logic panel family (B7): values with effective dates, staged, published, audited like L02. The integrations row I15 had named exactly this as its alternative.",
     "Master data for the engine (assumptions, the band tables and plausibility thresholds, cohorts and risk bands, the instrument universe and financial categories, market inputs, constraints, staging, publish, impact preview, audit) is the logic panel L00 to L09, already in the wireframes and built by Spinach as part of the app. It never goes to Zoho: it is the maths, and publishing writes into every plan. L02 already says the bands are fixed per field from the M2 tables, so they are the panel's, not I15's.",
-    "The analytics (feature adoption, impact) is Mixpanel and the logic panel's own impact preview (L05). M10, the config screen of 23 Sep, is therefore not built; it was I15 made visible."
+    "Content and copy stay in I15 (row 5): a Zoho hiccup then degrades words, not behaviour, and the app caches them. The analytics (feature adoption, impact) are Mixpanel and L05's impact preview. M10 of 23 Sep returns as B7, not as I15 made visible."
    ],
-   "zoho": "I15 forms: sku_cards, copy_slots, feature_flags, calls_included, bands, difm_threshold, with a change history.",
-   "spinach": "The app reads I15; the logic panel L00 to L09.",
-   "verify": [
-    "I15 change history and version read-back"
-   ],
-   "decide": [
-    "to be decided: Creator or a CRM custom module (I15)"
-   ],
+   "zoho": "Nothing for configuration; I15 keeps content and copy (row 5).",
+   "spinach": "The config screen (B7, M10); the app reads its configuration from its own database.",
+   "verify": [],
+   "decide": [],
    "sketches": "none drawn",
    "pick": "V2",
-   "who": "Zoho",
-   "line": "App config in I15; the engine's master data, the band tables and the plausibility thresholds are the logic panel, Spinach's build from the wireframes (B2)."
+   "who": "Spinach",
+   "line": "Feature flags, SKU cards and prices, the calls-included matrix and the DIFM threshold sit in the app's own config screen (B7), in the logic panel family; content and copy stay in I15."
   },
   {
    "n": 7,
@@ -395,19 +391,17 @@
     "As an admin, I can review operational trends and identify configuration changes affecting platform performance."
    ],
    "why": [
-    "Feature toggles (tiers live, the artificial wait on G01, the nudge cap, AA required or optional, the trial period), legal document versions (agreement templates with effective dates) and operational parameters are I15 entries the app reads at launch and on a timer; The enhanced views and the actions are the same forms with the principal officer's role. Notification defaults are Campaigns settings; support settings (SLA, categories) are Desk setup, done in the trial (G5).",
-    "Maintenance mode and the minimum app version (Spinach asked for a configurable minimum version, FE-71) are two more I15 flags; to be decided whether to add them (gap G22). Nothing is built; the app honours the flags. The analytics are not a launch need."
+    "Maintenance mode, the minimum app version (FE-71), operational parameters and the switches for an incident belong in the app's own config screen (B7): during an incident the switch must be in your system, not in a processor (Kajal, 5 Oct 2026; taken). Releases are deployments, not settings. Legal document versions (agreement templates with effective dates) stay with content in I15.",
+    "Notification defaults are Campaigns settings; support settings (the SLA, categories) are Desk setup, done in the trial (G5). The analytics are not a launch need. Gap G22 (maintenance mode and the minimum version as I15 flags) closes: they are B7's."
    ],
-   "zoho": "I15 flags with effective dates; Campaigns and Desk settings.",
-   "spinach": "The app reads the flags, including maintenance mode and the minimum version if added.",
+   "zoho": "Campaigns and Desk defaults; agreement template versions with content in I15.",
+   "spinach": "The config screen (B7, M10): maintenance mode, the minimum app version, operational parameters.",
    "verify": [],
-   "decide": [
-    "to be decided: maintenance mode and the minimum app version as I15 flags (gap G22)"
-   ],
+   "decide": [],
    "sketches": "navigation only (System / Settings)",
    "pick": "V2",
-   "who": "Zoho",
-   "line": "Flags and legal versions in I15; Campaigns and Desk keep their own defaults; maintenance mode is one more flag (G22)."
+   "who": "Spinach",
+   "line": "Maintenance mode, the minimum app version and operational parameters sit in the app's config screen (B7); Campaigns and Desk keep their own defaults."
   },
   {
    "n": 12,
@@ -749,6 +743,7 @@
   "spinach": [
    "The staff view of a client (own row 1): lookup by phone; the client's own screens in staff mode, read-only for every seat with scope; edit on behalf with the engine re-run for ops; the actions deletion done, DIFM tier, refund flag, force re-run (and reassign, if the owner stays mastered here); an audit row per action; a staff allowlist with seats on the sign-in (sheet row 10).",
    "The health page (B6): integrations and engine health over integration_events, in one place, with links out to the consoles.",
+   "The config screen (B7, M10) in the logic panel family: flags, SKU cards and prices, the calls-included matrix, the DIFM threshold, maintenance mode, the minimum app version (Kajal, 5 Oct 2026).",
    "App plumbing already owed: the event feed and the mirrors (plus the state-entered date, the CAS state, the AA institutions), I15 reads with published flags, push from state changes, audit rows as App Events with field names, integration_events and the failure events, the Deal per payment from the Razorpay webhooks, the ops Tasks, Desk ticket creation and the H07 pull, Bookings slots, the compliance record export job, the monthly AUA and SIP snapshot if accepted.",
    "The logic panel L00 to L09 from the wireframes (own row 5), with M08 as L08's versions-in-use view, the band and plausibility tables in L02, and the RPQ thresholds in L03 if decided."
   ],
@@ -756,15 +751,14 @@
    "CRM: Contacts with the mirrors, saved views (users, onboarding, AA and CAS, finance, compliance, DIFM prospects), Deals per payment, Tasks for the ops queue and calls, App Events (timeline, audit, failures), users, roles, profiles, MFA.",
    "Analytics: the five seat dashboards, the states board, plan version counts, failure rates, reports, exports, scheduling and sharing (to be verified).",
    "Campaigns: email and WhatsApp templates, lists by journey stage, journeys, manual sends, reports. Desk: tickets, the SLA, the grievance register. Bookings: slots and appointments. Books: the ledger.",
-   "I15 (Creator or a CRM custom module): content, copy, flags, SKU cards, agreement template versions, with published and effective-from fields and an approval step."
+   "I15 (Creator or a CRM custom module): content and copy only, with published and effective-from fields and an approval step."
   ],
   "consoles": "Razorpay (I09) for money; the KYC and eSign provider; the AA provider (I01); BSE StAR MF (I02); the WhatsApp provider (I08); Firebase (I12); Sentry; Mixpanel (I13). Their status is read together on B6.",
-  "changes": "Against the board of 2 Oct 2026 (commit 469d73b): M02, M04, M06, M09, M11, M12 and M14 leave the built list (M04 becomes the Contact plus the staff view link; M06 the ops Tasks; M09 CRM views plus one mirror; M11 the App Events audit view plus the export job; M12 and M14 fold into the staff view and its allowlist); M03 becomes the staff view; M07 returns as the health page (B6); M08 joins the logic panel as L08's versions-in-use view. If the picks are confirmed, the board is updated with that cause; until then the committed split stands.",
+  "changes": "Landed on the board on 5 Oct 2026, the picks confirmed: on the admin wireframes page M03 is the staff view, M07 the health page and M10 the config screen, rebuilt; M02, M04, M05, M06, M08, M09, M11, M12, M13 and M14 are moved, each with a pointer (M08 to L08's versions-in-use view; M12 and M14 into M03). The Admin and CRM tab's placement, stack and compliance rows read the same; the brief's T3 lists the three screens; seat rows repointed; gap G22 closed; I15 reads content and copy.",
   "decide": [
-   "to be decided: confirm the picks (every row above)",
    "to be decided: the adviser owner mastered in Zoho with the app pulling it, or set on the staff view and mirrored (the 28 Sep INBOUND wording)",
    "to be decided: AUA and SIP book numbers per Contact in Zoho, or AUA from a database export only (the bands-only rule)",
-   "to be decided: Creator or a CRM custom module (I15)",
+   "to be decided: Creator or a CRM custom module (I15, content and copy only)",
    "to be decided: gaps G18 to G24 (the call note home, subscription writes, suspension, sign-in and MFA, maintenance flags, failed push, the devices tab)",
    "to be decided: refund policy (D12)"
   ],
@@ -783,8 +777,8 @@
  "builds": [
   {
    "id": "B1",
-   "what": "The staff view of a client, the only admin screen",
-   "detail": "Lookup by phone; the client's own screens in staff mode (the financial record with its source and completion badges, the plan, the vault), read-only by seat scope; edit on behalf with the engine re-run (ops); actions: deletion done, DIFM tier, refund flag, force re-run; an audit row per action; a staff allowlist on the sign-in."
+   "what": "The staff view of a client (M03), the admin screen over client data",
+   "detail": "The one place staff write into the app. Lookup by phone; the client's own screens in staff mode: the record with its source and completion badges (A08), the data screens (D01 to D09), the plan (G03), the vault (H06); read-only for every seat, advisers and the call centre scoped to their own clients; for ops: edit on behalf with the engine re-run, deletion done, DIFM tier (the client signs up by OTP first, then ops enters the data), refund flag, force re-run, reassign if the owner is mastered here; an audit row per action; the staff allowlist with seats on the sign-in (principal officer). Ops' day to day from the 8 Sep list: completion and sources read off the record's badges; needs-verification items arrive as Zoho tasks that open this view; payments and GST stay in Razorpay and the Deals, the refund flag is here. Draft: M03 on the admin wireframes page."
   },
   {
    "id": "B2",
@@ -808,14 +802,19 @@
   },
   {
    "id": "B6",
-   "what": "The health page: integrations and the engine, in one place",
+   "what": "The health page (M07): integrations and the engine, in one place",
    "detail": "One page over integration_events: status, last success, failures and latency per vendor, the error log as an export, retry where a vendor call allows it, a link out to each console for the detail; engine health beside it: data complete but no plan built, build time, the plan-upgrade job. Sentry still pages on thresholds."
+  },
+  {
+   "id": "B7",
+   "what": "The config screen (M10), in the logic panel family",
+   "detail": "Feature flags, SKU cards and prices mapped to Razorpay plan IDs, the calls-included matrix, the DIFM threshold, maintenance mode, the minimum app version, operational parameters: values with effective dates, staged, published and audited like L02, read by the app from its own database. Content and copy stay in I15 (Kajal, 5 Oct 2026)."
   }
  ],
  "holds": [
   {
    "who": "Zoho",
-   "what": "CRM (Contacts, views, Deals, Tasks, App Events, users and roles); Analytics (dashboards, reports, exports); Campaigns (templates, journeys, sends); Desk (tickets, the SLA, the grievance register); Bookings; Books (the ledger); I15, Creator or a CRM custom module (content, copy, flags, SKU cards, agreement versions)."
+   "what": "CRM (Contacts, views, Deals, Tasks, App Events, users and roles); Analytics (dashboards, reports, exports); Campaigns (templates, journeys, sends); Desk (tickets, the SLA, the grievance register); Bookings; Books (the ledger); I15, Creator or a CRM custom module, content and copy only: FAQs, tooltips, disclaimers, videos, sample plan content, question wording, push and in-app copy, agreement template versions."
   },
   {
    "who": "Consoles",
@@ -825,7 +824,7 @@
  "open": [
   "The adviser owner: mastered in Zoho with the app pulling it, or set on the staff view and mirrored.",
   "AUA and SIP book numbers per Contact in Zoho, or from a database export only (the bands-only rule).",
-  "I15: Creator or a CRM custom module; it fixes the API Spinach codes against.",
+  "I15, content and copy only: Creator or a CRM custom module; it fixes the API Spinach codes against.",
   "The staff view's sign-in and MFA (gap G21).",
   "Subscription extend or comp, and account suspension: wanted or not (gaps G19, G20).",
   "The logic panel's edge: the band tables and plausibility thresholds in L02 rather than I15, and the RPQ score-to-band thresholds in L03, versioned with the maths."
@@ -1087,14 +1086,14 @@
   {
    "sec": "Admin and settings",
    "item": "System settings",
-   "lands": "Row 11",
-   "who": "Zoho (I15 flags)"
+   "lands": "B7",
+   "who": "Spinach: the config screen (Kajal, 5 Oct 2026)"
   },
   {
    "sec": "Admin and settings",
    "item": "Fee structure",
-   "lands": "Row 6",
-   "who": "Zoho (I15 SKU config mapped to Razorpay plan IDs)"
+   "lands": "B7",
+   "who": "Spinach: the config screen, SKU config mapped to Razorpay plan IDs (Kajal, 5 Oct 2026)"
   },
   {
    "sec": "User details (CRM)",
@@ -1120,5 +1119,6 @@
    "lands": "Row 1",
    "who": "Open item 1: mastered in Zoho, or on the staff view and mirrored"
   }
- ]
+ ],
+ "confirmed": "Confirmed, Vatsal, 5 Oct 2026; landed on the board the same day."
 }

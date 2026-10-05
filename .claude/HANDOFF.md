@@ -60,7 +60,12 @@ push). Board work (phase 14 pass 5) runs only on Vatsal's word.
   logic panel with its edge, instead of nine screens; the open items it lists: the adviser owner mastered in Zoho or
   on the staff view; AUA and SIP numbers per Contact or not; Creator or a CRM custom module; sign-in and MFA;
   subscription writes and suspension; the band and RPQ tables in the logic panel). On a yes the board changes in one
-  commit; on a no the committed split stands.
+  commit; on a no the committed split stands. Kajal reviewed the page on 5 Oct 2026: rows 6 and 11 moved to the app
+  (B7, the config screen; I15 content and copy only; agreed by Vatsal); she wants to look at B1 once. Done on 5 Oct
+  2026: the picks confirmed and the board reconciled (PLAN.md section 26, last bullet): built screens M03 the staff
+  view, M07 the health page, M10 the config screen; the other ten moved with pointers; seats, gaps (G22 closed),
+  I15 and the brief follow. Still owed: Kajal's look at B1 (M03 on docs/admin_wireframes.html), the message to her
+  drafted on 5 Oct 2026; the page sent to Spinach, then tracker W12 reads delivered.
 
 ## Steps only a person can do (the browser rules hand account creation and org setup back to a person)
 - G1: Zoho One admin panel, User Management, Users, Add User, 9 users (the trial has 9 licenses left; order from plan

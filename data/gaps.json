@@ -208,8 +208,8 @@
    "title": "Maintenance mode and the minimum app version (FE-71) as I15 flags",
    "screen": "I15",
    "why": "Spinach's system settings module names maintenance mode; the I15 flag list (tiers live, artificial wait, nudge cap, AA required, trial period) does not carry it or the minimum app version.",
-   "status": "gap, to be decided",
-   "cause": "Vatsal, 2 Oct 2026 (W12)"
+   "status": "done",
+   "cause": "Vatsal, 2 Oct 2026 (W12); closed: Vatsal, 5 Oct 2026 (the config screen M10 holds them; Kajal, 5 Oct 2026)"
   },
   {
    "id": "G23",
