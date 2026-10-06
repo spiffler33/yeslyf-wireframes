@@ -1,74 +1,53 @@
-# Handoff - 2 Oct 2026 (unit closed: W12, the admin panel brief, on the board; phase G stays open, G1 and G6 need a person)
+# Handoff - 6 Oct 2026 (unit closed: W12 the admin split, the pack for Spinach and the cleanup; phase G stays open on G1 and G6)
 
-State: phase G ("Zoho as if live", PLAN_zoho_live_v01.md) has G0 (baseline, 2a7d191), G3 (the 11 CRM saved views,
-00fb249), G5 (the Desk SLA and 4 ticket views, 91cc847) and G4 (the 5 CRM dashboards, 56963f7) in Zoho; nothing in
-Zoho has changed since 29 Sep 2026. Two units closed on this machine on 29 Sep 2026: (1) the Admin + CRM tab
-rewrite, its own commit 21018b4 (Directus out; 13 placement rows sorted, 6 to the Spinach admin panel and 7 to Zoho
-Creator or a CRM custom module; D1 and D5 rewritten; INBOUND one way, app to Zoho, under the three conditions; the
-bucket legend; revenue in Zoho Books; I15 in data/integrations.json to match); (2) G9 prep, commit 544657f
-(docs/admin_operator.html marks the 12 data/zoho_live.json items "done in Zoho, <date>" with what was built, the
-five dashboards are operator step 13, PLAN.md section 25 is a draft that G9 completes). G1 (users) and G6
-(Campaigns) still need a person; G2, G7, G8 wait on them and on spiff's answers; G9 closes the phase. A third unit
-closed on 2 Oct 2026: W12, the admin panel brief, as its own board commit (PLAN.md section 26): Spinach's admin work
-(inputs/spinach/admin panel/, untracked on purpose) read against the 28 Sep split; Spinach builds M02, M03, M04, M06,
-M08, M09, M11, M12, M14; M05, M07, M10, M13 moved to Zoho; Metabase out, Zoho only; the brief page carries T7. The
-brief is not yet sent to Spinach; the 1 Oct meeting notes and any Spinach estimate are not in the repo. A second page
-followed the same day (docs/admin_split.html from data/admin_split.json; PLAN.md section 26, last bullet): Spinach's
-sheet with a pick per row, our own admin items, the sketches against Zoho; it proposes one built surface (the staff
-view of a client) instead of nine screens. The picks wait for spiff's confirmation; then admin_screens.json,
-admin_crm.json and the brief change in one commit with cause "Vatsal, <date>".
+State: the admin split is decided and on the board. Three admin screens are built by Spinach (M03 the staff view of a
+client, M07 the health page, M10 the config screen) plus the logic panel L00 to L09; the other ten M screens are
+dropped with a pointer each (M08 to L08, M12 and M14 into M03); Metabase is out and Zoho Analytics holds the database
+KPIs; I15 (Zoho Creator or a CRM custom module) is content and copy only, configuration sits in M10. docs/admin_split.html
+is the one-page split (confirmed by Vatsal on 5 Oct 2026 after Kajal's review), docs/admin_brief.html the brief for
+Spinach, generated from the board (sections 1 to 5, the annex tables T1 to T7 folded; data/admin_pack.json holds the
+narrative). The Admin and CRM v0.2 tab shows the current truth first and folds its history; the admin wireframes nav
+groups the moved screens; the seats page folds the N01 precedence pairs. Everything is pushed (last commit on main
+before this closure: affe675). Phase G ("Zoho as if live", PLAN_zoho_live_v01.md) is unchanged since 29 Sep 2026: G0,
+G3, G4, G5 in Zoho; G1 (users) and G6 (Campaigns) need a person; G2, G7, G8, G9 follow them.
+
+Owed by people: Kajal's answers to the six M03 questions (the walkthrough notes went to her on WhatsApp on 5 Oct
+2026: subscription extend or comp, suspension, a devices tab, the adviser owner's home, staff sign-in and MFA, anything
+missing); the brief sent to Spinach (then tracker W12 reads delivered); the 1 Oct meeting notes and any Spinach
+estimate were never provided.
 
 Untracked on purpose in the tree: inputs/spinach/admin panel/ and inputs/spinach/kajal-admin panel/ (the latter is
 byte-identical to inputs/hoa/Admin Panel - Yeslyf.docx), the two inputs/meeting/ files, inputs/spinach/2026-09-25/,
 and two seed CSV zips at the repo root (yeslyf_csvs_run-500.zip and run-3000; .gitignore does not cover them; never
 commit them).
 
-When spiff says "go": if G1 is still not done, nothing unattended is queued; say so in one line and ask for G1 and
-G6 (below) or an answer to the open items. If the users exist: G2
-(seed/zoho/own.py, to be written: ownership by API), then G7, G8 (once (b) is consented), then G9 (live.py as the
-verifier, reports/phaseG_pass9.md, PLAN.md section 25 completed, handoff, memory, one commit "zoho live G9: close",
-push). Board work (phase 14 pass 5) runs only on Vatsal's word.
-
 ## Read first
-1. reports/phaseG_pass0.md (the baseline table, the grant's gaps, the 74th ticket), reports/phaseG_pass3.md (how
-   the CRM view forms behave), reports/phaseG_pass4.md (the dashboards, the editor's behaviour, the sharing gap),
-   reports/phaseG_pass5.md (Desk).
-2. PLAN_zoho_live_v01.md sections 4 to 6; data/zoho_live.json (baseline, counts, the 12 items done in Zoho); PLAN.md
-   section 25 (the draft status).
-3. Memory zoho-trial (org, credentials, re-run recipe) and admin-crm-direction (what landed on the tab, what is open).
+1. PLAN.md section 26 (the whole W12 story, 2 to 6 Oct 2026) and docs/admin_split.html sections 1, 2 and 4.
+2. Memory spinach-admin-split (what was decided and why; what is still open) and admin-crm-direction (the 28 Sep
+   rules the split rests on: one way app to Zoho, writes stay in the app, bands only in Zoho).
+3. For Zoho work: reports/phaseG_pass0.md to pass5.md, PLAN_zoho_live_v01.md sections 4 to 6, memory zoho-trial.
 
 ## Verify before coding
-- `git status --short`: clean apart from the untracked items kept out on purpose (two inputs/meeting/ files,
-  inputs/spinach/2026-09-25/, inputs/spinach/admin panel/, inputs/spinach/kajal-admin panel/, the two zips at the root).
-- `python3 seed/zoho/live.py` (read only, about 1 minute; last run 29 Sep 2026, nothing in Zoho moved since): users 1
-  of 11, profiles 2 of 3, views Deals 4 of 4, Contacts 3 of 3, Tasks 2 of 2, App Events 1 of 1, A la carte 1 of 1,
-  desk views 4 of 4, calls 61 of 84, campaigns 0, bookings staff 0 of 6, appointments 0 of 8.
-- `python3 scripts/check_phase9.py` 19 PASS, `python3 scripts/check_site.py` 3 PASS; docs/admin_operator.html carries
-  12 "done in Zoho" lines and 32 "done by script" lines.
+- `git status --short`: clean apart from the untracked items listed above.
+- `python3 scripts/build_site.py` (about 2 minutes) then `python3 scripts/check_phase9.py` 19 PASS and
+  `python3 scripts/check_site.py` 3 PASS; the build prints "T3 3" for the brief (three built screens) and
+  "12 sheet rows, 7 builds, 9 own rows, 13 sketches" for the split page.
+- `python3 seed/zoho/live.py` (read only, about 1 minute; nothing in Zoho has moved since 29 Sep 2026): users 1 of
+  11, views Deals 4 of 4, Contacts 3 of 3, Tasks 2 of 2, App Events 1 of 1, desk views 4 of 4, campaigns 0.
 
-## Waiting on spiff (recommended answer first)
-- (a) Answered and landed (21018b4); the Metabase question answered on 2 Oct 2026 (Metabase out, Zoho only; landed
-  with W12). One item stays open on the tab, written as "to be decided": Creator or a CRM custom module as the
-  content and config home (it blocks the API shape the app reads I15 by).
-- (b) Plan section 4 provisional calls: consent by silence (Missed for the 23 refused calls; past booked slots at the
-  same weekday and time in the first future week; marketing and finance built under the admin user).
-- (c) A wider grant with Desk.agents.READ before G2 (else the Support 01 agent id is read off Desk, Setup, Agents in
-  Chrome). The v8 API list call also needs a scope the docs do not name.
-- (d) Done on 2 Oct 2026: the admin panel inputs were read into W12 (docs/admin_brief.html T7, the Admin + CRM tab,
-  PLAN.md section 26). Open: send the brief to Spinach (then tracker W12 reads delivered); the seven gaps G18 to G24.
-- (e) Confirm the picks on docs/admin_split.html (two built surfaces, the staff view and the health page, plus the
-  logic panel with its edge, instead of nine screens; the open items it lists: the adviser owner mastered in Zoho or
-  on the staff view; AUA and SIP numbers per Contact or not; Creator or a CRM custom module; sign-in and MFA;
-  subscription writes and suspension; the band and RPQ tables in the logic panel). On a yes the board changes in one
-  commit; on a no the committed split stands. Kajal reviewed the page on 5 Oct 2026: rows 6 and 11 moved to the app
-  (B7, the config screen; I15 content and copy only; agreed by Vatsal); she wants to look at B1 once. Done on 5 Oct
-  2026: the picks confirmed and the board reconciled (PLAN.md section 26, last bullet): built screens M03 the staff
-  view, M07 the health page, M10 the config screen; the other ten moved with pointers; seats, gaps (G22 closed),
-  I15 and the brief follow. Then the pack: docs/admin_brief.html is the brief for Spinach (sections 1 to 5 from the
-  board, data/admin_pack.json the narrative, the annex tables folded), and the admin pages were cleaned up (the tab's
-  history folded, the moved screens grouped, the precedence pairs folded; PLAN.md section 26, last bullet). Still
-  owed: Kajal's answers to the six M03 questions (sent to her on WhatsApp on 5 Oct 2026); the brief sent to Spinach,
-  then tracker W12 reads delivered.
+## When spiff says "go"
+- If Kajal's answers are in: apply them to M03 (data/admin_screens.json freeze reasons and dev lines; the file bans
+  team names and vendor strings, so causes read "W12, <date>" there and "Kajal, <date>" on the tab), close the
+  matching gaps G19 to G21 and G24 in data/gaps.json, rebuild, one board commit, push.
+- If the brief went to Spinach: data/tracker.json W12 status "delivered" (hand-formatted file; edit as text), notes
+  with the date; rebuild; commit; push.
+- If a Zoho "to be verified" item was tested (the database feed to Analytics, Creator forms and approval, Campaigns
+  setup G6, Books from Razorpay): record the outcome on the Admin and CRM tab (data/admin_crm.json STACK notes, cause
+  "Vatsal, <date>") and in docs/admin_split.html's outcome.verify list; if one fails, the row returns to Spinach on
+  the Split page and the brief, with a cause.
+- Phase G: only when G1 and G6 are done by a person (below); then G2 (seed/zoho/own.py, to be written: ownership
+  by API), G7, G8 (once the plan section 4 provisional calls are consented), G9 (live.py as the verifier,
+  reports/phaseG_pass9.md, PLAN.md section 25 completed, one commit "zoho live G9: close", push).
 
 ## Steps only a person can do (the browser rules hand account creation and org setup back to a person)
 - G1: Zoho One admin panel, User Management, Users, Add User, 9 users (the trial has 9 licenses left; order from plan
@@ -76,48 +55,32 @@ push). Board work (phase 14 pass 5) runs only on Vatsal's word.
   Adviser 06 is "to be decided: Adviser 06 user (trial cap)"). First name and last name from the seed's display
   name ("Adviser" / "01"; Harish with no last name if the form allows), email = the admin mailbox's local part + "+"
   + staff_id + "@" + its domain (read at run time with GET /users?type=CurrentUser; never written down), Employee Id
-  = staff_id, "Send Notification Mail" unticked (nothing is mailed; an invitation can be resent later). Then apps:
-  CRM for all (roles Principal officer, Adviser, Ops, Support, Compliance; profile Standard, provisional), Desk for
-  Support 01 and Compliance 01, Bookings for the advisers. Then CRM Setup, Security Control, Profiles: clone Standard
-  as "Finance read only", untick create, edit and delete.
+  = staff_id, "Send Notification Mail" unticked. Then apps: CRM for all (roles Principal officer, Adviser, Ops,
+  Support, Compliance; profile Standard, provisional), Desk for Support 01 and Compliance 01, Bookings for the
+  advisers. Then CRM Setup, Security Control, Profiles: clone Standard as "Finance read only", untick create, edit
+  and delete.
 - G6: campaigns.zoho.in shows a first-time onboarding form (industry, phone number, Get Started) before any list can
   exist; only Kajal or spiff should fill it. After that the four imports follow plan G6 (double opt-in and welcome
   mail confirmed off first).
 
-## Next in this repo (in order)
-1. If a dashboard needs a change: Analytics, the picker, the dashboard, hover the tile, the three dots, Edit; or
-   Manage Dashboards for Rename, Clone, Delete. Sharing is "to be verified after G1" (no sharing control exists in
-   this org's Analytics; reports/phaseG_pass4.md).
-2. When the users exist: G2 (seed/zoho/own.py, to be written: ownership by API), G7 (Bookings notifications off
-   first, then staff and appointments), then G8 (provision.py rule for the 23 calls) once (b) is consented, then G9.
-   For G9 the operator marks and PLAN.md section 25 already exist: live.py grows into the verifier and writes the
-   "Live build" section of seed/zoho/leftovers.md; section 25 gets what closed and what is open.
-
 ## Gotchas found so far
-- data/operator.json is hand-formatted (one item per line, a step's id, n and title on one line): edit it as text,
-  never by json.dump; build_operator.validate() requires every item id to start with its step's id plus "/", so a
-  live key like dashboards/<seat> needs its own step (step 13 now). data/admin_crm.json round-trips with
-  json.dumps(indent=1) plus a newline, data/integrations.json with indent=2. build_site.py runs build_operator at
-  the end; it strips every key ending in _v01 from the rendered DECISIONS (owner_v01, position_v01, stated_by_v01).
-- CRM view form: type into a dropdown's search, screenshot, then click the match; clicking in the same batch picks
-  the first unfiltered item. Any JavaScript run against the page closes an open dropdown.
-- CRM column picker: the row's plus icon appears on hover and takes the click only some of the time; the working
-  recipe is the page's own add control fired by JavaScript (mouseover, pointerdown, mousedown, pointerup, mouseup,
-  click on the row's lyte-lb-add element), then read the view back by API before saving. Tasks views have no column
-  picker on the form; set columns on the saved view's list (header icon, Manage Columns).
-- Desk: typing while no input has focus fires keyboard shortcuts ("S" opens Setup); Desk's dropdowns render faint for
-  a few seconds, take a second screenshot before clicking. Setup pages sit in an iframe that the wheel does not
-  scroll; scrollIntoView by JavaScript or the wizard's own Next button.
-- The auto-mode classifier refused the Add User form and one batch that mixed a Cancel click with a navigation; keep
-  account and org-setup screens for a person.
-- Dashboard editor (G4): dialogs take 15 to 30 seconds to open and sometimes open scrolled to their bottom (wheel
-  up over the dialog); a click made before a dialog opens lands on the canvas behind it; a batch longer than about
-  40 seconds times out in the browser tool, so wait in two or three 10-second steps and screenshot at 0.4 scale
-  between steps; picklist value boxes filter when typed into, the field and module search boxes filter too, but a
-  module name that contains the search word (App Events for "Event") lists every field, so scroll the list; the
-  criteria pattern is edited by Edit Pattern then the tick; the editor draws charts clipped until the save, the saved
-  dashboard renders whole; Save keeps the create page open ("Added Successfully"), a second Save complains about the
-  name. The Chrome window is 1600x1079 CSS pixels and the screenshot frame is 1329x896; clicks map correctly.
+- Data formats: data/admin_crm.json, data/admin_split.json, data/admin_pack.json and data/gaps.json round-trip with
+  json.dumps(indent=1) plus a newline; data/admin_screens.json, data/seats.json and data/integrations.json with
+  indent=2; data/operator.json and data/tracker.json are hand-formatted, edit them as text. build_site.py strips
+  every key ending in _v01 from the rendered DECISIONS.
+- data/admin_screens.json: validate_admin_screens bans team names and every vendor string from integrations.json
+  (write {I14}, {I15} tokens), needs ids M02 to M14 exactly, freeze status "open" with a reason, a pointer on a
+  dropped screen, and every write event listed in events. A dropped admin screen renders as "moved" with its pointer
+  (admin_core.js, renderer_v02.js); the M14 matrix skips dropped screens.
+- The brief (scripts/build_brief.py) imports build_admin_split for the sheet, sketches and holds tables; the seats
+  surface "Logic panel" links to wireframes_v02.html#L0x and is validated against section L of screens_v02.json.
+- Pages ban the words in build_site.FORBIDDEN (among them the brand spelled with a capital and "recommendation"):
+  never write a file name that carries the brand into page text.
+- Zoho in Chrome (phase G): CRM dropdowns take a typed search then a click on the match; any JavaScript closes an
+  open dropdown; the column picker's add control is fired by JavaScript on the row's lyte-lb-add element; Desk
+  typing with no focus fires shortcuts and its setup pages sit in an iframe; the dashboard editor's dialogs take 15
+  to 30 seconds and a batch over about 40 seconds times out; the auto-mode classifier refuses the Add User form.
+  The Chrome window is 1600x1079 CSS pixels; the screenshot frame 1329x896; clicks map correctly.
 
 ## Constraints carried forward
 - Never call anything that connects a channel, verifies a sender or domain, or sends. No message reaches a seeded
@@ -125,6 +88,6 @@ push). Board work (phase 14 pass 5) runs only on Vatsal's word.
 - No regex or phrase rules; stdlib only; ASCII; Rs; first names; a cause on every change; "to be verified: <item>"
   and "to be decided: <item>" with no name attached. Secrets never in the repo; the admin address never in a file;
   the seed CSV zips never in a commit.
-- One commit per phase, "zoho live G<N>: <what>", no AI attribution trailer. Board work stays in separate commits and
-  runs only on Vatsal's word. No Directus, Appsmith or Retool anywhere new; a v0.1 key on the Admin + CRM tab changes
-  only with a cause listed under changes_v02. inputs/ is read-only.
+- One commit per unit; board work "board: ..." and Zoho work "zoho live G<N>: ..." stay separate; no AI attribution
+  trailer. No Directus, Appsmith, Retool or Metabase anywhere new; a v0.1 key on the Admin and CRM tab changes only
+  with a cause listed under changes_v02; the Split page's picks change only with a cause. inputs/ is read-only.

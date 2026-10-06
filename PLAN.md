@@ -691,3 +691,7 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   the current truth first and folds its history (retired tools, decided decisions, per-screen events, the change log;
   the module table lives on the Split page and the brief), the admin wireframes nav groups the ten moved screens, the
   seats page folds the N01 precedence pairs.
+- Closed, 6 Oct 2026 (phase boundary): W12 is on the board and live. Owed: Kajal's answers to the six M03 questions
+  (sent on WhatsApp, 5 Oct 2026); the brief sent to Spinach, then tracker W12 reads delivered. Known limits: the
+  Zoho-side "to be verified" items in section 5 of the brief (the database feed to Analytics, Creator, Campaigns,
+  Books) can move a row back to Spinach if one fails; phase G still waits on G1 and G6 (a person).
