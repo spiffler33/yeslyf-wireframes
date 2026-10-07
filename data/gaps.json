@@ -184,8 +184,9 @@
    "title": "Who cancels, extends or comps a subscription, and where (the Razorpay console or the admin panel)",
    "screen": "M03",
    "why": "Spinach's matrix lists manual activation, extension and cancellation as admin actions; the model has only the refund flag (S24) and the Razorpay console.",
-   "status": "gap, to be decided",
-   "cause": "Vatsal, 2 Oct 2026 (W12)"
+   "status": "done",
+   "cause": "Vatsal, 2 Oct 2026 (W12); closed: Kajal, 7 Oct 2026",
+   "closed_note": "Refund, cancel, extend or comp are actions on the staff view M03 for the support seat (the team handling client queries), through the billing service; Razorpay moves the money, the Deal and the billing state follow."
   },
   {
    "id": "G20",
@@ -193,15 +194,16 @@
    "screen": "M03",
    "why": "Spinach's sketches carry active, inactive and suspended statuses; the model has deletion (H09, S25) and nothing else.",
    "status": "gap, to be decided",
-   "cause": "Vatsal, 2 Oct 2026 (W12)"
+   "cause": "Vatsal, 2 Oct 2026 (W12); Kajal, 7 Oct 2026: the suspend action is wanted, on M03 for ops; to be decided: when an account is suspended"
   },
   {
    "id": "G21",
    "title": "The admin panel login method and MFA for admin users",
    "screen": "M14",
    "why": "Three logins (the admin panel, Zoho, the logic panel) are accepted; the admin panel's own sign-in and MFA are unspecified. Spinach's reports sketch carries an MFA coverage report.",
-   "status": "gap, to be decided",
-   "cause": "Vatsal, 2 Oct 2026 (W12)"
+   "status": "done",
+   "cause": "Vatsal, 2 Oct 2026 (W12); closed: Kajal, 7 Oct 2026",
+   "closed_note": "Staff sign in with their Zoho account; MFA is Zoho One's. The staff allowlist on M03 maps each Zoho user to a seat."
   },
   {
    "id": "G22",
@@ -224,8 +226,9 @@
    "title": "A devices and sessions tab on the person record (from the sketches)",
    "screen": "M03",
    "why": "Spinach's user profile sketch has a devices and sessions tab; the model keeps the device on signed_up only.",
-   "status": "gap, to be decided",
-   "cause": "Vatsal, 2 Oct 2026 (W12)"
+   "status": "done",
+   "cause": "Vatsal, 2 Oct 2026 (W12); closed: Kajal, 7 Oct 2026",
+   "closed_note": "A devices and sessions tab on M03, web sessions only."
   }
  ]
 }

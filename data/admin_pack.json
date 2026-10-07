@@ -18,7 +18,7 @@
   ["events.html", "the event names per screen"]
  ],
  "sketch_match": {
-  "M03": "Their page 12 (user profile), the app-held half: personal details with PAN and address, the KYC detail, the linked accounts, plus the client's own screens. The CRM half of that page (activity, subscription, timeline) is the Zoho Contact. The Devices and Sessions tab is open item G24.",
+  "M03": "Their page 12 (user profile), the app-held half: personal details with PAN and address, the KYC detail, the linked accounts, plus the client's own screens. The CRM half of that page (activity, subscription, timeline) is the Zoho Contact. The devices and sessions tab lists web sessions only (Kajal, 7 Oct 2026).",
   "M07": "Their pages 2 and 3, the system health tiles, grown into a page; their row 12 Integration Status at V2, with retry only where a vendor call can be repeated.",
   "M10": "Nothing drawn. Their rows 6 Configuration and 11 System Settings at V2, in the app by Kajal's point of 5 Oct 2026; the pattern is L02 (values with effective dates, staged, published, audited)."
  },
@@ -36,7 +36,7 @@
   {"item": "Consent", "detail": "Mastered in the app (A02); every opt-out flows app to Zoho; DND is read-only in Zoho.", "see": "section 4.4"},
   {"item": "integration_events", "detail": "One row per integration call: vendor, outcome, latency; M07 reads it; Sentry pages on thresholds.", "see": "section 2.2"},
   {"item": "The exports job", "detail": "To a store compliance can reach: signed agreements from the vault, KYC records, risk profiles with the questionnaire version, AUA statements, the full audit trail; the advice register is L08's export. Formats to be verified (brief H6).", "see": "section 5"},
-  {"item": "The staff sign-in", "detail": "An allowlist with a seat per account for M03, M07, M10 and the logic panel, managed on M03 by the principal officer; the method and MFA are open (G21).", "see": "section 2.1; section 5"},
+  {"item": "The staff sign-in", "detail": "An allowlist with a seat per account for M03, M07, M10 and the logic panel, managed on M03 by the principal officer; sign-in with the Zoho account, MFA in Zoho One (Kajal, 7 Oct 2026).", "see": "section 2.1; section 5"},
   {"item": "The AUA and SIP snapshot", "detail": "Monthly, per Contact, if accepted; it puts numbers into Zoho (open item).", "see": "section 5"}
  ],
  "retain_intro": "What HoA retains, row by row of Spinach's own sheet and page by page of the sketches. Where it says Zoho or Consoles, Spinach builds nothing for it; the feed in section 4 is what makes it work.",

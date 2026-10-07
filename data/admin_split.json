@@ -71,13 +71,12 @@
     "which state flags are mirrored, so the CRM list filters cover what the seats ask for (state, tier, path, adviser, flags, DIFM prospect)"
    ],
    "decide": [
-    "to be decided: whether a user account can be suspended, and by whom (gap G20)",
-    "to be decided: a devices and sessions tab (gap G24)"
+    "to be decided: when an account is suspended (gap G20; the suspend action is on the staff view for ops, Kajal, 7 Oct 2026)"
    ],
    "sketches": "pages 11 to 14",
    "pick": "V1.5",
    "who": "Zoho",
-   "line": "A user is a Zoho Contact fed by the app; list, profile and timeline are CRM views. V2's account actions do not exist in an OTP-only app."
+   "line": "A user is a Zoho Contact fed by the app; list, profile and timeline are CRM views. Suspend and the subscription actions are on the staff view (Kajal, 7 Oct 2026)."
   },
   {
    "n": 2,
@@ -262,7 +261,7 @@
    "why": [
     "Money moves in Razorpay: payments, mandates, refunds, invoices; its console is the view of payment status. The app's Razorpay webhooks update the tier and billing state and write one Deal per payment into the CRM (SKU, amount, period, Razorpay ids, start, next billing, status), so plans, active subscriptions and renewal dates are CRM views; the finance seat's views exist in the trial (payment reconciliation, GST split, refunds, a la carte receipts).",
     "The enhanced views are the same data: history is the Deals per Contact, upgrades and downgrades are new Deals, trial users are a journey stage, payment failures are state S12 and the payment_failed event.",
-    "The actions: renewal reminders are Campaigns journeys (SV7, the S12 ladder). Cancelling a subscription is a Razorpay action that webhooks back into the app. Manually activating, extending or comping a subscription is a write into the app's billing state: to be decided whether it is wanted at all, and if so it is an action on the staff view (gap G19).",
+    "The actions: renewal reminders are Campaigns journeys (SV7, the S12 ladder). Cancelling a subscription is a Razorpay action that webhooks back into the app. Refund, cancel, extend or comp are actions on the staff view for the support seat, the team handling client queries; Razorpay moves the money, the Deal and the billing state follow (Kajal, 7 Oct 2026; gap G19 closed).",
     "The analytics: revenue by SKU and month is read in Zoho Books (the ledger) and on Deals Amount in Analytics; churn and renewals over Deals; lifetime value later."
    ],
    "zoho": "Deals per payment, the finance views (G3), Books, Campaigns renewal journeys, Analytics over Deals.",
@@ -272,13 +271,12 @@
     "Books included in the Zoho One licence"
    ],
    "decide": [
-    "to be decided: who cancels, extends or comps a subscription, and where (gap G19)",
     "to be decided: refund policy (D12)"
    ],
    "sketches": "navigation only (All subscriptions, Trials, Payment issues)",
    "pick": "V1.5",
    "who": "Zoho",
-   "line": "Razorpay moves the money; Deals and Books hold the record; renewal reminders are Campaigns journeys. Extend or comp: to be decided (G19)."
+   "line": "Razorpay moves the money; Deals and Books hold the record; renewal reminders are Campaigns journeys. Refund, cancel, extend or comp: the support seat on the staff view (Kajal, 7 Oct 2026)."
   },
   {
    "n": 8,
@@ -297,16 +295,14 @@
    "why": [
     "The regulated records live in the app's database (agreements, risk profile, plan versions, payments, AA consents, calls with input changes, deletion requests, resolved ops items), so the trail of changes to them is written there, one row per change, by the app and by the staff view's actions. That is the record of truth; it is exported by a job or on request (own row 6), in formats brief H6 still has to settle.",
     "The compliance seat's day-to-day view (by module, by person, by date) needs no built screen: the app pushes each audit row to Zoho as an App Event carrying who, when, the record and the field names, not the values, so nothing beyond bands reaches the processor; CRM views and the export do the rest. Zoho's own audit log covers actions taken in Zoho; the logic panel's audit (L08) covers the engine.",
-    "Administrator activities on the admin side are the staff view's writes, audited the same way. Login attempts depend on the sign-in choice (gap G21). The analytics (unusual activity, security events) is later; Sentry and Zoho's audit cover the operational half."
+    "Administrator activities on the admin side are the staff view's writes, audited the same way. Login attempts are Zoho's audit log: staff sign in with their Zoho account (Kajal, 7 Oct 2026). The analytics (unusual activity, security events) is later; Sentry and Zoho's audit cover the operational half."
    ],
    "zoho": "App Events of type audit with field names; views by record type and person; export.",
    "spinach": "Audit rows on every regulated change and every staff-view action; the push; the export job of the full trail.",
    "verify": [
     "record formats (brief H6)"
    ],
-   "decide": [
-    "to be decided: the admin panel login method and MFA (gap G21)"
-   ],
+   "decide": [],
    "sketches": "navigation only (Audit Log under Monitoring)",
    "pick": "V2",
    "who": "Zoho",
@@ -364,13 +360,11 @@
     "Zoho's own MFA covers Zoho. The analytics are Zoho's user reports; not needed."
    ],
    "zoho": "Users, roles, profiles and MFA in Zoho One.",
-   "spinach": "A staff allowlist with seats on the staff view's sign-in; changes to it audited.",
+   "spinach": "Sign-in with the Zoho account, MFA in Zoho One (Kajal, 7 Oct 2026); a staff allowlist with seats maps each Zoho user to a seat, changes to it audited.",
    "verify": [
     "the trial's user cap (11) and plus-addresses for staff invitations"
    ],
-   "decide": [
-    "to be decided: the admin panel login method and MFA (gap G21)"
-   ],
+   "decide": [],
    "sketches": "navigation only (Administration: Admin users, Roles and permissions)",
    "pick": "V2",
    "who": "Zoho",
@@ -458,10 +452,7 @@
    "spinach": "The staff view: lookup, the client's screens in staff mode, edit on behalf with the re-run, the flags, audit rows, the allowlist sign-in.",
    "verify": [],
    "decide": [
-    "to be decided: the adviser owner mastered in Zoho with the app pulling it, or set on the staff view and mirrored (the 28 Sep wording)",
-    "to be decided: who cancels, extends or comps a subscription (gap G19)",
-    "to be decided: suspension (gap G20)",
-    "to be decided: a devices and sessions tab (gap G24)"
+    "to be decided: when an account is suspended (gap G20)"
    ],
    "sketches": "page 12 (the parts that stay in the app: PAN, address, KYC detail, linked accounts)"
   },
@@ -596,8 +587,7 @@
     "how Razorpay payments reach Zoho Books"
    ],
    "decide": [
-    "to be decided: refund policy (D12)",
-    "to be decided: who cancels, extends or comps a subscription (gap G19)"
+    "to be decided: refund policy (D12)"
    ],
    "sketches": "none (page 10's transaction summaries are client statements, the app's PDF)"
   },
@@ -721,7 +711,7 @@
    "page": 12,
    "title": "User profile",
    "imagined": "Personal information (date of birth, gender, PAN, address, language), KYC information (provider, status, PAN and Aadhaar verified, eKYC mode, KYC reference), linked accounts (AA, bank accounts, demat), tabs Profile and KYC, Subscription, Activity, Devices and Sessions, Timeline, created and last updated by.",
-   "zoho": "Split. The Contact: name, email, phone, source, dates, KYC and AA statuses, Deals, the App Events timeline, tickets, bookings. The app: PAN, address, the KYC detail and the linked accounts, read in the staff view and the KYC provider's console (no PAN in Zoho). Devices and sessions: gap G24.",
+   "zoho": "Split. The Contact: name, email, phone, source, dates, KYC and AA statuses, Deals, the App Events timeline, tickets, bookings. The app: PAN, address, the KYC detail and the linked accounts, read in the staff view and the KYC provider's console (no PAN in Zoho). Devices and sessions: a tab of web sessions only (Kajal, 7 Oct 2026).",
    "status": "the Contact fields exist; the staff view is the one build"
   },
   {
@@ -741,7 +731,7 @@
  ],
  "outcome": {
   "spinach": [
-   "The staff view of a client (own row 1): lookup by phone; the client's own screens in staff mode, read-only for every seat with scope; edit on behalf with the engine re-run for ops; the actions deletion done, DIFM tier, refund flag, force re-run (and reassign, if the owner stays mastered here); an audit row per action; a staff allowlist with seats on the sign-in (sheet row 10).",
+   "The staff view of a client (own row 1): lookup by phone; the client's own screens in staff mode, read-only for every seat with scope; edit on behalf with the engine re-run for ops; the actions deletion done, DIFM tier, refund flag, force re-run (the subscription actions for the support seat, suspend; the owner is set in Zoho, Kajal, 7 Oct 2026); an audit row per action; a staff allowlist with seats on the sign-in (sheet row 10).",
    "The health page (B6): integrations and engine health over integration_events, in one place, with links out to the consoles.",
    "The config screen (B7, M10) in the logic panel family: flags, SKU cards and prices, the calls-included matrix, the DIFM threshold, maintenance mode, the minimum app version (Kajal, 5 Oct 2026).",
    "App plumbing already owed: the event feed and the mirrors (plus the state-entered date, the CAS state, the AA institutions), I15 reads with published flags, push from state changes, audit rows as App Events with field names, integration_events and the failure events, the Deal per payment from the Razorpay webhooks, the ops Tasks, Desk ticket creation and the H07 pull, Bookings slots, the compliance record export job, the monthly AUA and SIP snapshot if accepted.",
@@ -756,10 +746,9 @@
   "consoles": "Razorpay (I09) for money; the KYC and eSign provider; the AA provider (I01); BSE StAR MF (I02); the WhatsApp provider (I08); Firebase (I12); Sentry; Mixpanel (I13). Their status is read together on B6.",
   "changes": "Landed on the board on 5 Oct 2026, the picks confirmed: on the admin wireframes page M03 is the staff view, M07 the health page and M10 the config screen, rebuilt; M02, M04, M05, M06, M08, M09, M11, M12, M13 and M14 are moved, each with a pointer (M08 to L08's versions-in-use view; M12 and M14 into M03). The Admin and CRM tab's placement, stack and compliance rows read the same; the brief's T3 lists the three screens; seat rows repointed; gap G22 closed; I15 reads content and copy.",
   "decide": [
-   "to be decided: the adviser owner mastered in Zoho with the app pulling it, or set on the staff view and mirrored (the 28 Sep INBOUND wording)",
    "to be decided: AUA and SIP book numbers per Contact in Zoho, or AUA from a database export only (the bands-only rule)",
    "to be decided: Creator or a CRM custom module (I15, content and copy only)",
-   "to be decided: gaps G18 to G24 (the call note home, subscription writes, suspension, sign-in and MFA, maintenance flags, failed push, the devices tab)",
+   "to be decided: gaps G18, G20 and G23 (the call note home, the suspension rule, failed push); G19, G21, G22 and G24 closed",
    "to be decided: refund policy (D12)"
   ],
   "verify": [
@@ -778,7 +767,7 @@
   {
    "id": "B1",
    "what": "The staff view of a client (M03), the admin screen over client data",
-   "detail": "The one place staff write into the app. Lookup by phone; the client's own screens in staff mode: the record with its source and completion badges (A08), the data screens (D01 to D09), the plan (G03), the vault (H06); read-only for every seat, advisers and the call centre scoped to their own clients; for ops: edit on behalf with the engine re-run, deletion done, DIFM tier (the client signs up by OTP first, then ops enters the data), refund flag, force re-run, reassign if the owner is mastered here; an audit row per action; the staff allowlist with seats on the sign-in (principal officer). Ops' day to day from the 8 Sep list: completion and sources read off the record's badges; needs-verification items arrive as Zoho tasks that open this view; payments and GST stay in Razorpay and the Deals, the refund flag is here. Draft: M03 on the admin wireframes page."
+   "detail": "The one place staff write into the app. Lookup by phone; the client's own screens in staff mode: the record with its source and completion badges (A08), the data screens (D01 to D09), the plan (G03), the vault (H06); read-only for every seat, advisers and the call centre scoped to their own clients; for ops: edit on behalf with the engine re-run, deletion done, DIFM tier (the client signs up by OTP first, then ops enters the data), refund flag, force re-run; for the support seat: refund, cancel, extend or comp a subscription; suspend, the rule to be decided; the adviser owner is set in Zoho and read by the app (Kajal, 7 Oct 2026); an audit row per action; the staff allowlist with seats on the sign-in (principal officer). Ops' day to day from the 8 Sep list: completion and sources read off the record's badges; needs-verification items arrive as Zoho tasks that open this view; payments and GST stay in Razorpay and the Deals, the refund flag is here. Draft: M03 on the admin wireframes page."
   },
   {
    "id": "B2",
@@ -793,7 +782,7 @@
   {
    "id": "B4",
    "what": "Reads from Zoho",
-   "detail": "I15 content, copy and flags, with caching; the Desk thread on H07; the adviser owner if it is mastered in Zoho (open item 1)."
+   "detail": "I15 content, copy and flags, with caching; the Desk thread on H07; the adviser owner (the Contact owner, set in Zoho; Kajal, 7 Oct 2026)."
   },
   {
    "id": "B5",
@@ -822,12 +811,11 @@
   }
  ],
  "open": [
-  "The adviser owner: mastered in Zoho with the app pulling it, or set on the staff view and mirrored.",
+  "The suspension rule: when an account is suspended (gap G20).",
   "AUA and SIP book numbers per Contact in Zoho, or from a database export only (the bands-only rule).",
   "I15, content and copy only: Creator or a CRM custom module; it fixes the API Spinach codes against.",
-  "The staff view's sign-in and MFA (gap G21).",
-  "Subscription extend or comp, and account suspension: wanted or not (gaps G19, G20).",
-  "The logic panel's edge: the band tables and plausibility thresholds in L02 rather than I15, and the RPQ score-to-band thresholds in L03, versioned with the maths."
+  "The logic panel's edge: the band tables and plausibility thresholds in L02 rather than I15, and the RPQ score-to-band thresholds in L03, versioned with the maths.",
+  "Anything Kajal's team does daily that the staff view misses: Kajal is checking with her team (7 Oct 2026)."
  ],
  "kajal_note": "Kajal's admin list of 8 Sep 2026 (the admin panel docx in inputs/hoa/, the same file as the one in inputs/spinach/kajal-admin panel/), line by line in her own grouping, with where each line lands on this page and who holds it. The 48 lines are the placement rows of the Admin and CRM tab; the build checks that none is missing.",
  "kajal": [

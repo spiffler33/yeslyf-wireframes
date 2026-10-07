@@ -971,7 +971,7 @@
           "view": {
             "object": "Tasks",
             "name": "Ops queue: reassignments",
-            "criteria": "type = reassign, open; the owner change in Zoho or on M03 (open item 1)"
+            "criteria": "type = reassign, open; the owner change in Zoho (Kajal, 7 Oct 2026)"
           }
         },
         {

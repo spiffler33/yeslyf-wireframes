@@ -1479,6 +1479,10 @@
   {
    "what": "The page shows the current truth first and folds its history (no data key changed): a split section from the Admin panel stack row; the retired tools (Directus, Metabase) folded under the stack; the v0.1 and v0.2 contact and deal fields in one table each; the decided decisions folded under the open ones; the per-screen events and this change log folded with counts; the Spinach module table shown on the Split page and the brief only.",
    "cause": "Vatsal, 5 Oct 2026 (less noise on the admin and CRM pages)"
+  },
+  {
+   "what": "Kajal's six answers on the staff view M03 (7 Oct 2026): refund, cancel, extend or comp a subscription are M03 actions for the support seat, the team handling client queries (gap G19 closed); an account can be suspended from M03 by ops, the rule for when is to be decided (gap G20 open); a devices and sessions tab, web sessions only (gap G24 closed); the adviser owner is set in Zoho as the Contact owner and the app reads it, so M03 has no reassign; staff sign in with their Zoho account, MFA in Zoho One, the M03 allowlist maps each Zoho user to a seat (gap G21 closed); anything missing from the daily work is owed from Kajal's team.",
+   "cause": "Kajal, 7 Oct 2026"
   }
  ],
  "note_v02": "v0.2 additions sit beside the v0.1 keys; the v0.1 admin page is frozen and served from docs/v01/, and a v0.1 key on this page changes only with a cause listed under Changes in v0.2. The v0.2 NUDGES matrix is rendered by the site from data/v02/states.json (one row per state per ladder step: state, day, channel, copy slot, deep link, tier rule, CRM task); v0.2 EVENTS are rendered from data/screens_v02.json (every screen's events plus state_enter events). The CRM platform is Zoho One (I14).",

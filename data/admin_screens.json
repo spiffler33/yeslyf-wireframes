@@ -31,7 +31,7 @@
       },
       "built": "moved",
       "writes": [],
-      "zoho_instead": "{I14} CRM list views over the Contact and its mirrored fields; assign adviser is the Contact owner (to be decided: mastered in {I14} or on M03); export is the CRM's (W12, 5 Oct 2026).",
+      "zoho_instead": "{I14} CRM list views over the Contact and its mirrored fields; assign adviser is the Contact owner (mastered in {I14}; the app reads it, W12, 7 Oct 2026); export is the CRM's (W12, 5 Oct 2026).",
       "events": [
         "M02_view"
       ],
@@ -59,7 +59,7 @@
           "W12, 2 Oct 2026",
           "W12, 5 Oct 2026"
         ],
-        "pointer": "{I14} CRM list views over the Contact and its mirrored fields; assign adviser is the Contact owner (to be decided: mastered in {I14} or on M03); export is the CRM's (W12, 5 Oct 2026)."
+        "pointer": "{I14} CRM list views over the Contact and its mirrored fields; assign adviser is the Contact owner (mastered in {I14}; the app reads it, W12, 7 Oct 2026); export is the CRM's (W12, 5 Oct 2026)."
       },
       "spec": {
         "fields": [
@@ -101,7 +101,7 @@
       "frame": "desktop",
       "template": "T-table",
       "path": "both",
-      "purpose": "The admin screen over client data, the one place staff write into the app: find a person by phone, open their own screens in staff mode (the record with its source and completion badges, the data screens, the plan, the vault), read-only by seat scope, edit on behalf for ops with the engine re-run, the actions (deletion done, DIFM tier, refund flag, force re-run, reassign), an audit row per action, a staff allowlist with seats on the sign-in.",
+      "purpose": "The admin screen over client data, the one place staff write into the app: find a person by phone, open their own screens in staff mode (the record with its source and completion badges, the data screens, the plan, the vault), read-only by seat scope, edit on behalf for ops with the engine re-run, the actions (deletion done, DIFM tier, refund flag, the subscription actions, suspend, force re-run), an audit row per action, a staff allowlist with seats on the sign-in.",
       "seat": [
         "All seats"
       ],
@@ -111,7 +111,7 @@
         "Call centre": "read, own people",
         "Compliance": "read",
         "Marketing": "read",
-        "Support": "read",
+        "Support": "act",
         "Finance": "read",
         "Principal officer": "act"
       },
@@ -139,8 +139,15 @@
           ]
         },
         {
-          "action": "reassign (if the owner is mastered here)",
-          "event": "M03_reassign",
+          "action": "subscription: refund, cancel, extend or comp (through {I09}; the Deal and the billing state follow)",
+          "event": "M03_subscription",
+          "roles": [
+            "Support"
+          ]
+        },
+        {
+          "action": "suspend an account (to be decided: when an account is suspended)",
+          "event": "M03_suspend",
           "roles": [
             "Ops"
           ]
@@ -160,7 +167,7 @@
           ]
         },
         {
-          "action": "staff allowlist: add a seat, revoke, reset credentials (from M14)",
+          "action": "staff allowlist: add a seat, revoke (from M14); credentials and MFA are {I14}'s",
           "event": "M03_allowlist",
           "roles": [
             "Principal officer"
@@ -172,8 +179,9 @@
         "M03_view",
         "M03_edit_on_behalf",
         "M03_force_rerun",
+        "M03_subscription",
+        "M03_suspend",
         "M03_refund_flag",
-        "M03_reassign",
         "M03_provision_difm",
         "M03_handle_deletion",
         "M03_allowlist"
@@ -190,13 +198,9 @@
       "freeze": {
         "status": "open",
         "since": "23 Sep 2026",
-        "cause": "W12, 5 Oct 2026",
+        "cause": "W12, 7 Oct 2026",
         "reason": [
-          "to be decided: who cancels, extends or comps a subscription, and where",
-          "to be decided: whether a user account can be suspended, and by whom",
-          "to be decided: a devices and sessions tab",
-          "to be decided: the sign-in method and MFA",
-          "to be decided: the adviser owner mastered in {I14} or here",
+          "to be decided: when an account is suspended (the action exists; the rule does not)",
           "open until the brief is accepted (W12, 5 Oct 2026)"
         ]
       },
@@ -205,7 +209,8 @@
         "causes": [
           "seed plan, 22 Sep 2026 (PLAN_admin_seed_v01.md section 14)",
           "W12, 2 Oct 2026",
-          "W12, 5 Oct 2026 (the staff view; M12 and M14 fold in)"
+          "W12, 5 Oct 2026 (the staff view; M12 and M14 fold in)",
+          "W12, 7 Oct 2026 (the six answers: the subscription actions, suspend, the devices tab, the owner in {I14}, sign-in with {I14})"
         ]
       },
       "spec": {
@@ -221,7 +226,8 @@
           "tickets",
           "tasks",
           "actions",
-          "subscriptions",
+          "subscriptions, with refund, cancel, extend and comp",
+          "devices and sessions (web sessions only)",
           "audit trail per person",
           "the staff allowlist with seats (principal officer)"
         ],
@@ -240,9 +246,9 @@
         "dev": [
           "The app must expose a single person read endpoint joining every table by person_id, plus the events feed for the timeline.",
           "Staff mode: the app serves its own client screens to an allowlisted staff account with a seat and a scope (advisers and the call centre their own clients); every write goes through the same services as the client's own actions and appends an audit row (W12, 5 Oct 2026).",
-          "On-behalf edits, force re-run, refund flag, reassign, the DIFM tier and deletion handling are mock here; a real build wires each to its own service call.",
-          "The staff allowlist with seats: create, assign a seat, revoke, reset credentials; to be decided: the sign-in method and MFA (gap G21).",
-          "to be decided: who cancels, extends or comps a subscription and where; whether an account can be suspended; a devices and sessions tab (W12, 2 Oct 2026)."
+          "On-behalf edits, force re-run, refund flag, the subscription actions, suspend, the DIFM tier and deletion handling are mock here; a real build wires each to its own service call.",
+          "The staff allowlist with seats: create, assign a seat, revoke. Sign-in is with the {I14} account, MFA in {I14}; the allowlist maps each {I14} user to a seat (W12, 7 Oct 2026; gap G21 closed).",
+          "Refund, cancel, extend or comp are actions here for the support seat, through {I09} (W12, 7 Oct 2026; gap G19 closed). Suspend is an action here for ops; to be decided: when an account is suspended (gap G20). Devices and sessions is a tab of web sessions only (W12, 7 Oct 2026; gap G24 closed). The adviser owner is the Contact owner in {I14}; the app reads it; no reassign here (W12, 7 Oct 2026)."
         ]
       },
       "ui": [
