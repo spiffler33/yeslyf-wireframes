@@ -4,16 +4,422 @@
  "audience": "For everyone: who may do what, in one place, across the logic panel and the three built admin screens.",
  "sections": [
   {
-   "id": "a0",
-   "heading": "Sections follow",
+   "id": "a1",
+   "heading": "Principles",
    "lines": [
-    "to be filled: phase B1 to B4"
+    "This is the access write-up asked for on the 7 Oct 2026 call (\"what kind of roles, what kind of access, what kind of permissions\"), across the logic panel and the three built admin screens.",
+    "A few people (7 Oct 2026 call): two operating seats, the Principal officer and the Logic analyst, plus compliance and read only. At launch two operators, one of whom can publish.",
+    "Fixed seats: ten seats, none user-defined. A staff member holds one or more of them; there is no exception for one person.",
+    "Two people on every release: the author cannot review, and only the Principal officer publishes; nobody is both on one release, whatever seats they hold. The one exception is an urgent Hold by the Principal officer alone, ratified by a second person within two working days (part 5).",
+    "The server decides, the screen only mirrors: the greyed control is never the control. The server checks the seat on every request and every write.",
+    "Everything written down: an audit row for every write and every refused write. Releases and snapshots are append-only; a correction is a new record."
+   ]
+  },
+  {
+   "id": "a2",
+   "heading": "The seats",
+   "lines": [
+    "Principal officer: publishes, schedules, pauses, withdraws and starts a correction; reviews a draft as the second person, never their own; may place an urgent Hold alone; holds staff and seats and runs the access review; marks a calendar item reviewed, no change.",
+    "Logic analyst: the editor of the logic values; opens and edits a draft, runs validation and preview, proposes a route; reviews a draft as the second person, never their own; requests an urgent Hold and ratifies one; drafts the classification of an unknown ISIN.",
+    "Compliance: acknowledges an assumptions or a risk scoring release before publish (rule 14) and is told of every other release as it is published, and of an urgent Hold at once; exports the registers, reads the audit rows, adds incident entries; acknowledges an operating seat (LQ42).",
+    "Adviser: takes calls; reads the live logic and its rationale, and the plan history of its own people (L15).",
+    "Call centre: works the call tasks; reads the live logic and its rationale, and the plan history of its own people (L15).",
+    "Ops: adds facts to the unknown-ISIN queue (L04b) and queues the letter for a release in {I14}; reads the live logic, the release monitor and the client plan history, with client names masked on the monitor.",
+    "Support: answers tickets; reads the live logic and its rationale, and the client plan history (L15).",
+    "Read only: product and tech sit here; reads the live logic, drafts, previews, the release monitor and the audit rows, with client names masked; writes nothing.",
+    "Marketing: no access to the logic panel; its rights on the admin screens are in part 4.",
+    "Finance: no access to the logic panel; its rights on the admin screens are in part 4.",
+    "An operating seat (Logic analyst or Principal officer) takes effect when compliance acknowledges it (LQ42).",
+    "In the examples staff are labelled by seat (Principal officer 01, Logic analyst 01 and so on); no real person is drawn."
+   ]
+  },
+  {
+   "id": "a3",
+   "heading": "Permissions by action",
+   "lines": [
+    "The eight seats of data/admin_screens.json plus two: Logic analyst and Read only (product and tech sit there). Marketing and Finance have no access to the logic panel.",
+    "On the board today L01's \"Adviser\" (edits the grid) and the admin Adviser seat (takes calls) share a name; here the editor is the Logic analyst and the Adviser seat only reads.",
+    "The table is by action; part 4 has the table by screen. The seat list is a provisional call (logic plan, 8 Oct 2026)."
+   ],
+   "tables": [
+    {
+     "cols": [
+      "action",
+      "Principal officer",
+      "Logic analyst",
+      "Compliance",
+      "Adviser, Call centre",
+      "Ops",
+      "Support",
+      "Read only"
+     ],
+     "rows": [
+      [
+       "see live logic and its rationale",
+       "yes",
+       "yes",
+       "yes",
+       "yes",
+       "yes",
+       "yes",
+       "yes"
+      ],
+      [
+       "see drafts and previews",
+       "yes",
+       "yes",
+       "yes",
+       "no",
+       "no",
+       "no",
+       "yes"
+      ],
+      [
+       "see the release monitor",
+       "yes",
+       "yes",
+       "yes",
+       "no",
+       "yes",
+       "no",
+       "yes"
+      ],
+      [
+       "open and edit a draft; run validation and preview; propose a route",
+       "yes",
+       "yes",
+       "no",
+       "no",
+       "no",
+       "no",
+       "no"
+      ],
+      [
+       "see named client rows in a preview or the monitor",
+       "yes",
+       "masked; an unmask is logged",
+       "yes",
+       "no",
+       "masked",
+       "no",
+       "masked"
+      ],
+      [
+       "review a draft as the second person",
+       "yes, not own draft",
+       "yes, not own draft",
+       "no",
+       "no",
+       "no",
+       "no",
+       "no"
+      ],
+      [
+       "acknowledge an assumptions or a risk scoring release (rule 14)",
+       "no",
+       "no",
+       "yes",
+       "no",
+       "no",
+       "no",
+       "no"
+      ],
+      [
+       "publish, schedule, pause, withdraw, start a correction",
+       "yes",
+       "no",
+       "no",
+       "no",
+       "no",
+       "no",
+       "no"
+      ],
+      [
+       "urgent Hold on a fund",
+       "yes, alone, ratified after",
+       "request only",
+       "no",
+       "no",
+       "no",
+       "no",
+       "no"
+      ],
+      [
+       "ratify an urgent Hold",
+       "not the one who placed it",
+       "yes",
+       "no",
+       "no",
+       "no",
+       "no",
+       "no"
+      ],
+      [
+       "unknown-ISIN queue",
+       "decides by publishing",
+       "drafts the classification",
+       "no",
+       "no",
+       "adds facts",
+       "no",
+       "no"
+      ],
+      [
+       "mark a calendar item reviewed, no change",
+       "yes",
+       "no",
+       "no",
+       "no",
+       "no",
+       "no",
+       "no"
+      ],
+      [
+       "queue the letter for a release (done in {I14}; L06 shows whether it is queued)",
+       "no",
+       "no",
+       "no",
+       "no",
+       "yes",
+       "no",
+       "no"
+      ],
+      [
+       "export the registers; read the audit rows; add an incident entry",
+       "yes",
+       "no",
+       "yes",
+       "no",
+       "no",
+       "no",
+       "read"
+      ],
+      [
+       "staff and seats: add, change, suspend, revoke; run the access review",
+       "yes",
+       "no",
+       "read; acknowledges an operating seat (LQ42)",
+       "no",
+       "no",
+       "no",
+       "no"
+      ],
+      [
+       "client plan history (L15)",
+       "yes",
+       "masked",
+       "yes",
+       "own people",
+       "yes",
+       "yes",
+       "masked"
+      ]
+     ]
+    }
    ]
   },
   {
    "id": "a4",
    "heading": "Permissions by screen",
+   "lines": [
+    "One table, built from the role and writes fields of data/logic_screens.json (every screen of the Logic tab, variants included, in its order) and then, read only from data/admin_screens.json, M03, M07 and M10. It is not typed twice.",
+    "The values as the table prints them: act (the seat writes on the screen; the Writes column names which writes); read; \"read, own people\" (the seat reads its own people only; \"own\" for short, \"own people\" in the table by action); \"read masked\" (client names are left out; \"masked\" in the table by action); none. \"-\" means the admin screen names no role for that seat.",
+    "For Adviser, Call centre, Ops and Support, \"read\" on L02, L03, L14, L04, L09 and L07 and their variants means the live values and rationale only; draft rows are not sent.",
+    "On L08 the Logic analyst sees the register and the versions in use, not the audit rows. On L13 the Logic analyst sees the staff list and the seat matrix, not the access reviews.",
+    "The Writes column lists each write as: the action (its event; the seats that may do it)."
+   ],
    "derived": "seat_by_screen"
+  },
+  {
+   "id": "a5",
+   "heading": "Approval",
+   "tables": [
+    {
+     "title": "The life of a draft (logic plan, 8 Oct 2026; the stepwise flow asked for on the call)",
+     "cols": [
+      "step",
+      "who",
+      "screen",
+      "what must be true to move on",
+      "what is recorded"
+     ],
+     "rows": [
+      [
+       "1 open a draft",
+       "Logic analyst or Principal officer",
+       "the lane's own screen",
+       "the lane has no other open draft",
+       "the draft, its author, the live version it is based on"
+      ],
+      [
+       "2 edit the items, each with a rationale",
+       "the author",
+       "the lane's own screen",
+       "every value passes its hard limit at the field",
+       "each item: row, from, to, rationale"
+      ],
+      [
+       "3 validate",
+       "the author",
+       "L05",
+       "no hard failure; every flag carries a typed reason",
+       "the list of checks and results"
+      ],
+      [
+       "4 preview",
+       "the author",
+       "L05",
+       "the preview is newer than the last edit; no hard conflict",
+       "the preview record"
+      ],
+      [
+       "5 propose the route, the client reason and the letter",
+       "the author",
+       "L05",
+       "the route is one that 4.4 allows for this kind of change",
+       "on the draft"
+      ],
+      [
+       "6 submit",
+       "the author",
+       "L05",
+       "steps 3 to 5 hold",
+       "state: in review"
+      ],
+      [
+       "7 review",
+       "the second person",
+       "L10",
+       "the reviewer is not the author",
+       "approved, or sent back with a comment; the preview panels the reviewer opened (LQ22)"
+      ],
+      [
+       "8 acknowledge",
+       "Compliance",
+       "L10",
+       "asked for an assumptions or a risk scoring release (rule 14)",
+       "who and when"
+      ],
+      [
+       "9 publish or schedule",
+       "Principal officer",
+       "L06",
+       "approved; acknowledged where asked; the second-factor check passes",
+       "the release and its signed note"
+      ]
+     ]
+    }
+   ],
+   "lines": [
+    "Draft states: open -> validated -> previewed -> in review -> approved (or sent back -> open) -> published; or discarded.",
+    "Who may author: the Logic analyst or the Principal officer. Who may review: the second person, a Principal officer or Logic analyst who is not the author. Who acknowledges: Compliance, for an assumptions or a risk scoring release (rule 14); LQ45 holds which other releases need it. Who publishes or schedules: the Principal officer only, after a fresh second-factor check.",
+    "The review covers the items, the route and the client reason; a change to any of them after approval returns the draft to review.",
+    "The urgent path: an urgent Hold by the Principal officer alone collapses steps 1 to 8 into one action. It may carry the sleeve weights the rescale needs to pass L09 and nothing else; compliance is told at once; a second person, not the one who placed it, ratifies it within two working days. Unratified, it stays in force and shows as overdue on L08, L10 and L11 (LQ30). The Logic analyst may only request one (LQ25).",
+    "How many people (7 Oct 2026 call): at launch two operators, one of whom can publish, plus compliance and read only. The two-person rule needs both operators for every release except an urgent Hold; LQ7 holds what happens when the publisher is away."
+   ]
+  },
+  {
+   "id": "a6",
+   "heading": "Sign-in and the second factor",
+   "tables": [
+    {
+     "cols": [
+      "control",
+      "rule",
+      "enforced by",
+      "record"
+     ],
+     "rows": [
+      [
+       "identity",
+       "one staff identity, signed in through {I14} with its MFA, as decided for M03 on 7 Oct 2026",
+       "the panel's server, on every request",
+       "a sign-in row"
+      ],
+      [
+       "second factor",
+       "a check not older than a set number of minutes at publish, schedule, pause, withdraw, urgent Hold, ratify, any seat change and export (LQ29, LQ41)",
+       "{I14}",
+       "the audit row carries it"
+      ]
+     ]
+    }
+   ],
+   "lines": [
+    "The second-factor check is asked again at the guarded actions (rule 15; LQ29): publish, schedule, pause, withdraw, an urgent Hold, a ratification, a seat change and an export (7 Oct 2026 call for publish; the rest is logic plan, 8 Oct 2026).",
+    "L01 on the board reads \"same auth as the app with role claims\". The proposal is one staff identity for both panels and none shared with clients (LQ9).",
+    "Credentials and MFA are {I14}'s. The staff allowlist is on M03, as decided on 7 Oct 2026 (add a seat, revoke); LQ9 holds whether it stays there or moves to the staff and seats screen (L13)."
+   ]
+  },
+  {
+   "id": "a7",
+   "heading": "Sessions, masking, audit rows, the access review",
+   "tables": [
+    {
+     "cols": [
+      "control",
+      "rule",
+      "enforced by",
+      "record"
+     ],
+     "rows": [
+      [
+       "permission",
+       "seat by action, taken from the write events of data/logic_screens.json",
+       "the server, on every request; the screen only mirrors it",
+       "an audit row; a refusal is a row too"
+      ],
+      [
+       "masking",
+       "client names are left out for a masked seat in previews and the monitor; an unmask needs a typed reason",
+       "the server leaves the field out; the screen cannot reveal it",
+       "an audit row"
+      ],
+      [
+       "sessions",
+       "an idle timeout; a session ends at once on suspend or revoke (LQ41)",
+       "the server checks the seat on every request, not only at sign-in",
+       "-"
+      ],
+      [
+       "access review",
+       "each quarter every staff row is kept, changed or removed",
+       "the Principal officer on L13",
+       "access_reviews"
+      ]
+     ]
+    }
+   ],
+   "lines": [
+    "Audit rows: who, seat, when, what, before, after, reason; a refused attempt is a row too, marked (L08).",
+    "The Principal officer and Compliance read and export them; Read only reads them; on L08 the Logic analyst sees the register and the versions in use, not the audit rows.",
+    "Masking: the Logic analyst and Read only see named client rows masked in previews and the monitor, and Ops on the monitor; an unmask by the Logic analyst needs a typed reason and is logged.",
+    "The access review: each quarter the Principal officer goes through every staff row on L13 (seats, status: active, suspended or revoked, added by and when, last sign-in, second factor on) and keeps, changes or removes it. At launch a list and the audit rows serve; the screen can follow.",
+    "In the examples, access review 1 on 15 Jul 2027 suspended Adviser 06, idle 90 days.",
+    "Session rules are open: the idle timeout, one session at a time, the age of the second-factor check (LQ41)."
+   ]
+  },
+  {
+   "id": "a8",
+   "heading": "The app",
+   "lines": [
+    "The app has one kind of user. What a client can do differs by tier, which is entitlement and already on each screen of the board (LQ40).",
+    "No logic endpoint answers a client's token: the panel is a separate staff web app, desktop only (L01 on the board), kept apart by routing and the token type.",
+    "No staff identity is shared with a client (LQ9)."
+   ]
+  },
+  {
+   "id": "a9",
+   "heading": "Open items",
+   "open_items": [
+    "LQ7",
+    "LQ9",
+    "LQ29",
+    "LQ40",
+    "LQ41",
+    "LQ42",
+    "LQ45"
+   ]
   }
  ]
 }

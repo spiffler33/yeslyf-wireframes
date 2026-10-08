@@ -1711,7 +1711,7 @@ Done-criteria:
 - `git status --short` -> M data/logic_access.json, M docs/logic_access.html only.
 
 Metadata: depends_on [B0] . weight light . live_model no . coder opus . verify_class sample . kind transcription
-- [ ] B2 done
+- [x] B2 done
 
 ### 12.9 Phase B3: the Walkthroughs page
 
