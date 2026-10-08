@@ -9102,16 +9102,539 @@
       "template": "T-table",
       "path": "both",
       "purpose": "Every release with its frozen record, the versions in use per lane, incidents, audit rows, the records kept, and the export for the advice register. Drawn: 30 Apr 2028, the twelve releases of the example year.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Release register and audit; as of 30 Apr 2028"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "Register: every release"
+        ],
+        [
+          "table",
+          [
+            "Release",
+            "Lane",
+            "What changed",
+            "Drafted; reviewed; published by",
+            "Published",
+            "Effective from",
+            "Route",
+            "Reason",
+            "Status"
+          ],
+          [
+            [
+              "REL01: as-1, co-1, fu-1, rs-1, MI00",
+              "all",
+              "launch content: every lane's launch values",
+              "Logic analyst 01; Principal officer 01; Principal officer 01",
+              "25 Jan 2027",
+              "25 Jan 2027",
+              "new plans",
+              "launch",
+              "replaced"
+            ],
+            [
+              "MI01 to MI15",
+              "market inputs",
+              "the month's four values; MI09 entered on 6 Oct 2027, three working days late",
+              "Logic analyst 01; Principal officer 01; Principal officer 01",
+              "the first working day of each month, Feb 2027 to Apr 2028",
+              "at publish",
+              "new plans and new deployment actions",
+              "the month's entry",
+              "MI15 live; MI01 to MI14 replaced"
+            ],
+            [
+              "REL02, fu-2",
+              "funds",
+              "a large cap fund joins the equity core: index, flexi cap, mid cap, large cap at 45/25/15/15",
+              "Logic analyst 01; Principal officer 01; Principal officer 01",
+              "10 May 2027",
+              "10 May 2027 10:00",
+              "quiet",
+              "the quarterly funds review of May",
+              "replaced"
+            ],
+            [
+              "REL03, fu-3",
+              "funds",
+              "two unknown ISINs classified: one known and not approved, one legacy hold",
+              "Logic analyst 01; Principal officer 01; Principal officer 01",
+              "16 Jun 2027",
+              "16 Jun 2027 10:00",
+              "quiet, at the holders' next rebuild",
+              "the unknown-ISIN queue",
+              "replaced"
+            ],
+            [
+              "EN2, not a lane release",
+              "engine",
+              "the engine version moves and changes no output; it has no draft, review or route here, so snapshots show it moving on its own",
+              "-",
+              "-",
+              "20 Jul 2027",
+              "-",
+              "-",
+              "live; how an engine version is approved is LQ46"
+            ],
+            [
+              "REL04, fu-4",
+              "funds",
+              "routine Hold on the mid cap fund; the equity core rescales to 53/29/18: index, flexi cap, large cap",
+              "Logic analyst 01; Principal officer 01; Principal officer 01",
+              "9 Aug 2027",
+              "9 Aug 2027 09:30",
+              "Hold, routine; waves from 10:00",
+              "the quarterly funds review of August",
+              "replaced"
+            ],
+            [
+              "REL05, fu-5",
+              "funds",
+              "urgent Hold on the flexi cap fund, placed alone; the rescale to 75/25 breached L09, weights set to 60/40: index, large cap",
+              "Principal officer 01 alone; ratified by Logic analyst 01",
+              "22 Sep 2027 10:40",
+              "at once, 22 Sep 2027 10:40",
+              "Hold, urgent",
+              "urgent: the reason typed by the Principal officer, a slot",
+              "replaced; ratified on 27 Sep 2027 at 09:20, one working day late: due 24 Sep 2027"
+            ],
+            [
+              "REL06, fu-6",
+              "funds",
+              "a second flexi cap fund joins: index, large cap, flexi cap B at 50/25/25",
+              "Logic analyst 01; Principal officer 01; Principal officer 01",
+              "27 Sep 2027",
+              "27 Sep 2027 15:00",
+              "quiet",
+              "the equity core takes a flexi cap fund again after REL05",
+              "replaced"
+            ],
+            [
+              "REL07, co-2",
+              "cohorts",
+              "the horizon dimension gains Very long: over 7, and Long becomes 3 to 7; MP8 Very long moderate 0/10/5/10/75/0 and MP9 Very long aggressive 0/0/0/10/90/0 added; three map rows, Conservative x Very long points at MP5",
+              "Principal officer 01; Logic analyst 01; Principal officer 01",
+              "8 Nov 2027 09:45",
+              "8 Nov 2027 10:00",
+              "quiet, with the letter",
+              "the yearly cohorts review due 1 Nov 2027",
+              "replaced"
+            ],
+            [
+              "REL08, co-3",
+              "cohorts",
+              "MP6 keyed 0/24/10/10/56/0 in error; 0/15/10/8/67/0 was meant",
+              "Logic analyst 01; Principal officer 01; Principal officer 01",
+              "30 Nov 2027 16:00",
+              "30 Nov 2027 16:00",
+              "quiet, no letter proposed",
+              "the typed reason for the flagged move, a slot",
+              "paused 16 Dec 2027 11:05; withdrawn 11:40; corrected by REL09"
+            ],
+            [
+              "REL09, co-4",
+              "cohorts",
+              "the correction: MP6 at 0/15/10/8/67/0",
+              "Logic analyst 01; Principal officer 01; Principal officer 01",
+              "17 Dec 2027",
+              "17 Dec 2027 12:00",
+              "correction; its explanation is LQ23",
+              "corrects REL08",
+              "live"
+            ],
+            [
+              "REL10, rs-2",
+              "risk scoring",
+              "thresholds move by one point: Conservative 8 to 16, Moderate 17 to 25, Aggressive 26 to 32",
+              "Logic analyst 01; Principal officer 01; Principal officer 01; acknowledged by Compliance 01",
+              "3 Jan 2028",
+              "3 Jan 2028 10:00",
+              "at the next questionnaire",
+              "the yearly risk scoring review of January",
+              "live"
+            ],
+            [
+              "REL11, fu-7",
+              "funds",
+              "the mid cap fund moves from Hold to Exit",
+              "Logic analyst 01; Principal officer 01; Principal officer 01",
+              "14 Feb 2028",
+              "14 Feb 2028 10:00",
+              "Exit; batches on 14 to 18 Feb 2028",
+              "the quarterly funds review due 7 Feb 2028",
+              "live"
+            ],
+            [
+              "REL12, as-2",
+              "assumptions",
+              "equity return 11.0 to 10.0; expense inflation 6.0 to 6.5",
+              "Logic analyst 01; Principal officer 01; Principal officer 01; acknowledged by Compliance 01",
+              "20 Mar 2028",
+              "1 Apr 2028 00:00",
+              "quiet, with the letter",
+              "the yearly assumptions review due 1 Apr 2028",
+              "live from 1 Apr 2028"
+            ]
+          ]
+        ],
+        [
+          "link",
+          "Open REL08's frozen record",
+          "L08a"
+        ],
+        [
+          "h",
+          "Versions in use, as of 30 Apr 2028, per 100 active plans (illustrative)"
+        ],
+        [
+          "table",
+          [
+            "Lane",
+            "Live version",
+            "Plans on it",
+            "Older versions: plans on them, days behind"
+          ],
+          [
+            [
+              "assumptions",
+              "as-2, live from 1 Apr 2028",
+              "about 18 in 100 existing plans by day 30, and every plan built since 1 Apr 2028",
+              "as-1: the rest; N days behind, inside the stale cap"
+            ],
+            [
+              "cohorts",
+              "co-4, live from 17 Dec 2027",
+              "N in 100",
+              "co-2 and co-1: N in 100; N days behind, past the stale cap. co-3: none. Every update built on it and not yet accepted was replaced by a rebuild on co-2 at the withdrawal; every plan whose snapshot in force was built on it was rebuilt on co-4 at once by the correction (rule 12)"
+            ],
+            [
+              "funds",
+              "fu-7, live from 14 Feb 2028",
+              "N in 100",
+              "fu-6: N in 100, N days behind, inside the stale cap. fu-1 to fu-5: N in 100, N days behind, past the stale cap"
+            ],
+            [
+              "risk scoring",
+              "rs-2, live from 3 Jan 2028",
+              "N in 100: clients who completed or reconfirmed the questionnaire since",
+              "rs-1: the rest, N days behind; no stale cap, each takes rs-2 at its next questionnaire"
+            ],
+            [
+              "market inputs",
+              "MI15, the Apr 2028 entry",
+              "reaches new plans and new deployment actions only; not counted per plan",
+              "not counted: market inputs have no stale cap"
+            ],
+            [
+              "engine",
+              "EN2, live from 20 Jul 2027",
+              "N in 100: every plan rebuilt since",
+              "EN1: N in 100; EN2 changes no output (LQ46)"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "Stale cap: 120 days behind a live assumptions, cohorts or funds release, then the plan rebuilds at the next app open. Versions in use as of a past date can follow."
+        ],
+        [
+          "p",
+          "Plans that cannot take the live versions yet, each by client id: past the stale cap, frozen, or blocked from rebuilding, and why."
+        ],
+        [
+          "table",
+          [
+            "Plan",
+            "Where it stands",
+            "Why",
+            "What happens next"
+          ],
+          [
+            [
+              "one plan, by client id",
+              "past the stale cap: on co-2 and fu-6, N days behind co-4",
+              "no app open since the cap passed",
+              "rebuilds at its next app open on the inputs on file"
+            ],
+            [
+              "one plan, by client id",
+              "frozen",
+              "the account lapsed",
+              "rebuilds on return (rule 5)"
+            ],
+            [
+              "one plan, by client id",
+              "blocked from rebuilding",
+              "the annual confirmation is overdue: Q04 blocks plan re-runs until it is done",
+              "rebuilds once Q04 is done; whether a pushed update reaches it is LQ43"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Incidents"
+        ],
+        [
+          "table",
+          [
+            "Opened",
+            "Release",
+            "What happened",
+            "Found",
+            "Who was reached",
+            "What was done",
+            "Entered by"
+          ],
+          [
+            [
+              "17 Dec 2027",
+              "REL08, co-3",
+              "MP6 keyed 0/24/10/10/56/0 in error; 0/15/10/8/67/0 was meant",
+              "16 Dec 2027 10:50, from a client's ticket",
+              "about 14 plans per 1,000 plan holders built on it in its 16 days, plus the first plans built in those days",
+              "paused 16 Dec 2027 11:05; withdrawn 11:40; corrected by REL09, effective 17 Dec 2027 12:00",
+              "Compliance 01"
+            ]
+          ]
+        ],
+        [
+          "btn2",
+          "Add an incident entry",
+          "L08"
+        ],
+        [
+          "h",
+          "Audit rows: a few of the year's, newest first"
+        ],
+        [
+          "table",
+          [
+            "When",
+            "Who",
+            "Seat",
+            "What",
+            "Before",
+            "After",
+            "Reason",
+            "Refused"
+          ],
+          [
+            [
+              "1 Apr 2028 00:00",
+              "the system",
+              "-",
+              "REL12 goes live: as-2",
+              "scheduled",
+              "live",
+              "its effective time",
+              "no"
+            ],
+            [
+              "20 Mar 2028",
+              "Principal officer 01",
+              "Principal officer",
+              "publish REL12 with the effective time 1 Apr 2028 00:00",
+              "approved",
+              "scheduled",
+              "the yearly assumptions review",
+              "no"
+            ],
+            [
+              "25 Feb 2028",
+              "Logic analyst 01",
+              "Logic analyst",
+              "discard the goal priority draft",
+              "previewed",
+              "discarded",
+              "it splits the book too thin",
+              "no"
+            ],
+            [
+              "17 Dec 2027",
+              "Compliance 01",
+              "Compliance",
+              "add an incident entry: REL08",
+              "-",
+              "entered",
+              "MP6 keyed in error",
+              "no"
+            ],
+            [
+              "16 Dec 2027 11:40",
+              "Principal officer 01",
+              "Principal officer",
+              "withdraw REL08",
+              "paused",
+              "withdrawn",
+              "MP6 keyed in error; a correction follows",
+              "no"
+            ],
+            [
+              "16 Dec 2027 11:05",
+              "Principal officer 01",
+              "Principal officer",
+              "pause REL08",
+              "live",
+              "paused",
+              "MP6 keyed in error",
+              "no"
+            ],
+            [
+              "6 Oct 2027",
+              "Logic analyst 01",
+              "Logic analyst",
+              "publish MI09",
+              "in review",
+              "in review",
+              "only the Principal officer publishes; refused at the server, nothing was published",
+              "yes"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Records kept"
+        ],
+        [
+          "card",
+          "Records kept for the register (nine, from the admin spec)",
+          [
+            "Client agreement (signed, versioned)",
+            "KYC record",
+            "Risk profile and suitability",
+            "Advice register: dated advice and rationale",
+            "Fee records and invoices",
+            "Grievance register",
+            "AUA statements (DIFM, AUA fee mode)",
+            "Audit trail on regulated records",
+            "Retention",
+            "to be verified: record formats (brief H6)"
+          ]
+        ],
+        [
+          "btn",
+          "Export for the advice register",
+          "L08"
+        ],
+        [
+          "link",
+          "Release monitor",
+          "L11"
+        ],
+        [
+          "link",
+          "Review calendar",
+          "L12"
+        ],
+        [
+          "link",
+          "Client plan history",
+          "L15"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "release: id and version, lane, what changed, drafted, reviewed and published by, published, effective from, route, reason, status",
+            "forward": "read"
+          },
+          {
+            "f": "versions in use per lane: plans on each version, days behind",
+            "forward": "system"
+          },
+          {
+            "f": "plans held: past the stale cap, frozen, blocked, and why",
+            "forward": "system"
+          },
+          {
+            "f": "incident entry: opened, release, what happened, found, who was reached, what was done, entered by",
+            "forward": "read"
+          },
+          {
+            "f": "audit row: when, who, seat, what, before, after, reason, refused",
+            "forward": "system"
+          },
+          {
+            "f": "records kept: the board's nine-record card",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst read; Compliance act; Adviser none; Call centre none; Ops none; Support none; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: export for the advice register (L08_export; Principal officer, Compliance); add an incident entry (L08_add_incident; Principal officer, Compliance)",
+          "Check: a release is frozen at publish and never edited; a pause, a withdrawal and a correction are new rows, and a correction is a new release (rule 7).",
+          "Check: every transition of a release is an audit row with who, when and why (4.7).",
+          "The register holds what was advised: each snapshot stores its output, not a promise to recompute it (rule 7).",
+          "Release states: scheduled, live, replaced (a later release of its lane is live; plans may still be on it), closed (no active plan is on it); or paused, then corrected (4.7).",
+          "Status on 30 Apr 2028: each lane's latest release is live; every earlier one reads replaced, since a plan past the stale cap, frozen or blocked may still be on it; REL08 is paused, then corrected (logic plan, 8 Oct 2026).",
+          "The rows are 6.2's, staff by seat; publish times are typed where the example year types them (REL05, REL07, REL08), the other releases show the day only.",
+          "Reason: the calendar item a release closes (L12), or what else started it. REL07, REL11 and REL12 close items the example year names (Y03, 5.3, Y01) and REL02 the one Home names (L01); REL04 closing the August funds review, REL10 the January risk scoring review and REL06's reason are typed for this example (logic plan, 8 Oct 2026). No due date is computed: a review is named by its cadence where the plan types no date.",
+          "EN2 sits in the register as a marked row, not a lane release: the engine version moved on 20 Jul 2027 with no draft, review or route, so snapshots show it moving on its own (6.2; LQ46).",
+          "An urgent Hold not ratified within two working days stays in force and shows as overdue here, on L10 and on L11 (rule 13): REL05 read overdue from 24 Sep 2027 until its ratification on 27 Sep at 09:20; what follows is LQ30.",
+          "Versions in use: counts over the lane versions stamped on each snapshot, per 100 active plans, illustrative. Only the assumptions figure is typed (about 18 in 100 existing plans by day 30, 6.4); the others read N.",
+          "Days behind (5.3): counted from the day the first release a plan does not have went live; no day count is typed, so each reads N days behind (logic plan, 8 Oct 2026).",
+          "The stale cap is 120 days (rehearsal value; LQ3): a plan whose latest snapshot sits more than 120 days behind a live assumptions, cohorts or funds release rebuilds at the next app open on the inputs on file; risk scoring and market inputs have no cap.",
+          "Versions in use also lists the plans that cannot take the live versions (5.3): one past the stale cap, one frozen (a lapsed or cancelled account, rule 5), one blocked by an overdue annual confirmation (Q04 blocks plan re-runs). Each is listed by client id, never by name; the versions of the one past the cap are typed for this example (logic plan, 8 Oct 2026).",
+          "Incidents: one entry per incident, added by Compliance or the Principal officer: what happened, who was reached, what was done (Y04). The entry of 17 Dec 2027 records REL08.",
+          "Add an incident entry is in place: a form opens under Incidents for the release, what happened, who was reached and what was done.",
+          "Audit rows: who, seat, when, what, before, after, reason; one row per write and per refused write, the refused one marked. The refused attempt is typed for this example: on 6 Oct 2027, the day MI09 was entered (6.2), Logic analyst 01's publish of MI09 was refused at the server, since only the Principal officer publishes (rules 13 and 15) (logic plan, 8 Oct 2026).",
+          "Records kept: the board's nine-record card as it stands; LQ24 holds the record list and the minimum retention.",
+          "Export for the advice register is an in-place download of the registers, after a fresh second-factor check (rule 15); the Principal officer and Compliance.",
+          "Seats: the Logic analyst sees the register and the versions in use, the held plans among them, not the audit rows (5.4); the incidents, the audit rows and the export show to the Principal officer, Compliance and Read only, as 4.8's row for the registers, and Read only exports nothing (logic plan, 8 Oct 2026). Drawn as the Principal officer and Compliance see it.",
+          "Drawn as of 30 Apr 2028, the end of the example year; no staff action is dated that day.",
+          "Later (4.9): versions in use as of a past date, and the history of one cohort or one row.",
+          "Against the board: today's version table becomes this register, a row per release with its lane and version; the nine-record card is kept; \"the register can reproduce any advice given\" becomes \"the register holds what was advised\" (rule 7)."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "The frozen record of REL08",
+            "L08a"
+          ],
+          [
+            "Release monitor",
+            "L11"
+          ],
+          [
+            "Review calendar",
+            "L12"
+          ],
+          [
+            "Client plan history",
+            "L15"
+          ],
+          [
+            "Publish",
+            "L06"
+          ]
+        ],
+        "states": [
+          "The register as of 30 Apr 2028, every block, as the Principal officer and Compliance see it (drawn: L08).",
+          "One release open, its frozen record (drawn: L08a, REL08).",
+          "Read by the Logic analyst: the register and the versions in use, the held plans among them (not drawn).",
+          "Read by Read only: every block; an export is refused at the server (not drawn).",
+          "A release scheduled: in the register as scheduled until its effective time (not drawn; REL12 from 20 Mar to 1 Apr 2028).",
+          "An urgent Hold unratified past two working days: marked overdue (not drawn; REL05 from 24 to 27 Sep 2027).",
+          "A release paused and not yet corrected: marked paused (not drawn; REL08 from 16 Dec 2027 11:05 to 17 Dec 2027 12:00).",
+          "A release closed: no active plan is on it (not drawn).",
+          "The export running, then saved (in place; not drawn).",
+          "Versions in use as of a past date (later, 4.9; not drawn)."
+        ],
+        "dev": [
+          "LQ3 to be decided: the stale cap in days",
+          "LQ24 to be verified: the record list and the minimum retention against the nine records on the Admin and CRM tab (brief H6); whether a saved reveal is one of them",
+          "LQ30 to be decided: what follows when an urgent Hold is not ratified within two working days",
+          "LQ46 to be decided: how a new version of the engine (the maths) is approved, previewed against existing plans and named as a cause on a client's update",
+          "gap, to be decided: whether a frozen plan (a lapsed or cancelled account) counts as active when a release is marked closed; while it does, a release with a frozen plan on it never closes.",
+          "The register reads the releases table of the Tech page; versions in use and the held plans are counts over snapshots, never stored; incidents and audit rows are their own append-only tables."
+        ]
       },
       "compliance": {
         "review": false,
@@ -9123,7 +9646,9 @@
         ]
       },
       "events": [
-        "L08_view"
+        "L08_view",
+        "L08_export",
+        "L08_add_incident"
       ],
       "v02": {
         "status": "changed",
@@ -9152,7 +9677,24 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "export for the advice register",
+          "event": "L08_export",
+          "seats": [
+            "Principal officer",
+            "Compliance"
+          ]
+        },
+        {
+          "action": "add an incident entry",
+          "event": "L08_add_incident",
+          "seats": [
+            "Principal officer",
+            "Compliance"
+          ]
+        }
+      ],
       "group": "records"
     },
     {
@@ -9166,16 +9708,372 @@
       "template": "T-table",
       "path": "both",
       "purpose": "The frozen record of REL08: its values, the diff, the preview it was approved on, who signed, the pause and the withdrawal, the release that corrected it, the incident entry.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Release register and audit; the frozen record of REL08; as of 30 Apr 2028"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "badge",
+          "Paused, then corrected: REL08 is never run again"
+        ],
+        [
+          "h",
+          "REL08, co-3: cohorts"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Based on",
+              "co-2, live from 8 Nov 2027"
+            ],
+            [
+              "Drafted",
+              "Logic analyst 01, 29 Nov 2027"
+            ],
+            [
+              "Reviewed",
+              "Principal officer 01, 30 Nov 2027: approved"
+            ],
+            [
+              "Published",
+              "Principal officer 01, 30 Nov 2027 16:00; effective 16:00"
+            ],
+            [
+              "Route",
+              "quiet: at next rebuild; no letter proposed"
+            ],
+            [
+              "Compliance",
+              "notified at publish; a cohorts release asks no acknowledgement before publish"
+            ],
+            [
+              "Status",
+              "paused 16 Dec 2027 11:05; withdrawn 11:40; corrected by REL09, co-4, effective 17 Dec 2027 12:00"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Its values and the diff"
+        ],
+        [
+          "table",
+          [
+            "Item",
+            "co-2, before",
+            "co-3, as published",
+            "Meant"
+          ],
+          [
+            [
+              "MP6 Long moderate",
+              "0/15/10/10/65/0",
+              "0/24/10/10/56/0",
+              "0/15/10/8/67/0"
+            ],
+            [
+              "Every other item of the lane: the two dimensions, the map rows, MP1 to MP5, MP7 to MP9",
+              "as co-2",
+              "as co-2",
+              "-"
+            ]
+          ]
+        ],
+        [
+          "rows",
+          [
+            [
+              "The diff as published",
+              "MP6: debt 15 to 24, equity 65 to 56; the other classes unchanged"
+            ],
+            [
+              "The change meant",
+              "MP6: commodities 10 to 8, equity 65 to 67"
+            ],
+            [
+              "The author's reason for the flagged move",
+              "typed by the author; a slot in this example"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Validation and the preview it was approved on, 29 Nov 2027"
+        ],
+        [
+          "table",
+          [
+            "Check or panel",
+            "What it showed",
+            "Opened by the reviewer"
+          ],
+          [
+            [
+              "Sums",
+              "pass: MP6 sums to 100",
+              "-"
+            ],
+            [
+              "Guards",
+              "pass: equity 56 is under the Moderate ceiling of 80",
+              "-"
+            ],
+            [
+              "Soft limit, a move of 5 points or more on one class",
+              "flag: a 9-point move on two classes; a reason typed",
+              "-"
+            ],
+            [
+              "a. Reach",
+              "N per 1,000 plan holders would change, each at its next rebuild",
+              "opened"
+            ],
+            [
+              "b. The size split",
+              "note N, outlook N, review N",
+              "opened"
+            ],
+            [
+              "d. Actions",
+              "SIP changes N",
+              "opened"
+            ],
+            [
+              "e. Conflicts",
+              "no hard conflict",
+              "opened"
+            ],
+            [
+              "f. Reference personas",
+              "the Moderate with a goal 5 years out, on MP6: equity down 9 points; the Moderate with one long goal, on MP8: unchanged",
+              "not opened"
+            ],
+            [
+              "g. One client by id",
+              "one client by id, the name masked for a masked seat; the client is not typed for this example",
+              "opened"
+            ],
+            [
+              "h. Surfaces",
+              "G11, G13, G14, H05; the sample plans; no letter proposed",
+              "opened"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Signed"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Release note",
+              "signed by Principal officer 01 at publish, after a second-factor check through {I14}; what satisfies digitally signed is LQ11"
+            ],
+            [
+              "Frozen with it",
+              "the items, the route, the preview of 29 Nov 2027 and the review of 30 Nov 2027"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "The pause, the withdrawal and the release that corrected it"
+        ],
+        [
+          "table",
+          [
+            "When",
+            "What",
+            "By",
+            "Effect"
+          ],
+          [
+            [
+              "16 Dec 2027 10:50",
+              "a client's ticket asks why the equity share fell; the biggest movers opened",
+              "Support 01; Logic analyst 01",
+              "REL08 found"
+            ],
+            [
+              "16 Dec 2027 11:05",
+              "paused",
+              "Principal officer 01",
+              "rebuilds use co-2 from then"
+            ],
+            [
+              "16 Dec 2027 11:40",
+              "withdrawn",
+              "Principal officer 01",
+              "every update built on co-3 and not yet accepted is replaced by a rebuild on co-2, keeping the client's own changes; the client reads \"an update was withdrawn\""
+            ],
+            [
+              "17 Dec 2027 12:00",
+              "corrected by REL09, co-4: MP6 at 0/15/10/8/67/0",
+              "Logic analyst 01, then Principal officer 01",
+              "every plan whose snapshot in force was built on co-3 is rebuilt on co-4 at once; a client is shown an update only if something moves"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "The monitor's summary"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Built on it in its 16 days",
+              "about 14 plans per 1,000 plan holders, plus the first plans built in those days"
+            ],
+            [
+              "Messages",
+              "none: quiet route, no letter proposed"
+            ],
+            [
+              "Tickets tagged to it",
+              "N; C11's of 16 Dec 2027 10:50 found it"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "The incident entry"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Opened",
+              "17 Dec 2027 by Compliance 01"
+            ],
+            [
+              "What happened",
+              "MP6 keyed 0/24/10/10/56/0 in error; 0/15/10/8/67/0 was meant"
+            ],
+            [
+              "Who was reached",
+              "about 14 plans per 1,000 plan holders built on it, plus the first plans built in those days; C11 accepted its update, C12 had not"
+            ],
+            [
+              "What was done",
+              "paused, withdrawn, corrected by REL09"
+            ],
+            [
+              "Still open",
+              "the correction's own explanation to clients and a watch on grievances: LQ23"
+            ]
+          ]
+        ],
+        [
+          "btn",
+          "Export this record",
+          "L08a"
+        ],
+        [
+          "link",
+          "MP6 in the draft that became REL08",
+          "L14a"
+        ],
+        [
+          "link",
+          "Release monitor, the wrong release",
+          "L11a"
+        ],
+        [
+          "link",
+          "The wrong release as two clients lived it",
+          "L15b"
+        ],
+        [
+          "link",
+          "Release register",
+          "L08"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "the release's frozen record: based on, drafted, reviewed, published, route, compliance, status",
+            "forward": "read"
+          },
+          {
+            "f": "values and the diff",
+            "forward": "read"
+          },
+          {
+            "f": "validation and the preview it was approved on, with the panels the reviewer opened",
+            "forward": "read"
+          },
+          {
+            "f": "the signed note",
+            "forward": "read"
+          },
+          {
+            "f": "transitions: pause, withdraw, the correction",
+            "forward": "read"
+          },
+          {
+            "f": "the monitor's summary",
+            "forward": "system"
+          },
+          {
+            "f": "the incident entry",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst read; Compliance act; Adviser none; Call centre none; Ops none; Support none; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: export for the advice register (L08_export; Principal officer, Compliance); add an incident entry (L08_add_incident; Principal officer, Compliance)",
+          "State: one release opened from the register, the frozen record of REL08, as of 30 Apr 2028; just before, the register on L08 was open.",
+          "Check: a release is frozen at publish and never edited; a pause, a withdrawal and a correction are new rows, and a correction is a new release (rule 7).",
+          "Check: every transition of a release is an audit row with who, when and why (4.7).",
+          "A frozen record holds every value of the lane, the diff, the preview it was approved on, the review, the signed note, the acknowledgement where rule 14 asks one, each transition, and the monitor's summary (4.1, 5.3).",
+          "The dates are Y04's: drafted and previewed on 29 Nov 2027, approved and published on 30 Nov 2027 at 16:00, found at 10:50, paused at 11:05 and withdrawn at 11:40 on 16 Dec 2027, corrected on 17 Dec 2027 at 12:00, the incident entered the same day.",
+          "Validation passed: the sum holds and 56 is under the Moderate ceiling; the soft limit flagged a 9-point move on two classes and a reason was typed (Y04). The error was a typed value that passed every check.",
+          "The preview record keeps which panels the reviewer opened: f, the reference personas, was not opened, and it showed equity down 9 points (Y04; LQ22 on L10). Panels a, b, d, e, g and h read opened, the client in panel g is not typed, and the panel figures read N (logic plan, 8 Oct 2026).",
+          "Panels c, i and j can follow (4.9); the record lists the launch panels.",
+          "Compliance is notified of a cohorts release as it is published; only an assumptions or a risk scoring release takes an acknowledgement before publish (rule 14; LQ45 on L10).",
+          "Clients are named by id only: C11's ticket found the release; C12's withdrawn update is on L15b.",
+          "Reach is illustrative, per 1,000 plan holders (6.4: about 14 plans in its 16 days); the ticket count reads N.",
+          "Export this record is an in-place download of this frozen record, after a fresh second-factor check (rule 15).",
+          "Seats: every seat that opens L08 reads this record, part of the register; the incident entry shows to the Principal officer, Compliance and Read only, as on L08 (logic plan, 8 Oct 2026). The links here go only to screens those seats may open."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Release register",
+            "L08"
+          ],
+          [
+            "MP6 in the draft",
+            "L14a"
+          ],
+          [
+            "Release monitor, the wrong release",
+            "L11a"
+          ],
+          [
+            "The wrong release as two clients lived it",
+            "L15b"
+          ],
+          [
+            "Plan history as C12 sees it",
+            "V04"
+          ]
+        ],
+        "states": [
+          "Drawn here: the frozen record of REL08, as of 30 Apr 2028; every state of the screen is listed on L08."
+        ],
+        "dev": [
+          "The frozen record is the release row and what is frozen onto it at publish (the draft, the preview, the review), with its transitions and the incident; the Tech page's release record."
+        ]
       },
       "compliance": {
         "review": false,
@@ -9187,7 +10085,9 @@
         ]
       },
       "events": [
-        "L08a_view"
+        "L08a_view",
+        "L08_export",
+        "L08_add_incident"
       ],
       "v02": {
         "status": "changed",
@@ -9216,7 +10116,24 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "export for the advice register",
+          "event": "L08_export",
+          "seats": [
+            "Principal officer",
+            "Compliance"
+          ]
+        },
+        {
+          "action": "add an incident entry",
+          "event": "L08_add_incident",
+          "seats": [
+            "Principal officer",
+            "Compliance"
+          ]
+        }
+      ],
       "group": "records"
     },
     {
@@ -9230,16 +10147,383 @@
       "template": "T-table",
       "path": "both",
       "purpose": "One client's plan history: the pin against the live versions, the timeline of snapshots, one snapshot, a compare, and the plan as of a date. Drawn: C01's timeline and pin.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Client plan history; C01; 28 Apr 2028; signed in as Support 01"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "Find a client by id"
+        ],
+        [
+          "in",
+          "Client id: C01"
+        ],
+        [
+          "table",
+          [
+            "Example client",
+            "Profile",
+            "Goals",
+            "Latest snapshot: size and cause"
+          ],
+          [
+            [
+              "C01",
+              "Moderate, score 20; DIWM; executing through the app",
+              "work optional in 2048; a home upgrade in 2033",
+              "15 Feb 2028: urgent; house view, REL11"
+            ],
+            [
+              "C04",
+              "Moderate, score 21; DIWM; executing through the app",
+              "one work-optional goal takes the whole surplus of Rs 35,000 a month",
+              "10 Apr 2028: outlook, the goal from about 70 to about 54 percent funded; house view, REL12"
+            ],
+            [
+              "C11",
+              "Moderate, score 20; DIWM; executing through the app",
+              "a home upgrade in 2032",
+              "17 Dec 2027: review, an action that undoes the cut in equity; house view, REL09"
+            ],
+            [
+              "C12",
+              "Moderate, score 18; DIY; executing through the app",
+              "a home upgrade in 2033",
+              "12 Mar 2028: note"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "The pin: the versions C01 is on, against the live ones"
+        ],
+        [
+          "table",
+          [
+            "Lane",
+            "C01 is on",
+            "Live",
+            "Days behind",
+            "How C01 takes it up"
+          ],
+          [
+            [
+              "assumptions",
+              "as-1",
+              "as-2, from 1 Apr 2028",
+              "N days behind, inside the stale cap of 120 days",
+              "at the next rebuild: a review, or the stale cap at an app open"
+            ],
+            [
+              "cohorts",
+              "co-4",
+              "co-4",
+              "-",
+              "-"
+            ],
+            [
+              "funds",
+              "fu-7",
+              "fu-7",
+              "-",
+              "-"
+            ],
+            [
+              "risk scoring",
+              "rs-1",
+              "rs-2, from 3 Jan 2028",
+              "N days behind; risk scoring has no stale cap",
+              "at C01's next questionnaire: Q04 or a retake"
+            ],
+            [
+              "market inputs",
+              "MI13",
+              "MI15, the Apr 2028 entry",
+              "N days behind; market inputs have no stale cap",
+              "new deployment actions only; an existing action is never rewritten"
+            ],
+            [
+              "engine",
+              "EN2",
+              "EN2",
+              "-",
+              "-"
+            ]
+          ]
+        ],
+        [
+          "rows",
+          [
+            [
+              "Next review due",
+              "on C01's own calendar; not typed for this example"
+            ],
+            [
+              "Blocking a rebuild",
+              "nothing"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Sleeve",
+            "Funds in C01's split",
+            "Split last restated",
+            "On funds version"
+          ],
+          [
+            [
+              "equity core",
+              "index: Seed Index Nifty 50 Fund 08; large cap: Seed Large Cap Fund 01; flexi cap B: Seed Flexi Cap Fund 20",
+              "8 Nov 2027",
+              "fu-6"
+            ],
+            [
+              "debt",
+              "short duration: Seed Short Duration Fund 06; gilt: Seed Gilt Fund 09",
+              "8 Nov 2027",
+              "fu-6"
+            ],
+            [
+              "hybrid",
+              "hybrid: Seed Hybrid Fund 07",
+              "8 Nov 2027",
+              "fu-6"
+            ],
+            [
+              "gold",
+              "gold: Seed Gold Fund 41",
+              "8 Nov 2027",
+              "fu-6"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "The plan's snapshot is on fu-7, and every split was last restated on fu-6: on 6 Feb and 15 Feb 2028 no instalment changed, so no sleeve was restated."
+        ],
+        [
+          "h",
+          "Timeline"
+        ],
+        [
+          "table",
+          [
+            "Date",
+            "What happened",
+            "Size and causes",
+            "Versions on the snapshot",
+            "What C01 did",
+            "Instalments after it, Rs a month"
+          ],
+          [
+            [
+              "before 8 Feb 2027",
+              "saved reveal: none on file for C01",
+              "-",
+              "-",
+              "-",
+              "-"
+            ],
+            [
+              "8 Feb 2027",
+              "first plan, on Rs 40,000 a month",
+              "first plan",
+              "as-1, co-1, fu-1, rs-1, MI01, EN1",
+              "nothing to accept: a first plan is in force at once",
+              "equity core 26,000 (index 13,000, flexi cap 7,800, mid cap 5,200); debt 6,000 (short duration 3,600, gilt 2,400); hybrid 4,000; gold 4,000"
+            ],
+            [
+              "12 May 2027",
+              "review; a raise takes the surplus to Rs 46,000",
+              "review; your numbers: the raise; house view: REL02, a fourth fund in the equity core",
+              "as-1, co-1, fu-2, rs-1, MI04, EN1",
+              "accepted",
+              "equity core 29,900 (index 13,400, flexi cap 7,500, mid cap 4,500, large cap 4,500); debt 6,900 (short duration 4,100, gilt 2,800); hybrid 4,600; gold 4,600"
+            ],
+            [
+              "9 Aug 2027",
+              "REL04: routine Hold on the mid cap fund",
+              "review; house view",
+              "as-1, co-1, fu-4, rs-1, MI07, EN2",
+              "accepted",
+              "equity core 29,900 (index 15,800, flexi cap 8,700, large cap 5,400); the rest unchanged"
+            ],
+            [
+              "22 Sep 2027",
+              "REL05: urgent Hold on the flexi cap fund",
+              "urgent; house view",
+              "as-1, co-1, fu-5, rs-1, MI08, EN2",
+              "a call task on 25 Sep 2027; the call with the adviser and the acceptance on 27 Sep 2027",
+              "equity core 29,900 (index 17,900, large cap 12,000); the rest unchanged"
+            ],
+            [
+              "8 Nov 2027",
+              "20:00: review on co-2: the work-optional goal moves to MP8",
+              "review; house view: REL07, and REL06 for the new fund in the split",
+              "as-1, co-2, fu-6, rs-1, MI10, EN2",
+              "accepted",
+              "equity core 32,400 (index 16,200, large cap 8,100, flexi cap B 8,100); debt 5,600 (short duration 3,400, gilt 2,200); hybrid 3,400; gold 4,600"
+            ],
+            [
+              "6 Feb 2028",
+              "review",
+              "note",
+              "as-1, co-4, fu-6, rs-1, MI13, EN2",
+              "nothing to accept: a note",
+              "unchanged"
+            ],
+            [
+              "15 Feb 2028",
+              "REL11: the mid cap fund moves to Exit",
+              "urgent; a sell action for the mid cap units, with an exit-load flag",
+              "as-1, co-4, fu-7, rs-1, MI13, EN2",
+              "not typed for this example",
+              "unchanged"
+            ]
+          ]
+        ],
+        [
+          "link",
+          "Open the snapshot of 12 May 2027",
+          "L15a"
+        ],
+        [
+          "btn2",
+          "Compare two snapshots",
+          "L15"
+        ],
+        [
+          "h",
+          "As of a date"
+        ],
+        [
+          "in",
+          "As of: 24 Sep 2027"
+        ],
+        [
+          "p",
+          "On 24 Sep 2027 C01's plan was the snapshot of 9 Aug 2027; the urgent update of 22 Sep 2027 was waiting until its acceptance on 27 Sep 2027."
+        ],
+        [
+          "p",
+          "A staff change to one client's assumption is not offered: LQ32."
+        ],
+        [
+          "link",
+          "The wrong release as two clients lived it",
+          "L15b"
+        ],
+        [
+          "link",
+          "The update of 12 May 2027 as C01 saw it",
+          "V02"
+        ],
+        [
+          "link",
+          "The urgent update of 22 Sep 2027 as C01 saw it",
+          "V03"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "client id, to find a client",
+            "forward": "required"
+          },
+          {
+            "f": "as of: a date",
+            "forward": "optional"
+          },
+          {
+            "f": "the pin: lane and engine versions on the latest snapshot against the live ones, days behind, next review due, what blocks a rebuild",
+            "forward": "system"
+          },
+          {
+            "f": "per sleeve: the funds in the split and the funds version it was last restated on",
+            "forward": "system"
+          },
+          {
+            "f": "timeline: each snapshot's date, trigger, size and causes, versions, what the client did, instalments",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: none",
+          "L15 writes nothing: every control here reads (5.3).",
+          "Check: an Adviser or the Call centre finds only its own people; the Logic analyst and Read only read masked, ids and no names (5.4).",
+          "Drawn for Support 01, a seat that reads every client; the example clients are shown by id (logic plan, 8 Oct 2026).",
+          "No unmask here: 4.8 gives the Logic analyst an unmask only where a preview or the monitor shows client rows, the write unmask a client on L05, L10 and L11, with a typed reason and an audit row; on L15 the Logic analyst and Read only stay masked (logic plan, 8 Oct 2026).",
+          "The pin: the versions on C01's latest snapshot, 15 Feb 2028, against the live ones on 28 Apr 2028. A rebuild reads the live version of every lane at its start; risk scoring is read as of the client's last questionnaire (rule 3).",
+          "Days behind (5.3) counts from when the first version C01 does not have went live; no day count is typed, so it reads N days behind, and the Live column names the live version (logic plan, 8 Oct 2026).",
+          "Next review due is not typed in the example year, so it reads as not typed; nothing blocks C01's next rebuild in this example (logic plan, 8 Oct 2026).",
+          "Per sleeve: an existing plan takes a new split only when its instalments are restated (rule 8). C01's splits were last restated on 8 Nov 2027, on fu-6, older than the plan's fu-7.",
+          "The timeline: a saved reveal heads it when there is one (X01); none is on file for C01 in this example (V06 draws one) (logic plan, 8 Oct 2026). Then every snapshot, as 6.3 types them, with the 20:00 of 8 Nov 2027 from Y03.",
+          "Versions on the snapshot: the full set. 6.3 types the versions each row moved; the others carry over from the row before, and the market inputs version is the one live at the rebuild, since a snapshot stamps all five lanes (the Tech page) (logic plan, 8 Oct 2026).",
+          "What C01 did: the call task, the call with the adviser and the acceptance of 25 and 27 Sep 2027 are typed (6.3, Y02); the other review updates read accepted, with no date, and what C01 did with the urgent update of 15 Feb 2028 is not typed for this example (logic plan, 8 Oct 2026).",
+          "Instalments: Rs a month, as 6.3 types them; amounts are whole hundreds, and a sleeve's funds add up to its amount (4.5). The sleeves read as 6.3 names them: debt is the debt, far sleeve and gold the commodities sleeve; the words in the brackets name funds by category, as 6.3 types them, and the split table names each fund: flexi cap B, the second flexi cap fund REL06 added, is the seed's own Seed Flexi Cap Fund 20, ISIN INFSD0000204 (logic plan, 8 Oct 2026).",
+          "On L15, L15a and L15b only an instalment cell carries a bracket, so the instalment check of section 11 reads those cells alone; 6.3's bracketed asides read with colons here (logic plan, 8 Oct 2026).",
+          "Compare two snapshots is in place: pick two from the timeline and their diff opens, a cause on every line.",
+          "As of a date is in place: the timeline marks the snapshot in force that day (4.1).",
+          "Links stay within what every L15 seat may open: L15a, L15b and the client views; Adviser, Call centre and Support have no release monitor and no register (5.4).",
+          "C04's history reads the same way: on 12 Apr 2028 the adviser opened it and read the versions C04 is on and the cause on the last update (Y01).",
+          "Against the board: new; at the merge it becomes M03's plan versions tab (5.2)."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "One snapshot",
+            "L15a"
+          ],
+          [
+            "The wrong release as two clients lived it",
+            "L15b"
+          ],
+          [
+            "The update as C01 saw it",
+            "V02"
+          ],
+          [
+            "The urgent update as C01 saw it",
+            "V03"
+          ],
+          [
+            "Engine map",
+            "L00"
+          ]
+        ],
+        "states": [
+          "C01's pin and timeline, read by Support 01 (drawn: L15, 28 Apr 2028).",
+          "One snapshot open (drawn: L15a, C01's snapshot of 12 May 2027).",
+          "The wrong release as two clients lived it (drawn: L15b, C11 and C12).",
+          "Compare two snapshots: their diff, a cause on every line (in place; not drawn).",
+          "As of a date: the snapshot in force that day marked (in place; drawn as one line).",
+          "A client with a saved reveal: the reveal heads the timeline as it was shown (not drawn; V06).",
+          "Read by an Adviser or the Call centre: own people only; another id finds nothing (not drawn).",
+          "Read masked by the Logic analyst or Read only: ids, no names (not drawn).",
+          "A plan frozen: the timeline ends at its last snapshot and the pin reads frozen; it rebuilds on return (rule 5; not drawn).",
+          "A plan blocked from rebuilding: the pin names the cause, an overdue annual confirmation (Q04) (not drawn).",
+          "An update waiting: the pin shows the snapshot in force and the one waiting (not drawn).",
+          "An update withdrawn: the timeline reads \"an update was withdrawn\" (drawn: L15b, C12)."
+        ],
+        "dev": [
+          "LQ32 to be decided: whether a staff seat may change an assumption for one client (the engine allows a client-wise change; 7 Oct 2026 call), and with what record",
+          "gap, to be decided: whether opening a client's plan history writes an audit row; the audit rows cover writes and refused writes, the unmask of a client on L05, L10 and L11 among them (4.8), and L15 writes nothing.",
+          "The timeline reads the snapshots and the interactions of the Tech page; nothing is recomputed: the stored output is the record (rule 7).",
+          "Masking is done at the server: a masked seat is sent the id and never the name."
+        ],
+        "forward": [
+          "Find needs a client id; an Adviser or the Call centre finds only its own people, and another id finds nothing.",
+          "Required: client id.",
+          "Optional: as of a date; left empty, the timeline reads today."
+        ]
       },
       "compliance": {
         "review": false,
@@ -9294,16 +10578,355 @@
       "template": "T-table",
       "path": "both",
       "purpose": "C01's snapshot of 12 May 2027 open: the inputs, cohort and portfolio per goal, the instalments per fund, the diff with two causes.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Client plan history; C01's snapshot of 12 May 2027; 28 Apr 2028; signed in as Support 01"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "Snapshot of 12 May 2027: review"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Trigger",
+              "a review; a raise takes the surplus to Rs 46,000"
+            ],
+            [
+              "Versions",
+              "as-1, co-1, fu-2, rs-1, MI04; engine EN1"
+            ],
+            [
+              "Size",
+              "review"
+            ],
+            [
+              "What C01 did",
+              "accepted"
+            ],
+            [
+              "Messages sent",
+              "none: C01 started this rebuild"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Inputs used"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Risk band",
+              "Moderate, score 20"
+            ],
+            [
+              "Service",
+              "DIWM; executing through the app"
+            ],
+            [
+              "Surplus to invest",
+              "Rs 46,000 a month, was Rs 40,000"
+            ],
+            [
+              "Goals",
+              "work optional in 2048; a home upgrade in 2033"
+            ],
+            [
+              "Other inputs",
+              "stored with the snapshot by id; not typed for this example"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Cohort and portfolio per goal"
+        ],
+        [
+          "table",
+          [
+            "Goal",
+            "Horizon band",
+            "Cohort",
+            "Portfolio",
+            "Mix",
+            "Needs, Rs a month",
+            "Gets, Rs a month",
+            "Funded"
+          ],
+          [
+            [
+              "work optional, 2048",
+              "Long: over 3",
+              "Moderate x Long",
+              "MP6 Long moderate",
+              "0/15/10/10/65/0",
+              "N",
+              "N",
+              "N%"
+            ],
+            [
+              "home upgrade, 2033",
+              "Long: over 3",
+              "Moderate x Long",
+              "MP6 Long moderate",
+              "0/15/10/10/65/0",
+              "N",
+              "N",
+              "N%"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Instalments per fund, Rs a month"
+        ],
+        [
+          "table",
+          [
+            "Snapshot",
+            "Instalments"
+          ],
+          [
+            [
+              "before: the snapshot in force, 8 Feb 2027",
+              "equity core 26,000 (index 13,000, flexi cap 7,800, mid cap 5,200); debt 6,000 (short duration 3,600, gilt 2,400); hybrid 4,000; gold 4,000"
+            ],
+            [
+              "this snapshot, 12 May 2027",
+              "equity core 29,900 (index 13,400, flexi cap 7,500, mid cap 4,500, large cap 4,500); debt 6,900 (short duration 4,100, gilt 2,800); hybrid 4,600; gold 4,600"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Fund word",
+            "Fund",
+            "Sleeve"
+          ],
+          [
+            [
+              "index",
+              "Seed Index Nifty 50 Fund 08",
+              "equity core"
+            ],
+            [
+              "flexi cap",
+              "Seed Flexi Cap Fund 10",
+              "equity core"
+            ],
+            [
+              "mid cap",
+              "Seed Mid Cap Fund 02",
+              "equity core"
+            ],
+            [
+              "large cap",
+              "Seed Large Cap Fund 01",
+              "equity core, from REL02"
+            ],
+            [
+              "short duration",
+              "Seed Short Duration Fund 06",
+              "debt"
+            ],
+            [
+              "gilt",
+              "Seed Gilt Fund 09",
+              "debt"
+            ],
+            [
+              "hybrid",
+              "Seed Hybrid Fund 07",
+              "hybrid"
+            ],
+            [
+              "gold",
+              "Seed Gold Fund 41",
+              "gold"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "The diff as shown, a cause on every line"
+        ],
+        [
+          "table",
+          [
+            "Line",
+            "Before, Rs a month",
+            "After, Rs a month",
+            "Cause"
+          ],
+          [
+            [
+              "index",
+              "13,000",
+              "13,400",
+              "your numbers"
+            ],
+            [
+              "flexi cap",
+              "7,800",
+              "7,500",
+              "house view: REL02"
+            ],
+            [
+              "mid cap",
+              "5,200",
+              "4,500",
+              "house view: REL02"
+            ],
+            [
+              "large cap, enters",
+              "-",
+              "4,500",
+              "your numbers; house view: REL02"
+            ],
+            [
+              "short duration",
+              "3,600",
+              "4,100",
+              "your numbers"
+            ],
+            [
+              "gilt",
+              "2,400",
+              "2,800",
+              "your numbers"
+            ],
+            [
+              "hybrid",
+              "4,000",
+              "4,600",
+              "your numbers"
+            ],
+            [
+              "gold",
+              "4,000",
+              "4,600",
+              "your numbers"
+            ],
+            [
+              "In all",
+              "40,000",
+              "46,000",
+              "your numbers"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Actions"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Start",
+              "a SIP in the large cap fund: Rs 4,500 a month"
+            ],
+            [
+              "Change",
+              "every other SIP to its new amount above"
+            ],
+            [
+              "Sell",
+              "none: the units already held stay"
+            ]
+          ]
+        ],
+        [
+          "btn2",
+          "Download the PDF of this update",
+          "L15a"
+        ],
+        [
+          "link",
+          "The update as C01 saw it",
+          "V02"
+        ],
+        [
+          "link",
+          "Plan history",
+          "L15"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "the snapshot: trigger, versions, size, what the client did, messages",
+            "forward": "read"
+          },
+          {
+            "f": "inputs used",
+            "forward": "read"
+          },
+          {
+            "f": "cohort and portfolio per goal; needs, gets, funded",
+            "forward": "system"
+          },
+          {
+            "f": "instalment per fund, before and after",
+            "forward": "system"
+          },
+          {
+            "f": "the diff, a cause on every line",
+            "forward": "system"
+          },
+          {
+            "f": "actions",
+            "forward": "system"
+          },
+          {
+            "f": "the PDF of the update",
+            "forward": "system"
+          }
+        ],
         "logic": [
           "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: none",
+          "State: one snapshot open, C01's snapshot of 12 May 2027, read on 28 Apr 2028 by Support 01; just before, the timeline on L15 was open.",
+          "Check: an Adviser or the Call centre opens only its own people's snapshots; the Logic analyst and Read only read them masked (5.4).",
+          "A snapshot holds the inputs used, the lane and engine versions, cohort and portfolio per goal, what each goal needs and gets, the instalment per fund, the actions, the diff as shown with a cause on every line, the size, the messages and what the client did (rule 7; the Tech page).",
+          "The diff is drawn against the snapshot in force, the first plan of 8 Feb 2027 (rule 8).",
+          "Two causes, a line carrying the cause that moved it (4.5): your numbers, the raise, moved index, short duration, gilt, hybrid, gold and the total; house view, REL02's split of the equity core, moved flexi cap and mid cap; large cap enters the split, so it carries your numbers and also names the funds release, REL02. The marking is V02's (logic plan, 8 Oct 2026).",
+          "Rule 8: an instalment moved past the tolerance band, so every sleeve was restated to its target; REL02's new split came in with the restatement (4.4).",
+          "Both goals sit in Moderate x Long on co-1 (Long: over 3) and take MP6; what each goal needs and gets and how far it is funded are not typed for this example and read N (logic plan, 8 Oct 2026).",
+          "Messages: none, because the client started the rebuild (4.5).",
+          "Fund words name funds by category, as 6.3 types them; the fund names are the seed's instrument master as the Funds and sleeves screen holds them, and Seed Gold Fund 41 is synthetic (L04).",
+          "No sell: adding a fund changes instalments only; the units already held stay (logic plan, 8 Oct 2026).",
+          "Download the PDF of this update is an in-place download: the PDF stored with the snapshot, one for every update shown at review or urgent size (4.9)."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Plan history",
+            "L15"
+          ],
+          [
+            "The update as C01 saw it",
+            "V02"
+          ],
+          [
+            "Funds and sleeves",
+            "L04"
+          ]
+        ],
+        "states": [
+          "Drawn here: C01's snapshot of 12 May 2027 open, read on 28 Apr 2028; every state of the screen is listed on L15."
+        ],
+        "dev": [
+          "The snapshot is read as stored, never rebuilt to show it; the PDF is the one written with it."
+        ]
       },
       "compliance": {
         "review": false,
@@ -9358,16 +10981,222 @@
       "template": "T-table",
       "path": "both",
       "purpose": "The wrong release as two clients lived it: C11 accepted it and was corrected; C12's update was withdrawn in time.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Client plan history; C11 and C12 through the wrong release; 28 Apr 2028; signed in as Support 01"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "C11: accepted the wrong update and was corrected"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Profile",
+              "Moderate, score 20; DIWM; executing through the app"
+            ],
+            [
+              "Goal",
+              "a home upgrade in 2032, on MP6 Long moderate"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Date",
+            "What happened",
+            "Size and causes",
+            "Cohorts version",
+            "What the client did",
+            "Mix of the goal"
+          ],
+          [
+            [
+              "6 Dec 2027",
+              "review on co-3, the wrong mix: equity falls from 65 to 56 percent of the mix",
+              "review; house view: REL08",
+              "co-3",
+              "accepted; SIPs changed on 8 Dec 2027",
+              "0/24/10/10/56/0, was 0/15/10/10/65/0"
+            ],
+            [
+              "16 Dec 2027",
+              "10:50: raises a ticket: why did the equity share fall",
+              "-",
+              "-",
+              "the ticket; Support 01 passed it on",
+              "-"
+            ],
+            [
+              "17 Dec 2027",
+              "REL09, the correction",
+              "review, with an action that undoes the cut in equity; house view: REL09",
+              "co-4",
+              "accepted on 18 Dec 2027",
+              "0/15/10/8/67/0"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "C12: the update was withdrawn in time"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Profile",
+              "Moderate, score 18; DIY; executing through the app"
+            ],
+            [
+              "Goal",
+              "a home upgrade in 2033, on MP6 Long moderate"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Date",
+            "What happened",
+            "Size and causes",
+            "Cohorts version",
+            "What the client did",
+            "Mix of the goal"
+          ],
+          [
+            [
+              "15 Dec 2027",
+              "review on co-3",
+              "review; house view: REL08",
+              "co-3",
+              "not accepted; the update is open on the phone the next morning",
+              "0/24/10/10/56/0, waiting"
+            ],
+            [
+              "16 Dec 2027",
+              "11:40: REL08 withdrawn; the plan is rebuilt on co-2",
+              "note; plan history reads \"an update was withdrawn\"",
+              "co-2",
+              "nothing to accept: a note",
+              "0/15/10/10/65/0"
+            ],
+            [
+              "12 Mar 2028",
+              "review on co-4",
+              "note",
+              "co-4",
+              "nothing to accept: a note",
+              "0/15/10/8/67/0"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "Amounts are not typed for these two examples; the mix of the goal shows what moved."
+        ],
+        [
+          "h",
+          "Side by side"
+        ],
+        [
+          "table",
+          [
+            "When",
+            "C11",
+            "C12"
+          ],
+          [
+            [
+              "on the wrong release",
+              "accepted on 6 Dec 2027; SIPs changed on 8 Dec 2027",
+              "not accepted; still waiting on 16 Dec 2027"
+            ],
+            [
+              "the withdrawal, 16 Dec 2027 11:40",
+              "nothing withdrawn: the update was accepted",
+              "the update replaced by a rebuild on co-2; plan history reads \"an update was withdrawn\""
+            ],
+            [
+              "the correction, 17 Dec 2027 12:00",
+              "rebuilt on co-4 at once: its snapshot in force was built on co-3",
+              "not rebuilt: its snapshot in force, of 16 Dec 2027, was built on co-2; co-4 at the next rebuild, 12 Mar 2028"
+            ],
+            [
+              "what the client saw",
+              "the cut in equity, then the action that undoes it",
+              "an update that went away, and the line in plan history"
+            ]
+          ]
+        ],
+        [
+          "link",
+          "Plan history as C12 sees it",
+          "V04"
+        ],
+        [
+          "link",
+          "MP6 in the model portfolios",
+          "L14"
+        ],
+        [
+          "link",
+          "C01's plan history",
+          "L15"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "timeline per client: date, what happened, size and causes, cohorts version, what the client did, mix",
+            "forward": "read"
+          },
+          {
+            "f": "side by side: what the withdrawal and the correction did to each",
+            "forward": "system"
+          }
+        ],
         "logic": [
           "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: none",
+          "State: two clients through the wrong release, read on 28 Apr 2028 by Support 01; just before, Support 01 found C11 by id on L15.",
+          "Check: an Adviser or the Call centre opens only its own people; the Logic analyst and Read only read masked (5.4).",
+          "Withdraw replaces every update built on the paused release and not yet accepted with a rebuild on the release before it, keeping the client's own changes; the client reads \"an update was withdrawn\" in plan history (rule 12). C12 is that case.",
+          "Correct rebuilds at once every plan whose snapshot in force was built on the paused release, first plans, accepted updates and quiet rebuilds alike; a client is shown an update only if something moves (rule 12). C11 is that case.",
+          "C12's snapshot in force from 16 Dec 2027 was the note rebuilt on co-2, so the correction did not rebuild it; it took co-4 at its next rebuild, 12 Mar 2028, as a note (4.4: at next rebuild for the rest).",
+          "The cohorts version is the one lane drawn, the lane of the wrong release; the other lanes are on each snapshot as on L15 (logic plan, 8 Oct 2026).",
+          "6.3 types no amounts for C11 and C12, so no instalment is drawn; the mix of the goal is MP6 on each cohorts version: co-2 0/15/10/10/65/0, co-3 0/24/10/10/56/0, co-4 0/15/10/8/67/0 (6.1, 6.2).",
+          "The ticket of 16 Dec 2027 10:50 is C11's, passed on by Support (Y04).",
+          "The house view cause on the two co-3 reviews names REL08 (logic plan, 8 Oct 2026).",
+          "Links stay within what every L15 seat may open; the release's own record is L08a, for the seats that read the register."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Plan history as C12 sees it",
+            "V04"
+          ],
+          [
+            "Plan history",
+            "L15"
+          ],
+          [
+            "Model portfolios",
+            "L14"
+          ]
+        ],
+        "states": [
+          "Drawn here: C11 and C12 through the wrong release, read on 28 Apr 2028; every state of the screen is listed on L15."
+        ],
+        "dev": [
+          "The two timelines read the same snapshot rows as L15; the withdrawal and the correction are snapshots with the trigger withdraw or correction (the Tech page)."
+        ]
       },
       "compliance": {
         "review": false,
@@ -9422,16 +11251,273 @@
       "template": "T-table",
       "path": "both",
       "purpose": "Each lane and row with its cadence, last reviewed and next due, due and overdue marked, and the \"reviewed, no change\" entries. Drawn: 1 Mar 2028, the annual assumptions review open a month ahead.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Review calendar; 1 Mar 2028; signed in as Principal officer 01"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "badge",
+          "Open: the annual assumptions review, due 1 Apr 2028, a month ahead"
+        ],
+        [
+          "h",
+          "Each lane with its cadence"
+        ],
+        [
+          "table",
+          [
+            "Lane or row",
+            "Cadence",
+            "Last reviewed",
+            "Next due",
+            "State",
+            "What clients are told"
+          ],
+          [
+            [
+              "Assumptions",
+              "yearly, due 1 April",
+              "1 Apr 2027: reviewed, no change, signed by Principal officer 01",
+              "1 Apr 2028",
+              "open from 1 Mar 2028, a month ahead of 1 April",
+              "yearly, effective 1 April; the letter"
+            ],
+            [
+              "Cohorts",
+              "yearly, due the first Monday of November",
+              "8 Nov 2027: REL07 closed the review due 1 Nov 2027",
+              "the first Monday of November",
+              "not due",
+              "-"
+            ],
+            [
+              "Funds",
+              "quarterly, due the first Monday of May, August, November and February",
+              "14 Feb 2028: REL11 closed the review due 7 Feb 2028",
+              "the first Monday of May",
+              "not due",
+              "the approved list quarterly; G13 on the board reads: reviewed every quarter"
+            ],
+            [
+              "Risk scoring",
+              "yearly, due the first working day of January",
+              "3 Jan 2028: REL10 published",
+              "the first working day of January",
+              "not due",
+              "-"
+            ],
+            [
+              "Market inputs",
+              "monthly, the first working day",
+              "MI13, the Feb 2028 entry",
+              "MI14, today",
+              "due today",
+              "-"
+            ],
+            [
+              "The access review",
+              "quarterly",
+              "14 Jan 2028: access review 3",
+              "the next quarter; no day is typed",
+              "not due",
+              "-"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "Every row of a lane is reviewed with its lane in this example; a row with a cadence of its own would take a line here."
+        ],
+        [
+          "btn",
+          "Open a draft from this item",
+          "L02a"
+        ],
+        [
+          "btn2",
+          "Mark reviewed, no change",
+          "L12"
+        ],
+        [
+          "h",
+          "Due and overdue"
+        ],
+        [
+          "p",
+          "Nothing is overdue on 1 Mar 2028. An item is overdue when it is not closed 14 days after its due date; a monthly item, from the next working day."
+        ],
+        [
+          "h",
+          "History: what closed each item"
+        ],
+        [
+          "table",
+          [
+            "Item",
+            "Due",
+            "Closed",
+            "By",
+            "On time"
+          ],
+          [
+            [
+              "Assumptions, yearly",
+              "1 April",
+              "1 Apr 2027",
+              "reviewed, no change, signed",
+              "on time"
+            ],
+            [
+              "Market inputs, the Oct 2027 entry",
+              "the first working day of October",
+              "6 Oct 2027",
+              "MI09",
+              "late: three working days"
+            ],
+            [
+              "Funds, quarterly: November",
+              "the first Monday of November",
+              "5 Nov 2027",
+              "reviewed, no change, signed",
+              "on time"
+            ],
+            [
+              "Cohorts, yearly",
+              "1 Nov 2027",
+              "8 Nov 2027",
+              "REL07",
+              "on time"
+            ],
+            [
+              "Funds, quarterly: February",
+              "7 Feb 2028",
+              "14 Feb 2028",
+              "REL11",
+              "on time"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "Every monthly entry from MI01 to MI13 but MI09 was entered on its due date."
+        ],
+        [
+          "h",
+          "Reviewed, no change: the signed entries"
+        ],
+        [
+          "table",
+          [
+            "Date",
+            "Lane",
+            "Item",
+            "Signed by"
+          ],
+          [
+            [
+              "1 Apr 2027",
+              "assumptions",
+              "the annual review",
+              "Principal officer 01"
+            ],
+            [
+              "5 Nov 2027",
+              "funds",
+              "the quarterly review of November",
+              "Principal officer 01"
+            ]
+          ]
+        ],
+        [
+          "link",
+          "Assumptions",
+          "L02"
+        ],
+        [
+          "link",
+          "Market inputs",
+          "L07"
+        ],
+        [
+          "link",
+          "Funds and sleeves",
+          "L04"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "item: lane or row, cadence, last reviewed, next due, state, what clients are told",
+            "forward": "read"
+          },
+          {
+            "f": "history: due, closed, by, on time",
+            "forward": "system"
+          },
+          {
+            "f": "reviewed, no change: date, item, signed by",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser none; Call centre none; Ops read; Support none; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: mark reviewed, no change (L12_mark_reviewed_no_change; Principal officer); open a draft from a due item (L12_open_draft; Principal officer, Logic analyst)",
+          "Check: an item is overdue when it is not closed 14 days after its due date; a monthly item, from the next working day (rehearsal values).",
+          "Check: only the Principal officer marks an item reviewed, no change, and the entry is signed (rule 17).",
+          "An item closes when a release of its lane publishes against it, or when the Principal officer marks it reviewed, no change.",
+          "Mark reviewed, no change is in place: the Principal officer signs the entry, the item closes, and its next due date follows from the cadence.",
+          "Open a draft from this item opens a draft in the item's lane with the item named on the draft bar, as L02a shows for the annual review; one open draft per lane (4.6 step 1).",
+          "A yearly or quarterly item opens a month before its due date, as the annual assumptions review does here; a monthly item opens on its due date (logic plan, 8 Oct 2026).",
+          "Cadences: 6.2's review cadence (rehearsal values; LQ16). Next due reads the cadence, never a computed date; a date shows only where the example year types a due date (1 Apr 2028). The access review is typed quarterly with no day, so its next due reads the next quarter; access review 4 ran on 12 Apr 2028 (6.2), after the day drawn (logic plan, 8 Oct 2026).",
+          "What clients are told: rule 20 names a calendar for the assumptions (yearly, effective 1 April) and for the approved list (quarterly); G13 on the board reads \"reviewed every quarter\".",
+          "History: the closures the example year types, from 6.2's rows: the two signed entries (6.2), REL07 for the cohort review (Y03), REL11 for the funds review of 7 Feb (5.3) and MI09's late entry (6.2). The year's other releases are on the register (L08).",
+          "Market inputs: MI09 was entered on 6 Oct 2027, three working days late; it read overdue from the next working day after its due date.",
+          "Seats: the access review row shows only to the Principal officer and Compliance, the seats that see access reviews (5.4); a draft open on an item shows only to the seats that see drafts (4.8), so Ops sees each item, its dates and its state (logic plan, 8 Oct 2026).",
+          "Links stay within what every L12 seat may open; the register (L08) and staff and seats (L13) are left out.",
+          "Later (4.9): the review calendar as a screen can follow; at launch the due items sit on Home (L01).",
+          "Against the board: new."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Open a draft from this item",
+            "L02a"
+          ],
+          [
+            "Assumptions",
+            "L02"
+          ],
+          [
+            "Market inputs",
+            "L07"
+          ],
+          [
+            "Funds and sleeves",
+            "L04"
+          ],
+          [
+            "Home",
+            "L01"
+          ]
+        ],
+        "states": [
+          "1 Mar 2028: the annual assumptions review open a month ahead, the month's market inputs due today, nothing overdue (drawn: L12).",
+          "An item overdue: marked, and it heads Needs you on Home for the Principal officer and the Logic analyst (not drawn; MI09 until it was entered on 6 Oct 2027).",
+          "An item closed by a release (drawn in the history).",
+          "An item closed reviewed, no change, with the Principal officer's signature (drawn in the history).",
+          "A draft open on an item: shown to the seats that see drafts (not drawn; the assumptions draft, L02a, 10 Mar 2028).",
+          "Read by Ops or Read only: the items, their dates and states (not drawn).",
+          "Nothing due or open (not drawn)."
+        ],
+        "dev": [
+          "LQ16 to be decided: the review cadence per lane, and whether the monthly market inputs take the second person",
+          "gap, to be decided: what clients are told about the cohorts and risk scoring cadences; rule 20 names a calendar for the assumptions and the approved list only.",
+          "The calendar reads the calendar table of the Tech page: lane or row, cadence, opens, due, done, outcome, signed by."
+        ]
       },
       "compliance": {
         "review": false,
@@ -9443,7 +11529,9 @@
         ]
       },
       "events": [
-        "L12_view"
+        "L12_view",
+        "L12_mark_reviewed_no_change",
+        "L12_open_draft"
       ],
       "v02": {
         "status": "new",
@@ -9472,7 +11560,23 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "mark reviewed, no change",
+          "event": "L12_mark_reviewed_no_change",
+          "seats": [
+            "Principal officer"
+          ]
+        },
+        {
+          "action": "open a draft from a due item",
+          "event": "L12_open_draft",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        }
+      ],
       "group": "records"
     },
     {
@@ -9486,16 +11590,788 @@
       "template": "T-table",
       "path": "both",
       "purpose": "The staff list, what each seat may do, the two-person rule and who stands in, and the access reviews. Drawn: 15 Oct 2027, access review 2 in progress.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Staff and seats; 15 Oct 2027; signed in as Principal officer 01"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "badge",
+          "Access review 2 in progress"
+        ],
+        [
+          "h",
+          "Staff"
+        ],
+        [
+          "table",
+          [
+            "Label",
+            "Seats",
+            "Status",
+            "Added by, when",
+            "Last sign-in",
+            "Second factor"
+          ],
+          [
+            [
+              "Principal officer 01",
+              "Principal officer",
+              "active",
+              "at set-up, before launch",
+              "N days ago",
+              "on"
+            ],
+            [
+              "Logic analyst 01",
+              "Logic analyst",
+              "active",
+              "at set-up, before launch",
+              "N days ago",
+              "on"
+            ],
+            [
+              "Logic analyst 02",
+              "Logic analyst",
+              "active; acknowledged by Compliance 01",
+              "Principal officer 01, 4 Oct 2027",
+              "N days ago",
+              "on"
+            ],
+            [
+              "Compliance 01",
+              "Compliance",
+              "active",
+              "at set-up, before launch",
+              "N days ago",
+              "on"
+            ],
+            [
+              "Ops 01",
+              "Ops",
+              "active",
+              "at set-up, before launch",
+              "N days ago",
+              "on"
+            ],
+            [
+              "Support 01",
+              "Support",
+              "active",
+              "at set-up, before launch",
+              "N days ago",
+              "on"
+            ],
+            [
+              "Call centre 01",
+              "Call centre",
+              "active",
+              "at set-up, before launch",
+              "N days ago",
+              "on"
+            ],
+            [
+              "Adviser 01 to 05, a row each",
+              "Adviser",
+              "active",
+              "at set-up, before launch",
+              "N days ago",
+              "on"
+            ],
+            [
+              "Adviser 06",
+              "Adviser",
+              "suspended at access review 1, 15 Jul 2027: idle 90 days",
+              "at set-up, before launch",
+              "N days ago",
+              "on"
+            ],
+            [
+              "Read only 01",
+              "Read only",
+              "active",
+              "Principal officer 01, 3 Mar 2027",
+              "N days ago",
+              "on"
+            ]
+          ]
+        ],
+        [
+          "btn",
+          "Add staff",
+          "L13"
+        ],
+        [
+          "btn2",
+          "Change seats",
+          "L13"
+        ],
+        [
+          "btn2",
+          "Suspend",
+          "L13"
+        ],
+        [
+          "btn2",
+          "Revoke",
+          "L13"
+        ],
+        [
+          "btn2",
+          "Acknowledge an operating seat",
+          "L13"
+        ],
+        [
+          "h",
+          "What each seat may do: by action, then by screen"
+        ],
+        [
+          "table",
+          [
+            "Action or screen",
+            "Principal officer",
+            "Logic analyst",
+            "Compliance",
+            "Adviser",
+            "Call centre",
+            "Ops",
+            "Support",
+            "Read only",
+            "Marketing",
+            "Finance"
+          ],
+          [
+            [
+              "see live logic and its rationale",
+              "yes",
+              "yes",
+              "yes",
+              "yes",
+              "yes",
+              "yes",
+              "yes",
+              "yes",
+              "no",
+              "no"
+            ],
+            [
+              "see drafts and previews",
+              "yes",
+              "yes",
+              "yes",
+              "no",
+              "no",
+              "no",
+              "no",
+              "yes",
+              "no",
+              "no"
+            ],
+            [
+              "see the release monitor",
+              "yes",
+              "yes",
+              "yes",
+              "no",
+              "no",
+              "yes",
+              "no",
+              "yes",
+              "no",
+              "no"
+            ],
+            [
+              "open and edit a draft; run validation and preview; propose a route",
+              "yes",
+              "yes",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no"
+            ],
+            [
+              "see named client rows in a preview or the monitor",
+              "yes",
+              "masked; an unmask is logged",
+              "yes",
+              "no",
+              "no",
+              "masked",
+              "no",
+              "masked",
+              "no",
+              "no"
+            ],
+            [
+              "review a draft as the second person",
+              "yes, not own draft",
+              "yes, not own draft",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no"
+            ],
+            [
+              "acknowledge an assumptions or a risk scoring release (rule 14)",
+              "no",
+              "no",
+              "yes",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no"
+            ],
+            [
+              "publish, schedule, pause, withdraw, start a correction",
+              "yes",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no"
+            ],
+            [
+              "urgent Hold on a fund",
+              "yes, alone, ratified after",
+              "request only",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no"
+            ],
+            [
+              "ratify an urgent Hold",
+              "not the one who placed it",
+              "yes",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no"
+            ],
+            [
+              "unknown-ISIN queue",
+              "decides by publishing",
+              "drafts the classification",
+              "no",
+              "no",
+              "no",
+              "adds facts",
+              "no",
+              "no",
+              "no",
+              "no"
+            ],
+            [
+              "mark a calendar item reviewed, no change",
+              "yes",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no"
+            ],
+            [
+              "queue the letter for a release (done in {I14}; L06 shows whether it is queued)",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "yes",
+              "no",
+              "no",
+              "no",
+              "no"
+            ],
+            [
+              "export the registers; read the audit rows; add an incident entry",
+              "yes",
+              "no",
+              "yes",
+              "no",
+              "no",
+              "no",
+              "no",
+              "read",
+              "no",
+              "no"
+            ],
+            [
+              "staff and seats: add, change, suspend, revoke; run the access review",
+              "yes",
+              "no",
+              "read; acknowledges an operating seat (LQ42)",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no",
+              "no"
+            ],
+            [
+              "client plan history (L15)",
+              "yes",
+              "masked",
+              "yes",
+              "own people",
+              "own people",
+              "yes",
+              "yes",
+              "masked",
+              "no",
+              "no"
+            ],
+            [
+              "L01 Home",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "none",
+              "none"
+            ],
+            [
+              "L02 Assumptions",
+              "act",
+              "act",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "none",
+              "none"
+            ],
+            [
+              "L03 Dimensions and cohort map",
+              "act",
+              "act",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "none",
+              "none"
+            ],
+            [
+              "L14 Model portfolios",
+              "act",
+              "act",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "none",
+              "none"
+            ],
+            [
+              "L04 Funds and sleeves",
+              "act",
+              "act",
+              "read",
+              "read",
+              "read",
+              "act",
+              "read",
+              "read",
+              "none",
+              "none"
+            ],
+            [
+              "L09 Guards and constraints",
+              "act",
+              "act",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "none",
+              "none"
+            ],
+            [
+              "L07 Market inputs",
+              "act",
+              "act",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "none",
+              "none"
+            ],
+            [
+              "L05 Drafts, validation and preview",
+              "act",
+              "act",
+              "read",
+              "none",
+              "none",
+              "none",
+              "none",
+              "read masked",
+              "none",
+              "none"
+            ],
+            [
+              "L10 Review",
+              "act",
+              "act",
+              "act",
+              "none",
+              "none",
+              "none",
+              "none",
+              "read",
+              "none",
+              "none"
+            ],
+            [
+              "L06 Publish",
+              "act",
+              "read",
+              "read",
+              "none",
+              "none",
+              "none",
+              "none",
+              "read",
+              "none",
+              "none"
+            ],
+            [
+              "L11 Release monitor",
+              "act",
+              "read masked",
+              "read",
+              "none",
+              "none",
+              "read masked",
+              "none",
+              "read masked",
+              "none",
+              "none"
+            ],
+            [
+              "L08 Release register and audit",
+              "act",
+              "read",
+              "act",
+              "none",
+              "none",
+              "none",
+              "none",
+              "read",
+              "none",
+              "none"
+            ],
+            [
+              "L15 Client plan history",
+              "read",
+              "read masked",
+              "read",
+              "read, own people",
+              "read, own people",
+              "read",
+              "read",
+              "read masked",
+              "none",
+              "none"
+            ],
+            [
+              "L12 Review calendar",
+              "act",
+              "act",
+              "read",
+              "none",
+              "none",
+              "read",
+              "none",
+              "read",
+              "none",
+              "none"
+            ],
+            [
+              "L13 Staff and seats",
+              "act",
+              "read",
+              "act",
+              "none",
+              "none",
+              "none",
+              "none",
+              "none",
+              "none",
+              "none"
+            ],
+            [
+              "L00 Engine map",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "read",
+              "none",
+              "none"
+            ],
+            [
+              "V01 to V06 Client views",
+              "read",
+              "read masked",
+              "read",
+              "read, own people",
+              "read, own people",
+              "read",
+              "read",
+              "read masked",
+              "none",
+              "none"
+            ],
+            [
+              "M03 Staff view of a client, read only here",
+              "act",
+              "-",
+              "read",
+              "read, own people",
+              "read, own people",
+              "act",
+              "act",
+              "-",
+              "read",
+              "read"
+            ],
+            [
+              "M07 Health page: integrations and the engine, read only here",
+              "read",
+              "-",
+              "-",
+              "-",
+              "-",
+              "act",
+              "-",
+              "-",
+              "-",
+              "-"
+            ],
+            [
+              "M10 Config screen, read only here",
+              "act",
+              "-",
+              "-",
+              "-",
+              "-",
+              "act",
+              "-",
+              "-",
+              "read",
+              "-"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "The admin screens' rows are read only here, from the admin panel's own seats; a seat an admin screen does not name reads -."
+        ],
+        [
+          "h",
+          "The two-person rule and who stands in"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Every release",
+              "two people: the author cannot review; only the Principal officer publishes"
+            ],
+            [
+              "The one exception",
+              "an urgent Hold by the Principal officer alone, ratified by a second person within two working days"
+            ],
+            [
+              "The second person today",
+              "Principal officer 01 for a draft by a Logic analyst; Logic analyst 01 or Logic analyst 02 for a draft by the Principal officer"
+            ],
+            [
+              "Publish today",
+              "Principal officer 01 holds the one seat that publishes"
+            ],
+            [
+              "When the Principal officer is unreachable",
+              "to be decided: who publishes when the principal officer is unreachable (LQ7)"
+            ],
+            [
+              "An operating seat",
+              "compliance acknowledges a new Principal officer or Logic analyst seat; that the seat takes effect only once acknowledged is proposed (LQ42)"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Access reviews"
+        ],
+        [
+          "table",
+          [
+            "Review",
+            "Date",
+            "Run by",
+            "Rows",
+            "Outcome"
+          ],
+          [
+            [
+              "Access review 1",
+              "15 Jul 2027",
+              "Principal officer 01",
+              "every staff row",
+              "Adviser 06, idle 90 days, suspended; no other change"
+            ],
+            [
+              "Access review 2",
+              "15 Oct 2027",
+              "Principal officer 01",
+              "every staff row, Logic analyst 02 among them",
+              "in progress"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "Each row is kept, changed, suspended or revoked; each change asks a fresh second-factor check."
+        ],
+        [
+          "btn",
+          "Continue access review 2",
+          "L13"
+        ],
+        [
+          "link",
+          "Home",
+          "L01"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "staff: label, seats, status (active, suspended, revoked), added by and when, last sign-in, second factor",
+            "forward": "read"
+          },
+          {
+            "f": "the seat matrix, by action and by screen",
+            "forward": "read"
+          },
+          {
+            "f": "access review: date, run by, rows, outcome",
+            "forward": "read"
+          },
+          {
+            "f": "acknowledgement of an operating seat: by whom and when",
+            "forward": "system"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst read; Compliance act; Adviser none; Call centre none; Ops none; Support none; Read only none; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: add staff (L13_add_staff; Principal officer); change seats (L13_change_seats; Principal officer); suspend (L13_suspend; Principal officer); revoke (L13_revoke; Principal officer); run the access review (L13_run_access_review; Principal officer); acknowledge an operating seat (L13_acknowledge_operating_seat; Compliance)",
+          "Check: only the Principal officer adds, changes, suspends or revokes a seat and runs the access review; Compliance acknowledges an operating seat (4.8).",
+          "Check: a seat change asks a fresh second-factor check (rule 15); a refusal is an audit row.",
+          "Seats are fixed, not user-defined; one staff identity across the admin screens and the logic panel, the sign-in decided for M03 on 7 Oct 2026 (rule 15). The greyed control is never the control; the server checks every write.",
+          "Add staff is in place: a form opens for the label, the seats and the sign-in through {I14}; that a new operating seat waits for compliance's acknowledgement is proposed (LQ42).",
+          "Change seats, Suspend and Revoke are in place, on the row picked; each is a seat change, and suspend and revoke end that staff member's sessions at once.",
+          "Acknowledge an operating seat is in place and is Compliance's (4.8); that a new Principal officer or Logic analyst seat takes effect only once acknowledged is proposed (LQ42), as the Access page reads.",
+          "Continue access review 2 is in place: the review walks every staff row, each kept, changed, suspended or revoked, and the outcome is recorded with the review.",
+          "The staff list is 6.1's on 15 Oct 2027: Adviser 06 suspended at access review 1, idle 90 days; Logic analyst 02 added on 4 Oct 2027 by Principal officer 01 and acknowledged by Compliance 01; Read only 01 added on 3 Mar 2027.",
+          "Last sign-in reads N days ago: the example year types no sign-in dates; the second factor reads on for every seat, since rule 15 asks it again at the guarded actions (logic plan, 8 Oct 2026).",
+          "The matrix: 4.8 by action, then 5.4 by screen, in one table for the logic panel; 4.8's Adviser and Call centre column fills both seats, and Marketing and Finance have no access to the logic panel (4.8). M03, M07 and M10 are read only here, from the admin screens' own seats (logic plan, 8 Oct 2026).",
+          "Seats: on L13 the Logic analyst sees the staff list and the matrix, not the access reviews; on L08 the register and the versions in use, not the audit rows (5.4). Compliance reads every block here.",
+          "On L02, L03, L14, L04, L09 and L07, read for Adviser, Call centre, Ops and Support means the live values and rationale only; draft rows are not sent (5.4).",
+          "The two-person rule: rule 13. Principal officer 01 is the only seat holder who publishes, so who stands in is open (LQ7).",
+          "Next: Logic analyst 02 revoked on 27 Oct 2027; access review 3 on 14 Jan 2028 and access review 4 on 12 Apr 2028 (6.2).",
+          "Later (4.9): the access review as a screen can follow; at launch a list and the audit rows serve.",
+          "Against the board: L01's three roles become seats; M14 (roles and permissions) was folded into M03 on 5 Oct 2026, and LQ9 holds where the allowlist lives."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Home",
+            "L01"
+          ],
+          [
+            "Review: the second person",
+            "L10"
+          ],
+          [
+            "Publish",
+            "L06"
+          ],
+          [
+            "Release register and audit",
+            "L08"
+          ]
+        ],
+        "states": [
+          "15 Oct 2027: access review 2 in progress, signed in as the Principal officer (drawn: L13).",
+          "A seat added and waiting for compliance's acknowledgement, as proposed (LQ42) (not drawn; Logic analyst 02 on 4 Oct 2027).",
+          "A seat suspended (drawn: Adviser 06).",
+          "A seat revoked: it stays in the list as revoked (not drawn; Logic analyst 02 from 27 Oct 2027).",
+          "Read by the Logic analyst: the staff list and the matrix, no access reviews (not drawn).",
+          "Read by Compliance: every block, with the acknowledgement to give (not drawn).",
+          "A seat change whose second-factor check fails: nothing changes; the refusal is an audit row (not drawn).",
+          "No access review in progress: the last outcome and the next one due (not drawn)."
+        ],
+        "dev": [
+          "LQ7 to be decided: who publishes when the principal officer is unreachable",
+          "LQ9 to be decided: the allowlist's home (M03 as decided on 7 Oct 2026, or the staff and seats screen), and one sign-in for both panels against L01's \"same auth as the app\"",
+          "LQ41 to be decided: session rules for staff: the idle timeout, one session at a time, the age of the second-factor check",
+          "LQ42 to be decided: whether giving someone an operating seat needs a second person (it is the one way around the two-person rule)",
+          "gap, to be decided: whether the access review on L13 also covers staff who hold only admin seats (Marketing, Finance); the example staff list names none.",
+          "Credentials and the second factor are {I14}'s; the panel's server checks the seat on every request. The staff_seats and access_reviews tables of the Tech page."
+        ]
       },
       "compliance": {
         "review": false,
@@ -9507,7 +12383,13 @@
         ]
       },
       "events": [
-        "L13_view"
+        "L13_view",
+        "L13_add_staff",
+        "L13_change_seats",
+        "L13_suspend",
+        "L13_revoke",
+        "L13_run_access_review",
+        "L13_acknowledge_operating_seat"
       ],
       "v02": {
         "status": "new",
@@ -9536,7 +12418,50 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "add staff",
+          "event": "L13_add_staff",
+          "seats": [
+            "Principal officer"
+          ]
+        },
+        {
+          "action": "change seats",
+          "event": "L13_change_seats",
+          "seats": [
+            "Principal officer"
+          ]
+        },
+        {
+          "action": "suspend",
+          "event": "L13_suspend",
+          "seats": [
+            "Principal officer"
+          ]
+        },
+        {
+          "action": "revoke",
+          "event": "L13_revoke",
+          "seats": [
+            "Principal officer"
+          ]
+        },
+        {
+          "action": "run the access review",
+          "event": "L13_run_access_review",
+          "seats": [
+            "Principal officer"
+          ]
+        },
+        {
+          "action": "acknowledge an operating seat",
+          "event": "L13_acknowledge_operating_seat",
+          "seats": [
+            "Compliance"
+          ]
+        }
+      ],
       "group": "access"
     },
     {
@@ -9550,16 +12475,394 @@
       "template": "T-table",
       "path": "both",
       "purpose": "The board's engine steps with the lane that feeds each and how a change reaches an existing plan, plus the release rows, what moves and when, the change life cycle and the surface map.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Engine map; read by every seat that opens the panel"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "Where each step is computed, and how a change reaches an existing plan"
+        ],
+        [
+          "table",
+          [
+            "Step",
+            "Computed in",
+            "Inputs",
+            "Output",
+            "Lane that feeds it",
+            "How a change in it reaches an existing plan"
+          ],
+          [
+            [
+              "Goal and horizon bucket",
+              "engine",
+              "goals (D07), boundaries (L03)",
+              "bucket per goal",
+              "cohorts: the horizon bands",
+              "quiet: at next rebuild only; never pushed, a correction apart"
+            ],
+            [
+              "Risk band",
+              "engine",
+              "RPQ score (D08a to D08h), bands (L03)",
+              "band",
+              "risk scoring: the score ranges",
+              "at the client's next questionnaire (Q04 or a retake); never by a rebuild alone"
+            ],
+            [
+              "Target mix",
+              "engine",
+              "band x bucket, grid (L03)",
+              "target mix per goal",
+              "cohorts: the cohort map and the portfolios (L14)",
+              "quiet: at next rebuild only; never pushed, a correction apart"
+            ],
+            [
+              "Instruments and weights",
+              "engine",
+              "published set (L04), constraints (L09)",
+              "instrument list per cell",
+              "funds: the sleeves and the fund statuses; the guards (L09) gate validation",
+              "new plans at once; an existing plan takes a new split when its instalments are restated (rule 8) or the release is pushed; a Hold or an Exit is always pushed"
+            ],
+            [
+              "Amounts",
+              "engine",
+              "goal SIPs and reconciliation (M4)",
+              "SIP and lumpsum per instrument",
+              "assumptions: returns, inflation, income growth, the tolerance bands",
+              "for returns, inflation and income growth, quiet: at next rebuild, effective 1 April, with the letter; for the tolerance bands, quiet: at next rebuild; a push can be proposed for both"
+            ],
+            [
+              "Lumpsum vs staggered",
+              "engine",
+              "market rule (L07)",
+              "timing text with its date",
+              "market inputs; the thresholds and buffers sit in assumptions",
+              "new plans and new deployment actions only; an existing action is never rewritten"
+            ],
+            [
+              "Preview",
+              "L05",
+              "staged versions",
+              "impact preview",
+              "every lane: a draft against the live versions",
+              "none: a preview changes no plan"
+            ],
+            [
+              "Release",
+              "the panel (L06)",
+              "a draft, reviewed and approved",
+              "a frozen lane version with its effective time",
+              "the lane itself",
+              "publish is not apply: plans built or rebuilt from its effective time take it; the rest by route (4.4)"
+            ],
+            [
+              "Pinned plan",
+              "engine, at each rebuild",
+              "the live version of every lane at the rebuild's start; risk scoring as of the last questionnaire",
+              "the lane versions stamped on the snapshot",
+              "every lane",
+              "it stays on its versions until it next rebuilds (rule 2, rule 3)"
+            ],
+            [
+              "Snapshot",
+              "engine, at each rebuild",
+              "the inputs, the lane versions, the engine version, the cohort per goal",
+              "the outputs, the actions, the diff with a cause on every line, the size",
+              "every lane; the engine version",
+              "a new one at every rebuild; append-only (rule 7)"
+            ],
+            [
+              "Rollout",
+              "the rollout job, watched on the release monitor",
+              "a pushed release and its wave plan",
+              "rebuilds in waves, messages by size, call tasks",
+              "funds (a Hold, an Exit); a correction; a push",
+              "urgent Hold and correction at once; routine Hold, 200 clients an hour from 10:00 to 18:00 IST; Exit, even daily batches over five working days (rehearsal values; LQ14)"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "What moves, and when"
+        ],
+        [
+          "table",
+          [
+            "What the client sees",
+            "Where",
+            "It depends on",
+            "When it moves",
+            "Does a release move it"
+          ],
+          [
+            [
+              "net worth today",
+              "H01, H02",
+              "holdings and prices",
+              "at each refresh (Account Aggregator on open; typed values when the client updates them)",
+              "no"
+            ],
+            [
+              "the plan: projections, what each goal needs, how far it is funded",
+              "G03 and the plan tabs, H10",
+              "the client's inputs, the assumptions",
+              "at a rebuild only",
+              "at the client's next rebuild"
+            ],
+            [
+              "the target mix per goal",
+              "G11",
+              "the risk band, the horizon, the cohort map",
+              "at a rebuild only",
+              "at the next rebuild; never pushed, a correction apart"
+            ],
+            [
+              "the funds and the amounts",
+              "G13, G14, E11",
+              "the sleeves, the amounts",
+              "at a rebuild; a Hold or an Exit by push",
+              "by route (4.4)"
+            ],
+            [
+              "what can be bought now",
+              "E03, E11",
+              "fund status",
+              "at the publish moment",
+              "yes, at once, for a Hold or an Exit"
+            ],
+            [
+              "the risk band",
+              "D09",
+              "the client's answers, the score ranges",
+              "at a questionnaire",
+              "at the client's next questionnaire"
+            ],
+            [
+              "lumpsum or staggered",
+              "G13",
+              "market inputs",
+              "when a new action is made",
+              "new plans and new actions only"
+            ],
+            [
+              "the assumption lines",
+              "R08, G01",
+              "the assumptions",
+              "at the effective time",
+              "yes"
+            ],
+            [
+              "a new reveal",
+              "R09",
+              "five answers, the assumptions",
+              "when sketched",
+              "new sketches only"
+            ],
+            [
+              "a saved reveal",
+              "X01 and the S2 nudges",
+              "what was shown",
+              "never, until sketched again",
+              "no"
+            ],
+            [
+              "sample plans",
+              "R12",
+              "fixed sample inputs, every lane",
+              "regenerated per release",
+              "yes, at the effective time"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "The change life cycle: the life of a release"
+        ],
+        [
+          "table",
+          [
+            "Stage",
+            "What happens",
+            "Who or what acts",
+            "What the client sees",
+            "What is stored"
+          ],
+          [
+            [
+              "1 published",
+              "the release is frozen; it is live from its effective time, scheduled until then",
+              "Principal officer; the clock",
+              "nothing",
+              "the release; audit rows"
+            ],
+            [
+              "2 surfaces refresh",
+              "the assumption lines and the sample plans regenerate at the effective time (rule 21)",
+              "a job",
+              "a new visitor sees the new lines",
+              "the sample plan versions"
+            ],
+            [
+              "3 new plans",
+              "every plan built from the effective time uses it",
+              "the engine",
+              "their first plan",
+              "a snapshot"
+            ],
+            [
+              "4 existing plans, quiet route",
+              "each plan takes it at its next rebuild; the letter goes by email",
+              "the client; ops for the letter",
+              "by size (4.5)",
+              "a snapshot carrying the cause"
+            ],
+            [
+              "5 existing plans, pushed route",
+              "the rollout job rebuilds the selected plans in waves",
+              "a job; the Principal officer watches L11",
+              "review or urgent",
+              "snapshots, messages, call tasks"
+            ],
+            [
+              "6 the client responds",
+              "accept refreshes the action plan; an outlook is marked seen; no answer follows the ladder",
+              "the client; the call centre",
+              "-",
+              "accepted or seen, with the time"
+            ],
+            [
+              "7 stragglers",
+              "the stale cap rebuilds a plan at the next app open",
+              "the app",
+              "as stage 4",
+              "a snapshot"
+            ],
+            [
+              "8 closed",
+              "no active plan is behind it",
+              "-",
+              "-",
+              "the release reads closed"
+            ],
+            [
+              "9 if it was wrong",
+              "pause, withdraw, correct (rule 12)",
+              "Principal officer",
+              "\"an update was withdrawn\"; a corrected update where something moves",
+              "an incident; snapshots"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "Release states: scheduled -> live -> replaced (a later release of its lane is live; plans may still be on it) -> closed (no active plan is on it); or paused, then corrected. Every transition is an audit row with who, when and why."
+        ],
+        [
+          "p",
+          "At every stage an adviser or support can open L15 and read which versions a client is on and why their last update said what it said."
+        ],
+        [
+          "h",
+          "The surface map"
+        ],
+        [
+          "table",
+          [
+            "Lane",
+            "Client screens that show a number from it",
+            "Staff views",
+            "Content and messages"
+          ],
+          [
+            [
+              "assumptions",
+              "R08 and G01 (the lines), R09 (new sketches), G03 and the plan tabs, H10, H05",
+              "L15; M03's plan versions tab",
+              "the sample plans (R12); the letter"
+            ],
+            [
+              "cohorts",
+              "G11, G13, G14, H05",
+              "L15, L03",
+              "the sample plans; the letter"
+            ],
+            [
+              "funds",
+              "G12, G13, G14, E03, E11, H05",
+              "L15, L04",
+              "the sample plans; the Hold and Exit messages; the call lines"
+            ],
+            [
+              "risk scoring",
+              "D09, G11, H05",
+              "L15",
+              "-"
+            ],
+            [
+              "market inputs",
+              "G13 (the timing text)",
+              "L15, L07",
+              "-"
+            ]
+          ]
+        ],
+        [
+          "btn",
+          "Home: the lanes, the layout and seats",
+          "L01"
+        ],
+        [
+          "link",
+          "Client plan history",
+          "L15"
+        ]
+      ],
       "spec": {
         "fields": [],
         "logic": [
           "Seats: Principal officer read; Logic analyst read; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: none",
+          "Allocations are computed in the engine, not in the panel; L05 only previews a run (the board's L00).",
+          "The board's steps are copied from its L00 as it stands on 8 Oct 2026, with two columns added: the lane that feeds each step and how a change in it reaches an existing plan (4.4). The Logic tab builder draws data only, so the copy is refreshed at the merge rather than read at build time (logic plan, 8 Oct 2026).",
+          "Four rows added: release, pinned plan, snapshot, rollout (5.3).",
+          "What moves, and when is 4.3; the change life cycle is 4.7; the surface map is 5.6, also named in the preview's surfaces panel (L05).",
+          "A new engine version is not a lane: how it is approved, previewed and named as a cause is LQ46 (L08); in the examples EN2 changes no output.",
+          "Every seat that opens the panel reads this screen; it shows no client, no draft and no rollout figure. Its links go to Home and the client plan history; its branches hold those two, Assumptions and Funds and sleeves, screens every seat that reads L00 may open (5.4).",
+          "Against the board: kept, with the two columns, the four rows, what moves, the life cycle and the surface map added."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Home",
+            "L01"
+          ],
+          [
+            "Client plan history",
+            "L15"
+          ],
+          [
+            "Assumptions",
+            "L02"
+          ],
+          [
+            "Funds and sleeves",
+            "L04"
+          ]
+        ],
+        "states": [
+          "One screen, read by every seat that opens the panel (drawn: L00)."
+        ],
+        "dev": [
+          "A reference screen: nothing on it acts.",
+          "The two added columns and four rows are this tab's; the steps and their four columns are the board's."
+        ]
       },
       "compliance": {
         "review": false,

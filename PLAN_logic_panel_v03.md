@@ -1599,7 +1599,7 @@ Done-criteria:
 - `git status --short` -> M data/logic_screens.json, M docs/logic_wireframes.html only.
 
 Metadata: depends_on [A2] . weight heavy . live_model no . coder opus . verify_class sample . kind transcription
-- [ ] A3 done
+- [x] A3 done
 
 ### 12.5 Phase A4: the client views, 6 screens
 
