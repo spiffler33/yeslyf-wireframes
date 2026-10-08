@@ -157,6 +157,11 @@ def validate_logic_screens(doc, wireframe_ids, vendor_names, templates, reasons,
             p.append("%s: %s is not a %s" % (sid, k, t.__name__))
         if bad:
             continue
+        # Lists the renderer maps over (renderer_v02.js :206, :262, :326): a string there breaks the whole tab.
+        for box, key, optional in (("spec", "forward", True), ("freeze", "owed", False), ("compliance", "checks", False)):
+            o = s.get(box) or {}
+            if not (optional and key not in o) and not strings(o.get(key)):
+                p.append("%s: %s.%s is not a list of strings" % (sid, box, key))
         events = s.get("events") or []
         if not events:
             p.append("%s: no events" % sid)
