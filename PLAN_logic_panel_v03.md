@@ -1579,7 +1579,7 @@ Done-criteria:
 - `git status --short` -> M data/logic_screens.json, M docs/logic_wireframes.html only (beyond the committed state).
 
 Metadata: depends_on [A1] . weight heavy . live_model no . coder opus . verify_class sample . kind transcription
-- [ ] A2 done
+- [x] A2 done
 
 ### 12.4 Phase A3: the records, access and reference groups, 8 screens
 
