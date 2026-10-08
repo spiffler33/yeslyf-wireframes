@@ -29,7 +29,7 @@
     "Read only: product and tech sit here; reads the live logic, drafts, previews, the release monitor and the audit rows, with client names masked; writes nothing.",
     "Marketing: no access to the logic panel; its rights on the admin screens are in part 4.",
     "Finance: no access to the logic panel; its rights on the admin screens are in part 4.",
-    "An operating seat (Logic analyst or Principal officer) takes effect when compliance acknowledges it (LQ42).",
+    "An operating seat (Logic analyst or Principal officer) takes effect on compliance's acknowledgement: proposed (LQ42).",
     "In the examples staff are labelled by seat (Principal officer 01, Logic analyst 01 and so on); no real person is drawn."
    ]
   },

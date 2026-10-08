@@ -1,14 +1,13 @@
-# Handoff - 8 Oct 2026 (run in flight: PLAN_logic_panel_v03.md under /run-plan; A0 and B0 closed)
+# Handoff - 8 Oct 2026 (run in flight: PLAN_logic_panel_v03.md under /run-plan; A0 to C1 closed)
 
-State: /run-plan of PLAN_logic_panel_v03.md is in flight (Vatsal's go, 8 Oct 2026; paused 30 minutes at his ask and
-resumed). Closed and committed, not pushed: A0 (with two review fixes), B0 (with one), B1, B3 and A1 (14 start and
-logic screens, after a review fix: Home shows each seat only what 4.8 and 5.4 allow; figures the plan does not type
-read N or N%). In flight under the orchestrator: A2 (11 change screens, drafted, writing next), A3 and A4 (drafting
-in scratch), B2 and B4 (the Access and Ops pages, built, in review). The plan holds every push for phase D.
+State: /run-plan of PLAN_logic_panel_v03.md is in flight (Vatsal's go, 8 Oct 2026; paused twice at his ask and
+resumed). Closed and committed, not pushed: A0 to A4 (39 screens, each after review fixes), B0 to B4 (the page
+builder and the Tech, Access, Walkthroughs and Ops pages), C1 (scripts/check_logic.py, the nine section 11 checks,
+9 PASS). Next: C2 (the Logic panel tab, the changelog rows, PLAN.md section 27), then the run stops before phase D,
+Vatsal's look. The plan holds every push for phase D.
 
 ## Next action
-Nobody starts a phase by hand while the run is in flight. If the session died: re-read the plan's ticks, check
-`git status --short`, and resume with `/run-plan PLAN_logic_panel_v03.md` (it schedules the unticked phases).
+If the session died: `/run-plan PLAN_logic_panel_v03.md` resumes at C2 (the only unticked phase before D).
 
 ## Read first
 1. PLAN_logic_panel_v03.md section 12 (12.0 the binding calls; the ticks show what is closed).

@@ -1801,7 +1801,7 @@ Done-criteria:
 
 Metadata: depends_on [A4, B1, B2, B3, B4] . weight heavy . live_model no . coder opus . verify_class sample .
 kind seam-design
-- [ ] C1 done
+- [x] C1 done
 
 ### 12.12 Phase C2: the board links
 
