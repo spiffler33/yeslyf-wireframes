@@ -1620,7 +1620,7 @@ Done-criteria:
 - `git status --short` -> M data/logic_screens.json, M docs/logic_wireframes.html only.
 
 Metadata: depends_on [A3] . weight heavy . live_model no . coder opus . verify_class sample . kind transcription
-- [ ] A4 done
+- [x] A4 done
 
 ### 12.6 Phase B0: the page builder and four skeleton pages
 

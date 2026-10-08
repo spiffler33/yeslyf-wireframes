@@ -12918,16 +12918,132 @@
       "template": "T-card-stack",
       "path": "both",
       "purpose": "A proposal for H05 at the outlook size: C04 on 10 Apr 2028, the work-optional goal from about 70 to about 54 percent funded, caused by the house view; nothing to do, no accept.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "The update screen, outlook; C04; 10 Apr 2028, the review on as-2"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "[slot: your outlook moved; nothing to do]"
+        ],
+        [
+          "card",
+          "[slot: what moved, with its cause]",
+          [
+            "[slot: work-optional goal, percent funded]: about 70 to about 54; [slot: cause]: house view, [slot: the assumptions review of 1 April]"
+          ]
+        ],
+        [
+          "p",
+          "[slot: why, the client reason for REL12 as it reads at outlook size]"
+        ],
+        [
+          "rows",
+          [
+            [
+              "[slot: instalments a month, unchanged]",
+              "Rs 35,000"
+            ],
+            [
+              "[slot: assumptions as of]",
+              "1 Apr 2028"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "[slot: nothing to accept; your action plan stays as it is]"
+        ],
+        [
+          "btn",
+          "[slot: done]",
+          "H01"
+        ],
+        [
+          "link",
+          "[slot: plan history]",
+          "V04"
+        ],
+        [
+          "link",
+          "[slot: ask about this]",
+          "H07"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "snapshot: size (outlook) and the cause per line, with the release where the cause is house view (REL12)",
+            "forward": "read"
+          },
+          {
+            "f": "snapshot: per goal, the funded share, against the snapshot it replaced",
+            "forward": "read"
+          },
+          {
+            "f": "snapshot: instalment per fund, unchanged",
+            "forward": "read"
+          },
+          {
+            "f": "snapshot: as_of, printed as assumptions as of <date>",
+            "forward": "read"
+          },
+          {
+            "f": "snapshot: shown_at, read_at, seen_at",
+            "forward": "system"
+          }
+        ],
         "logic": [
           "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: none",
+          "State: outlook size, the client started the rebuild: C04's review of 10 Apr 2028, built on as-2; just before, REL12 (as-2) went live on 1 Apr 2028 00:00 and the letter went out by email at 09:00 (V05).",
+          "Outlook (4.5): no instalment changes, but a goal's funded share moved past the band (5 points) or a goal changed portfolio. When the client started the rebuild, the update screen reads \"your outlook moved; nothing to do\", a cause on every line; no acceptance, marked seen; no message beyond the letter.",
+          "An outlook is in force as soon as it is written, because nothing in it needs the client's say (4.1, snapshot in force), so its diff is drawn against the snapshot it replaced, the one in force until this rebuild; whether an outlook needs the client's acceptance is LQ2.",
+          "The screen shows the stored snapshot and never recomputes a plan number when it opens (rule 19); \"assumptions as of <date>\" is printed from the snapshot (7.7).",
+          "The cause names the release where it is house view (4.5, causes): REL12, which the client reads as the assumptions review of 1 April (5.5). Copy is slots, never final wording; where the client reason slots live and who edits them is LQ10.",
+          "Written: plan_updated goes out when the review's rebuild writes this update, with its size (outlook) and its cause (house view, REL12) (7.8).",
+          "Seen: the snapshot's seen_at is set when this screen is shown, and update_seen goes out (7.8) (logic plan, 8 Oct 2026).",
+          "[slot: done] goes Home (H01); [slot: plan history] opens V04; [slot: ask about this] goes to Help (H07), as on the board's H05. Nothing executes here.",
+          "The example is C04 (6.3): Moderate, DIWM, the whole surplus of Rs 35,000 a month in one work-optional goal; about 70 and about 54 percent are typed examples from a rough run, not engine output.",
+          "Against the board: H05 today is one form, a list of changes with Accept (to G14); here the update screen has four sizes (4.5): note (not drawn), outlook (V01), review (V02), urgent (V03)."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Done",
+            "H01"
+          ],
+          [
+            "Plan history",
+            "V04"
+          ],
+          [
+            "Ask about this",
+            "H07"
+          ],
+          [
+            "The board's update screen, which this view would change",
+            "H05"
+          ]
+        ],
+        "states": [
+          "Note: nothing moved past the tolerance band; when the client started the rebuild, the update screen reads \"nothing changes for you\", with \"assumptions as of <date>\"; after a push or the stale cap, a plan history entry only (H05; not drawn).",
+          "Outlook, the client started the rebuild (drawn: V01, C04, 10 Apr 2028).",
+          "Outlook after a push or the stale cap: the same card on Home at the next open (not drawn).",
+          "Review: the instalments before and after, a cause on every line; accept (drawn: V02, C01, 12 May 2027).",
+          "Urgent: the Hold in plain words; accept (drawn: V03, C01, 22 Sep 2027).",
+          "An update still waiting when the plan next rebuilds: it is superseded, and the new diff is drawn against the snapshot in force (rule 8; H05 on the board: pending updates merge into one; not drawn).",
+          "An update withdrawn: plan history reads \"an update was withdrawn\" (drawn: V04)."
+        ],
+        "dev": [
+          "LQ2 to be decided: the tolerance band values; whether an outlook needs the client's acceptance",
+          "LQ13 to be verified: the wording that tells clients how and when a plan is updated (the fixed-fee agreement, gap G06)",
+          "Reads two snapshots, this one and the one it replaced: an outlook is in force as soon as it is written (4.1), so the diff is against the snapshot in force before it. Size, cause per line with the release, per goal the funded share, as_of, shown_at, read_at, seen_at (the snapshots table of the Tech page)."
+        ]
       },
       "compliance": {
         "review": true,
@@ -12983,16 +13099,177 @@
       "template": "T-card-stack",
       "path": "both",
       "purpose": "A proposal for H05 at the review size: C01 on 12 May 2027, the instalments before and after with two causes, the client's raise and a fourth fund in the equity core; accept.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "The update screen, review; C01; 12 May 2027, the review on fu-2"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "[slot: your plan was updated on 12 May 2027]"
+        ],
+        [
+          "card",
+          "[slot: two causes]",
+          [
+            "[slot: your numbers]: [slot: the raise]; Rs 40,000 to Rs 46,000 a month",
+            "[slot: house view]: [slot: a fourth fund in the equity core], Seed Large Cap Fund 01 (REL02)"
+          ]
+        ],
+        [
+          "table",
+          [
+            "[slot: fund]",
+            "[slot: before, Rs a month]",
+            "[slot: after, Rs a month]",
+            "[slot: cause]"
+          ],
+          [
+            [
+              "Seed Index Nifty 50 Fund 08",
+              "13,000",
+              "13,400",
+              "your numbers"
+            ],
+            [
+              "Seed Flexi Cap Fund 10",
+              "7,800",
+              "7,500",
+              "house view (REL02)"
+            ],
+            [
+              "Seed Mid Cap Fund 02",
+              "5,200",
+              "4,500",
+              "house view (REL02)"
+            ],
+            [
+              "Seed Large Cap Fund 01",
+              "-",
+              "4,500",
+              "your numbers; house view (REL02)"
+            ],
+            [
+              "Seed Short Duration Fund 06",
+              "3,600",
+              "4,100",
+              "your numbers"
+            ],
+            [
+              "Seed Gilt Fund 09",
+              "2,400",
+              "2,800",
+              "your numbers"
+            ],
+            [
+              "Seed Hybrid Fund 07",
+              "4,000",
+              "4,600",
+              "your numbers"
+            ],
+            [
+              "Seed Gold Fund 41",
+              "4,000",
+              "4,600",
+              "your numbers"
+            ],
+            [
+              "[slot: in all]",
+              "40,000",
+              "46,000",
+              "your numbers"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "[slot: accept to refresh your action plan; nothing changes until you accept]"
+        ],
+        [
+          "btn",
+          "[slot: accept and update my action plan]",
+          "G14"
+        ],
+        [
+          "link",
+          "[slot: plan history]",
+          "V04"
+        ],
+        [
+          "link",
+          "[slot: ask about this]",
+          "H07"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "snapshot: size (review) and the cause per line, with the release where the cause is house view (REL02)",
+            "forward": "read"
+          },
+          {
+            "f": "snapshot: instalment per fund, against the snapshot in force (the first plan of 8 Feb 2027)",
+            "forward": "read"
+          },
+          {
+            "f": "snapshot: actions (isin, kind, from, to, flag)",
+            "forward": "read"
+          },
+          {
+            "f": "snapshot: shown_at, read_at, accepted_at",
+            "forward": "system"
+          }
+        ],
         "logic": [
           "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: none",
+          "State: review size, the client started the rebuild: C01's review of 12 May 2027, built on fu-2; just before, REL02 (fu-2) went live on 10 May 2027 at 10:00, and at the review C01's raise takes the surplus from Rs 40,000 to Rs 46,000 a month (6.3).",
+          "Review (4.5): an instalment changes (a sleeve is restated), or the risk band changes. The update screen with a cause on every line; accept refreshes the action plan; no message when the client started the rebuild; the S11 ladder and its push are for a pushed update only (4.5; S11 on the board: plan updated by a publish).",
+          "Instalments change as a set or not at all (rule 8): when any sleeve's amount moves past the tolerance band, every sleeve is restated to its target; here every sleeve is restated (6.3).",
+          "The equity core takes fu-2's split because its instalments are restated for another reason, the raise (4.4, fund added); a fund that enters the client's split also names the funds release that changed the sleeve, so the large cap line carries REL02 as its second cause (4.5, causes).",
+          "REL02 also moved the equity core's weights, from 50/30/20 (index, flexi cap, mid cap; 6.1) to 45/25/15/15 (index, flexi cap, mid cap, large cap; 6.2): the flexi cap and mid cap lines fall while the sleeve grows, so the reweight moved them and their cause is house view (REL02); the lines the raise moved keep your numbers (4.5, causes) (logic plan, 8 Oct 2026).",
+          "Written: plan_updated goes out when the review's rebuild writes this update, with its size (review) and its causes (your numbers; house view, REL02) (7.8).",
+          "Nothing executes without the client accepting (the board's H05); [slot: accept and update my action plan] refreshes the action plan (G14) and update_accepted goes out (7.8). Until then the first plan stays the plan in force: a review update is in force when it is accepted (4.1).",
+          "Release ids in brackets are for the reviewer; the client reads the release's client reason slot (copy is slots; LQ10 holds where the slots live).",
+          "Fund names as on L04, from the seed's instrument master (Seed Gold Fund 41 is outside the seed, as L04 says); the amounts are 6.3's, typed examples from a rough run, not engine output.",
+          "Against the board: H05 today lists changes with one \"Why\" line; here every line carries its cause (rule 7)."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Accept",
+            "G14"
+          ],
+          [
+            "Plan history",
+            "V04"
+          ],
+          [
+            "Ask about this",
+            "H07"
+          ],
+          [
+            "The board's update screen, which this view would change",
+            "H05"
+          ],
+          [
+            "Home with a pushed update waiting (S11)",
+            "H01e"
+          ]
+        ],
+        "states": [
+          "Drawn here: review size, the client started the rebuild (C01's review, 12 May 2027); every size of the update screen is listed on V01.",
+          "Review size from a push: Home with an update waiting (H01e), then this screen; a push notification when it is ready, then the S11 ladder; no message when the update waits for the next app open (4.5; not drawn).",
+          "Accepted: the action plan refreshes with the new amounts (G14; not drawn).",
+          "Left without accepting: the update waits, as C12's update of 15 Dec 2027 did (6.3); no message, since the client started the rebuild (4.5); which Home state shows it is a gap, to be decided (spec.dev); not drawn."
+        ],
+        "dev": [
+          "gap, to be decided: which Home state shows a review update the client left without accepting; S11 (H01e) is for a pushed update, and a review the client started sends no message (4.5)",
+          "Reads two snapshots, the one in force (the first plan, 8 Feb 2027) and this one: instalment per fund, cause per line with the release, actions, size, shown_at, read_at, accepted_at (the snapshots table of the Tech page)."
+        ]
       },
       "compliance": {
         "review": true,
@@ -13048,16 +13325,185 @@
       "template": "T-card-stack",
       "path": "both",
       "purpose": "A proposal for H05 at the urgent size: C01 on 22 Sep 2027, the Hold in plain words, the SIP running until accepted, the new split; accept.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "The update screen, urgent; C01; 22 Sep 2027, after the Hold of 10:40 (fu-5)"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "badge",
+          "[slot: urgent]"
+        ],
+        [
+          "h",
+          "[slot: one of your funds is on hold]"
+        ],
+        [
+          "rows",
+          [
+            [
+              "[slot: on hold]",
+              "Seed Flexi Cap Fund 10, from 22 Sep 2027, 10:40"
+            ]
+          ]
+        ],
+        [
+          "card",
+          "[slot: the Hold in plain words]",
+          [
+            "[slot: no new money goes into it]",
+            "[slot: you keep the units you hold]",
+            "[slot: your SIP into it keeps running until you accept this update]"
+          ]
+        ],
+        [
+          "table",
+          [
+            "[slot: fund]",
+            "[slot: before, Rs a month]",
+            "[slot: after, Rs a month]",
+            "[slot: cause]"
+          ],
+          [
+            [
+              "Seed Index Nifty 50 Fund 08",
+              "15,800",
+              "17,900",
+              "house view (REL05)"
+            ],
+            [
+              "Seed Flexi Cap Fund 10",
+              "8,700",
+              "-",
+              "house view (REL05)"
+            ],
+            [
+              "Seed Large Cap Fund 01",
+              "5,400",
+              "12,000",
+              "house view (REL05)"
+            ],
+            [
+              "[slot: equity, in all]",
+              "29,900",
+              "29,900",
+              "-"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "[slot: your debt, hybrid and gold amounts are unchanged]"
+        ],
+        [
+          "p",
+          "[slot: accept to refresh your action plan with the new split]"
+        ],
+        [
+          "btn",
+          "[slot: accept and update my action plan]",
+          "G14"
+        ],
+        [
+          "link",
+          "[slot: plan history]",
+          "V04"
+        ],
+        [
+          "link",
+          "[slot: ask about this]",
+          "H07"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "snapshot: size (urgent) and the cause per line, with the release where the cause is house view (REL05)",
+            "forward": "read"
+          },
+          {
+            "f": "snapshot: instalment per fund, against the snapshot in force (the update of 9 Aug 2027)",
+            "forward": "read"
+          },
+          {
+            "f": "snapshot: actions (isin, kind, from, to, flag)",
+            "forward": "read"
+          },
+          {
+            "f": "instrument status: hold, from the publish moment",
+            "forward": "read"
+          },
+          {
+            "f": "snapshot: shown_at, read_at, accepted_at",
+            "forward": "system"
+          }
+        ],
         "logic": [
           "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: none",
+          "State: urgent size (C01, 22 Sep 2027); just before, Principal officer 01 placed an urgent Hold on Seed Flexi Cap Fund 10 alone at 10:40 (REL05, fu-5; L06a); C01 runs a SIP into it, so the plan was rebuilt by the push at once (4.4).",
+          "Urgent (4.5): a Hold marked urgent, or an Exit, on a fund the client runs a SIP into (Hold) or holds on verified holdings (Exit). The urgent form of H05; acceptance needed; push and WhatsApp at once, email the next morning; a call task for a DIWM client who has not accepted after three days (whether every urgent update takes one is LQ14).",
+          "Hold (4.1): keep the units, no new money. From the publish moment no new order is made for the fund: E03 and E11 no longer offer it (7.7).",
+          "The app never stops a running SIP instalment on its own: the SIP into the fund keeps running until the client accepts the update, and the update says so in plain words (rule 9).",
+          "Written: plan_updated goes out when the push writes this update, with its size (urgent) and its cause (house view, REL05); the call task for a DIWM client who has not accepted after three days goes out too, C01's on 25 Sep 2027 (7.8).",
+          "[slot: accept and update my action plan] refreshes the action plan (G14) with the new split for new money, and update_accepted goes out (7.8); whether a running SIP is redirected in one step is LQ19.",
+          "The new split: the Hold's rescale (75/25) breached L09 and the Principal officer set 60/40 (index, large cap) on L06a; C01's equity core stays Rs 29,900 a month and the rest is unchanged (6.3).",
+          "Before is the plan in force from the update of 9 Aug 2027 (6.3), as L11's biggest movers read it; 6.3 types no acceptance date for that update (logic plan, 8 Oct 2026).",
+          "C01 (6.3): a call task on 25 Sep 2027; the call and the acceptance on 27 Sep 2027 (L15; Y02).",
+          "Fund names as on L04; the amounts are 6.3's, typed examples from a rough run, not engine output.",
+          "Against the board: H05 today has no urgent form, and E03 and E11 have no fund on Hold."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Accept",
+            "G14"
+          ],
+          [
+            "Plan history",
+            "V04"
+          ],
+          [
+            "Ask about this",
+            "H07"
+          ],
+          [
+            "The board's update screen, which this view would change",
+            "H05"
+          ],
+          [
+            "Home with an update waiting",
+            "H01e"
+          ],
+          [
+            "An order screen that no longer offers the fund",
+            "E03"
+          ],
+          [
+            "SIP set-up that no longer offers the fund",
+            "E11"
+          ],
+          [
+            "An Exit for a holder without verified holdings: the locked card",
+            "G12a"
+          ]
+        ],
+        "states": [
+          "Drawn here: urgent size, a Hold on a fund the client runs a SIP into (C01, 22 Sep 2027); every size of the update screen is listed on V01.",
+          "Home with an update waiting at urgent size (H01e; not drawn).",
+          "An open action that names the fund: rebuilt in the same push and shown at the next app open as a review, with no message (4.4; Home with an update waiting, H01e; not drawn).",
+          "An order screen that no longer offers a fund on Hold (E03, E11; not drawn).",
+          "An Exit on verified holdings: the urgent update with a sell action and an exit-load flag (C01, 15 Feb 2028, REL11; not drawn).",
+          "An Exit for a holder without verified holdings: the locked card (G12a; not drawn).",
+          "Not accepted after three days: a call task for a DIWM client (C01's on 25 Sep 2027), then accepted after the call on 27 Sep 2027 (not drawn)."
+        ],
+        "dev": [
+          "LQ19 to be verified: whether a running SIP can be redirected through {I02} in one step, and how a Hold reaches a basket on {I03}",
+          "Reads two snapshots, the one in force and this one: instalment per fund, cause per line with the release, actions, size, shown_at, read_at, accepted_at; and the fund's status (the snapshots and instrument_status tables of the Tech page)."
+        ]
       },
       "compliance": {
         "review": true,
@@ -13113,16 +13559,97 @@
       "template": "T-list",
       "path": "both",
       "purpose": "A proposal for plan history: C12's entries by date with size and cause, and an update withdrawn on 16 Dec 2027.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Plan history; C12; 12 Mar 2028"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "[slot: plan history]"
+        ],
+        [
+          "table",
+          [
+            "[slot: date]",
+            "[slot: entry]",
+            "[slot: size]",
+            "[slot: cause]"
+          ],
+          [
+            [
+              "12 Mar 2028",
+              "[slot: your review: nothing changes for you]",
+              "note",
+              "-"
+            ],
+            [
+              "16 Dec 2027",
+              "[slot: an update was withdrawn]; [slot: the update shown on]: 15 Dec 2027",
+              "note",
+              "house view (REL08 withdrawn)"
+            ],
+            [
+              "15 Dec 2027",
+              "[slot: your review: your plan was updated]; [slot: not accepted]; [slot: withdrawn on]: 16 Dec 2027",
+              "review",
+              "house view (REL08)"
+            ]
+          ]
+        ],
+        [
+          "link",
+          "[slot: earlier entries]",
+          "V04"
+        ],
+        [
+          "p",
+          "[slot: each entry opens the update as it was shown]"
+        ],
+        [
+          "link",
+          "[slot: open the update of 15 Dec 2027]",
+          "V04"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "snapshots, one per entry: built_at, trigger, size, cause per line with the release, accepted_at or seen_at, withdrawn_at, superseded_by, status",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: none",
+          "State: C12's plan history on 12 Mar 2028, after the review of that day; just before, the review on co-4 gave a note (6.3).",
+          "Every rebuild writes a snapshot, and plan history lists them by date with the size, the cause and what the client did with it (rule 7). Releases and snapshots are append-only: the withdrawn update keeps its row, marked withdrawn (rule 7; the Tech page, failure cases: the old snapshot is marked withdrawn).",
+          "Withdraw (rule 12): every update built on the paused release and not yet accepted is replaced by a rebuild on the release before it, keeping the client's own changes; the client sees \"an update was withdrawn\" in plan history, and update_withdrawn goes out for each update withdrawn (7.8), C12's at 11:40 on 16 Dec 2027.",
+          "Withdrawn while open: C12 had the update open on the phone at 11:40 on 16 Dec 2027, and sees the notice on the next screen (the Tech page, failure cases).",
+          "A note the client started shows on the update screen as \"nothing changes for you\" and is listed here; a note from a push or the stale cap is a plan history entry only (4.5).",
+          "The update of 15 Dec 2027 was built on co-3, the wrong mix of MP6 (L11a), so its cause reads house view (REL08); 6.3 types its size only (logic plan, 8 Oct 2026).",
+          "The withdrawal entry is a note whose cause reads house view, naming REL08 (logic plan, 8 Oct 2026).",
+          "[slot: earlier entries] is an in-place expander: it lists the entries before 15 Dec 2027, back to the first plan.",
+          "[slot: open the update of 15 Dec 2027] is an in-place expander: the entry opens where it stands and shows the update as it was shown, its lines and causes read from its stored snapshot (rule 7); it never opens H05, which shows only the update that is waiting (rule 19) (logic plan, 8 Oct 2026). An update shown at review or urgent size also has its stored PDF (4.9).",
+          "Where a client opens plan history from is open (gap, to be decided; spec.dev): the update screens link to it (V01, V02, V03), but a note the client did not start opens no update screen (4.5), and every client whose update was withdrawn reads \"an update was withdrawn\" here (rule 12; L11a).",
+          "Against the board: no client plan history screen today; the staff view of the same timeline is L15 (M03's plan versions tab at the merge)."
         ],
         "branches": [],
-        "states": [],
-        "dev": []
+        "states": [
+          "Drawn here: C12's plan history on 12 Mar 2028, with the update of 15 Dec 2027 withdrawn on 16 Dec 2027.",
+          "One entry: a first plan only (not drawn).",
+          "A corrected update, shown only if something moves for the client (rule 12): C11's update of 17 Dec 2027 on REL09, a review with an action that undoes the cut in equity, accepted on 18 Dec 2027; whether a correction carries its own explanation is LQ23 (not drawn).",
+          "An update superseded before it was accepted (rule 8; not drawn).",
+          "Withdrawn while open: the notice on the next screen (C12, 16 Dec 2027, 11:40; not drawn)."
+        ],
+        "dev": [
+          "gap, to be decided: where plan history sits in the app and where a client opens it from; the board has no plan history screen, the update screens link to it, and a note the client did not start opens no update screen (4.5)",
+          "Reads one client's snapshots in date order: built_at, trigger, size, cause per line with the release, accepted_at or seen_at, withdrawn_at, superseded_by, status (the snapshots table of the Tech page)."
+        ]
       },
       "compliance": {
         "review": true,
@@ -13178,16 +13705,106 @@
       "template": "T-msg",
       "path": "both",
       "purpose": "The letter as an email, for REL12: what changed, why, and when this plan takes it up (the date of the next review).",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "The letter for REL12 (as-2); email; 1 Apr 2028, 09:00; C04's copy"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "[slot: subject: a change to the assumptions behind your plan]"
+        ],
+        [
+          "card",
+          "[slot: what changed]",
+          [
+            "[slot: expected return on equity, percent a year]: 11.0 to 10.0",
+            "[slot: expense inflation, percent a year]: 6.0 to 6.5",
+            "[slot: effective from]: 1 Apr 2028"
+          ]
+        ],
+        [
+          "card",
+          "[slot: why]",
+          [
+            "[slot: the client reason for REL12, the yearly review of the planning assumptions]"
+          ]
+        ],
+        [
+          "card",
+          "[slot: when your plan takes it up]",
+          [
+            "[slot: at your next review]: 10 Apr 2028",
+            "[slot: until then your plan stays as it is]"
+          ]
+        ],
+        [
+          "p",
+          "[slot: what the review shows: what moved for you, each line with its cause]"
+        ],
+        [
+          "link",
+          "[slot: open the app]",
+          "H01"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "letters: release_id, sent_at, slot, recipients",
+            "forward": "read"
+          },
+          {
+            "f": "the release's items, from and to (REL12, as-2)",
+            "forward": "read"
+          },
+          {
+            "f": "the client's next review date",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: none",
+          "State: the letter for REL12 (as-2), sent by email on 1 Apr 2028 at 09:00 to every plan it will change, one of the two timings of LQ33 (Y01 step 8); drawn as C04's copy (logic plan, 8 Oct 2026).",
+          "The letter (4.5): one email per house-view release that changes what clients see. It says what changed, why, and that the client's plan takes it up at their next review, with the date; copy slots, not copy, kept with the other message slots.",
+          "A change that fails the push test sends no notification; its explanation goes out as the letter, by email. An assumptions release reaches a client on a calendar they were told about: yearly, effective 1 April, inside their own review, with its reason (rule 20).",
+          "The date is the client's own next review: for C04, the review of 10 Apr 2028, where the plan took up as-2 as an outlook (6.3; V01) (logic plan, 8 Oct 2026).",
+          "Until its next rebuild, here that review, the plan stays pinned on the versions it was built on (rule 2); the assumption lines and the sample plans change at the effective time (rule 21).",
+          "Queued by Ops in {I14}, and L06 shows whether it is queued (4.8); sent from {I14} to a list the app supplies (7.8).",
+          "What changed is REL12's items (6.2): equity return 11.0 to 10.0, expense inflation 6.0 to 6.5; rehearsal values.",
+          "[slot: open the app] opens Home (H01); nothing is asked of the client before the review.",
+          "Against the board: no letter today; the board's emails are the state nudges of section N."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Open the app",
+            "H01"
+          ],
+          [
+            "The next review, where the plan takes it up",
+            "Q01"
+          ],
+          [
+            "What C04 saw at that review: the outlook",
+            "V01"
+          ]
+        ],
+        "states": [
+          "Drawn here: sent on the effective date to every plan it will change (C04's copy, 1 Apr 2028, 09:00).",
+          "The other timing of LQ33: sent to each client when their plan takes it up (not drawn).",
+          "A cohorts release with the letter (REL07, 8 Nov 2027; not drawn).",
+          "No letter proposed (REL08): nothing is sent (not drawn)."
+        ],
+        "dev": [
+          "LQ13 to be verified: the wording that tells clients how and when a plan is updated (the fixed-fee agreement, gap G06)",
+          "LQ33 to be decided: when the letter for a house-view release is sent: on the effective date to every plan it will change, or to each client when their plan takes it up",
+          "The letters record: release_id, queued_at, queued_by, sent_at, slot, recipients (the letters table of the Tech page)."
+        ]
       },
       "compliance": {
         "review": true,
@@ -13242,16 +13859,103 @@
       "template": "T-card",
       "path": "both",
       "purpose": "A proposal for X01: a reveal saved on 12 Oct 2027 and opened again on 20 Apr 2028, \"sketched on 12 Oct 2027\", sketch again; the nudges quote the saved numbers until then.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "The saved reveal; saved on 12 Oct 2027; opened again on 20 Apr 2028"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "[slot: your reveal is saved]"
+        ],
+        [
+          "card",
+          "[slot: your two paths]",
+          [
+            "Current path: Rs N Cr",
+            "yeslyf path: Rs N Cr"
+          ]
+        ],
+        [
+          "p",
+          "[slot: sketched on 12 Oct 2027]"
+        ],
+        [
+          "btn",
+          "[slot: unlock my plan]",
+          "P01"
+        ],
+        [
+          "btn2",
+          "[slot: sketch again]",
+          "R08"
+        ],
+        [
+          "link",
+          "[slot: see what members are saying]",
+          "H08"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "reveal snapshot: at, the two numbers at 50 and at 65, assumptions version, saved",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: none",
+          "State: a reveal saved on 12 Oct 2027 and opened again on 20 Apr 2028; just before, REL12 (as-2) went live on 1 Apr 2028: equity return 11.0 to 10.0, expense inflation 6.0 to 6.5 (6.2).",
+          "A saved reveal is a record of what was shown: it stays as it is, and the nudges keep quoting it, until the person sketches again (rule 21; 4.3).",
+          "The screen reads the stored reveal snapshot: the two numbers at 50 and at 65 and the assumptions version it was sketched on, as-1 here (7.7; the reveal_snapshots table of the Tech page).",
+          "[slot: sketch again] runs a new sketch on the five answers on file and the live assumptions, R08 then R09: new sketches only (4.3) (logic plan, 8 Oct 2026).",
+          "The two numbers are not typed by the plan: Rs N Cr.",
+          "The S2 nudges (N06 on the board) quote the saved numbers until the person sketches again (rule 21), but the S2 ladder stops at day 82 (S2's exit): on 20 Apr 2028 it has stopped for a reveal saved on 12 Oct 2027, so no nudge runs. Whether this screen says the assumptions have moved, and whether the nudges keep quoting its numbers, is LQ35.",
+          "Sample plans (R12) are surfaces of a release, regenerated at its effective time and stamped with its date (rule 21); whether they are regenerated or hand-maintained is LQ34.",
+          "[slot: unlock my plan] goes to the paywall (P01) and [slot: see what members are saying] to H08, as on the board's X01.",
+          "Against the board: X01 today shows the two paths with no date and no way to sketch again."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Unlock my plan",
+            "P01"
+          ],
+          [
+            "Sketch again",
+            "R08"
+          ],
+          [
+            "See what members are saying",
+            "H08"
+          ],
+          [
+            "The board's saved reveal, which this view would change",
+            "X01"
+          ],
+          [
+            "The S2 nudges, which quote the saved numbers",
+            "N06"
+          ],
+          [
+            "The sample plan, built on assumptions as of <date>",
+            "R12"
+          ]
+        ],
+        "states": [
+          "Drawn here: a reveal saved on 12 Oct 2027 and opened again on 20 Apr 2028, after an assumptions release (REL12).",
+          "Opened again with no assumptions release since the sketch: the same record (not drawn).",
+          "Sketched again: R08 then R09 on the live assumptions; from then the nudges quote the new sketch (rule 21; not drawn).",
+          "The sample plan with \"built on assumptions as of <date>\" (R12; not drawn)."
+        ],
+        "dev": [
+          "LQ35 to be decided: what a saved reveal shows once the assumptions behind it have moved, and whether the nudges keep quoting its numbers",
+          "Reads the reveal snapshot: person_id, at, the two numbers at 50 and at 65, assumptions version, saved (the reveal_snapshots table of the Tech page)."
+        ]
       },
       "compliance": {
         "review": true,
