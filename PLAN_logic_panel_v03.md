@@ -1733,7 +1733,7 @@ Done-criteria:
 - `git status --short` -> M data/logic_walk.json, M docs/logic_walk.html only.
 
 Metadata: depends_on [B0] . weight light . live_model no . coder opus . verify_class sample . kind transcription
-- [ ] B3 done
+- [x] B3 done
 
 ### 12.10 Phase B4: the Ops page
 

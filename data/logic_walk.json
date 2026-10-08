@@ -4,10 +4,1235 @@
  "audience": "For the Principal officer and Logic analyst seats (Harish and Somil sit there): four whole jobs walked through the screens they will work on.",
  "sections": [
   {
-   "id": "w0",
-   "heading": "Sections follow",
+   "id": "w1",
+   "heading": "What the 7 Oct 2026 call asked, and where it is answered",
+   "tables": [
+    {
+     "cols": [
+      "#",
+      "asked or said on the call",
+      "by",
+      "proposed answer",
+      "drawn on"
+     ],
+     "rows": [
+      [
+       "1",
+       "Is there access control on the panel: which roles, what access, what permissions",
+       "Spinach",
+       "ten fixed seats; two draft and review, one of them publishes; compliance and ops each have narrow writes; permissions by action (4.8) and by screen (5.4)",
+       "Access page, L13"
+      ],
+      [
+       "2",
+       "The publish button must be guarded with two factors",
+       "Vatsal",
+       "a fresh second-factor check at publish and at the other guarded actions (rule 15)",
+       "L06; LQ29"
+      ],
+      [
+       "3",
+       "A few people, or opened up later",
+       "Spinach; Vatsal: a few, always",
+       "two operating seats, compliance and read only; seats are fixed, never user-defined",
+       "Access page"
+      ],
+      [
+       "4",
+       "How many people at one time; who may change; across how many it is approved",
+       "Spinach",
+       "one open draft per lane with one author at a time; a second person reviews; only the Principal officer publishes; compliance acknowledges where rule 14 asks",
+       "L05, L10, L06"
+      ],
+      [
+       "5",
+       "Is there an approval workflow; should it be stepwise: enter, run, review, send for approval",
+       "Spinach",
+       "4.6: open, validated, previewed, in review, approved, published",
+       "L05, L10, L06"
+      ],
+      [
+       "6",
+       "How often do the values change",
+       "Spinach; Somil: an equity return expectation moved from 11 to 10 after four years; Vatsal: instruments month on month or quarter on quarter",
+       "a cadence per lane on a calendar; M2's registry (section 2 of that file) already reads \"annual review\" against returns and inflation",
+       "L12; LQ16"
+      ],
+      [
+       "7",
+       "When a value changes, what happens to a client who already has a plan",
+       "Spinach",
+       "rule 2: new plans at once; an existing plan at its next rebuild; a push only where the route says so. On the call the answer given was \"everyone, at publish\"; Vatsal, 8 Oct 2026 replaces it",
+       "L06, L11"
+      ],
+      [
+       "8",
+       "The engine holds central defaults and copies them to each client; a client's numbers hold steady between that client's reviews",
+       "Gaurav, Raafiya",
+       "the same aim as rule 2; what is open is where the values live, whether a review reads the central value or the client's own copy, and who refreshes the copy",
+       "Tech page; LQ17, LQ18, LQ32"
+      ],
+      [
+       "9",
+       "A client sees 19.2 become 18 or 22 and is shocked",
+       "Spinach",
+       "4.3: net worth today moves with prices, plan numbers move only at a rebuild; 4.5: four sizes; rule 8: instalments change as a set or not at all",
+       "client views, L05"
+      ],
+      [
+       "10",
+       "Conflicts: a change that breaches a client's portfolio against their risk profile",
+       "Spinach",
+       "guards a draft must pass (L09) and a conflicts panel in the preview (L05)",
+       "L05, L09; LQ39"
+      ],
+      [
+       "11",
+       "Automatic checks that stop a change (\"five errors, cannot proceed\"); a lakh of portfolios",
+       "Spinach",
+       "hard stops in validation; the preview is a batch job, sized on the Tech page for 1,000, 10,000 and 100,000 plans",
+       "L05, Tech page"
+      ],
+      [
+       "12",
+       "The edge case directory",
+       "Spinach; Vatsal: HoA does the heavy lifting",
+       "the awkward cases of the operations are drawn as screen variants (5.2) and walked in section 9. The maths cases come with the working version owed under W04 and W17",
+       "Walkthroughs page"
+      ],
+      [
+       "13",
+       "Are versions stored; audit log; version control",
+       "Spinach; Vatsal: yes",
+       "releases and lane versions, append-only; an audit row for every write and every refused write",
+       "L08"
+      ],
+      [
+       "14",
+       "Cohorts could be 15 to 20, each with its history, why it changed and which portfolios were affected",
+       "Spinach",
+       "cohorts as data (rule 16); one version per lane; a history per cohort read from it",
+       "L03, L14"
+      ],
+      [
+       "15",
+       "An adviser sees, per client, each change and why",
+       "Spinach",
+       "L15, which becomes M03's plan versions tab at the merge",
+       "L15"
+      ],
+      [
+       "16",
+       "Versions, history and intelligence per cohort are overkill; a simple review and approve will do",
+       "Gaurav",
+       "4.9: what must exist at launch because it cannot be added backwards, and what can follow",
+       "Tech page; LQ37"
+      ],
+      [
+       "17",
+       "Take a snapshot every time anything changes",
+       "Vatsal",
+       "rule 7",
+       "L15, Tech page"
+      ],
+      [
+       "18",
+       "Sample plans are affected; they are not a flat file",
+       "Spinach",
+       "rule 21: regenerated by a release from fixed sample inputs",
+       "L05, client views; LQ34"
+      ],
+      [
+       "19",
+       "Someone who sat with the app for six months without deciding",
+       "Spinach",
+       "proposed here (logic plan, 8 Oct 2026): a saved reveal stays as shown until sketched again (rule 21); drawn as V06. On the call the answer given was that the numbers will change and that this must be communicated",
+       "client views, L15; LQ35"
+      ],
+      [
+       "20",
+       "An in-app notice that \"we changed this\" costs trust; a client who joined a month before a change",
+       "Spinach; Vatsal: an email with an explanation, not a notification",
+       "rule 20: house-view changes arrive on a calendar, inside the client's own review, with the reason; the letter (V05)",
+       "client views, Ops page; LQ33, LQ21"
+      ],
+      [
+       "21",
+       "The hit spreads to sample plans, adviser views and other interfaces; the change life cycle must be mapped",
+       "Spinach",
+       "4.7 and the surface map (5.6)",
+       "L00, L05"
+      ],
+      [
+       "22",
+       "Access control for the app as well",
+       "Spinach",
+       "the app has one kind of user; its tier gates are entitlement, already on each screen",
+       "Access page; LQ40"
+      ]
+     ]
+    }
+   ],
    "lines": [
-    "to be filled: phase B1 to B4"
+    "In the by column, \"Spinach\" means a question from their side; a first name of the team is a cause."
+   ]
+  },
+  {
+   "id": "w2",
+   "heading": "The design in one place",
+   "lines": [
+    "4.2 Rules (Vatsal, 8 Oct 2026):",
+    "1. A change is drafted in a lane, validated, previewed, reviewed by a second person and then published as a release. The review covers the items, the route and the client reason; a change to any of them after approval returns the draft to review.",
+    "2. Publish is not apply. A release reaches every plan built or rebuilt from its effective time. A plan that already exists stays pinned until it next rebuilds. On the board today L06 recomputes every affected user at publish and Q01 runs on a publish; the side wireframes draw the alternative beside it and edit nothing on the board. {I04} is described as holding a client's numbers steady between that client's reviews (7 Oct 2026 call; LQ17, LQ18), and M2's registry has a change in an assumption set a re-calculation flag on the affected plans.",
+    "3. Only the latest live release of each lane is ever run. Older releases are records. A rebuild reads the live version of every lane at its start and never mixes two versions of one lane. Risk scoring is the one exception: a rebuild reads it as of the client's last questionnaire (rule 10), and the snapshot is stamped with that version.",
+    "4. A release is pushed to existing plans only when its route says so (4.4). The test printed on L06: would a prudent adviser phone this client about it today.",
+    "5. Stale cap: 120 days (rehearsal value). A lapsed or cancelled account's plan freezes and rebuilds on return.",
+    "6. The effective time of a release is never earlier than its publish time. Between the publish and the effective time of a scheduled release its lane takes no other publish, except an urgent Hold.",
+    "7. Every rebuild writes a snapshot: the inputs, the lane versions, the engine version, the cohort per goal, the outputs, the actions, the diff shown with a cause on every line (house view, your numbers, your confirmation, time passing, staff edit), the size, and what the client did with it. Releases and snapshots are append-only; a correction is a new record. The record is the stored output, not a promise to recompute it (on the board today L08 reads \"the register can reproduce any advice given\"; the side wireframes draw the stored output as the record).",
+    "8. Size decides what the client sees (4.5). Targets always recompute. Instalments change as a set or not at all: when any sleeve's amount moves past the tolerance band, every sleeve is restated to its target; when none does, nothing changes; a fund on Hold or Exit restates its own sleeve. An update still waiting when the plan next rebuilds is superseded, and the new diff is drawn against the snapshot in force (H05 on the board: pending updates merge into one).",
+    "9. A fund leaving the approved list goes to Hold by default. Exit is a separate decision with its own reason. A Hold that would empty a sleeve is blocked until the same draft adds a fund to it. The app never stops a running SIP instalment on its own: a client's SIP into a fund on Hold keeps running until the client accepts the update, and the update says so in plain words.",
+    "10. Risk band thresholds apply only when a client next completes or reconfirms the questionnaire.",
+    "11. Market inputs reach new plans and new deployment actions only. Every threshold carries a buffer either side.",
+    "12. Undo is three actions, not a mirror rollback. Pause: the release stops being the latest of its lane and rebuilds use the one before it. Withdraw: every update built on it and not yet accepted is replaced by a rebuild on the release before it, keeping the client's own changes; the client sees \"an update was withdrawn\" in plan history. Correct: a new release; every plan whose snapshot in force was built on the paused one (first plans, accepted updates and quiet rebuilds alike) is rebuilt on it at once, and a client is shown an update only if something moves for them.",
+    "13. Two people on every release: the author cannot review; only the Principal officer publishes. One exception: an urgent Hold by the Principal officer alone. It may carry the sleeve weights the rescale needs to pass L09 and nothing else; compliance is notified at once; a second person ratifies it within two working days. Unratified, it stays in force and shows as overdue on L08, L10 and L11 (LQ30).",
+    "14. An assumptions release and a risk scoring release need a compliance acknowledgement before publish: the first changes the assumption lines and the reveal (R08, R09, G01's copy), the second the band a client is told (D09). Compliance is notified of every other release as it is published, and of an urgent Hold at once. Most plan screens carry a compliance flag on the board, so a wider rule would gate every release; LQ45 holds the line (logic plan, 8 Oct 2026).",
+    "15. One staff identity across the admin screens and the logic panel: the sign-in decided for M03 on 7 Oct 2026. Seats are fixed, not user-defined. The greyed control is never the control; the server checks every write. A second-factor check is asked again at the guarded actions: publish, schedule, pause, withdraw, an urgent Hold, a ratification, a seat change and an export (7 Oct 2026 call for publish; the rest is logic plan, 8 Oct 2026).",
+    "16. Cohorts are data: dimensions, a cohort map, model portfolios. Funds attach to sleeves, not to grid cells. A new band, or a new dimension on a field the app already holds, is data; a dimension that needs a new question is a release of the app.",
+    "17. A scheduled review that changes nothing is recorded: \"reviewed, no change\", signed by the Principal officer.",
+    "18. A draft is built on the live version of its lane. If that version moves while the draft is open (an urgent Hold), the draft is rebased and its validation and preview run again before it can be reviewed.",
+    "19. A client screen never recomputes a plan number when it opens: it shows the client's snapshot in force, and H05 the update that is waiting. Between rebuilds only net worth today moves, with holdings and prices (4.3; Gaurav, 7 Oct 2026 call).",
+    "20. A house-view change reaches a client on a calendar they were told about (assumptions yearly, effective 1 April; the approved list quarterly), inside their own review, with its reason. A change that fails the push test sends no notification; its explanation goes out as the letter, by email (7 Oct 2026 call).",
+    "21. Sample plans (R12) and the assumption lines (R08, G01) are surfaces of a release: regenerated at its effective time and stamped with its date. A saved reveal (X01) is a record of what was shown: it stays as it is, and the nudges keep quoting it, until the person sketches again.",
+    "4.6: Draft states: open -> validated -> previewed -> in review -> approved (or sent back -> open) -> published; or discarded. The urgent path collapses steps 1 to 8 into one action by the Principal officer and adds a ratification after (rule 13).",
+    "4.7: At every stage an adviser or support can open L15 and read which versions a client is on and why their last update said what it said. Release states: scheduled -> live -> replaced (a later release of its lane is live; plans may still be on it) -> closed (no active plan is on it); or paused, then corrected. Every transition is an audit row with who, when and why.",
+    "4.4: Size is always decided per client by 4.5; the size column gives the sizes a route can produce. A push rebuilds every plan it selects; a client is messaged only at review or urgent size.",
+    "4.4: A Hold rescales the sleeve's remaining weights to 100 for new money (largest remainder, whole numbers) and runs L09 on the result before it is placed; if the rescale breaches L09 the Hold screen says so and asks for weights.",
+    "4.4: Wave plans, one per pushed release (rehearsal values; LQ14): urgent Hold and correction, everyone at once; routine Hold, 200 clients an hour from 10:00 to 18:00 IST; Exit, even daily batches over five working days.",
+    "4.5: Tolerance band: per sleeve, the larger of Rs 1,000 or 10 percent of the running amount; funded share, 5 points. Amounts are whole hundreds, and a sleeve's funds always add up to its amount (largest remainder). For a client not executing through the app the comparison is the new target per sleeve against the last target shown.",
+    "4.5: Causes: every line of a diff carries the cause that moved it (rule 7). Two kinds of line carry a second cause: a fund that enters or leaves the client's split also names the funds release that changed the sleeve; a risk band that changes at a questionnaire is tagged your confirmation and also names the risk scoring release when the same score read differently before.",
+    "4.5: Why four sizes: under the M4 reconciliation rule most plans deploy the whole surplus, so a change in returns or inflation leaves the instalments where they are and moves how far they are projected to go. In the rough run behind 6.4 an assumptions change is a note for about 33 plans in 100, an outlook for about 54 and a review for about 13. An outlook asks for nothing, so it is not chased.",
+    "4.5: The letter (7 Oct 2026 call): one email per house-view release that changes what clients see. It says what changed, why, and that the client's plan takes it up at their next review, with the date. It is copy slots, not copy; the slots live with the other message slots. LQ33 holds when it is sent."
+   ],
+   "tables": [
+    {
+     "title": "4.3 What moves, and when (logic plan, 8 Oct 2026; the answer to \"19.2 becomes 18 or 22\")",
+     "cols": [
+      "what the client sees",
+      "where",
+      "it depends on",
+      "when it moves",
+      "does a release move it"
+     ],
+     "rows": [
+      [
+       "net worth today",
+       "H01, H02",
+       "holdings and prices",
+       "at each refresh (Account Aggregator on open; typed values when the client updates them)",
+       "no"
+      ],
+      [
+       "the plan: projections, what each goal needs, how far it is funded",
+       "G03 and the plan tabs, H10",
+       "the client's inputs, the assumptions",
+       "at a rebuild only",
+       "at the client's next rebuild"
+      ],
+      [
+       "the target mix per goal",
+       "G11",
+       "the risk band, the horizon, the cohort map",
+       "at a rebuild only",
+       "at the next rebuild; never pushed, a correction apart"
+      ],
+      [
+       "the funds and the amounts",
+       "G13, G14, E11",
+       "the sleeves, the amounts",
+       "at a rebuild; a Hold or an Exit by push",
+       "by route (4.4)"
+      ],
+      [
+       "what can be bought now",
+       "E03, E11",
+       "fund status",
+       "at the publish moment",
+       "yes, at once, for a Hold or an Exit"
+      ],
+      [
+       "the risk band",
+       "D09",
+       "the client's answers, the score ranges",
+       "at a questionnaire",
+       "at the client's next questionnaire"
+      ],
+      [
+       "lumpsum or staggered",
+       "G13",
+       "market inputs",
+       "when a new action is made",
+       "new plans and new actions only"
+      ],
+      [
+       "the assumption lines",
+       "R08, G01",
+       "the assumptions",
+       "at the effective time",
+       "yes"
+      ],
+      [
+       "a new reveal",
+       "R09",
+       "five answers, the assumptions",
+       "when sketched",
+       "new sketches only"
+      ],
+      [
+       "a saved reveal",
+       "X01 and the S2 nudges",
+       "what was shown",
+       "never, until sketched again",
+       "no"
+      ],
+      [
+       "sample plans",
+       "R12",
+       "fixed sample inputs, every lane",
+       "regenerated per release",
+       "yes, at the effective time"
+      ]
+     ]
+    },
+    {
+     "title": "4.6 Approval workflow: the life of a draft (logic plan, 8 Oct 2026; the stepwise flow asked for on the call)",
+     "cols": [
+      "step",
+      "who",
+      "screen",
+      "what must be true to move on",
+      "what is recorded"
+     ],
+     "rows": [
+      [
+       "1 open a draft",
+       "Logic analyst or Principal officer",
+       "the lane's own screen",
+       "the lane has no other open draft",
+       "the draft, its author, the live version it is based on"
+      ],
+      [
+       "2 edit the items, each with a rationale",
+       "the author",
+       "the lane's own screen",
+       "every value passes its hard limit at the field",
+       "each item: row, from, to, rationale"
+      ],
+      [
+       "3 validate",
+       "the author",
+       "L05",
+       "no hard failure; every flag carries a typed reason",
+       "the list of checks and results"
+      ],
+      [
+       "4 preview",
+       "the author",
+       "L05",
+       "the preview is newer than the last edit; no hard conflict",
+       "the preview record"
+      ],
+      [
+       "5 propose the route, the client reason and the letter",
+       "the author",
+       "L05",
+       "the route is one that 4.4 allows for this kind of change",
+       "on the draft"
+      ],
+      [
+       "6 submit",
+       "the author",
+       "L05",
+       "steps 3 to 5 hold",
+       "state: in review"
+      ],
+      [
+       "7 review",
+       "the second person",
+       "L10",
+       "the reviewer is not the author",
+       "approved, or sent back with a comment; the preview panels the reviewer opened (LQ22)"
+      ],
+      [
+       "8 acknowledge",
+       "Compliance",
+       "L10",
+       "asked for an assumptions or a risk scoring release (rule 14)",
+       "who and when"
+      ],
+      [
+       "9 publish or schedule",
+       "Principal officer",
+       "L06",
+       "approved; acknowledged where asked; the second-factor check passes",
+       "the release and its signed note"
+      ]
+     ]
+    },
+    {
+     "title": "4.7 Change life cycle: the life of a release (logic plan, 8 Oct 2026; the mapping asked for on the call)",
+     "cols": [
+      "stage",
+      "what happens",
+      "who or what acts",
+      "what the client sees",
+      "what is stored"
+     ],
+     "rows": [
+      [
+       "1 published",
+       "the release is frozen; it is live from its effective time, scheduled until then",
+       "Principal officer; the clock",
+       "nothing",
+       "the release; audit rows"
+      ],
+      [
+       "2 surfaces refresh",
+       "the assumption lines and the sample plans regenerate at the effective time (rule 21)",
+       "a job",
+       "a new visitor sees the new lines",
+       "the sample plan versions"
+      ],
+      [
+       "3 new plans",
+       "every plan built from the effective time uses it",
+       "the engine",
+       "their first plan",
+       "a snapshot"
+      ],
+      [
+       "4 existing plans, quiet route",
+       "each plan takes it at its next rebuild; the letter goes by email",
+       "the client; ops for the letter",
+       "by size (4.5)",
+       "a snapshot carrying the cause"
+      ],
+      [
+       "5 existing plans, pushed route",
+       "the rollout job rebuilds the selected plans in waves",
+       "a job; the Principal officer watches L11",
+       "review or urgent",
+       "snapshots, messages, call tasks"
+      ],
+      [
+       "6 the client responds",
+       "accept refreshes the action plan; an outlook is marked seen; no answer follows the ladder",
+       "the client; the call centre",
+       "-",
+       "accepted or seen, with the time"
+      ],
+      [
+       "7 stragglers",
+       "the stale cap rebuilds a plan at the next app open",
+       "the app",
+       "as stage 4",
+       "a snapshot"
+      ],
+      [
+       "8 closed",
+       "no active plan is behind it",
+       "-",
+       "-",
+       "the release reads closed"
+      ],
+      [
+       "9 if it was wrong",
+       "pause, withdraw, correct (rule 12)",
+       "Principal officer",
+       "\"an update was withdrawn\"; a corrected update where something moves",
+       "an incident; snapshots"
+      ]
+     ]
+    },
+    {
+     "title": "4.4 Routes (Vatsal, 8 Oct 2026; the defaults are proposed)",
+     "cols": [
+      "change",
+      "lane",
+      "default route for plans that already exist",
+      "sizes it can produce",
+      "push can be proposed"
+     ],
+     "rows": [
+      [
+       "planning assumptions: returns, inflation, income growth, life expectancy",
+       "assumptions",
+       "quiet: at next rebuild; reviewed yearly, effective 1 April beside the April SIP step-up on G14; the letter",
+       "note, outlook, review",
+       "yes"
+      ],
+      [
+       "rules and thresholds in L02: emergency months, EMI ceiling, floater rule, glide path, the tolerance bands, the stale cap",
+       "assumptions",
+       "quiet: at next rebuild",
+       "note, outlook, review",
+       "yes"
+      ],
+      [
+       "cohort map, a dimension's bands, a portfolio's mix",
+       "cohorts",
+       "quiet: at next rebuild only; the letter where the author proposes one",
+       "note, outlook, review",
+       "no; a correction apart"
+      ],
+      [
+       "risk band thresholds (the score ranges of the risk band dimension)",
+       "risk scoring",
+       "at the client's next questionnaire (Q04 or a retake); never by a rebuild alone",
+       "review, on the client's own confirmation",
+       "no"
+      ],
+      [
+       "fund added, sleeve weights changed",
+       "funds",
+       "new plans at once; an existing plan takes the new split only when its instalments are restated for another reason (rule 8). Pushed, it restates the sleeve for every plan using it",
+       "note; review when pushed",
+       "yes"
+      ],
+      [
+       "fund to Hold, routine",
+       "funds",
+       "no new order from the publish moment; pushed in waves to clients running a SIP into it; a client with an open action naming it is rebuilt in the same waves and shown the update at the next app open, with no message",
+       "review; note for other holders",
+       "always pushed"
+      ],
+      [
+       "fund to Hold, urgent",
+       "funds",
+       "no new order from the publish moment; pushed at once to clients running a SIP into it; open actions as above",
+       "urgent for SIP runners; review for an open action; note for other holders",
+       "always pushed"
+      ],
+      [
+       "fund to Exit",
+       "funds",
+       "pushed over five working days to holders with verified holdings; a holder without verified holdings sees the locked card (G12a)",
+       "urgent",
+       "always pushed"
+      ],
+      [
+       "unknown ISIN classified",
+       "funds",
+       "quiet: at the next rebuild of the clients holding it",
+       "note, review",
+       "no"
+      ],
+      [
+       "a correction (rule 12)",
+       "any",
+       "every plan whose snapshot in force was built on the paused release, at once; at next rebuild for the rest",
+       "note, outlook, review",
+       "always pushed"
+      ],
+      [
+       "market inputs",
+       "market inputs",
+       "new plans and new deployment actions only; an existing action is never rewritten",
+       "none",
+       "no"
+      ],
+      [
+       "guards and constraints (L09)",
+       "the lane they guard",
+       "none; they gate validation",
+       "none",
+       "no"
+      ],
+      [
+       "configuration on M10 (prices, flags)",
+       "not a lane",
+       "its own effective dates; no rebuild",
+       "none",
+       "no"
+      ],
+      [
+       "a new engine version (the maths)",
+       "not a lane",
+       "to be decided: the engine version's route (LQ46); in the examples EN2 changes no output",
+       "-",
+       "-"
+      ]
+     ]
+    },
+    {
+     "title": "4.5 Sizes and what the client is told (Vatsal, 8 Oct 2026; the thresholds are rehearsal values)",
+     "cols": [
+      "size",
+      "when",
+      "the client started the rebuild (Q01, Q05, Q06, Q04, a sharpen)",
+      "the rebuild came from a push or the stale cap",
+      "acceptance",
+      "messages"
+     ],
+     "rows": [
+      [
+       "note",
+       "nothing moved past the tolerance band",
+       "the update screen reads \"nothing changes for you\", with \"assumptions as of <date>\"",
+       "a plan history entry only",
+       "none",
+       "none"
+      ],
+      [
+       "outlook",
+       "no instalment changes, but a goal's funded share moved past the band or a goal changed portfolio",
+       "the update screen reads \"your outlook moved; nothing to do\", a cause on every line",
+       "the same card on Home at the next open",
+       "none; marked seen",
+       "none beyond the letter"
+      ],
+      [
+       "review",
+       "an instalment changes (a sleeve is restated), or the risk band changes",
+       "the update screen (H05) with a cause on every line; accept refreshes the action plan",
+       "Home for S11 (H01e), then H05",
+       "needed",
+       "for a pushed update: a push notification when it is ready, then the S11 ladder as on the board; none when the client started the rebuild or the update waits for the next app open"
+      ],
+      [
+       "urgent",
+       "a Hold marked urgent, or an Exit, on a fund the client runs a SIP into (Hold) or holds on verified holdings (Exit)",
+       "not applicable",
+       "the urgent form of H05; no new order for the fund from the publish moment (E03, E11)",
+       "needed",
+       "push and WhatsApp at once, email the next morning; a call task for a DIWM client who has not accepted after three days"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "w3",
+   "heading": "Y01. The annual assumptions (REL12)",
+   "tables": [
+    {
+     "cols": [
+      "n",
+      "at",
+      "seat",
+      "screen",
+      "action and result"
+     ],
+     "rows": [
+      [
+       "1",
+       "1 Mar 2028",
+       "-",
+       [
+        "L12",
+        "logic_wireframes.html#L12"
+       ],
+       "the annual review opens a month ahead of 1 April"
+      ],
+      [
+       "2",
+       "10 Mar 2028",
+       "Logic analyst",
+       [
+        "L02a",
+        "logic_wireframes.html#L02a"
+       ],
+       "draft: equity return 11.0 to 10.0, expense inflation 6.0 to 6.5; 65 typed for inflation by a slip is refused at the field; each real move needs a typed reason"
+      ],
+      [
+       "3",
+       "10 Mar 2028",
+       "Logic analyst",
+       [
+        "L05",
+        "logic_wireframes.html#L05"
+       ],
+       "validation passes; preview: per 100 plans about 33 note, 54 outlook, 13 review; the funded share is what moves; surfaces: the assumption lines, new sketches, the sample plans; the quiet route against a push on day one"
+      ],
+      [
+       "4",
+       "10 Mar 2028",
+       "Logic analyst",
+       [
+        "L05",
+        "logic_wireframes.html#L05"
+       ],
+       "proposes the quiet route, effective 1 Apr 2028 00:00, with the letter; submits"
+      ],
+      [
+       "5",
+       "14 Mar 2028",
+       "Compliance",
+       [
+        "L10",
+        "logic_wireframes.html#L10"
+       ],
+       "acknowledges"
+      ],
+      [
+       "6",
+       "17 Mar 2028",
+       "Principal officer",
+       [
+        "L10",
+        "logic_wireframes.html#L10"
+       ],
+       "opens every preview panel; approves"
+      ],
+      [
+       "7",
+       "20 Mar 2028",
+       "Principal officer",
+       [
+        "L06",
+        "logic_wireframes.html#L06"
+       ],
+       "publishes with the effective time 1 Apr 2028 00:00; passes the second-factor check; the release shows as scheduled (L06b)"
+      ],
+      [
+       "8",
+       "1 Apr 2028",
+       "-",
+       [
+        "L08",
+        "logic_wireframes.html#L08"
+       ],
+       "00:00: the system: as-2 goes live; the assumption lines and the sample plans regenerate; the letter, queued by ops, goes out at 09:00 (V05)"
+      ],
+      [
+       "9",
+       "10 Apr 2028",
+       "-",
+       [
+        "V01",
+        "logic_wireframes.html#V01"
+       ],
+       "client C04: C04's review: the outlook moved; nothing to accept"
+      ],
+      [
+       "10",
+       "12 Apr 2028",
+       "Adviser",
+       [
+        "L15",
+        "logic_wireframes.html#L15"
+       ],
+       "C04 calls; the adviser reads the versions C04 is on and the cause on the last update"
+      ],
+      [
+       "11",
+       "28 Apr 2028",
+       "Principal officer",
+       [
+        "L11b",
+        "logic_wireframes.html#L11b"
+       ],
+       "four weeks live: about one existing plan in six has rebuilt on it; most of the 90 days is still to run"
+      ]
+     ]
+    }
+   ],
+   "lines": [
+    "What the client saw:",
+    "- From 1 Apr 2028 00:00, the assumption lines, new sketches and the sample plans on as-2.",
+    "- The letter by email at 09:00 on 1 Apr 2028 (V05).",
+    "- C04 at the review of 10 Apr 2028 (V01): an outlook; the work-optional goal from about 70 to about 54 percent funded; instalments unchanged at Rs 35,000; the cause house view (REL12); nothing to accept.",
+    "- Each plan at its own review: 330 a note, 540 an outlook, 130 a review (per 1,000 plan holders, illustrative).",
+    "What ops saw:",
+    "- The letter, queued by ops, out at 09:00 on 1 Apr 2028.",
+    "- The quiet route, per week: about 60 plans rebuilt, 8 review-size updates and 33 outlooks, against 130 review-size updates and 540 outlooks at once had it been pushed on day one (per 1,000 plan holders, illustrative).",
+    "- C04's call on 12 Apr 2028, answered by the adviser from L15.",
+    "What was stored:",
+    "- REL12 (as-2): equity return 11.0 to 10.0 and expense inflation 6.0 to 6.5, each with its typed reason; drafted by Logic analyst 01, acknowledged by Compliance 01, approved and published by Principal officer 01; quiet, with the letter; effective 1 Apr 2028 00:00.",
+    "- The approval, with the preview panels the reviewer opened: all of them.",
+    "- The sample plan versions regenerated on 1 Apr 2028.",
+    "- C04's snapshot of 10 Apr 2028: built on as-2; an outlook; the cause house view (REL12)."
+   ]
+  },
+  {
+   "id": "w4",
+   "heading": "Y02. An urgent Hold (REL05, then REL06)",
+   "tables": [
+    {
+     "cols": [
+      "n",
+      "at",
+      "seat",
+      "screen",
+      "action and result"
+     ],
+     "rows": [
+      [
+       "1",
+       "22 Sep 2027",
+       "Logic analyst",
+       [
+        "L04a",
+        "logic_wireframes.html#L04a"
+       ],
+       "09:50: opens the fund's exposure: advised into it, running SIPs, open actions, holders"
+      ],
+      [
+       "2",
+       "22 Sep 2027",
+       "Logic analyst",
+       [
+        "L04a",
+        "logic_wireframes.html#L04a"
+       ],
+       "10:05: requests an urgent Hold; the Principal officer is notified (LQ25)"
+      ],
+      [
+       "3",
+       "22 Sep 2027",
+       "Principal officer",
+       [
+        "L06a",
+        "logic_wireframes.html#L06a"
+       ],
+       "10:40: places the Hold alone; the rescale to 75 / 25 breaches L09 and the screen asks for weights; sets 60 / 40; picks the client reason slot; passes the second-factor check; compliance and the Logic analyst are notified"
+      ],
+      [
+       "4",
+       "22 Sep 2027",
+       "-",
+       [
+        "V03",
+        "logic_wireframes.html#V03"
+       ],
+       "10:40: the app: no new order for the fund from this moment; a running SIP keeps running until its client accepts"
+      ],
+      [
+       "5a",
+       "22 Sep 2027",
+       "Principal officer",
+       [
+        "L11",
+        "logic_wireframes.html#L11"
+       ],
+       "10:45: urgent updates go at once to every client running a SIP into it; one rebuild fails at 10:46 and succeeds on retry at 10:52"
+      ],
+      [
+       "5b",
+       "22 Sep 2027",
+       "Ops",
+       [
+        "L11",
+        "logic_wireframes.html#L11"
+       ],
+       "10:45: watches the messages for those updates go out: push and WhatsApp now, email next morning"
+      ],
+      [
+       "6",
+       "24 Sep 2027",
+       "-",
+       [
+        [
+         "L10a",
+         "logic_wireframes.html#L10a"
+        ],
+        [
+         "L01a",
+         "logic_wireframes.html#L01a"
+        ]
+       ],
+       "18:00: two working days pass with no ratification: the Hold stays in force and shows as overdue (LQ30)"
+      ],
+      [
+       "7",
+       "25 Sep 2027",
+       "-",
+       [
+        "L11",
+        "logic_wireframes.html#L11"
+       ],
+       "the system: call tasks are created for DIWM clients who have not accepted after three days; C01 is one"
+      ],
+      [
+       "8",
+       "27 Sep 2027",
+       "Logic analyst",
+       [
+        "L10a",
+        "logic_wireframes.html#L10a"
+       ],
+       "09:20: ratifies the Hold, one working day late"
+      ],
+      [
+       "9",
+       "27 Sep 2027",
+       "Adviser",
+       [
+        "L15",
+        "logic_wireframes.html#L15"
+       ],
+       "the call; C01 accepts"
+      ],
+      [
+       "10a",
+       "27 Sep 2027",
+       "Logic analyst",
+       [
+        [
+         "L04",
+         "logic_wireframes.html#L04"
+        ],
+        [
+         "L05",
+         "logic_wireframes.html#L05"
+        ]
+       ],
+       "REL06 by the two-person path: drafts it, proposes the quiet route and submits"
+      ],
+      [
+       "10b",
+       "27 Sep 2027",
+       "Principal officer",
+       [
+        [
+         "L10",
+         "logic_wireframes.html#L10"
+        ],
+        [
+         "L06",
+         "logic_wireframes.html#L06"
+        ]
+       ],
+       "approves and publishes REL06: a second flexi cap fund joins at 50 / 25 / 25; quiet route, so a client who accepted 60 / 40 last week is not asked to change again"
+      ]
+     ]
+    }
+   ],
+   "lines": [
+    "What the client saw:",
+    "- From 10:40 on 22 Sep 2027, no new order for the flexi cap fund; a running SIP keeps running until its client accepts (V03).",
+    "- The 500 running a SIP into it: the urgent update at once, push and WhatsApp, email the next morning; the 270 with an open action naming it: the update at the next app open; the 20 holding units only: a note (per 1,000 plan holders, illustrative).",
+    "- C01: the urgent update; instalments, Rs a month: equity core 29,900 (index 17,900, large cap 12,000), the rest unchanged; the call and the acceptance on 27 Sep 2027.",
+    "- REL06 on the quiet route: a client who had accepted 60 / 40 was not asked to change again; C01 took flexi cap B at the review of 8 Nov 2027: equity core 32,400 (index 16,200, large cap 8,100, flexi cap B 8,100).",
+    "What ops saw:",
+    "- 500 urgent updates at once; 300 accepted by day 2 and 425 by day 7 (per 1,000 plan holders, illustrative).",
+    "- 105 call tasks on day 3 under the three-day rule, against 300 if every DIWM client were called (per 1,000 plan holders, illustrative); C01's on 25 Sep 2027.",
+    "- 40 tickets after the Hold (per 1,000 plan holders, illustrative).",
+    "- One rebuild failed at 10:46 and succeeded on retry at 10:52.",
+    "What was stored:",
+    "- REL05 (fu-5): the urgent Hold on the flexi cap fund, placed alone by Principal officer 01, effective 10:40 on 22 Sep 2027; the rescale to 75 / 25 breached L09 and the weights were set to 60 / 40 (index, large cap); ratification due 24 Sep, given on 27 Sep by Logic analyst 01.",
+    "- REL06 (fu-6): a second flexi cap fund at 50 / 25 / 25 (index, large cap, flexi cap B), effective 15:00 on 27 Sep 2027; drafted by Logic analyst 01, approved and published by Principal officer 01; quiet.",
+    "- C01's snapshot of 22 Sep 2027 on fu-5: urgent, house view; accepted on 27 Sep 2027.",
+    "- The messages and the call tasks of the rollout."
+   ]
+  },
+  {
+   "id": "w5",
+   "heading": "Y03. A new cohort (REL07), and a dimension that is not added",
+   "tables": [
+    {
+     "cols": [
+      "n",
+      "at",
+      "seat",
+      "screen",
+      "action and result"
+     ],
+     "rows": [
+      [
+       "1",
+       "1 Nov 2027",
+       "Principal officer",
+       [
+        [
+         "L12",
+         "logic_wireframes.html#L12"
+        ],
+        [
+         "L03a",
+         "logic_wireframes.html#L03a"
+        ]
+       ],
+       "the yearly cohort review falls due; opens a draft; adds the band \"Very long: over 7\" to the horizon dimension (data, no app release)"
+      ],
+      [
+       "2",
+       "1 Nov 2027",
+       "Principal officer",
+       [
+        "L14",
+        "logic_wireframes.html#L14"
+       ],
+       "adds MP8 and MP9 with their rationale"
+      ],
+      [
+       "3",
+       "1 Nov 2027",
+       "Principal officer",
+       [
+        "L03a",
+        "logic_wireframes.html#L03a"
+       ],
+       "adds two map rows: Moderate x Very long to MP8 and, by a slip, Conservative x Very long to MP8 as well; forgets the Aggressive row"
+      ],
+      [
+       "4",
+       "1 Nov 2027",
+       "Principal officer",
+       [
+        "L05a",
+        "logic_wireframes.html#L05a"
+       ],
+       "validation fails twice: coverage (Aggressive x Very long has no row) and a guard (MP8 holds 75 percent equity; the Conservative ceiling is 30); adds the row to MP9 and repoints Conservative x Very long at MP5; passes"
+      ],
+      [
+       "5",
+       "2 Nov 2027",
+       "Principal officer",
+       [
+        "L05",
+        "logic_wireframes.html#L05"
+       ],
+       "preview: the migration (MP6 to MP8, MP7 to MP9); per 100 plans about 66 review, 6 outlook, 28 note, each at its own review; no sells; proposes the quiet route with the letter"
+      ],
+      [
+       "6",
+       "5 Nov 2027",
+       "Logic analyst",
+       [
+        "L10",
+        "logic_wireframes.html#L10"
+       ],
+       "reviews, because the author is the Principal officer; approves"
+      ],
+      [
+       "7",
+       "8 Nov 2027",
+       "Principal officer",
+       [
+        "L06",
+        "logic_wireframes.html#L06"
+       ],
+       "09:45: publishes, effective 10:00; push is not offered for a cohort change"
+      ],
+      [
+       "8",
+       "8 Nov 2027",
+       "-",
+       [
+        "L15",
+        "logic_wireframes.html#L15"
+       ],
+       "20:00: client C01: C01's review that evening: the work-optional goal moves to MP8; a review-size update"
+      ],
+      [
+       "9",
+       "21 Feb 2028",
+       "Logic analyst",
+       [
+        "L03b",
+        "logic_wireframes.html#L03b"
+       ],
+       "a draft that adds a dimension, goal priority (must have, the rest): twenty-four cohorts; coverage passes on the \"any\" rows; the preview marks about five thin cohorts"
+      ],
+      [
+       "10",
+       "25 Feb 2028",
+       "Logic analyst",
+       [
+        "L05",
+        "logic_wireframes.html#L05"
+       ],
+       "discards the draft with a reason: it splits the book too thin"
+      ]
+     ]
+    }
+   ],
+   "lines": [
+    "What the client saw:",
+    "- No push: each plan takes REL07 at its own review; REL07 goes with the letter.",
+    "- 660 a review, 60 an outlook, 280 a note, each at its own review; no sells (per 1,000 plan holders, illustrative).",
+    "- C01 on the evening of 8 Nov 2027: a review; the work-optional goal moves to MP8, with REL06's new fund in the split; instalments, Rs a month: equity core 32,400 (index 16,200, large cap 8,100, flexi cap B 8,100); debt 5,600 (3,400, 2,200); hybrid 3,400; gold 4,600.",
+    "- C04 at the review of 11 Jan 2028: the goal moves to MP8 (house view, REL07).",
+    "- The goal-priority draft reached no client: it was discarded.",
+    "What ops saw:",
+    "- The letter for REL07 to queue.",
+    "- No push and no waves: the updates come at each client's own review.",
+    "What was stored:",
+    "- REL07 (co-2): the band \"Very long: over 7\" on the horizon dimension (Long becomes 3 to 7); MP8 0/10/5/10/75/0 and MP9 0/0/0/10/90/0 with their rationale; three map rows, Conservative x Very long pointing at MP5; drafted and published by Principal officer 01, reviewed by Logic analyst 01; effective 10:00 on 8 Nov 2027.",
+    "- The draft's checks: two fails on 1 Nov 2027 (coverage, and the guard on the Conservative ceiling), then a pass.",
+    "- C01's snapshot of 8 Nov 2027 on co-2 and fu-6: a review; house view (REL07), and REL06 for the new fund in the split.",
+    "- The goal-priority draft, previewed and discarded with its reason (21 to 25 Feb 2028)."
+   ]
+  },
+  {
+   "id": "w6",
+   "heading": "Y04. A wrong number gets through (REL08, then REL09)",
+   "tables": [
+    {
+     "cols": [
+      "n",
+      "at",
+      "seat",
+      "screen",
+      "action and result"
+     ],
+     "rows": [
+      [
+       "1",
+       "29 Nov 2027",
+       "Logic analyst",
+       [
+        "L14a",
+        "logic_wireframes.html#L14a"
+       ],
+       "draft: MP6 keyed 0/24/10/10/56/0 where 0/15/10/8/67/0 was meant; the sum is 100"
+      ],
+      [
+       "2",
+       "29 Nov 2027",
+       "Logic analyst",
+       [
+        "L05",
+        "logic_wireframes.html#L05"
+       ],
+       "validation passes: the sum holds and 56 is under the Moderate ceiling; the soft limit flags a 9-point move on two classes and a reason is typed; the reference persona row shows equity down 9 points"
+      ],
+      [
+       "3",
+       "30 Nov 2027",
+       "Principal officer",
+       [
+        "L10",
+        "logic_wireframes.html#L10"
+       ],
+       "approves; the screen records that the reference personas panel was not opened"
+      ],
+      [
+       "4",
+       "30 Nov 2027",
+       "Principal officer",
+       [
+        "L06",
+        "logic_wireframes.html#L06"
+       ],
+       "16:00: publishes; quiet route"
+      ],
+      [
+       "5",
+       "6 Dec 2027",
+       "-",
+       [
+        "L15b",
+        "logic_wireframes.html#L15b"
+       ],
+       "client C11: C11's review rebuilds on it and is accepted; the SIPs are changed on 8 Dec"
+      ],
+      [
+       "6",
+       "15 Dec 2027",
+       "-",
+       [
+        "L15b",
+        "logic_wireframes.html#L15b"
+       ],
+       "client C12: C12's review rebuilds on it; not accepted"
+      ],
+      [
+       "7",
+       "16 Dec 2027",
+       "Logic analyst",
+       [
+        "L11a",
+        "logic_wireframes.html#L11a"
+       ],
+       "10:50: Support passes on C11's ticket, which asks why the equity share fell; the Logic analyst opens the biggest movers"
+      ],
+      [
+       "8",
+       "16 Dec 2027",
+       "Principal officer",
+       [
+        "L11a",
+        "logic_wireframes.html#L11a"
+       ],
+       "11:05: pause: rebuilds go back to co-2"
+      ],
+      [
+       "9",
+       "16 Dec 2027",
+       "Principal officer",
+       [
+        "L11a",
+        "logic_wireframes.html#L11a"
+       ],
+       "11:40: withdraw: every update built on co-3 and not yet accepted is replaced by a rebuild on co-2; C12, with the update open on the phone, sees \"an update was withdrawn\" (V04)"
+      ],
+      [
+       "10a",
+       "17 Dec 2027",
+       "Logic analyst",
+       [
+        [
+         "L14a",
+         "logic_wireframes.html#L14a"
+        ],
+        [
+         "L05",
+         "logic_wireframes.html#L05"
+        ]
+       ],
+       "REL09, the correction, by the two-person path: drafts it and submits"
+      ],
+      [
+       "10b",
+       "17 Dec 2027",
+       "Principal officer",
+       [
+        [
+         "L10",
+         "logic_wireframes.html#L10"
+        ],
+        [
+         "L06",
+         "logic_wireframes.html#L06"
+        ]
+       ],
+       "12:00: approves and publishes REL09; every plan built on co-3 is rebuilt at once; C11 gets an action that undoes the cut in equity"
+      ],
+      [
+       "11",
+       "17 Dec 2027",
+       "Compliance",
+       [
+        "L08a",
+        "logic_wireframes.html#L08a"
+       ],
+       "the incident entry: what happened, who was reached, what was done (LQ23)"
+      ]
+     ]
+    }
+   ],
+   "lines": [
+    "What the client saw:",
+    "- C11: the wrong mix at the review of 6 Dec 2027, equity from 65 to 56 percent of the mix; accepted, the SIPs changed on 8 Dec; on 17 Dec a review with an action that undoes the cut in equity, accepted on 18 Dec.",
+    "- C12: the review of 15 Dec 2027, not accepted; at 11:40 on 16 Dec, with the update open on the phone, the plan rebuilt on co-2 as a note and plan history reading \"an update was withdrawn\" (V04); a note at the review of 12 Mar 2028.",
+    "- No letter: none was proposed for REL08; the correction's own explanation is open (LQ23).",
+    "- About 14 plans were built on co-3 in its 16 days, plus the first plans built in those days (per 1,000 plan holders, illustrative).",
+    "What ops saw:",
+    "- C11's ticket at 10:50 on 16 Dec 2027, asking why the equity share fell; Support passed it on.",
+    "- The pause at 11:05 and the withdraw at 11:40 the same day; at 12:00 on 17 Dec the correction, with every plan built on co-3 rebuilt at once.",
+    "What was stored:",
+    "- REL08 (co-3): MP6 at 0/24/10/10/56/0 with the typed reason for the flagged move; drafted by Logic analyst 01, approved and published by Principal officer 01; effective 16:00 on 30 Nov 2027; the approval records that the reference personas panel was not opened.",
+    "- REL08's frozen record keeps its pause (11:05) and withdrawal (11:40) of 16 Dec 2027 and the release that corrected it (L08a).",
+    "- REL09 (co-4): the correction, MP6 at 0/15/10/8/67/0; drafted by Logic analyst 01, approved and published by Principal officer 01; effective 12:00 on 17 Dec 2027.",
+    "- The snapshots: C11 on co-3 (6 Dec, accepted) and on co-4 (17 Dec, accepted 18 Dec); C12 on co-3 (15 Dec, not accepted) and on co-2 (16 Dec, a note).",
+    "- The incident entry of 17 Dec 2027 by Compliance 01: what happened, who was reached, what was done (LQ23).",
+    "What could have stopped it, each line an open item:",
+    "- to be decided: whether approval is blocked until the reviewer has opened every preview panel (LQ22): the reference personas panel showed equity down 9 points and was not opened.",
+    "- to be decided: a hard limit on a single-class move (LQ22): the soft limit flagged the 9-point move on two classes and a typed reason let it through."
+   ],
+   "open_items": [
+    "LQ22"
    ]
   }
  ]
