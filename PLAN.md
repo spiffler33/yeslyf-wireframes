@@ -695,3 +695,11 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   (sent on WhatsApp, 5 Oct 2026); the brief sent to Spinach, then tracker W12 reads delivered. Known limits: the
   Zoho-side "to be verified" items in section 5 of the brief (the database feed to Analytics, Creator, Campaigns,
   Books) can move a row back to Spinach if one fails; phase G still waits on G1 and G6 (a person).
+- Delivered, 7 Oct 2026: Kajal's six M03 answers applied (1f76412). Refund, cancel, extend or comp a subscription are
+  M03 actions for the support seat, the team handling client queries (G19 closed); suspend is an M03 action for ops,
+  "to be decided: when an account is suspended" (G20 open); a devices and sessions tab of web sessions only (G24
+  closed); the adviser owner is the Contact owner in Zoho and the app reads it, so M03 has no reassign and M02's
+  pointer reads so; staff sign in with their Zoho account, MFA in Zoho One, the M03 allowlist maps each Zoho user to
+  a seat (G21 closed). The Split page, the brief and the pack read the same; the change log on the Admin and CRM tab
+  carries the cause "Kajal, 7 Oct 2026". The brief went to Spinach the same day; tracker W12 reads delivered (f54a82b).
+  Owed: Kajal's team check on anything the staff view misses; the Spinach estimate. Open gaps: G18, G20, G23.
