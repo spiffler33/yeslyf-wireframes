@@ -1689,7 +1689,7 @@ Done-criteria:
 - `git status --short` -> M data/logic_tech.json, M docs/logic_tech.html only.
 
 Metadata: depends_on [B0] . weight light . live_model no . coder opus . verify_class sample . kind transcription
-- [ ] B1 done
+- [x] B1 done
 
 ### 12.8 Phase B2: the Access page
 
