@@ -1560,7 +1560,7 @@ Done-criteria:
 - `git status --short` -> the A0 state plus M data/logic_screens.json, M docs/logic_wireframes.html only.
 
 Metadata: depends_on [A0] . weight heavy . live_model no . coder opus . verify_class sample . kind transcription
-- [ ] A1 done
+- [x] A1 done
 
 ### 12.3 Phase A2: the change group, 11 screens
 

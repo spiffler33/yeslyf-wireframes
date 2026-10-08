@@ -1,11 +1,10 @@
 # Handoff - 8 Oct 2026 (run in flight: PLAN_logic_panel_v03.md under /run-plan; A0 and B0 closed)
 
 State: /run-plan of PLAN_logic_panel_v03.md is in flight (Vatsal's go, 8 Oct 2026; paused 30 minutes at his ask and
-resumed). Closed: A0 (c0011a7, with review fixes 66f4d24 and 0a3fa9d: the logic validator holds the board's screen
-rules and list types; the comment boxes drop the Spinach identity) and B0 (the page builder and four skeleton pages;
-a section draws its parts in key order, tables may carry a title, a cell may hold several links, every fault is
-named before any write; the Access derived table carries roles and a Writes column, plan 8 part 4). Nothing pushed:
-the plan holds every push for phase D. In flight under the orchestrator: A1 (14 screens) and B1 (the Tech page).
+resumed). Closed and committed, not pushed: A0 (with two review fixes), B0 (with one), B1, B3 and A1 (14 start and
+logic screens, after a review fix: Home shows each seat only what 4.8 and 5.4 allow; figures the plan does not type
+read N or N%). In flight under the orchestrator: A2 (11 change screens, drafted, writing next), A3 and A4 (drafting
+in scratch), B2 and B4 (the Access and Ops pages, built, in review). The plan holds every push for phase D.
 
 ## Next action
 Nobody starts a phase by hand while the run is in flight. If the session died: re-read the plan's ticks, check

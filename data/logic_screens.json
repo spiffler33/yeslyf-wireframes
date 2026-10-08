@@ -52,17 +52,271 @@
       "frame": "desktop",
       "template": "T-table",
       "path": "both",
-      "purpose": "What needs the seat signed in, the lanes, what is going out, and the layout and seats. Drawn: a working day (7 May 2027), a fund draft waiting for review, the quarterly fund review open, a release going out.",
-      "ui": [],
+      "purpose": "What needs the seat signed in, the lanes, what is going out, and the layout and seats. Drawn: a working day (7 May 2027), a fund draft waiting for review, the quarterly fund review open, nothing in rollout.",
+      "ui": [
+        [
+          "strip",
+          "Home; signed in as Principal officer 01; 7 May 2027, a working day"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "Needs you: Principal officer 01"
+        ],
+        [
+          "table",
+          [
+            "Item",
+            "State",
+            "Opens"
+          ],
+          [
+            [
+              "A funds draft by Logic analyst 01, based on fu-1: a large cap fund joins the equity core",
+              "in review, waiting for you",
+              "L10"
+            ],
+            [
+              "The quarterly funds review, due 3 May 2027",
+              "open; the funds draft answers it",
+              "L12"
+            ],
+            [
+              "Approved drafts waiting for publish",
+              "none",
+              "L06"
+            ],
+            [
+              "Urgent requests; a Hold to ratify",
+              "none",
+              "L04a, L10a"
+            ],
+            [
+              "Releases with failures or paused",
+              "none",
+              "L11"
+            ],
+            [
+              "The access review",
+              "not due; next on 15 Jul 2027",
+              "L13"
+            ]
+          ]
+        ],
+        [
+          "link",
+          "Review the funds draft",
+          "L10"
+        ],
+        [
+          "link",
+          "Review calendar",
+          "L12"
+        ],
+        [
+          "h",
+          "Lanes"
+        ],
+        [
+          "table",
+          [
+            "Lane",
+            "Live version, since",
+            "Plans on it; behind it (per 1,000, illustrative)",
+            "Open draft: author, state",
+            "Scheduled release",
+            "Next review due"
+          ],
+          [
+            [
+              "Assumptions",
+              "as-1, 25 Jan 2027",
+              "1,000; none",
+              "none",
+              "none",
+              "1 Apr 2028"
+            ],
+            [
+              "Cohorts",
+              "co-1, 25 Jan 2027",
+              "1,000; none",
+              "none",
+              "none",
+              "1 Nov 2027"
+            ],
+            [
+              "Funds",
+              "fu-1, 25 Jan 2027",
+              "1,000; none",
+              "Logic analyst 01: in review",
+              "none",
+              "3 May 2027: open"
+            ],
+            [
+              "Risk scoring",
+              "rs-1, 25 Jan 2027",
+              "1,000; none",
+              "none",
+              "none",
+              "3 Jan 2028"
+            ],
+            [
+              "Market inputs",
+              "MI04, 3 May 2027",
+              "new plans and new actions only: not counted",
+              "none",
+              "none",
+              "1 Jun 2027"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Going out"
+        ],
+        [
+          "table",
+          [
+            "Release",
+            "Route",
+            "Progress"
+          ],
+          [
+            [
+              "nothing in rollout",
+              "-",
+              "-"
+            ]
+          ]
+        ],
+        [
+          "link",
+          "Release monitor",
+          "L11"
+        ],
+        [
+          "h",
+          "Layout and seats"
+        ],
+        [
+          "table",
+          [
+            "Group",
+            "Screens"
+          ],
+          [
+            [
+              "Logic",
+              "L02 Assumptions; L03 Dimensions and cohort map; L14 Model portfolios; L04 Funds and sleeves; L09 Guards and constraints; L07 Market inputs"
+            ],
+            [
+              "Change",
+              "L05 Drafts, validation and preview; L10 Review; L06 Publish; L11 Release monitor"
+            ],
+            [
+              "Records",
+              "L08 Release register and audit; L15 Client plan history; L12 Review calendar"
+            ],
+            [
+              "Access",
+              "L13 Staff and seats"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Role on the board's L01 today",
+            "Seat here"
+          ],
+          [
+            [
+              "Adviser: edits assumptions, grids and instruments in staging; runs the impact preview",
+              "Logic analyst; the Adviser seat takes calls and only reads here"
+            ],
+            [
+              "Principal officer: everything, plus publish and rollback",
+              "Principal officer: publishes; pause, withdraw and correct take the place of rollback"
+            ],
+            [
+              "Viewer: read and export",
+              "Read only: reads; export sits with the Principal officer and Compliance"
+            ]
+          ]
+        ],
+        [
+          "btn",
+          "Staff and seats",
+          "L13"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "worklist of the seat signed in",
+            "forward": "read"
+          },
+          {
+            "f": "per lane: live version and since, plans on it and behind it, open draft, scheduled release, next review due",
+            "forward": "read"
+          },
+          {
+            "f": "releases going out and their progress",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer read; Logic analyst read; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: none",
+          "Every row links to the screen that acts on it; Home writes nothing.",
+          "Needs you is the worklist of the seat signed in. Principal officer: drafts by others waiting for review, approved drafts waiting for publish, urgent requests, a Hold to ratify, calendar items due or overdue, releases with failures or paused, the access review when due.",
+          "Logic analyst: own drafts and their state (sent back, with the comment), reviews waiting, a Hold to ratify, calendar items, the unknown-ISIN queue. Compliance: acknowledgements waiting, incidents open, unratified Holds. Ops: queue items that need facts, what goes out this week.",
+          "Needs you: the Principal officer, Logic analyst, Compliance and Ops each have a worklist; Adviser, Call centre, Support and Read only have none (logic plan, 8 Oct 2026).",
+          "Lanes: every seat that opens Home sees each lane's live version and since, and the next review due. The open draft shows only to the seats that see drafts (4.8): Principal officer, Logic analyst, Compliance, Read only. Plans on it and behind it, and a scheduled release, show only to the seats that read L08 and L06 (5.4): the same four (logic plan, 8 Oct 2026).",
+          "Going out and its link to L11 show only to the seats that see the release monitor (4.8): Principal officer, Logic analyst, Compliance, Ops, Read only. The Logic analyst, Ops and Read only read L11 masked (5.4); Going out carries counts only, no named client rows.",
+          "Layout and seats: every seat that opens Home sees the groups and the role table; the link to L13 shows only to the Principal officer, Logic analyst and Compliance (5.4).",
+          "So in Lanes and Going out, Adviser, Call centre and Support see the live version and the next review due only; Ops sees those and Going out.",
+          "Plans on it and behind it are illustrative, per 1,000 plan holders.",
+          "Going out on 7 May 2027 draws its empty state, nothing in rollout: in the example year no release is pushed before REL04 on 9 Aug 2027 (6.2); L01a draws the block full (logic plan, 8 Oct 2026).",
+          "Layout: the four groups an operator works in are logic, change, records and access; Home is the start group and L00 the reference (logic plan, 8 Oct 2026).",
+          "A draft is named by its lane and the live version it is based on; the release id comes at publish (logic plan, 8 Oct 2026).",
+          "Against the board: L01 today is a documentation screen; its role table moves to L13 and the Access page."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Review the funds draft",
+            "L10"
+          ],
+          [
+            "Review calendar",
+            "L12"
+          ],
+          [
+            "Release monitor",
+            "L11"
+          ],
+          [
+            "Staff and seats",
+            "L13"
+          ],
+          [
+            "Funds and sleeves",
+            "L04"
+          ]
+        ],
+        "states": [
+          "A working day, signed in as the Principal officer (drawn: L01, 7 May 2027).",
+          "An urgent day, signed in as the Logic analyst: an urgent Hold in force, its rollout going out, its ratification overdue (drawn: L01a, 24 Sep 2027, 18:00).",
+          "Another seat signed in: that seat's worklist, and of the other blocks only what that seat may see (not drawn).",
+          "A release paused or with failures: it heads Needs you for the Principal officer and shows in Going out (not drawn)."
+        ],
+        "dev": [
+          "Desktop only. One staff identity across the admin screens and the logic panel (rule 15; LQ9 on L13).",
+          "Plans on it and behind it are read from the lane versions stamped on each snapshot (rule 7)."
+        ]
       },
       "compliance": {
         "review": false,
@@ -117,15 +371,196 @@
       "template": "T-table",
       "path": "both",
       "purpose": "An urgent day (24 Sep 2027, 18:00): an urgent Hold in force, its rollout going out, its ratification overdue.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Home; signed in as Logic analyst 01; 24 Sep 2027, 18:00"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "badge",
+          "Urgent Hold in force: REL05, ratification overdue"
+        ],
+        [
+          "h",
+          "Needs you: Logic analyst 01"
+        ],
+        [
+          "table",
+          [
+            "Item",
+            "State",
+            "Opens"
+          ],
+          [
+            [
+              "Ratify REL05: the urgent Hold on Seed Flexi Cap Fund 10, placed alone by Principal officer 01 on 22 Sep 2027 at 10:40",
+              "overdue: due 24 Sep 2027, two working days after it was placed; the Hold stays in force",
+              "L10a"
+            ],
+            [
+              "Own drafts",
+              "none open",
+              "L05"
+            ],
+            [
+              "Reviews waiting",
+              "none",
+              "L10"
+            ],
+            [
+              "Calendar",
+              "nothing due; next, the month's market inputs on 1 Oct 2027",
+              "L12"
+            ],
+            [
+              "Unknown-ISIN queue",
+              "nothing waiting",
+              "L04b"
+            ]
+          ]
+        ],
+        [
+          "btn",
+          "Ratify REL05",
+          "L10a"
+        ],
+        [
+          "h",
+          "Lanes"
+        ],
+        [
+          "table",
+          [
+            "Lane",
+            "Live version, since",
+            "Plans on it; behind it (per 1,000, illustrative)",
+            "Open draft: author, state",
+            "Scheduled release",
+            "Next review due"
+          ],
+          [
+            [
+              "Assumptions",
+              "as-1, 25 Jan 2027",
+              "1,000; none",
+              "none",
+              "none",
+              "1 Apr 2028"
+            ],
+            [
+              "Cohorts",
+              "co-1, 25 Jan 2027",
+              "1,000; none",
+              "none",
+              "none",
+              "1 Nov 2027"
+            ],
+            [
+              "Funds",
+              "fu-5, 22 Sep 2027 10:40: an urgent Hold, placed alone, ratification overdue",
+              "rebuilt by the push: the 500 running a SIP into the fund and the 270 with an open action naming it; the rest at their next rebuild",
+              "none",
+              "none",
+              "1 Nov 2027"
+            ],
+            [
+              "Risk scoring",
+              "rs-1, 25 Jan 2027",
+              "1,000; none",
+              "none",
+              "none",
+              "3 Jan 2028"
+            ],
+            [
+              "Market inputs",
+              "MI08, 1 Sep 2027",
+              "new plans and new actions only: not counted",
+              "none",
+              "none",
+              "1 Oct 2027"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Going out"
+        ],
+        [
+          "p",
+          "REL05: accepted by 300 of the 500 running a SIP into the fund, day 2."
+        ],
+        [
+          "table",
+          [
+            "Release",
+            "Route",
+            "Progress"
+          ],
+          [
+            [
+              "REL05 (fu-5), an urgent Hold, live since 22 Sep 2027 10:40",
+              "pushed at once to every client running a SIP into the fund; open actions naming it rebuilt in the same push and shown at the next app open",
+              "accepted: 300 of 500 by day 2; call tasks from 25 Sep 2027 for DIWM clients who have not accepted after three days"
+            ]
+          ]
+        ],
+        [
+          "link",
+          "Release monitor",
+          "L11"
+        ],
+        [
+          "link",
+          "Funds and sleeves",
+          "L04"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "worklist of the seat signed in",
+            "forward": "read"
+          },
+          {
+            "f": "per lane: live version and since, plans on it and behind it, open draft, scheduled release, next review due",
+            "forward": "read"
+          },
+          {
+            "f": "releases going out and their progress",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer read; Logic analyst read; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: none",
+          "State: an urgent day (24 Sep 2027, 18:00), signed in as Logic analyst 01; just before, two working days passed since Principal officer 01 placed the urgent Hold REL05 alone on 22 Sep 2027 at 10:40, with no ratification.",
+          "Every row links to the screen that acts on it; Home writes nothing.",
+          "An unratified urgent Hold stays in force and shows as overdue here and on L08, L10 and L11 (rule 13); what follows is LQ30.",
+          "The one who placed the Hold may not ratify it; the Logic analyst may (the Access page).",
+          "Plans on it and behind it are illustrative, per 1,000 plan holders.",
+          "Drawn for the Logic analyst, the seat that may ratify (logic plan, 8 Oct 2026)."
         ],
-        "branches": [],
-        "states": [],
+        "branches": [
+          [
+            "Ratify REL05",
+            "L10a"
+          ],
+          [
+            "Release monitor",
+            "L11"
+          ],
+          [
+            "Funds and sleeves",
+            "L04"
+          ]
+        ],
+        "states": [
+          "Drawn here: an urgent day (24 Sep 2027, 18:00); every state of Home is listed on L01."
+        ],
         "dev": []
       },
       "compliance": {
@@ -181,16 +616,567 @@
       "template": "T-table",
       "path": "both",
       "purpose": "Every assumption in four groups, each row with its live and draft value, unit, effective date, route, limits and cadence; values are typed and checked at the field. Drawn: the live values (20 Apr 2027).",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Assumptions; live as-1; 20 Apr 2027"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "Returns"
+        ],
+        [
+          "table",
+          [
+            "Assumption",
+            "Live value",
+            "Draft value",
+            "Unit",
+            "Effective from",
+            "Domain",
+            "Route",
+            "Limits: hard range; soft step",
+            "Cadence: last reviewed; next due",
+            "Used in",
+            "Changed by"
+          ],
+          [
+            [
+              "Expected return: liquid debt",
+              "6.5",
+              "-",
+              "% a year",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild; reviewed yearly, effective 1 April; the letter",
+              "0 to 20; 0.5",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G03, G11, H10, R08, R09, G01",
+              "REL01 (as-1)"
+            ],
+            [
+              "Expected return: debt",
+              "7.0",
+              "-",
+              "% a year",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild; reviewed yearly, effective 1 April; the letter",
+              "0 to 20; 0.5",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G03, G11, H10, R08, R09, G01",
+              "REL01 (as-1)"
+            ],
+            [
+              "Expected return: hybrid",
+              "9.0",
+              "-",
+              "% a year",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild; reviewed yearly, effective 1 April; the letter",
+              "0 to 20; 0.5",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G03, G11, H10, R08, R09, G01",
+              "REL01 (as-1)"
+            ],
+            [
+              "Expected return: commodities",
+              "8.0",
+              "-",
+              "% a year",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild; reviewed yearly, effective 1 April; the letter",
+              "0 to 20; 0.5",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G03, G11, H10, R08, R09, G01",
+              "REL01 (as-1)"
+            ],
+            [
+              "Expected return: equity",
+              "11.0",
+              "-",
+              "% a year",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild; reviewed yearly, effective 1 April; the letter",
+              "0 to 20; 0.5",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G03, G11, H10, R08, R09, G01",
+              "REL01 (as-1)"
+            ],
+            [
+              "Expected return: REITs and InvITs",
+              "to be verified: the REITs and InvITs return (the example figures used 9)",
+              "-",
+              "% a year",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild; reviewed yearly, effective 1 April; the letter",
+              "0 to 20; 0.5",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G11 (the class is 0 in every portfolio)",
+              "REL01 (as-1)"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Inflation and growth"
+        ],
+        [
+          "table",
+          [
+            "Assumption",
+            "Live value",
+            "Draft value",
+            "Unit",
+            "Effective from",
+            "Domain",
+            "Route",
+            "Limits: hard range; soft step",
+            "Cadence: last reviewed; next due",
+            "Used in",
+            "Changed by"
+          ],
+          [
+            [
+              "Expense inflation",
+              "6.0",
+              "-",
+              "% a year",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild; reviewed yearly, effective 1 April; the letter",
+              "0 to 15; 0.5",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G03, G06, G09, H10, R08, R09, G01",
+              "REL01 (as-1)"
+            ],
+            [
+              "Education inflation",
+              "8.0",
+              "-",
+              "% a year",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild; reviewed yearly, effective 1 April; the letter",
+              "0 to 15; 0.5",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G06, G09, H10",
+              "REL01 (as-1)"
+            ],
+            [
+              "Income growth",
+              "8.0",
+              "-",
+              "% a year",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild; reviewed yearly, effective 1 April; the letter",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G06",
+              "REL01 (as-1)"
+            ],
+            [
+              "Life expectancy (LIFE_EXPECTANCY)",
+              "85; the client may choose 90 or 100",
+              "-",
+              "years",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild; reviewed yearly, effective 1 April; the letter",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G03, G09",
+              "REL01 (as-1)"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Planning rules and thresholds"
+        ],
+        [
+          "table",
+          [
+            "Assumption",
+            "Live value",
+            "Draft value",
+            "Unit",
+            "Effective from",
+            "Domain",
+            "Route",
+            "Limits: hard range; soft step",
+            "Cadence: last reviewed; next due",
+            "Used in",
+            "Changed by"
+          ],
+          [
+            [
+              "Emergency months",
+              "6",
+              "-",
+              "months of expenses",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G04",
+              "REL01 (as-1)"
+            ],
+            [
+              "Default work-optional age",
+              "60",
+              "-",
+              "years of age",
+              "25 Jan 2027",
+              "planning",
+              "new plans only (the D07b default)",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "D07b, G09",
+              "REL01 (as-1)"
+            ],
+            [
+              "Health floater: the income line",
+              "Rs 2 L",
+              "-",
+              "Rs of monthly take-home",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G05",
+              "REL01 (as-1)"
+            ],
+            [
+              "Health floater: cover below the line",
+              "Rs 15 L",
+              "-",
+              "Rs of cover",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G05",
+              "REL01 (as-1)"
+            ],
+            [
+              "Health floater: top-up below the line",
+              "Rs 50 L",
+              "-",
+              "Rs of cover",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G05",
+              "REL01 (as-1)"
+            ],
+            [
+              "Health floater: cover above the line",
+              "Rs 25 L",
+              "-",
+              "Rs of cover",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G05",
+              "REL01 (as-1)"
+            ],
+            [
+              "EMI ceiling",
+              "30",
+              "-",
+              "% of take-home",
+              "25 Jan 2027",
+              "planning",
+              "quiet: at next rebuild",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G07",
+              "REL01 (as-1)"
+            ],
+            [
+              "Glide path: years before a goal to shift to debt",
+              "3",
+              "-",
+              "years",
+              "25 Jan 2027",
+              "investment",
+              "quiet: at next rebuild",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G11",
+              "REL01 (as-1)"
+            ],
+            [
+              "Optimised savings rate for the reveal",
+              "by income band, as the board reads",
+              "-",
+              "% of income",
+              "25 Jan 2027",
+              "planning",
+              "new sketches only",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "R08, R09",
+              "REL01 (as-1)"
+            ],
+            [
+              "Tax slabs and rebates by FY, surcharge, cess",
+              "tables",
+              "-",
+              "-",
+              "25 Jan 2027",
+              "planning",
+              "row to drop at the merge: its section was dropped (brief B4)",
+              "-",
+              "-",
+              "G08 (dropped)",
+              "REL01 (as-1)"
+            ],
+            [
+              "Market rule: the lower PE threshold",
+              "18",
+              "-",
+              "Nifty PE",
+              "25 Jan 2027",
+              "investment",
+              "new plans and new deployment actions only",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G13, L07",
+              "REL01 (as-1)"
+            ],
+            [
+              "Market rule: the upper PE threshold",
+              "25",
+              "-",
+              "Nifty PE",
+              "25 Jan 2027",
+              "investment",
+              "new plans and new deployment actions only",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G13, L07",
+              "REL01 (as-1)"
+            ],
+            [
+              "Market rule: the buffer either side of each threshold",
+              "1.0",
+              "-",
+              "Nifty PE points",
+              "25 Jan 2027",
+              "investment",
+              "new plans and new deployment actions only",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "G13, L07",
+              "REL01 (as-1)"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Change rules"
+        ],
+        [
+          "table",
+          [
+            "Assumption",
+            "Live value",
+            "Draft value",
+            "Unit",
+            "Effective from",
+            "Domain",
+            "Route",
+            "Limits: hard range; soft step",
+            "Cadence: last reviewed; next due",
+            "Used in",
+            "Changed by"
+          ],
+          [
+            [
+              "Tolerance band per sleeve: the floor (the larger of the two applies)",
+              "Rs 1,000",
+              "-",
+              "Rs a month",
+              "25 Jan 2027",
+              "investment",
+              "quiet: at next rebuild",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "H05, G14",
+              "REL01 (as-1)"
+            ],
+            [
+              "Tolerance band per sleeve: the share of the running amount (the larger of the two applies)",
+              "10",
+              "-",
+              "% of the running amount",
+              "25 Jan 2027",
+              "investment",
+              "quiet: at next rebuild",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "H05, G14",
+              "REL01 (as-1)"
+            ],
+            [
+              "Tolerance band: a goal's funded share",
+              "5",
+              "-",
+              "points",
+              "25 Jan 2027",
+              "investment",
+              "quiet: at next rebuild",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "H05, H10",
+              "REL01 (as-1)"
+            ],
+            [
+              "Stale cap",
+              "120",
+              "-",
+              "days",
+              "25 Jan 2027",
+              "investment",
+              "quiet: at next rebuild",
+              "gap, to be decided",
+              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
+              "H01e, H05",
+              "REL01 (as-1)"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "One row: expected return, equity"
+        ],
+        [
+          "table",
+          [
+            "Release",
+            "Date",
+            "Value",
+            "Reason"
+          ],
+          [
+            [
+              "REL01 (as-1)",
+              "25 Jan 2027",
+              "11.0",
+              "launch content: the board's value"
+            ],
+            [
+              "Annual review",
+              "1 Apr 2027",
+              "11.0",
+              "reviewed, no change; signed by Principal officer 01"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "Shown on G03, G11, H10, R08, R09 and G01."
+        ],
+        [
+          "link",
+          "Show the history of another row",
+          "L02"
+        ],
+        [
+          "card",
+          "Draft bar",
+          [
+            "No open draft in the assumptions lane",
+            "The annual review opens on L12 a month ahead of 1 April; next due 1 Apr 2028"
+          ]
+        ],
+        [
+          "btn",
+          "Open a draft",
+          "L02a"
+        ],
+        [
+          "link",
+          "Market inputs",
+          "L07"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "rows: live value, unit, effective from, domain, route, limits, cadence, used in, changed by",
+            "forward": "read"
+          },
+          {
+            "f": "draft_value[row] and rationale[row], in a draft (L02a)",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: open a draft (L02_open_draft; Principal officer, Logic analyst); edit a row in the draft with a rationale (L02_edit_row; Principal officer, Logic analyst); drop a row from the draft (L02_drop_row; Principal officer, Logic analyst)",
+          "Check: the hard range per row; a value is typed in the row's unit and refused at the field outside its range (7 Oct 2026 call).",
+          "Check: the soft step per row; a move of the step or more asks for a typed reason.",
+          "Domain per row (logic plan, 8 Oct 2026): the glide path, the market rule and the change rules are investment; every other row is planning, the returns among them, as 4.4 names them among the planning assumptions.",
+          "Used in maps the board's L02 column and the surface map to screen ids, and the unit of each row is typed from the board's rows (logic plan, 8 Oct 2026).",
+          "The market rule's thresholds and buffer take the market inputs' route, new plans and new deployment actions only (rule 11) (logic plan, 8 Oct 2026).",
+          "The default work-optional age reaches new plans only: on the board it is the default a client accepts on D07b, and the accepted age is the client's own field (logic plan, 8 Oct 2026). The optimised savings rate reaches new sketches only (4.3) (logic plan, 8 Oct 2026).",
+          "The health floater rule is typed as four rows; its income line is read as monthly take-home, as the board's example on G03 and G05 reads (logic plan, 8 Oct 2026).",
+          "Show the history of another row is an in-place expander: the row's values by release with the reason each time, and the screens that show it.",
+          "For Adviser, Call centre, Ops and Support, read means the live values and rationale only; draft rows are not sent.",
+          "No client-data fallback rows, as on the board: bands are fixed per field and a missing number is asked for on D13, never filled in; nothing here stands in for a client's number.",
+          "Against the board: the board's rows and its three columns are kept, one typed row per value; the tax slabs row is listed as \"row to drop at the merge: its section was dropped (brief B4)\". The thresholds and buffers of the market inputs are rows here, as L07 on the board says."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Open a draft",
+            "L02a"
+          ],
+          [
+            "Review calendar",
+            "L12"
+          ],
+          [
+            "Market inputs",
+            "L07"
+          ]
+        ],
+        "states": [
+          "Live values, no draft open (drawn: L02, 20 Apr 2027).",
+          "A draft open, held by its author (drawn: L02a, 10 Mar 2028).",
+          "The draft validated, previewed, in review or approved: the draft bar shows the state; an edit after approval returns the draft to review (rule 1; not drawn).",
+          "A scheduled release pending: the row reads \"6.0 now, 6.5 from 1 Apr 2028\" (not drawn).",
+          "Read by another seat: live values and rationale only (not drawn)."
+        ],
+        "dev": [
+          "LQ2 to be decided: the tolerance band values; whether an outlook needs the client's acceptance",
+          "LQ8 to be decided: whether planning rows in L02 are reviewed by the financial planning function before publish",
+          "LQ38 to be verified: the field changes to L02 to L09 now in progress (7 Oct 2026 call), so the side screens draw the same rows",
+          "gap, to be decided: the hard range and the soft step of every row but the returns and the two inflation rows (income growth, life expectancy, emergency months, the default work-optional age, the health floater rows, the EMI ceiling, the glide path, the optimised savings rate, the market rule's thresholds and buffer, the tolerance bands and the stale cap); the field check needs them and the plan gives none.",
+          "The assumptions version (as-N) is stamped on every snapshot (rule 7)."
+        ],
+        "forward": [
+          "Open a draft is enabled when the assumptions lane has no other open draft (4.6 step 1).",
+          "Required, in a draft (L02a): the draft value of each edited row, typed in its unit inside its hard range, and its typed reason."
+        ]
       },
       "compliance": {
         "review": false,
@@ -202,7 +1188,10 @@
         ]
       },
       "events": [
-        "L02_view"
+        "L02_view",
+        "L02_open_draft",
+        "L02_edit_row",
+        "L02_drop_row"
       ],
       "v02": {
         "status": "changed",
@@ -231,7 +1220,32 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "open a draft",
+          "event": "L02_open_draft",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "edit a row in the draft with a rationale",
+          "event": "L02_edit_row",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "drop a row from the draft",
+          "event": "L02_drop_row",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        }
+      ],
       "group": "logic"
     },
     {
@@ -245,16 +1259,131 @@
       "template": "T-table",
       "path": "both",
       "purpose": "A draft open (10 Mar 2028): equity return 11.0 to 10.0 and expense inflation 6.0 to 6.5, each with its typed reason; 65 typed for inflation refused at the field (hard range 0 to 15).",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Assumptions; a draft open; Logic analyst 01; 10 Mar 2028"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "card",
+          "Draft bar",
+          [
+            "Held by Logic analyst 01; state open; based on as-1, live since 25 Jan 2027",
+            "The annual review opened on L12 on 1 Mar 2028, a month ahead of 1 April",
+            "Two rows edited; every other row is unchanged (L02)"
+          ]
+        ],
+        [
+          "h",
+          "Rows in the draft"
+        ],
+        [
+          "table",
+          [
+            "Assumption",
+            "Live value",
+            "Draft value",
+            "Unit",
+            "Limits: hard range; soft step",
+            "Move",
+            "Typed reason"
+          ],
+          [
+            [
+              "Expected return: equity",
+              "11.0",
+              "10.0",
+              "% a year",
+              "0 to 20; 0.5",
+              "11.0 to 10.0: a reason is asked",
+              "annual review of the equity return (typed by the author)"
+            ],
+            [
+              "Expense inflation",
+              "6.0",
+              "6.5",
+              "% a year",
+              "0 to 15; 0.5",
+              "6.0 to 6.5: a reason is asked",
+              "annual review of expense inflation (typed by the author)"
+            ]
+          ]
+        ],
+        [
+          "in",
+          "Expense inflation, draft value: 65"
+        ],
+        [
+          "p",
+          "Refused at the field: 65 is outside the hard range 0 to 15 (% a year); nothing is saved. 6.5 is typed next."
+        ],
+        [
+          "btn",
+          "Validate and preview",
+          "L05"
+        ],
+        [
+          "link",
+          "Drop a row from the draft",
+          "L02a"
+        ],
+        [
+          "link",
+          "Live values",
+          "L02"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "draft_value[row]",
+            "forward": "required"
+          },
+          {
+            "f": "rationale[row]",
+            "forward": "required"
+          },
+          {
+            "f": "draft: author, time, base version",
+            "forward": "system"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: open a draft (L02_open_draft; Principal officer, Logic analyst); edit a row in the draft with a rationale (L02_edit_row; Principal officer, Logic analyst); drop a row from the draft (L02_drop_row; Principal officer, Logic analyst)",
+          "State: a draft open (Logic analyst 01, 10 Mar 2028, based on as-1); just before, the annual review opened on L12 on 1 Mar 2028 and the author opened the draft and edited two rows.",
+          "Check: the hard range per row; a value is typed in the row's unit and refused at the field outside its range (7 Oct 2026 call).",
+          "Check: the soft step per row; a move of the step or more asks for a typed reason.",
+          "65 typed for expense inflation, a slip for 6.5, is refused at the field: it is outside the hard range 0 to 15.",
+          "Both moves reach the soft step of 0.5, so each carries a typed reason; the reasons stand in for the author's own words (logic plan, 8 Oct 2026).",
+          "Drop a row from the draft is in place: the row leaves the draft and shows its live value again; the audit row keeps the edit.",
+          "The draft publishes on 20 Mar 2028 as REL12 (as-2), effective 1 Apr 2028 00:00."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Validate and preview",
+            "L05"
+          ],
+          [
+            "Live values",
+            "L02"
+          ]
+        ],
+        "states": [
+          "Drawn here: a draft open (10 Mar 2028); every state of the screen is listed on L02."
+        ],
+        "dev": [
+          "The draft records each item: the row, from, to and the rationale (4.6 step 2)."
+        ],
+        "forward": [
+          "Validate and preview opens L05 when every edited row holds a value inside its hard range and a typed reason where the move reaches the soft step.",
+          "Required: draft_value[row], typed in the row's unit inside its hard range; rationale[row] for every edited row.",
+          "System: the author, the time and the live version the draft is based on (as-1)."
+        ]
       },
       "compliance": {
         "review": false,
@@ -266,7 +1395,10 @@
         ]
       },
       "events": [
-        "L02a_view"
+        "L02a_view",
+        "L02_open_draft",
+        "L02_edit_row",
+        "L02_drop_row"
       ],
       "v02": {
         "status": "changed",
@@ -295,7 +1427,32 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "open a draft",
+          "event": "L02_open_draft",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "edit a row in the draft with a rationale",
+          "event": "L02_edit_row",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "drop a row from the draft",
+          "event": "L02_drop_row",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        }
+      ],
       "group": "logic"
     },
     {
@@ -309,16 +1466,339 @@
       "template": "T-table",
       "path": "both",
       "purpose": "The dimensions and their bands, the cohort map pointing each cohort at a model portfolio, the coverage proof, and the history of one cohort. Drawn: launch, nine cohorts on seven rows, the proof passing.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Dimensions and cohort map; live co-1 and rs-1; 1 Feb 2027, launch"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "Dimensions"
+        ],
+        [
+          "table",
+          [
+            "Dimension",
+            "Source field and its screen",
+            "Bands with bounds",
+            "Lane",
+            "Since"
+          ],
+          [
+            [
+              "Risk band",
+              "the questionnaire score, D08a to D08h; the band is told on D09",
+              "Conservative 8 to 15; Moderate 16 to 24; Aggressive 25 to 32",
+              "cohorts; its score ranges belong to the risk scoring lane",
+              "25 Jan 2027: co-1, rs-1"
+            ],
+            [
+              "Horizon",
+              "years to the goal, D07a and D07b",
+              "Short: up to 1; Medium: over 1, up to 3; Long: over 3",
+              "cohorts",
+              "25 Jan 2027: co-1"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Cohort map: the grid, while there are two dimensions"
+        ],
+        [
+          "table",
+          [
+            "Risk band: portfolio",
+            "Short",
+            "Medium",
+            "Long"
+          ],
+          [
+            [
+              "Conservative",
+              "MP1 Short",
+              "MP2 Medium conservative",
+              "MP5 Long conservative"
+            ],
+            [
+              "Moderate",
+              "MP1 Short",
+              "MP3 Medium moderate",
+              "MP6 Long moderate"
+            ],
+            [
+              "Aggressive",
+              "MP1 Short",
+              "MP4 Medium aggressive",
+              "MP7 Long aggressive"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Risk band: mix (liquid debt / debt / hybrid / commodities / equity / REITs and InvITs)",
+            "Short",
+            "Medium",
+            "Long"
+          ],
+          [
+            [
+              "Conservative",
+              "100/0/0/0/0/0",
+              "20/70/10/0/0/0",
+              "10/40/20/10/20/0"
+            ],
+            [
+              "Moderate",
+              "100/0/0/0/0/0",
+              "10/60/30/0/0/0",
+              "0/15/10/10/65/0"
+            ],
+            [
+              "Aggressive",
+              "100/0/0/0/0/0",
+              "10/50/40/0/0/0",
+              "0/5/5/10/80/0"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Risk band: goals per 1,000 plan holders (illustrative)",
+            "Short",
+            "Medium",
+            "Long"
+          ],
+          [
+            [
+              "Conservative",
+              "20 goals, thin",
+              "85 goals",
+              "395 goals"
+            ],
+            [
+              "Moderate",
+              "50 goals",
+              "213 goals",
+              "988 goals"
+            ],
+            [
+              "Aggressive",
+              "30 goals",
+              "128 goals",
+              "593 goals"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Map row",
+            "Risk band",
+            "Horizon",
+            "Portfolio"
+          ],
+          [
+            [
+              "row 1",
+              "any",
+              "Short",
+              "MP1"
+            ],
+            [
+              "row 2",
+              "Conservative",
+              "Medium",
+              "MP2"
+            ],
+            [
+              "row 3",
+              "Moderate",
+              "Medium",
+              "MP3"
+            ],
+            [
+              "row 4",
+              "Aggressive",
+              "Medium",
+              "MP4"
+            ],
+            [
+              "row 5",
+              "Conservative",
+              "Long",
+              "MP5"
+            ],
+            [
+              "row 6",
+              "Moderate",
+              "Long",
+              "MP6"
+            ],
+            [
+              "row 7",
+              "Aggressive",
+              "Long",
+              "MP7"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Coverage proof"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Combinations of bands",
+              "9: three risk bands by three horizons"
+            ],
+            [
+              "Each resolves to exactly one row",
+              "9 of 9; the most specific row wins"
+            ],
+            [
+              "Left with no row",
+              "none"
+            ],
+            [
+              "Two rows equally specific",
+              "none"
+            ],
+            [
+              "Proof",
+              "passes"
+            ]
+          ]
+        ],
+        [
+          "card",
+          "Data or a release of the app (rule 16)",
+          [
+            "A new band: data, in a cohorts draft",
+            "A new dimension on a field the app already holds: data",
+            "A dimension that needs a new question: a release of the app, not a draft here",
+            "Funds attach to sleeves (L04), not to cohorts"
+          ]
+        ],
+        [
+          "h",
+          "History of one cohort: Moderate x Long"
+        ],
+        [
+          "table",
+          [
+            "Release",
+            "Portfolio",
+            "Mix",
+            "Reason",
+            "Goals then, per 1,000"
+          ],
+          [
+            [
+              "REL01 (co-1), 25 Jan 2027",
+              "MP6 Long moderate",
+              "0/15/10/10/65/0",
+              "launch content",
+              "988 goals"
+            ]
+          ]
+        ],
+        [
+          "link",
+          "Show the history of another cohort",
+          "L03"
+        ],
+        [
+          "btn",
+          "Open a cohorts draft",
+          "L03a"
+        ],
+        [
+          "link",
+          "Model portfolios",
+          "L14"
+        ],
+        [
+          "link",
+          "Guards and constraints",
+          "L09"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "dimensions: source field, bands with bounds, lane, since",
+            "forward": "read"
+          },
+          {
+            "f": "band bounds and map rows, in a cohorts draft; score ranges, in a risk scoring draft",
+            "forward": "read"
+          },
+          {
+            "f": "a new dimension on a field the app already holds, in a cohorts draft",
+            "forward": "read"
+          },
+          {
+            "f": "coverage proof, goals per cohort, thin mark",
+            "forward": "system"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: open a cohorts or a risk scoring draft (L03_open_draft; Principal officer, Logic analyst); add a band (L03_add_band; Principal officer, Logic analyst); edit a bound (L03_edit_bound; Principal officer, Logic analyst); add a dimension from the fields the app already holds (L03_add_dimension; Principal officer, Logic analyst); add, edit or retire a map row (a cohorts draft) (L03_edit_map_row; Principal officer, Logic analyst); edit the score ranges (a risk scoring draft) (L03_edit_score_ranges; Principal officer, Logic analyst)",
+          "Check: the bands of a dimension tile its range with no gap and no overlap; a band owns its upper bound.",
+          "Check: coverage; every combination of bands resolves to exactly one map row, and the most specific row wins.",
+          "Check: every map row's portfolio exists (L14).",
+          "Check: the equity ceiling of each risk band (L09); a row may not point a risk band at a portfolio above its ceiling.",
+          "A cohort under 30 goals per 1,000 plan holders is marked thin (rehearsal value).",
+          "The score ranges of the risk band belong to the risk scoring lane: they are edited here in a risk scoring draft and reach a client only at their next questionnaire (rule 10).",
+          "Open a draft is the first step of 4.6, taken on the lane's own screen, with one open draft per lane; it is a write here as on L02 (logic plan, 8 Oct 2026).",
+          "Show the history of another cohort is an in-place expander: the cohort's portfolio, mix, reason and goals by release.",
+          "For Adviser, Call centre, Ops and Support, read means the live values and rationale only; draft rows are not sent.",
+          "Against the board: the three tables of today's L03 are the launch state; the grid's mixes move to L14 as named portfolios, so twenty cohorts do not mean twenty mixes to maintain."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Open a cohorts draft",
+            "L03a"
+          ],
+          [
+            "Model portfolios",
+            "L14"
+          ],
+          [
+            "Guards and constraints",
+            "L09"
+          ]
+        ],
+        "states": [
+          "Launch: two dimensions, nine cohorts on seven rows, the grid (drawn: L03, 1 Feb 2027).",
+          "A cohorts draft adding a band (drawn: L03a, 1 Nov 2027).",
+          "A cohorts draft adding a dimension: the map as a list of rows (drawn: L03b, 21 Feb 2028).",
+          "A risk scoring draft: the score ranges editable, with the line \"nobody changes band today\"; for REL10 (rs-2, 3 Jan 2028) about 93 per 1,000 plan holders would change band at their next questionnaire, none on the day (not drawn).",
+          "Live after REL07 (co-2, 8 Nov 2027): four horizon bands, still the grid (not drawn).",
+          "A draft in review or approved: the draft rows are locked; an edit after approval returns the draft to review (rule 1; not drawn).",
+          "Read by another seat: live values and rationale only (not drawn)."
+        ],
+        "dev": [
+          "LQ5 to be decided: the dimensions beyond risk band and horizon, and a ceiling on the number of cohorts",
+          "LQ12 to be verified: whether a change to the score-to-band thresholds needs the client's fresh confirmation before it applies",
+          "The score ranges are the board's placeholders until the questionnaire scoring map is supplied (the board's L03 note)."
+        ],
+        "forward": [
+          "Open a cohorts draft is enabled when the cohorts lane has no other open draft; a risk scoring draft likewise for its lane (4.6 step 1).",
+          "Required, in a draft: the bounds of every band (a band owns its upper bound) and a portfolio for every map row.",
+          "Optional: a new dimension, only on a field the app already holds (rule 16).",
+          "System: the coverage proof and the goal counts per cohort, from the draft and its preview."
+        ]
       },
       "compliance": {
         "review": false,
@@ -330,7 +1810,13 @@
         ]
       },
       "events": [
-        "L03_view"
+        "L03_view",
+        "L03_open_draft",
+        "L03_add_band",
+        "L03_edit_bound",
+        "L03_add_dimension",
+        "L03_edit_map_row",
+        "L03_edit_score_ranges"
       ],
       "v02": {
         "status": "changed",
@@ -359,7 +1845,56 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "open a cohorts or a risk scoring draft",
+          "event": "L03_open_draft",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add a band",
+          "event": "L03_add_band",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "edit a bound",
+          "event": "L03_edit_bound",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add a dimension from the fields the app already holds",
+          "event": "L03_add_dimension",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add, edit or retire a map row (a cohorts draft)",
+          "event": "L03_edit_map_row",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "edit the score ranges (a risk scoring draft)",
+          "event": "L03_edit_score_ranges",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        }
+      ],
       "group": "logic"
     },
     {
@@ -373,15 +1908,320 @@
       "template": "T-table",
       "path": "both",
       "purpose": "A draft adding the band \"Very long: over 7\" (1 Nov 2027): the new column, Aggressive x Very long empty so coverage fails, Conservative x Very long pointed at MP8 so its guard fails.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Dimensions and cohort map; a cohorts draft open; Principal officer 01; 1 Nov 2027"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "card",
+          "Draft bar",
+          [
+            "Held by Principal officer 01; state open, validation failing; based on co-1",
+            "The yearly cohort review fell due today (L12)",
+            "Adds the band Very long: over 7 to the horizon; Long becomes over 3, up to 7",
+            "MP8 and MP9 are added in the same draft (L14)"
+          ]
+        ],
+        [
+          "h",
+          "Dimensions in the draft"
+        ],
+        [
+          "table",
+          [
+            "Dimension",
+            "Bands with bounds",
+            "In the draft"
+          ],
+          [
+            [
+              "Risk band",
+              "Conservative 8 to 15; Moderate 16 to 24; Aggressive 25 to 32",
+              "no change"
+            ],
+            [
+              "Horizon",
+              "Short: up to 1; Medium: over 1, up to 3; Long: over 3, up to 7; Very long: over 7",
+              "the band Very long added; the upper bound of Long set at 7"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Cohort map in the draft: the grid, four horizons"
+        ],
+        [
+          "table",
+          [
+            "Risk band: portfolio",
+            "Short",
+            "Medium",
+            "Long",
+            "Very long"
+          ],
+          [
+            [
+              "Conservative",
+              "MP1",
+              "MP2",
+              "MP5",
+              "MP8: guard fails"
+            ],
+            [
+              "Moderate",
+              "MP1",
+              "MP3",
+              "MP6",
+              "MP8"
+            ],
+            [
+              "Aggressive",
+              "MP1",
+              "MP4",
+              "MP7",
+              "no row: coverage fails"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Risk band: mix (liquid debt / debt / hybrid / commodities / equity / REITs and InvITs)",
+            "Short",
+            "Medium",
+            "Long",
+            "Very long"
+          ],
+          [
+            [
+              "Conservative",
+              "100/0/0/0/0/0",
+              "20/70/10/0/0/0",
+              "10/40/20/10/20/0",
+              "0/10/5/10/75/0"
+            ],
+            [
+              "Moderate",
+              "100/0/0/0/0/0",
+              "10/60/30/0/0/0",
+              "0/15/10/10/65/0",
+              "0/10/5/10/75/0"
+            ],
+            [
+              "Aggressive",
+              "100/0/0/0/0/0",
+              "10/50/40/0/0/0",
+              "0/5/5/10/80/0",
+              "no row"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Risk band: goals per 1,000 plan holders (illustrative)",
+            "Short",
+            "Medium",
+            "Long",
+            "Very long"
+          ],
+          [
+            [
+              "Conservative",
+              "20 goals, thin",
+              "85 goals",
+              "was 395, 290 to Very long",
+              "290 goals"
+            ],
+            [
+              "Moderate",
+              "50 goals",
+              "213 goals",
+              "was 988, 725 to Very long",
+              "725 goals"
+            ],
+            [
+              "Aggressive",
+              "30 goals",
+              "128 goals",
+              "was 593, 435 to Very long",
+              "435 goals"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Map row",
+            "Risk band",
+            "Horizon",
+            "Portfolio",
+            "In the draft"
+          ],
+          [
+            [
+              "row 1",
+              "any",
+              "Short",
+              "MP1",
+              "kept"
+            ],
+            [
+              "row 2",
+              "Conservative",
+              "Medium",
+              "MP2",
+              "kept"
+            ],
+            [
+              "row 3",
+              "Moderate",
+              "Medium",
+              "MP3",
+              "kept"
+            ],
+            [
+              "row 4",
+              "Aggressive",
+              "Medium",
+              "MP4",
+              "kept"
+            ],
+            [
+              "row 5",
+              "Conservative",
+              "Long",
+              "MP5",
+              "kept"
+            ],
+            [
+              "row 6",
+              "Moderate",
+              "Long",
+              "MP6",
+              "kept"
+            ],
+            [
+              "row 7",
+              "Aggressive",
+              "Long",
+              "MP7",
+              "kept"
+            ],
+            [
+              "row 8",
+              "Moderate",
+              "Very long",
+              "MP8",
+              "added"
+            ],
+            [
+              "row 9",
+              "Conservative",
+              "Very long",
+              "MP8",
+              "added"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Checks in the draft"
+        ],
+        [
+          "table",
+          [
+            "Check",
+            "Result"
+          ],
+          [
+            [
+              "The horizon bands tile the range: Short, Medium, Long, Very long",
+              "passes"
+            ],
+            [
+              "Coverage: N combinations, each to exactly one row",
+              "fails: Aggressive x Very long has no row; the other combinations resolve"
+            ],
+            [
+              "Every row's portfolio exists",
+              "passes: MP8 and MP9 are in the draft (L14)"
+            ],
+            [
+              "The equity ceiling of each risk band (L09)",
+              "fails: Conservative x Very long points at MP8, 75 equity against the Conservative ceiling of 30"
+            ]
+          ]
+        ],
+        [
+          "btn",
+          "Validate and preview",
+          "L05a"
+        ],
+        [
+          "link",
+          "Model portfolios",
+          "L14"
+        ],
+        [
+          "link",
+          "Live map",
+          "L03"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "dimensions: source field, bands with bounds, lane, since",
+            "forward": "read"
+          },
+          {
+            "f": "band bounds and map rows, in a cohorts draft; score ranges, in a risk scoring draft",
+            "forward": "read"
+          },
+          {
+            "f": "a new dimension on a field the app already holds, in a cohorts draft",
+            "forward": "read"
+          },
+          {
+            "f": "coverage proof, goals per cohort, thin mark",
+            "forward": "system"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: open a cohorts or a risk scoring draft (L03_open_draft; Principal officer, Logic analyst); add a band (L03_add_band; Principal officer, Logic analyst); edit a bound (L03_edit_bound; Principal officer, Logic analyst); add a dimension from the fields the app already holds (L03_add_dimension; Principal officer, Logic analyst); add, edit or retire a map row (a cohorts draft) (L03_edit_map_row; Principal officer, Logic analyst); edit the score ranges (a risk scoring draft) (L03_edit_score_ranges; Principal officer, Logic analyst)",
+          "State: a cohorts draft open (Principal officer 01, 1 Nov 2027, based on co-1); just before, the yearly cohort review fell due on L12 and the author added the band Very long, MP8 and MP9, and two map rows; the Aggressive row was forgotten and Conservative x Very long was pointed at MP8 by a slip.",
+          "Check: the bands of a dimension tile its range with no gap and no overlap; a band owns its upper bound.",
+          "Check: coverage; every combination of bands resolves to exactly one map row, and the most specific row wins.",
+          "Check: every map row's portfolio exists (L14).",
+          "Check: the equity ceiling of each risk band (L09); a row may not point a risk band at a portfolio above its ceiling.",
+          "The band is data: the horizon dimension already exists, so no release of the app is needed (rule 16).",
+          "Goal counts per 1,000 plan holders are the launch figures; the draft moves 290, 725 and 435 goals out of Long into Very long (6.4), so Long reads its launch count and what moved, not a remainder (logic plan, 8 Oct 2026).",
+          "Next: validation fails twice on L05a; the author adds the Aggressive row to MP9 and repoints Conservative x Very long at MP5, and the draft passes. It publishes as REL07 (co-2) on 8 Nov 2027."
         ],
-        "branches": [],
-        "states": [],
+        "branches": [
+          [
+            "Validate and preview",
+            "L05a"
+          ],
+          [
+            "Model portfolios",
+            "L14"
+          ],
+          [
+            "Live map",
+            "L03"
+          ]
+        ],
+        "states": [
+          "Drawn here: a cohorts draft adding a band (1 Nov 2027); every state of the screen is listed on L03."
+        ],
         "dev": []
       },
       "compliance": {
@@ -394,7 +2234,13 @@
         ]
       },
       "events": [
-        "L03a_view"
+        "L03a_view",
+        "L03_open_draft",
+        "L03_add_band",
+        "L03_edit_bound",
+        "L03_add_dimension",
+        "L03_edit_map_row",
+        "L03_edit_score_ranges"
       ],
       "v02": {
         "status": "changed",
@@ -423,7 +2269,56 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "open a cohorts or a risk scoring draft",
+          "event": "L03_open_draft",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add a band",
+          "event": "L03_add_band",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "edit a bound",
+          "event": "L03_edit_bound",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add a dimension from the fields the app already holds",
+          "event": "L03_add_dimension",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add, edit or retire a map row (a cohorts draft)",
+          "event": "L03_edit_map_row",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "edit the score ranges (a risk scoring draft)",
+          "event": "L03_edit_score_ranges",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        }
+      ],
       "group": "logic"
     },
     {
@@ -437,16 +2332,357 @@
       "template": "T-table",
       "path": "both",
       "purpose": "A draft adding a third dimension, goal priority (21 Feb 2028): twenty-four cohorts as a list, about five marked thin; the draft is discarded on 25 Feb.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Dimensions and cohort map; a cohorts draft open; Logic analyst 01; 21 Feb 2028"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "card",
+          "Draft bar",
+          [
+            "Held by Logic analyst 01; state previewed; based on co-4, live since 17 Dec 2027",
+            "Adds a third dimension, goal priority, on a field the app already holds (D07a): data, no release of the app",
+            "Every live map row reads any for goal priority, so coverage passes"
+          ]
+        ],
+        [
+          "h",
+          "Dimensions in the draft"
+        ],
+        [
+          "table",
+          [
+            "Dimension",
+            "Source field and its screen",
+            "Bands with bounds",
+            "Lane",
+            "Since"
+          ],
+          [
+            [
+              "Risk band",
+              "the questionnaire score, D08a to D08h",
+              "Conservative 8 to 16; Moderate 17 to 25; Aggressive 26 to 32",
+              "cohorts; its score ranges belong to the risk scoring lane",
+              "25 Jan 2027; score ranges 3 Jan 2028 (rs-2)"
+            ],
+            [
+              "Horizon",
+              "years to the goal, D07a and D07b",
+              "Short: up to 1; Medium: over 1, up to 3; Long: over 3, up to 7; Very long: over 7",
+              "cohorts",
+              "25 Jan 2027; Very long 8 Nov 2027 (co-2)"
+            ],
+            [
+              "Goal priority",
+              "the priority on each goal, D07a: must, should, nice to have",
+              "must have: must; the rest: should, nice to have or not set",
+              "cohorts",
+              "in the draft"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Cohorts in the draft: a list, twenty-four"
+        ],
+        [
+          "table",
+          [
+            "Cohort",
+            "Map row (reads any for goal priority)",
+            "Portfolio",
+            "Mix (liquid debt / debt / hybrid / commodities / equity / REITs and InvITs), co-4",
+            "Goals per 1,000 plan holders (illustrative)",
+            "Thin"
+          ],
+          [
+            [
+              "Conservative x Short x must have",
+              "row 1",
+              "MP1",
+              "100/0/0/0/0/0",
+              "N goals",
+              "thin"
+            ],
+            [
+              "Conservative x Short x the rest",
+              "row 1",
+              "MP1",
+              "100/0/0/0/0/0",
+              "N goals",
+              "thin"
+            ],
+            [
+              "Conservative x Medium x must have",
+              "row 2",
+              "MP2",
+              "20/70/10/0/0/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Conservative x Medium x the rest",
+              "row 2",
+              "MP2",
+              "20/70/10/0/0/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Conservative x Long x must have",
+              "row 5",
+              "MP5",
+              "10/40/20/10/20/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Conservative x Long x the rest",
+              "row 5",
+              "MP5",
+              "10/40/20/10/20/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Conservative x Very long x must have",
+              "row 9",
+              "MP5",
+              "10/40/20/10/20/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Conservative x Very long x the rest",
+              "row 9",
+              "MP5",
+              "10/40/20/10/20/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Moderate x Short x must have",
+              "row 1",
+              "MP1",
+              "100/0/0/0/0/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Moderate x Short x the rest",
+              "row 1",
+              "MP1",
+              "100/0/0/0/0/0",
+              "N goals",
+              "thin"
+            ],
+            [
+              "Moderate x Medium x must have",
+              "row 3",
+              "MP3",
+              "10/60/30/0/0/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Moderate x Medium x the rest",
+              "row 3",
+              "MP3",
+              "10/60/30/0/0/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Moderate x Long x must have",
+              "row 6",
+              "MP6",
+              "0/15/10/8/67/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Moderate x Long x the rest",
+              "row 6",
+              "MP6",
+              "0/15/10/8/67/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Moderate x Very long x must have",
+              "row 8",
+              "MP8",
+              "0/10/5/10/75/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Moderate x Very long x the rest",
+              "row 8",
+              "MP8",
+              "0/10/5/10/75/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Aggressive x Short x must have",
+              "row 1",
+              "MP1",
+              "100/0/0/0/0/0",
+              "N goals",
+              "thin"
+            ],
+            [
+              "Aggressive x Short x the rest",
+              "row 1",
+              "MP1",
+              "100/0/0/0/0/0",
+              "N goals",
+              "thin"
+            ],
+            [
+              "Aggressive x Medium x must have",
+              "row 4",
+              "MP4",
+              "10/50/40/0/0/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Aggressive x Medium x the rest",
+              "row 4",
+              "MP4",
+              "10/50/40/0/0/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Aggressive x Long x must have",
+              "row 7",
+              "MP7",
+              "0/5/5/10/80/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Aggressive x Long x the rest",
+              "row 7",
+              "MP7",
+              "0/5/5/10/80/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Aggressive x Very long x must have",
+              "row 10",
+              "MP9",
+              "0/0/0/10/90/0",
+              "N goals",
+              "-"
+            ],
+            [
+              "Aggressive x Very long x the rest",
+              "row 10",
+              "MP9",
+              "0/0/0/10/90/0",
+              "N goals",
+              "-"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Coverage proof in the draft"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Combinations of bands",
+              "24: three risk bands by four horizons by two priorities"
+            ],
+            [
+              "Each resolves to exactly one row",
+              "24 of 24, on the live rows that read any for goal priority"
+            ],
+            [
+              "Left with no row",
+              "none"
+            ],
+            [
+              "Proof",
+              "passes"
+            ],
+            [
+              "Thin cohorts, under 30 goals per 1,000",
+              "five of 24"
+            ]
+          ]
+        ],
+        [
+          "btn",
+          "Drafts, validation and preview",
+          "L05"
+        ],
+        [
+          "link",
+          "Live map",
+          "L03"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "dimensions: source field, bands with bounds, lane, since",
+            "forward": "read"
+          },
+          {
+            "f": "band bounds and map rows, in a cohorts draft; score ranges, in a risk scoring draft",
+            "forward": "read"
+          },
+          {
+            "f": "a new dimension on a field the app already holds, in a cohorts draft",
+            "forward": "read"
+          },
+          {
+            "f": "coverage proof, goals per cohort, thin mark",
+            "forward": "system"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: open a cohorts or a risk scoring draft (L03_open_draft; Principal officer, Logic analyst); add a band (L03_add_band; Principal officer, Logic analyst); edit a bound (L03_edit_bound; Principal officer, Logic analyst); add a dimension from the fields the app already holds (L03_add_dimension; Principal officer, Logic analyst); add, edit or retire a map row (a cohorts draft) (L03_edit_map_row; Principal officer, Logic analyst); edit the score ranges (a risk scoring draft) (L03_edit_score_ranges; Principal officer, Logic analyst)",
+          "State: a cohorts draft open and previewed (Logic analyst 01, 21 Feb 2028, based on co-4); just before, the author added the dimension goal priority (must have, the rest) on the field D07a already holds.",
+          "Check: the bands of a dimension tile its range with no gap and no overlap; a band owns its upper bound.",
+          "Check: coverage; every combination of bands resolves to exactly one map row, and the most specific row wins.",
+          "Check: every map row's portfolio exists (L14).",
+          "Check: the equity ceiling of each risk band (L09); a row may not point a risk band at a portfolio above its ceiling.",
+          "With three dimensions the map is drawn as a list of rows, not the grid.",
+          "Section 6 types no goal count for a cohort of three dimensions, so each reads N; about five of the twenty-four are marked thin (6.4), and which five is typed for this example (logic plan, 8 Oct 2026).",
+          "Next: on 25 Feb 2028 the author discards the draft on L05 with its reason: it splits the book too thin."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Drafts, validation and preview",
+            "L05"
+          ],
+          [
+            "Live map",
+            "L03"
+          ]
+        ],
+        "states": [
+          "Drawn here: a cohorts draft adding a dimension, the list form (21 Feb 2028); every state of the screen is listed on L03."
+        ],
+        "dev": [
+          "LQ5 to be decided: the dimensions beyond risk band and horizon, and a ceiling on the number of cohorts"
+        ]
       },
       "compliance": {
         "review": false,
@@ -458,7 +2694,13 @@
         ]
       },
       "events": [
-        "L03b_view"
+        "L03b_view",
+        "L03_open_draft",
+        "L03_add_band",
+        "L03_edit_bound",
+        "L03_add_dimension",
+        "L03_edit_map_row",
+        "L03_edit_score_ranges"
       ],
       "v02": {
         "status": "changed",
@@ -487,7 +2729,56 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "open a cohorts or a risk scoring draft",
+          "event": "L03_open_draft",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add a band",
+          "event": "L03_add_band",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "edit a bound",
+          "event": "L03_edit_bound",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add a dimension from the fields the app already holds",
+          "event": "L03_add_dimension",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add, edit or retire a map row (a cohorts draft)",
+          "event": "L03_edit_map_row",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "edit the score ranges (a risk scoring draft)",
+          "event": "L03_edit_score_ranges",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        }
+      ],
       "group": "logic"
     },
     {
@@ -501,16 +2792,217 @@
       "template": "T-table",
       "path": "both",
       "purpose": "The model portfolios: each mix over the six classes, the sleeve that fills each class, the cohorts pointing at it, and one portfolio in the mix editor. Drawn: launch, MP1 to MP7.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Model portfolios; live co-1; 1 Feb 2027, launch"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "Model portfolios"
+        ],
+        [
+          "table",
+          [
+            "Portfolio",
+            "Mix (liquid debt / debt / hybrid / commodities / equity / REITs and InvITs)",
+            "Sleeve that fills each class",
+            "Blended return under as-1 (example)",
+            "Cohorts pointing at it",
+            "Goals per 1,000 plan holders (illustrative)"
+          ],
+          [
+            [
+              "MP1 Short",
+              "100/0/0/0/0/0",
+              "liquid debt: liquid",
+              "N%",
+              "Short, any risk band (one map row with any)",
+              "N goals"
+            ],
+            [
+              "MP2 Medium conservative",
+              "20/70/10/0/0/0",
+              "liquid debt: liquid; debt: debt, near; hybrid: hybrid",
+              "N%",
+              "Conservative x Medium",
+              "85 goals"
+            ],
+            [
+              "MP3 Medium moderate",
+              "10/60/30/0/0/0",
+              "liquid debt: liquid; debt: debt, near; hybrid: hybrid",
+              "N%",
+              "Moderate x Medium",
+              "213 goals"
+            ],
+            [
+              "MP4 Medium aggressive",
+              "10/50/40/0/0/0",
+              "liquid debt: liquid; debt: debt, near; hybrid: hybrid",
+              "N%",
+              "Aggressive x Medium",
+              "128 goals"
+            ],
+            [
+              "MP5 Long conservative",
+              "10/40/20/10/20/0",
+              "liquid debt: liquid; debt: debt, far; hybrid: hybrid; commodities: commodities; equity: equity core",
+              "N%",
+              "Conservative x Long",
+              "395 goals"
+            ],
+            [
+              "MP6 Long moderate",
+              "0/15/10/10/65/0",
+              "debt: debt, far; hybrid: hybrid; commodities: commodities; equity: equity core",
+              "N%",
+              "Moderate x Long",
+              "988 goals"
+            ],
+            [
+              "MP7 Long aggressive",
+              "0/5/5/10/80/0",
+              "debt: debt, far; hybrid: hybrid; commodities: commodities; equity: equity core",
+              "N%",
+              "Aggressive x Long",
+              "593 goals"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "One portfolio: MP6 Long moderate"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Mix",
+              "0/15/10/10/65/0, sum 100"
+            ],
+            [
+              "Against live",
+              "no draft open"
+            ],
+            [
+              "Rationale, internal",
+              "launch content (REL01)"
+            ],
+            [
+              "Rationale, client",
+              "a slot; copy is slots, never final wording"
+            ],
+            [
+              "Equity ceiling of the bands pointing at it",
+              "Moderate 80: passes at 65"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "History of MP6",
+            "Mix",
+            "Reason"
+          ],
+          [
+            [
+              "REL01 (co-1), 25 Jan 2027",
+              "0/15/10/10/65/0",
+              "launch content"
+            ]
+          ]
+        ],
+        [
+          "btn",
+          "Open a cohorts draft",
+          "L14a"
+        ],
+        [
+          "link",
+          "Dimensions and cohort map",
+          "L03"
+        ],
+        [
+          "link",
+          "Funds and sleeves",
+          "L04"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "mix[portfolio]: the six class weights, whole numbers",
+            "forward": "read"
+          },
+          {
+            "f": "sleeve[class]",
+            "forward": "read"
+          },
+          {
+            "f": "rationale: internal, client",
+            "forward": "read"
+          },
+          {
+            "f": "reason for a move of 5 points or more on one class",
+            "forward": "read"
+          },
+          {
+            "f": "blended return, cohorts pointing at it, goals per 1,000",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: open a cohorts draft (L14_open_draft; Principal officer, Logic analyst); add or edit a portfolio in the draft (L14_edit_portfolio; Principal officer, Logic analyst); retire a portfolio that no map row points at (L14_retire_portfolio; Principal officer, Logic analyst)",
+          "Check: the sum is 100 (hard).",
+          "Check: no class below 0 (hard).",
+          "Check: a class with no sleeve is 0 (hard); REITs and InvITs have no sleeve, so the class is 0 in every portfolio.",
+          "Check: the equity ceiling of every risk band whose cohorts point at it (hard; L09).",
+          "Check: a move of 5 points or more on one class asks for a typed reason (soft; LQ22).",
+          "Blended return under the live assumptions: the plan types none, so each reads N% (section 0: no stand-in for the engine's maths).",
+          "A portfolio is retired only when no map row points at it.",
+          "Goals per portfolio restate the typed count of the one cohort pointing at it (6.4); MP1, where three cohorts point at it and only a sum would give it, reads N (logic plan, 8 Oct 2026).",
+          "Open a draft is the first step of 4.6, taken on the lane's own screen, with one open draft per lane; it is a write here as on L02 (logic plan, 8 Oct 2026). Portfolios are in the cohorts lane.",
+          "For Adviser, Call centre, Ops and Support, read means the live values and rationale only; draft rows are not sent.",
+          "Against the board: new; the grid's mixes on today's L03, named as portfolios, so twenty cohorts do not mean twenty mixes to maintain."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Open a cohorts draft",
+            "L14a"
+          ],
+          [
+            "Dimensions and cohort map",
+            "L03"
+          ],
+          [
+            "Funds and sleeves",
+            "L04"
+          ]
+        ],
+        "states": [
+          "Launch: MP1 to MP7 (drawn: L14, 1 Feb 2027).",
+          "A cohorts draft with one portfolio in the mix editor (drawn: L14a, MP6, 29 Nov 2027).",
+          "A cohorts draft adding portfolios: MP8 and MP9 with their rationale (1 Nov 2027, published as REL07; not drawn).",
+          "A portfolio retired: only when no map row points at it (not drawn).",
+          "Read by another seat: live values and rationale only (not drawn)."
+        ],
+        "dev": [
+          "LQ6 to be decided: how many model portfolios, and whether a mix change ever moves existing units",
+          "LQ15 to be decided: whether the Adviser, Call centre and Support seats read the live rationale in the panel or as content in {I15}",
+          "LQ22 to be decided: whether approval is blocked until the reviewer has opened every preview panel; a hard limit on a single-class move"
+        ],
+        "forward": [
+          "Open a cohorts draft is enabled when the cohorts lane has no other open draft (4.6 step 1).",
+          "Required, in a draft: the six class weights, whole numbers summing to 100; the sleeve for every class above 0; both rationales.",
+          "Optional: a typed reason; asked for a move of 5 points or more on one class."
+        ]
       },
       "compliance": {
         "review": false,
@@ -522,7 +3014,10 @@
         ]
       },
       "events": [
-        "L14_view"
+        "L14_view",
+        "L14_open_draft",
+        "L14_edit_portfolio",
+        "L14_retire_portfolio"
       ],
       "v02": {
         "status": "new",
@@ -551,7 +3046,32 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "open a cohorts draft",
+          "event": "L14_open_draft",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add or edit a portfolio in the draft",
+          "event": "L14_edit_portfolio",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "retire a portfolio that no map row points at",
+          "event": "L14_retire_portfolio",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        }
+      ],
       "group": "logic"
     },
     {
@@ -565,16 +3085,292 @@
       "template": "T-table",
       "path": "both",
       "purpose": "MP6 open in a draft (29 Nov 2027): keyed 0/24/10/10/56/0, the sum 100, the 9-point flag on two classes with its typed reason.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Model portfolios; a cohorts draft open; Logic analyst 01; 29 Nov 2027"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "card",
+          "Draft bar",
+          [
+            "Held by Logic analyst 01; state open; based on co-2, live since 8 Nov 2027",
+            "MP6 Long moderate open in the mix editor"
+          ]
+        ],
+        [
+          "h",
+          "Model portfolios (live co-2)"
+        ],
+        [
+          "table",
+          [
+            "Portfolio",
+            "Mix (liquid debt / debt / hybrid / commodities / equity / REITs and InvITs)",
+            "Sleeve that fills each class",
+            "Blended return under as-1 (example)",
+            "Cohorts pointing at it",
+            "Goals per 1,000 plan holders (illustrative)"
+          ],
+          [
+            [
+              "MP1 Short",
+              "100/0/0/0/0/0",
+              "liquid debt: liquid",
+              "N%",
+              "Short, any risk band (one map row with any)",
+              "N goals"
+            ],
+            [
+              "MP2 Medium conservative",
+              "20/70/10/0/0/0",
+              "liquid debt: liquid; debt: debt, near; hybrid: hybrid",
+              "N%",
+              "Conservative x Medium",
+              "85 goals"
+            ],
+            [
+              "MP3 Medium moderate",
+              "10/60/30/0/0/0",
+              "liquid debt: liquid; debt: debt, near; hybrid: hybrid",
+              "N%",
+              "Moderate x Medium",
+              "213 goals"
+            ],
+            [
+              "MP4 Medium aggressive",
+              "10/50/40/0/0/0",
+              "liquid debt: liquid; debt: debt, near; hybrid: hybrid",
+              "N%",
+              "Aggressive x Medium",
+              "128 goals"
+            ],
+            [
+              "MP5 Long conservative",
+              "10/40/20/10/20/0",
+              "liquid debt: liquid; debt: debt, far; hybrid: hybrid; commodities: commodities; equity: equity core",
+              "N%",
+              "Conservative x Long; Conservative x Very long",
+              "was 395, 290 to Very long (also MP5)"
+            ],
+            [
+              "MP6 Long moderate (open in the draft)",
+              "0/15/10/10/65/0",
+              "debt: debt, far; hybrid: hybrid; commodities: commodities; equity: equity core",
+              "N%",
+              "Moderate x Long",
+              "was 988, 725 to Very long (MP8)"
+            ],
+            [
+              "MP7 Long aggressive",
+              "0/5/5/10/80/0",
+              "debt: debt, far; hybrid: hybrid; commodities: commodities; equity: equity core",
+              "N%",
+              "Aggressive x Long",
+              "was 593, 435 to Very long (MP9)"
+            ],
+            [
+              "MP8 Very long moderate",
+              "0/10/5/10/75/0",
+              "debt: debt, far; hybrid: hybrid; commodities: commodities; equity: equity core",
+              "N%",
+              "Moderate x Very long",
+              "725 goals"
+            ],
+            [
+              "MP9 Very long aggressive",
+              "0/0/0/10/90/0",
+              "commodities: commodities; equity: equity core",
+              "N%",
+              "Aggressive x Very long",
+              "435 goals"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "MP6 Long moderate in the mix editor"
+        ],
+        [
+          "in",
+          "Mix, typed: 0/24/10/10/56/0; sum 100"
+        ],
+        [
+          "table",
+          [
+            "MP6",
+            "Mix (liquid debt / debt / hybrid / commodities / equity / REITs and InvITs)"
+          ],
+          [
+            [
+              "Live, co-2",
+              "0/15/10/10/65/0"
+            ],
+            [
+              "Draft",
+              "0/24/10/10/56/0"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Class",
+            "Against live: from, to",
+            "Move in points"
+          ],
+          [
+            [
+              "Liquid debt",
+              "0 to 0",
+              "none"
+            ],
+            [
+              "Debt",
+              "15 to 24",
+              "up 9: flagged"
+            ],
+            [
+              "Hybrid",
+              "10 to 10",
+              "none"
+            ],
+            [
+              "Commodities",
+              "10 to 10",
+              "none"
+            ],
+            [
+              "Equity",
+              "65 to 56",
+              "down 9: flagged"
+            ],
+            [
+              "REITs and InvITs",
+              "0 to 0",
+              "none"
+            ]
+          ]
+        ],
+        [
+          "rows",
+          [
+            [
+              "The sum is 100",
+              "passes (hard)"
+            ],
+            [
+              "No class below 0",
+              "passes (hard)"
+            ],
+            [
+              "A class with no sleeve is 0",
+              "passes: REITs and InvITs 0 (hard)"
+            ],
+            [
+              "The equity ceiling, Moderate 80",
+              "passes at 56 (hard)"
+            ],
+            [
+              "A move of 5 points or more",
+              "flagged on debt and equity, 9 points each; a reason is typed (soft)"
+            ],
+            [
+              "Blended return under as-1 (example)",
+              "N% live; N% in the draft"
+            ]
+          ]
+        ],
+        [
+          "rows",
+          [
+            [
+              "Typed reason for the flagged moves",
+              "MP6 mix review (typed by the author)"
+            ],
+            [
+              "Rationale, internal",
+              "typed by the author"
+            ],
+            [
+              "Rationale, client",
+              "a slot"
+            ]
+          ]
+        ],
+        [
+          "btn",
+          "Validate and preview",
+          "L05"
+        ],
+        [
+          "link",
+          "Live portfolios",
+          "L14"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "mix[portfolio]: the six class weights, whole numbers",
+            "forward": "required"
+          },
+          {
+            "f": "sleeve[class]",
+            "forward": "required"
+          },
+          {
+            "f": "rationale: internal, client",
+            "forward": "required"
+          },
+          {
+            "f": "reason for a move of 5 points or more on one class",
+            "forward": "optional"
+          },
+          {
+            "f": "blended return, cohorts pointing at it, goals per 1,000",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: open a cohorts draft (L14_open_draft; Principal officer, Logic analyst); add or edit a portfolio in the draft (L14_edit_portfolio; Principal officer, Logic analyst); retire a portfolio that no map row points at (L14_retire_portfolio; Principal officer, Logic analyst)",
+          "State: MP6 open in a cohorts draft (Logic analyst 01, 29 Nov 2027, based on co-2); just before, the author keyed 0/24/10/10/56/0 where 0/15/10/8/67/0 was meant.",
+          "Check: the sum is 100 (hard).",
+          "Check: no class below 0 (hard).",
+          "Check: a class with no sleeve is 0 (hard); REITs and InvITs have no sleeve, so the class is 0 in every portfolio.",
+          "Check: the equity ceiling of every risk band whose cohorts point at it (hard; L09).",
+          "Check: a move of 5 points or more on one class asks for a typed reason (soft; LQ22).",
+          "The sum holds and 56 is under the Moderate ceiling, so only the soft limit speaks: two classes move 9 points and a reason is typed; the typed reason stands in for the author's own words (logic plan, 8 Oct 2026).",
+          "Goals per portfolio restate the typed counts (6.4): the launch count of each cohort pointing at it and what REL07 moved to Very long; MP1, where only a sum would give it, reads N (logic plan, 8 Oct 2026).",
+          "Next: approved on 30 Nov 2027 and published as REL08 (co-3), effective 16:00; paused and withdrawn on 16 Dec 2027; corrected by REL09 (co-4) on 17 Dec 2027 at 0/15/10/8/67/0."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Validate and preview",
+            "L05"
+          ],
+          [
+            "Live portfolios",
+            "L14"
+          ]
+        ],
+        "states": [
+          "Drawn here: MP6 open in a cohorts draft (29 Nov 2027); every state of the screen is listed on L14."
+        ],
+        "dev": [
+          "LQ22 to be decided: whether approval is blocked until the reviewer has opened every preview panel; a hard limit on a single-class move"
+        ],
+        "forward": [
+          "Validate and preview (L05) takes the draft when the mix sums to 100, no class is below 0, a class with no sleeve is 0 and the equity ceilings hold.",
+          "Required: the six class weights, typed as one mix with the sum shown as it is typed; both rationales.",
+          "Optional: a typed reason, asked for here for the 9-point moves on debt and equity.",
+          "System: the author, the time and the live version the draft is based on (co-2)."
+        ]
       },
       "compliance": {
         "review": false,
@@ -586,7 +3382,10 @@
         ]
       },
       "events": [
-        "L14a_view"
+        "L14a_view",
+        "L14_open_draft",
+        "L14_edit_portfolio",
+        "L14_retire_portfolio"
       ],
       "v02": {
         "status": "new",
@@ -615,7 +3414,32 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "open a cohorts draft",
+          "event": "L14_open_draft",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add or edit a portfolio in the draft",
+          "event": "L14_edit_portfolio",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "retire a portfolio that no map row points at",
+          "event": "L14_retire_portfolio",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        }
+      ],
       "group": "logic"
     },
     {
@@ -629,16 +3453,345 @@
       "template": "T-table",
       "path": "both",
       "purpose": "The sleeves and their funds, each fund's status and history, adding a fund by ISIN, exposure per fund, and the unknown-ISIN queue. Drawn: launch, the sleeves and funds of REL01.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Funds and sleeves; live fu-1; 1 Feb 2027, launch"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "Sleeves"
+        ],
+        [
+          "table",
+          [
+            "Sleeve",
+            "Asset class",
+            "Used by",
+            "Funds, in weight order",
+            "Weights",
+            "Lead fund"
+          ],
+          [
+            [
+              "liquid",
+              "liquid debt",
+              "MP1 to MP5",
+              "Seed Liquid Fund 05",
+              "100 (one fund)",
+              "Seed Liquid Fund 05"
+            ],
+            [
+              "debt, near",
+              "debt",
+              "MP2, MP3, MP4",
+              "Seed Short Duration Fund 06",
+              "100 (one fund)",
+              "Seed Short Duration Fund 06"
+            ],
+            [
+              "debt, far",
+              "debt",
+              "MP5, MP6, MP7 (logic plan, 8 Oct 2026)",
+              "Seed Short Duration Fund 06; Seed Gilt Fund 09",
+              "60/40",
+              "Seed Short Duration Fund 06"
+            ],
+            [
+              "hybrid",
+              "hybrid",
+              "MP2 to MP7 (logic plan, 8 Oct 2026)",
+              "Seed Hybrid Fund 07",
+              "100 (one fund)",
+              "Seed Hybrid Fund 07"
+            ],
+            [
+              "commodities",
+              "commodities",
+              "MP5, MP6, MP7 (logic plan, 8 Oct 2026)",
+              "Seed Gold Fund 41, bought through {I03}",
+              "100 (one fund)",
+              "Seed Gold Fund 41"
+            ],
+            [
+              "equity core",
+              "equity",
+              "MP5, MP6, MP7 (logic plan, 8 Oct 2026)",
+              "Seed Index Nifty 50 Fund 08; Seed Flexi Cap Fund 10; Seed Mid Cap Fund 02",
+              "50/30/20",
+              "Seed Index Nifty 50 Fund 08"
+            ],
+            [
+              "none",
+              "REITs and InvITs",
+              "none",
+              "no sleeve: the class is 0 in every portfolio",
+              "none",
+              "none"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Funds"
+        ],
+        [
+          "table",
+          [
+            "Fund",
+            "ISIN",
+            "Category (fetched from {I05})",
+            "Status: since, release",
+            "Minimum SIP",
+            "Exit-load window",
+            "Rationales: internal; client"
+          ],
+          [
+            [
+              "Seed Liquid Fund 05",
+              "INFSD0000055",
+              "debt: liquid",
+              "approved: 25 Jan 2027, REL01 (fu-1)",
+              "Rs 500",
+              "12 months",
+              "typed at REL01; a slot"
+            ],
+            [
+              "Seed Short Duration Fund 06",
+              "INFSD0000063",
+              "debt: short duration",
+              "approved: 25 Jan 2027, REL01 (fu-1)",
+              "Rs 500",
+              "12 months",
+              "typed at REL01; a slot"
+            ],
+            [
+              "Seed Gilt Fund 09",
+              "INFSD0000097",
+              "debt: gilt",
+              "approved: 25 Jan 2027, REL01 (fu-1)",
+              "Rs 500",
+              "12 months",
+              "typed at REL01; a slot"
+            ],
+            [
+              "Seed Hybrid Fund 07",
+              "INFSD0000071",
+              "hybrid",
+              "approved: 25 Jan 2027, REL01 (fu-1)",
+              "Rs 500",
+              "12 months",
+              "typed at REL01; a slot"
+            ],
+            [
+              "Seed Gold Fund 41",
+              "INFSD0000410",
+              "commodities: gold, exchange traded",
+              "approved: 25 Jan 2027, REL01 (fu-1)",
+              "Rs 500",
+              "12 months",
+              "typed at REL01; a slot"
+            ],
+            [
+              "Seed Index Nifty 50 Fund 08",
+              "INFSD0000089",
+              "equity: index",
+              "approved: 25 Jan 2027, REL01 (fu-1)",
+              "Rs 500",
+              "12 months",
+              "typed at REL01; a slot"
+            ],
+            [
+              "Seed Flexi Cap Fund 10",
+              "INFSD0000105",
+              "equity: flexi cap",
+              "approved: 25 Jan 2027, REL01 (fu-1)",
+              "Rs 500",
+              "12 months",
+              "typed at REL01; a slot"
+            ],
+            [
+              "Seed Mid Cap Fund 02",
+              "INFSD0000022",
+              "equity: mid cap",
+              "approved: 25 Jan 2027, REL01 (fu-1)",
+              "Rs 500",
+              "12 months",
+              "typed at REL01; a slot"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Status history: Seed Mid Cap Fund 02",
+            "Since",
+            "Release",
+            "Reason"
+          ],
+          [
+            [
+              "approved",
+              "25 Jan 2027",
+              "REL01 (fu-1)",
+              "launch content"
+            ]
+          ]
+        ],
+        [
+          "link",
+          "Show the status history of another fund",
+          "L04"
+        ],
+        [
+          "h",
+          "Add a fund by ISIN"
+        ],
+        [
+          "in",
+          "ISIN, 12 characters"
+        ],
+        [
+          "p",
+          "The facts come from the instrument master ({I05}). An ISIN the master does not know, or a plan that is not direct, is refused at the field."
+        ],
+        [
+          "h",
+          "Exposure, per fund"
+        ],
+        [
+          "p",
+          "Per 1,000 plan holders: advised into it, running a SIP into it, holding an open action naming it, holding units (verified, not verified). At launch no plan is built yet."
+        ],
+        [
+          "link",
+          "Exposure of the flexi cap fund, 22 Sep 2027",
+          "L04a"
+        ],
+        [
+          "h",
+          "Unknown-ISIN queue"
+        ],
+        [
+          "p",
+          "Empty at launch. It fills from the holdings clients bring, with the facts ops adds; until an item is classed, the client sees hold for now on G12."
+        ],
+        [
+          "link",
+          "The queue with two items, 14 Jun 2027",
+          "L04b"
+        ],
+        [
+          "btn",
+          "Open a funds draft",
+          "L04"
+        ],
+        [
+          "btn2",
+          "Request an urgent Hold",
+          "L04a"
+        ],
+        [
+          "link",
+          "Guards and constraints",
+          "L09"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "isin",
+            "forward": "required"
+          },
+          {
+            "f": "sleeve and weights, in a funds draft",
+            "forward": "required"
+          },
+          {
+            "f": "rationale: internal, client",
+            "forward": "required"
+          },
+          {
+            "f": "name, category, minimum SIP, exit-load window",
+            "forward": "system"
+          },
+          {
+            "f": "status: approved, hold, exit, retired",
+            "forward": "default"
+          },
+          {
+            "f": "exposure per fund",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops act; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: open a funds draft (L04_open_draft; Principal officer, Logic analyst); add a fund to a sleeve (L04_add_fund; Principal officer, Logic analyst); change weights (L04_change_weights; Principal officer, Logic analyst); change a status (Hold, Exit) (L04_change_status; Principal officer, Logic analyst); class a queue item (a funds draft) (L04_class_queue_item; Principal officer, Logic analyst); request an urgent Hold (L04_request_urgent_hold; Logic analyst); add facts to a queue item (L04_add_facts; Ops)",
+          "Check: a sleeve's weights sum to 100.",
+          "Check: the L09 limits.",
+          "Check: a Hold that would empty a sleeve is blocked until the same draft adds a fund to it (rule 9).",
+          "Check: the ISIN is in the instrument master ({I05}) and the plan is direct (E02 on the board: direct plans only).",
+          "A fund belongs to a sleeve and a portfolio names its sleeves, so one fund change is one edit however many cohorts exist.",
+          "A fund leaving the list goes to Hold by default: keep the units, no new money; Exit is a separate decision with its own reason (rule 9).",
+          "Until an unknown ISIN is classed, the client sees hold for now (G12, the board's L04 rule).",
+          "Open a funds draft is in place: the draft bar appears with its author and state and the rows take edits; one open draft per lane (4.6 step 1) (logic plan, 8 Oct 2026).",
+          "Show the status history of another fund is an in-place expander: the fund's statuses by release with the reason each time.",
+          "Request an urgent Hold is the Logic analyst's; only the Principal officer places one, alone (L06a).",
+          "Fund names and ISINs come from the seed's instrument master, written in 6.1's form without its \"Direct Growth\". The master holds forty funds and no gold fund, so Seed Gold Fund 41 (INFSD0000410) is synthetic: outside the seed and carried by nothing in it (logic plan, 8 Oct 2026). One short duration fund fills the debt, near sleeve and leads the debt, far sleeve; the fetched categories are typed for the synthetic funds (logic plan, 8 Oct 2026).",
+          "Used by shows the launch state, MP1 to MP7: MP8 and MP9, which 6.1 also lists, arrive with REL07 on 8 Nov 2027 (logic plan, 8 Oct 2026).",
+          "Exposure and the queue are empty at launch: no plan is built yet; L04a and L04b show them filled (logic plan, 8 Oct 2026).",
+          "For Adviser, Call centre and Support, read means the live values and rationale only; draft rows are not sent. Ops acts here only to add facts to a queue item.",
+          "Against the board: today's L04 assigns an instrument to grid cells with a weight; here a fund belongs to a sleeve and a portfolio names its sleeves. \"Staged\" and \"Published\" become the draft and the release."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Exposure of a fund",
+            "L04a"
+          ],
+          [
+            "Unknown-ISIN queue",
+            "L04b"
+          ],
+          [
+            "Guards and constraints",
+            "L09"
+          ],
+          [
+            "Drafts, validation and preview",
+            "L05"
+          ]
+        ],
+        "states": [
+          "Launch: the sleeves and funds of fu-1 (drawn: L04, 1 Feb 2027).",
+          "A fund's exposure with an urgent Hold request waiting (drawn: L04a, 22 Sep 2027).",
+          "The unknown-ISIN queue with items, the facts ops added and the proposed classes (drawn: L04b, 14 Jun 2027).",
+          "A funds draft open: a fund added, weights changed or a status changed, with the draft bar (not drawn).",
+          "A Hold that would empty a sleeve: blocked until the same draft adds a fund to it (rule 9; not drawn).",
+          "A draft rebased: an urgent Hold moved the live version while the draft was open; its validation and preview run again (rule 18; not drawn).",
+          "A fund on Hold or Exit: its status with since and the release; no new money (not drawn).",
+          "Read by another seat: live values and rationale only (not drawn)."
+        ],
+        "dev": [
+          "LQ4 to be decided: Hold as the default when a fund leaves the list, and when an Exit is ever advised (G12 on the board reads: not on the approved list, exit)",
+          "LQ15 to be decided: whether the Adviser, Call centre and Support seats read the live rationale in the panel or as content in {I15}",
+          "LQ19 to be verified: whether a running SIP can be redirected through {I02} in one step, and how a Hold reaches a basket on {I03}",
+          "LQ25 to be decided: how the principal officer is reached for an urgent request",
+          "LQ26 to be decided: the rule for staging an exit across financial years (not modelled)",
+          "LQ31 to be decided: whether a self-reported SIP outside the app counts as a running SIP for a Hold",
+          "LQ36 to be verified: whether launch runs execution in the app as section E draws, or through a link that opens {I02} with the portfolio loaded (gap G10; 7 Oct 2026 call); what the app then knows about a running SIP",
+          "Instrument master, prices and NAVs: {I05}; NAVs refresh nightly (the board's L04 note)."
+        ],
+        "forward": [
+          "Add a fund needs an ISIN the instrument master ({I05}) knows and a direct plan; anything else is refused at the field.",
+          "Required: isin; the sleeve and its weights summing to 100; both rationales.",
+          "Default: status approved from the release's effective time.",
+          "System: name, category, minimum SIP and exit-load window, from {I05}.",
+          "Optional: an override of the category, on L09, logged."
+        ]
       },
       "compliance": {
         "review": false,
@@ -650,7 +3803,14 @@
         ]
       },
       "events": [
-        "L04_view"
+        "L04_view",
+        "L04_open_draft",
+        "L04_add_fund",
+        "L04_change_weights",
+        "L04_change_status",
+        "L04_class_queue_item",
+        "L04_request_urgent_hold",
+        "L04_add_facts"
       ],
       "v02": {
         "status": "changed",
@@ -679,7 +3839,62 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "open a funds draft",
+          "event": "L04_open_draft",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add a fund to a sleeve",
+          "event": "L04_add_fund",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "change weights",
+          "event": "L04_change_weights",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "change a status (Hold, Exit)",
+          "event": "L04_change_status",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "class a queue item (a funds draft)",
+          "event": "L04_class_queue_item",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "request an urgent Hold",
+          "event": "L04_request_urgent_hold",
+          "seats": [
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add facts to a queue item",
+          "event": "L04_add_facts",
+          "seats": [
+            "Ops"
+          ]
+        }
+      ],
       "group": "logic"
     },
     {
@@ -693,16 +3908,139 @@
       "template": "T-table",
       "path": "both",
       "purpose": "The flexi cap fund's exposure with an urgent Hold request waiting (22 Sep 2027, 10:05).",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Funds and sleeves; live fu-4; Logic analyst 01; 22 Sep 2027, 10:05"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "Seed Flexi Cap Fund 10"
+        ],
+        [
+          "rows",
+          [
+            [
+              "ISIN",
+              "INFSD0000105"
+            ],
+            [
+              "Category",
+              "equity: flexi cap"
+            ],
+            [
+              "Status",
+              "approved since 25 Jan 2027 (REL01)"
+            ],
+            [
+              "Sleeve",
+              "equity core; Seed Mid Cap Fund 02 is on Hold since 9 Aug 2027 (REL04)"
+            ]
+          ]
+        ],
+        [
+          "table",
+          [
+            "Sleeve",
+            "Funds for new money, in weight order",
+            "Weights",
+            "Lead fund"
+          ],
+          [
+            [
+              "equity core",
+              "Seed Index Nifty 50 Fund 08; Seed Flexi Cap Fund 10; Seed Large Cap Fund 01",
+              "53/29/18",
+              "Seed Index Nifty 50 Fund 08"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Exposure, per 1,000 plan holders"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Clients running a SIP into it",
+              "500; a SIP outside the app that the client reports: LQ31"
+            ],
+            [
+              "Holding an open action that names it",
+              "270"
+            ],
+            [
+              "Holding units only",
+              "20"
+            ]
+          ]
+        ],
+        [
+          "card",
+          "Urgent Hold request, waiting",
+          [
+            "Requested by Logic analyst 01 at 10:05: Seed Flexi Cap Fund 10",
+            "Reason: typed by the requester (a slot in this example)",
+            "The Principal officer is notified; how they are reached: LQ25",
+            "Only the Principal officer places an urgent Hold, alone (L06a); a second person ratifies it within two working days"
+          ]
+        ],
+        [
+          "btn",
+          "Place the Hold (Principal officer)",
+          "L06a"
+        ],
+        [
+          "link",
+          "Funds and sleeves",
+          "L04"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "exposure per fund",
+            "forward": "read"
+          },
+          {
+            "f": "urgent Hold request: the fund and a typed reason",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops act; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: open a funds draft (L04_open_draft; Principal officer, Logic analyst); add a fund to a sleeve (L04_add_fund; Principal officer, Logic analyst); change weights (L04_change_weights; Principal officer, Logic analyst); change a status (Hold, Exit) (L04_change_status; Principal officer, Logic analyst); class a queue item (a funds draft) (L04_class_queue_item; Principal officer, Logic analyst); request an urgent Hold (L04_request_urgent_hold; Logic analyst); add facts to a queue item (L04_add_facts; Ops)",
+          "State: an urgent Hold request waiting (22 Sep 2027, 10:05); just before, Logic analyst 01 opened the fund's exposure at 09:50 and requested an urgent Hold at 10:05.",
+          "Check: a sleeve's weights sum to 100.",
+          "Check: the L09 limits.",
+          "Check: a Hold that would empty a sleeve is blocked until the same draft adds a fund to it (rule 9).",
+          "Check: the ISIN is in the instrument master ({I05}) and the plan is direct (E02 on the board: direct plans only).",
+          "A request is not a Hold: nothing changes for clients until the Principal officer places it.",
+          "Exposure shows only the three figures 6.4 types for one fund of the equity core; advised into it and the verified split of holders (L04's exposure block) are not typed for this example.",
+          "Next: the Principal officer places the Hold alone on L06a, effective 10:40 (REL05, fu-5)."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Place the Hold",
+            "L06a"
+          ],
+          [
+            "Funds and sleeves",
+            "L04"
+          ]
+        ],
+        "states": [
+          "Drawn here: a fund's exposure with an urgent Hold request waiting (22 Sep 2027, 10:05); every state of the screen is listed on L04."
+        ],
+        "dev": [
+          "LQ25 to be decided: how the principal officer is reached for an urgent request",
+          "LQ31 to be decided: whether a self-reported SIP outside the app counts as a running SIP for a Hold"
+        ]
       },
       "compliance": {
         "review": false,
@@ -714,7 +4052,14 @@
         ]
       },
       "events": [
-        "L04a_view"
+        "L04a_view",
+        "L04_open_draft",
+        "L04_add_fund",
+        "L04_change_weights",
+        "L04_change_status",
+        "L04_class_queue_item",
+        "L04_request_urgent_hold",
+        "L04_add_facts"
       ],
       "v02": {
         "status": "changed",
@@ -743,7 +4088,62 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "open a funds draft",
+          "event": "L04_open_draft",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add a fund to a sleeve",
+          "event": "L04_add_fund",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "change weights",
+          "event": "L04_change_weights",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "change a status (Hold, Exit)",
+          "event": "L04_change_status",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "class a queue item (a funds draft)",
+          "event": "L04_class_queue_item",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "request an urgent Hold",
+          "event": "L04_request_urgent_hold",
+          "seats": [
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add facts to a queue item",
+          "event": "L04_add_facts",
+          "seats": [
+            "Ops"
+          ]
+        }
+      ],
       "group": "logic"
     },
     {
@@ -757,16 +4157,128 @@
       "template": "T-table",
       "path": "both",
       "purpose": "The unknown-ISIN queue with two items and the facts ops added.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Funds and sleeves; the unknown-ISIN queue; a funds draft open; 14 Jun 2027"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "Unknown-ISIN queue: two items"
+        ],
+        [
+          "table",
+          [
+            "ISIN",
+            "Name on the statement",
+            "Holders",
+            "Facts ops added",
+            "Proposed class"
+          ],
+          [
+            [
+              "INFUK0005006",
+              "Unrecognised holding 01",
+              "one client: Rs 80,000, bought Mar 2024",
+              "Ops 01: fund house and scheme confirmed; an open fund, regular plan",
+              "known and not approved"
+            ],
+            [
+              "INFUK0005378",
+              "Unrecognised holding 02",
+              "one client: Rs 50,000, bought Aug 2023",
+              "Ops 01: fund house and scheme confirmed; closed to new money",
+              "legacy hold"
+            ]
+          ]
+        ],
+        [
+          "in",
+          "Add facts to an item (Ops)"
+        ],
+        [
+          "rows",
+          [
+            [
+              "Funds draft",
+              "held by Logic analyst 01; the classes are proposed in it; state open; based on fu-2"
+            ],
+            [
+              "Classes",
+              "known and not approved; legacy hold; unknown"
+            ],
+            [
+              "Route when published",
+              "quiet: at the holders' next rebuild"
+            ],
+            [
+              "Until classed",
+              "the client sees hold for now on G12"
+            ]
+          ]
+        ],
+        [
+          "btn",
+          "Validate and preview",
+          "L05"
+        ],
+        [
+          "link",
+          "Funds and sleeves",
+          "L04"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "queue item: ISIN, name on the statement, holders",
+            "forward": "system"
+          },
+          {
+            "f": "facts, added by Ops",
+            "forward": "optional"
+          },
+          {
+            "f": "proposed class, in a funds draft",
+            "forward": "required"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops act; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: open a funds draft (L04_open_draft; Principal officer, Logic analyst); add a fund to a sleeve (L04_add_fund; Principal officer, Logic analyst); change weights (L04_change_weights; Principal officer, Logic analyst); change a status (Hold, Exit) (L04_change_status; Principal officer, Logic analyst); class a queue item (a funds draft) (L04_class_queue_item; Principal officer, Logic analyst); request an urgent Hold (L04_request_urgent_hold; Logic analyst); add facts to a queue item (L04_add_facts; Ops)",
+          "State: the unknown-ISIN queue with two items (14 Jun 2027); just before, Ops 01 added facts to both and Logic analyst 01 proposed a class for each in the funds draft.",
+          "Check: a sleeve's weights sum to 100.",
+          "Check: the L09 limits.",
+          "Check: a Hold that would empty a sleeve is blocked until the same draft adds a fund to it (rule 9).",
+          "Check: the ISIN is in the instrument master ({I05}) and the plan is direct (E02 on the board: direct plans only).",
+          "Until an item is classed, the client sees hold for now (G12, the board's L04 rule).",
+          "The two names and ISINs are the seed's own unknown-ISIN sequence for funds (Unrecognised holding 01, INFUK0005006; Unrecognised holding 02, INFUK0005378); the date, the facts and the holder counts are typed for this example (logic plan, 8 Oct 2026).",
+          "Next: the draft publishes on 16 Jun 2027 as REL03 (fu-3), effective 10:00, quiet at the holders' next rebuild."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Validate and preview",
+            "L05"
+          ],
+          [
+            "Funds and sleeves",
+            "L04"
+          ]
+        ],
+        "states": [
+          "Drawn here: the unknown-ISIN queue with two items (14 Jun 2027); every state of the screen is listed on L04."
+        ],
+        "dev": [],
+        "forward": [
+          "Validate and preview (L05) takes the funds draft when every item in it carries a proposed class.",
+          "Required: a class for every item in the draft: known and not approved, legacy hold or unknown.",
+          "Optional: facts, added by Ops; each addition is an audit row.",
+          "System: the ISIN, the name on the statement and the holders, from the holdings clients bring."
+        ]
       },
       "compliance": {
         "review": false,
@@ -778,7 +4290,14 @@
         ]
       },
       "events": [
-        "L04b_view"
+        "L04b_view",
+        "L04_open_draft",
+        "L04_add_fund",
+        "L04_change_weights",
+        "L04_change_status",
+        "L04_class_queue_item",
+        "L04_request_urgent_hold",
+        "L04_add_facts"
       ],
       "v02": {
         "status": "changed",
@@ -807,7 +4326,62 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "open a funds draft",
+          "event": "L04_open_draft",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add a fund to a sleeve",
+          "event": "L04_add_fund",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "change weights",
+          "event": "L04_change_weights",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "change a status (Hold, Exit)",
+          "event": "L04_change_status",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "class a queue item (a funds draft)",
+          "event": "L04_class_queue_item",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "request an urgent Hold",
+          "event": "L04_request_urgent_hold",
+          "seats": [
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "add facts to a queue item",
+          "event": "L04_add_facts",
+          "seats": [
+            "Ops"
+          ]
+        }
+      ],
       "group": "logic"
     },
     {
@@ -821,16 +4395,261 @@
       "template": "T-table",
       "path": "both",
       "purpose": "The fund constraints of the funds lane, the portfolio guards of the cohorts lane, and the board's category table. Drawn: one breach from an open funds draft, weights 65 / 15 / 10 / 10 against the limit of 60.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Guards and constraints; a funds draft open, based on fu-1; 3 May 2027"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "Fund constraints (funds lane)"
+        ],
+        [
+          "table",
+          [
+            "Constraint",
+            "Value",
+            "Applies to"
+          ],
+          [
+            [
+              "The most weight in one fund of a sleeve that has more than one",
+              "60% (rehearsal value; the board reads ___ %)",
+              "debt, far; equity core. One-fund sleeves (liquid; debt, near; hybrid; commodities): LQ20"
+            ],
+            [
+              "The most direct shares within equity",
+              "no data: direct shares are not in the rehearsal's sleeves",
+              "the equity class"
+            ],
+            [
+              "The minimum SIP per fund",
+              "Rs 500 (rehearsal value)",
+              "every fund on L04"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Portfolio guards (cohorts lane)"
+        ],
+        [
+          "table",
+          [
+            "Guard",
+            "Conservative",
+            "Moderate",
+            "Aggressive"
+          ],
+          [
+            [
+              "The equity ceiling per risk band",
+              "30%",
+              "80%",
+              "100%"
+            ],
+            [
+              "A class with no sleeve is 0",
+              "REITs and InvITs 0",
+              "REITs and InvITs 0",
+              "REITs and InvITs 0"
+            ]
+          ]
+        ],
+        [
+          "card",
+          "One breach, from the open funds draft (Logic analyst 01)",
+          [
+            "Equity core weights in the draft: 65/15/10/10 (index, flexi cap, mid cap, large cap)",
+            "Seed Index Nifty 50 Fund 08 at 65 is over the limit of 60",
+            "A breach is a hard failure: the draft cannot be submitted until it passes (L05)"
+          ]
+        ],
+        [
+          "table",
+          [
+            "Sleeve in the draft",
+            "Funds, in weight order",
+            "Weights",
+            "Limit"
+          ],
+          [
+            [
+              "equity core",
+              "Seed Index Nifty 50 Fund 08; Seed Flexi Cap Fund 10; Seed Mid Cap Fund 02; Seed Large Cap Fund 01",
+              "65/15/10/10",
+              "60 in one fund: breached"
+            ]
+          ]
+        ],
+        [
+          "h",
+          "Category per fund (fetched from {I05}; an override is logged)"
+        ],
+        [
+          "table",
+          [
+            "Fund",
+            "Fetched category",
+            "Override",
+            "Breach"
+          ],
+          [
+            [
+              "Seed Liquid Fund 05",
+              "debt: liquid",
+              "none",
+              "no"
+            ],
+            [
+              "Seed Short Duration Fund 06",
+              "debt: short duration",
+              "none",
+              "no"
+            ],
+            [
+              "Seed Gilt Fund 09",
+              "debt: gilt",
+              "none",
+              "no"
+            ],
+            [
+              "Seed Hybrid Fund 07",
+              "hybrid",
+              "none",
+              "no"
+            ],
+            [
+              "Seed Gold Fund 41",
+              "commodities: gold, exchange traded",
+              "none",
+              "no"
+            ],
+            [
+              "Seed Index Nifty 50 Fund 08",
+              "equity: index",
+              "none",
+              "yes, in the draft: 65 in the equity core, over 60"
+            ],
+            [
+              "Seed Flexi Cap Fund 10",
+              "equity: flexi cap",
+              "none",
+              "no"
+            ],
+            [
+              "Seed Mid Cap Fund 02",
+              "equity: mid cap",
+              "none",
+              "no"
+            ],
+            [
+              "Seed Large Cap Fund 01 (joins in the draft)",
+              "equity: large cap",
+              "none",
+              "no"
+            ]
+          ]
+        ],
+        [
+          "link",
+          "Override a category",
+          "L09"
+        ],
+        [
+          "btn",
+          "Drafts, validation and preview",
+          "L05"
+        ],
+        [
+          "link",
+          "Funds and sleeves",
+          "L04"
+        ],
+        [
+          "link",
+          "Model portfolios",
+          "L14"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "max_weight_per_product",
+            "forward": "default"
+          },
+          {
+            "f": "max_direct_shares_in_equity",
+            "forward": "default"
+          },
+          {
+            "f": "min_sip[fund]",
+            "forward": "default"
+          },
+          {
+            "f": "equity_ceiling[risk band]",
+            "forward": "default"
+          },
+          {
+            "f": "category_tag[isin]",
+            "forward": "system"
+          },
+          {
+            "f": "category_override[isin]",
+            "forward": "optional"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: edit a value in a draft of its lane (L09_edit_value; Principal officer, Logic analyst); override a category, logged (L09_override_category; Principal officer, Logic analyst)",
+          "Check: a draft that loosens a guard and passes only because of that is flagged \"passes on its own change\" for the reviewer (L10).",
+          "A breach is a hard failure in validation (L05): the draft cannot be submitted until it passes (4.6 step 3).",
+          "Fund constraints are values of the funds lane and portfolio guards values of the cohorts lane; each is edited in a draft of its lane and gates validation, with no route of its own (4.4).",
+          "The limit on one fund applies only to a sleeve with more than one fund; one-fund sleeves are drawn with LQ20.",
+          "The most direct shares within equity is the board's row, drawn with no data: direct shares are not in the rehearsal's sleeves.",
+          "Override a category is in place: the fetched category is replaced for this fund and the override is logged with who and when (an audit row).",
+          "The breach is the funds draft that becomes REL02: typed first as 65/15/10/10, it reads 45/25/15/15 when it is submitted, and publishes on 10 May 2027 (logic plan, 8 Oct 2026).",
+          "For Adviser, Call centre, Ops and Support, read means the live values and rationale only; draft rows are not sent.",
+          "Against the board: the three constraints and the category table are kept. The guards answer the conflict question of the 7 Oct 2026 call: a mix that breaches a risk band cannot be submitted."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Drafts, validation and preview",
+            "L05"
+          ],
+          [
+            "Funds and sleeves",
+            "L04"
+          ],
+          [
+            "Model portfolios",
+            "L14"
+          ]
+        ],
+        "states": [
+          "One breach showing from an open funds draft (drawn: L09, 3 May 2027).",
+          "No draft open: the live values, no breach (not drawn).",
+          "A draft that loosens a guard and passes only because of that: flagged \"passes on its own change\" for the reviewer (not drawn).",
+          "Read by another seat: live values and rationale only (not drawn)."
+        ],
+        "dev": [
+          "LQ20 to be decided: whether a one-fund sleeve is acceptable under the per-product cap",
+          "LQ39 to be decided: the equity ceiling per risk band and any other guard a change must pass",
+          "LQ44 to be decided: what the engine does with an amount below a fund's minimum SIP",
+          "Sleeve weights (L04) and mixes (L14) are checked against these on every draft save (the board's L09 note)."
+        ],
+        "forward": [
+          "Drafts, validation and preview is always open; a value saved in a draft applies to that draft's next validation run.",
+          "Required: nothing beyond the defaults.",
+          "Default: max_weight_per_product (60), min_sip[fund] (Rs 500), equity_ceiling[risk band] (30, 80, 100); edited in a draft of their lane.",
+          "Default: max_direct_shares_in_equity; no data in the rehearsal.",
+          "Optional: category_override[isin]; blank keeps the fetched category; an override is logged.",
+          "System: category_tag[isin]; fetched from {I05}."
+        ]
       },
       "compliance": {
         "review": false,
@@ -842,7 +4661,9 @@
         ]
       },
       "events": [
-        "L09_view"
+        "L09_view",
+        "L09_edit_value",
+        "L09_override_category"
       ],
       "v02": {
         "status": "kept",
@@ -871,7 +4692,24 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "edit a value in a draft of its lane",
+          "event": "L09_edit_value",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "override a category, logged",
+          "event": "L09_override_category",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        }
+      ],
       "group": "logic"
     },
     {
@@ -885,16 +4723,250 @@
       "template": "T-table",
       "path": "both",
       "purpose": "The month's four market values with their thresholds, the buffer either side and the rule each gives, and the record by month. Drawn: 1 Nov 2027, the PE at 26.4 past the buffer.",
-      "ui": [],
+      "ui": [
+        [
+          "strip",
+          "Market inputs; live MI10; 1 Nov 2027"
+        ],
+        [
+          "note",
+          "Example values: rehearsal values and illustrative figures per 1,000 plan holders; nothing here is decided."
+        ],
+        [
+          "h",
+          "This month: MI10, entered 1 Nov 2027"
+        ],
+        [
+          "table",
+          [
+            "Input",
+            "Value",
+            "Thresholds",
+            "Buffer either side",
+            "Rule it gives"
+          ],
+          [
+            [
+              "Nifty PE",
+              "26.4",
+              "18 and 25",
+              "1.0",
+              "stagger strongly: the PE passed 26, the upper threshold plus the buffer"
+            ],
+            [
+              "10-year G-sec yield",
+              "7.0%",
+              "none",
+              "none",
+              "debt bucket commentary"
+            ],
+            [
+              "Repo rate",
+              "6.0%",
+              "none",
+              "none",
+              "loan verdict commentary"
+            ],
+            [
+              "FD rate reference",
+              "6.8%",
+              "none",
+              "none",
+              "cash bucket commentary"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "The rule for new deployment actions: below 18, lumpsum ok; 18 to 25, stagger over 6 months; above 25, stagger strongly. With the buffer of 1.0 either side of 18 and of 25, the rule moves up only once the PE passes a threshold by more than the buffer and comes back only once it falls more than the buffer below it."
+        ],
+        [
+          "h",
+          "By month"
+        ],
+        [
+          "table",
+          [
+            "Release",
+            "Month",
+            "Entered",
+            "Nifty PE",
+            "Rule in force for new actions",
+            "Changed"
+          ],
+          [
+            [
+              "MI00",
+              "launch values",
+              "25 Jan 2027, inside REL01",
+              "22.4",
+              "stagger over 6 months",
+              "-"
+            ],
+            [
+              "MI01",
+              "Feb 2027",
+              "1 Feb 2027",
+              "22.4",
+              "stagger over 6 months",
+              "no"
+            ],
+            [
+              "MI02",
+              "Mar 2027",
+              "1 Mar 2027",
+              "22.9",
+              "stagger over 6 months",
+              "no"
+            ],
+            [
+              "MI03",
+              "Apr 2027",
+              "1 Apr 2027",
+              "23.3",
+              "stagger over 6 months",
+              "no"
+            ],
+            [
+              "MI04",
+              "May 2027",
+              "3 May 2027",
+              "24.1",
+              "stagger over 6 months",
+              "no"
+            ],
+            [
+              "MI05",
+              "Jun 2027",
+              "1 Jun 2027",
+              "25.6",
+              "stagger over 6 months",
+              "no: over 25, inside the buffer"
+            ],
+            [
+              "MI06",
+              "Jul 2027",
+              "1 Jul 2027",
+              "24.8",
+              "stagger over 6 months",
+              "no"
+            ],
+            [
+              "MI07",
+              "Aug 2027",
+              "2 Aug 2027",
+              "24.2",
+              "stagger over 6 months",
+              "no"
+            ],
+            [
+              "MI08",
+              "Sep 2027",
+              "1 Sep 2027",
+              "24.9",
+              "stagger over 6 months",
+              "no"
+            ],
+            [
+              "MI09",
+              "Oct 2027",
+              "6 Oct 2027, three working days late",
+              "25.4",
+              "stagger over 6 months",
+              "no: over 25, inside the buffer"
+            ],
+            [
+              "MI10",
+              "Nov 2027",
+              "1 Nov 2027",
+              "26.4",
+              "stagger strongly",
+              "yes: past 26"
+            ]
+          ]
+        ],
+        [
+          "p",
+          "New plans and new deployment actions only; an existing action is never rewritten."
+        ],
+        [
+          "p",
+          "Snapshot date stored with every plan; timing text carries the date."
+        ],
+        [
+          "btn",
+          "Open the month's draft",
+          "L07"
+        ],
+        [
+          "link",
+          "Assumptions: the thresholds and the buffer",
+          "L02"
+        ],
+        [
+          "link",
+          "Where clients see it: the timing text on G13",
+          "G13"
+        ]
+      ],
       "spec": {
-        "fields": [],
+        "fields": [
+          {
+            "f": "nifty_pe, gsec_10y, repo_rate, fd_reference: the month's four values",
+            "forward": "read"
+          },
+          {
+            "f": "reason for a move beyond the soft step",
+            "forward": "read"
+          },
+          {
+            "f": "thresholds and buffer, from L02",
+            "forward": "read"
+          }
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
-          "Writes: none"
+          "Writes: open the month's draft (L07_open_draft; Principal officer, Logic analyst); enter the month's values in the draft (L07_enter_values; Principal officer, Logic analyst)",
+          "Check: each value inside its hard range.",
+          "Check: a monthly move beyond the soft step asks for a typed reason.",
+          "The thresholds and the buffer are rows of the assumptions lane, edited on L02; this lane holds the month's four values.",
+          "Each month's entry is one release of this lane and its id is the version id; MI00 is the launch values, inside REL01. The Logic analyst enters it; the Principal officer reviews and publishes it.",
+          "Drawn at 1 Nov 2027, the record holds MI00 to MI10; MI11 to MI15 follow in the example year (logic plan, 8 Oct 2026).",
+          "The other three values are typed unchanged from the launch values: they barely move in the examples (logic plan, 8 Oct 2026).",
+          "Open the month's draft is in place: the month's four values take entries, each checked at the field; one open draft per lane (logic plan, 8 Oct 2026).",
+          "For Adviser, Call centre, Ops and Support, read means the live values only; draft values are not sent.",
+          "Against the board: today's four rows and rules are kept; the buffers, the monthly record and the second person are added."
         ],
-        "branches": [],
-        "states": [],
-        "dev": []
+        "branches": [
+          [
+            "Assumptions",
+            "L02"
+          ],
+          [
+            "Drafts, validation and preview",
+            "L05"
+          ],
+          [
+            "The timing text",
+            "G13"
+          ]
+        ],
+        "states": [
+          "The month's values live, the rule changed this month (drawn: L07, 1 Nov 2027, MI10).",
+          "The month's draft open: four values typed and checked at the field (not drawn).",
+          "An entry late: the month's values not entered on the first working day, as MI09 on 6 Oct 2027 (not drawn).",
+          "Read by another seat: live values only (not drawn)."
+        ],
+        "dev": [
+          "LQ16 to be decided: the review cadence per lane, and whether the monthly market inputs take the second person",
+          "gap, to be decided: the hard range and the soft step of each of the four market inputs; L07's checks name them and the plan gives no values."
+        ],
+        "forward": [
+          "Open the month's draft is enabled when the market inputs lane has no open draft; the entry is due on the first working day of the month.",
+          "Required: the month's four values, each in its unit inside its hard range.",
+          "Optional: a typed reason; asked for a move beyond the soft step.",
+          "System: the release id (the next MI number), the author and the time."
+        ]
       },
       "compliance": {
         "review": false,
@@ -906,7 +4978,9 @@
         ]
       },
       "events": [
-        "L07_view"
+        "L07_view",
+        "L07_open_draft",
+        "L07_enter_values"
       ],
       "v02": {
         "status": "kept",
@@ -935,7 +5009,24 @@
         "Marketing": "none",
         "Finance": "none"
       },
-      "writes": [],
+      "writes": [
+        {
+          "action": "open the month's draft",
+          "event": "L07_open_draft",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        },
+        {
+          "action": "enter the month's values in the draft",
+          "event": "L07_enter_values",
+          "seats": [
+            "Principal officer",
+            "Logic analyst"
+          ]
+        }
+      ],
       "group": "logic"
     },
     {
