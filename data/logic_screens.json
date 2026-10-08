@@ -1,0 +1,2547 @@
+{
+  "source": "PLAN_logic_panel_v03.md, 8 Oct 2026",
+  "note": "The logic panel side wireframes: 33 panel screens (sec L) and 6 client views (sec V) in the board's screen format plus role, writes and group; proposed, not yet merged into Wireframes v0.2.",
+  "sections": [
+    [
+      "L",
+      "Logic panel"
+    ],
+    [
+      "V",
+      "Client views"
+    ]
+  ],
+  "groups": [
+    [
+      "start",
+      "Start"
+    ],
+    [
+      "logic",
+      "Logic"
+    ],
+    [
+      "change",
+      "Change"
+    ],
+    [
+      "records",
+      "Records"
+    ],
+    [
+      "access",
+      "Access"
+    ],
+    [
+      "reference",
+      "Reference"
+    ],
+    [
+      "client",
+      "Client views"
+    ]
+  ],
+  "screens": [
+    {
+      "id": "L01",
+      "sec": "L",
+      "title": "Home",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "What needs the seat signed in, the lanes, what is going out, and the layout and seats. Drawn: a working day (7 May 2027), a fund draft waiting for review, the quarterly fund review open, a release going out.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer read; Logic analyst read; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L01_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "read",
+        "Logic analyst": "read",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "start"
+    },
+    {
+      "id": "L01a",
+      "sec": "L",
+      "title": "Home, an urgent day",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "An urgent day (24 Sep 2027, 18:00): an urgent Hold in force, its rollout going out, its ratification overdue.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer read; Logic analyst read; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L01a_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "read",
+        "Logic analyst": "read",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "start"
+    },
+    {
+      "id": "L02",
+      "sec": "L",
+      "title": "Assumptions",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Every assumption in four groups, each row with its live and draft value, unit, effective date, route, limits and cadence; values are typed and checked at the field. Drawn: the live values (20 Apr 2027).",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L02_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "logic"
+    },
+    {
+      "id": "L02a",
+      "sec": "L",
+      "title": "Assumptions, a draft open",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "A draft open (10 Mar 2028): equity return 11.0 to 10.0 and expense inflation 6.0 to 6.5, each with its typed reason; 65 typed for inflation refused at the field (hard range 0 to 15).",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L02a_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "logic"
+    },
+    {
+      "id": "L03",
+      "sec": "L",
+      "title": "Dimensions and cohort map",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The dimensions and their bands, the cohort map pointing each cohort at a model portfolio, the coverage proof, and the history of one cohort. Drawn: launch, nine cohorts on seven rows, the proof passing.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L03_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "logic"
+    },
+    {
+      "id": "L03a",
+      "sec": "L",
+      "title": "Dimensions and cohort map, a draft adding the band \"Very long: over 7\"",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "A draft adding the band \"Very long: over 7\" (1 Nov 2027): the new column, Aggressive x Very long empty so coverage fails, Conservative x Very long pointed at MP8 so its guard fails.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L03a_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "logic"
+    },
+    {
+      "id": "L03b",
+      "sec": "L",
+      "title": "Dimensions and cohort map, a draft adding a third dimension, goal priority",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "A draft adding a third dimension, goal priority (21 Feb 2028): twenty-four cohorts as a list, about five marked thin; the draft is discarded on 25 Feb.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L03b_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "logic"
+    },
+    {
+      "id": "L14",
+      "sec": "L",
+      "title": "Model portfolios",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The model portfolios: each mix over the six classes, the sleeve that fills each class, the cohorts pointing at it, and one portfolio in the mix editor. Drawn: launch, MP1 to MP7.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L14_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "logic"
+    },
+    {
+      "id": "L14a",
+      "sec": "L",
+      "title": "Model portfolios, MP6 open in a draft",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "MP6 open in a draft (29 Nov 2027): keyed 0/24/10/10/56/0, the sum 100, the 9-point flag on two classes with its typed reason.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L14a_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "logic"
+    },
+    {
+      "id": "L04",
+      "sec": "L",
+      "title": "Funds and sleeves",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The sleeves and their funds, each fund's status and history, adding a fund by ISIN, exposure per fund, and the unknown-ISIN queue. Drawn: launch, the sleeves and funds of REL01.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops act; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L04_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "act",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "logic"
+    },
+    {
+      "id": "L04a",
+      "sec": "L",
+      "title": "Funds and sleeves, the flexi cap fund's exposure with an urgent Hold request waiting",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The flexi cap fund's exposure with an urgent Hold request waiting (22 Sep 2027, 10:05).",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops act; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L04a_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "act",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "logic"
+    },
+    {
+      "id": "L04b",
+      "sec": "L",
+      "title": "Funds and sleeves, the unknown-ISIN queue with two items and the facts ops added",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The unknown-ISIN queue with two items and the facts ops added.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops act; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L04b_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "act",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "logic"
+    },
+    {
+      "id": "L09",
+      "sec": "L",
+      "title": "Guards and constraints",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The fund constraints of the funds lane, the portfolio guards of the cohorts lane, and the board's category table. Drawn: one breach from an open funds draft, weights 65 / 15 / 10 / 10 against the limit of 60.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L09_view"
+      ],
+      "v02": {
+        "status": "kept",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "logic"
+    },
+    {
+      "id": "L07",
+      "sec": "L",
+      "title": "Market inputs",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The month's four market values with their thresholds, the buffer either side and the rule each gives, and the record by month. Drawn: 1 Nov 2027, the PE at 26.4 past the buffer.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L07_view"
+      ],
+      "v02": {
+        "status": "kept",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "logic"
+    },
+    {
+      "id": "L05",
+      "sec": "L",
+      "title": "Drafts, validation and preview",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "One draft per lane with its items, its validation, the ten-panel preview and the proposal. Drawn: the assumptions draft of 10 Mar 2028, validated and previewed.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser none; Call centre none; Ops none; Support none; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L05_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "none",
+        "Support": "none",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "change"
+    },
+    {
+      "id": "L05a",
+      "sec": "L",
+      "title": "Drafts, validation and preview, validation failed",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Validation failed (1 Nov 2027): coverage and a guard failing on the cohorts draft.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser none; Call centre none; Ops none; Support none; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L05a_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "none",
+        "Support": "none",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "change"
+    },
+    {
+      "id": "L05b",
+      "sec": "L",
+      "title": "Drafts, validation and preview, a draft sent back by the reviewer with the comment",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "A draft sent back by the reviewer with the comment (7 May 2027), read only until edited.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser none; Call centre none; Ops none; Support none; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L05b_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "none",
+        "Support": "none",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "change"
+    },
+    {
+      "id": "L10",
+      "sec": "L",
+      "title": "Review",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The second person's queue and one draft under review: the items, validation with the author's reasons, the preview panels opened or not, the proposal and the decision. Drawn: the assumptions draft waiting (17 Mar 2028).",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance act; Adviser none; Call centre none; Ops none; Support none; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L10_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "act",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "none",
+        "Support": "none",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "change"
+    },
+    {
+      "id": "L10a",
+      "sec": "L",
+      "title": "Review, two examples of what the second person cannot and must do",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Two examples of what the second person cannot and must do: a draft the viewer wrote, with no approve (4 May 2027); the urgent Hold of 22 Sep 2027 waiting for ratification, overdue on 24 Sep.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance act; Adviser none; Call centre none; Ops none; Support none; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L10a_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "act",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "none",
+        "Support": "none",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "change"
+    },
+    {
+      "id": "L06",
+      "sec": "L",
+      "title": "Publish",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Approved drafts, one release made ready to publish, the urgent Hold path and the scheduled releases. Drawn: the assumptions release ready to publish (20 Mar 2028), effective 1 Apr 2028 00:00.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst read; Compliance read; Adviser none; Call centre none; Ops none; Support none; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L06_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "read",
+        "Compliance": "read",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "none",
+        "Support": "none",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "change"
+    },
+    {
+      "id": "L06a",
+      "sec": "L",
+      "title": "Publish, the urgent Hold path",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The urgent Hold path (22 Sep 2027, 10:40): the fund, its exposure, the rescale to 75 / 25 breaching L09, the weights asked for and set to 60 / 40.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst read; Compliance read; Adviser none; Call centre none; Ops none; Support none; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L06a_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "read",
+        "Compliance": "read",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "none",
+        "Support": "none",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "change"
+    },
+    {
+      "id": "L06b",
+      "sec": "L",
+      "title": "Publish, two examples of waiting",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Two examples of waiting: a release approved and not yet acknowledged, publish disabled (20 Dec 2027); a release scheduled and not editable (22 Mar 2028).",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst read; Compliance read; Adviser none; Call centre none; Ops none; Support none; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L06b_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "read",
+        "Compliance": "read",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "none",
+        "Support": "none",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "change"
+    },
+    {
+      "id": "L11",
+      "sec": "L",
+      "title": "Release monitor",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "One release after publish: its reach by day and by size, failures, biggest movers, tickets and call tasks, and the controls to pause, withdraw or correct. Drawn: the urgent Hold three days in (25 Sep 2027).",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst read masked; Compliance read; Adviser none; Call centre none; Ops read masked; Support none; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L11_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "read masked",
+        "Compliance": "read",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "read masked",
+        "Support": "none",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "change"
+    },
+    {
+      "id": "L11a",
+      "sec": "L",
+      "title": "Release monitor, the wrong release",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The wrong release (16 Dec 2027, 11:05): the biggest movers opened from a ticket, pause pressed, the withdraw confirmation open.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst read masked; Compliance read; Adviser none; Call centre none; Ops read masked; Support none; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L11a_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "read masked",
+        "Compliance": "read",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "read masked",
+        "Support": "none",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "change"
+    },
+    {
+      "id": "L11b",
+      "sec": "L",
+      "title": "Release monitor, a quiet release four weeks in",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "A quiet release four weeks in (28 Apr 2028): about one existing plan in six rebuilt; nobody messaged beyond the letter.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst read masked; Compliance read; Adviser none; Call centre none; Ops read masked; Support none; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L11b_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "read masked",
+        "Compliance": "read",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "read masked",
+        "Support": "none",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "change"
+    },
+    {
+      "id": "L08",
+      "sec": "L",
+      "title": "Release register and audit",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Every release with its frozen record, the versions in use per lane, incidents, audit rows, the records kept, and the export for the advice register. Drawn: 30 Apr 2028, the twelve releases of the example year.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst read; Compliance act; Adviser none; Call centre none; Ops none; Support none; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L08_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "read",
+        "Compliance": "act",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "none",
+        "Support": "none",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "records"
+    },
+    {
+      "id": "L08a",
+      "sec": "L",
+      "title": "Release register and audit, the frozen record of REL08",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The frozen record of REL08: its values, the diff, the preview it was approved on, who signed, the pause and the withdrawal, the release that corrected it, the incident entry.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst read; Compliance act; Adviser none; Call centre none; Ops none; Support none; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L08a_view"
+      ],
+      "v02": {
+        "status": "changed",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "read",
+        "Compliance": "act",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "none",
+        "Support": "none",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "records"
+    },
+    {
+      "id": "L15",
+      "sec": "L",
+      "title": "Client plan history",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "One client's plan history: the pin against the live versions, the timeline of snapshots, one snapshot, a compare, and the plan as of a date. Drawn: C01's timeline and pin.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L15_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "read",
+        "Logic analyst": "read masked",
+        "Compliance": "read",
+        "Adviser": "read, own people",
+        "Call centre": "read, own people",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "records"
+    },
+    {
+      "id": "L15a",
+      "sec": "L",
+      "title": "Client plan history, C01's snapshot of 12 May 2027 open",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "C01's snapshot of 12 May 2027 open: the inputs, cohort and portfolio per goal, the instalments per fund, the diff with two causes.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L15a_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "read",
+        "Logic analyst": "read masked",
+        "Compliance": "read",
+        "Adviser": "read, own people",
+        "Call centre": "read, own people",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "records"
+    },
+    {
+      "id": "L15b",
+      "sec": "L",
+      "title": "Client plan history, the wrong release as two clients lived it",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The wrong release as two clients lived it: C11 accepted it and was corrected; C12's update was withdrawn in time.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L15b_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "read",
+        "Logic analyst": "read masked",
+        "Compliance": "read",
+        "Adviser": "read, own people",
+        "Call centre": "read, own people",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "records"
+    },
+    {
+      "id": "L12",
+      "sec": "L",
+      "title": "Review calendar",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "Each lane and row with its cadence, last reviewed and next due, due and overdue marked, and the \"reviewed, no change\" entries. Drawn: 1 Mar 2028, the annual assumptions review open a month ahead.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser none; Call centre none; Ops read; Support none; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L12_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "act",
+        "Compliance": "read",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "read",
+        "Support": "none",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "records"
+    },
+    {
+      "id": "L13",
+      "sec": "L",
+      "title": "Staff and seats",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The staff list, what each seat may do, the two-person rule and who stands in, and the access reviews. Drawn: 15 Oct 2027, access review 2 in progress.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer act; Logic analyst read; Compliance act; Adviser none; Call centre none; Ops none; Support none; Read only none; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L13_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "act",
+        "Logic analyst": "read",
+        "Compliance": "act",
+        "Adviser": "none",
+        "Call centre": "none",
+        "Ops": "none",
+        "Support": "none",
+        "Read only": "none",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "access"
+    },
+    {
+      "id": "L00",
+      "sec": "L",
+      "title": "Engine map",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "desktop",
+      "template": "T-table",
+      "path": "both",
+      "purpose": "The board's engine steps with the lane that feeds each and how a change reaches an existing plan, plus the release rows, what moves and when, the change life cycle and the surface map.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer read; Logic analyst read; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": false,
+        "reasons": [
+          "internal"
+        ],
+        "checks": [
+          "No user-facing copy; nothing to review."
+        ]
+      },
+      "events": [
+        "L00_view"
+      ],
+      "v02": {
+        "status": "kept",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "read",
+        "Logic analyst": "read",
+        "Compliance": "read",
+        "Adviser": "read",
+        "Call centre": "read",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "reference"
+    },
+    {
+      "id": "V01",
+      "sec": "V",
+      "title": "The update screen, outlook (H05)",
+      "tier": [
+        "DIY",
+        "DIWM"
+      ],
+      "frame": "phone",
+      "template": "T-card-stack",
+      "path": "both",
+      "purpose": "A proposal for H05 at the outlook size: C04 on 10 Apr 2028, the work-optional goal from about 70 to about 54 percent funded, caused by the house view; nothing to do, no accept.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": true,
+        "reasons": [
+          "advice language"
+        ],
+        "checks": [
+          "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+        ]
+      },
+      "events": [
+        "V01_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "read",
+        "Logic analyst": "read masked",
+        "Compliance": "read",
+        "Adviser": "read, own people",
+        "Call centre": "read, own people",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "client"
+    },
+    {
+      "id": "V02",
+      "sec": "V",
+      "title": "The update screen, review (H05)",
+      "tier": [
+        "DIY",
+        "DIWM"
+      ],
+      "frame": "phone",
+      "template": "T-card-stack",
+      "path": "both",
+      "purpose": "A proposal for H05 at the review size: C01 on 12 May 2027, the instalments before and after with two causes, the client's raise and a fourth fund in the equity core; accept.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": true,
+        "reasons": [
+          "advice language"
+        ],
+        "checks": [
+          "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+        ]
+      },
+      "events": [
+        "V02_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "read",
+        "Logic analyst": "read masked",
+        "Compliance": "read",
+        "Adviser": "read, own people",
+        "Call centre": "read, own people",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "client"
+    },
+    {
+      "id": "V03",
+      "sec": "V",
+      "title": "The update screen, urgent (H05)",
+      "tier": [
+        "DIY",
+        "DIWM"
+      ],
+      "frame": "phone",
+      "template": "T-card-stack",
+      "path": "both",
+      "purpose": "A proposal for H05 at the urgent size: C01 on 22 Sep 2027, the Hold in plain words, the SIP running until accepted, the new split; accept.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": true,
+        "reasons": [
+          "advice language"
+        ],
+        "checks": [
+          "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+        ]
+      },
+      "events": [
+        "V03_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "read",
+        "Logic analyst": "read masked",
+        "Compliance": "read",
+        "Adviser": "read, own people",
+        "Call centre": "read, own people",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "client"
+    },
+    {
+      "id": "V04",
+      "sec": "V",
+      "title": "Plan history",
+      "tier": [
+        "DIY",
+        "DIWM"
+      ],
+      "frame": "phone",
+      "template": "T-list",
+      "path": "both",
+      "purpose": "A proposal for plan history: C12's entries by date with size and cause, and an update withdrawn on 16 Dec 2027.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": true,
+        "reasons": [
+          "advice language"
+        ],
+        "checks": [
+          "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+        ]
+      },
+      "events": [
+        "V04_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "read",
+        "Logic analyst": "read masked",
+        "Compliance": "read",
+        "Adviser": "read, own people",
+        "Call centre": "read, own people",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "client"
+    },
+    {
+      "id": "V05",
+      "sec": "V",
+      "title": "The letter, an email",
+      "tier": [
+        "DIY",
+        "DIWM"
+      ],
+      "frame": "phone",
+      "template": "T-msg",
+      "path": "both",
+      "purpose": "The letter as an email, for REL12: what changed, why, and when this plan takes it up (the date of the next review).",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": true,
+        "reasons": [
+          "advice language"
+        ],
+        "checks": [
+          "How advice is worded, suitability and risk band references, consider versus must, verify actions versus diagnoses."
+        ]
+      },
+      "events": [
+        "V05_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "read",
+        "Logic analyst": "read masked",
+        "Compliance": "read",
+        "Adviser": "read, own people",
+        "Call centre": "read, own people",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "client"
+    },
+    {
+      "id": "V06",
+      "sec": "V",
+      "title": "The saved reveal (X01)",
+      "tier": [
+        "ALL"
+      ],
+      "frame": "phone",
+      "template": "T-card",
+      "path": "both",
+      "purpose": "A proposal for X01: a reveal saved on 12 Oct 2027 and opened again on 20 Apr 2028, \"sketched on 12 Oct 2027\", sketch again; the nudges quote the saved numbers until then.",
+      "ui": [],
+      "spec": {
+        "fields": [],
+        "logic": [
+          "Seats: Principal officer read; Logic analyst read masked; Compliance read; Adviser read, own people; Call centre read, own people; Ops read; Support read; Read only read masked; Marketing none; Finance none",
+          "Writes: none"
+        ],
+        "branches": [],
+        "states": [],
+        "dev": []
+      },
+      "compliance": {
+        "review": true,
+        "reasons": [
+          "advertising code"
+        ],
+        "checks": [
+          "Projections and the two paths, the sample plan, testimonials, any returns language, comparisons."
+        ]
+      },
+      "events": [
+        "V06_view"
+      ],
+      "v02": {
+        "status": "new",
+        "causes": [
+          "Vatsal, 8 Oct 2026"
+        ]
+      },
+      "freeze": {
+        "status": "open",
+        "since": "8 Oct 2026",
+        "cause": "Vatsal, 8 Oct 2026",
+        "reason": [
+          "proposed, to be confirmed at the logic panel review"
+        ],
+        "owed": []
+      },
+      "role": {
+        "Principal officer": "read",
+        "Logic analyst": "read masked",
+        "Compliance": "read",
+        "Adviser": "read, own people",
+        "Call centre": "read, own people",
+        "Ops": "read",
+        "Support": "read",
+        "Read only": "read masked",
+        "Marketing": "none",
+        "Finance": "none"
+      },
+      "writes": [],
+      "group": "client"
+    }
+  ]
+}

@@ -1,50 +1,45 @@
-# Handoff - 8 Oct 2026 (unit closed: PLAN_logic_panel_v03.md made run-ready; Vatsal said "go")
+# Handoff - 8 Oct 2026 (phase closed: A0 of PLAN_logic_panel_v03.md)
 
-State: the logic panel plan (PLAN_logic_panel_v03.md: the side wireframes as data, the Logic tab, the Tech, Access,
-Walkthroughs and Ops pages, the checks, the board links) is in the repo. Committed as written (0b2334c), then rebuilt
-for /run-plan (f593131): phases A0 to C2 carry touches, steps, done-criteria as commands and the metadata line; D is
-Vatsal's look (HUMAN-GATED). Vatsal said "go" on 8 Oct 2026 in the plan-ready session. Nothing of the plan is built.
-The five calls the plan-ready pass made are in the plan's section 12.0 under the cause "logic plan, 8 Oct 2026";
-Vatsal did not veto any.
-
-Everything else is as the 7 Oct 2026 handoff left it: W12 delivered (the admin brief with Kajal's six M03 answers went
-to Spinach on 7 Oct 2026); phase G (PLAN_zoho_live_v01.md) waits on a person for G1 (users) and G6 (Campaigns); gaps
-G18, G20, G23 open. Owed by people: Kajal's team check on anything M03 misses; Spinach's reply and estimate on the
-brief; the 1 Oct meeting notes.
-
-Untracked on purpose in the tree (never commit): inputs/spinach/admin panel/, inputs/spinach/kajal-admin panel/, the
-two inputs/meeting/ files, inputs/spinach/2026-09-25/, the two seed CSV zips at the repo root.
+State: the /run-plan run of PLAN_logic_panel_v03.md is in flight (Vatsal's go, 8 Oct 2026). A0 is closed in the
+commit "logic A0: the Logic tab builder, 39 stub screens and the open items file", not pushed (the plan holds every
+push for phase D). The Logic tab exists: scripts/build_logic_wireframes.py, a stripped copy of the admin wireframes
+builder, validates data/logic_screens.json (39 stubs, every ui []) and draws docs/logic_wireframes.html;
+build_site.main() calls it after build_admin_split. data/logic_gaps.json holds LQ1 to LQ46. Next wave: A1 + B0,
+under the orchestrator.
 
 ## Next action
-`/run-plan PLAN_logic_panel_v03.md` - runs A0 to C2 unattended and stops at D (Vatsal's visual pass, the nav fold,
-the two seat questions, the push). One commit per phase, no push by the executor.
+The orchestrator runs the next wave: A1 (the start and logic groups, 14 screens, plan 12.2) and B0 (the page builder
+and four skeleton pages, plan 12.6). Nobody starts a phase by hand while the run is in flight.
 
 ## Read first
-1. PLAN_logic_panel_v03.md section 12 (12.0 the calls made, 12.1 to 12.13 the phases); sections 5, 6 and 7 to 10
-   are the content the phases transcribe.
-2. Memory project_state (one paragraph on this unit) and spinach-admin-split for the admin side it must not touch.
+1. PLAN_logic_panel_v03.md section 12 (12.0 the binding calls, 12.2 A1, 12.6 B0); sections 5 and 6 are the content.
+2. scripts/build_logic_wireframes.py, validate_logic_screens(): the schema every A phase must pass (C1 calls it).
 
 ## Verify before coding
-- `git status --short`: clean apart from the untracked items above.
-- `python3 scripts/build_site.py` (about 2 minutes), then `python3 scripts/check_phase9.py` 19 PASS and
-  `python3 scripts/check_site.py` 3 PASS.
+- `git status --short`: only the untracked items listed below.
+- `python3 scripts/build_logic_wireframes.py` -> "logic wireframes: 39 screens (33 panel, 6 client views),
+  validation PASS".
+- `python3 scripts/build_site.py` (about 19 seconds), then `python3 scripts/check_phase9.py | grep -c PASS` -> 19 and
+  `python3 scripts/check_site.py | grep -c PASS` -> 3.
 
-## Gotchas (the plan's section 12.0 has the rest)
-- The board's wireframes builder cannot draw a second file; the Logic tab comes from a stripped copy of
-  scripts/build_admin_wireframes.py (plan 12.0, A0).
-- data/gaps.json's v02 list feeds docs/admin_brief.html section 5, the pack Spinach has; the LQ items go to
-  data/logic_gaps.json and never to gaps.json.
-- Content phases rebuild with their own builder only; the full build_site.py runs in A0, C1 and C2.
-- Data formats: data/admin_crm.json, data/admin_split.json and data/gaps.json round-trip with json.dumps(indent=1)
-  plus a newline; data/admin_screens.json, data/seats.json and data/integrations.json with indent=2; data/tracker.json,
-  data/admin_pack.json and data/operator.json are hand-formatted.
+## Gotchas
+- spec.logic[0] and spec.logic[1] are derived lines: "Seats: ..." from role over the ten seats, "Writes: ..." from
+  writes ("Writes: none" when empty). The builder rejects a stale line; add each write's event to events.
+- The team-name check skips only the two cause fields (v02.causes, freeze.cause), which carry "Vatsal, 8 Oct 2026";
+  a team name anywhere else fails the build.
+- Every btn, btn2 and link in ui needs a target that is a logic or board screen id; a btn with no target fails.
+- LQ22 lands on L14 as well (4.10), though 5.3 names it only in L14's checks line; LQ31 sits in L11's 5.3 open line
+  but 4.10 lands it on L04 only.
+- The renderer labels a "kept" screen "Kept from v0.1" (fixed text; no renderer change is allowed): L09, L07, L00.
+- The subnav links to logic_tech.html, logic_access.html, logic_walk.html and logic_ops.html go nowhere until B0.
 
 ## Constraints carried forward
-- Never call anything that connects a channel, verifies a sender or domain, or sends. No message reaches a seeded
-  contact. No vendor call, no Zoho change in this plan.
-- No regex or phrase rules; stdlib only; ASCII; Rs; first names; a cause on every change; "to be verified: <item>"
-  and "to be decided: <item>" with no name attached. Secrets never in the repo; the seed CSV zips never in a commit.
 - No edit to data/screens_v02.json, data/admin_screens.json, data/v02/freeze.json, data/gaps.json,
-  data/tracker.json, docs/review/, docs/audiences/, data/seed/, docs/seed/ or inputs/.
-- Commits: "logic <phase>: ..." for this plan; "board: ..." and "zoho live G<N>: ..." stay separate; no AI
-  attribution trailer.
+  data/tracker.json, data/seed/, docs/seed/, docs/review/, docs/audiences/, inputs/, docs/config.js, docs/v01/,
+  scripts/build_admin_wireframes.py, scripts/renderer_v02.js or .css. Existing pages stay byte-identical (C2 alone
+  changes the main nav).
+- No regex or phrase rules; stdlib only; ASCII; Rs; seats as actors, never a team name; "to be verified: <item>" and
+  "to be decided: <item>" with no name; vendors only as {I..} tokens. No network, no vendor call, nothing sent.
+- Commits "logic <phase>: ..."; no AI attribution line; never push (phase D is Vatsal's).
+- Untracked on purpose (never commit): inputs/spinach/admin panel/, inputs/spinach/kajal-admin panel/,
+  inputs/spinach/2026-09-25/, the two inputs/meeting/ files, the two seed CSV zips at the repo root.

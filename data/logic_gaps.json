@@ -1,0 +1,427 @@
+{
+ "source": "PLAN_logic_panel_v03.md 4.10",
+ "note": "The open items the logic pages carry, shown on those pages only and never appended to data/gaps.json (plan 12.0); lands_on names screen ids, logic_tech for the Tech page, logic_access for the Access page, V for the client views.",
+ "items": [
+  {
+   "id": "LQ1",
+   "item": "to be decided: the default route per kind of change (4.4)",
+   "lands_on": [
+    "L06"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ2",
+   "item": "to be decided: the tolerance band values; whether an outlook needs the client's acceptance",
+   "lands_on": [
+    "L02"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ3",
+   "item": "to be decided: the stale cap in days",
+   "lands_on": [
+    "L08"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ4",
+   "item": "to be decided: Hold as the default when a fund leaves the list, and when an Exit is ever advised (G12 on the board reads: not on the approved list, exit)",
+   "lands_on": [
+    "L04"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ5",
+   "item": "to be decided: the dimensions beyond risk band and horizon, and a ceiling on the number of cohorts",
+   "lands_on": [
+    "L03"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ6",
+   "item": "to be decided: how many model portfolios, and whether a mix change ever moves existing units",
+   "lands_on": [
+    "L14"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ7",
+   "item": "to be decided: who publishes when the principal officer is unreachable",
+   "lands_on": [
+    "L13"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ8",
+   "item": "to be decided: whether planning rows in L02 are reviewed by the financial planning function before publish",
+   "lands_on": [
+    "L02",
+    "L10"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ9",
+   "item": "to be decided: the allowlist's home (M03 as decided on 7 Oct 2026, or the staff and seats screen), and one sign-in for both panels against L01's \"same auth as the app\"",
+   "lands_on": [
+    "L13"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ10",
+   "item": "to be decided: where the client reason slots live and who edits them ({I15} or the panel)",
+   "lands_on": [
+    "L06"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ11",
+   "item": "to be verified: what satisfies \"digitally signed\" for the rationale record of a release",
+   "lands_on": [
+    "L06"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ12",
+   "item": "to be verified: whether a change to the score-to-band thresholds needs the client's fresh confirmation before it applies",
+   "lands_on": [
+    "L03"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ13",
+   "item": "to be verified: the wording that tells clients how and when a plan is updated (the fixed-fee agreement, gap G06)",
+   "lands_on": [
+    "V"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ14",
+   "item": "to be decided: the wave plan per kind of push; a call task after every urgent update or only one not accepted after three days",
+   "lands_on": [
+    "L11"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ15",
+   "item": "to be decided: whether the Adviser, Call centre and Support seats read the live rationale in the panel or as content in {I15}",
+   "lands_on": [
+    "L04",
+    "L14"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ16",
+   "item": "to be decided: the review cadence per lane, and whether the monthly market inputs take the second person",
+   "lands_on": [
+    "L12",
+    "L07"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ17",
+   "item": "to be decided: where the logic values live at run time: passed by the app to {I04} on every run, or held in {I04} as central defaults with a copy per client (7 Oct 2026 call); which system holds the snapshot of record",
+   "lands_on": [
+    "logic_tech"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ18",
+   "item": "to be verified: whether {I04} can run a stored input snapshot at an as-of date, as a dry run, in a batch; whether a call recalculates or returns the stored result until a review is run; whether a review reads the central value of the day or the client's own copy",
+   "lands_on": [
+    "logic_tech"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ19",
+   "item": "to be verified: whether a running SIP can be redirected through {I02} in one step, and how a Hold reaches a basket on {I03}",
+   "lands_on": [
+    "L04",
+    "V"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ20",
+   "item": "to be decided: whether a one-fund sleeve is acceptable under the per-product cap",
+   "lands_on": [
+    "L09"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ21",
+   "item": "to be decided: whether a scheduled release can be edited before its effective time or must be withdrawn and redrafted; whether a first plan built in that window uses the scheduled values",
+   "lands_on": [
+    "L06"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ22",
+   "item": "to be decided: whether approval is blocked until the reviewer has opened every preview panel; a hard limit on a single-class move",
+   "lands_on": [
+    "L10",
+    "L05",
+    "L14"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ23",
+   "item": "to be decided: whether a correction carries its own client explanation and a watch on grievances",
+   "lands_on": [
+    "L11"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ24",
+   "item": "to be verified: the record list and the minimum retention against the nine records on the Admin and CRM tab (brief H6); whether a saved reveal is one of them",
+   "lands_on": [
+    "L08"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ25",
+   "item": "to be decided: how the principal officer is reached for an urgent request",
+   "lands_on": [
+    "L04"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ26",
+   "item": "to be decided: the rule for staging an exit across financial years (not modelled)",
+   "lands_on": [
+    "L04"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ27",
+   "item": "to be verified: {I04} run time per plan, and how many runs it takes in parallel",
+   "lands_on": [
+    "logic_tech"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ28",
+   "item": "to be verified: real snapshot and PDF sizes once the plan JSON contract exists (W03)",
+   "lands_on": [
+    "logic_tech"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ29",
+   "item": "to be verified: a second-factor prompt at the moment of publish through {I14}",
+   "lands_on": [
+    "L06"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ30",
+   "item": "to be decided: what follows when an urgent Hold is not ratified within two working days",
+   "lands_on": [
+    "L08",
+    "L11"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ31",
+   "item": "to be decided: whether a self-reported SIP outside the app counts as a running SIP for a Hold",
+   "lands_on": [
+    "L04"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ32",
+   "item": "to be decided: whether a staff seat may change an assumption for one client (the engine allows a client-wise change; 7 Oct 2026 call), and with what record",
+   "lands_on": [
+    "L15"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ33",
+   "item": "to be decided: when the letter for a house-view release is sent: on the effective date to every plan it will change, or to each client when their plan takes it up",
+   "lands_on": [
+    "L06"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ34",
+   "item": "to be decided: whether R12's sample plans are regenerated by a release from fixed sample inputs, or stay hand-maintained content (gap G08)",
+   "lands_on": [
+    "L05"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ35",
+   "item": "to be decided: what a saved reveal shows once the assumptions behind it have moved, and whether the nudges keep quoting its numbers",
+   "lands_on": [
+    "V"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ36",
+   "item": "to be verified: whether launch runs execution in the app as section E draws, or through a link that opens {I02} with the portfolio loaded (gap G10; 7 Oct 2026 call); what the app then knows about a running SIP",
+   "lands_on": [
+    "L04"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ37",
+   "item": "to be decided: the launch cut (4.9)",
+   "lands_on": [
+    "logic_tech"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ38",
+   "item": "to be verified: the field changes to L02 to L09 now in progress (7 Oct 2026 call), so the side screens draw the same rows",
+   "lands_on": [
+    "L02"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ39",
+   "item": "to be decided: the equity ceiling per risk band and any other guard a change must pass",
+   "lands_on": [
+    "L09"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ40",
+   "item": "to be decided: whether the access write-up for Spinach also lists the app's tier gates",
+   "lands_on": [
+    "logic_access"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ41",
+   "item": "to be decided: session rules for staff: the idle timeout, one session at a time, the age of the second-factor check",
+   "lands_on": [
+    "L13"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ42",
+   "item": "to be decided: whether giving someone an operating seat needs a second person (it is the one way around the two-person rule)",
+   "lands_on": [
+    "L13"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ43",
+   "item": "to be verified: whether a pushed update (a Hold, an Exit, a correction) reaches a client whose annual confirmation is overdue (Q04 on the board blocks plan re-runs)",
+   "lands_on": [
+    "L11"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ44",
+   "item": "to be decided: what the engine does with an amount below a fund's minimum SIP",
+   "lands_on": [
+    "L09"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ45",
+   "item": "to be decided: which releases need a compliance acknowledgement before publish, beyond assumptions and risk scoring",
+   "lands_on": [
+    "L10"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  },
+  {
+   "id": "LQ46",
+   "item": "to be decided: how a new version of the engine (the maths) is approved, previewed against existing plans and named as a cause on a client's update",
+   "lands_on": [
+    "L08"
+   ],
+   "status": "open",
+   "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"
+  }
+ ]
+}

@@ -1529,7 +1529,7 @@ Done-criteria:
 - `grep -c 'Logic panel:' docs/logic_wireframes.html` -> 1; `grep -c 'logic_wireframes' docs/review/index.html` -> 0.
 
 Metadata: depends_on [] . weight heavy . live_model no . coder opus . verify_class sample . kind seam-design
-- [ ] A0 done
+- [x] A0 done
 
 ### 12.2 Phase A1: the start and logic groups, 14 screens
 

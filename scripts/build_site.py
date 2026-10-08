@@ -198,6 +198,8 @@ TABS = [("index.html", "Meeting"), ("gaps.html", "Gaps"), ("inputs.html", "Input
 # seed_subnav(); four tabs would push the header to a third row at laptop width and cut into the wireframes layout.
 SEED_PAGES = [("admin_wireframes.html", "Admin tab"), ("admin_seats.html", "Seats"), ("admin_brief.html", "Brief"),
               ("admin_operator.html", "Operator"), ("admin_split.html", "Split")]
+LOGIC_PAGES = [("logic_wireframes.html", "Logic tab"), ("logic_tech.html", "Tech"), ("logic_access.html", "Access"),
+               ("logic_walk.html", "Walkthroughs"), ("logic_ops.html", "Ops")]
 SUBNAV_CSS = """
   .subtabs{display:flex;gap:12px;align-items:center;padding:6px 18px;font-size:12px;color:var(--mute);background:var(--panel);border-bottom:1px solid var(--line)}
   .subtabs a{color:var(--mute);text-decoration:none}
@@ -225,6 +227,12 @@ def seed_subnav(current):
     """The row that links the four admin seed pages; the main nav carries one Admin seed tab for all of them."""
     return ('<nav class="subtabs">Admin seed: ' + "".join('<a href="%s"%s>%s</a>' % (href, ' class="on"' if href == current else "", esc(label))
                                                      for href, label in SEED_PAGES) + '</nav>\n')
+
+
+def logic_subnav(current):
+    """The row that links the five logic panel pages, as seed_subnav() does for the seed pages (logic plan, 8 Oct 2026)."""
+    return ('<nav class="subtabs">Logic panel: ' + "".join('<a href="%s"%s>%s</a>' % (href, ' class="on"' if href == current else "", esc(label))
+                                                      for href, label in LOGIC_PAGES) + '</nav>\n')
 
 
 def header(current, subtitle, show_export=True, who_html=None, export_label="Export brief", tabs=None, setup_link=True):
@@ -1075,6 +1083,8 @@ def main():
     build_brief.main()
     import build_admin_split  # docs/admin_split.html: Spinach's sheet with a pick per row, our own items, the sketches (W12, 2 Oct 2026)
     build_admin_split.main()
+    import build_logic_wireframes  # docs/logic_wireframes.html: the logic panel side wireframes from data/logic_screens.json (logic plan A0, 8 Oct 2026)
+    build_logic_wireframes.main()
 
 
 if __name__ == "__main__":
