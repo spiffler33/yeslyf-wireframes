@@ -37,6 +37,10 @@ GROUPS = [["start", "Start"], ["logic", "Logic"], ["change", "Change"], ["record
           ["reference", "Reference"], ["client", "Client views"]]
 KEYS = ("id", "sec", "title", "tier", "frame", "template", "path", "purpose", "ui", "spec", "compliance", "events", "v02",
         "freeze", "role", "writes", "group")
+SPEC_KEYS = ("fields", "logic", "branches", "states", "dev")  # plus the optional forward (plan 12.1 step 3)
+# The containers the checks read, with their types: a wrong one is named and ends that screen's checks (no traceback).
+SHAPES = (("ui", list), ("spec", dict), ("compliance", dict), ("events", list), ("v02", dict), ("freeze", dict),
+          ("role", dict))
 
 
 # ---------------------------------------------------------------- data/logic_screens.json validation
@@ -65,9 +69,13 @@ def all_text(obj):
 
 def without_causes(doc):
     """The file with its two cause fields emptied (v02.causes, freeze.cause): they carry "Vatsal, 8 Oct 2026", the
-    cause CLAUDE.md asks for, so the team-name check reads everything else (the board's validator never reads causes)."""
-    return dict(doc, screens=[dict(s, v02=dict(s.get("v02") or {}, causes=[]), freeze=dict(s.get("freeze") or {}, cause=""))
-                              for s in doc.get("screens", [])])
+    cause CLAUDE.md asks for, so the team-name check reads everything else (the board's validator never reads causes).
+    A v02 or freeze that is not a dict stays as it is: the validator names it."""
+    def blank(s):
+        v, f = s.get("v02"), s.get("freeze")
+        return dict(s, v02=dict(v, causes=[]) if isinstance(v, dict) else v,
+                    freeze=dict(f, cause="") if isinstance(f, dict) else f)
+    return dict(doc, screens=[blank(s) for s in doc.get("screens", [])])
 
 
 def seats_line(role):
@@ -80,7 +88,37 @@ def writes_line(writes):
     return "Writes: " + "; ".join(w["action"] + " (" + w["event"] + "; " + ", ".join(w["seats"]) + ")" for w in writes)
 
 
-def validate_logic_screens(doc, wireframe_ids, vendor_names, templates, reasons):
+def strings(x, n=None):
+    """A list of strings, of length n when n is given: a branch [label, target], a link row's label and target, seats."""
+    return isinstance(x, list) and all(isinstance(y, str) for y in x) and (n is None or len(x) == n)
+
+
+def board_rules(s, logic_ids, wireframe_ids, live_ids):
+    """The board's screen rules on one screen (validate_v02.structural :103-131 and check_self_links; the causes rule
+    of build_admin_wireframes.py :415): field tags, the Moving forward block, causes, link and branch targets,
+    self-links. A target resolves first to the logic file, then to the board, and never to a dropped or split board
+    screen. It reads the shapes validate_logic_screens checks, so it runs only on a screen with no earlier problem."""
+    sid, spec, p = s["id"], s["spec"], []
+    kinds = [e[0] for e in s["ui"]]
+    if ("in" in kinds or "radio" in kinds or ("chips" in kinds and spec.get("fields"))) and not spec.get("forward"):
+        p.append("%s: inputs drawn but no Moving forward block (spec.forward)" % sid)
+    for f in spec.get("fields") or []:
+        if not isinstance(f, dict) or not f.get("f") or f.get("forward") not in validate_v02.TAGS:
+            p.append("%s: field %r is not a dict with f and a forward tag (%s)" % (sid, f, ", ".join(validate_v02.TAGS)))
+    if not isinstance(s["v02"].get("causes"), list) or not s["v02"]["causes"]:
+        p.append("%s: v02.causes is not a non-empty list" % sid)
+    links = [(e[0], e[1], e[2]) for e in s["ui"] if e[0] in validate_v02.LINK_TYPES]
+    for kind, label, target in links + [("branch", b[0], b[1]) for b in spec.get("branches") or []]:
+        if target in logic_ids:
+            continue
+        if target not in wireframe_ids:
+            p.append("%s: %s %r -> %s is neither a logic screen nor a wireframes screen" % (sid, kind, label, target))
+        elif target not in live_ids:
+            p.append("%s: %s %r -> %s points at a dropped or split board screen" % (sid, kind, label, target))
+    return p + validate_v02.check_self_links([s])
+
+
+def validate_logic_screens(doc, wireframe_ids, vendor_names, templates, reasons, live_ids):
     p = []
     screens = doc.get("screens", [])
     ids = [s.get("id") for s in screens]
@@ -93,9 +131,12 @@ def validate_logic_screens(doc, wireframe_ids, vendor_names, templates, reasons)
     logic_ids = set(ids)
     for s in screens:
         sid = s.get("id", "?")
+        start = len(p)
         for key in KEYS:
             if key not in s:
                 p.append("%s: missing %s" % (sid, key))
+        for key in sorted(set(s) - set(KEYS)):
+            p.append("%s: unknown key %s" % (sid, key))
         panel = str(sid).startswith("L")
         if s.get("sec") != ("L" if panel else "V"):
             p.append("%s: sec %r, not %s" % (sid, s.get("sec"), "L" if panel else "V"))
@@ -109,6 +150,13 @@ def validate_logic_screens(doc, wireframe_ids, vendor_names, templates, reasons)
             p.append("%s: group %r is not one of the seven" % (sid, s.get("group")))
         if not isinstance(s.get("tier"), list):
             p.append("%s: tier is not a list" % sid)
+        spec = s.get("spec") if isinstance(s.get("spec"), dict) else {}
+        bad = [(k, t) for k, t in SHAPES if k in s and not isinstance(s[k], t)]
+        bad += [("spec." + k, list) for k in SPEC_KEYS if k in spec and not isinstance(spec[k], list)]
+        for k, t in bad:
+            p.append("%s: %s is not a %s" % (sid, k, t.__name__))
+        if bad:
+            continue
         events = s.get("events") or []
         if not events:
             p.append("%s: no events" % sid)
@@ -119,15 +167,16 @@ def validate_logic_screens(doc, wireframe_ids, vendor_names, templates, reasons)
             if r not in reasons:
                 p.append("%s: compliance reason %r is not in data/compliance_reasons.json" % (sid, r))
         f = s.get("freeze") or {}
-        if f.get("status") != "open" or not f.get("reason"):
-            p.append("%s: freeze is not open with a reason" % sid)
+        if f.get("status") != "open" or not isinstance(f.get("reason"), list) or not f["reason"]:
+            p.append("%s: freeze is not open with a non-empty reason list" % sid)
         v = s.get("v02") or {}
         if v.get("status") not in ("changed", "new", "kept"):
             p.append("%s: v02 status %r is not changed, new or kept" % (sid, v.get("status")))
-        spec = s.get("spec") or {}
-        for key in ("fields", "logic", "branches", "states", "dev"):
+        for key in SPEC_KEYS:
             if key not in spec:
                 p.append("%s: spec missing %s" % (sid, key))
+        for key in sorted(set(spec) - set(SPEC_KEYS) - {"forward"}):
+            p.append("%s: spec has unknown key %s" % (sid, key))
 
         role = s.get("role") or {}
         if list(role) != SEATS:
@@ -141,8 +190,9 @@ def validate_logic_screens(doc, wireframe_ids, vendor_names, templates, reasons)
             writes = []
         whole = True
         for w in writes:
-            if not w.get("action") or not w.get("event") or not w.get("seats"):
-                p.append("%s: writes entry missing action, event or seats: %r" % (sid, w))
+            shaped = isinstance(w, dict) and all(isinstance(w.get(k), str) and w[k] for k in ("action", "event"))
+            if not shaped or not strings(w.get("seats")) or not w["seats"]:
+                p.append("%s: writes entry is not a dict with action, event and seats: %r" % (sid, w))
                 whole = False
                 continue
             if w["event"] not in events:
@@ -157,12 +207,14 @@ def validate_logic_screens(doc, wireframe_ids, vendor_names, templates, reasons)
             p.append("%s: spec.logic[1] is not %r" % (sid, writes_line(writes)))
 
         for e in s.get("ui") or []:
-            target = e[2] if len(e) > 2 else None
-            if e[0] in validate_v02.LINK_TYPES and target not in logic_ids and target not in wireframe_ids:
-                p.append("%s: %s %r -> %s is neither a logic screen nor a wireframes screen" % (sid, e[0], e[1], target))
-        for label, target in spec.get("branches", []):
-            if target not in logic_ids and target not in wireframe_ids:
-                p.append("%s: branch %r -> %s is neither a logic screen nor a wireframes screen" % (sid, label, target))
+            row = isinstance(e, list) and e and isinstance(e[0], str)
+            if not row or (e[0] in validate_v02.LINK_TYPES and not strings(e[1:3], 2)):
+                p.append("%s: ui row %r is empty, does not start with a string, or is a link without a label and a target" % (sid, e))
+        for br in spec.get("branches") or []:
+            if not strings(br, 2):
+                p.append("%s: branch %r is not a two-item list [label, target]" % (sid, br))
+        if len(p) == start:
+            p += board_rules(s, logic_ids, wireframe_ids, live_ids)
 
     texts = all_text(doc)
     for txt in all_text(without_causes(doc)):
@@ -192,7 +244,11 @@ def build_page(doc, reasons):
     layout = site.WIRE_LAYOUT
     wire_opts = {"page": "logic_wireframes", "key": "yeslyf_logic_wire_v01", "version": "logic side v0.1",
                  "exportTitle": "# yeslyf logic panel side wireframes - review comments",
-                 "exportFile": "yeslyf_logic_side_review_v01.md"}
+                 "exportFile": "yeslyf_logic_side_review_v01.md",
+                 # No Spinach (logic plan, 8 Oct 2026): the Tracker lists every comment under the identity Spinach on
+                 # any page on docs/review/tracker.html (build_tracker.py questions()), the link Spinach has; section 0
+                 # and 12.0 keep the logic work off that link until the merge.
+                 "identities": ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Vatsal", "Compliance"]}
     # The page groups the screens by what the operator is doing (plan 12.0); the data keeps sec L and V.
     page_screens = [dict(s, sec=s["group"]) for s in doc["screens"]]
     data = ('<script>var SECTIONS=' + site.js_blob(doc["groups"]) + ';\nvar SCREENS=' + site.js_blob(page_screens) +
@@ -213,6 +269,7 @@ def main():
     doc = load_logic_screens()
     v02 = site.load("screens_v02.json")
     wireframe_ids = {s["id"] for s in v02["screens"]}
+    live_ids = {s["id"] for s in validate_v02.live(v02["screens"])}  # the board screens not dropped or split
     templates = {s["template"] for s in v02["screens"]}
     reasons = site.load("compliance_reasons.json")["reasons"]
     integ_rows = site.load("integrations.json")["rows"]
@@ -222,7 +279,7 @@ def main():
     generic_vendor_labels = {"internal", "internal (Spinach)", "not decided"}
     vendor_names = [r["vendor"] for r in integ_rows if r["vendor"] not in generic_vendor_labels]
 
-    problems = validate_logic_screens(doc, wireframe_ids, vendor_names, templates, reasons)
+    problems = validate_logic_screens(doc, wireframe_ids, vendor_names, templates, reasons, live_ids)
     if problems:
         for x in problems[:60]:
             print("ERROR: " + x)
