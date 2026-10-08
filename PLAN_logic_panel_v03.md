@@ -1,8 +1,9 @@
 # PLAN: logic panel side wireframes and tech plan, v0.3 (lean)
 
 Status, 8 Oct 2026: written, nothing built. This file replaces PLAN_logic_panel_v02.md and PLAN_logic_seed_v01.md of
-the same day; neither reached the repo and neither is to be used. Three phases run in order on Vatsal's "go", one
-commit per phase, no push (section 12).
+the same day; neither reached the repo and neither is to be used. The phases of section 12 (A0 to C2, then Vatsal's
+look in D) run in order on Vatsal's "go", one commit per phase, no push. Plan-ready pass, 8 Oct 2026: section 12
+rebuilt into phases with done-criteria and the choices the first draft left to the executor resolved in 12.0.
 
 Date: 8 Oct 2026. For Claude Code in the yeslyf-wireframes repo. CLAUDE.md rules apply throughout (ASCII, Rs, first
 names, a cause on every row, "to be verified: <item>" and "to be decided: <item>" with no name attached, no regex,
@@ -143,13 +144,14 @@ synthetic funds of 6.1 and none from the board.
 
 | id | deliverable | where | phase |
 |---|---|---|---|
-| DV1 | the side screens as data: 39 screens in the board's screen schema | data/logic_screens.json | A |
-| DV2 | Logic tab: the side wireframes on the existing renderer | docs/logic_wireframes.html | A |
-| DV3 | Tech page | docs/logic_tech.html, data/logic_tech.json | B |
-| DV4 | Access page: the access write-up | docs/logic_access.html, data/logic_access.json | B |
-| DV5 | Walkthroughs page: the call table and four walkthroughs | docs/logic_walk.html, data/logic_walk.json | B |
-| DV6 | Ops page | docs/logic_ops.html, data/logic_ops.json | B |
-| DV7 | nav, changelog rows, open items handling | all main-board pages; data/changelog_logic.json; section 12 | C |
+| DV1 | the side screens as data: 39 screens in the board's screen schema | data/logic_screens.json | A0 to A4 |
+| DV2 | Logic tab: the side wireframes on the existing renderer | docs/logic_wireframes.html, scripts/build_logic_wireframes.py | A0 |
+| DV3 | Tech page | docs/logic_tech.html, data/logic_tech.json | B0, B1 |
+| DV4 | Access page: the access write-up | docs/logic_access.html, data/logic_access.json | B0, B2 |
+| DV5 | Walkthroughs page: the call table and four walkthroughs | docs/logic_walk.html, data/logic_walk.json | B0, B3 |
+| DV6 | Ops page | docs/logic_ops.html, data/logic_ops.json | B0, B4 |
+| DV7 | nav, changelog rows, open items handling | all main-board pages; data/changelog_logic.json; data/logic_gaps.json (A0); section 12 | C2 |
+| DV8 | the checks of section 11 as a script | scripts/check_logic.py | C1 |
 
 ## 4. The design the wireframes draw
 
@@ -471,11 +473,15 @@ stamped on a plan cannot be recovered; a chart over stored rows can be drawn any
   events, v02 (status and causes), freeze (open, with its reason). Two fields are added from
   data/admin_screens.json: role (each of the ten seats of 4.8 with one of act, read, "read, own people", read masked,
   none) and writes (action, event, the seats that may do it).
-- The page docs/logic_wireframes.html is made by the builder and renderer behind wireframes_v02.html, pointed at this
-  file: the screen list on the left, the screen in the middle, the spec on the right, the comment box and the freeze
-  marker as on the board. Board page key "logic_wireframes". If that builder cannot take a second data file as it
-  stands, copy scripts/build_admin_wireframes.py and remove the seed loading and the draw hooks. No new renderer and
-  no screen-specific JavaScript.
+- The page docs/logic_wireframes.html is made by the renderer behind wireframes_v02.html (scripts/renderer_v02.js and
+  renderer_v02.css, inlined): the screen list on the left, the screen in the middle, the spec on the right, the
+  comment box and the freeze marker as on the board. Board page key "logic_wireframes". The board's own builder
+  cannot take a second data file (12.0), so the page is built by scripts/build_logic_wireframes.py, a copy of
+  scripts/build_admin_wireframes.py with the seed loading and the draw hooks removed (12.0 names what goes). No new
+  renderer and no screen-specific JavaScript.
+- Each screen carries a group field (start, logic, change, records, access, reference, client: the first column of
+  the 5.2 table, "client views" written "client"). The data keeps sec L and V; the builder sets the page's sec to
+  the group so the list on the left reads by what the operator is doing (12.0).
 - The existing spec panel has no place for role and writes, so each screen repeats them as two plain lines at the
   top of spec.logic ("Seats: ..." and "Writes: ..."). The fields themselves are read by the Access page.
 - A state that matters is its own screen with a letter suffix (L05a), the board's convention. The base screen's
@@ -1373,7 +1379,11 @@ Collegial wording ("note it on the page and we look at it together"), never an o
 
 ## 11. Checks
 
-The build fails on any of these.
+The schema checks live in the builder (scripts/build_logic_wireframes.py validates data/logic_screens.json on every
+build, as the admin builder does); the content checks live in scripts/check_logic.py, run by hand after the build
+like check_phase9.py (12.0). The shapes the checks read are pinned in 12.1 (A0) and 12.11 (C1): a mix is one cell
+"a/b/c/d/e/f", sleeve weights one cell "60/40", an instalment cell "<sleeve> <amount> (<fund> <amount>, ...)",
+a staff date "10 Mar 2028". The visual pass is Vatsal's (phase D). A phase is not done while any of these fails.
 - data/logic_screens.json passes the validator the board runs on data/screens_v02.json (schema; every btn and link
   target is a screen that exists, here or on the board).
 - Every screen names all ten seats in role; every write names its seats and its event; no team name; vendor names as
@@ -1391,31 +1401,459 @@ The build fails on any of these.
 
 ## 12. Phases and commits
 
-| phase | work | commit |
-|---|---|---|
-| A | data/logic_screens.json with the 39 screens of section 5 and the examples of section 6; the Logic tab on the existing renderer | logic A: the side wireframes |
-| B | one builder, scripts/build_logic_pages.py, that renders a page from a JSON file of sections (a heading, lines, tables, a comment box per section) inside the board's page shell; the four JSON files; the Tech, Access, Walkthroughs and Ops pages | logic B: tech, access, walkthroughs, ops |
-| C | nav, changelog rows, open items handling, the PLAN.md status section, the handoff | logic C: board links |
+Rebuilt for /run-plan on 8 Oct 2026 (plan-ready pass). Nothing was added to the scope: the three phases of the first
+draft are split into runs an agent can finish cold, each with a check that says when it is done. The letters keep
+their meaning: A is the side wireframes, B the four pages, C the board links and the checks, D is Vatsal's look. One
+commit per phase, message "logic <phase>: <what changed and why>", on main, no push: Vatsal looks at the pages on
+his machine and says when they go up (phase D). A phase stages only the files it names; the untracked items at the
+repo root and under inputs/ are never added. Every call made in this section that the first draft had left open
+carries the cause "logic plan, 8 Oct 2026"; Vatsal vetoes by reply.
 
-The phases run in order on one "go". Phase A ends with a short report in chat: the 39 screens built, anything this
-plan left unsaid and how it was settled (cause "logic plan, 8 Oct 2026"), and at most three questions. Two are known
-now: whether the operating seats should stay as "Principal officer 01" and "Logic analyst 01", and whether a state
-that matters is missing from the 39. Work carries on to phase B without waiting. It stops only if the existing
-renderer cannot draw something section 5 asks for; then say what, and do not write a new renderer.
+Firm rules carried into every phase (CLAUDE.md and section 0): ASCII, Rs, first names, a cause on every row, no
+regex and no word or phrase rules, stdlib only, no network, no vendor call, no message sent. No edit to
+data/screens_v02.json, data/admin_screens.json, data/v02/freeze.json, data/gaps.json, data/tracker.json, anything
+under data/seed/, docs/seed/, docs/review/, docs/audiences/ or inputs/. If a phase seems to need code beyond what
+its steps name, it stops and reports instead of writing it.
 
-No push in this plan. Vatsal looks at the pages on his machine and says when they go up.
+### 12.0 Calls made for the executor (logic plan, 8 Oct 2026, from reading the repo)
 
-Nav (phase C): one "Logic panel" tab after "Admin seed" on the main board and a sub-nav across its five pages (Logic
-tab, Tech, Access, Walkthroughs, Ops). If one more tab grows the header at 1,512 px, fold "Admin seed" and "Logic
-panel" under one tab with two sub-nav rows instead (logic plan, 8 Oct 2026). Not on the review link; not in the
-audience files. Every page carries the line "side wireframes: proposed, not yet merged into Wireframes v0.2".
+- The board's builder cannot draw a second file: build_site.build_wire_v02 loads data/screens_v02.json by a literal
+  (build_site.py:973), sq_refs_blob() reloads it (:384), and the page emits no WIRE_OPTS, so its board page key is
+  fixed at "wireframes_v02". The Logic tab comes from scripts/build_logic_wireframes.py, a stripped copy of
+  scripts/build_admin_wireframes.py (the 5.1 fallback), hooked into build_site.main() after build_admin_split.
+  What goes from the copy: the seed helpers and build_bundle (build_admin_wireframes.py:83-344), the run and person
+  bar, the ADMIN_RUNS, ADMIN_STATES and ADMIN_PLACEMENT blobs, admin_core.js and the ADMIN_SCREEN_FILES includes, the
+  synthetic-people banner. What stays: the validation (adapted, A0), build_page with its own WIRE_OPTS, the shared
+  renderer, the page shell and the comment box.
+- Grouping on the left of the Logic tab: the renderer groups by sec through SECTIONS (renderer_v02.js:123). The data
+  keeps sec L and V; each screen carries a group field; the builder sets the page's sec to the group as
+  build_admin_wireframes.build_page does for "MZ". No renderer change.
+- Open items: data/gaps.json's v02 list reaches no review or audience file, but build_brief.py:625-630 puts its open
+  rows in docs/admin_brief.html section 5, the pack sent to Spinach on 7 Oct 2026. Appending LQ1 to LQ46 there would
+  change an existing page and show Spinach the logic work before the merge, against section 0 and section 11. So
+  the LQ items live in data/logic_gaps.json (written in A0, because the screens' dev lines and the checks read it)
+  and are shown on the logic pages only. data/gaps.json is not touched. No tracker row and no note on W04: the
+  Tracker is on the review link (docs/review/tracker.html); progress goes in the one-line daily update.
+- The content checks of section 11 live in scripts/check_logic.py, run by hand after the build like check_phase9.py,
+  never inside build_site.py. It is a third piece of new code (the header allowed two); the checks need a home and a
+  check script is the repo's pattern. The builders keep their own schema validation, as the admin builder does.
+- The page builder draws one comment box per section (the first draft's phase table). 7.9's "a comment box per row"
+  on the launch cut table is not built: one box per section keeps the builder at its size.
+- The nav fold ("if one more tab grows the header at 1,512 px") is a visual judgment no script makes. C2 adds the
+  one tab; phase D decides the fold. The tab row already wraps (.tabs flex-wrap, build_site.py:85), so a long header
+  shows a second row, never a broken page.
+- Links on the pages into the Logic tab are typed, never detected: a table cell written as a two-item list
+  [text, href] renders as a link; a plain string renders as text.
+- Dates the checks read are typed in full ("10 Mar 2028": day, three-letter month, year). The walkthrough tables of
+  section 9 write "10 Mar"; the page carries the year on every step.
+- Each phase's rebuild uses its own builder (python3 scripts/build_logic_wireframes.py or
+  python3 scripts/build_logic_pages.py). The full python3 scripts/build_site.py runs only in A0, C1 and C2, so a
+  content phase in flight never breaks another phase's build.
 
-Open items (phase C). First read what docs/review/ and the audience files render. If data/gaps.json's v02 list
-reaches the review copy or an audience file, keep LQ1 to LQ46 in data/logic_gaps.json and show them on the logic
-pages only; otherwise append them to the v02 list from G25 with status "gap, to be decided" or the "to be verified"
-wording, the screen, and the cause "Vatsal, 8 Oct 2026 (logic side wireframes)". The Tracker tab is on the review
-link, so no tracker row and no note on W04 is added unless the review copy can leave them out; progress goes in the
-one-line daily update.
+### 12.1 Phase A0: the scaffold
+
+Goal: the Logic tab builder exists, draws 39 stub screens from data/logic_screens.json, and the open items file exists.
+
+Touches: scripts/build_logic_wireframes.py (new), scripts/build_site.py (LOGIC_PAGES, logic_subnav(), one import and
+call in main()), data/logic_screens.json (new), data/logic_gaps.json (new), docs/logic_wireframes.html (generated).
+
+Steps:
+1. In scripts/build_site.py, next to SEED_PAGES (:199): LOGIC_PAGES = [("logic_wireframes.html", "Logic tab"),
+   ("logic_tech.html", "Tech"), ("logic_access.html", "Access"), ("logic_walk.html", "Walkthroughs"),
+   ("logic_ops.html", "Ops")] and logic_subnav(current) shaped like seed_subnav(), label "Logic panel:". No change to
+   TABS, REVIEW_TABS or FORBIDDEN. In main(), after build_admin_split.main(): import build_logic_wireframes and call
+   its main(), with a one-line comment in the file's style.
+2. Copy scripts/build_admin_wireframes.py to scripts/build_logic_wireframes.py and strip it as 12.0 says. Page
+   options: page "logic_wireframes", key "yeslyf_logic_wire_v01", version "logic side v0.1", exportTitle
+   "# yeslyf logic panel side wireframes - review comments", exportFile "yeslyf_logic_side_review_v01.md". Header:
+   site.header("logic_wireframes.html", "logic panel side wireframes: proposed, not yet merged into Wireframes v0.2",
+   export_label="Export comments"); the bar carries site.logic_subnav("logic_wireframes.html"); the banner reads
+   "side wireframes: proposed, not yet merged into Wireframes v0.2. The design is proposed, to be confirmed at the
+   logic panel review (to be decided: the review date). Every logic value is a rehearsal value and every count a
+   typed example." SECTIONS on the page are the seven groups in this order and with these labels: start "Start",
+   logic "Logic", change "Change", records "Records", access "Access", reference "Reference", client "Client views".
+   DROPPED, SPLIT, STATES empty; REASONS from data/compliance_reasons.json; INTEGRATIONS as the admin page; FREEZE
+   None. The builder prints one line: "logic wireframes: 39 screens (33 panel, 6 client views), validation PASS".
+3. Validation in the builder (adapted from validate_admin_screens), each failure named; the build stops on any:
+   - ids exactly, in this order: L01, L01a, L02, L02a, L03, L03a, L03b, L14, L14a, L04, L04a, L04b, L09, L07, L05,
+     L05a, L05b, L10, L10a, L06, L06a, L06b, L11, L11a, L11b, L08, L08a, L15, L15a, L15b, L12, L13, L00, V01, V02,
+     V03, V04, V05, V06;
+   - keys: id, sec, title, tier, frame, template, path, purpose, ui, spec, compliance, events, v02, freeze, role,
+     writes, group; spec keys fields, logic, branches, states, dev (forward optional);
+   - sec L for L ids, V for V ids; frame desktop for L, phone for V; path in aa, manual, both; template in the set
+     used by data/screens_v02.json; group in the seven; tier a list;
+   - role has exactly the ten seats in this order: Principal officer, Logic analyst, Compliance, Adviser, Call centre,
+     Ops, Support, Read only, Marketing, Finance; values in act, read, "read, own people", "read masked", none;
+   - writes is a list of {action, event, seats}; seats a subset of the ten; event listed in events; events non-empty;
+   - spec.logic[0] equals "Seats: " + "; ".join(seat + " " + value over the ten seats), and spec.logic[1] equals
+     "Writes: " + "; ".join(action + " (" + event + "; " + ", ".join(seats) + ")") or "Writes: none";
+   - every btn and link target in ui and every branch target resolves to an id in data/logic_screens.json or
+     data/screens_v02.json (the admin builder's approach);
+   - compliance has review and reasons, reasons from data/compliance_reasons.json; v02.status in changed, new, kept;
+     freeze.status "open" with a non-empty reason list;
+   - the team-name and vendor-string check kept from the admin builder (its NAMES_UI and word_hit), site.FORBIDDEN
+     absent, site.check_ascii on the page.
+4. data/logic_screens.json: {"source": "PLAN_logic_panel_v03.md, 8 Oct 2026", "note": one line, "sections":
+   [["L", "Logic panel"], ["V", "Client views"]], "groups": the seven [code, label] pairs, "screens": the 39 stubs},
+   json.dumps(indent=2) plus a newline. A stub: id; sec; title (the 5.2 screen name; a variant adds ", " and the state
+   phrase of its 5.3 "Drawn" line, so L01a is "Home, an urgent day"); tier ["ALL"] for L; frame; template T-table for
+   L, for V: V01 to V03 T-card-stack (H05), V04 T-list, V05 T-msg, V06 T-card (X01); path "both"; purpose, one line
+   from 5.3; ui []; spec {fields [], logic [the two derived lines], branches [], states [], dev []}; compliance for L
+   {"review": false, "reasons": ["internal"], "checks": ["No user-facing copy; nothing to review."]}, for V01 to V05
+   advice language and for V06 advertising code, review true, checks copied from data/compliance_reasons.json; tier
+   for V01 to V05 ["DIY", "DIWM"], V06 ["ALL"]; events ["<id>_view"]; v02 {"status": the 5.2 column read as changed,
+   new or kept, variants as their base, V new; "causes": ["Vatsal, 8 Oct 2026"]}; freeze {"status": "open",
+   "since": "8 Oct 2026", "cause": "Vatsal, 8 Oct 2026", "reason": ["proposed, to be confirmed at the logic panel
+   review"], "owed": []}; role from the 5.4 table row of its base ("-" is none, "masked" is "read masked", "own" is
+   "read, own people"); writes []; group from 5.2.
+5. data/logic_gaps.json: {"source": "PLAN_logic_panel_v03.md 4.10", "note": one line, "items": 46 rows
+   {id, item (the 4.10 text, which starts "to be decided: " or "to be verified: "), lands_on (a list: screen ids;
+   "Tech page" as "logic_tech", "Access page" as "logic_access", "client views" as "V"), status "open", cause
+   "Vatsal, 8 Oct 2026 (logic side wireframes)"}}, json.dumps(indent=1) plus a newline.
+6. python3 scripts/build_site.py; the checks below; commit "logic A0: the Logic tab builder, 39 stub screens and the
+   open items file (logic plan, 8 Oct 2026)".
+
+Done-criteria:
+- `python3 scripts/build_logic_wireframes.py` -> exit 0; last line "logic wireframes: 39 screens (33 panel, 6 client
+  views), validation PASS".
+- `python3 -c "import json;d=json.load(open('data/logic_screens.json'))['screens'];print(len(d),sum(len(s['role'])==10 for s in d),sum(s['ui']==[] for s in d))"`
+  -> "39 39 39".
+- `python3 -c "import json;print(len(json.load(open('data/logic_gaps.json'))['items']))"` -> 46.
+- `python3 scripts/build_site.py` -> exit 0 (about 2 minutes).
+- `python3 scripts/check_phase9.py | grep -c PASS` -> 19; `python3 scripts/check_site.py | grep -c PASS` -> 3.
+- `git status --short` -> the pre-existing untracked items plus exactly: M scripts/build_site.py, ?? or A for
+  scripts/build_logic_wireframes.py, data/logic_screens.json, data/logic_gaps.json, docs/logic_wireframes.html.
+  Nothing under docs/review/, docs/audiences/, docs/seed/ or data/ besides the two new files.
+- `grep -c 'Logic panel:' docs/logic_wireframes.html` -> 1; `grep -c 'logic_wireframes' docs/review/index.html` -> 0.
+
+Metadata: depends_on [] . weight heavy . live_model no . coder sonnet . verify_class sample . kind seam-design
+- [ ] A0 done
+
+### 12.2 Phase A1: the start and logic groups, 14 screens
+
+Goal: L01, L01a, L02, L02a, L03, L03a, L03b, L14, L14a, L04, L04a, L04b, L09, L07 drawn from 5.3 and section 6.
+
+Touches: data/logic_screens.json (these 14 entries only), docs/logic_wireframes.html (generated).
+
+Steps:
+1. For each screen fill ui, spec.fields, spec.logic (the two derived lines first, then a variant's state line, then
+   the checks of its 5.3 entry), spec.branches, spec.states (every state, drawn or not), spec.dev (its LQ items in
+   the exact 4.10 wording; "gap, to be decided" lines where the build finds one), writes (action, event
+   "<base id>_<action in lower snake>", seats) with each event added to events, and the forward line where 5.3 gives
+   one. The role field is already set; do not change it.
+2. ui rows use the board's grammar as in data/screens_v02.json ("table" rows as ["table", [cols], [rows]], text,
+   btn, link). Every screen that shows an example carries the note row "Example values: rehearsal values and
+   illustrative figures per 1,000 plan holders; nothing here is decided." Mixes are typed as one cell "a/b/c/d/e/f"
+   (six classes in the 6.1 order), sleeve weights as one cell with slashes ("60/40"); fund names only from 6.1
+   ("Seed <category> Fund NN"); staff only as "Principal officer 01", "Logic analyst 01" and the other seats of 6.1.
+3. What the plan leaves unsaid is settled in the smallest way that keeps 4.2 and section 6 consistent, written into
+   the screen, and listed in the phase report with the cause "logic plan, 8 Oct 2026".
+4. python3 scripts/build_logic_wireframes.py; the checks below; commit "logic A1: the start and logic groups drawn,
+   14 screens (logic plan, 8 Oct 2026)".
+
+Done-criteria:
+- `python3 scripts/build_logic_wireframes.py` -> exit 0, "validation PASS".
+- `python3 -c "import json;d=json.load(open('data/logic_screens.json'))['screens'];print(sorted(s['id'] for s in d if s['ui']))"`
+  -> exactly the 14 ids above.
+- `git status --short` -> the A0 state plus M data/logic_screens.json, M docs/logic_wireframes.html only.
+
+Metadata: depends_on [A0] . weight heavy . live_model no . coder sonnet . verify_class sample . kind transcription
+- [ ] A1 done
+
+### 12.3 Phase A2: the change group, 11 screens
+
+Goal: L05, L05a, L05b, L10, L10a, L06, L06a, L06b, L11, L11a, L11b drawn from 5.3, 4.4 to 4.7 and section 6.
+
+Touches: data/logic_screens.json (these 11 entries only), docs/logic_wireframes.html (generated).
+
+Steps: as A1 steps 1 to 3 for these screens; the preview's ten panels on L05 are rows, with panels c, i, j marked
+"later" per 4.9; figures from 6.4. Then python3 scripts/build_logic_wireframes.py and commit "logic A2: the change
+group drawn, 11 screens (logic plan, 8 Oct 2026)".
+
+Done-criteria:
+- `python3 scripts/build_logic_wireframes.py` -> exit 0, "validation PASS".
+- `python3 -c "import json;d=json.load(open('data/logic_screens.json'))['screens'];print(len([s for s in d if s['ui']]))"`
+  -> 25, and the filled ids are the A1 set plus the 11 above.
+- `git status --short` -> M data/logic_screens.json, M docs/logic_wireframes.html only (beyond the committed state).
+
+Metadata: depends_on [A1] . weight heavy . live_model no . coder sonnet . verify_class sample . kind transcription
+- [ ] A2 done
+
+### 12.4 Phase A3: the records, access and reference groups, 8 screens
+
+Goal: L08, L08a, L15, L15a, L15b, L12, L13, L00 drawn from 5.3, 5.6 and section 6.
+
+Touches: data/logic_screens.json (these 8 entries only), docs/logic_wireframes.html (generated).
+
+Steps: as A1 steps 1 to 3 for these screens. L08 types the 6.2 rows; L15 types the 6.3 rows, each instalment cell in
+the form "<sleeve> <amount> (<fund> <amount>, <fund> <amount>); <sleeve> <amount>" with amounts as in 6.3
+("26,000"), or "unchanged"; L00 carries the life cycle of 4.7 and the surface map of 5.6. Then
+python3 scripts/build_logic_wireframes.py and commit "logic A3: the records, access and reference groups drawn, 8
+screens (logic plan, 8 Oct 2026)".
+
+Done-criteria:
+- `python3 scripts/build_logic_wireframes.py` -> exit 0, "validation PASS".
+- the filled count -> 33, the filled ids the A2 set plus the 8 above (the A2 one-liner).
+- `git status --short` -> M data/logic_screens.json, M docs/logic_wireframes.html only.
+
+Metadata: depends_on [A2] . weight heavy . live_model no . coder sonnet . verify_class sample . kind transcription
+- [ ] A3 done
+
+### 12.5 Phase A4: the client views, 6 screens
+
+Goal: V01 to V06 drawn from 5.5, 4.5 and 6.3, each linking to the board screen it would change.
+
+Touches: data/logic_screens.json (these 6 entries only), docs/logic_wireframes.html (generated).
+
+Steps: as A1 steps 1 to 3; copy is slots, never final wording ("[slot: what changed]"); each view's branches point
+at its board target (H05, H01e, E03, E11, G12a, R12, X01 as 5.5 says). Then python3 scripts/build_logic_wireframes.py
+and commit "logic A4: the six client views drawn (logic plan, 8 Oct 2026)". The phase report lists what was settled
+with the cause "logic plan, 8 Oct 2026" and the two questions for Vatsal: whether the operating seats stay
+"Principal officer 01" and "Logic analyst 01", and whether a state that matters is missing from the 39 (phase D).
+
+Done-criteria:
+- `python3 scripts/build_logic_wireframes.py` -> exit 0, "validation PASS".
+- the filled count -> 39 (the A2 one-liner); `python3 -c "import json;d=json.load(open('data/logic_screens.json'))['screens'];print(sum(1 for s in d if s['id'].startswith('V') and s['frame']=='phone' and s['ui']))"`
+  -> 6.
+- `git status --short` -> M data/logic_screens.json, M docs/logic_wireframes.html only.
+
+Metadata: depends_on [A3] . weight heavy . live_model no . coder sonnet . verify_class sample . kind transcription
+- [ ] A4 done
+
+### 12.6 Phase B0: the page builder and four skeleton pages
+
+Goal: scripts/build_logic_pages.py renders a page from a JSON file of sections inside the board's shell; the four
+data files exist as skeletons and render.
+
+Touches: scripts/build_logic_pages.py (new), scripts/build_site.py (one import and call in main(), after
+build_logic_wireframes), data/logic_tech.json, data/logic_access.json, data/logic_walk.json, data/logic_ops.json
+(new), docs/logic_tech.html, docs/logic_access.html, docs/logic_walk.html, docs/logic_ops.html (generated).
+
+Steps:
+1. The data shape, one file per page: {"page": the board page key (logic_tech, logic_access, logic_walk,
+   logic_ops), "title", "audience": one line, "sections": [{"id": a short anchor such as "t1", "heading",
+   "lines": [strings], "tables": [{"cols": [...], "rows": [[cell, ...]]}], "open_items": ["LQ17", ...],
+   "derived": "seat_by_screen"}]}. A cell is a string, or a two-item list [text, href] drawn as a link. lines,
+   tables, open_items and derived are optional. json.dumps(indent=1) plus a newline.
+2. The builder, about 200 lines, stdlib only, importing build_site as site like build_seats.py: for each file,
+   site.head, site.header("logic_wireframes.html", "<title>: proposed, not yet merged into Wireframes v0.2",
+   export_label="Export comments"), site.logic_subnav(its html name), the two banner lines of A0 step 2, then per
+   section an h2 with the id as anchor, the lines as paragraphs, the tables through site.table_html, the open items
+   as "<id> <item>" rows read from data/logic_gaps.json, the derived table, and one comment box bound to the section
+   id through the comment script copied from build_seats.py (yeslyfBoard.init with the file's page key, attach per
+   section). site.FORBIDDEN applied, site.check_ascii run. The derived table "seat_by_screen": one row per screen of
+   data/logic_screens.json (base screens and variants, in file order) and then M03, M07 and M10 from
+   data/admin_screens.json; one column per seat in the A0 order, the admin screens' missing seats shown as "-";
+   values as stored. Every line and cell passes through build_brief.tokens(text, integrations_by_id) with
+   integrations_by_id built as build_brief.py:716 builds it, so {I04} renders as "I04 <vendor>" and no vendor name is
+   typed. The builder prints one line: "logic pages: 4 built".
+3. Skeletons: each file with its page key, title (Tech, Access, Walkthroughs, Ops), audience line from section 0 and
+   one section {"id": "<letter>0", "heading": "Sections follow", "lines": ["to be filled: phase B1 to B4"]}; the
+   Access skeleton also carries a section with "derived": "seat_by_screen" so the derived table is proven here.
+4. Hook into build_site.main() as A0 did; run python3 scripts/build_logic_pages.py (not build_site.py); the checks;
+   commit "logic B0: the page builder and four skeleton pages (logic plan, 8 Oct 2026)".
+
+Done-criteria:
+- `python3 scripts/build_logic_pages.py` -> exit 0, last line "logic pages: 4 built".
+- `ls docs/logic_tech.html docs/logic_access.html docs/logic_walk.html docs/logic_ops.html | wc -l` -> 4.
+- `grep -c 'build_logic_pages' scripts/build_site.py` -> 2 (the import and the call).
+- `grep -c '<table' docs/logic_access.html` -> at least 1, and `grep -c 'M10' docs/logic_access.html` -> at least 1
+  (the derived table carries the admin screens).
+- `python3 scripts/check_site.py | grep -c PASS` -> 3 (export and noindex on the new pages).
+- `wc -l scripts/build_logic_pages.py` -> under 260.
+- `git status --short` -> M scripts/build_site.py plus the nine new files above and nothing else beyond the
+  committed state.
+
+Metadata: depends_on [A0] . weight heavy . live_model no . coder sonnet . verify_class sample . kind seam-design
+- [ ] B0 done
+
+### 12.7 Phase B1: the Tech page
+
+Goal: data/logic_tech.json carries section 7 as nine sections (7.1 to 7.9) with the figures of 6.4; the page renders.
+
+Touches: data/logic_tech.json, docs/logic_tech.html (generated).
+
+Steps: type 7.1 to 7.9 into nine sections with ids t1 to t9, tables first as section 7 says; 7.9's launch cut table
+from 4.9 with one comment box for the section (12.0); open_items of t9: LQ9, LQ11, LQ17, LQ18, LQ19, LQ24, LQ27,
+LQ28, LQ29, LQ36, LQ41, LQ43, LQ44, LQ46; "to be verified" and "to be decided" lines in their exact form; vendors
+only as {I..} tokens (the builder renders them). No change to the builder in B1 to B4. python3
+scripts/build_logic_pages.py; commit "logic B1: the Tech page (logic plan, 8 Oct 2026)".
+
+Done-criteria:
+- `python3 scripts/build_logic_pages.py` -> exit 0.
+- `python3 -c "import json;d=json.load(open('data/logic_tech.json'));print(len(d['sections']),[s['id'] for s in d['sections']])"`
+  -> 9 and t1 to t9.
+- `grep -c 'to be filled' docs/logic_tech.html` -> 0; `grep -c '{I' docs/logic_tech.html` -> 0 (every token rendered).
+- `git status --short` -> M data/logic_tech.json, M docs/logic_tech.html only.
+
+Metadata: depends_on [B0] . weight light . live_model no . coder sonnet . verify_class sample . kind transcription
+- [ ] B1 done
+
+### 12.8 Phase B2: the Access page
+
+Goal: data/logic_access.json carries section 8 in its nine-part order; part 4 is the derived table; the page renders.
+
+Touches: data/logic_access.json, docs/logic_access.html (generated).
+
+Steps: nine sections a1 to a9 in section 8's order; a3 is the 4.8 table; a4 is {"derived": "seat_by_screen"} with the
+5.4 note lines ("own" is read, own people; what the Logic analyst sees on L08 and L13); a5 the 4.6 workflow as a
+table; a9 open_items LQ7, LQ9, LQ29, LQ40, LQ41, LQ42, LQ45. Seat names only, no person. python3
+scripts/build_logic_pages.py; commit "logic B2: the Access page (logic plan, 8 Oct 2026)".
+
+Done-criteria:
+- `python3 scripts/build_logic_pages.py` -> exit 0.
+- the section one-liner -> 9 and a1 to a9; `grep -c 'to be filled' docs/logic_access.html` -> 0.
+- `grep -o '>L[0-9][0-9][a-z]*<' docs/logic_access.html | sort -u | wc -l` -> 33, `grep -o '>V0[1-6]<'
+  docs/logic_access.html | sort -u | wc -l` -> 6, `grep -c '>M07<' docs/logic_access.html` -> 1 (the derived table
+  carries every screen once).
+- `git status --short` -> M data/logic_access.json, M docs/logic_access.html only.
+
+Metadata: depends_on [B0] . weight light . live_model no . coder sonnet . verify_class sample . kind transcription
+- [ ] B2 done
+
+### 12.9 Phase B3: the Walkthroughs page
+
+Goal: data/logic_walk.json carries the call table, the design in one place and the four walkthroughs; the page renders.
+
+Touches: data/logic_walk.json, docs/logic_walk.html (generated).
+
+Steps: six sections: w1 the section 1 table with its five columns; w2 the design (4.2, 4.3, 4.6, 4.7, 4.4, 4.5 as
+lines and tables); w3 to w6 Y01 to Y04 from section 9, each table with the columns n, at, seat, screen, action and
+result, the "at" cell a full date ("10 Mar 2028"), the seat cell a seat name or "-", the screen cell a link
+[id, "logic_wireframes.html#<id>"], and the three closing lists (client, ops, stored) as lines. python3
+scripts/build_logic_pages.py; commit "logic B3: the Walkthroughs page (logic plan, 8 Oct 2026)".
+
+Done-criteria:
+- `python3 scripts/build_logic_pages.py` -> exit 0.
+- the section one-liner -> 6 and w1 to w6; `grep -c 'to be filled' docs/logic_walk.html` -> 0.
+- `grep -o 'logic_wireframes.html#L[0-9a-z]*' docs/logic_walk.html | sort -u | wc -l` -> at least 10 (the steps link
+  into the Logic tab).
+- `git status --short` -> M data/logic_walk.json, M docs/logic_walk.html only.
+
+Metadata: depends_on [B0] . weight light . live_model no . coder sonnet . verify_class sample . kind transcription
+- [ ] B3 done
+
+### 12.10 Phase B4: the Ops page
+
+Goal: data/logic_ops.json carries section 10 as eight sections in plain words; the page renders.
+
+Touches: data/logic_ops.json, docs/logic_ops.html (generated).
+
+Steps: eight sections o1 to o8 in section 10's order; o1 one row per route of 4.4; o2 the checklist tables; o3 and o4
+the figures of 6.4; o5 every row starting "to be decided: "; o8 open_items LQ10, LQ13, LQ14, LQ31, LQ33, LQ35.
+Collegial wording, never an order. python3 scripts/build_logic_pages.py; commit "logic B4: the Ops page (logic plan,
+8 Oct 2026)".
+
+Done-criteria:
+- `python3 scripts/build_logic_pages.py` -> exit 0.
+- the section one-liner -> 8 and o1 to o8; `grep -c 'to be filled' docs/logic_ops.html` -> 0.
+- `git status --short` -> M data/logic_ops.json, M docs/logic_ops.html only.
+
+Metadata: depends_on [B0] . weight light . live_model no . coder sonnet . verify_class sample . kind transcription
+- [ ] B4 done
+
+### 12.11 Phase C1: the checks of section 11, green
+
+Goal: scripts/check_logic.py runs the content checks of section 11 over the five data files and passes; the full
+build passes; the protected files are unchanged.
+
+Touches: scripts/check_logic.py (new); fixes only in data/logic_screens.json, data/logic_tech.json,
+data/logic_access.json, data/logic_walk.json, data/logic_ops.json and their generated pages.
+
+Steps:
+1. Write scripts/check_logic.py, stdlib only, in the shape of check_phase9.py (numbered checks, "PASS n: <what>" or
+   "FAIL n: <what>", exit 1 on any FAIL). The nine checks:
+   1. schema and targets: build_logic_wireframes.validate_logic_screens() (or its name) raises nothing;
+   2. seats and writes: every screen's role has the ten seats; every write names seats and an event listed in
+      events; every event on a screen starts with its base id;
+   3. open items both ways: every "LQ" token in any spec.dev line, any page line, table cell or open_items list is
+      an id in data/logic_gaps.json, and every item of data/logic_gaps.json appears (its id in spec.dev) on every
+      screen its lands_on names, or (its id in open_items) on the page it names, or on at least one V screen for "V";
+   4. walkthroughs: in data/logic_walk.json every table whose columns are n, at, seat, screen, action and result has
+      a screen cell whose link text is an id in data/logic_screens.json and a seat cell that is one of the ten seats
+      or "-";
+   5. working days: every "at" cell of those tables parses with datetime.strptime("%d %b %Y") and its weekday is
+      Monday to Friday;
+   6. sums: on L14, L14a, L03, L03a, L03b, L04, L04a and L05 every table cell that is digits and "/" only splits on
+      "/" to six numbers summing to 100 (a mix) or to two or more numbers summing to 100 (sleeve weights);
+   7. instalments: on L15, L15a and L15b every cell holding "(" is read as sleeve parts split on ";", each part's
+      amount the last whole number before "(" and its fund amounts the whole numbers inside the brackets (tokens
+      split on spaces, commas stripped), and the fund amounts sum to the sleeve amount;
+   8. names: no fund name from the board's L04 and L09 table rows (read from data/screens_v02.json at run time)
+      occurs in data/logic_screens.json (check 4 already keeps every actor a seat); site.FORBIDDEN absent from the
+      five pages;
+   9. protected files: `git status --short -- data/seed docs/seed docs/review docs/audiences data/screens_v02.json
+      data/admin_screens.json data/v02/freeze.json data/gaps.json data/tracker.json` is empty (subprocess, as
+      check_phase9.py runs the validator).
+2. Run it; fix content where it fails (a fix to a check is allowed only when the check misreads a shape 12.0 pins,
+   said in the report); rerun until 9 PASS.
+3. python3 scripts/build_site.py; check_phase9.py and check_site.py; commit "logic C1: the section 11 checks as
+   scripts/check_logic.py, green (logic plan, 8 Oct 2026)".
+
+Done-criteria:
+- `python3 scripts/check_logic.py | grep -c PASS` -> 9, exit 0; `grep -c FAIL` -> 0.
+- `python3 scripts/build_site.py` -> exit 0; `python3 scripts/check_phase9.py | grep -c PASS` -> 19;
+  `python3 scripts/check_site.py | grep -c PASS` -> 3.
+- `git status --short` -> only scripts/check_logic.py new and the logic data and pages modified; nothing under
+  docs/review/, docs/audiences/, docs/seed/, data/seed/.
+
+Metadata: depends_on [A4, B1, B2, B3, B4] . weight heavy . live_model no . coder sonnet . verify_class sample .
+kind seam-design
+- [ ] C1 done
+
+### 12.12 Phase C2: the board links
+
+Goal: the main board carries a "Logic panel" tab after "Admin seed"; the Changelog tab carries the logic rows; PLAN.md
+carries the status section; the review link and the audience files are unchanged.
+
+Touches: scripts/build_site.py (TABS, the label lookup at :914, the changelog tuple at :909-910, one CSS class),
+data/changelog_logic.json (new), PLAN.md (section 27 appended), every main-board page under docs/ regenerated by
+the nav change.
+
+Steps:
+1. TABS: insert ("logic_wireframes.html", "Logic panel") after ("admin_wireframes.html", "Admin seed"), with a
+   comment in the file's style ("Logic panel added 8 Oct 2026 (PLAN_logic_panel_v03.md C2): one tab for the five
+   logic pages, which link each other through logic_subnav()"). REVIEW_TABS unchanged.
+2. The label lookup dict(TABS + SEED_PAGES) at :914 gains LOGIC_PAGES. The changelog tuple at :909-910 gains
+   ("changelog_logic.json", "c-logic", "Logic panel side wireframes"); a c-logic CSS rule like c-sq's.
+3. data/changelog_logic.json in the schema of changelog_seed.json: {source, note, rows}, five rows dated 8 Oct 2026
+   (one per logic page: what it is, pages [its href], cause "Vatsal, 8 Oct 2026") and one row for data/logic_gaps.json
+   (the 46 open items, pages ["logic_tech.html", "logic_access.html", "logic_ops.html"], cause "Vatsal, 8 Oct 2026
+   (logic side wireframes)"). Hand-formatted like the other changelog files.
+4. PLAN.md: append "## 27. Status, <date> (logic panel side wireframes, PLAN_logic_panel_v03.md)" in the shape of
+   section 26: why, what was built (the 39 screens, the four pages, the checks), what is open (phase D, the LQ
+   items, the fold), what is owed by people (the two questions for Vatsal, the logic panel review date).
+5. python3 scripts/build_site.py; the checks; commit "logic C2: the Logic panel tab, the changelog rows and the
+   status section (logic plan, 8 Oct 2026)". The handoff is the closure ritual's.
+
+Done-criteria:
+- `python3 scripts/build_site.py` -> exit 0.
+- `python3 scripts/check_phase9.py | grep -c PASS` -> 19 (its nav literal still holds); `python3
+  scripts/check_site.py | grep -c PASS` -> 3; `python3 scripts/check_logic.py | grep -c PASS` -> 9.
+- `grep -c '>Logic panel<' docs/index.html` -> 1; `grep -c '>Logic panel<' docs/review/index.html` -> 0;
+  `grep -rc 'logic_' docs/audiences/ | grep -v ':0'` -> empty.
+- `grep -c 'c-logic' docs/changelog.html` -> at least 1.
+- `grep -c '^## 27. Status' PLAN.md` -> 1.
+- `git status --short -- docs/review docs/audiences docs/seed data/seed` -> empty.
+
+Metadata: depends_on [C1] . weight heavy . live_model no . coder sonnet . verify_class complete . kind seam-design
+- [ ] C2 done
+
+### 12.13 Phase D: Vatsal's look (HUMAN-GATED)
+
+Goal: Vatsal opens the five pages on his machine and decides what only he can.
+
+What he decides:
+1. The visual pass at laptop width: the panel is desktop only; the pages must still open on a phone. Whether the
+   "Logic panel" tab grows the header at 1,512 px; if it does, "Admin seed" and "Logic panel" fold under one tab
+   with two sub-nav rows (a follow-up change, not in this plan).
+2. The two questions from A4: whether the operating seats stay "Principal officer 01" and "Logic analyst 01";
+   whether a state that matters is missing from the 39.
+3. Anything settled under the cause "logic plan, 8 Oct 2026" that he vetoes.
+4. When the pages go up: the push is his word, never the executor's.
+
+Metadata: depends_on [C2] . weight light . live_model no . coder none . verify_class prose . kind human-gate
+- [ ] D done
 
 ## 13. After acceptance (not in this plan)
 
