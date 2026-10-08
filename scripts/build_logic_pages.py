@@ -222,9 +222,9 @@ def main():
            "screens": src["logic_screens.json"]["screens"], "admin": src["admin_screens.json"]["screens"]}
     pages = {}
     for key in PAGES:
-        doc = read(key + ".json", problems)
-        if not isinstance(doc, dict):
-            problems.extend(["data/%s.json is not an object" % key] if doc is not None else [])
+        seen, doc = len(problems), read(key + ".json", problems)  # a read failure is named once, by read()
+        if not isinstance(doc, dict):  # JSON null included: any page file that is not an object is named
+            problems.extend(["data/%s.json is not an object" % key] if len(problems) == seen else [])
             continue
         for txt in all_text(doc):
             problems.extend("data/%s.json: vendor name %r typed in text, write its {I..} token: %r" % (key, v, txt[:70])
