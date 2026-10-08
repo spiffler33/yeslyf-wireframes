@@ -1752,7 +1752,7 @@ Done-criteria:
 - `git status --short` -> M data/logic_ops.json, M docs/logic_ops.html only.
 
 Metadata: depends_on [B0] . weight light . live_model no . coder opus . verify_class sample . kind transcription
-- [ ] B4 done
+- [x] B4 done
 
 ### 12.11 Phase C1: the checks of section 11, green
 

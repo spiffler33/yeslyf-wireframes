@@ -4,10 +4,548 @@
  "audience": "For the Ops seat (Kajal's seat): what each kind of change sends to clients, the call centre and support, and what ops does before, on the day and after.",
  "sections": [
   {
-   "id": "o0",
-   "heading": "Sections follow",
+   "id": "o1",
+   "heading": "What each kind of change sets in motion",
    "lines": [
-    "to be filled: phase B1 to B4"
+    "One row per kind of change and its route; the routes are proposed defaults. A push rebuilds every plan it selects; a client is messaged only at review or urgent size.",
+    "Sizes in plain words: a note changes nothing for the client; an outlook changes no instalment but moves how far a goal is funded, or a goal's portfolio, and asks for nothing; a review changes an instalment or the risk band and needs the client's accept; urgent is a Hold marked urgent, or an Exit, on a fund the client runs a SIP into (Hold) or holds on verified holdings (Exit).",
+    "Wave plans (rehearsal values; LQ14): an urgent Hold and a correction go to everyone at once; a routine Hold, 200 clients an hour from 10:00 to 18:00 IST; an Exit, even daily batches over five working days.",
+    "Figures are typed examples per 1,000 plan holders, illustrative, not evidence; N marks a figure no example gives.",
+    "L and V screens are on the Logic tab; Y01 to Y04 are the walkthroughs on the Walkthroughs page."
+   ],
+   "tables": [
+    {
+     "cols": [
+      "change",
+      "route (the proposed default)",
+      "sizes",
+      "the client gets",
+      "the call centre gets",
+      "support can expect",
+      "ops: before, on the day, after"
+     ],
+     "rows": [
+      [
+       "planning assumptions: returns, inflation, income growth, life expectancy",
+       "quiet: at next rebuild; reviewed yearly, effective 1 April beside the April SIP step-up on G14; the letter",
+       "note, outlook, review",
+       "no push or WhatsApp; the letter by email (V05; slots: see o5), on the effective date or as their plan takes it up (LQ33); the change itself at their own next rebuild, on the update screen at its size (slots: see o5), with its reason",
+       "no call tasks; a caller's versions and the cause of the last update are on L15",
+       "about 8 updates to accept and 33 outlooks a week (illustrative example per 1,000 plan holders); tickets: N",
+       "before: the letter queued in {I14}, and the rest of the checklist (part 2); on the day: the letter goes out (09:00 on 1 Apr 2028 in the example); after: on the monitor (L11b), about one existing plan in six rebuilt four weeks in"
+      ],
+      [
+       "rules and thresholds in L02: emergency months, EMI ceiling, floater rule, glide path, the tolerance bands, the stale cap",
+       "quiet: at next rebuild",
+       "note, outlook, review",
+       "no message; the change at their own next rebuild, on the update screen at its size (slots: see o5)",
+       "no call tasks",
+       "tickets: N",
+       "before: the checklist (part 2); on the day: nothing goes out; after: to be decided: what ops does after a quiet release with no letter"
+      ],
+      [
+       "cohort map, a dimension's bands, a portfolio's mix",
+       "quiet: at next rebuild only; the letter where the author proposes one",
+       "note, outlook, review",
+       "no push or WhatsApp; the letter by email where one is proposed (slots: see o5); the change at their own next rebuild, on the update screen at its size (slots: see o5)",
+       "no call tasks",
+       "for a new horizon band like REL07: 660 reviews, 60 outlooks and 280 notes, each at the client's own review (illustrative example per 1,000 plan holders); tickets: N; a ticket that asks why a number moved is passed on to the Logic analyst (Y04, 16 Dec 2027)",
+       "before: the checklist (part 2), with the letter queued in {I14} where there is one; on the day: nothing is pushed; after: to be decided: what ops does after a cohorts release"
+      ],
+      [
+       "risk band thresholds (the score ranges of the risk band dimension)",
+       "at the client's next questionnaire (Q04 or a retake); never by a rebuild alone",
+       "review, on the client's own confirmation",
+       "nothing on the day; at their next questionnaire the band they are told can change (D09), on the update screen at review size (slots: see o5)",
+       "no call tasks",
+       "about 93 would change risk band at their next questionnaire after a move like REL10, none on the day (illustrative example per 1,000 plan holders); tickets: N",
+       "before: the checklist; on the day and after: nothing goes out"
+      ],
+      [
+       "fund added, sleeve weights changed",
+       "new plans at once; an existing plan takes the new split only when its instalments are restated for another reason (rule 8). Pushed, it restates the sleeve for every plan using it",
+       "note; review when pushed",
+       "new plans take the new split at once; an existing plan takes it at its next restatement, with no message; pushed: an update to accept, with a push when it is ready (slot: see o5), then the S11 ladder: a push on day 3 (slot N-S11-3d on the board)",
+       "no call tasks: the S11 ladder on the board creates none",
+       "tickets: N",
+       "before: the checklist for its route (part 2); on the day: nothing goes out unless pushed; after: to be decided: what ops does after a fund joins or sleeve weights change"
+      ],
+      [
+       "fund to Hold, routine",
+       "no new order from the publish moment; pushed in waves to clients running a SIP into it; a client with an open action naming it is rebuilt in the same waves and shown the update at the next app open, with no message",
+       "review; note for other holders",
+       "SIP runners: an update to accept, with a push when it is ready (slot: see o5), then the S11 ladder: a push on day 3 (slot N-S11-3d on the board); the SIP keeps running until they accept; an open action naming the fund: the update at the next app open, no message; other holders: a note (slots: see o5); from the publish moment the fund cannot be bought (E03, E11)",
+       "no call tasks: the S11 ladder on the board creates none",
+       "tickets: N",
+       "before: the checklist (part 2); on the day: the waves, 200 clients an hour from 10:00 to 18:00 IST (rehearsal value; LQ14), on the monitor (L11); after: to be decided: what ops does once the waves are out"
+      ],
+      [
+       "fund to Hold, urgent",
+       "no new order from the publish moment; pushed at once to clients running a SIP into it; open actions as above",
+       "urgent for SIP runners; review for an open action; note for other holders",
+       "SIP runners: the urgent update (V03), push and WhatsApp at once, email the next morning (the urgent ladder; slots: see o5); the SIP keeps running until they accept; an open action naming the fund: a review at the next app open, no message; other holders: a note (slots: see o5)",
+       "on day 3, a call task for each DIWM client who has not accepted: 105, against 300 if every DIWM client were called (illustrative example per 1,000 plan holders; LQ14)",
+       "40 tickets (illustrative example per 1,000 plan holders)",
+       "before: the standing copy is ready ahead, since the Hold goes out at once: the message slots approved in {I11}, the push copy in {I15} and the call centre's lines (logic plan, 8 Oct 2026); on the day: once the Hold is placed, the help entry for the change and support's plain reason, then the monitor (L11) with the Principal officer as the updates go out (10:45 on 22 Sep 2027 in Y02); after: the call tasks on day 3 (25 Sep 2027 in Y02)"
+      ],
+      [
+       "fund to Exit",
+       "pushed over five working days to holders with verified holdings; a holder without verified holdings sees the locked card (G12a)",
+       "urgent",
+       "holders with verified holdings: an urgent update, in even daily batches over five working days (rehearsal value; LQ14), each with push and WhatsApp at once and email the next morning (the urgent ladder; slots: see o5); a holder without verified holdings sees the locked card (G12a)",
+       "a call task for each DIWM client who has not accepted after three days: N (per 1,000 plan holders)",
+       "tickets: N",
+       "before: the checklist; on the day: the first of five daily batches (14 to 18 Feb 2028 for REL11 in the example); after: the call tasks from day 3"
+      ],
+      [
+       "unknown ISIN classified",
+       "quiet: at the next rebuild of the clients holding it",
+       "note, review",
+       "no message; the class at their own next rebuild, on the update screen at its size (slots: see o5)",
+       "no call tasks",
+       "tickets: N",
+       "before: the facts on the queue item (part 6); on the day: nothing goes out; after: to be decided: what ops does once the class is published"
+      ],
+      [
+       "a correction (rule 12)",
+       "every plan whose snapshot in force was built on the paused release, at once; at next rebuild for the rest",
+       "note, outlook, review",
+       "the corrected plan at once, shown only if something moves for them; a message only for an update to accept: a push when it is ready (slot: see o5), then the S11 ladder: a push on day 3 (slot N-S11-3d on the board); a client whose update was withdrawn sees \"an update was withdrawn\" in plan history (V04; slot: see o5)",
+       "no call tasks in the examples; whether a correction carries its own client explanation is open (LQ23)",
+       "about 14 plans built on the wrong release in its 16 days, plus the first plans built in those days (illustrative example per 1,000 plan holders); tickets: N; a ticket can be what finds it (Y04)",
+       "before: the checklist; on the day: everyone at once; after: the monitor (L11)"
+      ],
+      [
+       "market inputs",
+       "new plans and new deployment actions only; an existing action is never rewritten",
+       "none",
+       "nothing for a plan that exists; a new plan or a new deployment action reads the month's values (the timing text on G13)",
+       "call tasks: N",
+       "tickets: N",
+       "nothing"
+      ],
+      [
+       "guards and constraints (L09)",
+       "none; they gate validation",
+       "none",
+       "nothing",
+       "nothing",
+       "nothing",
+       "nothing"
+      ],
+      [
+       "configuration on M10 (prices, flags)",
+       "its own effective dates; no rebuild",
+       "none",
+       "no plan rebuild",
+       "call tasks: N",
+       "tickets: N",
+       "before: ops stages the value with its effective date on M10, and the Principal officer publishes it; on the day: the value takes effect at its effective date, with no rebuild; after: to be decided: what ops does after a configuration value takes effect"
+      ],
+      [
+       "a new engine version (the maths)",
+       "to be decided: the engine version's route (LQ46); in the examples EN2 changes no output",
+       "-",
+       "nothing in the examples",
+       "nothing",
+       "nothing",
+       "nothing in the examples"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "o2",
+   "heading": "Before a release goes out",
+   "lines": [
+    "Before a release goes out, ops looks down the list for its route. If something is not in place, note it in the box below and we look at it together.",
+    "A route uses only the checks it needs: nothing is pushed on the quiet route, and an urgent Hold or a correction goes at once, so there is no day to choose (logic plan, 8 Oct 2026).",
+    "Market inputs, guards and constraints and configuration on M10 send nothing to clients, and the route of a new engine version is open (LQ46), so none of them has a list here."
+   ],
+   "tables": [
+    {
+     "title": "Quiet route: planning assumptions, rules and thresholds, cohorts, a fund added, an unknown ISIN classified",
+     "cols": [
+      "n",
+      "check"
+     ],
+     "rows": [
+      [
+       "1",
+       "the letter is queued in {I14}, where the release has one"
+      ],
+      [
+       "2",
+       "the help entry for the change is in {I15}"
+      ],
+      [
+       "3",
+       "the call centre has its lines"
+      ],
+      [
+       "4",
+       "support has the plain reason"
+      ],
+      [
+       "5",
+       "the day is not a peak day on the calendar"
+      ]
+     ]
+    },
+    {
+     "title": "Pushed on a chosen day: a routine Hold, an Exit, or a change pushed on day one",
+     "cols": [
+      "n",
+      "check"
+     ],
+     "rows": [
+      [
+       "1",
+       "the message slots it uses exist and are approved in {I11}"
+      ],
+      [
+       "2",
+       "the push copy is in {I15}"
+      ],
+      [
+       "3",
+       "the letter is queued in {I14}, where the release has one"
+      ],
+      [
+       "4",
+       "the help entry for the change is in {I15}"
+      ],
+      [
+       "5",
+       "the call centre has its lines"
+      ],
+      [
+       "6",
+       "support has the plain reason"
+      ],
+      [
+       "7",
+       "the day is not a peak day on the calendar"
+      ]
+     ]
+    },
+    {
+     "title": "Pushed at once: an urgent Hold, a correction",
+     "cols": [
+      "n",
+      "check"
+     ],
+     "rows": [
+      [
+       "1",
+       "the message slots it uses exist and are approved in {I11}"
+      ],
+      [
+       "2",
+       "the push copy is in {I15}"
+      ],
+      [
+       "3",
+       "the help entry for the change is in {I15}"
+      ],
+      [
+       "4",
+       "the call centre has its lines"
+      ],
+      [
+       "5",
+       "support has the plain reason"
+      ]
+     ]
+    },
+    {
+     "title": "At the next questionnaire: risk band thresholds",
+     "cols": [
+      "n",
+      "check"
+     ],
+     "rows": [
+      [
+       "1",
+       "the help entry for the change is in {I15}"
+      ],
+      [
+       "2",
+       "the call centre has its lines"
+      ],
+      [
+       "3",
+       "support has the plain reason"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "o3",
+   "heading": "What the numbers could look like",
+   "tables": [
+    {
+     "title": "An urgent Hold on a fund of the equity core (illustrative example per 1,000 plan holders)",
+     "cols": [
+      "what",
+      "how many"
+     ],
+     "rows": [
+      [
+       "urgent updates: clients running a SIP into the fund",
+       "500"
+      ],
+      [
+       "accepted by day 2; by day 7",
+       "300; 425 of the 500"
+      ],
+      [
+       "call tasks on day 3, under the three-day rule",
+       "105"
+      ],
+      [
+       "call tasks on day 3, if every DIWM client were called",
+       "300"
+      ],
+      [
+       "tickets",
+       "40"
+      ],
+      [
+       "exposure: clients with an open action naming the fund, rebuilt in the same push and shown the update at the next app open",
+       "270"
+      ],
+      [
+       "exposure: clients holding units only, not in the urgent push (a note for other holders)",
+       "20"
+      ]
+     ]
+    },
+    {
+     "title": "An assumptions change like REL12 (illustrative example per 1,000 plan holders)",
+     "cols": [
+      "what",
+      "on the quiet route",
+      "pushed on day one"
+     ],
+     "rows": [
+      [
+       "updates to accept (review size)",
+       "about 8 a week",
+       "130 at once"
+      ],
+      [
+       "outlooks (nothing to do)",
+       "about 33 a week",
+       "540 at once"
+      ]
+     ]
+    }
+   ],
+   "lines": [
+    "In all, a change like REL12 is a note for 330, an outlook for 540 and a review for 130 (illustrative example per 1,000 plan holders).",
+    "On the quiet route about 60 plans a week are rebuilt (illustrative example per 1,000 plan holders). An outlook asks for nothing, so it is not chased.",
+    "These are typed examples from a rough run over synthetic people and from assumptions: a plausible picture, not evidence. Nothing here is computed."
+   ]
+  },
+  {
+   "id": "o4",
+   "heading": "The letter",
+   "lines": [
+    "The letter is one email per house-view release that changes what clients see. It says what changed, why, and that the client's plan takes it up at their next review, with the date (V05 on the Logic tab).",
+    "It is copy slots, not copy; the slots live with the other message slots (part 5).",
+    "Ops queues it in {I14}; L06 shows the Principal officer, at publish, whether it is queued.",
+    "When it is sent is open (LQ33). In the example year the letter for REL12 went out on 1 Apr 2028 at 09:00, queued by ops (Y01 on the Walkthroughs page)."
+   ],
+   "tables": [
+    {
+     "title": "The two timings of LQ33 (illustrative example per 1,000 plan holders)",
+     "cols": [
+      "the letter goes",
+      "to",
+      "how many"
+     ],
+     "rows": [
+      [
+       "on the effective date",
+       "every plan the release will change",
+       "670 in 1,000 for an assumptions change like REL12"
+      ],
+      [
+       "as each plan takes it up",
+       "each client, when their plan takes the release up",
+       "about 41 a week"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "o5",
+   "heading": "What is new on the ops side",
+   "tables": [
+    {
+     "cols": [
+      "what is new on the ops side"
+     ],
+     "rows": [
+      [
+       "to be decided: the copy slots for the update screen at each size, and for the push that says a pushed update is ready"
+      ],
+      [
+       "to be decided: the copy slots for the outlook card"
+      ],
+      [
+       "to be decided: the copy slots for the plan history entries"
+      ],
+      [
+       "to be decided: the copy slot for \"an update was withdrawn\""
+      ],
+      [
+       "to be decided: the copy slots for the letter"
+      ],
+      [
+       "to be decided: an urgent ladder beside the S11 ladder (push and WhatsApp at once, email the next morning, a call task for a DIWM client who has not accepted after three days)"
+      ],
+      [
+       "to be decided: where the client reason slots live and who edits them ({I15} or the panel; LQ10)"
+      ],
+      [
+       "to be decided: a task type for an urgent update not accepted"
+      ],
+      [
+       "to be decided: a tag tying a ticket to a release"
+      ],
+      [
+       "to be decided: mirrored fields on the Contact: an update waiting and its size, the date of the last plan update"
+      ],
+      [
+       "to be decided: events: plan_updated gains size and causes; update_seen and update_withdrawn are new"
+      ],
+      [
+       "to be decided: a saved view per release"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "o6",
+   "heading": "The unknown-ISIN queue (L04b)",
+   "lines": [
+    "Some holdings on a client's statement carry an ISIN that the instrument master ({I05}) does not know. Each waits in the queue on L04b with its ISIN, the name on the statement, the holders, the facts ops added and the proposed class.",
+    "Home (L01) shows ops the queue items that need facts.",
+    "In the example year two items waited, one worth Rs 80,000 bought Mar 2024 and one worth Rs 50,000 bought Aug 2023; REL03 classified them on 16 Jun 2027, one known and not approved, one legacy hold."
+   ],
+   "tables": [
+    {
+     "cols": [
+      "step",
+      "who",
+      "where",
+      "what happens"
+     ],
+     "rows": [
+      [
+       "1",
+       "Ops",
+       "L04b",
+       "adds the name on the statement and the category, if printed"
+      ],
+      [
+       "2",
+       "Logic analyst",
+       "L04b, then L05",
+       "drafts the classification in a funds draft: known and not approved, legacy hold, or unknown"
+      ],
+      [
+       "3",
+       "the second person",
+       "L10",
+       "reviews the draft"
+      ],
+      [
+       "4",
+       "Principal officer",
+       "L06",
+       "publishes it as a funds release"
+      ],
+      [
+       "5",
+       "-",
+       "-",
+       "the clients holding it take it at their own next rebuild, as a note or a review, with no message"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "o7",
+   "heading": "Seats",
+   "tables": [
+    {
+     "cols": [
+      "step",
+      "who",
+      "where",
+      "what happens"
+     ],
+     "rows": [
+      [
+       "asked for",
+       "the person who needs it",
+       "-",
+       "asks the Principal officer, who holds staff and seats (logic plan, 8 Oct 2026)"
+      ],
+      [
+       "added",
+       "Principal officer",
+       "L13",
+       "the seat is added; a Logic analyst or Principal officer seat takes effect when compliance acknowledges it (LQ42)"
+      ],
+      [
+       "changed",
+       "Principal officer",
+       "L13",
+       "another seat is given, or one is taken away"
+      ],
+      [
+       "suspended",
+       "Principal officer",
+       "L13",
+       "the session ends at once; the server checks the seat on every request (LQ41)"
+      ],
+      [
+       "removed",
+       "Principal officer",
+       "L13",
+       "the seat is revoked; the session ends at once"
+      ]
+     ]
+    }
+   ],
+   "lines": [
+    "Seat changes are made on L13. The staff allowlist sits on M03, as decided on 7 Oct 2026; where it lives is open (LQ9).",
+    "Seats are fixed: ten of them, none user-defined, and one person may hold more than one. The Access page has what each seat may do.",
+    "Adding, changing, suspending and removing a seat each ask for a fresh second-factor check, and each is an audit row.",
+    "The access review: each quarter the Principal officer goes through every staff row on L13 and keeps, changes or removes it. It looks at each row's seats, status (active, suspended, revoked), who added it and when, the last sign-in and whether the second factor is on.",
+    "In the example year, access review 1 on 15 Jul 2027 suspended Adviser 06, idle 90 days; Logic analyst 02 was added on 4 Oct 2027, acknowledged by compliance, and revoked on 27 Oct 2027.",
+    "If a seat looks wrong, note it in the box below and we look at it together."
+   ]
+  },
+  {
+   "id": "o8",
+   "heading": "Open items for ops",
+   "open_items": [
+    "LQ10",
+    "LQ13",
+    "LQ14",
+    "LQ31",
+    "LQ33",
+    "LQ35"
    ]
   }
  ]
