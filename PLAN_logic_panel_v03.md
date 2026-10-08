@@ -1449,6 +1449,8 @@ its steps name, it stops and reports instead of writing it.
 - Each phase's rebuild uses its own builder (python3 scripts/build_logic_wireframes.py or
   python3 scripts/build_logic_pages.py). The full python3 scripts/build_site.py runs only in A0, C1 and C2, so a
   content phase in flight never breaks another phase's build.
+- The coder on every phase is opus (Opus 5.5), the floor for any coding agent; sonnet never codes (Vatsal,
+  8 Oct 2026). The metadata lines below carry it.
 
 ### 12.1 Phase A0: the scaffold
 
@@ -1526,7 +1528,7 @@ Done-criteria:
   Nothing under docs/review/, docs/audiences/, docs/seed/ or data/ besides the two new files.
 - `grep -c 'Logic panel:' docs/logic_wireframes.html` -> 1; `grep -c 'logic_wireframes' docs/review/index.html` -> 0.
 
-Metadata: depends_on [] . weight heavy . live_model no . coder sonnet . verify_class sample . kind seam-design
+Metadata: depends_on [] . weight heavy . live_model no . coder opus . verify_class sample . kind seam-design
 - [ ] A0 done
 
 ### 12.2 Phase A1: the start and logic groups, 14 screens
@@ -1557,7 +1559,7 @@ Done-criteria:
   -> exactly the 14 ids above.
 - `git status --short` -> the A0 state plus M data/logic_screens.json, M docs/logic_wireframes.html only.
 
-Metadata: depends_on [A0] . weight heavy . live_model no . coder sonnet . verify_class sample . kind transcription
+Metadata: depends_on [A0] . weight heavy . live_model no . coder opus . verify_class sample . kind transcription
 - [ ] A1 done
 
 ### 12.3 Phase A2: the change group, 11 screens
@@ -1576,7 +1578,7 @@ Done-criteria:
   -> 25, and the filled ids are the A1 set plus the 11 above.
 - `git status --short` -> M data/logic_screens.json, M docs/logic_wireframes.html only (beyond the committed state).
 
-Metadata: depends_on [A1] . weight heavy . live_model no . coder sonnet . verify_class sample . kind transcription
+Metadata: depends_on [A1] . weight heavy . live_model no . coder opus . verify_class sample . kind transcription
 - [ ] A2 done
 
 ### 12.4 Phase A3: the records, access and reference groups, 8 screens
@@ -1596,7 +1598,7 @@ Done-criteria:
 - the filled count -> 33, the filled ids the A2 set plus the 8 above (the A2 one-liner).
 - `git status --short` -> M data/logic_screens.json, M docs/logic_wireframes.html only.
 
-Metadata: depends_on [A2] . weight heavy . live_model no . coder sonnet . verify_class sample . kind transcription
+Metadata: depends_on [A2] . weight heavy . live_model no . coder opus . verify_class sample . kind transcription
 - [ ] A3 done
 
 ### 12.5 Phase A4: the client views, 6 screens
@@ -1617,7 +1619,7 @@ Done-criteria:
   -> 6.
 - `git status --short` -> M data/logic_screens.json, M docs/logic_wireframes.html only.
 
-Metadata: depends_on [A3] . weight heavy . live_model no . coder sonnet . verify_class sample . kind transcription
+Metadata: depends_on [A3] . weight heavy . live_model no . coder opus . verify_class sample . kind transcription
 - [ ] A4 done
 
 ### 12.6 Phase B0: the page builder and four skeleton pages
@@ -1664,7 +1666,7 @@ Done-criteria:
 - `git status --short` -> M scripts/build_site.py plus the nine new files above and nothing else beyond the
   committed state.
 
-Metadata: depends_on [A0] . weight heavy . live_model no . coder sonnet . verify_class sample . kind seam-design
+Metadata: depends_on [A0] . weight heavy . live_model no . coder opus . verify_class sample . kind seam-design
 - [ ] B0 done
 
 ### 12.7 Phase B1: the Tech page
@@ -1686,7 +1688,7 @@ Done-criteria:
 - `grep -c 'to be filled' docs/logic_tech.html` -> 0; `grep -c '{I' docs/logic_tech.html` -> 0 (every token rendered).
 - `git status --short` -> M data/logic_tech.json, M docs/logic_tech.html only.
 
-Metadata: depends_on [B0] . weight light . live_model no . coder sonnet . verify_class sample . kind transcription
+Metadata: depends_on [B0] . weight light . live_model no . coder opus . verify_class sample . kind transcription
 - [ ] B1 done
 
 ### 12.8 Phase B2: the Access page
@@ -1708,7 +1710,7 @@ Done-criteria:
   carries every screen once).
 - `git status --short` -> M data/logic_access.json, M docs/logic_access.html only.
 
-Metadata: depends_on [B0] . weight light . live_model no . coder sonnet . verify_class sample . kind transcription
+Metadata: depends_on [B0] . weight light . live_model no . coder opus . verify_class sample . kind transcription
 - [ ] B2 done
 
 ### 12.9 Phase B3: the Walkthroughs page
@@ -1730,7 +1732,7 @@ Done-criteria:
   into the Logic tab).
 - `git status --short` -> M data/logic_walk.json, M docs/logic_walk.html only.
 
-Metadata: depends_on [B0] . weight light . live_model no . coder sonnet . verify_class sample . kind transcription
+Metadata: depends_on [B0] . weight light . live_model no . coder opus . verify_class sample . kind transcription
 - [ ] B3 done
 
 ### 12.10 Phase B4: the Ops page
@@ -1749,7 +1751,7 @@ Done-criteria:
 - the section one-liner -> 8 and o1 to o8; `grep -c 'to be filled' docs/logic_ops.html` -> 0.
 - `git status --short` -> M data/logic_ops.json, M docs/logic_ops.html only.
 
-Metadata: depends_on [B0] . weight light . live_model no . coder sonnet . verify_class sample . kind transcription
+Metadata: depends_on [B0] . weight light . live_model no . coder opus . verify_class sample . kind transcription
 - [ ] B4 done
 
 ### 12.11 Phase C1: the checks of section 11, green
@@ -1797,7 +1799,7 @@ Done-criteria:
 - `git status --short` -> only scripts/check_logic.py new and the logic data and pages modified; nothing under
   docs/review/, docs/audiences/, docs/seed/, data/seed/.
 
-Metadata: depends_on [A4, B1, B2, B3, B4] . weight heavy . live_model no . coder sonnet . verify_class sample .
+Metadata: depends_on [A4, B1, B2, B3, B4] . weight heavy . live_model no . coder opus . verify_class sample .
 kind seam-design
 - [ ] C1 done
 
@@ -1836,7 +1838,7 @@ Done-criteria:
 - `grep -c '^## 27. Status' PLAN.md` -> 1.
 - `git status --short -- docs/review docs/audiences docs/seed data/seed` -> empty.
 
-Metadata: depends_on [C1] . weight heavy . live_model no . coder sonnet . verify_class complete . kind seam-design
+Metadata: depends_on [C1] . weight heavy . live_model no . coder opus . verify_class complete . kind seam-design
 - [ ] C2 done
 
 ### 12.13 Phase D: Vatsal's look (HUMAN-GATED)
