@@ -1,0 +1,19 @@
+{
+ "page": "logic_access",
+ "title": "Access",
+ "audience": "For everyone: who may do what, in one place, across the logic panel and the three built admin screens.",
+ "sections": [
+  {
+   "id": "a0",
+   "heading": "Sections follow",
+   "lines": [
+    "to be filled: phase B1 to B4"
+   ]
+  },
+  {
+   "id": "a4",
+   "heading": "Permissions by screen",
+   "derived": "seat_by_screen"
+  }
+ ]
+}

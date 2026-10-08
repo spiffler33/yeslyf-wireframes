@@ -1667,7 +1667,7 @@ Done-criteria:
   committed state.
 
 Metadata: depends_on [A0] . weight heavy . live_model no . coder opus . verify_class sample . kind seam-design
-- [ ] B0 done
+- [x] B0 done
 
 ### 12.7 Phase B1: the Tech page
 

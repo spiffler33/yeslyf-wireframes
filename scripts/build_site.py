@@ -1085,6 +1085,8 @@ def main():
     build_admin_split.main()
     import build_logic_wireframes  # docs/logic_wireframes.html: the logic panel side wireframes from data/logic_screens.json (logic plan A0, 8 Oct 2026)
     build_logic_wireframes.main()
+    import build_logic_pages  # docs/logic_tech.html, logic_access.html, logic_walk.html and logic_ops.html from their data files (logic plan B0, 8 Oct 2026)
+    build_logic_pages.main()
 
 
 if __name__ == "__main__":

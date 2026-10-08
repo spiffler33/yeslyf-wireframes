@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>yeslyf logic panel: Tech</title>
+<style>
+  :root{--paper:#EEF0F3;--panel:#fff;--ink:#1B1F27;--mute:#5F6773;--line:#D3D7DE;--accent:#FFDA00;--accent-soft:#FFF4B8;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45;scroll-behavior:smooth}
+  button,select,input,textarea{font-family:inherit;font-size:13px}
+  a{color:inherit}
+  ::selection{background:var(--accent)}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:8px 18px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .brand{font-weight:700;font-size:16px;white-space:nowrap}
+  .brand span{font-weight:400;color:var(--mute);margin-left:8px;font-size:13px}
+  .tabs{display:flex;gap:2px;flex-wrap:wrap}
+  .tabs a{text-decoration:none;font-size:13px;padding:6px 10px;border-radius:6px;border:1px solid transparent;color:var(--mute)}
+  .tabs a:hover{background:#F5F6F8}
+  .tabs a.on{color:var(--ink);font-weight:600;border-color:var(--line);background:#fff}
+  .who{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mute);margin-left:auto}
+  .who input{padding:6px 8px;border:1px solid var(--line);border-radius:6px;width:170px}
+  .saved{font-size:12px;color:var(--mute);min-width:120px}
+  .pill{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--mute);text-decoration:none;white-space:nowrap}
+  .pill.on{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .pill.held{border-color:var(--ink);color:var(--ink)}
+  .top .primary{border:1px solid var(--accent);background:var(--accent);padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
+  .top .ghost{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:6px;cursor:pointer}
+  .frozen{padding:6px 18px;background:#F1F2F4;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--mute)}
+  .decided-line{font-size:12.5px;margin:0 0 8px;padding:5px 10px;border-radius:6px;background:var(--accent-soft);border:1px solid #C9A800}
+  .layout{display:grid;grid-template-columns:240px minmax(0,1fr)}
+  .nav{position:sticky;top:49px;height:calc(100vh - 49px);overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:10px 0}
+  .nav a{display:block;padding:6px 14px 6px 11px;text-decoration:none;font-size:13px;border-left:3px solid transparent}
+  .nav a:hover{background:#F5F6F8}
+  .nav .sub{padding-left:24px;font-size:12px;color:var(--mute)}
+  .main{padding:18px 26px 120px;max-width:1150px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px;scroll-margin-top:60px}
+  h1{font-size:22px;margin:0 0 6px}
+  h2{font-size:17px;margin:0 0 4px}
+  h2 small{font-weight:400;color:var(--mute);font-size:13px;margin-left:8px}
+  h3{font-size:14px;margin:14px 0 4px}
+  .lead{color:var(--mute);margin:0 0 12px;max-width:860px}
+  .rule{padding-left:10px;border-left:3px solid var(--accent);margin:8px 0 12px;max-width:900px}
+  ul{margin:6px 0;padding-left:18px} li{margin:3px 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:8px 0 4px}
+  .stat{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#FCFCFD}
+  .stat b{display:block;font-size:22px} .stat span{font-size:12px;color:var(--mute)}
+  .item{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 12px;background:#FCFCFD;scroll-margin-top:60px}
+  .item.hi{border-color:#C9A800;box-shadow:0 0 0 3px var(--accent-soft)}
+  .item.done{border-color:#7A8797}
+  .item-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+  .item-h b{font-size:15px}
+  .tag{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;background:#fff;color:var(--mute);white-space:nowrap}
+  .tag.hi{border-color:#B2434F;color:#B2434F;font-weight:600}
+  .tag.team{border-color:var(--ink);color:var(--ink);font-weight:600}
+  .tag.done{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .tag.new{border-color:var(--ink);color:var(--ink)}
+  .tag.changed{border-color:#C9A800;background:var(--accent-soft);color:var(--ink)}
+  .screens a{font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;margin-right:3px;background:#fff}
+  .ctx{font-size:13px;margin:0 0 8px;color:#3B4250}
+  .pos{margin:0 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+  .pos li{font-size:12.5px} .pos b{font-weight:600}
+  .pos .ref{color:var(--mute);font-size:11.5px}
+  .cond{font-size:12.5px;margin:0 0 8px} .cond li{list-style:none;margin-left:-18px}
+  .dflt-line{font-size:12.5px;margin:6px 0 4px;color:#3B4250}
+  .opt{display:flex;gap:10px;align-items:flex-start;padding:7px 10px;border:1px solid var(--line);border-radius:8px;margin:5px 0;background:#fff;cursor:pointer}
+  .opt input{margin-top:3px}
+  .opt.dflt{border-color:#C9A800;background:#FFFDF2}
+  .opt .held{display:block;font-size:11.5px;color:var(--mute);margin-top:2px}
+  .dpill{display:inline-block;font-size:10.5px;font-weight:700;background:var(--accent);border-radius:4px;padding:1px 6px;margin-left:6px;white-space:nowrap}
+  .ppill{display:inline-block;font-size:10.5px;border:1px dashed var(--mute);border-radius:4px;padding:1px 6px;margin-left:6px;color:var(--mute);white-space:nowrap}
+  .dep{font-size:12.5px;color:#3B4250;margin:8px 0 0;padding:6px 10px;border:1px dashed var(--line);border-radius:6px;background:#fff}
+  .dep.on{border-style:solid;border-color:#C9A800;background:#FFFBEA}
+  .dep b{font-weight:600}
+  .meta{font-size:11.5px;color:var(--mute)}
+  .note{width:100%;min-height:40px;border:1px solid var(--line);border-radius:6px;padding:6px;resize:vertical;background:#fff;margin-top:6px}
+  .decided{display:flex;gap:8px;align-items:center;font-size:12.5px;margin-top:8px}
+  .qa{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:start;padding:7px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+  .qa:last-child{border-bottom:0}
+  .qa .t{white-space:pre-wrap} .qa .t b{white-space:nowrap}
+  .qa .c{display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  .qa button{border:1px solid var(--line);background:#fff;padding:4px 9px;border-radius:5px;cursor:pointer}
+  .qa button.on{background:var(--accent);border-color:#C9A800;font-weight:600}
+  .qa button.on.no{background:#F1F2F4;border-color:var(--ink)}
+  .qa input{padding:4px 6px;border:1px solid var(--line);border-radius:5px;width:180px}
+  .qa .decided-line{grid-column:1 / -1;margin:0}
+  .gap{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 8px;background:#FCFCFD;scroll-margin-top:60px}
+  .gap-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+  .gap .why{font-size:12.5px;color:#3B4250;margin:6px 0}
+  .gap .rec{font-size:12.5px;margin:6px 0;padding-left:10px;border-left:3px solid var(--accent)}
+  .gap-c{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:12px}
+  .gap-c select,.gap-c input{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  table{width:100%;border-collapse:collapse;font-size:12.5px} th{text-align:left;border-bottom:2px solid var(--ink);padding:6px 8px;font-size:12px;vertical-align:bottom} td{border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
+  td.n{font-variant-numeric:tabular-nums;color:var(--mute);white-space:nowrap}
+  td .raw{white-space:pre-wrap}
+  td .ans{margin-top:4px;padding-left:8px;border-left:3px solid var(--accent);font-size:12px}
+  td .basis{color:var(--mute);font-size:11.5px;margin-top:3px}
+  .status{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;white-space:nowrap;background:#fff}
+  .status.open{border-color:#C9A800;background:var(--accent-soft)}
+  .status.quick-accept{border-color:#7A8797}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px;font-size:12px;align-items:center}
+  .filters select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff}
+  tr.hidden{display:none}
+  tr.hi td{background:var(--accent-soft)}
+  details{margin:8px 0} summary{cursor:pointer;font-weight:600;font-size:13px}
+  pre{background:#F5F6F8;border:1px solid var(--line);border-radius:6px;padding:10px;font-size:11.5px;overflow:auto;white-space:pre-wrap}
+  .setup input{width:100%;padding:7px;border:1px solid var(--line);border-radius:6px;margin:4px 0}
+  .frame-wrap{height:calc(100vh - 49px)} .frame-wrap iframe{width:100%;height:100%;border:0;background:#fff}
+  .frame-bar{display:flex;gap:10px;align-items:center;padding:6px 18px;background:var(--panel);border-bottom:1px solid var(--line);font-size:12px;color:var(--mute);flex-wrap:wrap}
+  .frame-bar select{padding:5px;border:1px solid var(--line);border-radius:5px;background:#fff;max-width:360px}
+  .frame-wrap.with-bar{height:calc(100vh - 88px)}
+  .wrap{overflow-x:auto}
+  .sid{font-weight:600;text-decoration:none;border:1px solid var(--line);padding:0 5px;border-radius:4px;background:#fff;white-space:nowrap}
+  .cause{color:var(--mute);font-size:11.5px}
+  .histwrap{margin-top:6px}
+  .hist-toggle{font-size:11px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:2px 8px;color:var(--mute);cursor:pointer}
+  .histbox{margin-top:6px}
+  .hist{list-style:none;margin:0;padding:0;font-size:12px;color:var(--ink)}
+  .hist li{padding:3px 0;border-top:1px solid var(--line)}
+  .hist .t{color:var(--mute);margin-right:6px}
+  .hist-empty{font-size:12px;color:var(--mute)}
+  @media (max-width:1000px){.layout{display:block}.nav{display:none}.main{padding:12px}.who{margin-left:0}.qa{grid-template-columns:1fr}.qa .c{justify-content:flex-start}}
+
+  .subtabs{display:flex;gap:12px;align-items:center;padding:6px 18px;font-size:12px;color:var(--mute);background:var(--panel);border-bottom:1px solid var(--line)}
+  .subtabs a{color:var(--mute);text-decoration:none}
+  .subtabs a.on{color:var(--ink);font-weight:600}
+  .bar .subtabs{padding:0;border:0;background:none;margin-left:auto}
+
+  .banner{padding:6px 18px;background:var(--accent-soft);border-bottom:1px solid #C9A800;font-size:12.5px}
+  .who select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;max-width:170px}
+</style>
+<script src="config.js"></script>
+</head>
+<body>
+<header class="top"><div class="brand">yeslyf <span>Tech: proposed, not yet merged into Wireframes v0.2</span></div><nav class="tabs"><a href="index.html">Meeting</a><a href="gaps.html">Gaps</a><a href="inputs.html">Inputs</a><a href="wireframes.html">Wireframes v0.1</a><a href="admin.html">Admin and CRM v0.1</a><a href="wireframes_v02.html">Wireframes v0.2</a><a href="tracker.html">Tracker</a><a href="spinach_questions.html">Spinach Questions</a><a href="admin_v02.html">Admin and CRM v0.2</a><a href="admin_wireframes.html">Admin seed</a><a href="changelog.html">Changelog</a><a href="integrations.html">Integrations</a><a href="events.html">Events</a><a href="setup.html">Setup</a></nav><div class="who">Reviewing as <select id="reviewer"></select></div><div id="saved" class="saved"></div><a id="sheetpill" class="pill" href="setup.html" title="Sheet write-back status">sheet: off</a><button id="export" class="primary">Export comments</button></header>
+<nav class="subtabs">Logic panel: <a href="logic_wireframes.html">Logic tab</a><a href="logic_tech.html" class="on">Tech</a><a href="logic_access.html">Access</a><a href="logic_walk.html">Walkthroughs</a><a href="logic_ops.html">Ops</a></nav>
+<div class="banner">side wireframes: proposed, not yet merged into Wireframes v0.2. The design is proposed, to be confirmed at the logic panel review (to be decided: the review date). Every logic value is a rehearsal value and every count a typed example.</div>
+<main class="main"><section><h1>Tech</h1><p class="lead">For Raafiya and Gaurav: what must be stored, which jobs run, what the engine must accept and where access is enforced.</p></section><section id="t0"><h2>Sections follow <small><a href="#t0">t0</a></small></h2><p>to be filled: phase B1 to B4</p><textarea class="note secnote" id="note-t0" data-id="t0" placeholder="Comment on this section"></textarea></section></main>
+<script>var LOGIC_PAGE={"key": "logic_tech", "exportTitle": "# yeslyf logic panel Tech page - review comments", "sections": [{"id": "t0", "heading": "Sections follow"}]};
+var IDENTITIES=["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Vatsal", "Compliance"];</script>
+<script>var BOARD_IGNORE=[{"page": "setup", "item_id": "TEST", "minute": "2026-09-16T04:53"}, {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-16T04:55"}, {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-16T06:23"}, {"page": "wireframes_v02", "item_id": "A02", "minute": "2026-09-17T05:50"}, {"page": "wireframes_v02", "item_id": "O01", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W01", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W02", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W04", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W05", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W06", "minute": "2026-09-17T05:50"}, {"page": "tracker", "item_id": "W08", "minute": "2026-09-17T05:50"}];// yeslyf board store: the shared save layer of every page (phase 11, Vatsal, 16 Sep 2026).
+// Every comment, verdict and field edit on every page is one row in the Supabase table board_entries
+// (page, item_id, field, value, who, kind, created_at); rows are never updated or deleted. docs/config.js, loaded
+// in the head before this script, sets SUPABASE_URL and SUPABASE_ANON_KEY; both blank keeps the page local only.
+// Each page keeps its own localStorage store as before (that is the offline cache). This layer adds one key,
+// "yeslyf_entries_v1", holding per page the rows last fetched, the outbox (inserts that failed) and the last write.
+// On load it sends the outbox, fetches the page's rows (1000 at a time), hands the latest value per item and
+// field to the page (the apply callback; a queued local edit for the same field wins), and writes
+// "live, last write <time>" or "offline, saved locally" into the top bar pill. The history toggle under a comment
+// box lists every row of that item, newest first, queued rows on top.
+// Requests carry the key in the apikey header only (the publishable key is not a JWT and is refused in
+// Authorization; the legacy anon key works the same way in apikey alone).
+// Phase 12 (Vatsal, 17 Sep 2026): write() refuses a row with no identity and returns false (the page says so in
+// plain words; nothing is queued); rows in BOARD_IGNORE (data/board_ignore.json: page, item_id and the minute of
+// created_at) are test rows and are dropped from every fetch, so counts, exports and history never see them;
+// read({page, apply}) fetches another page's rows read-only (page "" is every page) for the pages that need them
+// (the Integrations choice on the wireframes spec panel, the Tracker's question list and daily update); init({also})
+// names pages whose rows are read into this page's cache as well (the Tracker reads the W rows written under
+// page integrations before the move), so the latest value and the history are whole; writes stay on the page.
+// Held edits (Vatsal, 17 Sep 2026): a write without a name is not refused into thin air. The row waits in this
+// browser (the latest value per item and field), the pill says how many are waiting, and the moment the page picks
+// a name (named(who)) they go out stamped with it. init({who, local}) does the same on load: local() returns the
+// values the page shows ({item_id, field, value, kind}); any the table does not hold are sent too, so an edit typed
+// before the name was picked, or before this rule existed, is recorded once there is a name. While edits wait, the
+// page asks in words beside the name control ("Who is this? Pick your name to record your N edits.") until a name
+// is picked; the ask is the store's own element and style, so every page gets it (Vatsal, 17 Sep 2026).
+(function(){
+  var CACHE_KEY = "yeslyf_entries_v1", PAGE_SIZE = 1000;
+  var NAME_TEXT = "Held until you pick your name at the top; recorded then.";
+  var ALL = {}, loaded = false;  // the latest value per item and field over every row fetched on load, test rows included
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var FIELDS = "id,page,item_id,field,value,who,kind,created_at";
+  var IGNORE = (typeof BOARD_IGNORE !== "undefined" && BOARD_IGNORE) ? BOARD_IGNORE : [];
+  function cfg(name){ try { var v = window[name]; return typeof v === "string" ? v.trim() : ""; } catch(e){ return ""; } }
+  var url = cfg("SUPABASE_URL"); while(url.length && url.charAt(url.length - 1) === "/") url = url.slice(0, -1);
+  var key = cfg("SUPABASE_ANON_KEY");
+  var configured = !!(url && key);
+  var cache = {};
+  try { cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ cache = {}; }
+  function saveCache(){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch(e){} }
+  var page = "", also = [], applyFn = null, localFn = null, WHO = "", live = false, checked = false, lastWrite = "", boxes = [];
+  function pc(){ if(!cache[page]) cache[page] = {}; var c = cache[page]; if(!c.rows) c.rows = []; if(!c.outbox) c.outbox = []; if(!c.last_write) c.last_write = ""; if(!c.held) c.held = []; return c; }
+  function esc(s){ return String(s === undefined || s === null ? "" : s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
+  function two(n){ return (n < 10 ? "0" : "") + n; }
+  function fmt(ts){
+    // created_at arrives as UTC from the database and as toISOString() from the outbox; the first 19 characters are
+    // the same shape in both, so the display never depends on how a browser parses fractional seconds or offsets.
+    var d = new Date(String(ts || "").slice(0, 19) + "Z");
+    if(isNaN(d.getTime())) return String(ts || "");
+    return d.getDate() + " " + MONTHS[d.getMonth()] + " " + two(d.getHours()) + ":" + two(d.getMinutes());
+  }
+  function ignored(r){
+    // a test row: same page and item, written in the minute the ignore list names (data/board_ignore.json)
+    var minute = String(r.created_at || "").slice(0, 16);
+    for(var i = 0; i < IGNORE.length; i++){ var g = IGNORE[i]; if(g.page === r.page && g.item_id === r.item_id && g.minute === minute) return true; }
+    return false;
+  }
+  function keep(rows){ var out = []; for(var i = 0; i < rows.length; i++) if(!ignored(rows[i])) out.push(rows[i]); return out; }
+  function control(){ return document.getElementById("reviewer") || document.getElementById("who"); }
+  var styled = false;
+  function askStyle(){
+    if(styled || !document.head || !document.head.appendChild) return; styled = true;
+    var st = document.createElement("style");
+    st.textContent = ".askname-note{font-weight:700;color:#1B1F27;background:#FFF4B8;border:1px solid #C9A800;border-radius:6px;padding:4px 8px;font-size:12px;line-height:1.3}" +
+                     "select.askname,input.askname{border:2px solid #1B1F27 !important}";
+    document.head.appendChild(st);
+  }
+  function ask(held){
+    // The ask beside the name control while edits wait for a name: words that stay, not a flash.
+    var c = control(); if(!c || !c.parentNode) return;
+    var el = document.getElementById("askname");
+    if(!held){ if(el && el.parentNode) el.parentNode.removeChild(el); if(c.classList) c.classList.remove("askname"); return; }
+    if(!el || !el.parentNode){ el = document.createElement("span"); el.id = "askname"; el.className = "askname-note"; c.parentNode.insertBefore(el, c.nextSibling); askStyle(); }
+    el.textContent = "Who is this? Pick your name to record your " + (held === 1 ? "edit." : held + " edits.");
+    if(c.classList) c.classList.add("askname");
+  }
+  function pill(){
+    var held = page ? pc().held.length : 0;
+    ask(held);
+    var p = document.getElementById("sheetpill"); if(!p) return;
+    var text, title, on = false;
+    if(held){ text = held + (held === 1 ? " edit" : " edits") + " waiting for a name"; title = NAME_TEXT; }
+    else if(!configured){ text = "offline, saved locally"; title = "docs/config.js has no Supabase URL and key: edits stay in this browser"; }
+    else if(!checked){ text = "connecting"; title = "reading board_entries"; }
+    else if(live){ text = "live" + (lastWrite ? ", last write " + fmt(lastWrite) : ""); title = "every edit is a row in board_entries; the time is the last write on this page by anyone"; on = true; }
+    else { text = "offline, saved locally"; title = "the last request to Supabase failed: edits stay in this browser and are sent on the next load"; }
+    p.textContent = text; p.title = title; p.className = "pill" + (on ? " on" : "") + (held ? " held" : "");
+  }
+  function strip(r){ return {page: r.page, item_id: r.item_id, field: r.field, value: r.value, who: r.who, kind: r.kind}; }
+  function request(method, query, body, cb){
+    // cb(status, json) exactly once; status is "ok", "rejected" (the server answered with an error) or "net".
+    var done = false;
+    function finish(s, j){ if(done) return; done = true; try { cb(s, j); } catch(e){} }
+    var headers = {"apikey": key};
+    if(body !== undefined){ headers["Content-Type"] = "application/json"; headers["Prefer"] = "return=representation"; }
+    var p;
+    try { p = fetch(url + "/rest/v1/board_entries" + query, {method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body)}); }
+    catch(e){ finish("net"); return; }
+    Promise.resolve(p).then(function(res){
+      if(!res || typeof res.ok !== "boolean") throw new Error("no response");
+      if(!res.ok){ finish("rejected", res.status); return; }
+      return res.json().then(function(j){ finish("ok", j); });
+    }).catch(function(){ finish("net"); });
+  }
+  function remember(j){
+    var r = (j && typeof j.length === "number" && j.length) ? j[0] : null; if(!r || !r.created_at) return;
+    var c = pc(); c.rows.push(r); c.last_write = r.created_at; lastWrite = c.last_write;
+  }
+  function flush(cb){
+    // Send every queued row in order; a row that fails stays queued; the caller learns whether all went through.
+    var c = pc(); var queue = c.outbox.slice(); var i = 0; var failed = 0;
+    (function next(){
+      if(i >= queue.length){ saveCache(); cb(failed === 0); return; }
+      var row = queue[i++];
+      request("POST", "", strip(row), function(s, j){
+        if(s === "ok"){ var at = c.outbox.indexOf(row); if(at >= 0) c.outbox.splice(at, 1); remember(j); } else failed++;
+        next();
+      });
+    })();
+  }
+  function fetchRows(pageName, offset, acc, cb, all){
+    // every row of one page (or of every page when pageName is ""), 1000 at a time, in id order; test rows dropped
+    // (all, when given, still records the latest value per item and field over every row, test rows included:
+    // the sync compares against it, so a local copy of a test row is never re-sent as a real one; 17 Sep 2026)
+    var filter = pageName ? "&page=eq." + encodeURIComponent(pageName) : "";
+    request("GET", "?select=" + FIELDS + filter + "&order=id.asc&limit=" + PAGE_SIZE + "&offset=" + offset, undefined, function(s, rows){
+      if(s !== "ok" || !rows || typeof rows.length !== "number"){ cb(false); return; }
+      if(all) rows.forEach(function(r){ var k = r.item_id + "|" + r.field; if(!all[k] || r.id > all[k].id) all[k] = {id: r.id, value: String(r.value === undefined || r.value === null ? "" : r.value)}; });
+      acc = acc.concat(keep(rows));
+      if(rows.length < PAGE_SIZE) cb(true, acc); else fetchRows(pageName, offset + PAGE_SIZE, acc, cb, all);
+    });
+  }
+  function latestOf(rows){ var latest = {}; rows.forEach(function(r){ latest[r.item_id + "|" + r.field] = r; }); var out = []; for(var k in latest) out.push(latest[k]); return out; }
+  function fetchPages(names, acc, cb){
+    // the rows of several pages, merged in id order (ids grow with time, so the latest row per field is the last one)
+    if(!names.length){ acc.sort(function(a, b){ return a.id - b.id; }); cb(true, acc); return; }
+    fetchRows(names[0], 0, [], function(ok, rows){ if(!ok){ cb(false); return; } fetchPages(names.slice(1), acc.concat(rows), cb); }, ALL);
+  }
+  function load(){
+    pill();
+    if(!configured || !page) return;
+    ALL = {}; loaded = false;
+    flush(function(sent){
+      fetchPages([page].concat(also), [], function(ok, rows){
+        checked = true; var c = pc();
+        if(ok){
+          loaded = true;
+          var own = rows.filter(function(r){ return r.page === page; });
+          c.rows = rows; c.last_write = own.length ? own[own.length - 1].created_at : ""; lastWrite = c.last_write; saveCache();
+          if(applyFn){
+            var pending = {}; c.outbox.forEach(function(r){ pending[r.item_id + "|" + r.field] = 1; });
+            var out = latestOf(rows).filter(function(r){ return !pending[r.item_id + "|" + r.field]; });
+            try { applyFn(out); } catch(e){}
+          }
+        }
+        live = ok && sent && !c.outbox.length; pill(); refreshHistory();
+        if(ok && WHO) sync(WHO);
+      });
+    });
+  }
+  function read(opts){
+    // Read-only: the rows of another page (or of every page when opts.page is ""); apply(latest, rows) once they arrive.
+    opts = opts || {};
+    if(!configured){ try { opts.apply([], [], false); } catch(e){} return; }
+    fetchRows(String(opts.page || ""), 0, [], function(ok, rows){
+      rows = ok ? rows : [];
+      try { opts.apply(latestOf(rows), rows, ok); } catch(e){}
+    });
+  }
+  function write(row){
+    // row: {item_id, field, value, who, kind}. Without a name the row is held (false: not recorded yet); every row
+    // names who wrote it (Vatsal, 17 Sep 2026) and the held rows go out through named(). With a name it is queued
+    // first, removed on success, so a tab closed mid-request sends the row on the next load (a duplicate row is
+    // harmless: same latest value).
+    if(!page) return false;
+    var who = String(row.who || "").trim();
+    var r = {page: page, item_id: String(row.item_id), field: String(row.field),
+             value: String(row.value === undefined || row.value === null ? "" : row.value),
+             who: who, kind: String(row.kind || "field_edit"), created_at: new Date().toISOString(), queued: true};
+    if(!who){ hold(r); return false; }
+    if(!configured){ pill(); return true; }
+    var c = pc(); c.outbox.push(r); saveCache();
+    request("POST", "", strip(r), function(s, j){
+      var at = c.outbox.indexOf(r);
+      if(s === "ok"){ if(at >= 0) c.outbox.splice(at, 1); remember(j); live = true; } else live = false;
+      checked = true; saveCache(); pill(); refreshHistory();
+    });
+    return true;
+  }
+  function hold(r){
+    // the latest value per item and field waits here, in first-edit order, until the page picks a name
+    var c = pc(); r.held = true;
+    for(var i = 0; i < c.held.length; i++){ if(c.held[i].item_id === r.item_id && c.held[i].field === r.field){ c.held[i] = r; saveCache(); pill(); refreshHistory(); return; } }
+    c.held.push(r); saveCache(); pill(); refreshHistory();
+  }
+  function latestValue(item_id, field){
+    // the table's latest value for one field over every row fetched on load (this page and the pages read with it,
+    // test rows included), or null when the table has none
+    var e = ALL[item_id + "|" + field]; return e ? e.value : null;
+  }
+  function sync(who){
+    // The page has a name: the held rows are stamped with it and sent, then, once the table has been read, every
+    // value the page shows that the table does not hold (local() minus the latest row per field) goes out as well.
+    // Returns how many were sent.
+    who = String(who || "").trim(); if(!page || !who) return 0;
+    var c = pc(), now = new Date().toISOString(), out = [], seen = {};
+    c.held.forEach(function(r){ r.who = who; r.created_at = now; delete r.held; out.push(r); seen[r.item_id + "|" + r.field] = 1; });
+    c.held = [];
+    c.outbox.forEach(function(r){ seen[r.item_id + "|" + r.field] = 1; });
+    var local = []; try { local = (loaded && localFn) ? (localFn() || []) : []; } catch(e){ local = []; }
+    local.forEach(function(e){
+      var item = String(e.item_id), field = String(e.field), value = String(e.value === undefined || e.value === null ? "" : e.value);
+      if(seen[item + "|" + field]) return;
+      var remote = latestValue(item, field);
+      if(remote === null ? value === "" : remote === value) return;
+      out.push({page: page, item_id: item, field: field, value: value, who: who, kind: String(e.kind || "field_edit"), created_at: now, queued: true});
+    });
+    if(!out.length){ saveCache(); pill(); return 0; }
+    if(!configured){ saveCache(); pill(); return out.length; }
+    out.forEach(function(r){ c.outbox.push(r); }); saveCache(); pill();
+    flush(function(sent){ checked = true; live = sent; pill(); refreshHistory(); });
+    return out.length;
+  }
+  function named(who){ WHO = String(who || "").trim(); return sync(WHO); }
+  function history(item_id){
+    var c = pc(); item_id = String(item_id);
+    var held = c.held.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    var queued = c.outbox.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    var rows = c.rows.filter(function(r){ return r.item_id === item_id; }).slice().reverse();
+    return held.concat(queued, rows);
+  }
+  function historyHtml(item_id){
+    if(!configured) return '<div class="hist-empty">local only: docs/config.js has no Supabase URL and key</div>';
+    var rows = history(item_id);
+    if(!rows.length) return '<div class="hist-empty">' + (checked ? "no rows yet for " + esc(item_id) : "not loaded yet") + '</div>';
+    return '<ul class="hist">' + rows.map(function(r){
+      return '<li><span class="t">' + esc(fmt(r.created_at)) + '</span> <b>' + esc(r.who || (r.held ? "(no name yet)" : "(no identity)")) + '</b> ' + esc(r.field) + ': ' +
+             (r.value ? esc(r.value) : '<i>cleared</i>') + (r.held ? ' <i>waiting for a name</i>' : r.queued ? ' <i>queued, not sent yet</i>' : '') + '</li>';
+    }).join("") + '</ul>';
+  }
+  function refreshHistory(){ boxes.forEach(function(b){ if(!b.box.hidden) b.box.innerHTML = historyHtml(b.id()); }); }
+  function attach(el, idFn){
+    // Adds a "History" toggle right after a control; idFn is the item id or a function returning it.
+    if(!el || !el.parentNode) return;
+    var id = typeof idFn === "function" ? idFn : function(){ return idFn; };
+    var wrap = document.createElement("div"); wrap.className = "histwrap"; wrap.style.gridColumn = "1 / -1";  // a full row inside a grid form
+    var b = document.createElement("button"); b.type = "button"; b.className = "hist-toggle"; b.textContent = "History";
+    var box = document.createElement("div"); box.className = "histbox"; box.hidden = true;
+    b.addEventListener("click", function(){ box.hidden = !box.hidden; if(!box.hidden) box.innerHTML = historyHtml(id()); });
+    wrap.appendChild(b); wrap.appendChild(box);
+    el.parentNode.insertBefore(wrap, el.nextSibling);
+    boxes.push({box: box, id: id});
+  }
+  function init(opts){ opts = opts || {}; page = String(opts.page || ""); also = (opts.also || []).map(String).filter(function(p){ return p && p !== page; }); applyFn = opts.apply || null; localFn = opts.local || null; WHO = String(opts.who || "").trim(); load(); }
+  function status(){ return {configured: configured, live: live, checked: checked, last_write: lastWrite, queued: page ? pc().outbox.length : 0, held: page ? pc().held.length : 0}; }
+  function label(){ return configured && live ? "live (board_entries)" : "offline; this file is the record"; }
+  window.yeslyfBoard = {init: init, write: write, named: named, read: read, history: history, attach: attach, refreshHistory: refreshHistory, status: status, label: label, fmt: fmt,
+                        noIdentity: NAME_TEXT};
+})();
+</script><script>
+(function(){
+  var P=LOGIC_PAGE, KEY="yeslyf_"+P.key+"_v1";
+  var byId={}; P.sections.forEach(function(s){ byId[s.id]=s; });
+  var S={}; try{ S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ S={}; }
+  if(!S.rows) S.rows={}; if(!S.who) S.who="";
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  var ft; function flash(t){ var s=document.getElementById("saved"); if(!s) return; s.textContent=t||"Saved in this browser"; clearTimeout(ft); ft=setTimeout(function(){ s.textContent=""; },1800); }
+  function esc(s){ return String(s===undefined||s===null?"":s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;"); }
+  function row(id){ if(!S.rows[id]) S.rows[id]={}; return S.rows[id]; }
+  function noteVal(id){ var e=S.rows[id]; return (e&&e.note!==undefined)?e.note:""; }
+  function localRows(){ var out=[]; for(var id in S.rows){ if(byId[id]&&S.rows[id].note!==undefined) out.push({item_id:id,field:"note",value:S.rows[id].note,kind:"comment"}); } return out; }
+  function put(id,value){ if(!window.yeslyfBoard) return true; var ok=yeslyfBoard.write({item_id:id,field:"note",value:value,who:S.who||"",kind:"comment"}); if(!ok) setTimeout(function(){ flash(yeslyfBoard.noIdentity); },0); return ok; }
+  function paintAll(){ P.sections.forEach(function(s){ var el=document.getElementById("note-"+s.id), v=noteVal(s.id); if(el&&el.value!==v) el.value=v; });
+    var rv=document.getElementById("reviewer"); if(rv&&rv.value!==(S.who||"")) rv.value=S.who||""; }
+  function applyRemote(rows){ rows.forEach(function(r){ if(r.field==="note"&&byId[r.item_id]) row(r.item_id).note=r.value||""; }); save(); paintAll(); }
+  function md(){ var L=[P.exportTitle,"Exported "+new Date().toLocaleString()+(S.who?" by "+S.who:""),"Write-back: "+(window.yeslyfBoard?yeslyfBoard.label():"offline; this file is the record"),""], n=0;
+    P.sections.forEach(function(s){ var v=noteVal(s.id); if(!v) return; n++; L.push("- **"+s.id+" "+s.heading+"**"); L.push("  "+String(v).split("\n").join("\n  ")); });
+    if(!n) L.push("(no comments yet)"); return L.join("\n"); }
+  function exportMd(){ var text=md(); try{ navigator.clipboard&&navigator.clipboard.writeText(text); }catch(e){}
+    try{ var b=new Blob([text],{type:"text/markdown"}); var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="yeslyf_"+P.key+"_comments.md"; document.body.appendChild(a); a.click(); document.body.removeChild(a); }catch(e){}
+    flash("Comments exported and copied"); }
+  var tmr={};
+  document.addEventListener("DOMContentLoaded",function(){
+    if(window.yeslyfBoard){
+      Array.prototype.forEach.call(document.querySelectorAll("textarea.secnote"),function(t){ yeslyfBoard.attach(t,t.getAttribute("data-id")); });
+      yeslyfBoard.init({page:P.key,apply:applyRemote,who:S.who||"",local:localRows});
+    }
+    var rv=document.getElementById("reviewer"); if(rv){ rv.innerHTML='<option value="">reviewing as</option>'+IDENTITIES.map(function(n){ return '<option value="'+esc(n)+'">'+esc(n)+'</option>'; }).join("");
+      rv.value=S.who||"";
+      rv.addEventListener("change",function(){ S.who=IDENTITIES.indexOf(rv.value)>=0?rv.value:""; save(); var n=(window.yeslyfBoard&&S.who)?yeslyfBoard.named(S.who):0;
+        flash(S.who?"Reviewing as "+S.who+(n?"; "+n+(n===1?" edit":" edits")+" recorded":""):""); }); }
+    paintAll();
+    var ex=document.getElementById("export"); if(ex) ex.addEventListener("click",exportMd);
+    document.body.addEventListener("input",function(e){ var t=e.target; if(!t||!t.classList||!t.classList.contains("secnote")) return; var id=t.getAttribute("data-id"); if(!id||!byId[id]) return;
+      row(id).note=t.value; save(); flash("Saving...");
+      clearTimeout(tmr[id]); tmr[id]=setTimeout(function(){ if(put(id,noteVal(id))) flash(); },1500); });
+  });
+})();
+</script>
+</body>
+</html>
