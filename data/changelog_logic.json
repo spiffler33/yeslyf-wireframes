@@ -1,0 +1,12 @@
+{
+ "source": "PLAN_logic_panel_v03.md phases A0 to C2; PLAN.md section 27",
+ "note": "the logic panel side screens, the four pages around them and their open items; proposed, to be confirmed at the logic panel review",
+ "rows": [
+  {"date": "8 Oct 2026", "change": "The Logic tab: 39 side screens in the board's screen schema, drawn by the board's renderer: 33 panel screens in six groups (start, logic, change, records, access, reference) and six client views, V01 to V06; every logic value a rehearsal value, every count a typed example; not merged into Wireframes v0.2", "pages": ["logic_wireframes.html"], "cause": "Vatsal, 8 Oct 2026"},
+  {"date": "8 Oct 2026", "change": "The Tech page: where each access rule is enforced, how a change reaches a plan, cohorts as data, the records kept and what each answers, what the plan engine (I04) must do, the jobs, what the app does at run time, events out one way, launch and later with the failure cases", "pages": ["logic_tech.html"], "cause": "Vatsal, 8 Oct 2026"},
+  {"date": "8 Oct 2026", "change": "The Access page: the ten seats, permissions by action and by screen (the 39 side screens, then M03, M07 and M10, with a Writes column), approval, sign-in and the second factor, sessions, masking, audit rows and the access review, the app; seat names only", "pages": ["logic_access.html"], "cause": "Vatsal, 8 Oct 2026"},
+  {"date": "8 Oct 2026", "change": "The Walkthroughs page: what the 7 Oct 2026 call asked and where each answer is drawn, the design in one place, and four whole jobs (Y01 to Y04) walked step by step through the side screens", "pages": ["logic_walk.html"], "cause": "Vatsal, 8 Oct 2026"},
+  {"date": "8 Oct 2026", "change": "The Ops page: what each kind of change sets in motion for clients, the call centre and support, before a release goes out, illustrative figures per 1,000 plan holders, the letter, what is new on the ops side, the unknown-ISIN queue (L04b), seats and open items for ops", "pages": ["logic_ops.html"], "cause": "Vatsal, 8 Oct 2026"},
+  {"date": "8 Oct 2026", "change": "Open items LQ1 to LQ46 (34 to be decided, 12 to be verified) in data/logic_gaps.json: each sits on the screens or client views it lands on (the Logic tab) or in the open items of the Tech or Access page; the Tech, Access and Ops pages list 15, 7 and 6 of them; never added to data/gaps.json", "pages": ["logic_tech.html", "logic_access.html", "logic_ops.html"], "cause": "Vatsal, 8 Oct 2026 (logic side wireframes)"}
+ ]
+}

@@ -1,6 +1,7 @@
 # PLAN: logic panel side wireframes and tech plan, v0.3 (lean)
 
-Status, 8 Oct 2026: written, nothing built. This file replaces PLAN_logic_panel_v02.md and PLAN_logic_seed_v01.md of
+Status, 8 Oct 2026: A0 to C2 built and committed under /run-plan, not pushed (PLAN.md section 27); phase D,
+Vatsal's look, is next. Written the same day. This file replaces PLAN_logic_panel_v02.md and PLAN_logic_seed_v01.md of
 the same day; neither reached the repo and neither is to be used. The phases of section 12 (A0 to C2, then Vatsal's
 look in D) run in order on Vatsal's "go", one commit per phase, no push. Plan-ready pass, 8 Oct 2026: section 12
 rebuilt into phases with done-criteria and the choices the first draft left to the executor resolved in 12.0.
@@ -1839,7 +1840,7 @@ Done-criteria:
 - `git status --short -- docs/review docs/audiences docs/seed data/seed` -> empty.
 
 Metadata: depends_on [C1] . weight heavy . live_model no . coder opus . verify_class complete . kind seam-design
-- [ ] C2 done
+- [x] C2 done
 
 ### 12.13 Phase D: Vatsal's look (HUMAN-GATED)
 

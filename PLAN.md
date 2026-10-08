@@ -703,3 +703,88 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   a seat (G21 closed). The Split page, the brief and the pack read the same; the change log on the Admin and CRM tab
   carries the cause "Kajal, 7 Oct 2026". The brief went to Spinach the same day; tracker W12 reads delivered (f54a82b).
   Owed: Kajal's team check on anything the staff view misses; the Spinach estimate. Open gaps: G18, G20, G23.
+
+## 27. Status, 8 Oct 2026 (logic panel side wireframes, PLAN_logic_panel_v03.md)
+
+- Why: the HoA and Spinach call of 7 Oct 2026 raised 22 points about the logic panel: who may do what, whether
+  approval is stepwise, what a change does to a client who already has a plan, whether versions are stored, how
+  cohorts grow and how a change spreads across the app. Vatsal, 8 Oct 2026, asked for three things in answer: logic
+  panel wireframes as its two operators will use them; a tech plan around access, how a change reaches clients without
+  shocking them, cohorts that can grow and the stored versions of every plan a client was shown; an ops page on what
+  each kind of change sets in motion for ops, the call centre and support. Everything here is proposed, to be
+  confirmed at the logic panel review, and stays off the review link and the audience files until the merge (plan
+  section 0).
+- Built, 8 Oct 2026, on main, not pushed (the plan holds every push for phase D): A0 c0011a7
+  (scripts/build_logic_wireframes.py, a stripped copy of the admin wireframes builder; 39 stub screens;
+  data/logic_gaps.json), A1 87fb879 (the start and logic groups, 14 screens), A2 d949238 (the change group, 11
+  screens), A3 370569d (the records, access and reference groups, 8 screens), A4 7f060f5 (the six client views), B0
+  71ec684 (scripts/build_logic_pages.py and four skeleton pages), B1 0a1b6da (Tech), B2 d0615da (Access), B3 1326241
+  (Walkthroughs), B4 6c9bf51 (Ops), C1 84f8777 (scripts/check_logic.py), C2 this commit. Each A phase was fixed after
+  its review: A0 in two follow-up commits (66f4d24: the logic validator holds the board's screen rules and the comment
+  box drops Spinach; 0a3fa9d: spec.forward, freeze.owed and compliance.checks must be lists), A1 to A4 inside their
+  own commits; B0 had one follow-up (71468ea: a page data file holding null is a named failure).
+- The 39 screens (data/logic_screens.json; the Logic tab, docs/logic_wireframes.html): 33 panel screens in six groups
+  (start, logic, change, records, access, reference) and six client views, V01 to V06, in the board's screen schema,
+  held to the board's screen rules and drawn by the board's renderer with no renderer change, so an accepted screen
+  moves into section L of data/screens_v02.json as it is (plan section 13). The merge settles what the board does not
+  carry: the role, writes and group fields, and real ids for V01 to V06 (section V is unused on the board). Every
+  logic value is a rehearsal value and every count a typed example; nothing is computed.
+- The four pages, from scripts/build_logic_pages.py and data/logic_tech.json, logic_access.json, logic_walk.json and
+  logic_ops.json: Tech (docs/logic_tech.html, t1 to t9), Access (docs/logic_access.html, a1 to a9, seat names only,
+  the derived seat-by-screen table with a Writes column), Walkthroughs (docs/logic_walk.html: the call table, the
+  design in one place, Y01 to Y04), Ops (docs/logic_ops.html, o1 to o8); one comment box per section. The five logic
+  pages link each other through logic_subnav().
+- Checks: scripts/check_logic.py holds the nine checks of plan section 11, run by hand after the build like
+  check_phase9.py: 9 PASS; check_phase9.py 19 PASS; check_site.py 3 PASS. C2 (this commit): the Logic panel tab after
+  Admin seed on every main-board page, REVIEW_TABS unchanged; the Changelog tab's "Logic panel side wireframes"
+  section from data/changelog_logic.json; this section. docs/review/, docs/audiences/ and docs/seed/ are unchanged.
+- Open, phase D (plan 12.13, Vatsal's look on his machine): the visual pass at laptop width; the fold (if the Logic
+  panel tab grows the header at 1,512 px, Admin seed and Logic panel fold under one tab with two sub-nav rows, a
+  follow-up change) and, beside it, the header's fixed heights, which assume a one-row header (build_site.py:100 .nav
+  top:49px and height calc(100vh - 49px), :176 .frame-wrap calc(100vh - 49px), :179 .frame-wrap.with-bar
+  calc(100vh - 88px); renderer_v02.css:40 .layout calc(100vh - 128px)): check the 15-tab header at laptop width; the
+  pages must still open on a phone; every call marked "(logic plan, 8 Oct 2026)" on the screens and pages, for veto;
+  the explicit OK the standing no-pattern rule asks for on check 3 of scripts/check_logic.py, which scans text for
+  "LQ" plus digits (a closed id format, as 12.11 asks); the Access page's comment control, which lists first names
+  while plan section 8 keeps the page's content to seat names, settled before the page goes to Spinach.
+- Open, phase D, before the push: the review link's tracker (docs/review/tracker.html) links rows W12, W13 and W38 to
+  ../admin_brief.html, ../admin_operator.html and ../spinach_questions.html, and those pages now carry the Logic panel
+  tab (12.12 step 1), so once pushed a review-link reader is two clicks from the logic pages, against section 0 and
+  12.0: decide before the push, for example by keeping the tab off those three pages. scripts/build_tracker.py:268
+  builds dict(site.TABS + site.SEED_PAGES), so a tracker row whose lands_at is logic_wireframes.html, in TABS since
+  C2, would render as a live link on the review tracker; no row names a logic page today, and none should before the
+  merge. Then the push, which is Vatsal's word.
+- Open for veto, the conventions the run pinned (logic plan, 8 Oct 2026): the comment boxes on the five logic pages
+  offer the eight identities without Spinach (the review-link Tracker lists every comment under Spinach from any
+  page); a figure the plan does not type reads N or N%, never a derived figure, ratio, formula or computed date; the
+  unmask is a write by the Logic analyst (events L05_unmask_a_client, L10_unmask_a_client and L11_unmask_a_client) on
+  L05, L10, L11 and their variants: plan 5.4 gives that seat "act" on L05 and L10 and "read masked" on L11, and the
+  masking on L05 and L10 comes from 4.8 (plan line 373: named client rows in a preview or the monitor are masked for
+  the Logic analyst, and an unmask is logged); walkthrough "at" cells are full dates, system and client rows carry "-"
+  in the seat cell, and the weekday rule holds on staff rows only (Y01 step 8 and Y02 step 7 fall on Saturdays as
+  system rows); the Access page's derived table carries a Writes column (plan 8 part 4); plan line 288's "to be
+  decided (LQ46)" is written in the "to be decided: <item>" form; on L15, L15a and L15b cause tags take the colon form
+  ("house view: REL02") so check 7 reads only instalments.
+- Known limits: L07, L09 and L00 read "Kept from v0.1", the renderer's label for "kept"; the base screens L00 to L09
+  show the board's integration rows and their variants do not; L00 copies the board's step table as it stood when its
+  data was written, and plan 5.3's "read at build time" needs a builder change at the merge; Y01 step 11 says "90
+  days" where rule 5 sets the stale cap at 120, kept as the plan types it; check 8 of scripts/check_logic.py matches
+  the board's exact first-cell names only.
+- Open items: LQ1 to LQ46 in data/logic_gaps.json, 34 to be decided and 12 to be verified (LQ11, LQ12, LQ13, LQ18,
+  LQ19, LQ24, LQ27, LQ28, LQ29, LQ36, LQ38, LQ43), shown on the logic pages only and never added to data/gaps.json
+  (plan 12.0). Fourteen gaps found while building, each written "gap, to be decided" on its screen or page and not
+  numbered into data/logic_gaps.json: L02 the hard ranges and soft steps of most rows; L07 the four market inputs'
+  ranges and steps; L05 whether a preview goes stale when another lane publishes before approval; L10 whether the
+  compliance acknowledgement survives a send-back; L10a what a second person does on disagreeing with an urgent Hold;
+  L06 whether publish should also wait until the letter is queued; L11 what Pause does to an urgent Hold; L08 whether
+  a frozen plan counts as active when a release closes; L15 whether opening plan history writes an audit row; L12 what
+  clients are told about the cohorts and risk scoring cadences; L13 whether the access review covers admin-only seats;
+  V02 which Home state shows a review update left without accepting; V04 where plan history sits and where a client
+  opens it; the Tech page (t9) whether a withdraw or a correction waits for rebuilds still running.
+- Owed by people: Vatsal's answers to the two questions from A4: whether the operating seats stay "Principal officer
+  01" and "Logic analyst 01", and whether a state that matters is missing from the 39 (candidates listed, not drawn:
+  the note-size update screen; the outlook card on Home after a push; an update withdrawn while it is open); the logic
+  panel review date (to be decided: the review date). No tracker row and no note on W04 (plan 12.0): progress goes in
+  the one-line daily update.
+- Next: phase D. After acceptance a later plan applies what was accepted (plan section 13): accepted screens move into
+  section L of data/screens_v02.json as they are, each with its cause; rehearsal values and examples do not travel.
