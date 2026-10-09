@@ -1,7 +1,7 @@
 {
  "page": "logic_tech",
  "title": "Tech",
- "audience": "For Raafiya and Gaurav: what must be stored, which jobs run, what the engine must accept and where access is enforced.",
+ "audience": "For the engineers, Raafiya and Gaurav: what must be stored, which jobs run, what the plan engine must accept and where access is enforced.",
  "sections": [
   {
    "id": "t1",
@@ -17,55 +17,55 @@
      "rows": [
       [
        "identity",
-       "one staff identity, signed in through {I14} with its MFA, as decided for M03 on 7 Oct 2026",
-       "the panel's server, on every request",
+       "one per staff member, signed in through {I14} with two-step sign-in (decided for M03, 7 Oct 2026)",
+       "the panel's server, every request",
        "a sign-in row"
       ],
       [
-       "seat",
-       "a staff member holds one or more of ten fixed seats; no user-defined role; no exception for one person",
-       "an allowlist the server reads (LQ9)",
+       "role",
+       "one or more of ten fixed roles per person; no custom roles; no exception for any one person",
+       "an allowed-staff list the server reads (LQ9)",
        "staff_seats"
       ],
       [
        "permission",
-       "seat by action, taken from the write events of data/logic_screens.json",
-       "the server, on every request; the screen only mirrors it",
-       "an audit row; a refusal is a row too"
+       "which role may do which action: the write events in data/logic_screens.json",
+       "the server, every request; the screen only mirrors it",
+       "a log line, refusals too"
       ],
       [
        "two people",
-       "the author is not the reviewer; the publisher holds the Principal officer seat; nobody is both on one release, whatever seats they hold",
-       "the server, on the release record",
+       "the author never checks their own change, whatever roles they hold; only a Principal officer sends",
+       "the server, on the sent change's record",
        "releases"
       ],
       [
-       "second factor",
-       "a check not older than a set number of minutes at publish, schedule, pause, withdraw, urgent Hold, ratify, any seat change and export (LQ29, LQ41)",
+       "fresh security check",
+       "no older than a set number of minutes, to send or set a date, pause, pull back, place an urgent hold, give a second sign-off, change any role or export (LQ29, LQ41)",
        "{I14}",
-       "the audit row carries it"
+       "on the log line (second_factor)"
       ],
       [
-       "urgent path",
-       "one action by the Principal officer; ratification due two working days on",
+       "urgent hold",
+       "the Principal officer alone, in one action; a second sign-off due two working days later",
        "the server",
        "releases.ratify_due, ratified_by"
       ],
       [
-       "masking",
-       "client names are left out for a masked seat in previews and the monitor; an unmask needs a typed reason",
-       "the server leaves the field out; the screen cannot reveal it",
-       "an audit row"
+       "hidden names",
+       "roles without names see client ids only, in trial runs and on Watch and undo; showing names needs a typed reason",
+       "the server leaves names out; the screen cannot show them",
+       "a log line"
       ],
       [
        "sessions",
-       "an idle timeout; a session ends at once on suspend or revoke (LQ41)",
-       "the server checks the seat on every request, not only at sign-in",
+       "an idle timeout; suspend or revoke ends a session at once (LQ41)",
+       "the server checks the role on every request, not only at sign-in",
        "-"
       ],
       [
-       "operating seats",
-       "giving someone the Logic analyst or Principal officer seat takes effect when compliance acknowledges it (LQ42)",
+       "working roles",
+       "giving someone the Logic analyst or Principal officer role takes effect once Compliance signs (LQ42)",
        "the server",
        "staff_seats, audit"
       ],
@@ -76,16 +76,16 @@
        "-"
       ],
       [
-       "access review",
-       "each quarter every staff row is kept, changed or removed",
-       "the Principal officer on L13",
+       "access check",
+       "each quarter, every staff member is kept, changed or removed",
+       "the Principal officer, on L13",
        "access_reviews"
       ]
      ]
     }
    ],
    "lines": [
-    "How many people (7 Oct 2026 call): at launch two operators, one of whom can publish, plus compliance and read only. The two-person rule needs both operators for every release except an urgent Hold; LQ7 holds what happens when the publisher is away."
+    "How many people (7 Oct 2026 call): at launch, two in the working roles (one can send), plus Compliance and Read only. The two-person rule needs both for every sent change except an urgent hold. LQ7: what happens when the sender is away."
    ]
   },
   {
@@ -93,52 +93,52 @@
    "heading": "How a change reaches a plan",
    "tables": [
     {
-     "title": "What moves, and when (logic plan, 8 Oct 2026; the answer to \"19.2 becomes 18 or 22\")",
+     "title": "What moves, and when",
      "cols": [
       "what the client sees",
       "where",
       "it depends on",
       "when it moves",
-      "does a release move it"
+      "does a sent change move it"
      ],
      "rows": [
       [
        "net worth today",
        "H01, H02",
        "holdings and prices",
-       "at each refresh (Account Aggregator on open; typed values when the client updates them)",
+       "when holdings update (Account Aggregator on app open, or typed by the client)",
        "no"
       ],
       [
        "the plan: projections, what each goal needs, how far it is funded",
        "G03 and the plan tabs, H10",
        "the client's inputs, the assumptions",
-       "at a rebuild only",
-       "at the client's next rebuild"
+       "at a refresh only",
+       "at the client's next refresh"
       ],
       [
        "the target mix per goal",
        "G11",
-       "the risk band, the horizon, the cohort map",
-       "at a rebuild only",
-       "at the next rebuild; never pushed, a correction apart"
+       "the risk level, the horizon, the group table",
+       "at a refresh only",
+       "next refresh; never pushed, except for a fix"
       ],
       [
        "the funds and the amounts",
        "G13, G14, E11",
-       "the sleeves, the amounts",
-       "at a rebuild; a Hold or an Exit by push",
-       "by route (4.4)"
+       "the fund baskets, the amounts",
+       "at a refresh; a hold or exit: pushed now",
+       "next refresh or pushed now, as chosen"
       ],
       [
        "what can be bought now",
        "E03, E11",
        "fund status",
-       "at the publish moment",
-       "yes, at once, for a Hold or an Exit"
+       "when the change is sent",
+       "yes, at once, for a hold or an exit"
       ],
       [
-       "the risk band",
+       "the risk level",
        "D09",
        "the client's answers, the score ranges",
        "at a questionnaire",
@@ -147,7 +147,7 @@
       [
        "lumpsum or staggered",
        "G13",
-       "market inputs",
+       "market readings",
        "when a new action is made",
        "new plans and new actions only"
       ],
@@ -155,18 +155,18 @@
        "the assumption lines",
        "R08, G01",
        "the assumptions",
-       "at the effective time",
+       "at go-live",
        "yes"
       ],
       [
-       "a new reveal",
+       "a new first result",
        "R09",
        "five answers, the assumptions",
        "when sketched",
        "new sketches only"
       ],
       [
-       "a saved reveal",
+       "a saved first result",
        "X01 and the S2 nudges",
        "what was shown",
        "never, until sketched again",
@@ -175,14 +175,14 @@
       [
        "sample plans",
        "R12",
-       "fixed sample inputs, every lane",
-       "regenerated per release",
-       "yes, at the effective time"
+       "fixed sample inputs, every rule set",
+       "refreshed for each sent change",
+       "yes, at go-live"
       ]
      ]
     },
     {
-     "title": "Change life cycle: the life of a release (logic plan, 8 Oct 2026; the mapping asked for on the call)",
+     "title": "The life of a sent change",
      "cols": [
       "stage",
       "what happens",
@@ -192,90 +192,92 @@
      ],
      "rows": [
       [
-       "1 published",
-       "the release is frozen; it is live from its effective time, scheduled until then",
+       "1 sent",
+       "locked; set for its go-live time, then live",
        "Principal officer; the clock",
        "nothing",
-       "the release; audit rows"
+       "the sent change; log lines"
       ],
       [
-       "2 surfaces refresh",
-       "the assumption lines and the sample plans regenerate at the effective time (rule 21)",
-       "a job",
+       "2 what clients read",
+       "the assumption lines and sample plans refresh at go-live",
+       "a job (surfaces)",
        "a new visitor sees the new lines",
        "the sample plan versions"
       ],
       [
        "3 new plans",
-       "every plan built from the effective time uses it",
-       "the engine",
+       "every plan made from go-live uses it",
+       "the plan engine",
        "their first plan",
-       "a snapshot"
+       "a saved copy"
       ],
       [
-       "4 existing plans, quiet route",
-       "each plan takes it at its next rebuild; the letter goes by email",
-       "the client; ops for the letter",
-       "by size (4.5)",
-       "a snapshot carrying the cause"
+       "4 existing plans, at the next refresh",
+       "each plan takes it at its next refresh; the email goes out",
+       "the client; Ops, for the email",
+       "an update, by its size",
+       "a saved copy with the reason"
       ],
       [
-       "5 existing plans, pushed route",
-       "the rollout job rebuilds the selected plans in waves",
+       "5 existing plans, pushed now",
+       "the rollout job refreshes the chosen plans in batches",
        "a job; the Principal officer watches L11",
-       "review or urgent",
-       "snapshots, messages, call tasks"
+       "to accept, or urgent",
+       "saved copies, messages, call tasks"
       ],
       [
        "6 the client responds",
-       "accept refreshes the action plan; an outlook is marked seen; no answer follows the ladder",
+       "accepting refreshes the action plan; a picture-moved update is marked seen; no answer: reminders follow",
        "the client; the call centre",
        "-",
        "accepted or seen, with the time"
       ],
       [
-       "7 stragglers",
-       "the stale cap rebuilds a plan at the next app open",
+       "7 plans left behind",
+       "the 120-day limit refreshes a plan at the next app open",
        "the app",
        "as stage 4",
-       "a snapshot"
+       "a saved copy"
       ],
       [
        "8 closed",
        "no active plan is behind it",
        "-",
        "-",
-       "the release reads closed"
+       "the sent change reads closed"
       ],
       [
        "9 if it was wrong",
-       "pause, withdraw, correct (rule 12)",
+       "pause, pull back, fix",
        "Principal officer",
-       "\"an update was withdrawn\"; a corrected update where something moves",
-       "an incident; snapshots"
+       "\"an update was withdrawn\"; a fixed update where something moves",
+       "an incident; saved copies"
       ]
      ]
     }
    ],
    "lines": [
-    "4.7: At every stage an adviser or support can open L15 and read which versions a client is on and why their last update said what it said. Release states: scheduled -> live -> replaced (a later release of its lane is live; plans may still be on it) -> closed (no active plan is on it); or paused, then corrected. Every transition is an audit row with who, when and why.",
-    "1. Versions. Each lane has immutable versions. A release makes one live from its effective time. The live version of a lane at a time is the latest release with an effective time not after it that is neither paused nor superseded.",
-    "2. The pin. A client's plan is their snapshot in force, and the snapshot carries the five lane versions and the engine version. Nothing else pins a plan. Risk scoring is stamped as of the client's last questionnaire, not as live (rule 10), so a plan can read rs-1 after rs-2 is live; L15 shows both. The board already stamps two of them on a plan (G01: assumptions_version, instrument_set_version); cohorts, risk scoring and market inputs are added.",
-    "3. Read path. Every plan screen in the app reads the snapshot in force, and H05 the waiting one. None calls the engine when it opens (rule 19). Net worth today is the one exception: holdings and prices at the last refresh.",
-    "4. Rebuild. The inputs on file, the as-of time, the live lane versions go to the engine; the result is stored as a snapshot, compared with the one in force, sized (4.5) and shown.",
-    "5. Triggers. A review completed (Q01, Q05), a life event (Q06), a sharpen, the annual confirmation (Q04), a questionnaire retake, a staff edit or a forced re-run (M03), a push, a stale-cap open, a withdraw, a correction.",
-    "6. Quiet route. Nothing runs at publish. The surfaces job runs at the effective time (rule 21).",
-    "7. Push. The route selects plans: a running SIP into a fund, an open action naming it, a verified holding of it, a snapshot in force built on a named release. The rollout job rebuilds them by the wave plan; it is idempotent per client and release, can be paused and resumed, and retries a failed client.",
-    "8. Scheduled release. It goes live by its effective time alone: the resolver in point 1 compares times. No job has to succeed at midnight for new plans to be right.",
-    "9. Stale cap. Checked when the app opens: a latest snapshot more than the cap behind a live assumptions, cohorts or funds release is rebuilt on the inputs on file.",
-    "10. Pause, withdraw, correct. Pause marks the release; the resolver skips it. Withdraw rebuilds, on the release before, every plan with an update built on the paused one and not accepted, and marks the old snapshot withdrawn. A correction is a release whose rollout selects every plan whose snapshot in force was built on the paused one.",
-    "11. Timing. A rebuild in flight keeps the versions it read at its start. A client holding an update when it is withdrawn sees the notice on the next screen. A draft is rebased when its lane's live version moves.",
-    "12. Blocks. An overdue annual confirmation blocks a rebuild (Q04 on the board); a lapsed account is frozen. LQ43 holds whether a pushed update gets through the first."
+    "At every stage, an Adviser or Support can open L15: the versions a client is on, and why their last update said what it said.",
+    "A sent change's status: set for a date, live, replaced (a later change to its rule set is live; plans may still be on it), closed (no active plan is on it); or paused, then fixed. Every status change is logged: who, when, why.",
+    "1. Versions. A rule set's versions never change. A sent change makes one live from its go-live time. The live version at any moment: the latest sent change live by then, neither paused nor superseded.",
+    "2. What holds a plan. A plan is the client's current saved copy, carrying the five rule set versions and the plan engine version; nothing else holds it. Risk scores are stamped as of the last questionnaire, so a plan can read rs-1 after rs-2 is live (L15 shows both). The board stamps two today (G01: assumptions_version, instrument_set_version); the other three are added.",
+    "3. Reading. Plan screens read the current saved copy, H05 the waiting update; none calls the plan engine on opening. The one exception: net worth today, from holdings and prices as last updated.",
+    "4. Refresh. The inputs on file, the as-of time and the live versions go to the plan engine. The result is stored as a saved copy, compared with the current one, given a size and shown.",
+    "5. What starts a refresh: a review done (Q01, Q05), a life event (Q06), a sharpen, the annual confirmation (Q04), a questionnaire retake, a staff edit or forced re-run (M03), a push, an app open past the 120-day limit, a pull-back, a fix.",
+    "6. At the next refresh: nothing runs when the change is sent; the surfaces job runs at go-live.",
+    "7. Pushed now. The change picks plans with a running SIP into the fund, a pending step naming it, a verified holding of it, or a current saved copy made on a named sent change. The rollout job refreshes them in batches. It is idempotent per client and change, can pause and resume, and retries a failed client.",
+    "8. Set for a date: live by its go-live time alone, since point 1 compares times. No midnight job has to succeed for new plans to be right.",
+    "9. The 120-day limit, checked at app open: a latest saved copy over 120 days behind a live Assumptions, Client groups or Funds change is refreshed on the inputs on file.",
+    "10. Pause, pull back, fix. Point 1 skips a paused change. Pull back refreshes, on the change before, every plan with an unaccepted update made on the paused change, and marks the old saved copy withdrawn. A fix is a new sent change; its rollout picks every plan whose current saved copy was made on the paused change.",
+    "11. Timing. A running refresh keeps the versions it read at its start. A client holding an update when it is pulled back sees the notice on the next screen. A draft moves onto the new version when its rule set's live version moves.",
+    "12. Blocks. An overdue annual confirmation blocks a refresh (Q04 on the board); a lapsed account is frozen. LQ43: whether a pushed update gets past an overdue confirmation.",
+    "Calls made while building on 8 Oct 2026, open to veto: what moves and when, answering \"19.2 becomes 18 or 22\"; a sent change's life, asked for on the call."
    ]
   },
   {
    "id": "t3",
-   "heading": "Cohorts as data",
+   "heading": "Client groups as data",
    "tables": [
     {
      "cols": [
@@ -285,42 +287,42 @@
      ],
      "rows": [
       [
-       "dimension",
-       "a name, the input field it reads, its bands with bounds",
-       "a cohorts draft; a new field needs an app release"
+       "grouping",
+       "a name, the input field it reads, its ranges and their bounds",
+       "a Client groups draft; a new field needs an app update"
       ],
       [
-       "band",
-       "a label and a range; the bands of a dimension tile its range",
-       "a cohorts draft; the score ranges of the risk band by a risk scoring draft"
+       "range",
+       "a label and bounds; a grouping's ranges cover it with no gap or overlap",
+       "a Client groups draft; risk score ranges: a Risk scores draft"
       ],
       [
-       "cohort map row",
-       "one band or \"any\" per dimension, and a portfolio",
-       "a cohorts draft"
+       "group table row",
+       "a range or \"any\" per grouping, and a mix",
+       "a Client groups draft"
       ],
       [
-       "model portfolio",
-       "a mix over six classes; the sleeve that fills each class",
-       "a cohorts draft"
+       "mix",
+       "a split over six investment types; the fund basket filling each",
+       "a Client groups draft"
       ],
       [
-       "sleeve",
-       "funds and weights for one class",
-       "a funds draft"
+       "fund basket",
+       "funds and their split for one investment type",
+       "a Funds draft"
       ]
      ]
     }
    ],
    "lines": [
-    "Resolving a goal: read the band of each dimension from the client's inputs; take the map rows that match on every dimension (a band or \"any\"); the row naming the most bands wins. Coverage is proved on the draft, so exactly one row always wins.",
-    "The coverage proof enumerates every combination of bands; the count is the product of the band counts: 3 x 3 = 9 at launch, 3 x 4 = 12 after REL07, 3 x 4 x 2 = 24 in the discarded draft. Twenty cohorts (the number guessed on the 7 Oct 2026 call) is two dimensions more finely cut, or three dimensions.",
-    "\"Any\" rows keep the map shorter than the cohort count: 7 rows for 9 cohorts, 10 for 12.",
-    "Portfolios are fewer than cohorts and sleeves fewer than portfolios, so a fund change is one edit however many cohorts exist.",
-    "A thin cohort is one with few goals in it; the preview marks them. A cut that the book cannot fill is a draft to discard (L03b).",
-    "History of one cohort is read from the cohorts lane's versions: the row that covered it and that row's portfolio in each release. No per-cohort version is stored.",
-    "What needs an app release: a dimension on a field the app does not yet ask for. LQ5 holds a ceiling on dimensions and bands.",
-    "The plan JSON contract (W03) carries cohort and portfolio per goal in every snapshot."
+    "Finding a goal's group: read its range in each grouping from the client's inputs; take the group table rows matching every grouping (a range or \"any\"); the row naming the most ranges wins. The no-gap check proves on the draft that exactly one row always wins.",
+    "The no-gap check walks every combination of ranges, the product of the range counts: 3 x 3 = 9 at launch, 3 x 4 = 12 after REL07, 3 x 4 x 2 = 24 in the discarded draft. Twenty groups (guessed on the 7 Oct 2026 call) means two groupings cut finer, or three groupings.",
+    "\"Any\" rows keep the group table shorter than the group count: 7 rows for 9 groups, 10 for 12.",
+    "Mixes are fewer than groups, and fund baskets fewer than mixes, so a fund change is one edit however many groups exist.",
+    "A small group has few goals; the trial run marks it. A cut the client base cannot fill is a draft to discard (L03b).",
+    "A group's history comes from the Client groups versions: the row covering it, and that row's mix, in each sent change. No version is stored per group.",
+    "Needs an app update: a grouping on a field the app does not yet ask for. LQ5: a ceiling on groupings and ranges.",
+    "The plan JSON contract (W03) carries each goal's group and mix (cohort, portfolio) in every saved copy."
    ]
   },
   {
@@ -338,31 +340,31 @@
      ],
      "rows": [
       [
-       "release",
-       "at publish",
-       "every value of the lane, the diff, who drafted, reviewed and published, why, the route, the preview, the signed note",
+       "sent change",
+       "when sent",
+       "every value of the rule set, what changed, who drafted, checked and sent it, why, how it reaches plans, the trial run, the signed note",
        "yes",
        "regulated",
-       "what logic was in force on a date, and why"
+       "which rules were in force on a date, and why"
       ],
       [
-       "snapshot",
-       "at every rebuild",
-       "the inputs used (id and hash), the as-of time, the five lane versions, the engine version, cohort and portfolio per goal, the outputs, the actions, the diff with causes, the size, what the client did",
+       "saved copy",
+       "at every refresh",
+       "inputs used (id and hash), as-of time, the five rule set versions, plan engine version, group and mix per goal, results, actions, what changed with reasons, size, what the client did",
        "yes",
        "regulated",
-       "what was this client advised on a date, and on which logic"
+       "what was this client advised on a date, and on which rules"
       ],
       [
        "PDF",
-       "for every snapshot a client was shown at first-plan, review or urgent size",
-       "the rendered plan, with the version of the copy",
-       "yes, under a lock in {I17}",
+       "for every saved copy shown at first-plan, to-accept or urgent size",
+       "the plan as shown, with the wording's version",
+       "yes, locked in {I17}",
        "regulated",
        "what did the client see"
       ],
       [
-       "reveal snapshot",
+       "saved first result",
        "at each sketch",
        "the two numbers, the assumptions version",
        "yes",
@@ -372,29 +374,29 @@
       [
        "interaction",
        "shown, read, accepted, seen, withdrawn, message, call",
-       "who, when, which snapshot, which channel and slot",
+       "who, when, which saved copy, channel and wording",
        "yes",
        "regulated",
-       "when did they see it and what did they do"
+       "when did they see it, and what did they do"
       ],
       [
-       "audit row",
-       "every write and every refused write on the panel",
-       "who, seat, when, what, before, after, reason, the second-factor check",
+       "log line",
+       "every write and refused write on the panel",
+       "who, role, when, what, before, after, reason, the fresh security check",
        "yes",
        "regulated",
        "who changed what"
       ],
       [
-       "draft, preview, review",
-       "during the workflow",
+       "draft, trial run, second check",
+       "while the change is worked on",
        "the tables below",
-       "frozen onto the release at publish",
+       "locked onto the sent change when sent",
        "operational",
-       "how a release came about"
+       "how a sent change came about"
       ],
       [
-       "incident, access review",
+       "incident, access check",
        "when made",
        "the tables below",
        "yes",
@@ -402,9 +404,9 @@
        "what went wrong; who had access"
       ],
       [
-       "monitor figures",
-       "derived",
-       "counts over snapshots and interactions",
+       "Watch and undo figures",
+       "counted when read",
+       "counts over saved copies and interactions",
        "no",
        "derived",
        "-"
@@ -412,42 +414,42 @@
      ]
     },
     {
-     "title": "Tables the app would hold (a proposal of what must be stored; the physical schema is Gaurav's and Spinach's)",
+     "title": "Tables the app would hold (proposed; Gaurav and Spinach set the physical schema)",
      "cols": [
       "table",
       "key fields"
      ],
      "rows": [
       [
-       "lanes",
+       "lanes (rule set versions)",
        "lane, version, release_id, live_from, live_to, paused_at"
       ],
       [
        "assumptions",
-       "version, key, label, value, unit, domain, route_default, hard_min, hard_max, soft_step, cadence, last_reviewed_at, next_due, used_in, rationale"
+       "version, key, label, value, unit, domain, route_default (how a change reaches plans), hard_min, hard_max, soft_step (big-jump warning), cadence, last_reviewed_at, next_due, used_in, rationale"
       ],
       [
-       "scoring",
+       "scoring (risk scores)",
        "version, band, score_from, score_to"
       ],
       [
-       "dimensions",
+       "dimensions (groupings)",
        "version, dimension_id, name, source_field, bands (id, label, lower, upper)"
       ],
       [
-       "model_portfolios",
-       "version, portfolio_id, name, mix (six classes), sleeves (one per class used), rationale_internal, rationale_client"
+       "model_portfolios (mixes)",
+       "version, portfolio_id, name, mix (six investment types), sleeves (one per type used), rationale_internal, rationale_client"
       ],
       [
-       "cohort_map",
-       "version, row_id, bands (a band id or \"any\" per dimension), portfolio_id, specificity"
+       "cohort_map (group table)",
+       "version, row_id, bands (a range id or \"any\" per grouping), portfolio_id, specificity"
       ],
       [
-       "sleeves",
+       "sleeves (fund baskets)",
        "version, sleeve_id, asset_class, funds (isin, weight), lead_fund"
       ],
       [
-       "instruments",
+       "instruments (fund master list)",
        "isin, name, asset_class, category, min_sip, exit_load_months, status (approved, hold, exit, retired), rationale_internal, rationale_client"
       ],
       [
@@ -456,50 +458,50 @@
       ],
       [
        "holding_classes",
-       "isin, class (known and not approved, legacy hold, unknown), release_id, facts added by ops"
+       "isin, class (known and not approved, legacy hold, unknown), release_id, facts added by Ops"
       ],
       [
-       "market_inputs",
-       "release_id (MI00 to MI15), month, values, rule_outcome (thresholds and buffers are assumptions rows)"
+       "market_inputs (market readings)",
+       "release_id (MI00 to MI15), month, values, rule_outcome (lines and cushions are assumptions rows)"
       ],
       [
-       "guards",
+       "guards (mix limits)",
        "version, lane, key, value"
       ],
       [
        "drafts",
-       "draft_id, lane, based_on, opened_at, author, items (row, from, to, rationale), validation (check, result, reason), proposal (route, effective_at, reason slot, letter), state history, rebased_at, discarded_at"
+       "draft_id, lane, based_on, opened_at, author, items (row, from, to, rationale), validation (check, result, reason), proposal (sending plan: route, effective_at, reason slot, letter), state history, rebased_at, discarded_at"
       ],
       [
-       "previews",
+       "previews (trial runs)",
        "preview_id, draft_id, run_at, seconds, the ten panels of L05"
       ],
       [
-       "reviews",
+       "reviews (second checks)",
        "draft_id, reviewer, at, outcome, comment, panels_opened, compliance_ack (who, at)"
       ],
       [
-       "releases",
-       "release_id, lane, version, author, reviewer, publisher, drafted_at, reviewed_at, published_at, effective_from, route, urgency, wave_plan, reason_internal, reason_client_slot, letter, signed_at, second_factor_at, status, paused_at, withdrawn_at, corrects, preview_id, ratify_due, ratified_by, ratified_at"
+       "releases (sent changes)",
+       "release_id, lane, version, author, reviewer, publisher, drafted_at, reviewed_at, published_at, effective_from, route, urgency, wave_plan (batches), reason_internal, reason_client_slot (the reason clients read), letter, signed_at, second_factor_at, status, paused_at, withdrawn_at, corrects, preview_id, ratify_due, ratified_by, ratified_at"
       ],
       [
        "urgent_requests",
        "request_id, isin, asked_by, asked_at, outcome (placed, declined), decided_by, decided_at, reason"
       ],
       [
-       "calendar",
+       "calendar (review dates)",
        "item_id, lane or row, cadence, opens_at, due, done_at, outcome (changed, no change), signed_by"
       ],
       [
        "sample_plans",
-       "persona_id, release_id, generated_at, as-of line"
+       "persona_id (example client), release_id, generated_at, as-of line"
       ],
       [
-       "staff_seats",
+       "staff_seats (staff roles)",
        "staff_id, label, seats, status (active, suspended, revoked), added_by, added_at, acknowledged_by, last_sign_in, ended_at"
       ],
       [
-       "access_reviews",
+       "access_reviews (access checks)",
        "review_id, at, by, rows (staff_id, last_sign_in, writes since last review, outcome)"
       ],
       [
@@ -507,7 +509,7 @@
        "incident_id, release_id, opened_at, by, what happened, who was reached, what was done"
       ],
       [
-       "audit",
+       "audit (the log)",
        "at, staff_id, seat, action, object, before, after, reason, refused (true or false), second_factor (true or false)"
       ],
       [
@@ -519,19 +521,19 @@
        "inputs_id, person_id, at, why (first plan, review, life event, annual, staff edit), monthly_surplus, investable_corpus, the goal list as it stood, hash"
       ],
       [
-       "reveal_snapshots",
+       "reveal_snapshots (saved first results)",
        "person_id, at, the two numbers at 50 and at 65, assumptions version, saved"
       ],
       [
-       "snapshots",
-       "snapshot_id, person_id, built_at, trigger (initial, review, life_event, sharpen, annual, retake, staff_edit, forced_rerun, push, stale_open, withdraw, correction), lane versions (risk scoring as of the last questionnaire), engine_version, inputs_id, as_of, per goal: cohort, portfolio, pot, required, deployed, funded share; per sleeve: amount and the funds version its split was last restated on; instalment per fund; actions (isin, kind, from, to, flag); size; cause per line (with the release where the cause is house view); bytes (data, pdf); shown_at, read_at, accepted_at or seen_at, withdrawn_at, superseded_by, in_force (true or false), status"
+       "snapshots (saved copies)",
+       "snapshot_id, person_id, built_at, trigger (initial, review, life_event, sharpen, annual, retake, staff_edit, forced_rerun, push, stale_open, withdraw, correction), lane versions (risk scores as of the last questionnaire), engine_version, inputs_id, as_of, per goal: cohort, portfolio, pot, required, deployed, funded share; per sleeve: amount, and the funds version its split was last restated on; instalment per fund; actions (isin, kind, from, to, flag); size; cause per line (naming the sent change when the cause is house view); bytes (data, pdf); shown_at, read_at, accepted_at or seen_at, withdrawn_at, superseded_by, in_force (true or false), status"
       ],
       [
        "interactions",
        "person_id, at, kind (shown, read, accepted, seen, withdrawn_notice, message, call_task, call_done, ticket, order_not_offered, rebuild_blocked), release_id, snapshot_id, channel, slot, reason"
       ],
       [
-       "letters",
+       "letters (emails)",
        "release_id, queued_at, queued_by, sent_at, slot, recipients"
       ],
       [
@@ -546,91 +548,91 @@
     }
    ],
    "lines": [
-    "Store the output, do not promise to recompute it: the engine version and the copy both change between the day of the advice and the day of the question.",
-    "A hash on every snapshot and release. The app's own database role can insert into the record tables (the first table) and cannot update or delete them (logic plan, 8 Oct 2026).",
-    "Retention classes (logic plan, 8 Oct 2026): regulated (kept as the Retention row of the nine records says; LQ24), operational (to be decided: how long), derived (rebuildable; not kept). A deletion request (S25) leaves regulated records in place.",
-    "Drill-downs the screens need: by client (L15: every snapshot in order, or the one in force on a date); by release (L11, L08: every plan built on it, what each client was shown and did); by date (L08: the live version of every lane that day); by fund (L04: who was advised into it and still runs a SIP); by cohort (L03: its history).",
-    "Which system holds the snapshot of record is LQ17; the proposal is the app.",
-    "Sizes: per plan holder a year, 8 snapshots x 60 KB plus 5 PDFs x 400 KB, about 2.5 MB. Per year: 2.5 GB at 1,000 plan holders, 25 GB at 10,000, 250 GB at 100,000; kept five years or more, five times that (LQ28).",
-    "The sizes are example figures: typed and illustrative, not evidence (logic plan, 8 Oct 2026)."
+    "Store the result; never promise to work it out again: the plan engine version and the wording both change between the day of the advice and the day of the question.",
+    "A hash on every saved copy and sent change. The app's database role can insert into the record tables (the first table) but never update or delete.",
+    "Retention by class: regulated, as the nine records' Retention row says (LQ24); operational, to be decided: how long; derived, not kept (it can be worked out again). A deletion request (S25) leaves regulated records in place.",
+    "Look-ups the screens need: by client (L15: every saved copy in order, or the current one on a date); by sent change (L11, L08: every plan made on it, what each client was shown and did); by date (L08: each rule set's live version that day); by fund (L04: who was advised into it and still runs a SIP); by client group (L03: its history).",
+    "Which system holds the saved copy of record: LQ17 (proposed: the app).",
+    "Sizes per client a year: 8 saved copies x 60 KB plus 5 PDFs x 400 KB, about 2.5 MB. A year: 2.5 GB at 1,000 clients, 25 GB at 10,000, 250 GB at 100,000; five times that when kept five years or more (LQ28).",
+    "Calls made while building (logic plan, 8 Oct 2026), open to veto: hashes and an insert-only database role; three retention classes; sizes typed as examples, not evidence."
    ]
   },
   {
    "id": "t5",
-   "heading": "What {I04} must do",
+   "heading": "What the plan engine ({I04}) must do",
    "tables": [
     {
      "cols": [
-      "the engine must",
+      "the plan engine must",
       "why",
       "open item"
      ],
      "rows": [
       [
-       "take the logic values with each run, or say which lane versions it ran on",
-       "the pin and the versions must have one home",
+       "take the rule values with each run, or say which versions it ran on",
+       "a plan's versions need one home",
        "LQ17"
       ],
       [
-       "run on a stored input snapshot, not only on live client data",
-       "previews, withdraws and corrections run old inputs again",
+       "run on stored inputs, not only live client data",
+       "trial runs, pull-backs and fixes rerun old inputs",
        "LQ18"
       ],
       [
        "take an as-of time",
-       "a correction and a dry run are dated",
+       "fixes and trial runs are dated",
        "LQ18"
       ],
       [
-       "run as a dry run that writes nothing",
-       "the preview",
+       "run as a trial that writes nothing",
+       "the trial run",
        "LQ18"
       ],
       [
        "run a batch of clients, several at once",
-       "a preview over every active plan; a push",
+       "a trial run over every active plan; a push",
        "LQ27"
       ],
       [
        "take a key that makes a repeated run harmless",
-       "a retried push must not build twice",
+       "a retried push must not make a plan twice",
        "-"
       ],
       [
        "return its own version",
-       "stamped on every snapshot",
+       "stamped on every saved copy",
        "W03"
       ],
       [
-       "return cohort and portfolio per goal, the instalment per fund, the actions",
-       "the snapshot's contents",
+       "return each goal's group and mix, the instalment per fund, the actions",
+       "what a saved copy holds",
        "W03"
       ],
       [
        "not recalculate when a plan is only read",
-       "rule 19",
+       "plan screens only read the saved copy",
        "LQ18"
       ],
       [
        "say what it does with an amount under a fund's minimum SIP",
-       "conflicts in the preview",
+       "rule breaks in the trial run",
        "LQ44"
       ],
       [
-       "refresh every client's copy without a person doing it client by client",
+       "refresh every client's copy without a person going client by client",
        "a thousand clients cannot be edited by hand (7 Oct 2026 call)",
        "LQ17"
       ],
       [
-       "say whether one client's values can differ from the lane's, and who may do that",
-       "a client-wise change is possible today",
+       "say whether one client's values can differ from the rule set's, and who may do that",
+       "a change for one client is possible today",
        "LQ32"
       ]
      ]
     }
    ],
    "lines": [
-    "Said on the 7 Oct 2026 call, to be verified: the engine keeps central values as defaults, copies them to each client, lets one client's copy be changed, and recalculates a client at that client's review. That holds a client's numbers steady between reviews, which is the aim of rule 2. Whether the review then reads the central value of the day or the client's copy was said both ways (LQ18). What is open is the list above."
+    "Said on the 7 Oct 2026 call, to be verified: the plan engine keeps central values as defaults, copies them to each client, lets one client's copy be changed, and recalculates a client at their review. That holds numbers steady between reviews, which is the aim. Whether the review reads the day's central value or the client's copy was said both ways (LQ18). The table lists what is open."
    ]
   },
   {
@@ -647,49 +649,49 @@
      ],
      "rows": [
       [
-       "preview",
+       "preview (trial run)",
        "the author, on L05",
-       "a dry run of the draft against every active plan; frozen onto the release at publish",
+       "tests the draft on every active plan, changing none; locked onto the sent change when sent",
        "one at a time: 25 minutes / 4.2 hours / 41.7 hours; twenty at a time: 1.3 minutes / 12.5 minutes / 2.1 hours",
-       "cancel and rerun; a plan that fails is listed as a conflict"
+       "stop and rerun; a failing plan is listed as a rule break"
       ],
       [
        "rollout",
-       "a pushed release",
-       "rebuilds the plans its route selects, by the wave plan",
-       "by the wave plan",
+       "a change pushed now",
+       "refreshes the plans the change picks, in batches",
+       "set by the batches",
        "retry per client; pause and resume"
       ],
       [
-       "surfaces",
-       "a release's effective time",
-       "regenerates the assumption lines and the sample plans",
+       "surfaces (what clients read)",
+       "a sent change's go-live",
+       "refreshes the assumption lines and sample plans",
        "a handful of plans",
        "the old version stays up until the new one is good"
       ],
       [
-       "withdraw",
+       "withdraw (pull back)",
        "the Principal officer, on L11",
-       "rebuilds on the release before",
+       "refreshes on the change before",
        "small",
        "retry per client"
       ],
       [
-       "correction",
-       "a correction's publish",
-       "rebuilds every plan built on the paused release",
+       "correction (fix)",
+       "sending a fix",
+       "refreshes every plan made on the paused change",
        "small",
        "as rollout"
       ],
       [
-       "stale check",
+       "stale_check (120-day limit)",
        "each app open",
-       "rebuilds one plan past the cap",
+       "refreshes one plan past the limit",
        "one plan",
-       "the open goes ahead on the old plan; tried again at the next open"
+       "the app opens on the old plan; retried at the next open"
       ],
       [
-       "register export",
+       "export (advice register)",
        "Principal officer, Compliance",
        "writes the advice register for a period",
        "-",
@@ -699,28 +701,28 @@
     }
    ],
    "lines": [
-    "Run time uses 1.5 seconds a plan (assumption; LQ27).",
-    "The run times are example figures: typed and illustrative, not evidence (logic plan, 8 Oct 2026).",
-    "to be decided: a quick preview on a fixed sample of plans and the six personas while editing, and the full run before submit (with LQ27)."
+    "Run times assume 1.5 seconds a plan (LQ27).",
+    "to be decided: a quick trial run on a fixed sample of plans and the six example clients while editing, then the full run before submit (with LQ27).",
+    "Calls made while building (logic plan, 8 Oct 2026), open to veto: run times typed as examples, not evidence."
    ]
   },
   {
    "id": "t7",
    "heading": "What the app does at run time",
    "lines": [
-    "No new order is made for a fund on Hold or at Exit from the publish moment (E03 and E11 as drawn; if execution leaves the app through a link, the fund is left out of the portfolio the link carries; LQ36). A running instalment is never stopped by the app on its own.",
-    "A rebuild reads the live version of each lane at its start and never mixes two versions of one lane; a paused release is skipped; a scheduled release is live from its effective time, not before.",
-    "Plan screens read the stored snapshot (rule 19). \"Assumptions as of <date>\" is printed from the snapshot.",
-    "The saved reveal and its nudges read the stored reveal snapshot (rule 21)."
+    "From the moment a hold or an exit is sent, no new order is made for that fund (E03 and E11 as drawn). If orders leave the app through a link, the link's fund list leaves it out (LQ36).",
+    "The app never stops a running instalment on its own.",
+    "A refresh never mixes two versions of one rule set.",
+    "Plan screens print \"Assumptions as of <date>\" from the saved copy; the saved first result and its nudges read the stored first result."
    ]
   },
   {
    "id": "t8",
    "heading": "Events out, one way",
    "lines": [
-    "To {I14}: plan_updated with its size and causes; update_accepted; update_seen (new, for an outlook); update_withdrawn (new); the call task for an urgent update not accepted.",
-    "To {I13}: the same, and the panel's own view and write events.",
-    "The letter is sent from {I14} to a list the app supplies. No event carries a logic value."
+    "To {I14}: plan_updated, with size and reasons; update_accepted; update_seen (new; for a picture-moved update); update_withdrawn (new); the call task for an urgent update not accepted.",
+    "To {I13}: the same, plus the panel's own view and write events.",
+    "The email goes from {I14} to a list the app supplies. No event carries a rule value."
    ]
   },
   {
@@ -728,7 +730,7 @@
    "heading": "Launch and later, failure cases, open items",
    "tables": [
     {
-     "title": "Launch and later (logic plan, 8 Oct 2026; the answer to \"overkill\"; LQ37)",
+     "title": "Launch and later (LQ37)",
      "cols": [
       "piece",
       "at launch",
@@ -737,153 +739,154 @@
      ],
      "rows": [
       [
-       "lane versions and frozen releases",
+       "rule set versions; locked sent changes",
        "yes",
        "",
-       "a plan built without them can never be explained"
+       "without them a plan can never be explained"
       ],
       [
-       "the pin: lane versions on every snapshot; a rebuild reads the live versions",
+       "versions stamped on every saved copy; a refresh reads the live ones",
        "yes",
        "",
-       "this is what stops the shock"
+       "this stops the shock of a plan changing on its own"
       ],
       [
-       "a snapshot per rebuild; a PDF for every first plan and every update shown at review or urgent size",
+       "a saved copy per refresh; a PDF for every first plan and every to-accept or urgent update shown",
        "yes",
        "",
        "the record of advice"
       ],
       [
-       "an audit row per write and per refused write",
+       "a log line per write and per refused write",
        "yes",
        "",
        ""
       ],
       [
-       "seats, server checks, two people on a release, a second factor at publish",
+       "roles, server checks, two people per sent change, a fresh security check to send",
        "yes",
        "",
        ""
       ],
       [
-       "validation hard stops: sums, coverage, limits, guards",
+       "blocking checks: sums, the no-gap check, limits, mix limits",
        "yes",
        "",
-       "a wrong value must not be publishable"
+       "a wrong value must never be sendable"
       ],
       [
-       "preview panels a, b, d, e, f, g, h: reach, the size split, actions, conflicts, the reference personas, one client by id, surfaces",
+       "trial run panels a, b, d, e, f, g, h: reach, update sizes, actions, rule breaks, example clients, one client by id, what clients read",
        "yes",
        "",
-       "the operator must see the effect before signing"
+       "staff must see the effect before signing"
       ],
       [
-       "preview panels c, i, j: distributions and the migration matrix, the load under each route, recent joiners",
+       "trial run panels c, i, j: distributions and mix-to-mix moves, the load for each way of sending, recent joiners",
        "",
        "yes",
        "more views over the same batch run"
       ],
       [
-       "routes: quiet; Hold, routine and urgent; correction; a scheduled release",
+       "ways to send: at the next refresh; a hold, routine or urgent; a fix; set for a date",
        "yes",
        "",
        ""
       ],
       [
-       "route: Exit, with staged sells",
+       "an exit, with sells in stages",
        "",
        "yes",
-       "Hold is the default; the first Exit can wait for it"
+       "a hold is the default; the first exit can wait for it"
       ],
       [
-       "release monitor: counts, failures, the biggest movers, pause, withdraw, correct",
+       "Watch and undo: counts, failures, biggest movers, pause, pull back, fix",
        "yes",
        "",
        "pause is the only brake"
       ],
       [
-       "release monitor: curves",
+       "Watch and undo: curves",
        "",
        "yes",
        "views"
       ],
       [
-       "release register and audit rows; export",
+       "record of sent changes and the log; export",
        "yes",
        "",
        ""
       ],
       [
-       "versions in use as of a date; history of one cohort or one row",
+       "versions in use on a past date; history of one client group or one row",
        "",
        "yes",
-       "read from stored releases"
+       "read from stored sent changes"
       ],
       [
-       "add a band, a map row, a portfolio as data",
+       "add a range, a group table row, a mix as data",
        "yes",
        "",
        ""
       ],
       [
-       "add a dimension as data",
+       "add a grouping as data",
        "",
        "yes",
        "the tables carry it from day one; the editor can follow"
       ],
       [
-       "review calendar",
+       "review dates",
        "",
        "yes",
        "at launch the due items sit on Home"
       ],
       [
-       "staff and seats",
+       "staff and roles",
        "yes",
        "",
        ""
       ],
       [
-       "the access review as a screen",
+       "the access check as a screen",
        "",
        "yes",
-       "a list and the audit rows serve at first"
+       "a list and the log serve at first"
       ],
       [
        "client plan history for staff (L15)",
        "yes",
        "",
-       "advisers and support need it from the first update"
+       "Advisers and Support need it from the first update"
       ],
       [
-       "the stale cap",
+       "the 120-day limit",
        "by day 120",
        "",
        "nothing is 120 days behind before then"
       ],
       [
-       "the letter",
+       "the email",
        "yes",
        "",
-       "an email slot and a list, not a build"
+       "wording to come and a list; nothing to build"
       ]
      ]
     }
    ],
    "lines": [
-    "The line is drawn by one question: can it be added afterwards without losing anything. A version that was never stamped on a plan cannot be recovered; a chart over stored rows can be drawn any day.",
-    "Failure cases that touch tech, each with what the system should do (logic plan, 8 Oct 2026):",
-    "The failed rebuild in a rollout: the job retries that client; it is idempotent per client and release, so a retry never builds twice; the failure is listed per client on L11, and the rollout can be paused and resumed.",
-    "The rebuild during a pause: a rebuild that starts after the pause skips the paused release and uses the one before it; a rebuild in flight keeps the versions it read at its start.",
-    "gap, to be decided: whether a withdraw or a correction waits for rebuilds still running",
-    "The update withdrawn while open: the client sees the notice on the next screen; the update is replaced by a rebuild on the release before, keeping the client's own changes; the old snapshot is marked withdrawn and plan history reads \"an update was withdrawn\".",
-    "The three releases picked up at once: one rebuild reads the live version of every lane at its start and writes one snapshot. Risk scoring is the one exception: a rebuild reads it as of the client's last questionnaire (rule 10), and the snapshot is stamped with that version. The diff is drawn against the snapshot in force with a cause on every line, naming the release where the cause is house view; an update still waiting is superseded.",
-    "The stale-cap rebuild: checked when the app opens; a plan more than the cap behind a live assumptions, cohorts or funds release is rebuilt on the inputs on file; if the rebuild fails, the open goes ahead on the old plan and it is tried again at the next open.",
-    "The blocked rebuild: an overdue annual confirmation blocks a rebuild (Q04 on the board), and a lapsed account is frozen and rebuilds on return; the block is stored as an interaction (rebuild_blocked) and listed on L08 and L15; LQ43 holds whether a pushed update gets through an overdue confirmation.",
-    "The revoked session: it ends at once; the server checks the seat on every request, not only at sign-in, so the next request is refused, and a refused write is an audit row.",
-    "The rebased draft: when its lane's live version moves (an urgent Hold), the draft is rebased and its validation and preview run again before it can be reviewed.",
-    "The first plan between publish and effective time: it is built on the live versions, since a scheduled release is live from its effective time, not before, and it takes the release like any existing plan; LQ21 holds whether such a plan uses the scheduled values."
+    "Launch or later turns on one question: can it be added afterwards without losing anything? A version never stamped on a plan cannot be recovered; a chart over stored rows can be drawn any day.",
+    "Failure cases, and what the system does:",
+    "A refresh fails in a rollout: the job retries that client; L11 lists each failure by client.",
+    "A refresh during a pause: one starting after it uses the change before; one already running keeps the versions it read at its start.",
+    "gap, to be decided: whether a pull-back or a fix waits for refreshes still running",
+    "An update pulled back while open: the notice shows on the next screen; a refresh on the change before replaces it, keeping the client's own changes; plan history reads \"an update was withdrawn\".",
+    "Three sent changes picked up at once: one refresh reads every live version at its start and writes one saved copy (risk scores: as of the last questionnaire). What changed is drawn against the current saved copy, a reason on every line; a house-view reason names its sent change. An update still waiting is superseded.",
+    "A refresh past the 120-day limit fails: the app opens on the old plan and tries again at the next open.",
+    "A blocked refresh (How a change reaches a plan, point 12): a lapsed account refreshes on return; the block is stored as an interaction (rebuild_blocked) and listed on L08 and L15.",
+    "A revoked session ends at once: the next request is refused and logged.",
+    "A draft whose rule set moves (an urgent hold, say): it moves onto the new version, and its checks and trial run rerun before the second check.",
+    "A first plan made between sending and go-live: it uses the live versions, then takes the change like any existing plan. LQ21: whether it should use the new values.",
+    "Calls made while building (logic plan, 8 Oct 2026), open to veto: the failure cases and what the system does; the launch and later split, answering \"overkill\"."
    ],
    "open_items": [
     "LQ9",

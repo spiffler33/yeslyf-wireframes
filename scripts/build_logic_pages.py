@@ -36,9 +36,8 @@ GENERIC_VENDOR_LABELS = {"internal", "internal (Spinach)", "not decided"}
 # renderer_v02.js:19's list minus Spinach (logic plan, 8 Oct 2026): the Tracker lists every comment under the identity Spinach on any page on docs/review/tracker.html, the link Spinach has; section 0 and 12.0 keep the logic work off that link until the merge (the Logic tab gets the same change in its A0 fix).
 IDENTITIES = ["Bhuvanaa", "Harish", "Gaurav", "Kajal", "Somil", "Raafiya", "Vatsal", "Compliance"]
 # The Logic tab's banner, word for word (plan 12.1 step 2).
-BANNER = ("side wireframes: proposed, not yet merged into Wireframes v0.2. The design is proposed, to be confirmed at the "
-          "logic panel review (to be decided: the review date). Every logic value is a rehearsal value and every count a "
-          "typed example.")
+BANNER = ("Proposed, not yet agreed, and not yet part of Wireframes v0.2. To be decided: the date of the logic panel review. "
+          "Every number is a made-up example.")
 
 EXTRA_CSS = """
   .banner{padding:6px 18px;background:var(--accent-soft);border-bottom:1px solid #C9A800;font-size:12.5px}
