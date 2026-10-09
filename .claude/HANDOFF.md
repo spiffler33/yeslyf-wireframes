@@ -8,9 +8,13 @@ cell in the code, no "any" rows); L03a and L03b follow it. Write actions and 10 
 Nothing is pushed. The map artifact (https://claude.ai/artifact/4Pvm3fga2vJzSj8udHLsYS, version 8) shows all of it.
 
 ## Next action
-Vatsal shares the map with Somil (Share menu) and collects their word changes; a changed word goes into the glossary
-first, then the same kind of pass. Pushing the board is a separate yes: first the review-link point below. Small
-leftovers: W03 (the plan JSON contract, main board) may still say cohort and portfolio; L05 keeps 10 side notes.
+Pushed 9 Oct 2026 (bb0ab8b, 32 commits): the logic work is live at
+https://spiffler33.github.io/yeslyf-wireframes/logic_wireframes.html (and its four pages), shared by direct link. The
+Logic panel tab and its Changelog rows are hidden from the board until the merge into Wireframes v0.2 (Vatsal's call,
+to keep it off Spinach's review link); un-hide both in scripts/build_site.py (TABS and the changelog sources) at the
+merge. Vatsal shares the map and the board link with Somil and collects word changes: a changed word goes into the
+glossary first, then one pass. Small leftovers: W03 (main board) may still say cohort and portfolio; L05 keeps 10 side
+notes.
 To rebuild the map: Artifact action "read" returns its full HTML, with the map content (TREE), the screens (SCREENS)
 and the pages (PAGES: four pages and the glossary) embedded. Take TREE from it and rebuild the rest
 from data/logic_*.json (the glossary page from data/logic_glossary.json), and publish to the same URL.
@@ -48,8 +52,7 @@ The word list the screens now use is the map's "Word decoder" room.
 - `python3 scripts/build_site.py`, then check_phase9.py 19 PASS, check_site.py 3 PASS, check_logic.py 9 PASS.
 
 ## Still open from the run (do not lose)
-- Before any push: the review link's tracker links to three board pages that now carry the Logic panel tab, so a
-  review-link reader would be two clicks from the logic work.
+- Resolved 9 Oct 2026: the Logic panel tab is hidden until the merge, so Spinach's review link no longer reaches it.
 - Owed by Vatsal: whether the seats stay "Principal officer 01" and "Logic analyst 01"; whether a state is missing
   from the 39; vetoes of the "logic plan, 8 Oct 2026" calls; an explicit OK on check_logic.py's "LQ" plus digits scan
   (the no-pattern rule); the logic panel review date. Full list: PLAN.md section 27.
