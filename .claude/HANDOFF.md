@@ -1,16 +1,19 @@
-# Handoff - 9 Oct 2026 (unit closed: the logic panel side wireframes built; next, explain them in plain words)
+# Handoff - 9 Oct 2026 (the logic screens are in plain words; the zoomable map links them)
 
-State: PLAN_logic_panel_v03.md phases A0 to C2 are built and committed on main (c0011a7 to e320e9e, plus this
-close), not pushed. Vatsal found the result far too complicated to follow or to explain to others, including design
-partners who are not technical (9 Oct 2026). Phase D, his look, waits until he understands it.
+State: PLAN_logic_panel_v03.md phases A0 to C2 are built (c0011a7 to e320e9e). On 9 Oct 2026 the 39 logic screens
+were rewritten in plain words (b1454d7): titles, drawings and side notes. Coined words were replaced, plan
+references and inline markers cut, and each screen's "(logic plan, 8 Oct 2026)" calls kept in one dev line.
+Nothing is pushed. The artifact "Logic panel in plain words" (https://claude.ai/artifact/4Pvm3fga2vJzSj8udHLsYS,
+version 2) is the zoomable map: one line, six parts, rooms, details. Every screen id on it opens its drawing.
 
 ## Next action
-Start by EXPLAINING, not changing anything. Top-down, in plain words, short answers:
-1. What this is, in two sentences.
-2. The parts and what each one does (the map below), and how they connect.
-3. Then one part ("room") at a time, as Vatsal picks them.
-Only after that: make the wording much simpler and the structure clearer, for him and for non-technical partners.
-Expect wording and navigation changes, not a rebuild. Ask before rebuilding anything.
+Vatsal reads the map and the screens. Then, as he picks:
+1. A harder cut on screens that still feel heavy. The rewrite kept every table row; the text is only 3% shorter.
+2. The same plain words on the four other pages (tech, access, walkthroughs, ops), which still use the old words.
+3. Phase D: his look, the nav fold, the two questions, the push.
+To rebuild the map: Artifact action "read" returns its full HTML, with the map content (TREE) and the screens
+(SCREENS) embedded. Take TREE from it, rebuild SCREENS from data/logic_screens.json, and publish to the same URL.
+The word list the screens now use is the map's "Word decoder" room.
 
 ## The map, in plain words (use this to explain; check details in the files only when asked)
 - What it is: the logic panel is the back-office screen where two staff seats change the rules the app uses to build
