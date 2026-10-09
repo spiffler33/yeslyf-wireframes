@@ -243,9 +243,8 @@ def validate_logic_screens(doc, wireframe_ids, vendor_names, templates, reasons,
 def build_page(doc, reasons):
     who = '<div class="who">Reviewing as <select id="reviewer"></select></div>'
     bar = ('<div class="bar">' + site.logic_subnav("logic_wireframes.html") + '</div>\n'
-           '<div class="banner">side wireframes: proposed, not yet merged into Wireframes v0.2. The design is proposed, '
-           'to be confirmed at the logic panel review (to be decided: the review date). Every logic value is a rehearsal '
-           'value and every count a typed example.</div>\n')
+           '<div class="banner">Proposed, not yet agreed, and not yet part of Wireframes v0.2. To be decided: the date '
+           'of the logic panel review. Every number is a made-up example.</div>\n')
     layout = site.WIRE_LAYOUT
     wire_opts = {"page": "logic_wireframes", "key": "yeslyf_logic_wire_v01", "version": "logic side v0.1",
                  "exportTitle": "# yeslyf logic panel side wireframes - review comments",

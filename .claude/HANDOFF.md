@@ -57,3 +57,9 @@ Expect wording and navigation changes, not a rebuild. Ask before rebuilding anyt
   "to be decided: <item>" with no name. Commits carry no AI attribution line; never push without Vatsal's word.
 - Untracked on purpose (never commit): inputs/spinach/admin panel/, inputs/spinach/kajal-admin panel/,
   inputs/spinach/2026-09-25/, the two inputs/meeting/ files, the two seed CSV zips at the repo root.
+
+## Later, not now: the architecture breakdown skill (Vatsal, 9 Oct 2026)
+Vatsal wants the zoomable plain-words map (artifact "Logic panel in plain words",
+https://claude.ai/artifact/4Pvm3fga2vJzSj8udHLsYS) turned into a reusable skill for learning any repo. He opted in to
+building it with a Workflow, later: not before the logic panel language work is done and he confirms the timing.
+Design notes: memory architecture-breakdown-skill.
