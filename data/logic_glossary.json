@@ -1,0 +1,303 @@
+{
+ "source": "Vatsal, 9 Oct 2026",
+ "status": "draft: the Principal officer and the Logic analyst confirm each word",
+ "note": "One word per idea, used the same way on the logic screens, the logic pages and in the code (tables, fields, jobs, events), so nothing needs translating later. Words come from the ones the people on the panel already use. 'replaces' lists the older words they take over from. To be decided: whether version ids follow the new names (co-N for Allocation).",
+ "groups": [
+  {
+   "group": "The rules",
+   "terms": [
+    {
+     "term": "Rule set",
+     "means": "One of the five parts of the logic that change together and carry a version: Assumptions, Allocation, Funds, Risk profiling, Market inputs.",
+     "code": "rule_set",
+     "replaces": "lane; rule set"
+    },
+    {
+     "term": "Version",
+     "means": "A numbered state of one rule set, such as fu-4 (Funds, version 4). Every plan records the versions it was built on.",
+     "code": "rule_set_version",
+     "replaces": "as-N, co-N, fu-N, rs-N, MI-N"
+    },
+    {
+     "term": "Assumptions",
+     "means": "Expected returns per asset class, inflation, income growth, life expectancy and the planning rules.",
+     "code": "assumption",
+     "replaces": "assumptions lane; growth guesses"
+    },
+    {
+     "term": "Expected return",
+     "means": "The yearly return assumed for an asset class, such as equity 11.0 percent.",
+     "code": "expected_return",
+     "replaces": "-"
+    },
+    {
+     "term": "Risk profile",
+     "means": "Conservative, Moderate or Aggressive, set by the risk profiling score.",
+     "code": "risk_profile",
+     "replaces": "risk band; risk level"
+    },
+    {
+     "term": "Risk profiling score",
+     "means": "The questionnaire score. Score ranges map it to a risk profile: Conservative 8 to 15, Moderate 16 to 24, Aggressive 25 to 32.",
+     "code": "risk_score",
+     "replaces": "risk scoring lane; risk scores; score ranges"
+    },
+    {
+     "term": "Horizon bucket",
+     "means": "Years to a goal: Short (up to 1), Medium (1 to 3), Long (over 3). Very long (over 7) is the example of adding one.",
+     "code": "horizon_bucket",
+     "replaces": "band; range; horizon"
+    },
+    {
+     "term": "Allocation matrix",
+     "means": "The grid of risk profile by horizon bucket. Each cell names one model portfolio.",
+     "code": "allocation_matrix",
+     "replaces": "cohort map; cohort; client group; group table; dimension; grouping"
+    },
+    {
+     "term": "Model portfolio",
+     "means": "A target split across the six asset classes, MP1 to MP9.",
+     "code": "model_portfolio",
+     "replaces": "mix"
+    },
+    {
+     "term": "Asset class",
+     "means": "Liquid, debt, hybrid, commodities, equity, REITs and InvITs.",
+     "code": "asset_class",
+     "replaces": "investment type; class"
+    },
+    {
+     "term": "Sub-asset class",
+     "means": "A part of an asset class with its own funds: liquid, debt near, debt far, hybrid, commodities, equity core.",
+     "code": "sub_asset_class",
+     "replaces": "sleeve; fund basket; basket"
+    },
+    {
+     "term": "Fund",
+     "means": "A mutual fund scheme, known by its ISIN.",
+     "code": "fund (isin)",
+     "replaces": "product; instrument"
+    },
+    {
+     "term": "Fund weights",
+     "means": "How a sub-asset class splits across its approved funds, such as 53/29/18. The largest is the lead fund.",
+     "code": "fund_weight",
+     "replaces": "weights; split; main fund"
+    },
+    {
+     "term": "Fund status",
+     "means": "Approved, Hold (no fresh money, units kept) or Exit (sell).",
+     "code": "fund_status",
+     "replaces": "-"
+    },
+    {
+     "term": "Limits",
+     "means": "Equity cap per risk profile (30, 80, 100 percent), max weight per fund (60 percent, in a sub-asset class of more than one fund), minimum SIP (Rs 500).",
+     "code": "equity_cap; max_fund_weight; min_sip",
+     "replaces": "guard; constraint; safety limits; mix limit; fund limit"
+    },
+    {
+     "term": "Market inputs",
+     "means": "Nifty PE, 10-year G-sec yield, repo rate and FD rate, entered monthly.",
+     "code": "market_input",
+     "replaces": "market readings"
+    },
+    {
+     "term": "Deployment rule",
+     "means": "From the Nifty PE: invest at once below 18, stagger over 6 months from 18 to 25, stagger more above 25. A buffer of 1 PE point stops it flipping.",
+     "code": "deployment_rule; pe_threshold; buffer",
+     "replaces": "market rule; line; cushion"
+    },
+    {
+     "term": "Review frequency",
+     "means": "How often each rule set is reviewed: Assumptions, Allocation and Risk profiling yearly, Funds quarterly, Market inputs monthly.",
+     "code": "review_frequency",
+     "replaces": "cadence; review dates"
+    }
+   ]
+  },
+  {
+   "group": "Making a change",
+   "terms": [
+    {
+     "term": "Draft",
+     "means": "Unpublished changes to one rule set. One open draft per rule set.",
+     "code": "draft",
+     "replaces": "-"
+    },
+    {
+     "term": "Checks",
+     "means": "Automatic checks on a draft. A failure blocks; a warning needs a typed reason.",
+     "code": "check",
+     "replaces": "validation; flag; warning"
+    },
+    {
+     "term": "Impact preview",
+     "means": "The draft run against every live plan before approval, changing no plan: reach, update types, sample clients, one client.",
+     "code": "impact_preview",
+     "replaces": "ten-panel preview; dry run; trial run"
+    },
+    {
+     "term": "Sample clients",
+     "means": "Six fixed example clients the impact preview is shown on.",
+     "code": "sample_client",
+     "replaces": "reference personas; example clients"
+    },
+    {
+     "term": "Maker-checker",
+     "means": "Whoever drafts a change (the maker) never approves it; a second person (the checker) does. Only the Principal officer publishes.",
+     "code": "maker_id; checker_id",
+     "replaces": "two-person rule; second check; review"
+    },
+    {
+     "term": "Publish",
+     "means": "Make an approved change live, now or on an effective date, after 2FA.",
+     "code": "publish",
+     "replaces": "send"
+    },
+    {
+     "term": "Release",
+     "means": "A published change, frozen as published, such as REL05.",
+     "code": "release",
+     "replaces": "sent change"
+    },
+    {
+     "term": "Effective date",
+     "means": "When a release goes live. Never before it is published.",
+     "code": "effective_at",
+     "replaces": "goes live; scheduled; set for a date"
+    },
+    {
+     "term": "Rollout",
+     "means": "How a release reaches existing plans: at each plan's next refresh, or pushed now in batches.",
+     "code": "rollout (next_refresh, push)",
+     "replaces": "route; quiet; push; wave plan; how it reaches plans"
+    },
+    {
+     "term": "Plan refresh",
+     "means": "The plan engine recalculating one client's plan.",
+     "code": "refresh",
+     "replaces": "rebuild; regenerate"
+    },
+    {
+     "term": "Max plan age",
+     "means": "The most days a plan may run on older versions before it is refreshed (120 days, a stand-in).",
+     "code": "max_plan_age_days",
+     "replaces": "stale cap; 120-day limit"
+    },
+    {
+     "term": "Pause, withdraw, correction",
+     "means": "Stop a release; withdraw its updates not yet accepted; publish a release that corrects it.",
+     "code": "pause; withdraw; correction",
+     "replaces": "pull back; fix"
+    },
+    {
+     "term": "Urgent hold",
+     "means": "A Hold the Principal officer places alone, at once, when a fund goes bad.",
+     "code": "urgent_hold",
+     "replaces": "urgent stop"
+    },
+    {
+     "term": "Ratification",
+     "means": "A second person's approval of an urgent hold after the fact, within two working days.",
+     "code": "ratify",
+     "replaces": "second sign-off"
+    },
+    {
+     "term": "Exposure",
+     "means": "Clients in a fund: SIPs into it, pending actions naming it, units held.",
+     "code": "exposure",
+     "replaces": "who is in this fund"
+    },
+    {
+     "term": "Unmapped ISIN",
+     "means": "A holding whose ISIN the fund master does not know. It waits for an asset class; meanwhile the client sees hold for now.",
+     "code": "unmapped_isin",
+     "replaces": "unknown-ISIN queue; unknown funds list"
+    },
+    {
+     "term": "Fund master",
+     "means": "The list of funds and their details, from the market data service (I05).",
+     "code": "fund_master",
+     "replaces": "instrument master; fund master list"
+    }
+   ]
+  },
+  {
+   "group": "What clients get",
+   "terms": [
+    {
+     "term": "Plan snapshot",
+     "means": "The frozen record of one plan calculation: inputs, versions, outputs, what changed and why.",
+     "code": "plan_snapshot",
+     "replaces": "snapshot; saved copy"
+    },
+    {
+     "term": "Update type",
+     "means": "What one client gets after a refresh: No action (history only), Information (shown, nothing to accept), Action required (accept new amounts), Urgent action.",
+     "code": "update_type (none, info, action, urgent)",
+     "replaces": "size: note, outlook, review, urgent; tiny, picture moved, to accept"
+    },
+    {
+     "term": "Tolerance band",
+     "means": "The change below which nothing is shown: Rs 1,000 or 10 percent per sub-asset class, and 5 points of a goal's funded share.",
+     "code": "tolerance_band",
+     "replaces": "small-change margin"
+    },
+    {
+     "term": "House view",
+     "means": "A change made by yeslyf, not by the client: a release.",
+     "code": "house_view",
+     "replaces": "-"
+    },
+    {
+     "term": "Client email",
+     "means": "One email per house-view release: what changed, why, and when the plan takes it up.",
+     "code": "client_email",
+     "replaces": "letter; the email"
+    }
+   ]
+  },
+  {
+   "group": "People and records",
+   "terms": [
+    {
+     "term": "Role",
+     "means": "A fixed set of rights: Principal officer, Logic analyst, Compliance, Adviser, Call centre, Ops, Support, Read only, Marketing, Finance.",
+     "code": "role",
+     "replaces": "seat"
+    },
+    {
+     "term": "Masked view",
+     "means": "Client names hidden. Unmasking needs a typed reason and is logged.",
+     "code": "masked",
+     "replaces": "read masked; names hidden"
+    },
+    {
+     "term": "2FA",
+     "means": "A fresh second-factor check before publish, urgent hold, ratification, role changes and exports.",
+     "code": "step_up_2fa",
+     "replaces": "second-factor check; fresh security check"
+    },
+    {
+     "term": "Audit trail",
+     "means": "Who did what, when, before and after, and why. Refusals too.",
+     "code": "audit_log",
+     "replaces": "audit row; log line; the log"
+    },
+    {
+     "term": "Access review",
+     "means": "A quarterly check of every staff user's role, by the Principal officer.",
+     "code": "access_review",
+     "replaces": "access check"
+    },
+    {
+     "term": "Open question",
+     "means": "Something still to decide or verify, numbered LQ1 to LQ46.",
+     "code": "open_question",
+     "replaces": "LQ; gap"
+    }
+   ]
+  }
+ ]
+}
