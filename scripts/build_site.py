@@ -193,13 +193,14 @@ CSS = """
 TABS = [("index.html", "Meeting"), ("gaps.html", "Gaps"), ("inputs.html", "Inputs"),
         ("wireframes.html", "Wireframes v0.1"), ("admin.html", "Admin and CRM v0.1"),
         ("wireframes_v02.html", "Wireframes v0.2"), ("tracker.html", "Tracker"), ("spinach_questions.html", "Spinach Questions"),
-        ("admin_v02.html", "Admin and CRM v0.2"), ("admin_wireframes.html", "Admin seed"), ("logic_wireframes.html", "Logic panel"), ("changelog.html", "Changelog"), ("integrations.html", "Integrations"), ("events.html", "Events"), ("setup.html", "Setup")]
+        ("admin_v02.html", "Admin and CRM v0.2"), ("admin_wireframes.html", "Admin seed"), ("changelog.html", "Changelog"), ("integrations.html", "Integrations"), ("events.html", "Events"), ("setup.html", "Setup")]
 # Admin seed added 23 Sep 2026 (PLAN_admin_seed_v01.md D9): one tab for the four seed pages, which link each other through
 # seed_subnav(); four tabs would push the header to a third row at laptop width and cut into the wireframes layout.
 SEED_PAGES = [("admin_wireframes.html", "Admin tab"), ("admin_seats.html", "Seats"), ("admin_brief.html", "Brief"),
               ("admin_operator.html", "Operator"), ("admin_split.html", "Split")]
-# Logic panel added 8 Oct 2026 (PLAN_logic_panel_v03.md C2): one tab for the five logic pages, which link each other through
-# logic_subnav().
+# Logic panel added 8 Oct 2026 (PLAN_logic_panel_v03.md C2): five logic pages, which link each other through
+# logic_subnav(). Its tab is out of TABS until the logic panel merges into Wireframes v0.2 (Vatsal, 9 Oct 2026): Spinach's
+# review link reaches board pages that carry the tab row, so the logic pages are shared by direct link until then.
 LOGIC_PAGES = [("logic_wireframes.html", "Logic tab"), ("logic_tech.html", "Tech"), ("logic_access.html", "Access"),
                ("logic_walk.html", "Walkthroughs"), ("logic_ops.html", "Ops")]
 SUBNAV_CSS = """
@@ -917,9 +918,9 @@ def changelog_parts(chg, v02, audiences=None, seed_rows=False):
     # 24 Sep 2026) and the logic panel side wireframes (PLAN_logic_panel_v03.md C2, 8 Oct 2026) keep their rows in their
     # own files: apply_decisions.py regenerates changelog.json whole, so rows written there would not survive. The site's
     # page only; the audience files stay as sent.
+    # The logic rows (changelog_logic.json) stay off this page with the Logic panel tab until the merge (Vatsal, 9 Oct 2026).
     for fname, sid, heading in (("changelog_seed.json", "c-seed", "Seed and admin discovery"),
-                                ("changelog_sq.json", "c-sq", "Spinach questionnaires"),
-                                ("changelog_logic.json", "c-logic", "Logic panel side wireframes")):
+                                ("changelog_sq.json", "c-sq", "Spinach questionnaires")):
         extra = load_optional(fname) if seed_rows else None
         if not (extra and extra.get("rows")):
             continue
