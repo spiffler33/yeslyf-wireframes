@@ -20,14 +20,14 @@
        "1",
        "Is there access control on the panel: which roles, what access, what permissions",
        "Spinach",
-       "ten fixed roles: two draft and check, one of them sends; Compliance and Ops each change a few things; permissions per action and per screen",
+       "ten fixed roles: two draft and check, one of them publishes; Compliance and Ops each change a few things; permissions per action and per screen",
        "Access page, L13"
       ],
       [
        "2",
-       "The send button must be protected by two factors",
+       "The publish button must be protected by two factors",
        "Vatsal",
-       "a fresh security check to send and at the other protected actions",
+       "2FA to publish and at the other protected actions",
        "L06; LQ29"
       ],
       [
@@ -41,14 +41,14 @@
        "4",
        "How many people at once; who may change; how many must approve",
        "Spinach",
-       "one open draft per rule set, one author at a time; a second person checks; only the Principal officer sends; Compliance signs Assumptions and Risk scores changes",
+       "one open draft per rule set, one maker at a time; a checker approves; only the Principal officer publishes; Compliance signs Assumptions and Risk profiling changes",
        "L05, L10, L06"
       ],
       [
        "5",
-       "Is there an approval workflow; should it be stepwise: enter, run, review, send for approval",
+       "Is there an approval workflow; should it be stepwise: enter, run, review, submit for approval",
        "Spinach",
-       "yes: open, checked, trial run, second check, approved, sent",
+       "yes: open, checked, impact preview, in approval, approved, published",
        "L05, L10, L06"
       ],
       [
@@ -62,7 +62,7 @@
        "7",
        "When a value changes, what happens to a client who already has a plan",
        "Spinach",
-       "new plans at once; an existing plan at its next refresh, unless pushed now. On the call the answer was: everyone, when it is sent. Vatsal, 8 Oct 2026 replaces it",
+       "new plans at once; an existing plan at its next refresh, unless pushed now. On the call the answer was: everyone, when it is published. Vatsal, 8 Oct 2026 replaces it",
        "L06, L11"
       ],
       [
@@ -76,21 +76,21 @@
        "9",
        "A client sees 19.2 become 18 or 22 and is shocked",
        "Spinach",
-       "net worth today moves with prices; plan numbers move only at a refresh; four update sizes; instalments change as a set or not at all",
+       "net worth today moves with prices; plan numbers move only at a plan refresh; four update types; instalments change as a set or not at all",
        "client views, L05"
       ],
       [
        "10",
        "Rule breaks: a change that takes a client's portfolio outside their risk profile",
        "Spinach",
-       "safety limits a draft must pass (L09); a rule breaks panel in the trial run (L05)",
+       "limits a draft must pass (L09); a rule breaks panel in the impact preview (L05)",
        "L05, L09; LQ39"
       ],
       [
        "11",
        "Automatic checks that stop a change (\"five errors, cannot proceed\"); a lakh of portfolios",
        "Spinach",
-       "a failed check blocks; the trial run is a batch job, sized on the Tech page for 1,000, 10,000 and 100,000 plans",
+       "a failed check blocks; the impact preview is a batch job, sized on the Tech page for 1,000, 10,000 and 100,000 plans",
        "L05, Tech page"
       ],
       [
@@ -104,14 +104,14 @@
        "13",
        "Are versions stored; audit log; version control",
        "Spinach; Vatsal: yes",
-       "sent changes and rule set versions, only ever added; a log line for every change made or refused",
+       "releases and rule set versions, only ever added; an audit trail of every change made or refused",
        "L08"
       ],
       [
        "14",
-       "Client groups could be 15 to 20, each with its history, why it changed and which portfolios it touched",
+       "Matrix cells could be 15 to 20, each with its history, why it changed and which portfolios it touched",
        "Spinach",
-       "groups are data; versions are kept per rule set, and each group's history is read from them",
+       "cells are data; versions are kept per rule set, and each cell's history is read from them",
        "L03, L14"
       ],
       [
@@ -123,44 +123,44 @@
       ],
       [
        "16",
-       "Versions, history and intelligence per client group are overkill; a simple review and approve will do",
+       "Versions, history and intelligence per cell are overkill; a simple review and approve will do",
        "Gaurav",
        "what must exist at launch, because it cannot be added afterwards, and what can follow",
        "Tech page; LQ37"
       ],
       [
        "17",
-       "Keep a saved copy every time anything changes",
+       "Keep a snapshot every time anything changes",
        "Vatsal",
-       "every refresh writes a saved copy, never edited",
+       "every plan refresh writes a plan snapshot, never edited",
        "L15, Tech page"
       ],
       [
        "18",
        "Sample plans are affected; they are not a flat file",
        "Spinach",
-       "remade from fixed sample inputs when each sent change goes live",
+       "remade from fixed sample inputs on each release's effective date",
        "L05, client views; LQ34"
       ],
       [
        "19",
        "Someone who sat with the app for six months without deciding",
        "Spinach",
-       "a saved first result stays as shown until the person sketches again (V06). On the call the answer was that the numbers will change, and this must be explained",
+       "a saved reveal stays as shown until the person sketches again (V06). On the call the answer was that the numbers will change, and this must be explained",
        "client views, L15; LQ35"
       ],
       [
        "20",
        "An in-app notice that \"we changed this\" costs trust; a client who joined a month before a change",
        "Spinach; Vatsal: an email with an explanation, not a notification",
-       "house-view changes come on a calendar, inside the client's own review, with the reason; the email (V05)",
+       "house-view releases come on a calendar, inside the client's own review, with the reason; the client email (V05)",
        "client views, Ops page; LQ33, LQ21"
       ],
       [
        "21",
        "The hit spreads to sample plans, adviser views and other screens; the life of a change must be mapped",
        "Spinach",
-       "the life of a sent change (below) and a map of what clients read",
+       "the life of a release (below) and a map of what clients read",
        "L00, L05"
       ],
       [
@@ -175,7 +175,7 @@
    ],
    "lines": [
     "In the \"by\" column, \"Spinach\" means a question from their side; a team first name means a cause.",
-    "Calls made while building (logic plan, 8 Oct 2026), open to veto: a saved first result stays until sketched again."
+    "Calls made while building (logic plan, 8 Oct 2026), open to veto: a saved reveal stays until sketched again."
    ]
   },
   {
@@ -183,36 +183,36 @@
    "heading": "The design in one place",
    "lines": [
     "The rules (Vatsal, 8 Oct 2026):",
-    "1. A change is drafted in one rule set. The draft goes: open, checked, trial run done, in second check, approved (or sent back, then open again), sent. Or it is discarded. The second check covers the changes, how it reaches plans and the reason clients read. Changing any of them after approval sends it back.",
-    "2. Sending is not applying. A sent change reaches every plan built or refreshed from its go-live time. A plan that already exists stays on its versions until its next refresh. The main board today differs: L06 recalculates every affected client when a change is sent, and Q01 runs on each send. These wireframes draw this way beside it and change nothing on the board. {I04} is described as holding a client's numbers steady between their reviews (7 Oct 2026 call; LQ17, LQ18). In M2's registry, a changed assumption marks the affected plans for recalculation.",
-    "3. Only the latest live change of each rule set is used; older ones are records. A refresh reads every rule set's live version when it starts, and never mixes two versions of one. Risk scores are the exception: they are read as of the client's last questionnaire, and the saved copy names that version.",
-    "4. A change is pushed now to existing plans only if its sending plan says so. The test, printed on L06: would a prudent adviser phone this client about it today?",
-    "5. A plan more than 120 days old refreshes at the next app open (the 120-day limit). A lapsed or cancelled account's plan freezes, and refreshes when the client returns.",
-    "6. A change never goes live before it is sent. While a change waits for its set date, its rule set takes no other change, except an urgent hold.",
-    "7. Every refresh writes a saved copy. It holds the inputs, the rule set and plan engine versions, each goal's group, the outputs and the actions. It also holds what changed, with a reason on every line (house view, your numbers, your confirmation, time passing, staff edit), the size, and what the client did. Sent changes and saved copies are only added, never edited; a fix is a new record. The record is the stored output, not a promise to recalculate it. On the main board today, L08 reads \"the register can reproduce any advice given\".",
-    "8. The update size decides what the client sees (the update sizes table). Targets are always recalculated. Instalments change as a set or not at all. If any basket's amount moves past the small-change margin, every basket is updated to its target; if none does, nothing changes. A fund on hold or exit updates its own basket. An update still waiting at the next refresh is replaced; the new one shows what changed against the current plan. On the main board, H05 merges waiting updates into one.",
-    "9. A fund leaving the approved list goes on hold by default (no new money, units kept). Exit (sell out) is a separate decision, with its own reason. A hold that would empty a basket is blocked until the same draft adds a fund to it. The app never stops a running SIP on its own. It runs until the client accepts the update, and the update says so in plain words.",
-    "10. New risk score ranges reach a client only when they next complete or reconfirm the questionnaire.",
-    "11. Market readings reach new plans and new investing actions only. Every line has a cushion on either side.",
-    "12. Undo is three actions, not a mirror roll-back. Pause: the change stops being the latest, and refreshes use the one before it. Pull back: every update built on it and not yet accepted is replaced by a refresh on the change before it. Clients' own changes are kept, and plan history reads \"an update was withdrawn\". Fix: a new sent change. Every current plan built on the paused change is refreshed on it at once: first plans, accepted updates, tiny and picture-moved updates alike. A client sees an update only if something moves for them.",
-    "13. Two people on every change: the author cannot do the second check, and only the Principal officer sends. One exception: the urgent hold. The Principal officer places it alone, folding draft steps 1 to 8 into one action. It may carry only the basket split it needs to pass the safety limits (L09). Compliance is told at once. A second person signs it off within two working days; until then it stays in force and shows as overdue on L08, L10 and L11 (LQ30).",
-    "14. Compliance signs an Assumptions or a Risk scores change before it is sent. An Assumptions change alters the assumption lines and the first result (R08, R09, G01's copy). A Risk scores change alters the risk range a client is told (D09). Compliance is told of every other change when it is sent, and of an urgent hold at once. Most plan screens carry a compliance flag on the main board, so a wider rule would hold up every change (LQ45).",
-    "15. Staff use one sign-in for the admin screens and the logic panel: the one decided for M03 on 7 Oct 2026. Roles are fixed; staff cannot make new ones. A greyed-out button is never the real check: the server checks every change. A fresh security check is asked again to send (7 Oct 2026 call), set a date, pause, pull back, place an urgent hold, sign one off, change a role and export.",
-    "16. Client groups are data: groupings, a group table, mixes. Funds attach to baskets, not to group table cells. A new range, or a new grouping on a field the app already holds, is data. A grouping that needs a new question needs a new app version.",
+    "1. A change is drafted in one rule set. The draft goes: open, checked, impact preview done, in approval, approved (or sent back, then open again), published. Or it is discarded. Approval covers the changes, the rollout and the reason clients read. Changing any of them after approval sends it back.",
+    "2. Publishing is not applying. A release reaches every plan built or refreshed from its effective date. A plan that already exists stays on its versions until its next refresh. The main board today differs: L06 recalculates every affected client when a change is published, and Q01 runs on each publish. These wireframes draw this way beside it and change nothing on the board. {I04} is described as holding a client's numbers steady between their reviews (7 Oct 2026 call; LQ17, LQ18). In M2's registry, a changed assumption marks the affected plans for recalculation.",
+    "3. Only the latest live release of each rule set is used; older ones are records. A plan refresh reads every rule set's live version when it starts, and never combines two versions of one. Risk profiling is the exception: it is read as of the client's last questionnaire, and the snapshot names that version.",
+    "4. A release is pushed now to existing plans only if its rollout says so. The test, printed on L06: would a prudent adviser phone this client about it today?",
+    "5. A plan more than 120 days old refreshes at the next app open (the max plan age). A lapsed or cancelled account's plan freezes, and refreshes when the client returns.",
+    "6. A release is never effective before it is published. While it waits for its effective date, its rule set takes no other change, except an urgent hold.",
+    "7. Every plan refresh writes a plan snapshot. It holds the inputs, the rule set and plan engine versions, each goal's cell, the outputs and the actions. It also holds what changed, with a reason on every line (house view, your numbers, your confirmation, time passing, staff edit), the update type, and what the client did. Releases and snapshots are only added, never edited; a correction is a new record. The record is the stored output, not a promise to recalculate it. On the main board today, L08 reads \"the register can reproduce any advice given\".",
+    "8. The update type decides what the client sees (the update types table). Targets are always recalculated. Instalments change as a set or not at all. If any sub-asset class's amount moves past the tolerance band, all are updated to their targets; if none does, nothing changes. A fund on hold or exit updates its own sub-asset class. An update still waiting at the next refresh is replaced; the new one shows what changed against the current plan. On the main board, H05 merges waiting updates into one.",
+    "9. A fund leaving the approved list goes on hold by default (no new money, units kept). Exit (sell out) is a separate decision, with its own reason. A hold that would empty a sub-asset class is blocked until the same draft adds a fund to it. The app never stops a running SIP on its own. It runs until the client accepts the update, and the update says so in plain words.",
+    "10. New score ranges reach a client only when they next complete or reconfirm the questionnaire.",
+    "11. Market inputs reach new plans and new investing actions only. Every threshold has a buffer on either side.",
+    "12. Undo is three actions, not a mirror roll-back. Pause: the release stops being the latest, and refreshes use the one before it. Withdraw: every update built on it and not yet accepted is replaced by a refresh on the release before it. Clients' own changes are kept, and plan history reads \"an update was withdrawn\". Correction: a new release. Every current plan built on the paused release is refreshed on it at once: first plans, accepted updates, no-action and information updates alike. A client sees an update only if something moves for them.",
+    "13. Maker-checker on every change: the maker cannot be the checker, and only the Principal officer publishes. One exception: the urgent hold. The Principal officer places it alone, folding draft steps 1 to 8 into one action. It may carry only the fund weights it needs to pass the limits (L09). Compliance is told at once. A second person ratifies it within two working days; until then it stays in force and shows as overdue on L08, L10 and L11 (LQ30).",
+    "14. Compliance signs an Assumptions or a Risk profiling change before it is published. An Assumptions change alters the assumption lines and the reveal (R08, R09, G01's copy). A Risk profiling change alters the risk profile a client is told (D09). Compliance is told of every other change when it is published, and of an urgent hold at once. Most plan screens carry a compliance flag on the main board, so a wider rule would hold up every change (LQ45).",
+    "15. Staff use one sign-in for the admin screens and the logic panel: the one decided for M03 on 7 Oct 2026. Roles are fixed; staff cannot make new ones. A greyed-out button is never the real check: the server checks every change. 2FA is asked again to publish (7 Oct 2026 call), schedule, pause, withdraw, place an urgent hold, ratify one, change a role and export.",
+    "16. Allocation is data: axes, the allocation matrix, model portfolios. Funds attach to sub-asset classes, not to cells. A new horizon bucket, or a new axis on a field the app already holds, is data. An axis that needs a new question needs a new app version.",
     "17. A due review that changes nothing is still recorded: \"reviewed, no change\", signed by the Principal officer.",
-    "18. A draft starts from its rule set's live version. If that version moves while the draft is open (an urgent hold), the draft moves onto it. Its checks and trial run then run again before the second check.",
+    "18. A draft starts from its rule set's live version. If that version moves while the draft is open (an urgent hold), the draft moves onto it. Its checks and impact preview then run again before approval.",
     "19. A client screen never recalculates a plan number when it opens. It shows the current plan; H05 shows the waiting update. Between refreshes only net worth today moves, with holdings and prices (Gaurav, 7 Oct 2026 call).",
-    "20. A house-view change reaches a client on a calendar they were told about: assumptions yearly, live from 1 April; the approved fund list quarterly. It comes inside their own review, with its reason. A change that fails the push test sends no notification; the email explains it (7 Oct 2026 call).",
-    "21. Sample plans (R12) and the assumption lines (R08, G01) are remade when a sent change goes live, and dated. A saved first result (X01) records what was shown. It stays, and the nudges keep quoting it, until the person sketches again.",
-    "A sent change goes: set for a date, live, replaced (a later change of its rule set is live; plans may still be on it), closed (no active plan is on it). Or it is paused, then fixed. Each step is a log line: who, when, why. At every stage an Adviser or Support can read on L15 which versions a client is on, and why their last update said what it said.",
-    "The update size is always decided per client. The table on how changes reach plans lists the sizes each kind can produce. A push refreshes every plan it picks, but messages a client only for a to-accept or urgent update.",
-    "A hold resets the basket's remaining split to 100 for new money (largest remainder, whole numbers). It then checks the safety limits (L09) before it is placed. If a limit breaks, the hold screen says so and asks for a split.",
-    "Each pushed change has a batch plan (LQ14). An urgent hold or a fix goes to everyone at once. A routine hold goes to 200 clients an hour, 10:00 to 18:00 IST. An exit goes in even daily batches over five working days.",
-    "Small-change margin: per basket, the larger of Rs 1,000 or 10 percent of the running amount; for a goal's funded share, 5 points. Amounts are whole hundreds, and a basket's funds add up to its amount (largest remainder). For a client not investing through the app, each basket's new target is compared with the last target shown.",
-    "Second reasons: a fund entering or leaving the client's split also names the Funds change that altered the basket. A risk range changed at a questionnaire reads your confirmation; it also names the Risk scores change if the same score read differently before.",
-    "Why four sizes: under the M4 reconciliation rule, most plans invest the whole surplus. So a change in returns or inflation leaves instalments as they are, and moves how far they are expected to go. In a rough run, an assumptions change is tiny for about 33 plans in 100, picture moved for about 54 and to accept for about 13. Picture moved asks for nothing, so it is not chased.",
-    "The email (7 Oct 2026 call): one per sent house-view change that alters what clients see. It says what changed, why, and that the plan takes it up at the client's next review, with the date. Its wording is to come, kept with the other message wording. When it goes out: LQ33.",
-    "Calls made while building (logic plan, 8 Oct 2026), open to veto: Compliance signs only Assumptions and Risk scores changes; a fresh security check at every other protected action; what moves on client screens, and when; the steps of a draft, and what each records; the stages of a sent change."
+    "20. A house-view release reaches a client on a calendar they were told about: assumptions yearly, effective 1 April; the approved fund list quarterly. It comes inside their own review, with its reason. A release that fails the push test gets no notification; the client email explains it (7 Oct 2026 call).",
+    "21. Sample plans (R12) and the assumption lines (R08, G01) are remade on a release's effective date, and dated. A saved reveal (X01) records what was shown. It stays, and the nudges keep quoting it, until the person sketches again.",
+    "A release goes: scheduled, effective, replaced (a later one of its rule set is effective; plans may still be on it), closed (no active plan is on it). Or it is paused, then corrected. Each step is in the audit trail: who, when, why. At every stage an Adviser or Support can read on L15 which versions a client is on, and why their last update said what it said.",
+    "The update type is always decided per client. The rollout table lists the types each kind of change can produce. A push refreshes every plan it picks, but messages a client only for action required or urgent action.",
+    "A hold resets the remaining fund weights to 100 for new money (largest remainder, whole numbers). It then checks the limits (L09) before it is placed. If a limit breaks, the hold screen says so and asks for fund weights.",
+    "Each pushed release has rollout batches (LQ14). An urgent hold or a correction goes to everyone at once. A routine hold goes to 200 clients an hour, 10:00 to 18:00 IST. An exit goes in even daily batches over five working days.",
+    "Tolerance band: per sub-asset class, the larger of Rs 1,000 or 10 percent of the running amount; for a goal's funded share, 5 points. Amounts are whole hundreds, and a sub-asset class's funds add up to its amount (largest remainder). For a client not investing through the app, each new target is compared with the last target shown.",
+    "Second reasons: a fund entering or leaving a client's fund weights also names the Funds release behind it. A risk profile changed at a questionnaire reads your confirmation; it also names the Risk profiling release if the same score read differently before.",
+    "Why four update types: under the M4 reconciliation rule, most plans invest the whole surplus. So a change in returns or inflation leaves instalments as they are, and moves how far they are expected to go. In a rough run of an assumptions change, per 100 plans: about 33 no action, 54 information, 13 action required. Information asks for nothing, so it is not chased.",
+    "The client email (7 Oct 2026 call): one per house-view release that alters what clients see. It says what changed, why, and that the plan takes it up at the client's next review, with the date. Its wording is to come, kept with the other message wording. When it goes out: LQ33.",
+    "Calls made while building (logic plan, 8 Oct 2026), open to veto: Compliance signs only Assumptions and Risk profiling changes; 2FA at every other protected action; what moves on client screens, and when; the steps of a draft, and what each records; the stages of a release."
    ],
    "tables": [
     {
@@ -222,7 +222,7 @@
       "where",
       "it depends on",
       "when it moves",
-      "does a sent change move it"
+      "does a release move it"
      ],
      "rows": [
       [
@@ -236,32 +236,32 @@
        "the plan: projections, what each goal needs, how far it is funded",
        "G03 and the plan tabs, H10",
        "the client's inputs, the assumptions",
-       "at a refresh only",
+       "at a plan refresh only",
        "at the client's next refresh"
       ],
       [
-       "the target mix per goal",
+       "the model portfolio per goal",
        "G11",
-       "the risk range, the horizon, the group table",
-       "at a refresh only",
-       "at the next refresh; never pushed, except a fix"
+       "the risk profile, the horizon bucket, the allocation matrix",
+       "at a plan refresh only",
+       "at the next refresh; never pushed, except a correction"
       ],
       [
        "the funds and the amounts",
        "G13, G14, E11",
-       "the baskets, the amounts",
-       "at a refresh; a hold or an exit by push",
-       "by how it reaches plans (table below)"
+       "the sub-asset classes, the amounts",
+       "at a plan refresh; a hold or an exit by push",
+       "by its rollout (table below)"
       ],
       [
        "what can be bought now",
        "E03, E11",
        "fund status",
-       "the moment a change is sent",
+       "the moment a release is published",
        "yes, at once, for a hold or an exit"
       ],
       [
-       "the risk range",
+       "the risk profile",
        "D09",
        "the client's answers, the score ranges",
        "at a questionnaire",
@@ -270,7 +270,7 @@
       [
        "lumpsum or staggered",
        "G13",
-       "market readings",
+       "market inputs",
        "when a new action is made",
        "new plans and new actions only"
       ],
@@ -278,18 +278,18 @@
        "the assumption lines",
        "R08, G01",
        "the assumptions",
-       "when the change goes live",
+       "on the release's effective date",
        "yes"
       ],
       [
-       "a new first result",
+       "a new reveal",
        "R09",
        "five answers, the assumptions",
        "when sketched",
        "new sketches only"
       ],
       [
-       "a saved first result",
+       "a saved reveal",
        "X01 and the S2 nudges",
        "what was shown",
        "never, until sketched again",
@@ -299,8 +299,8 @@
        "sample plans",
        "R12",
        "fixed sample inputs, every rule set",
-       "remade for each sent change",
-       "yes, when it goes live"
+       "remade for each release",
+       "yes, on its effective date"
       ]
      ]
     },
@@ -319,68 +319,68 @@
        "Logic analyst or Principal officer",
        "the rule set's own screen",
        "the rule set has no other open draft",
-       "the draft, its author, the live version it starts from"
+       "the draft, its maker, the live version it starts from"
       ],
       [
        "2 edit the changes, each with a reason",
-       "the author",
+       "the maker",
        "the rule set's own screen",
        "every value is inside its allowed range",
        "each change: row, from, to, reason"
       ],
       [
        "3 run the checks",
-       "the author",
+       "the maker",
        "L05",
        "no check failed; every warning has a typed reason",
        "the checks and their results"
       ],
       [
-       "4 trial run",
-       "the author",
+       "4 impact preview",
+       "the maker",
        "L05",
-       "the trial run is newer than the last edit; no hard rule break",
-       "the trial run record"
+       "the impact preview is newer than the last edit; no hard rule break",
+       "the impact preview record"
       ],
       [
-       "5 set the sending plan: how it reaches plans, the reason clients read, the email",
-       "the author",
+       "5 set the rollout, the reason clients read and the client email",
+       "the maker",
        "L05",
-       "the way is one the table below allows for this kind of change",
+       "the rollout is one the table below allows for this kind of change",
        "on the draft"
       ],
       [
        "6 submit",
-       "the author",
+       "the maker",
        "L05",
        "steps 3 to 5 hold",
-       "status: in second check"
+       "status: in approval"
       ],
       [
-       "7 second check",
-       "the second person",
+       "7 approval",
+       "the checker",
        "L10",
-       "the checker is not the author",
-       "approved, or sent back with a comment; the trial run panels the checker opened (LQ22)"
+       "the checker is not the maker",
+       "approved, or sent back with a comment; the impact preview panels the checker opened (LQ22)"
       ],
       [
        "8 sign",
        "Compliance",
        "L10",
-       "needed for an Assumptions or a Risk scores change",
+       "needed for an Assumptions or a Risk profiling change",
        "who and when"
       ],
       [
-       "9 send now or set a date",
+       "9 publish now or schedule",
        "Principal officer",
        "L06",
-       "approved; signed where needed; the fresh security check passes",
-       "the sent change and its signed note"
+       "approved; signed where needed; 2FA passes",
+       "the release and its signed note"
       ]
      ]
     },
     {
-     "title": "The life of a sent change (the map asked for on the call)",
+     "title": "The life of a release (the map asked for on the call)",
      "cols": [
       "stage",
       "what happens",
@@ -390,159 +390,159 @@
      ],
      "rows": [
       [
-       "1 sent",
-       "the change is locked; live from its go-live time, set for that date until then",
+       "1 published",
+       "the release is locked; scheduled until its effective date",
        "Principal officer; the clock",
        "nothing",
-       "the sent change; log lines"
+       "the release; the audit trail"
       ],
       [
        "2 what clients read is updated",
-       "the assumption lines and the sample plans are remade when it goes live",
+       "the assumption lines and the sample plans are remade on its effective date",
        "a job",
        "a new visitor sees the new lines",
        "the sample plan versions"
       ],
       [
        "3 new plans",
-       "every plan built from the go-live time uses it",
+       "every plan built from its effective date uses it",
        "the plan engine",
        "their first plan",
-       "a saved copy"
+       "a snapshot"
       ],
       [
        "4 existing plans, at the next refresh",
-       "each plan takes it at its next refresh; the email goes out",
-       "the client; Ops for the email",
-       "by update size",
-       "a saved copy with the reason"
+       "each plan takes it at its next refresh; the client email goes out",
+       "the client; Ops for the client email",
+       "by update type",
+       "a snapshot with the reason"
       ],
       [
        "5 existing plans, pushed now",
        "the rollout job refreshes the chosen plans in batches",
        "a job; the Principal officer watches L11",
-       "to accept or urgent",
-       "saved copies, messages, call tasks"
+       "action required or urgent action",
+       "snapshots, messages, call tasks"
       ],
       [
        "6 the client responds",
-       "accepting refreshes the action plan; a picture-moved update is marked seen; no answer gets the reminders (S11)",
+       "accepting refreshes the action plan; an information update is marked seen; no answer gets the reminders (S11)",
        "the client; the Call centre",
        "-",
        "accepted or seen, with the time"
       ],
       [
        "7 plans left behind",
-       "at the 120-day limit, a plan refreshes at the next app open",
+       "at the max plan age (120 days), a plan refreshes at the next app open",
        "the app",
        "as stage 4",
-       "a saved copy"
+       "a snapshot"
       ],
       [
        "8 closed",
        "no active plan is on it",
        "-",
        "-",
-       "the sent change reads closed"
+       "the release reads closed"
       ],
       [
        "9 if it was wrong",
-       "pause, pull back, fix",
+       "pause, withdraw, correction",
        "Principal officer",
-       "\"an update was withdrawn\"; a fixed update where something moves",
-       "an incident; saved copies"
+       "\"an update was withdrawn\"; a corrected update where something moves",
+       "an incident; snapshots"
       ]
      ]
     },
     {
-     "title": "How each kind of change reaches plans (Vatsal, 8 Oct 2026; the defaults are proposed)",
+     "title": "Rollout of each kind of change (Vatsal, 8 Oct 2026; the defaults are proposed)",
      "cols": [
       "change",
       "rule set",
-      "default for plans that already exist",
-      "sizes it can produce",
+      "default rollout for existing plans",
+      "update types it can produce",
       "pushing now can be proposed"
      ],
      "rows": [
       [
        "planning assumptions: returns, inflation, income growth, life expectancy",
        "Assumptions",
-       "at the next refresh; reviewed yearly, live from 1 April, beside the April SIP step-up on G14; the email",
-       "tiny, picture moved, to accept",
+       "at the next refresh; reviewed yearly, effective 1 April, beside the April SIP step-up on G14; the client email",
+       "no action, information, action required",
        "yes"
       ],
       [
-       "rules and lines in L02: emergency months, EMI ceiling, floater rule, glide path, small-change margins, 120-day limit",
+       "rules and thresholds in L02: emergency months, EMI ceiling, floater rule, glide path, tolerance bands, max plan age",
        "Assumptions",
        "at the next refresh",
-       "tiny, picture moved, to accept",
+       "no action, information, action required",
        "yes"
       ],
       [
-       "the group table, a grouping's ranges, a mix",
-       "Client groups",
-       "at the next refresh only; the email if proposed",
-       "tiny, picture moved, to accept",
-       "no, except a fix"
+       "the allocation matrix, an axis's buckets, a model portfolio",
+       "Allocation",
+       "at the next refresh only; the client email if proposed",
+       "no action, information, action required",
+       "no, except a correction"
       ],
       [
-       "risk score ranges (of the risk level grouping)",
-       "Risk scores",
+       "score ranges (of the risk profile axis)",
+       "Risk profiling",
        "at the client's next questionnaire (Q04 or a retake), never by a refresh alone",
-       "to accept, on the client's own confirmation",
+       "action required, on the client's own confirmation",
        "no"
       ],
       [
-       "fund added, basket split changed",
+       "fund added, fund weights changed",
        "Funds",
-       "new plans at once; an existing plan takes the new split only when its instalments are updated for another reason. Pushed now, every plan using the basket is updated",
-       "tiny; to accept when pushed",
+       "new plans at once; an existing plan takes the new fund weights only when its instalments are updated for another reason. Pushed now, every plan using the sub-asset class is updated",
+       "no action; action required when pushed",
        "yes"
       ],
       [
        "fund on hold, routine",
        "Funds",
-       "no new order once sent; pushed in batches to clients paying a SIP into it; a client with a pending step naming it is refreshed in the same batches and sees the update at the next app open, with no message",
-       "to accept; tiny for other holders",
+       "no new order once published; pushed in batches to clients paying a SIP into it; a client with a pending action naming it is refreshed in the same batches and sees the update at the next app open, with no message",
+       "action required; no action for other holders",
        "always pushed"
       ],
       [
        "fund on hold, urgent",
        "Funds",
-       "no new order once sent; pushed at once to clients paying a SIP into it; pending steps as above",
-       "urgent for SIP payers; to accept for a pending step; tiny for other holders",
+       "no new order once published; pushed at once to clients paying a SIP into it; pending actions as above",
+       "urgent action for SIP payers; action required for a pending action; no action for other holders",
        "always pushed"
       ],
       [
        "fund to exit (sell out)",
        "Funds",
        "pushed over five working days to holders with verified holdings; holders without them see the locked card (G12a)",
-       "urgent",
+       "urgent action",
        "always pushed"
       ],
       [
-       "a fund on the unknown funds list classified",
+       "an unmapped ISIN classified",
        "Funds",
        "at the next refresh of each client holding it",
-       "tiny, to accept",
+       "no action, action required",
        "no"
       ],
       [
-       "a fix",
+       "a correction",
        "any",
-       "at once for every current plan built on the paused change; the rest at their next refresh",
-       "tiny, picture moved, to accept",
+       "at once for every current plan built on the paused release; the rest at their next refresh",
+       "no action, information, action required",
        "always pushed"
       ],
       [
-       "market readings",
-       "Market readings",
+       "market inputs",
+       "Market inputs",
        "new plans and new investing actions only; an existing action is never rewritten",
        "none",
        "no"
       ],
       [
-       "mix limits and fund limits (L09)",
+       "limits (L09)",
        "the rule set they protect",
        "none; they are part of the checks",
        "none",
@@ -551,59 +551,59 @@
       [
        "settings on M10 (prices, flags)",
        "not a rule set",
-       "own go-live dates; no refresh",
+       "own effective dates; no refresh",
        "none",
        "no"
       ],
       [
        "a new plan engine version (the maths)",
        "not a rule set",
-       "to be decided: how it reaches plans (LQ46); in the examples EN2 changes no output",
+       "to be decided: its rollout (LQ46); in the examples EN2 changes no output",
        "-",
        "-"
       ]
      ]
     },
     {
-     "title": "Update sizes, and what the client is told (Vatsal, 8 Oct 2026)",
+     "title": "Update types, and what the client is told (Vatsal, 8 Oct 2026)",
      "cols": [
-      "size",
+      "update type",
       "when",
       "the client started the refresh (Q01, Q05, Q06, Q04, a sharpen)",
-      "the refresh came from a push or the 120-day limit",
+      "the refresh came from a push or the max plan age",
       "accepting",
       "messages"
      ],
      "rows": [
       [
-       "tiny",
-       "nothing moved past the small-change margin",
+       "no action",
+       "nothing moved past the tolerance band",
        "the update screen reads \"nothing changes for you\", with \"assumptions as of <date>\"",
        "a plan history entry only",
        "none",
        "none"
       ],
       [
-       "picture moved",
-       "no instalment changes, but a goal's funded share moved past the margin, or a goal moved to another mix",
-       "the update screen reads \"your plan's picture moved; nothing for you to do\", a reason on every line",
+       "information",
+       "no instalment changes, but a goal's funded share moved past the tolerance band, or a goal changed model portfolio",
+       "the update screen reads \"nothing for you to do\", a reason on every line",
        "the same card on Home at the next app open",
        "none; marked seen",
-       "none beyond the email"
+       "none beyond the client email"
       ],
       [
-       "to accept",
-       "an instalment changes (a basket is updated), or the risk range changes",
+       "action required",
+       "an instalment changes (a sub-asset class is updated), or the risk profile changes",
        "the update screen (H05), a reason on every line; accepting refreshes the action plan",
        "Home for S11 (H01e), then H05",
        "needed",
        "if pushed: a push notification when ready, then reminders (S11) as on the main board; none if the client started the refresh or the update waits for the next app open"
       ],
       [
-       "urgent",
+       "urgent action",
        "an urgent hold on a fund the client pays a SIP into, or an exit on a fund in their verified holdings",
        "not applicable",
-       "the urgent form of H05; no new order for the fund once sent (E03, E11)",
+       "the urgent action form of H05; no new order for the fund once published (E03, E11)",
        "needed",
        "push and WhatsApp at once, email the next morning; a call task for a DIWM client not accepted after three days"
       ]
@@ -652,7 +652,7 @@
         "L05",
         "logic_wireframes.html#L05"
        ],
-       "checks pass. Trial run, per 100 plans: about 33 tiny, 54 picture moved, 13 to accept; funded shares move. Clients read it in the assumption lines, new sketches and sample plans. It compares waiting for each refresh with pushing on day one."
+       "checks pass. Impact preview, per 100 plans: about 33 no action, 54 information, 13 action required; funded shares move. Clients read it in the assumption lines, new sketches and sample plans. It compares waiting for each refresh with pushing on day one."
       ],
       [
        "4",
@@ -662,7 +662,7 @@
         "L05",
         "logic_wireframes.html#L05"
        ],
-       "proposes the next refresh, live 1 Apr 2028 00:00, with the email; submits"
+       "proposes the next refresh, effective 1 Apr 2028 00:00, with the client email; submits"
       ],
       [
        "5",
@@ -682,7 +682,7 @@
         "L10",
         "logic_wireframes.html#L10"
        ],
-       "opens every trial run panel; approves"
+       "opens every impact preview panel; approves"
       ],
       [
        "7",
@@ -692,7 +692,7 @@
         "L06",
         "logic_wireframes.html#L06"
        ],
-       "sends it, live 1 Apr 2028 00:00, after the fresh security check; it shows as set for that date (L06b)"
+       "publishes it, effective 1 Apr 2028 00:00, after 2FA; it shows as scheduled (L06b)"
       ],
       [
        "8",
@@ -702,7 +702,7 @@
         "L08",
         "logic_wireframes.html#L08"
        ],
-       "00:00, the system: version as-2 goes live; the assumption lines and sample plans are remade. 09:00: the email, queued by Ops, goes out (V05)."
+       "00:00, the system: version as-2 becomes effective; the assumption lines and sample plans are remade. 09:00: the client email, queued by Ops, goes out (V05)."
       ],
       [
        "9",
@@ -712,7 +712,7 @@
         "V01",
         "logic_wireframes.html#V01"
        ],
-       "client C04's review: picture moved; nothing to accept"
+       "client C04's review: information; nothing to do"
       ],
       [
        "10",
@@ -732,7 +732,7 @@
         "L11b",
         "logic_wireframes.html#L11b"
        ],
-       "four weeks live: about one existing plan in six has refreshed on it; most of the 90 days is still to run"
+       "four weeks in: about one existing plan in six has refreshed on it; most of the 90 days is still to run"
       ]
      ]
     }
@@ -740,16 +740,16 @@
    "lines": [
     "What the client saw:",
     "- From 1 Apr 2028 00:00: the assumption lines, new sketches and sample plans on version as-2.",
-    "- The email at 09:00 on 1 Apr 2028 (V05), queued by Ops.",
-    "- Client C04 at the review of 10 Apr 2028 (V01): picture moved, nothing to accept. The work-optional goal went from about 70 to about 54 percent funded; instalments stayed at Rs 35,000; reason house view (REL12).",
-    "- Each plan at its own review, per 1,000 clients: 330 tiny, 540 picture moved, 130 to accept.",
+    "- The client email at 09:00 on 1 Apr 2028 (V05), queued by Ops.",
+    "- Client C04 at the review of 10 Apr 2028 (V01): information, nothing to do. The work-optional goal went from about 70 to about 54 percent funded; instalments stayed at Rs 35,000; reason house view (REL12).",
+    "- Each plan at its own review, per 1,000 clients: 330 no action, 540 information, 130 action required.",
     "What Ops saw:",
-    "- At the next refresh, a typical week: about 60 plans refreshed, 8 to accept, 33 picture moved. Pushed on day one: 130 to accept and 540 picture moved at once.",
+    "- At the next refresh, a typical week: about 60 plans refreshed, 8 action required, 33 information. Pushed on day one: 130 action required and 540 information at once.",
     "What was stored:",
-    "- Change REL12 (version as-2): equity return 11.0 to 10.0 and expense inflation 6.0 to 6.5, each with its typed reason. Drafted by Logic analyst 01, signed by Compliance 01, approved and sent by Principal officer 01; at the next refresh, with the email; live 1 Apr 2028 00:00.",
-    "- The approval, with the trial run panels the checker opened: all of them.",
+    "- Release REL12 (version as-2): equity return 11.0 to 10.0 and expense inflation 6.0 to 6.5, each with its typed reason. Drafted by Logic analyst 01, signed by Compliance 01, approved and published by Principal officer 01; at the next refresh, with the client email; effective 1 Apr 2028 00:00.",
+    "- The approval, with the impact preview panels the checker opened: all of them.",
     "- The sample plan versions remade on 1 Apr 2028.",
-    "- C04's saved copy of 10 Apr 2028: version as-2; picture moved; reason house view (REL12)."
+    "- C04's snapshot of 10 Apr 2028: version as-2; information; reason house view (REL12)."
    ]
   },
   {
@@ -773,7 +773,7 @@
         "L04a",
         "logic_wireframes.html#L04a"
        ],
-       "09:50: opens who is in the fund: advised into it, paying a SIP, pending steps, holders"
+       "09:50: opens the fund's exposure: advised into it, paying a SIP, pending actions, holders"
       ],
       [
        "2",
@@ -783,7 +783,7 @@
         "L04a",
         "logic_wireframes.html#L04a"
        ],
-       "10:05: asks for an urgent hold; the Principal officer is told (LQ25)"
+       "10:05: requests an urgent hold; the Principal officer is told (LQ25)"
       ],
       [
        "3",
@@ -793,7 +793,7 @@
         "L06a",
         "logic_wireframes.html#L06a"
        ],
-       "10:40: places the hold alone. The reset to 75 / 25 breaks a safety limit (L09), so the screen asks for a split: 60 / 40. Picks the reason clients read; passes the fresh security check. Compliance and the Logic analyst are told."
+       "10:40: places the hold alone. The reset to 75 / 25 breaks a limit (L09), so the screen asks for fund weights: 60 / 40. Picks the reason clients read; passes 2FA. Compliance and the Logic analyst are told."
       ],
       [
        "4",
@@ -813,7 +813,7 @@
         "L11",
         "logic_wireframes.html#L11"
        ],
-       "10:45: urgent updates go at once to every client paying a SIP into it; one refresh fails at 10:46 and works on retry at 10:52"
+       "10:45: urgent action updates go at once to every client paying a SIP into it; one refresh fails at 10:46 and works on retry at 10:52"
       ],
       [
        "5b",
@@ -839,7 +839,7 @@
          "logic_wireframes.html#L01a"
         ]
        ],
-       "18:00: two working days, no second sign-off: the hold stays in force and shows as overdue (LQ30)"
+       "18:00: two working days, no ratification: the hold stays in force and shows as overdue (LQ30)"
       ],
       [
        "7",
@@ -859,7 +859,7 @@
         "L10a",
         "logic_wireframes.html#L10a"
        ],
-       "09:20: signs off the hold, one working day late"
+       "09:20: ratifies the hold, one working day late"
       ],
       [
        "9",
@@ -885,7 +885,7 @@
          "logic_wireframes.html#L05"
         ]
        ],
-       "change REL06, two people: drafts it, proposes the next refresh, submits"
+       "release REL06, maker-checker: drafts it, proposes the next refresh, submits"
       ],
       [
        "10b",
@@ -901,30 +901,30 @@
          "logic_wireframes.html#L06"
         ]
        ],
-       "approves and sends REL06: a second flexi cap fund joins at 50 / 25 / 25. At the next refresh, so a client who accepted 60 / 40 last week is not asked to change again."
+       "approves and publishes REL06: a second flexi cap fund joins at 50 / 25 / 25. At the next refresh, so a client who accepted 60 / 40 last week is not asked to change again."
       ]
      ]
     }
    ],
    "lines": [
     "What the client saw:",
-    "- Per 1,000 clients: the 500 paying a SIP into the fund got the urgent update at once, by push and WhatsApp, then email the next morning. The 270 with a pending step naming it saw the update at their next app open. The 20 holding units only got a tiny update.",
-    "- Client C01: the urgent update, accepted on 27 Sep 2027 after the call. Instalments, Rs a month: equity core 29,900 (index 17,900, large cap 12,000); the rest unchanged.",
-    "- Change REL06 went at the next refresh; C01 took flexi cap B at the review of 8 Nov 2027 (Y03).",
+    "- Per 1,000 clients: the 500 paying a SIP into the fund got the urgent action update at once, by push and WhatsApp, then email the next morning. The 270 with a pending action naming it saw the update at their next app open. The 20 holding units only got a no-action update.",
+    "- Client C01: the urgent action update, accepted on 27 Sep 2027 after the call. Instalments, Rs a month: equity core 29,900 (index 17,900, large cap 12,000); the rest unchanged.",
+    "- Release REL06 went at the next refresh; C01 took flexi cap B at the review of 8 Nov 2027 (Y03).",
     "What Ops saw:",
-    "- 500 urgent updates at once; 300 accepted by day 2, 425 by day 7.",
+    "- 500 urgent action updates at once; 300 accepted by day 2, 425 by day 7.",
     "- 105 call tasks on day 3 (300 if every DIWM client were called).",
     "- 40 tickets after the hold.",
     "What was stored:",
-    "- Change REL05 (version fu-5): the urgent hold on the flexi cap fund, placed alone by Principal officer 01, live 10:40 on 22 Sep 2027. The reset to 75 / 25 broke a safety limit (L09), so the split was set to 60 / 40 (index, large cap). Second sign-off due 24 Sep, given 27 Sep by Logic analyst 01.",
-    "- Change REL06 (version fu-6): a second flexi cap fund at 50 / 25 / 25 (index, large cap, flexi cap B), live 15:00 on 27 Sep 2027. Drafted by Logic analyst 01, approved and sent by Principal officer 01; at the next refresh.",
-    "- C01's saved copy of 22 Sep 2027, version fu-5: urgent, house view; accepted 27 Sep 2027.",
+    "- Release REL05 (version fu-5): the urgent hold on the flexi cap fund, placed alone by Principal officer 01, effective 10:40 on 22 Sep 2027. The reset to 75 / 25 broke a limit (L09), so the fund weights were set to 60 / 40 (index, large cap). Ratification due 24 Sep, given 27 Sep by Logic analyst 01.",
+    "- Release REL06 (version fu-6): a second flexi cap fund at 50 / 25 / 25 (index, large cap, flexi cap B), effective 15:00 on 27 Sep 2027. Drafted by Logic analyst 01, approved and published by Principal officer 01; at the next refresh.",
+    "- C01's snapshot of 22 Sep 2027, version fu-5: urgent action, house view; accepted 27 Sep 2027.",
     "- The push's messages and call tasks."
    ]
   },
   {
    "id": "w5",
-   "heading": "Y03. A new client group (REL07), and a grouping that is not added",
+   "heading": "Y03. A new horizon bucket (REL07), and an axis that is not added",
    "tables": [
     {
      "cols": [
@@ -949,7 +949,7 @@
          "logic_wireframes.html#L03a"
         ]
        ],
-       "the yearly client groups review falls due. Opens a draft; adds the range \"Very long: over 7\" to the horizon grouping (data, no new app version)."
+       "the yearly Allocation review falls due. Opens a draft; adds the horizon bucket \"Very long: over 7\" (data, no new app version)."
       ],
       [
        "2",
@@ -959,7 +959,7 @@
         "L14",
         "logic_wireframes.html#L14"
        ],
-       "adds mixes MP8 and MP9, with their reasons"
+       "adds model portfolios MP8 and MP9, with their reasons"
       ],
       [
        "3",
@@ -969,7 +969,7 @@
         "L03a",
         "logic_wireframes.html#L03a"
        ],
-       "adds two group table rows: Moderate x Very long to MP8 and, by a slip, Conservative x Very long to MP8 too; forgets the Aggressive row"
+       "fills two cells: Moderate x Very long with MP8 and, by a slip, Conservative x Very long with MP8 too; forgets the Aggressive cell"
       ],
       [
        "4",
@@ -979,7 +979,7 @@
         "L05a",
         "logic_wireframes.html#L05a"
        ],
-       "two checks fail: no-gap (Aggressive x Very long has no row) and a mix limit (MP8 holds 75 percent equity; most in equity for Conservative is 30). Adds the row, on MP9, and points Conservative x Very long at MP5; the checks pass."
+       "two checks fail: completeness (Aggressive x Very long has no model portfolio) and an equity cap (MP8 holds 75 percent equity; the Conservative equity cap is 30). Fills that cell with MP9 and points Conservative x Very long at MP5; the checks pass."
       ],
       [
        "5",
@@ -989,7 +989,7 @@
         "L05",
         "logic_wireframes.html#L05"
        ],
-       "trial run: goals move MP6 to MP8 and MP7 to MP9; per 100 plans, about 66 to accept, 6 picture moved, 28 tiny, each at its own review; no sells. Proposes the next refresh, with the email."
+       "impact preview: goals move MP6 to MP8 and MP7 to MP9; per 100 plans, about 66 action required, 6 information, 28 no action, each at its own review; no sells. Proposes the next refresh, with the client email."
       ],
       [
        "6",
@@ -999,7 +999,7 @@
         "L10",
         "logic_wireframes.html#L10"
        ],
-       "does the second check, as the author is the Principal officer; approves"
+       "is the checker, as the Principal officer is the maker; approves"
       ],
       [
        "7",
@@ -1009,7 +1009,7 @@
         "L06",
         "logic_wireframes.html#L06"
        ],
-       "09:45: sends it, live at 10:00; pushing now is not offered for a client groups change"
+       "09:45: publishes it, effective 10:00; pushing now is not offered for an Allocation change"
       ],
       [
        "8",
@@ -1019,7 +1019,7 @@
         "L15",
         "logic_wireframes.html#L15"
        ],
-       "20:00, client C01's review: the work-optional goal moves to MP8; an update to accept"
+       "20:00, client C01's review: the work-optional goal moves to MP8; an action required update"
       ],
       [
        "9",
@@ -1029,7 +1029,7 @@
         "L03b",
         "logic_wireframes.html#L03b"
        ],
-       "a draft adds a grouping, goal importance (must have, the rest): twenty-four groups. The no-gap check passes on the \"any\" rows; the trial run marks about five small groups."
+       "a draft adds goal priority as an axis (must have, the rest): twenty-four cells. The completeness check passes; the impact preview marks about five small cells."
       ],
       [
        "10",
@@ -1046,18 +1046,18 @@
    ],
    "lines": [
     "What the client saw:",
-    "- Nothing pushed: each plan takes change REL07 at its own review, with the email.",
-    "- Per 1,000 clients: 660 to accept, 60 picture moved, 280 tiny; no sells.",
-    "- Client C01, the evening of 8 Nov 2027: an update to accept. The work-optional goal moves to mix MP8, with REL06's new fund in the split. Instalments, Rs a month: equity core 32,400 (index 16,200, large cap 8,100, flexi cap B 8,100); debt 5,600 (3,400, 2,200); hybrid 3,400; gold 4,600.",
-    "- Client C04, at the review of 11 Jan 2028: the goal moves to mix MP8 (house view, REL07).",
-    "- The goal importance draft reached no client: it was discarded.",
+    "- Nothing pushed: each plan takes release REL07 at its own review, with the client email.",
+    "- Per 1,000 clients: 660 action required, 60 information, 280 no action; no sells.",
+    "- Client C01, the evening of 8 Nov 2027: an action required update. The work-optional goal moves to model portfolio MP8, with REL06's new fund. Instalments, Rs a month: equity core 32,400 (index 16,200, large cap 8,100, flexi cap B 8,100); debt 5,600 (3,400, 2,200); hybrid 3,400; gold 4,600.",
+    "- Client C04, at the review of 11 Jan 2028: the goal moves to MP8 (house view, REL07).",
+    "- The goal priority draft reached no client: it was discarded.",
     "What Ops saw:",
-    "- The email for REL07 to queue; nothing pushed, so no batches.",
+    "- The client email for REL07 to queue; nothing pushed, so no batches.",
     "What was stored:",
-    "- Change REL07 (version co-2): the range \"Very long: over 7\" on the horizon grouping (Long becomes 3 to 7); mixes MP8 0/10/5/10/75/0 and MP9 0/0/0/10/90/0, with their reasons; three group table rows, Conservative x Very long pointing at MP5. Drafted and sent by Principal officer 01, checked by Logic analyst 01; live 10:00 on 8 Nov 2027.",
-    "- The draft's checks: two failed on 1 Nov 2027 (the no-gap check; the mix limit on most in equity for Conservative), then a pass.",
-    "- C01's saved copy of 8 Nov 2027, versions co-2 and fu-6: to accept; reasons house view (REL07), and REL06 for the new fund in the split.",
-    "- The goal importance draft, with its trial run, discarded with its reason (21 to 25 Feb 2028)."
+    "- Release REL07 (version co-2): the horizon bucket \"Very long: over 7\" (Long becomes 3 to 7); model portfolios MP8 0/10/5/10/75/0 and MP9 0/0/0/10/90/0, with their reasons; three new cells, Conservative x Very long pointing at MP5. Drafted and published by Principal officer 01, approved by Logic analyst 01; effective 10:00 on 8 Nov 2027.",
+    "- The draft's checks: two failed on 1 Nov 2027 (the completeness check; the Conservative equity cap), then a pass.",
+    "- C01's snapshot of 8 Nov 2027, versions co-2 and fu-6: action required; reasons house view (REL07), and REL06 for the new fund.",
+    "- The goal priority draft, with its impact preview, discarded with its reason (21 to 25 Feb 2028)."
    ]
   },
   {
@@ -1081,7 +1081,7 @@
         "L14a",
         "logic_wireframes.html#L14a"
        ],
-       "drafts mix MP6 as 0/24/10/10/56/0, where 0/15/10/8/67/0 was meant; it adds up to 100"
+       "drafts model portfolio MP6 as 0/24/10/10/56/0, where 0/15/10/8/67/0 was meant; it adds up to 100"
       ],
       [
        "2",
@@ -1091,7 +1091,7 @@
         "L05",
         "logic_wireframes.html#L05"
        ],
-       "the checks pass: it adds up, and 56 is under most in equity for Moderate. The big-jump warning on a 9-point move in two types gets a typed reason. The example clients row shows equity down 9 points."
+       "the checks pass: it adds up, and 56 is under the Moderate equity cap. The big-jump warning on a 9-point move in two asset classes gets a typed reason. The sample clients row shows equity down 9 points."
       ],
       [
        "3",
@@ -1101,7 +1101,7 @@
         "L10",
         "logic_wireframes.html#L10"
        ],
-       "approves; the screen records that the example clients panel was not opened"
+       "approves; the screen records that the sample clients panel was not opened"
       ],
       [
        "4",
@@ -1111,7 +1111,7 @@
         "L06",
         "logic_wireframes.html#L06"
        ],
-       "16:00: sends it, for each plan's next refresh"
+       "16:00: publishes it, for each plan's next refresh"
       ],
       [
        "5",
@@ -1161,7 +1161,7 @@
         "L11a",
         "logic_wireframes.html#L11a"
        ],
-       "11:40: pull back: every update built on co-3 and not yet accepted is replaced by a refresh on co-2. C12, with the update open on the phone, sees \"an update was withdrawn\" (V04)."
+       "11:40: withdraw: every update built on co-3 and not yet accepted is replaced by a refresh on co-2. C12, with the update open on the phone, sees \"an update was withdrawn\" (V04)."
       ],
       [
        "10a",
@@ -1177,7 +1177,7 @@
          "logic_wireframes.html#L05"
         ]
        ],
-       "change REL09, the fix, two people: drafts it and submits"
+       "release REL09, the correction, maker-checker: drafts it and submits"
       ],
       [
        "10b",
@@ -1193,7 +1193,7 @@
          "logic_wireframes.html#L06"
         ]
        ],
-       "12:00: approves and sends REL09; every plan built on co-3 is refreshed at once, and C11 gets a step that undoes the cut in equity"
+       "12:00: approves and publishes REL09; every plan built on co-3 is refreshed at once, and C11 gets a step that undoes the cut in equity"
       ],
       [
        "11",
@@ -1210,19 +1210,19 @@
    ],
    "lines": [
     "What the client saw:",
-    "- Client C11: the wrong mix at the review of 6 Dec 2027, equity from 65 to 56 percent of the mix; accepted, the SIPs changed on 8 Dec. On 17 Dec, an update with a step that undoes the cut in equity, accepted 18 Dec.",
-    "- Client C12: the review of 15 Dec 2027, not accepted. At 11:40 on 16 Dec the update was pulled back: the plan refreshed on version co-2 as a tiny update (V04). A tiny update again at the review of 12 Mar 2028.",
-    "- No email: none was proposed for REL08. How the fix is explained to clients is open (LQ23).",
+    "- Client C11: the wrong model portfolio at the review of 6 Dec 2027, its equity from 65 to 56 percent; accepted, the SIPs changed on 8 Dec. On 17 Dec, an update with a step that undoes the cut in equity, accepted 18 Dec.",
+    "- Client C12: the review of 15 Dec 2027, not accepted. At 11:40 on 16 Dec the update was withdrawn: the plan refreshed on version co-2 as a no-action update (V04). A no-action update again at the review of 12 Mar 2028.",
+    "- No client email: none was proposed for REL08. How the correction is explained to clients is open (LQ23).",
     "- Per 1,000 clients, about 14 plans were built on version co-3 in its 16 days, plus the first plans built in those days.",
     "What was stored:",
-    "- Change REL08 (version co-3): mix MP6 at 0/24/10/10/56/0, with the typed reason for its warning. Drafted by Logic analyst 01, approved and sent by Principal officer 01; live 16:00 on 30 Nov 2027. The approval records that the example clients panel was not opened.",
-    "- REL08's locked record keeps its pause (11:05) and pull-back (11:40) of 16 Dec 2027, and the change that fixed it (L08a).",
-    "- Change REL09 (version co-4): the fix, mix MP6 at 0/15/10/8/67/0. Drafted by Logic analyst 01, approved and sent by Principal officer 01; live 12:00 on 17 Dec 2027.",
-    "- The saved copies: C11 on co-3 (6 Dec, accepted) and co-4 (17 Dec, accepted 18 Dec); C12 on co-3 (15 Dec, not accepted) and co-2 (16 Dec, tiny).",
+    "- Release REL08 (version co-3): MP6 at 0/24/10/10/56/0, with the typed reason for its warning. Drafted by Logic analyst 01, approved and published by Principal officer 01; effective 16:00 on 30 Nov 2027. The approval records that the sample clients panel was not opened.",
+    "- REL08's locked record keeps its pause (11:05) and withdrawal (11:40) of 16 Dec 2027, and the release that corrected it (L08a).",
+    "- Release REL09 (version co-4): the correction, MP6 at 0/15/10/8/67/0. Drafted by Logic analyst 01, approved and published by Principal officer 01; effective 12:00 on 17 Dec 2027.",
+    "- The snapshots: C11 on co-3 (6 Dec, accepted) and co-4 (17 Dec, accepted 18 Dec); C12 on co-3 (15 Dec, not accepted) and co-2 (16 Dec, no action).",
     "- The incident entry of 17 Dec 2027, by Compliance 01 (LQ23).",
     "What could have stopped it (each line is open):",
-    "- to be decided: whether approval waits until the checker has opened every trial run panel (LQ22). The example clients panel showed equity down 9 points and was not opened.",
-    "- to be decided: a hard limit on how far one investment type can move (LQ22). The big-jump warning caught the 9-point move on two types, and a typed reason let it through."
+    "- to be decided: whether approval waits until the checker has opened every impact preview panel (LQ22). The sample clients panel showed equity down 9 points and was not opened.",
+    "- to be decided: a hard limit on how far one asset class can move (LQ22). The big-jump warning caught the 9-point move on two asset classes, and a typed reason let it through."
    ],
    "open_items": [
     "LQ22"

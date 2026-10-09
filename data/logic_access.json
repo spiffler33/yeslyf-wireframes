@@ -8,23 +8,23 @@
    "heading": "Principles",
    "lines": [
     "This page answers the 7 Oct 2026 call: \"what kind of roles, what kind of access, what kind of permissions\".",
-    "A few people (7 Oct 2026 call): two working roles, the Principal officer and the Logic analyst, plus Compliance and Read only. At launch, two people run the panel; one of them can send.",
+    "A few people (7 Oct 2026 call): two working roles, the Principal officer and the Logic analyst, plus Compliance and Read only. At launch, two people run the panel; one of them can publish.",
     "Ten fixed roles; no one can make a new one. A person holds one or more, and no one gets rights outside their roles.",
-    "Two people on every sent change, whatever roles they hold: the author never does the second check, and only the Principal officer sends. The one exception: an urgent hold (see Approval).",
+    "Two people on every release, whatever roles they hold: the maker is never the checker, and only the Principal officer publishes. The one exception: an urgent hold (see Approval).",
     "The server checks the role on every request and every change; the screen only mirrors it. A greyed-out button is never the real check.",
-    "Everything is logged, refused attempts too. Sent changes and saved copies are never edited; a fix is a new record."
+    "Everything is logged, refused attempts too. Releases and plan snapshots are never edited; a correction is a new record."
    ]
   },
   {
    "id": "a2",
    "heading": "The roles",
    "lines": [
-    "Principal officer: the only role that sends a change. Also manages staff and roles.",
-    "Logic analyst: edits the rules in drafts and tests them.",
-    "Compliance: signs Assumptions and Risk scores changes before they are sent, and is told of every other change as it goes out.",
+    "Principal officer: the only role that publishes a change. Also manages staff and roles.",
+    "Logic analyst: edits the rules in drafts; runs checks and impact preview.",
+    "Compliance: signs Assumptions and Risk profiling changes before they are published, and is told of every other release as it goes out.",
     "A new working role starts only once Compliance signs it: proposed (LQ42).",
     "Adviser takes calls, Call centre works the call tasks, Support answers tickets.",
-    "Ops: adds facts to the unknown funds list (L04b) and queues each sent change's email in {I14}.",
+    "Ops: adds facts to unmapped ISINs (L04b) and queues each release's client email in {I14}.",
     "Read only: product and tech sit here. Reads, never changes anything.",
     "Marketing and Finance: no access to the logic panel; their admin screen rights are in the table by screen.",
     "In the examples, staff are named by role and number (Principal officer 01, Logic analyst 01); no real person is drawn."
@@ -62,7 +62,7 @@
        "yes"
       ],
       [
-       "see drafts and trial runs",
+       "see drafts and impact previews",
        "yes",
        "yes",
        "yes",
@@ -72,7 +72,7 @@
        "yes"
       ],
       [
-       "see Watch and undo (L11)",
+       "see the Rollout monitor (L11)",
        "yes",
        "yes",
        "yes",
@@ -82,7 +82,7 @@
        "yes"
       ],
       [
-       "work on a draft: open, edit, checks, trial run, how it reaches plans",
+       "work on a draft: open, edit, checks, impact preview, rollout",
        "yes",
        "yes",
        "no",
@@ -92,17 +92,17 @@
        "no"
       ],
       [
-       "see client names in a trial run or Watch and undo",
+       "see client names in an impact preview or the Rollout monitor",
        "yes",
-       "read, no names; showing is logged",
+       "masked view; unmasking is logged",
        "yes",
        "no",
-       "read, no names",
+       "masked view",
        "no",
-       "read, no names"
+       "masked view"
       ],
       [
-       "second check on a draft",
+       "approve a draft (the checker)",
        "yes, not own draft",
        "yes, not own draft",
        "no",
@@ -112,7 +112,7 @@
        "no"
       ],
       [
-       "sign an Assumptions or Risk scores change",
+       "sign an Assumptions or Risk profiling change",
        "no",
        "no",
        "yes",
@@ -122,7 +122,7 @@
        "no"
       ],
       [
-       "send, set a date, pause, pull back, start a fix",
+       "publish, set an effective date, pause, withdraw, start a correction",
        "yes",
        "no",
        "no",
@@ -133,7 +133,7 @@
       ],
       [
        "urgent hold on a fund",
-       "yes, alone; signed off after",
+       "yes, alone; ratified after",
        "ask only",
        "no",
        "no",
@@ -142,7 +142,7 @@
        "no"
       ],
       [
-       "second sign-off of an urgent hold",
+       "ratify an urgent hold",
        "not the one who placed it",
        "yes",
        "no",
@@ -152,8 +152,8 @@
        "no"
       ],
       [
-       "unknown funds list (L04b)",
-       "decides by sending",
+       "unmapped ISINs (L04b)",
+       "decides by publishing",
        "drafts the class",
        "no",
        "no",
@@ -172,7 +172,7 @@
        "no"
       ],
       [
-       "queue a sent change's email (in {I14}; L06 shows if queued)",
+       "queue a release's client email (in {I14}; L06 shows if queued)",
        "no",
        "no",
        "no",
@@ -182,7 +182,7 @@
        "no"
       ],
       [
-       "export records, read the log, log an incident",
+       "export records, read the audit trail, log an incident",
        "yes",
        "no",
        "yes",
@@ -192,7 +192,7 @@
        "read"
       ],
       [
-       "staff and roles: add, change, suspend, revoke; run the access check",
+       "staff and roles: add, change, suspend, revoke; run the access review",
        "yes",
        "no",
        "read; signs a new working role (LQ42)",
@@ -204,12 +204,12 @@
       [
        "client plan history (L15)",
        "yes",
-       "read, no names",
+       "masked view",
        "yes",
        "read, own clients",
        "yes",
        "yes",
-       "read, no names"
+       "masked view"
       ]
      ]
     }
@@ -221,9 +221,9 @@
    "lines": [
     "Built from the screens files, so it is never typed twice. First every Logic tab screen in order, variants included: the role and writes fields of data/logic_screens.json. Then M03, M07 and M10, as they stand in data/admin_screens.json.",
     "Cells: act (the role makes changes there; the Writes column says which), read, none, and \"-\" where the admin screen does not name the role.",
-    "\"read, own people\" (\"own\" for short): the role reads its own clients only. \"read masked\": it reads with client names left out. The table by action calls them \"read, own clients\" and \"read, no names\".",
-    "On L02, L03, L14, L04, L09, L07 and their variants, read for Adviser, Call centre, Ops and Support means the rules in use and their reasons only; draft rows are not sent to them.",
-    "On L08 the Logic analyst sees the sent changes and the versions plans are on, not the log. On L13, the staff list and the roles table, not the access checks.",
+    "\"read, own people\" (\"own\" for short): the role reads its own clients only. \"read masked\": a masked view, client names left out. The table by action calls them \"read, own clients\" and \"masked view\".",
+    "On L02, L03, L14, L04, L09, L07 and their variants, read for Adviser, Call centre, Ops and Support means the rules in use and their reasons only; draft rows never reach them.",
+    "On L08 the Logic analyst sees the releases and the versions plans are on, not the audit trail. On L13, the staff list and the roles table, not the access reviews.",
     "The Writes column lists each write in the screens file's words: the action (its event; the roles that may do it)."
    ],
    "derived": "seat_by_screen"
@@ -247,80 +247,80 @@
        "Logic analyst or Principal officer",
        "the rule set's screen",
        "no other open draft in the rule set",
-       "the draft, its author, the version in use it starts from"
+       "the draft, its maker, the version in use it starts from"
       ],
       [
        "2. Edit, giving a reason for each change",
-       "the author",
+       "the maker",
        "the rule set's screen",
        "each value in its allowed range, checked as typed",
        "each change: row, from, to, reason"
       ],
       [
        "3. Run the checks",
-       "the author",
+       "the maker",
        "L05",
        "none failed; each warning has a typed reason",
        "the checks and results"
       ],
       [
-       "4. Trial run",
-       "the author",
+       "4. Impact preview",
+       "the maker",
        "L05",
        "newer than the last edit; no hard rule break",
-       "the trial run"
+       "the impact preview"
       ],
       [
-       "5. Propose how it reaches plans, the reason clients read, the email",
-       "the author",
+       "5. Propose the rollout, the reason clients read, the client email",
+       "the maker",
        "L05",
-       "that way is allowed for this kind of change",
+       "that rollout is allowed for this kind of change",
        "on the draft"
       ],
       [
        "6. Submit",
-       "the author",
+       "the maker",
        "L05",
        "steps 3 to 5 hold",
-       "status: waiting for a second check"
+       "status: waiting for approval"
       ],
       [
-       "7. Second check",
-       "the second person",
+       "7. Approval",
+       "the checker",
        "L10",
-       "not the author",
-       "approved, or sent back with a comment; the trial run panels the checker opened (LQ22)"
+       "not the maker",
+       "approved, or sent back with a comment; the impact preview panels the checker opened (LQ22)"
       ],
       [
        "8. Sign",
        "Compliance",
        "L10",
-       "for an Assumptions or Risk scores change",
+       "for an Assumptions or Risk profiling change",
        "who and when"
       ],
       [
-       "9. Send, or set a date",
+       "9. Publish, now or on an effective date",
        "Principal officer",
        "L06",
-       "approved; signed where needed; a fresh security check passes",
-       "the sent change and its signed note"
+       "approved; signed where needed; 2FA passes",
+       "the release and its signed note"
       ]
      ]
     }
    ],
    "lines": [
-    "A draft goes: open, checked, trial run done, waiting for a second check, approved, sent. Sent back, it is open again. A draft can also be discarded.",
+    "A draft goes: open, checked, impact preview done, waiting for approval, approved, published. Sent back, it is open again. A draft can also be discarded.",
     "To be decided: which other changes Compliance must sign (LQ45).",
-    "The second check covers the changes, how it reaches plans and the reason clients read. Changing any of them after approval sends it back.",
-    "The urgent path: an urgent hold by the Principal officer alone folds steps 1 to 8 into one action. Besides the hold, it may carry only the fund basket split needed to pass the safety limits (L09). Compliance is told at once.",
-    "A second person, not the one who placed it, signs it off within two working days. If not, it stays in force, shown as overdue on L08, L10 and L11 (LQ30). The Logic analyst may only ask for one (LQ25).",
-    "With two people at launch, every sent change needs both, except an urgent hold. To be decided: what happens when the Principal officer is away (LQ7).",
+    "Approval covers the changes, the rollout and the reason clients read. Changing any of them after approval sends it back.",
+    "The urgent path: an urgent hold by the Principal officer alone folds steps 1 to 8 into one action. Besides the hold, it may carry only the fund weights needed to pass the limits (L09). Compliance is told at once.",
+    "A second person, not the one who placed it, ratifies it within two working days. If not, it stays in force, shown as overdue on L08, L10 and L11 (LQ30). The Logic analyst may only ask for one (LQ25).",
+    "With two people at launch, every release needs both, except an urgent hold. To be decided: what happens when the Principal officer is away (LQ7).",
     "The 7 Oct 2026 call asked for this step-by-step flow. Its nine steps were set while building, in the logic plan of 8 Oct 2026, and are open to veto."
    ]
   },
   {
    "id": "a6",
-   "heading": "Sign-in and the fresh security check",
+   "heading": "Sign-in and 2FA",
    "tables": [
     {
      "cols": [
@@ -337,23 +337,23 @@
        "a sign-in record"
       ],
       [
-       "Fresh security check",
-       "at most a set number of minutes old, at: send, set a date, pause, pull back, urgent hold, second sign-off, any role change, export (LQ29, LQ41)",
+       "2FA",
+       "at most a set number of minutes old, at: publish, set an effective date, pause, withdraw, urgent hold, ratification, any role change, export (LQ29, LQ41)",
        "{I14}",
-       "on the log line"
+       "in the audit trail"
       ]
      ]
     }
    ],
    "lines": [
-    "The 7 Oct 2026 call asked for it at sending. The other actions were added while building, in the logic plan of 8 Oct 2026, and are open to veto.",
+    "The 7 Oct 2026 call asked for it at publish. The other actions were added while building, in the logic plan of 8 Oct 2026, and are open to veto.",
     "The board's L01 says \"same auth as the app with role claims\". Proposed instead: one staff sign-in for both panels, none shared with clients (LQ9).",
     "Sign-in details and two-step sign-in sit with {I14}. The allowed staff list is on M03 (add a role, revoke), as decided on 7 Oct 2026. To be decided: whether it moves to Staff and roles, L13 (LQ9)."
    ]
   },
   {
    "id": "a7",
-   "heading": "Sessions, hidden names, the log, the access check",
+   "heading": "Sessions, masked view, the audit trail, the access review",
    "tables": [
     {
      "cols": [
@@ -367,13 +367,13 @@
        "Permission",
        "role by action, from the write events in data/logic_screens.json",
        "the server, on every request; the screen only mirrors it",
-       "a log line, refusals too"
+       "in the audit trail, refusals too"
       ],
       [
-       "Hidden names",
-       "names left out for a role that reads with no names (trial runs, Watch and undo); only the Logic analyst can show them, with a typed reason",
+       "Masked view",
+       "names left out for a role with a masked view (impact previews, the Rollout monitor); only the Logic analyst can unmask them, with a typed reason",
        "the server leaves the name out; the screen cannot show it",
-       "a log line"
+       "in the audit trail"
       ],
       [
        "Sessions",
@@ -382,20 +382,20 @@
        "-"
       ],
       [
-       "Access check",
+       "Access review",
        "each quarter, every staff member is kept, changed or removed",
        "the Principal officer, on L13",
-       "access_reviews, the table of access checks"
+       "the access_reviews table"
       ]
      ]
     }
    ],
    "lines": [
-    "A log line: who, role, when, what, before, after, reason. A refused attempt is a line too, marked as refused (L08).",
-    "The Principal officer and Compliance read and export the log; Read only reads it; the Logic analyst does not see it.",
-    "The access check covers each person's roles, status (active, suspended or revoked), who added them and when, last sign-in, and whether two-step sign-in is on. At launch a list and the log serve; the screen can follow.",
-    "In the examples, access check 1 on 15 Jul 2027 suspended Adviser 06, idle 90 days.",
-    "To be decided: the idle timeout, one session at a time, how old the security check may be (LQ41)."
+    "The audit trail: who, role, when, what, before, after, reason. Refused attempts too, marked as refused (L08).",
+    "The Principal officer and Compliance read and export the audit trail; Read only reads it; the Logic analyst does not see it.",
+    "The access review covers each person's roles, status (active, suspended or revoked), who added them and when, last sign-in, and whether two-step sign-in is on. At launch a list and the audit trail serve; the screen can follow.",
+    "In the examples, access review 1 on 15 Jul 2027 suspended Adviser 06, idle 90 days.",
+    "To be decided: the idle timeout, one session at a time, how old the 2FA may be (LQ41)."
    ]
   },
   {

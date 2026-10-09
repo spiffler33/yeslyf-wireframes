@@ -1,6 +1,6 @@
 {
  "source": "Vatsal, 9 Oct 2026",
- "status": "draft: the Principal officer and the Logic analyst confirm each word",
+ "status": "in use from 9 Oct 2026; the Principal officer and the Logic analyst may still change a word",
  "note": "One word per idea, used the same way on the logic screens, the logic pages and in the code (tables, fields, jobs, events), so nothing needs translating later. Words come from the ones the people on the panel already use. 'replaces' lists the older words they take over from. To be decided: whether version ids follow the new names (co-N for Allocation).",
  "groups": [
   {
@@ -211,7 +211,7 @@
     },
     {
      "term": "Unmapped ISIN",
-     "means": "A holding whose ISIN the fund master does not know. It waits for an asset class; meanwhile the client sees hold for now.",
+     "means": "A holding whose ISIN the fund master does not know. Until the Logic analyst classifies it (known and not approved, or a legacy hold), the client sees hold for now.",
      "code": "unmapped_isin",
      "replaces": "unknown-ISIN queue; unknown funds list"
     },
@@ -255,6 +255,12 @@
      "means": "One email per house-view release: what changed, why, and when the plan takes it up.",
      "code": "client_email",
      "replaces": "letter; the email"
+    },
+    {
+     "term": "Reveal",
+     "means": "The first result a visitor sees from five answers (X01). A saved one stays as shown until it is redone.",
+     "code": "reveal",
+     "replaces": "first result; saved first result"
     }
    ]
   },
