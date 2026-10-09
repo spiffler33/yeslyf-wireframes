@@ -1,14 +1,15 @@
 # Handoff - 9 Oct 2026 (the logic screens are in plain words; the zoomable map links them)
 
 State: PLAN_logic_panel_v03.md phases A0 to C2 are built (c0011a7 to e320e9e). On 9 Oct 2026 the 39 logic screens
-were rewritten in plain words (b1454d7): titles, drawings and side notes. Coined words were replaced, plan
-references and inline markers cut, and each screen's "(logic plan, 8 Oct 2026)" calls kept in one dev line.
+were rewritten in plain words (b1454d7), then cut harder: L02 and L05 first as the pattern Vatsal approved (79cc4ae),
+then the other 37 the same way (b850320). A fact shared by every row is said once; bookkeeping columns and id lists
+left the drawings; side notes keep only what happens on the screen; every moved fact sits in the screen's dev notes.
 Nothing is pushed. The artifact "Logic panel in plain words" (https://claude.ai/artifact/4Pvm3fga2vJzSj8udHLsYS,
-version 2) is the zoomable map: one line, six parts, rooms, details. Every screen id on it opens its drawing.
+version 4) is the zoomable map: one line, six parts, rooms, details. Every screen id on it opens its drawing.
 
 ## Next action
 Vatsal reads the map and the screens. Then, as he picks:
-1. A harder cut on screens that still feel heavy. The rewrite kept every table row; the text is only 3% shorter.
+1. A further cut on any screen he names.
 2. The same plain words on the four other pages (tech, access, walkthroughs, ops), which still use the old words.
 3. Phase D: his look, the nav fold, the two questions, the push.
 To rebuild the map: Artifact action "read" returns its full HTML, with the map content (TREE) and the screens
