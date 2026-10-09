@@ -1,17 +1,17 @@
 # Handoff - 9 Oct 2026 (the logic screens are in plain words; the zoomable map links them)
 
-State: PLAN_logic_panel_v03.md phases A0 to C2 are built (c0011a7 to e320e9e). On 9 Oct 2026 the 39 logic screens
-were rewritten in plain words (b1454d7), then cut harder: L02 and L05 first as the pattern Vatsal approved (79cc4ae),
-then the other 37 the same way (b850320). A fact shared by every row is said once; bookkeeping columns and id lists
-left the drawings; side notes keep only what happens on the screen; every moved fact sits in the screen's dev notes.
-Nothing is pushed. The artifact "Logic panel in plain words" (https://claude.ai/artifact/4Pvm3fga2vJzSj8udHLsYS,
-version 4) is the zoomable map: one line, six parts, rooms, details. Every screen id on it opens its drawing.
+State: PLAN_logic_panel_v03.md phases A0 to C2 are built (c0011a7 to e320e9e). On 9 Oct 2026 everything on the
+Logic panel tab went into plain words: the 39 screens (b1454d7), cut harder on Vatsal's OK (L02 and L05 79cc4ae, the
+other 37 b850320), then the tech, access, walkthroughs and ops pages (6ce531e). A fact shared by every row is said
+once; bookkeeping columns and id lists left the drawings; every moved fact sits in a screen's dev notes; the pages
+keep every fact, row and link. Nothing is pushed. The artifact "Logic panel in plain words"
+(https://claude.ai/artifact/4Pvm3fga2vJzSj8udHLsYS, version 5) is the zoomable map; every screen id on it opens its
+drawing.
 
 ## Next action
-Vatsal reads the map and the screens. Then, as he picks:
-1. A further cut on any screen he names.
-2. The same plain words on the four other pages (tech, access, walkthroughs, ops), which still use the old words.
-3. Phase D: his look, the nav fold, the two questions, the push.
+Vatsal reads the map, the screens and the four pages. Then, as he picks:
+1. A further cut on any screen or page he names.
+2. Phase D: his look, the nav fold, the two questions, the push (first: the review-link point below).
 To rebuild the map: Artifact action "read" returns its full HTML, with the map content (TREE) and the screens
 (SCREENS) embedded. Take TREE from it, rebuild SCREENS from data/logic_screens.json, and publish to the same URL.
 The word list the screens now use is the map's "Word decoder" room.
