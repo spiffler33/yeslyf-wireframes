@@ -9,12 +9,14 @@ keep every fact, row and link. Nothing is pushed. The artifact "Logic panel in p
 drawing, and the four pages open from their rooms, their story steps linking to the screens.
 
 ## Next action
-Vatsal reads the map, the screens and the four pages. Then, as he picks:
-1. A further cut on any screen or page he names.
-2. Phase D: his look, the nav fold, the two questions, the push (first: the review-link point below).
-To rebuild the map: Artifact action "read" returns its full HTML, with the map content (TREE), the screens (SCREENS)
-and the four pages (PAGES) embedded. Take TREE from it, rebuild SCREENS and PAGES from data/logic_*.json, and
-publish to the same URL.
+Vatsal shows Harish and Somil the draft glossary (data/logic_glossary.json, 46 words, d. 9 Oct 2026) and the proposed
+L03 grid (on the map artifact only, screen "L03p": risk profile by horizon bucket, each cell a model portfolio; no
+"any" rows in the screen or the code). On their confirmation, one pass moves every screen, page and open question to
+the glossary words, L03 (and L03a, L03b) becomes the grid, and the code is written with the same names. Open in the
+glossary: whether version ids follow the new names (co-N for Allocation). Then phase D.
+To rebuild the map: Artifact action "read" returns its full HTML, with the map content (TREE), the screens (SCREENS,
+with the L03p pilot after L03) and the pages (PAGES: four pages and the glossary) embedded. Take TREE and the pilot
+from it, rebuild the rest from data/logic_*.json, and publish to the same URL (version 7 now).
 The word list the screens now use is the map's "Word decoder" room.
 
 ## The map, in plain words (use this to explain; check details in the files only when asked)
