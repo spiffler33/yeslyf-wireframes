@@ -791,3 +791,28 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
 - 9 Oct 2026 (Vatsal): before phase D, the work is explained to Vatsal top-down in plain words (what it is, what each
   part does, how the parts connect), then one part at a time; then the wording is made much simpler and the structure
   clearer, for him and for design partners who are not technical. No rebuild unless the walkthrough shows a need.
+
+## 28. Status, 9 Oct 2026 (logic panel: plain words, the cut, one glossary; pushed by direct link)
+
+- Closed: the language work on the logic panel (Vatsal, 9 Oct 2026). The 39 screens went into plain words (b1454d7),
+  were cut harder, L02 and L05 first as the approved pattern (79cc4ae), then the other 37 (b850320); the tech, access,
+  walkthroughs and ops pages (6ce531e) and the 46 open questions (bed10f7) followed. Then one set of words:
+  data/logic_glossary.json (47 terms, each with its meaning, its code name and the words it replaces; in use, the
+  Principal officer and the Logic analyst may still change a word), applied to every screen, page, open question, write
+  action, event name and proposed table, field and job name (8a8367e). L03 is now one grid, risk profile by horizon
+  bucket, each cell a model portfolio; one row per cell in the code, no "any" rows; L03a and L03b follow it.
+- Pushed (bb0ab8b, Vatsal, 9 Oct 2026): the logic pages are live by direct link,
+  https://spiffler33.github.io/yeslyf-wireframes/logic_wireframes.html. The Logic panel tab and its Changelog rows are
+  hidden until the merge into Wireframes v0.2, so Spinach's review link does not reach the work; un-hide both in
+  scripts/build_site.py (TABS and the changelog sources) at the merge.
+- A zoomable map of the work, outside the repo: https://claude.ai/artifact/4Pvm3fga2vJzSj8udHLsYS (version 8; one
+  line, the big parts, the rooms, every screen, the four pages and the glossary).
+- Next: a crisper pass. Vatsal, 9 Oct 2026: simple now, but far too big ("word vomit"); the complexity line is to be
+  found with him, without going simplistic. Start with a pilot on two or three screens, measure size, then roll out.
+  After acceptance: the merge into Wireframes v0.2 (section 27's next step).
+- Known limits: every pass kept every fact, so volume stayed high (drawings about 21 percent shorter after the cut,
+  pages 0 to 19 percent); L05 keeps 10 side-note lines; W03 on the main board (the plan JSON contract) may still say
+  cohort and portfolio; the glossary may change after Harish and Somil read it.
+- Firm, carried forward: the glossary's words are the only words on the logic screens, pages and code names; ids,
+  numbers, links, LQ ids and instalment cells are never lost in a rewrite; the logic work stays off Spinach's review
+  link until the merge; never push without Vatsal's word.
