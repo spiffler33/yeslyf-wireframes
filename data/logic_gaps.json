@@ -4,7 +4,7 @@
  "items": [
   {
    "id": "LQ1",
-   "item": "to be decided: the default route per kind of change (4.4)",
+   "item": "to be decided: how each kind of change reaches plans by default (at the next refresh, or pushed now)",
    "lands_on": [
     "L06"
    ],
@@ -13,7 +13,7 @@
   },
   {
    "id": "LQ2",
-   "item": "to be decided: the tolerance band values; whether an outlook needs the client's acceptance",
+   "item": "to be decided: the small-change margin values; whether a picture-moved update needs the client to accept it",
    "lands_on": [
     "L02"
    ],
@@ -22,7 +22,7 @@
   },
   {
    "id": "LQ3",
-   "item": "to be decided: the stale cap in days",
+   "item": "to be decided: how many days a plan may fall behind before it must refresh (the 120-day limit is a stand-in)",
    "lands_on": [
     "L08"
    ],
@@ -31,7 +31,7 @@
   },
   {
    "id": "LQ4",
-   "item": "to be decided: Hold as the default when a fund leaves the list, and when an Exit is ever advised (G12 on the board reads: not on the approved list, exit)",
+   "item": "to be decided: whether a hold is the default when a fund leaves the list, and when an exit (sell out) is ever advised (G12 on the board reads: not on the approved list, exit)",
    "lands_on": [
     "L04"
    ],
@@ -40,7 +40,7 @@
   },
   {
    "id": "LQ5",
-   "item": "to be decided: the dimensions beyond risk band and horizon, and a ceiling on the number of cohorts",
+   "item": "to be decided: any grouping beyond risk level and time to goal, and a ceiling on the number of client groups",
    "lands_on": [
     "L03"
    ],
@@ -49,7 +49,7 @@
   },
   {
    "id": "LQ6",
-   "item": "to be decided: how many model portfolios, and whether a mix change ever moves existing units",
+   "item": "to be decided: how many mixes, and whether a mix change ever moves existing units",
    "lands_on": [
     "L14"
    ],
@@ -58,7 +58,7 @@
   },
   {
    "id": "LQ7",
-   "item": "to be decided: who publishes when the principal officer is unreachable",
+   "item": "to be decided: who sends a change when the principal officer cannot be reached",
    "lands_on": [
     "L13"
    ],
@@ -67,7 +67,7 @@
   },
   {
    "id": "LQ8",
-   "item": "to be decided: whether planning rows in L02 are reviewed by the financial planning function before publish",
+   "item": "to be decided: whether the financial planning team reviews planning rows on L02 before they are sent",
    "lands_on": [
     "L02",
     "L10"
@@ -77,7 +77,7 @@
   },
   {
    "id": "LQ9",
-   "item": "to be decided: the allowlist's home (M03 as decided on 7 Oct 2026, or the staff and seats screen), and one sign-in for both panels against L01's \"same auth as the app\"",
+   "item": "to be decided: where the list of allowed staff lives (M03, as decided on 7 Oct 2026, or the Staff and roles screen), and whether both panels use one sign-in, the same as the app's",
    "lands_on": [
     "L13"
    ],
@@ -86,7 +86,7 @@
   },
   {
    "id": "LQ10",
-   "item": "to be decided: where the client reason slots live and who edits them ({I15} or the panel)",
+   "item": "to be decided: where the reasons clients read are kept, and who edits them ({I15} or the panel)",
    "lands_on": [
     "L06"
    ],
@@ -95,7 +95,7 @@
   },
   {
    "id": "LQ11",
-   "item": "to be verified: what satisfies \"digitally signed\" for the rationale record of a release",
+   "item": "to be verified: what counts as \"digitally signed\" for the record of why a change was sent",
    "lands_on": [
     "L06"
    ],
@@ -104,7 +104,7 @@
   },
   {
    "id": "LQ12",
-   "item": "to be verified: whether a change to the score-to-band thresholds needs the client's fresh confirmation before it applies",
+   "item": "to be verified: whether moving the score lines between risk levels needs the client's fresh confirmation before it applies",
    "lands_on": [
     "L03"
    ],
@@ -122,7 +122,7 @@
   },
   {
    "id": "LQ14",
-   "item": "to be decided: the wave plan per kind of push; a call task after every urgent update or only one not accepted after three days",
+   "item": "to be decided: the batches for each kind of push; a call task after every urgent update, or only for one not accepted after three days",
    "lands_on": [
     "L11"
    ],
@@ -131,7 +131,7 @@
   },
   {
    "id": "LQ15",
-   "item": "to be decided: whether the Adviser, Call centre and Support seats read the live rationale in the panel or as content in {I15}",
+   "item": "to be decided: whether the Adviser, Call centre and Support roles read the live reasons in the panel, or as content in {I15}",
    "lands_on": [
     "L04",
     "L14"
@@ -141,7 +141,7 @@
   },
   {
    "id": "LQ16",
-   "item": "to be decided: the review cadence per lane, and whether the monthly market inputs take the second person",
+   "item": "to be decided: how often each rule set is reviewed, and whether the monthly market readings need the second person",
    "lands_on": [
     "L12",
     "L07"
@@ -151,7 +151,7 @@
   },
   {
    "id": "LQ17",
-   "item": "to be decided: where the logic values live at run time: passed by the app to {I04} on every run, or held in {I04} as central defaults with a copy per client (7 Oct 2026 call); which system holds the snapshot of record",
+   "item": "to be decided: where the rule values live when the app runs: sent by the app to {I04} on every run, or held in {I04} as central values with a copy per client (7 Oct 2026 call); which system holds the saved copy of record",
    "lands_on": [
     "logic_tech"
    ],
@@ -160,7 +160,7 @@
   },
   {
    "id": "LQ18",
-   "item": "to be verified: whether {I04} can run a stored input snapshot at an as-of date, as a dry run, in a batch; whether a call recalculates or returns the stored result until a review is run; whether a review reads the central value of the day or the client's own copy",
+   "item": "to be verified: whether {I04} can run a saved set of inputs as of a date, as a trial run, in a batch; whether a call works the plan out again or returns the stored result until a review; whether a review reads the central value of the day or the client's own copy",
    "lands_on": [
     "logic_tech"
    ],
@@ -169,7 +169,7 @@
   },
   {
    "id": "LQ19",
-   "item": "to be verified: whether a running SIP can be redirected through {I02} in one step, and how a Hold reaches a basket on {I03}",
+   "item": "to be verified: whether a running SIP can be moved to another fund through {I02} in one step, and how a hold reaches a basket on {I03}",
    "lands_on": [
     "L04",
     "V"
@@ -179,7 +179,7 @@
   },
   {
    "id": "LQ20",
-   "item": "to be decided: whether a one-fund sleeve is acceptable under the per-product cap",
+   "item": "to be decided: whether a basket with only one fund is allowed, given the most-in-one-fund limit",
    "lands_on": [
     "L09"
    ],
@@ -188,7 +188,7 @@
   },
   {
    "id": "LQ21",
-   "item": "to be decided: whether a scheduled release can be edited before its effective time or must be withdrawn and redrafted; whether a first plan built in that window uses the scheduled values",
+   "item": "to be decided: whether a change set for a later date can be edited before it goes live, or must be pulled back and drafted again; whether a first plan built in that window uses the new values",
    "lands_on": [
     "L06"
    ],
@@ -197,7 +197,7 @@
   },
   {
    "id": "LQ22",
-   "item": "to be decided: whether approval is blocked until the reviewer has opened every preview panel; a hard limit on a single-class move",
+   "item": "to be decided: whether approval waits until the checker has opened every trial run panel; a hard limit on a move in one investment type",
    "lands_on": [
     "L10",
     "L05",
@@ -208,7 +208,7 @@
   },
   {
    "id": "LQ23",
-   "item": "to be decided: whether a correction carries its own client explanation and a watch on grievances",
+   "item": "to be decided: whether a fix carries its own explanation for clients, and a watch on complaints",
    "lands_on": [
     "L11"
    ],
@@ -217,7 +217,7 @@
   },
   {
    "id": "LQ24",
-   "item": "to be verified: the record list and the minimum retention against the nine records on the Admin and CRM tab (brief H6); whether a saved reveal is one of them",
+   "item": "to be verified: the list of records kept and how long to keep them, against the nine records on the Admin and CRM tab (brief H6); whether a saved first result is one of them",
    "lands_on": [
     "L08"
    ],
@@ -235,7 +235,7 @@
   },
   {
    "id": "LQ26",
-   "item": "to be decided: the rule for staging an exit across financial years (not modelled)",
+   "item": "to be decided: the rule for spreading an exit across financial years (not modelled)",
    "lands_on": [
     "L04"
    ],
@@ -244,7 +244,7 @@
   },
   {
    "id": "LQ27",
-   "item": "to be verified: {I04} run time per plan, and how many runs it takes in parallel",
+   "item": "to be verified: {I04}'s run time per plan, and how many runs it takes at once",
    "lands_on": [
     "logic_tech"
    ],
@@ -253,7 +253,7 @@
   },
   {
    "id": "LQ28",
-   "item": "to be verified: real snapshot and PDF sizes once the plan JSON contract exists (W03)",
+   "item": "to be verified: the real size of a saved copy and its PDF, once the plan JSON contract exists (W03)",
    "lands_on": [
     "logic_tech"
    ],
@@ -262,7 +262,7 @@
   },
   {
    "id": "LQ29",
-   "item": "to be verified: a second-factor prompt at the moment of publish through {I14}",
+   "item": "to be verified: a fresh security check at the moment of sending, through {I14}",
    "lands_on": [
     "L06"
    ],
@@ -271,7 +271,7 @@
   },
   {
    "id": "LQ30",
-   "item": "to be decided: what follows when an urgent Hold is not ratified within two working days",
+   "item": "to be decided: what follows when an urgent hold has no second sign-off within two working days",
    "lands_on": [
     "L08",
     "L11"
@@ -281,7 +281,7 @@
   },
   {
    "id": "LQ31",
-   "item": "to be decided: whether a self-reported SIP outside the app counts as a running SIP for a Hold",
+   "item": "to be decided: whether a SIP outside the app that the client reports counts as a running SIP for a hold",
    "lands_on": [
     "L04"
    ],
@@ -290,7 +290,7 @@
   },
   {
    "id": "LQ32",
-   "item": "to be decided: whether a staff seat may change an assumption for one client (the engine allows a client-wise change; 7 Oct 2026 call), and with what record",
+   "item": "to be decided: whether a staff role may change an assumption for one client (the plan engine allows it; 7 Oct 2026 call), and with what record",
    "lands_on": [
     "L15"
    ],
@@ -299,7 +299,7 @@
   },
   {
    "id": "LQ33",
-   "item": "to be decided: when the letter for a house-view release is sent: on the effective date to every plan it will change, or to each client when their plan takes it up",
+   "item": "to be decided: when the email about a house-view change goes: on the go-live date to every plan it will change, or to each client when their plan takes it up",
    "lands_on": [
     "L06"
    ],
@@ -308,7 +308,7 @@
   },
   {
    "id": "LQ34",
-   "item": "to be decided: whether R12's sample plans are regenerated by a release from fixed sample inputs, or stay hand-maintained content (gap G08)",
+   "item": "to be decided: whether a sent change refreshes R12's sample plans from fixed sample inputs, or they stay hand-written (gap G08)",
    "lands_on": [
     "L05"
    ],
@@ -317,7 +317,7 @@
   },
   {
    "id": "LQ35",
-   "item": "to be decided: what a saved reveal shows once the assumptions behind it have moved, and whether the nudges keep quoting its numbers",
+   "item": "to be decided: what a saved first result shows once the assumptions behind it have moved, and whether the nudges keep quoting its numbers",
    "lands_on": [
     "V"
    ],
@@ -326,7 +326,7 @@
   },
   {
    "id": "LQ36",
-   "item": "to be verified: whether launch runs execution in the app as section E draws, or through a link that opens {I02} with the portfolio loaded (gap G10; 7 Oct 2026 call); what the app then knows about a running SIP",
+   "item": "to be verified: whether launch places orders in the app as the board's section E draws, or through a link that opens {I02} with the portfolio loaded (gap G10; 7 Oct 2026 call); what the app then knows about a running SIP",
    "lands_on": [
     "L04"
    ],
@@ -335,7 +335,7 @@
   },
   {
    "id": "LQ37",
-   "item": "to be decided: the launch cut (4.9)",
+   "item": "to be decided: what comes at launch and what follows later",
    "lands_on": [
     "logic_tech"
    ],
@@ -344,7 +344,7 @@
   },
   {
    "id": "LQ38",
-   "item": "to be verified: the field changes to L02 to L09 now in progress (7 Oct 2026 call), so the side screens draw the same rows",
+   "item": "to be verified: the field changes to L02 to L09 now in progress (7 Oct 2026 call), so these screens show the same rows",
    "lands_on": [
     "L02"
    ],
@@ -353,7 +353,7 @@
   },
   {
    "id": "LQ39",
-   "item": "to be decided: the equity ceiling per risk band and any other guard a change must pass",
+   "item": "to be decided: the most in equity per risk level, and any other mix limit a change must pass",
    "lands_on": [
     "L09"
    ],
@@ -371,7 +371,7 @@
   },
   {
    "id": "LQ41",
-   "item": "to be decided: session rules for staff: the idle timeout, one session at a time, the age of the second-factor check",
+   "item": "to be decided: session rules for staff: the idle timeout, one session at a time, how old the fresh security check may be",
    "lands_on": [
     "L13"
    ],
@@ -380,7 +380,7 @@
   },
   {
    "id": "LQ42",
-   "item": "to be decided: whether giving someone an operating seat needs a second person (it is the one way around the two-person rule)",
+   "item": "to be decided: whether giving someone a working role needs a second person (it is the one way around the two-person rule)",
    "lands_on": [
     "L13"
    ],
@@ -389,7 +389,7 @@
   },
   {
    "id": "LQ43",
-   "item": "to be verified: whether a pushed update (a Hold, an Exit, a correction) reaches a client whose annual confirmation is overdue (Q04 on the board blocks plan re-runs)",
+   "item": "to be verified: whether a pushed update (a hold, an exit, a fix) reaches a client whose yearly confirmation is overdue (Q04 on the board blocks plan re-runs)",
    "lands_on": [
     "L11"
    ],
@@ -398,7 +398,7 @@
   },
   {
    "id": "LQ44",
-   "item": "to be decided: what the engine does with an amount below a fund's minimum SIP",
+   "item": "to be decided: what the plan engine does with an amount below a fund's minimum SIP",
    "lands_on": [
     "L09"
    ],
@@ -407,7 +407,7 @@
   },
   {
    "id": "LQ45",
-   "item": "to be decided: which releases need a compliance acknowledgement before publish, beyond assumptions and risk scoring",
+   "item": "to be decided: which sent changes need Compliance to sign before sending, beyond assumptions and risk scores",
    "lands_on": [
     "L10"
    ],
@@ -416,7 +416,7 @@
   },
   {
    "id": "LQ46",
-   "item": "to be decided: how a new version of the engine (the maths) is approved, previewed against existing plans and named as a cause on a client's update",
+   "item": "to be decided: how a new version of the plan engine (the maths) is approved, tried on existing plans, and named as a reason on a client's update",
    "lands_on": [
     "L08"
    ],
