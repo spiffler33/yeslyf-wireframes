@@ -788,3 +788,6 @@ client-data assumptions, 9b data-capture improvements, 9c split status, 9d audie
   the one-line daily update.
 - Next: phase D. After acceptance a later plan applies what was accepted (plan section 13): accepted screens move into
   section L of data/screens_v02.json as they are, each with its cause; rehearsal values and examples do not travel.
+- 9 Oct 2026 (Vatsal): before phase D, the work is explained to Vatsal top-down in plain words (what it is, what each
+  part does, how the parts connect), then one part at a time; then the wording is made much simpler and the structure
+  clearer, for him and for design partners who are not technical. No rebuild unless the walkthrough shows a need.
