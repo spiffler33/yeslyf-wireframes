@@ -617,7 +617,7 @@
       "frame": "desktop",
       "template": "T-table",
       "path": "both",
-      "purpose": "Every assumption the plan engine uses, in four groups. Each row shows its value, unit, limits, how it reaches plans and how often it is reviewed. Values are checked as they are typed. Drawn: the values in use (20 Apr 2027).",
+      "purpose": "Every assumption the plan engine uses, in four groups, with its value, unit and allowed range. Drawn: the values in use (20 Apr 2027).",
       "ui": [
         [
           "strip",
@@ -628,6 +628,15 @@
           "Example only: every number is made up. Nothing here is decided."
         ],
         [
+          "card",
+          "For every row",
+          [
+            "In use since 25 Jan 2027 (change REL01, version as-1).",
+            "Reviewed once a year: last on 1 Apr 2027, no change. Next due 1 Apr 2028.",
+            "No draft is open."
+          ]
+        ],
+        [
           "h",
           "Returns"
         ],
@@ -635,95 +644,46 @@
           "table",
           [
             "Assumption",
-            "Value in use",
-            "Draft value",
+            "Value",
             "Unit",
-            "In use since",
-            "Area",
-            "How it reaches plans",
-            "Limits: allowed range; big-jump warning at",
-            "How often: last reviewed; next due",
-            "Used in",
-            "Last change (version)"
+            "Allowed range; big-jump warning at"
           ],
           [
             [
               "Expected return: liquid debt",
               "6.5",
-              "-",
               "% a year",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh after 1 April; clients get the email",
-              "0 to 20; 0.5",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G03, G11, H10, R08, R09, G01",
-              "REL01 (as-1)"
+              "0 to 20; 0.5"
             ],
             [
               "Expected return: debt",
               "7.0",
-              "-",
               "% a year",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh after 1 April; clients get the email",
-              "0 to 20; 0.5",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G03, G11, H10, R08, R09, G01",
-              "REL01 (as-1)"
+              "0 to 20; 0.5"
             ],
             [
               "Expected return: hybrid",
               "9.0",
-              "-",
               "% a year",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh after 1 April; clients get the email",
-              "0 to 20; 0.5",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G03, G11, H10, R08, R09, G01",
-              "REL01 (as-1)"
+              "0 to 20; 0.5"
             ],
             [
               "Expected return: commodities",
               "8.0",
-              "-",
               "% a year",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh after 1 April; clients get the email",
-              "0 to 20; 0.5",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G03, G11, H10, R08, R09, G01",
-              "REL01 (as-1)"
+              "0 to 20; 0.5"
             ],
             [
               "Expected return: equity",
               "11.0",
-              "-",
               "% a year",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh after 1 April; clients get the email",
-              "0 to 20; 0.5",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G03, G11, H10, R08, R09, G01",
-              "REL01 (as-1)"
+              "0 to 20; 0.5"
             ],
             [
               "Expected return: REITs and InvITs",
               "to be verified: the REITs and InvITs return (the examples used 9)",
-              "-",
               "% a year",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh after 1 April; clients get the email",
-              "0 to 20; 0.5",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G11 (0 in every mix)",
-              "REL01 (as-1)"
+              "0 to 20; 0.5"
             ]
           ]
         ],
@@ -735,71 +695,40 @@
           "table",
           [
             "Assumption",
-            "Value in use",
-            "Draft value",
+            "Value",
             "Unit",
-            "In use since",
-            "Area",
-            "How it reaches plans",
-            "Limits: allowed range; big-jump warning at",
-            "How often: last reviewed; next due",
-            "Used in",
-            "Last change (version)"
+            "Allowed range; big-jump warning at"
           ],
           [
             [
               "Expense inflation",
               "6.0",
-              "-",
               "% a year",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh after 1 April; clients get the email",
-              "0 to 15; 0.5",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G03, G06, G09, H10, R08, R09, G01",
-              "REL01 (as-1)"
+              "0 to 15; 0.5"
             ],
             [
               "Education inflation",
               "8.0",
-              "-",
               "% a year",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh after 1 April; clients get the email",
-              "0 to 15; 0.5",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G06, G09, H10",
-              "REL01 (as-1)"
+              "0 to 15; 0.5"
             ],
             [
               "Income growth",
               "8.0",
-              "-",
               "% a year",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh after 1 April; clients get the email",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G06",
-              "REL01 (as-1)"
+              "to be decided"
             ],
             [
               "Life expectancy",
               "85; the client may choose 90 or 100",
-              "-",
               "years",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh after 1 April; clients get the email",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G03, G09",
-              "REL01 (as-1)"
+              "to be decided"
             ]
           ]
+        ],
+        [
+          "p",
+          "A change to these two groups goes live on 1 April. Each plan picks it up the next time it is refreshed after that date, and every client gets one email about it."
         ],
         [
           "h",
@@ -809,186 +738,82 @@
           "table",
           [
             "Assumption",
-            "Value in use",
-            "Draft value",
+            "Value",
             "Unit",
-            "In use since",
-            "Area",
-            "How it reaches plans",
-            "Limits: allowed range; big-jump warning at",
-            "How often: last reviewed; next due",
-            "Used in",
-            "Last change (version)"
+            "Reaches plans"
           ],
           [
             [
               "Emergency months",
               "6",
-              "-",
               "months of expenses",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G04",
-              "REL01 (as-1)"
+              "at the next refresh"
             ],
             [
               "Default work-optional age",
               "60",
-              "-",
               "years of age",
-              "25 Jan 2027",
-              "planning",
-              "new plans only (the default on D07b)",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "D07b, G09",
-              "REL01 (as-1)"
+              "new plans only"
             ],
             [
               "Health floater: the income line",
               "Rs 2 L",
-              "-",
               "Rs of monthly take-home",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G05",
-              "REL01 (as-1)"
+              "at the next refresh"
             ],
             [
               "Health floater: cover below the line",
               "Rs 15 L",
-              "-",
               "Rs of cover",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G05",
-              "REL01 (as-1)"
+              "at the next refresh"
             ],
             [
               "Health floater: top-up below the line",
               "Rs 50 L",
-              "-",
               "Rs of cover",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G05",
-              "REL01 (as-1)"
+              "at the next refresh"
             ],
             [
               "Health floater: cover above the line",
               "Rs 25 L",
-              "-",
               "Rs of cover",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G05",
-              "REL01 (as-1)"
+              "at the next refresh"
             ],
             [
               "EMI ceiling",
               "30",
-              "-",
               "% of take-home",
-              "25 Jan 2027",
-              "planning",
-              "at the next refresh",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G07",
-              "REL01 (as-1)"
+              "at the next refresh"
             ],
             [
               "Glide path: years before a goal to shift to debt",
               "3",
-              "-",
               "years",
-              "25 Jan 2027",
-              "investment",
-              "at the next refresh",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G11",
-              "REL01 (as-1)"
+              "at the next refresh"
             ],
             [
               "Optimised savings rate for the first result",
               "by income range, as on the board",
-              "-",
               "% of income",
-              "25 Jan 2027",
-              "planning",
-              "new first results only",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "R08, R09",
-              "REL01 (as-1)"
-            ],
-            [
-              "Tax slabs and rebates by FY, surcharge, cess",
-              "tables",
-              "-",
-              "-",
-              "25 Jan 2027",
-              "planning",
-              "row to drop at the merge: its section was dropped (brief B4)",
-              "-",
-              "-",
-              "G08 (dropped)",
-              "REL01 (as-1)"
+              "new first results only"
             ],
             [
               "Market rule: the lower PE line",
               "18",
-              "-",
               "Nifty PE",
-              "25 Jan 2027",
-              "investment",
-              "new plans and new steps to invest only",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G13, L07",
-              "REL01 (as-1)"
+              "new plans and new steps to invest only"
             ],
             [
               "Market rule: the upper PE line",
               "25",
-              "-",
               "Nifty PE",
-              "25 Jan 2027",
-              "investment",
-              "new plans and new steps to invest only",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G13, L07",
-              "REL01 (as-1)"
+              "new plans and new steps to invest only"
             ],
             [
               "Market rule: the cushion either side of each line",
               "1.0",
-              "-",
               "Nifty PE points",
-              "25 Jan 2027",
-              "investment",
-              "new plans and new steps to invest only",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "G13, L07",
-              "REL01 (as-1)"
+              "new plans and new steps to invest only"
             ]
           ]
         ],
@@ -1000,71 +825,35 @@
           "table",
           [
             "Assumption",
-            "Value in use",
-            "Draft value",
-            "Unit",
-            "In use since",
-            "Area",
-            "How it reaches plans",
-            "Limits: allowed range; big-jump warning at",
-            "How often: last reviewed; next due",
-            "Used in",
-            "Last change (version)"
+            "Value",
+            "Unit"
           ],
           [
             [
               "Small-change margin per basket: the floor (the larger of the two applies)",
               "Rs 1,000",
-              "-",
-              "Rs a month",
-              "25 Jan 2027",
-              "investment",
-              "at the next refresh",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "H05, G14",
-              "REL01 (as-1)"
+              "Rs a month"
             ],
             [
-              "Small-change margin per basket: the share of the running amount (the larger of the two applies)",
+              "Small-change margin per basket: the share of the running amount",
               "10",
-              "-",
-              "% of the running amount",
-              "25 Jan 2027",
-              "investment",
-              "at the next refresh",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "H05, G14",
-              "REL01 (as-1)"
+              "% of the running amount"
             ],
             [
               "Small-change margin: a goal's funded share",
               "5",
-              "-",
-              "points",
-              "25 Jan 2027",
-              "investment",
-              "at the next refresh",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "H05, H10",
-              "REL01 (as-1)"
+              "points"
             ],
             [
               "120-day limit",
               "120",
-              "-",
-              "days",
-              "25 Jan 2027",
-              "investment",
-              "at the next refresh",
-              "gap, to be decided",
-              "yearly; 1 Apr 2027, no change; due 1 Apr 2028",
-              "H01e, H05",
-              "REL01 (as-1)"
+              "days"
             ]
           ]
+        ],
+        [
+          "p",
+          "Change rules reach each plan at its next refresh. Allowed ranges for planning rules, market lines and change rules: to be decided."
         ],
         [
           "h",
@@ -1106,8 +895,7 @@
           "card",
           "Draft bar",
           [
-            "No draft open for Assumptions.",
-            "The annual review opens on L12 a month before 1 April. Next due: 1 Apr 2028."
+            "No draft open. The yearly review opens on L12 a month before 1 April."
           ]
         ],
         [
@@ -1124,7 +912,7 @@
       "spec": {
         "fields": [
           {
-            "f": "each row, with the columns drawn",
+            "f": "each row: assumption, value, unit, allowed range, how it reaches plans",
             "forward": "read"
           },
           {
@@ -1132,20 +920,17 @@
             "forward": "read"
           }
         ],
+        "forward": [
+          "Open a draft works only when Assumptions has no other draft open.",
+          "In a draft (L02a): each edited row's new value, in its unit and allowed range, and a typed reason."
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser read; Call centre read; Ops read; Support read; Read only read; Marketing none; Finance none",
           "Writes: open a draft (L02_open_draft; Principal officer, Logic analyst); edit a row in the draft with a rationale (L02_edit_row; Principal officer, Logic analyst); drop a row from the draft (L02_drop_row; Principal officer, Logic analyst)",
-          "Check: each row's allowed range. A value is typed in the row's unit and refused as soon as it falls outside (7 Oct 2026 call).",
-          "Check: each row's big-jump warning. A move of that size or more needs a typed reason.",
-          "Area per row: the glide path, the market rule and the change rules are investment. Every other row is planning, the returns included.",
-          "The Used in column comes from the board's L02 column and its map of what clients read. Each row's unit comes from the board's rows.",
-          "The market rule rows reach plans as market readings do: new plans and new steps to invest only.",
-          "The default work-optional age reaches new plans only. On the board it is a default the client accepts on D07b; the accepted age is then the client's own. The optimised savings rate reaches new first results only.",
-          "The health floater rule is four rows. Its income line is monthly take-home, as in the board's example on G03 and G05.",
+          "A value outside its allowed range is refused as it is typed (7 Oct 2026 call). A move at or past the big-jump warning needs a typed reason.",
           "Show the history of another row opens in place: the row's values by sent change, the reason each time, and the screens that use it.",
-          "Adviser, Call centre, Ops and Support see only the values in use and their reasons, never draft rows.",
-          "No row stands in for a client's missing number, as on the board. Ranges are fixed per field. A missing number is asked for on D13, never filled in.",
-          "Against the board: its rows and three columns are kept, one row per value. The tax slabs row is marked to drop at the merge (brief B4). The market lines and cushion are rows here, as the board's L07 says."
+          "Adviser, Call centre, Ops and Support see only the values in use and their reasons, never a draft.",
+          "No row stands in for a client's missing number. A missing number is asked for on D13, never filled in."
         ],
         "branches": [
           [
@@ -1173,13 +958,14 @@
           "LQ8 to be decided: whether the financial planning team reviews planning rows before they are sent",
           "LQ38 to be verified: the field changes to L02 to L09 now in progress (7 Oct 2026 call), so these screens show the same rows",
           "gap, to be decided: the allowed range and big-jump warning of every row except the returns and the two inflation rows (every row marked gap under Limits). The check as you type needs them; none are given yet.",
+          "Each row is marked planning or investment (the glide path, the market rule and the change rules are investment). The mark stays in the data; the drawing leaves it out.",
+          "Each row's used-on screens and its unit come from the board's L02 rows. The drawing shows the used-on screens in the row's history.",
+          "The board's tax slabs row is left out: its section was dropped (brief B4).",
+          "The health floater rule is four rows. Its income line is monthly take-home, as on G03 and G05.",
+          "The market rule rows reach plans as market readings do. The work-optional age is a default the client accepts on D07b; then it is the client's own.",
           "Every saved copy of a plan carries its Assumptions version (as-N).",
           "Life expectancy is the constant LIFE_EXPECTANCY.",
           "Calls made while building (logic plan, 8 Oct 2026), open to veto: rows marked investment or planning; used-in screens and units from the board; market rule rows: new plans and steps only; work-optional age: new plans only; savings rate: new first results only; health floater as four rows, monthly take-home."
-        ],
-        "forward": [
-          "Open a draft works only when Assumptions has no other draft open.",
-          "Required in a draft (L02a): each edited row's new value, in its unit and allowed range, and its typed reason."
         ]
       },
       "compliance": {
@@ -5062,7 +4848,7 @@
       "frame": "desktop",
       "template": "T-table",
       "path": "both",
-      "purpose": "Each rule set's draft, with its changes, checks, trial run (ten panels, a to j) and sending plan. Drawn: the assumptions draft of 10 Mar 2028, checked and trial run done.",
+      "purpose": "A rule set's open draft: what it changes, its checks, its trial run over every plan, and how it will be sent. Drawn: the assumptions draft of 10 Mar 2028, ready to submit.",
       "ui": [
         [
           "strip",
@@ -5074,70 +4860,46 @@
         ],
         [
           "h",
-          "Drafts: one row per rule set"
+          "Drafts: one per rule set"
         ],
         [
           "table",
           [
             "Rule set",
             "Draft",
-            "Version in use, since (a draft starts from it)",
-            "Author",
-            "Status",
-            "Last checked",
-            "Last trial run"
+            "Status"
           ],
           [
             [
               "Assumptions",
-              "the assumptions draft, from version as-1: equity return and expense inflation",
-              "as-1, 25 Jan 2027",
-              "Logic analyst 01",
-              "trial run done; sending plan set",
-              "10 Mar 2028",
-              "10 Mar 2028"
+              "open, from version as-1: equity return and expense inflation",
+              "checked; trial run done; sending plan set"
             ],
             [
               "Client groups",
-              "none open; the goal importance draft was discarded on 25 Feb 2028",
-              "co-4, 17 Dec 2027",
-              "-",
-              "-",
-              "-",
+              "none open (the goal importance draft was discarded on 25 Feb 2028)",
               "-"
             ],
             [
               "Funds",
               "none open",
-              "fu-7, 14 Feb 2028",
-              "-",
-              "-",
-              "-",
               "-"
             ],
             [
               "Risk scores",
               "none open",
-              "rs-2, 3 Jan 2028",
-              "-",
-              "-",
-              "-",
               "-"
             ],
             [
               "Market readings",
-              "none open; the April readings are due on the first working day of April",
-              "MI14, Mar 2028",
-              "-",
-              "-",
-              "-",
+              "none open",
               "-"
             ]
           ]
         ],
         [
           "h",
-          "What the draft changes (from version as-1)"
+          "1. What the draft changes"
         ],
         [
           "table",
@@ -5152,13 +4914,13 @@
               "Expected return: equity",
               "11.0 % a year",
               "10.0 % a year",
-              "annual review of the equity return (typed by the author)"
+              "annual review (typed by the author)"
             ],
             [
               "Expense inflation",
               "6.0 % a year",
               "6.5 % a year",
-              "annual review of expense inflation (typed by the author)"
+              "annual review (typed by the author)"
             ]
           ]
         ],
@@ -5169,40 +4931,26 @@
         ],
         [
           "h",
-          "Checks: run on 10 Mar 2028; none failed"
+          "2. Checks: none failed (10 Mar 2028)"
         ],
         [
           "table",
           [
             "Check",
-            "Result",
-            "Reason typed for a warning"
+            "Result"
           ],
           [
             [
-              "Allowed ranges: equity return 0 to 20; expense inflation 0 to 15",
-              "pass",
-              "-"
+              "Allowed ranges (equity return 0 to 20; expense inflation 0 to 15)",
+              "pass"
             ],
             [
-              "Big-jump warning at 0.5: equity return 11.0 to 10.0",
-              "warning",
-              "annual review of the equity return (typed by the author)"
+              "Big jumps of 0.5 or more (11.0 to 10.0; 6.0 to 6.5)",
+              "warning: a reason typed for each"
             ],
             [
-              "Big-jump warning at 0.5: expense inflation 6.0 to 6.5",
-              "warning",
-              "annual review of expense inflation (typed by the author)"
-            ],
-            [
-              "The starting version is still in use: as-1",
-              "pass",
-              "-"
-            ],
-            [
-              "Sums, no-gap check, mix limits, safety limits (L09), the ISIN, a hold that empties a basket",
-              "not run: these belong to Client groups and Funds",
-              "-"
+              "Starting version still in use (as-1)",
+              "pass"
             ]
           ]
         ],
@@ -5213,91 +4961,54 @@
         ],
         [
           "h",
-          "Trial run: 10 Mar 2028, over every active plan"
+          "3. Trial run over every plan (10 Mar 2028)"
         ],
         [
           "table",
           [
             "Panel",
-            "This draft",
-            "At launch or later"
+            "What it shows for this draft"
           ],
           [
             [
               "a. Reach",
-              "670 of 1,000 plans would change (picture moved or to accept), each at its next refresh. None on the day it is sent.",
-              "at launch"
+              "670 of 1,000 plans would change, each at its next refresh"
             ],
             [
               "b. Update sizes",
-              "330 tiny, 540 picture moved, 130 to accept, none urgent",
-              "at launch"
+              "330 tiny, 540 picture moved, 130 to accept, none urgent"
             ],
             [
               "c. What moves",
-              "The share of each goal that is funded moves. Instalments move only in the 130 to-accept plans. No goal changes mix, so no table of mix moves.",
-              "later"
+              "funded shares move; instalments move only in the 130 to-accept plans"
             ],
             [
               "d. Actions",
-              "No sells, no exit-load warnings: mixes and funds do not change. SIPs change in the 130 to-accept plans, by Rs N a month on average.",
-              "at launch"
+              "no sells; SIPs change in the 130 to-accept plans, by Rs N a month on average"
             ],
             [
               "e. Rule breaks",
-              "No hard rule break. Amounts under a fund's minimum SIP: N, listed (LQ44).",
-              "at launch"
+              "none; amounts under a fund's minimum SIP: N (LQ44)"
             ],
             [
               "f. Example clients",
-              "Two of the six, typed below. They are also the sample plans on R12 (LQ34).",
-              "at launch"
+              "two of the six; their mixes do not change (LQ34)"
             ],
             [
               "g. One client",
-              "Client C04 (name hidden for some roles): the work-optional goal goes from about 70 to about 54 percent funded. Instalments stay at Rs 35,000 a month.",
-              "at launch"
+              "C04: a goal from about 70 to about 54 percent funded; instalments stay Rs 35,000 a month"
             ],
             [
               "h. What clients read",
-              "The assumption lines (R08, G01), new sketches (R09), the plan screens (G03, H10, H05), the sample plans (R12), the email. Staff: L15 and the plan versions tab on M03. Compliance must sign.",
-              "at launch"
+              "the assumption lines, the plan screens, the sample plans and the email; Compliance must sign"
             ],
             [
               "i. Load and timing",
-              "Week by week at the next refresh, against pushed now on day one (below)",
-              "later"
+              "week by week: at the next refresh, or pushed now (below)"
             ],
             [
               "j. Recent joiners",
-              "N plans first built in the 30 days before 1 Apr 2028, listed by id",
-              "later"
-            ]
-          ]
-        ],
-        [
-          "table",
-          [
-            "f. Example client",
-            "Mix before (version co-4)",
-            "Mix after",
-            "Instalments before",
-            "Instalments after"
-          ],
-          [
-            [
-              "Moderate, a goal 5 years out: mix MP6",
-              "0/15/10/8/67/0",
-              "0/15/10/8/67/0",
-              "Rs N a month",
-              "Rs N a month"
-            ],
-            [
-              "Moderate, the whole surplus into one long goal: mix MP8",
-              "0/10/5/10/75/0",
-              "0/10/5/10/75/0",
-              "Rs N a month",
-              "Rs N a month"
+              "N plans first built in the 30 days before 1 Apr 2028"
             ]
           ]
         ],
@@ -5306,19 +5017,13 @@
           "g. One client by id, or an example client: C04"
         ],
         [
-          "chart",
-          "g. Client C04: old and new mix, and action plan"
-        ],
-        [
           "table",
           [
             "i. How it reaches plans",
             "Plans refreshed",
-            "Updates to accept",
+            "To accept",
             "Picture moved",
-            "Messages",
-            "Call tasks",
-            "Tickets"
+            "Messages"
           ],
           [
             [
@@ -5326,18 +5031,14 @@
               "about 60",
               "about 8",
               "about 33",
-              "none beyond the email",
-              "N",
-              "N"
+              "none beyond the email"
             ],
             [
               "pushed now, on day one",
               "every plan, at once",
               "130 at once",
               "540 at once",
-              "a push notification to each of the 130, then reminders (S11)",
-              "N",
-              "N"
+              "a push to each of the 130, then reminders (S11)"
             ]
           ]
         ],
@@ -5348,13 +5049,13 @@
         ],
         [
           "h",
-          "The sending plan"
+          "4. How it will be sent"
         ],
         [
           "radio",
           [
-            "How it reaches plans: at the next refresh, with the email (proposed)",
-            "How it reaches plans: pushed now, every plan refreshed at once"
+            "At the next refresh, with the email (proposed)",
+            "Pushed now: every plan refreshed at once"
           ]
         ],
         [
@@ -5370,20 +5071,15 @@
           [
             [
               "The email",
-              "proposed: one email for this change (V05). When it goes: LQ33"
+              "proposed (V05); when it goes: LQ33"
             ],
             [
               "Compliance signs",
-              "needed before sending: this is an assumptions change"
-            ]
-          ]
-        ],
-        [
-          "rows",
-          [
+              "needed: this is an assumptions change"
+            ],
             [
               "Ready to submit",
-              "yes: no failed check; a reason on every warning; the trial run of 10 Mar 2028 is newer than the last edit, with no hard rule break; the way it reaches plans is allowed."
+              "yes"
             ]
           ]
         ],
@@ -5411,7 +5107,7 @@
       "spec": {
         "fields": [
           {
-            "f": "drafts, one per rule set: the draft, the version it starts from, author, status, last checked, last trial run",
+            "f": "drafts, one per rule set: the draft and its status",
             "forward": "read"
           },
           {
@@ -5427,7 +5123,7 @@
             "forward": "required"
           },
           {
-            "f": "trial run: the ten panels, run over every active plan",
+            "f": "trial run: the ten panels, over every active plan",
             "forward": "system"
           },
           {
@@ -5455,32 +5151,25 @@
             "forward": "optional"
           }
         ],
+        "forward": [
+          "Submit for a second check opens L10 when no check failed, every warning has a reason, the trial run is newer than the last edit with no hard rule break, and the way it reaches plans is allowed.",
+          "Required: how it reaches plans; the goes-live time; the reason clients read; a reason for every warning.",
+          "Optional: the email; a client for panel g; a reason when the draft is discarded.",
+          "System: the check and trial run records, the author, the starting version (as-1)."
+        ],
         "logic": [
           "Seats: Principal officer act; Logic analyst act; Compliance read; Adviser none; Call centre none; Ops none; Support none; Read only read masked; Marketing none; Finance none",
           "Writes: run validation (the author) (L05_run_validation; Principal officer, Logic analyst); run the preview (the author) (L05_run_preview; Principal officer, Logic analyst); set the proposal: route, effective time, client reason slot, the letter (the author) (L05_set_proposal; Principal officer, Logic analyst); submit for review (the author) (L05_submit; Principal officer, Logic analyst); discard the draft, with a reason (the author) (L05_discard; Principal officer, Logic analyst); unmask a client (L05_unmask_a_client; Logic analyst)",
-          "Check: sums. Every mix, and every basket's split, adds up to 100.",
-          "Check: allowed ranges. A value outside its range is refused. A big jump gets a warning that needs a typed reason.",
-          "Check: no-gap check. Every combination of ranges lands on exactly one row of the group table.",
-          "Check: mix limits. The most in equity for each risk level (L09).",
-          "Check: the safety limits (L09). The most in one fund, in a basket of more than one fund; the minimum SIP.",
-          "Check: the ISIN is in the fund master list ({I05}), and the plan is a direct plan.",
-          "Check: a hold that would empty a basket is blocked until the same draft adds a fund to it.",
-          "Check: if the starting version is replaced, the draft moves onto the new one, and its checks and trial run are redone.",
-          "Check: a trial run older than the last edit blocks submit.",
-          "Checks by rule set. Assumptions and Market readings: allowed ranges, big jumps. Client groups: sums, ranges, the no-gap check, mix limits. Risk scores: score ranges with no gap or overlap. Funds: sums, safety limits, the ISIN, the hold rule. Every rule set: the starting version is still in use. The age of the trial run is not a check; submit looks at it.",
-          "A failed check blocks. A warning needs a typed reason. The trial run starts only after the checks pass. After submit, the draft waits on L10 for a second person.",
-          "The trial run tests the draft on every active plan. It changes no plan. It is kept with the change when it is sent.",
+          "A failed check blocks. A warning needs a typed reason. The trial run starts only after the checks pass.",
+          "The checks depend on the rule set. Assumptions and Market readings: allowed ranges and big jumps. Client groups: sums, ranges, the no-gap check, mix limits. Risk scores: score ranges with no gap or overlap. Funds: sums, the safety limits (L09), the ISIN, the hold rule. Every rule set: the starting version is still in use.",
+          "If the starting version is replaced, the draft moves onto the new one, and its checks and trial run are redone.",
+          "The trial run tests the draft on every active plan and changes none. It is kept with the change when it is sent. A trial run older than the last edit blocks submit.",
+          "A hard rule break blocks submit: a goal with no group, a risk level over its most in equity, or a plan engine error.",
           "Panels a, b, d, e, f, g and h come at launch. Panels c, i and j can follow (LQ37).",
-          "A hard rule break blocks submit: a goal with no group, a risk level over its most in equity, or a plan engine error. Amounts under a fund's minimum SIP are counted and listed (LQ44).",
-          "The Ops page uses the same 670 in 1,000 for the email.",
-          "A figure not worked out yet reads N: the average change, amounts under a minimum SIP, recent joiners, the example clients' instalments, and call tasks and tickets for each way of reaching plans.",
-          "Example clients: two of the six are typed, on the mixes of version co-4, in use on 10 Mar 2028. An assumptions draft changes neither the group table nor the mixes, so the mix before and after is the same.",
-          "Panel g shows one client by id, or an example client. Names are hidden for the Logic analyst and Read only. Only the Logic analyst can show names: it needs a typed reason and leaves a log line. Read only never sees names.",
-          "Panel g shows client C04. C04's plan review of 10 Apr 2028 later shows the same: picture moved, nothing to accept (V01).",
-          "Run the checks and Start the trial run work in place. Each run is recorded and replaces the results above.",
-          "Discard the draft works in place. It needs a typed reason, closes the draft and frees the rule set for a new one. The draft is kept on record.",
-          "Next: submitted on 10 Mar 2028. Compliance 01 signs on 14 Mar, and Principal officer 01 approves on 17 Mar (L10). Sent on 20 Mar 2028 as change REL12 (version as-2), going live 1 Apr 2028 00:00 (L06).",
-          "Compared with the board: today's L05 has the staged list, four counts, one client or example client, and a send button. Here sending is two screens on, after the second check. The rule breaks panel was asked for on the 7 Oct 2026 call."
+          "Panel g hides names for the Logic analyst and Read only. Only the Logic analyst can show names, with a typed reason; it leaves a log line.",
+          "Run the checks and Start the trial run work in place. Each run replaces the results above.",
+          "Discard the draft works in place. It needs a typed reason and frees the rule set for a new draft. The draft is kept on record.",
+          "Next: submitted on 10 Mar 2028. Compliance 01 signs on 14 Mar and Principal officer 01 approves on 17 Mar (L10). Sent on 20 Mar as change REL12 (version as-2), live 1 Apr 2028 00:00 (L06)."
         ],
         "branches": [
           [
@@ -5509,19 +5198,19 @@
           ]
         ],
         "states": [
-          "Checked and trial run done, sending plan set (drawn: L05, the assumptions draft, 10 Mar 2028).",
+          "Checked, trial run done, sending plan set (drawn: L05, the assumptions draft, 10 Mar 2028).",
           "Checks failed: trial run and submit blocked (drawn: L05a, the client groups draft, 1 Nov 2027).",
-          "Sent back by the checker with a comment, read only until edited (drawn: L05b, the funds draft, 7 May 2027).",
-          "No draft open: one row per rule set, with its version in use (not drawn).",
-          "Open, not yet checked: the changes as edited on the rule set's own screen (not drawn).",
-          "Checked, no trial run yet: submit is blocked (not drawn).",
-          "A trial run in progress: when it started and how far it has got. It can be stopped and run again (not drawn).",
-          "A client groups draft after its trial run, with the table of mix moves in panel c: mix MP6 to MP8 and MP7 to MP9; 660 to accept, 60 picture moved, 280 tiny per 1,000; no sells (not drawn; 2 Nov 2027, the draft that became change REL07).",
-          "A client groups draft whose trial run shows an example client with equity down 9 points (not drawn; 29 Nov 2027, the draft that became change REL08).",
-          "A draft moved onto a new version after an urgent hold changed its rule set: checks and trial run redone before the second check (not drawn).",
-          "A draft discarded with its reason (not drawn; the goal importance draft, 25 Feb 2028: it splits clients into groups that are too small).",
-          "Waiting for a second check, or approved: read only here, with a link to L10 or L06 (not drawn).",
-          "Seen by Compliance or Read only: the same blocks; names hidden for Read only (not drawn)."
+          "Sent back with a comment, read only until edited (drawn: L05b, the funds draft, 7 May 2027).",
+          "No draft open: one row per rule set (not drawn).",
+          "Open, not yet checked (not drawn).",
+          "Checked, no trial run yet: submit blocked (not drawn).",
+          "A trial run in progress: it can be stopped and run again (not drawn).",
+          "A client groups trial run with mix moves in panel c: MP6 to MP8 and MP7 to MP9; 660 to accept, 60 picture moved, 280 tiny per 1,000; no sells (not drawn; 2 Nov 2027, became change REL07).",
+          "A client groups trial run with an example client's equity down 9 points (not drawn; 29 Nov 2027, became change REL08).",
+          "Moved onto a new version after an urgent hold changed its rule set: checks and trial run redone (not drawn).",
+          "Discarded with its reason (not drawn; the goal importance draft, 25 Feb 2028: it splits clients into groups that are too small).",
+          "Waiting for a second check, or approved: read only, with a link to L10 or L06 (not drawn).",
+          "Seen by Compliance or Read only: names hidden for Read only (not drawn)."
         ],
         "dev": [
           "LQ22 to be decided: whether approval waits until the checker has opened every trial run panel; a hard limit on a move in one investment type",
@@ -5530,13 +5219,12 @@
           "Open with LQ27 (Tech page): whether a quick trial run on a fixed sample runs while editing, before the full run.",
           "Records: the drafts and previews tables (Tech page). The trial run is a background job, sized on the Tech page.",
           "Show names is a write of this screen, so its role and event are in the permission table.",
+          "Panel h in full: the assumption lines (R08, G01), new first results (R09), the plan screens (G03, H10, H05), the sample plans (R12) and the email; for staff, L15 and the plan versions tab on M03.",
+          "Panel f's two typed example clients, on version co-4: Moderate, a goal 5 years out, mix MP6 (0/15/10/8/67/0); Moderate, the whole surplus into one long goal, mix MP8 (0/10/5/10/75/0). An assumptions draft changes no mix, so before and after match; their instalments are N.",
+          "Panel g's client C04 matches C04's plan review of 10 Apr 2028 (V01). The Ops page uses the same 670 in 1,000 for the email.",
+          "A figure not worked out yet reads N: the average change, amounts under a minimum SIP, recent joiners, instalments, call tasks and tickets per way of reaching plans.",
+          "Compared with the board: today's L05 has the staged list, four counts, one client and a send button. Here sending comes two screens on, after the second check. The rule breaks panel was asked for on the 7 Oct 2026 call.",
           "Calls made while building (logic plan, 8 Oct 2026), open to veto: two example clients typed, on version co-4 mixes; only the Logic analyst shows names, with a reason; client C04 in panel g matches V01; the check and trial run links work in place."
-        ],
-        "forward": [
-          "Submit for a second check opens L10 when no check failed, every warning has a reason, the trial run is newer than the last edit with no hard rule break, and the way it reaches plans is allowed.",
-          "Required: how it reaches plans; the goes-live time, never before it is sent; the reason clients read; a typed reason for every warning.",
-          "Optional: the email, proposed or not; a client id or example client for panel g; a reason when the draft is discarded.",
-          "System: the check and trial run records, the author, and the version the draft starts from (as-1)."
         ]
       },
       "compliance": {
